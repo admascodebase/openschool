@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+							http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="services" version="2.5">
+	<display-name>NgempService</display-name>
+	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			/WEB-INF/dispatcher-servlet.xml
+		</param-value>
+	</context-param>
+	
+	<listener>
+		<listener-class>
+			org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>RestEasy</servlet-name>
+		<servlet-class>
+			org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher
+		</servlet-class>
+		<init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>com.admas.ngemp.sms.util.ApplicationConfig</param-value>
+        </init-param>
+        
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>RestEasy</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+</web-app>

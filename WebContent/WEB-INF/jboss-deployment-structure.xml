@@ -1,0 +1,42 @@
+<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.0">
+	<deployment>
+		<dependencies>
+			<module name="org.apache.log4j" />
+			<module name="org.apache.commons.logging" />
+			<module name="org.apache.commons.digester" />
+			<module name="org.apache.commons.beanutils" />
+			<module name="org.apache.commons.lang" />
+			<module name="org.apache.commons.lang3" />
+			<module name="org.apache.commons.pool" />
+			<module name="org.springframework">
+				<imports>
+					<include path="META-INF**" />
+					<include path="org**" />
+				</imports>
+			</module>
+            <module name="org.hibernate" >
+				<imports>
+					<include path="META-INF**" />
+					<include path="org**" />
+				</imports>
+			</module>
+			<module name="org.hibernate.envers" >
+				<imports>
+					<include path="META-INF**" />
+					<include path="org**" />
+				</imports>
+			</module>
+			<module name="org.apache" />
+			<module name="org.dom4j"/>
+			<module name="com.sun.org.apache.xml.internal.resolver"/>
+			<module name="com.sun.xml.bind"/>
+	       	<module name="javax.servlet.api"/>
+	       	<module name="javax.servlet.jstl.api"/>
+	       	<module name="org.jasypt"/>
+	       	<module name="javax.activation.api"/>
+	       	<module name="org.antlr"/>
+	       	<module name="org.apache.ws.security"/>
+	       	<module name="org.quartz"/>
+	    </dependencies>
+	</deployment>
+</jboss-deployment-structure>
