@@ -4,10 +4,14 @@ import java.util.List;
 
 import com.admas.ngemp.sms.dao.ISmsDao;
 import com.admas.ngemp.sms.dto.SmsTemplateDto;
+import com.admas.ngemp.sms.exception.ExceptionHandler;
+import com.admas.ngemp.sms.jpa.SmsConfig;
+import com.admas.ngemp.sms.util.SMSUtil;
 
 public class SmsLogicImpl implements ISmsLogic{
 	
-	private static ISmsDao smsDaoImpl;		
+	private static ISmsDao smsDaoImpl;
+	
 	
 	public static ISmsDao getSmsDaoImpl() {
 		return smsDaoImpl;
@@ -18,6 +22,19 @@ public class SmsLogicImpl implements ISmsLogic{
 	@Override
 	public List<SmsTemplateDto> getSmsTempltes() {
 		return smsDaoImpl.getSmsTempltes();
+	}
+	@Override
+	public String sendSms(String mobileNo, String message , String route) throws ExceptionHandler {
+		String result = "";
+		try{
+			SmsConfig smsConfig = smsDaoImpl.getSmsConfig();
+			result = SMSUtil.sendSms(smsConfig, mobileNo, message, route);
+		}catch(ExceptionHandler ex){
+			throw ex;
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		return result;
 	}
 	
 	

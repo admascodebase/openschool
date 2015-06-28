@@ -12,7 +12,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.admas.ngemp.sms.dto.SmsTemplateDto;
-import com.admas.ngemp.sms.exception.CommServiceErrors;
 import com.admas.ngemp.sms.exception.ExceptionHandler;
 import com.admas.ngemp.sms.logic.ISmsLogic;
 
@@ -96,21 +95,27 @@ public class SmsService {
 	}*/
 
 	@GET
-	@Path("/sendSms/{mobile}/{message}")
-	@Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+	@Path("/sendSms/{mobile}/{message}/{route}")
+	//@Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public Response sendSms(@PathParam("mobile") String mobile , @PathParam("message") String message) {		
-		 try {
+	public Response sendSms(@PathParam("mobile") String mobile , @PathParam("message") String message , @PathParam("route") String route) {		
+		String result = "";
+		try {
 			 LOG.info("started ");
-			 if(mobile.length()!=10){
+			 result = smsLogicImpl.sendSms(mobile , message , route);
+			 /*if(mobile.length()!=10){
 				 throw new ExceptionHandler(CommServiceErrors.INVALID_MOBILE);
 			 }
-			 System.out.println("Mobile : "+mobile);
+			 System.out.println("Mobile : "+mobile);*/
 			// customer = smsLogicImpl.getCustomer(id);
+			 
+			// res=smsLogicImpl.sendSms();
 		} catch (ExceptionHandler e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+		}catch(Exception e){
+			
 		}
-		return Response.status(200).entity("Sucess").build();
+		return Response.status(200).entity(result).build();
 
 	}
 	
@@ -144,6 +149,8 @@ public class SmsService {
 	public static void setSmsLogicImpl(ISmsLogic smsLogicImpl) {
 		SmsService.smsLogicImpl = smsLogicImpl;
 	}
+
+	
 	
 	
 }

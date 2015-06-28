@@ -10,6 +10,9 @@ import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
 import com.admas.ngemp.sms.dto.SmsTemplateDto;
+import com.admas.ngemp.sms.exception.CommServiceErrors;
+import com.admas.ngemp.sms.exception.ExceptionHandler;
+import com.admas.ngemp.sms.jpa.SmsConfig;
 
 @Repository
 public class SmsDaoImpl implements ISmsDao{
@@ -57,6 +60,33 @@ public class SmsDaoImpl implements ISmsDao{
 			entityManager.close();
 		}
 		return lSmsTemplates;
+	}
+
+
+	@Override
+	public SmsConfig getSmsConfig() throws ExceptionHandler {
+		TypedQuery<SmsConfig> customerQuery = null;
+		try {
+			customerQuery = entityManager.createQuery(
+					"SELECT s FROM com.admas.ngemp.sms.jpa.SmsConfig s",
+					com.admas.ngemp.sms.jpa.SmsConfig.class);
+
+			List<SmsConfig> smsTemplateJpa = customerQuery.getResultList();
+			if (smsTemplateJpa.isEmpty()) {
+				throw new ExceptionHandler(
+						CommServiceErrors.SMS_CONFIG_NOT_FOUND);
+			}
+			return smsTemplateJpa.get(0);
+
+		} catch (ExceptionHandler exception) {
+			throw exception;
+		} catch (Exception e) {
+			e.printStackTrace();
+			// throw new Exception(exception.getMessage());
+		} finally {
+			entityManager.close();
+		}
+		return null;
 	}
 
 	

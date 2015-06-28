@@ -16,13 +16,10 @@ public enum CommServiceErrors {
 	/**
 	 * FAILED Response
 	 */
-	INVALID_MOBILE("NS", "Invalid mobile number"),
-
-	/**
-	 * INVALID_REQUEST
-	 */
-
-	INVALID_REQUEST("BL0003", "Invalid Request");
+	INVALID_MOBILE("CH001", "Invalid mobile number"),
+	
+	SMS_CONFIG_NOT_FOUND("CH002", "Sms Config not found");
+	
 	/**
 	 * variable for error code
 	 */
