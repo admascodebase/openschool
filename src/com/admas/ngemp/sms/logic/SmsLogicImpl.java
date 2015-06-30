@@ -26,9 +26,13 @@ public class SmsLogicImpl implements ISmsLogic{
 	@Override
 	public String sendSms(String mobileNo, String message , String route) throws ExceptionHandler {
 		String result = "";
+		boolean result1=false;
 		try{
 			SmsConfig smsConfig = smsDaoImpl.getSmsConfig();
 			result = SMSUtil.sendSms(smsConfig, mobileNo, message, route);
+			if(!result.equals("")){
+				result1=smsDaoImpl.saveSms(smsConfig, mobileNo, message, route);
+			}
 		}catch(ExceptionHandler ex){
 			throw ex;
 		}catch (Exception e) {

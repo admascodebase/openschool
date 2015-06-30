@@ -5,20 +5,24 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.admas.ngemp.sms.dto.SmsTemplateDto;
 import com.admas.ngemp.sms.exception.CommServiceErrors;
 import com.admas.ngemp.sms.exception.ExceptionHandler;
 import com.admas.ngemp.sms.jpa.SmsConfig;
+import com.admas.ngemp.sms.jpa.SmsInbox;
 
 @Repository
 public class SmsDaoImpl implements ISmsDao{
 
 	private static EntityManager entityManager;
-	
+	Logger logger = LoggerFactory.getLogger(SmsDaoImpl.class);
 	
 	/**
 	 * @param entityManager the entityManager to set
@@ -65,20 +69,25 @@ public class SmsDaoImpl implements ISmsDao{
 
 	@Override
 	public SmsConfig getSmsConfig() throws ExceptionHandler {
-		TypedQuery<SmsConfig> customerQuery = null;
+		TypedQuery<SmsConfig> customerQuery;
+		List<SmsConfig> smsTemplateJpa=new ArrayList<SmsConfig>();
 		try {
 			customerQuery = entityManager.createQuery(
 					"SELECT s FROM com.admas.ngemp.sms.jpa.SmsConfig s",
 					com.admas.ngemp.sms.jpa.SmsConfig.class);
-
-			List<SmsConfig> smsTemplateJpa = customerQuery.getResultList();
-			if (smsTemplateJpa.isEmpty()) {
+			
+			smsTemplateJpa = customerQuery.getResultList();
+		logger.info("@@@@@@smsconfig==="+smsTemplateJpa.get(0).getUrl());
+			if (smsTemplateJpa.size()==0) {
+				logger.info("@@@@@@smsconfig==="+smsTemplateJpa.get(0).getUrl());
 				throw new ExceptionHandler(
 						CommServiceErrors.SMS_CONFIG_NOT_FOUND);
 			}
+			logger.info("@@@@@@smsconfig==="+smsTemplateJpa.get(0).getUrl());
 			return smsTemplateJpa.get(0);
 
 		} catch (ExceptionHandler exception) {
+			exception.printStackTrace();
 			throw exception;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -86,7 +95,37 @@ public class SmsDaoImpl implements ISmsDao{
 		} finally {
 			entityManager.close();
 		}
-		return null;
+		return smsTemplateJpa.get(0);
+	}
+
+
+	@Override
+	public boolean saveSms(SmsConfig smsConfig, String mobileNo,
+			String message, String route) throws ExceptionHandler {
+		
+		boolean Result1=false;
+		try{
+		SmsInbox smsInboxJpa=new SmsInbox();
+		smsInboxJpa.setMobile(mobileNo);
+		smsInboxJpa.setDelFlg("N");
+		smsInboxJpa.setDeleveredOn(null);
+		smsInboxJpa.setMsgId("");
+		smsInboxJpa.setMsgPushId("");
+		smsInboxJpa.setMsgStatus("");
+		smsInboxJpa.setOrgCode(smsConfig.getOrgId());
+		smsInboxJpa.setRoute(Integer.parseInt(route));
+		smsInboxJpa.setSentOn(null);
+		
+		
+		smsInboxJpa.setRawMessages(null);
+		entityManager.persist(smsInboxJpa);
+		Result1=true;
+		return Result1;
+		}
+		catch(Exception e){
+			
+		}
+		return Result1;
 	}
 
 	
