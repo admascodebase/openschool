@@ -12,6 +12,9 @@ public interface ISmsDao {
 	public List<SmsTemplateDto> getSmsTempltes();
 	
 	public SmsConfig getSmsConfig() throws ExceptionHandler;
+
+	public boolean saveSms(SmsConfig smsConfig, String mobileNo,
+			String message, String route)throws ExceptionHandler;
 	
 
 }
