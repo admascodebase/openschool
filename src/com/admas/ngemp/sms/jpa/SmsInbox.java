@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -39,8 +41,9 @@ public class SmsInbox implements Serializable{
 	@Column(name="MOBILE")
 	private String mobile;
 	
-	@OneToMany(cascade=CascadeType.ALL,mappedBy="smsInbox")
-	private List<RawMessages> rawMessages;
+	@OneToMany
+	@JoinColumn(name="RAW_MSG_ID")
+	private RawMessages rawMessages;
 
 		
 	@Column(name="MSG_ID")
@@ -117,17 +120,18 @@ public class SmsInbox implements Serializable{
 		this.mobile = mobile;
 	}
 
+
 	/**
 	 * @return the rawMessages
 	 */
-	public List<RawMessages> getRawMessages() {
+	public RawMessages getRawMessages() {
 		return rawMessages;
 	}
 
 	/**
 	 * @param rawMessages the rawMessages to set
 	 */
-	public void setRawMessages(List<RawMessages> rawMessages) {
+	public void setRawMessages(RawMessages rawMessages) {
 		this.rawMessages = rawMessages;
 	}
 
