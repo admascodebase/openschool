@@ -127,6 +127,27 @@ public class SmsDaoImpl implements ISmsDao{
 		}
 		return Result1;
 	}
+	
+	@Override
+	public List<SmsInbox> getSentSms() throws ExceptionHandler {
+		TypedQuery<SmsInbox> sentSmsQuery = null;
+		try {
+			sentSmsQuery = entityManager.createQuery(
+					"SELECT s FROM com.admas.ngemp.sms.jpa.SmsInbox s",
+					com.admas.ngemp.sms.jpa.SmsInbox.class);
+
+			List<SmsInbox> smsInboxJpa = sentSmsQuery.getResultList();
+			
+			return smsInboxJpa;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			// throw new Exception(exception.getMessage());
+		} finally {
+			entityManager.close();
+		}
+		return null;
+	}
 
 	
 

@@ -3,6 +3,7 @@ package com.admas.ngemp.sms.logic;
 import java.util.List;
 
 import com.admas.ngemp.sms.dao.ISmsDao;
+import com.admas.ngemp.sms.dto.SmsDto;
 import com.admas.ngemp.sms.dto.SmsTemplateDto;
 import com.admas.ngemp.sms.exception.ExceptionHandler;
 import com.admas.ngemp.sms.jpa.SmsConfig;
@@ -16,6 +17,7 @@ public class SmsLogicImpl implements ISmsLogic{
 	public static ISmsDao getSmsDaoImpl() {
 		return smsDaoImpl;
 	}
+	
 	public static void setSmsDaoImpl(ISmsDao smsDaoImpl) {
 		SmsLogicImpl.smsDaoImpl = smsDaoImpl;
 	}
@@ -39,6 +41,12 @@ public class SmsLogicImpl implements ISmsLogic{
 			// TODO: handle exception
 		}
 		return result;
+	}
+
+	@Override
+	public String sendSms(SmsDto smsDto) throws ExceptionHandler {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

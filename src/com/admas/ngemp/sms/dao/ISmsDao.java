@@ -5,6 +5,7 @@ import java.util.List;
 import com.admas.ngemp.sms.dto.SmsTemplateDto;
 import com.admas.ngemp.sms.exception.ExceptionHandler;
 import com.admas.ngemp.sms.jpa.SmsConfig;
+import com.admas.ngemp.sms.jpa.SmsInbox;
 
 
 public interface ISmsDao {
@@ -15,6 +16,8 @@ public interface ISmsDao {
 
 	public boolean saveSms(SmsConfig smsConfig, String mobileNo,
 			String message, String route)throws ExceptionHandler;
+	
+	public List<SmsInbox> getSentSms() throws ExceptionHandler;
 	
 
 }
