@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.admas.ngemp.enumuration.MessageStatus;
 import com.admas.ngemp.sms.dto.SmsDto;
 import com.admas.ngemp.sms.dto.SmsTemplateDto;
 import com.admas.ngemp.sms.exception.CommServiceErrors;
@@ -29,7 +30,6 @@ public class SmsDaoImpl implements ISmsDao {
 
 	private static EntityManager entityManager;
 	Logger logger = LoggerFactory.getLogger(SmsDaoImpl.class);
-
 	/**
 	 * @param entityManager
 	 *            the entityManager to set
@@ -123,7 +123,9 @@ public class SmsDaoImpl implements ISmsDao {
 			// smsInboxJpa.setDeleveredOn(null);
 			smsInboxJpa.setMsgId(messageId);
 			// smsInboxJpa.setMsgPushId("");
-			// smsInboxJpa.setMsgStatus("");
+//			messageStatus status = null;
+			
+			 smsInboxJpa.setMsgStatus(""+MessageStatus.DELIVERED);
 			smsInboxJpa.setOrgCode(smsConfig.getOrgId());
 			smsInboxJpa.setRoute(Integer.parseInt(route));
 			// smsInboxJpa.set(new Date());
