@@ -34,20 +34,23 @@ public class SmsLogicImpl implements ISmsLogic{
 	}
 	@Override
 	public String sendSms(String mobileNo, String message , String route) throws ExceptionHandler {
-		String result = "";
-		boolean result1=false;
+		String messageId = "";
+		boolean result=false;
 		try{
 			SmsConfig smsConfig = smsDaoImpl.getSmsConfig();
-			result = SMSUtil.sendSms(smsConfig, mobileNo, message, route);
-			if(!result.equals("")){
-				result1=smsDaoImpl.saveSms(smsConfig, mobileNo, message, route);
+			messageId = SMSUtil.sendSms(smsConfig, mobileNo, message, route);
+			if(!messageId.equals("")){
+				result=smsDaoImpl.saveSms(smsConfig, mobileNo, message, route , messageId);
+				if(!result){
+					logger.error("failed to store sms details");
+				}
 			}
 		}catch(ExceptionHandler ex){
 			throw ex;
 		}catch (Exception e) {
 			
 		}
-		return result;
+		return messageId;
 	}
 	@Override
 	public String sendSms(SmsDto smsDto) throws ExceptionHandler {
