@@ -1,8 +1,13 @@
 package com.admas.ngemp.sms.logic;
 
+import java.util.Iterator;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.admas.ngemp.sms.dao.ISmsDao;
+import com.admas.ngemp.sms.dao.SmsDaoImpl;
 import com.admas.ngemp.sms.dto.SmsDto;
 import com.admas.ngemp.sms.dto.SmsTemplateDto;
 import com.admas.ngemp.sms.exception.ExceptionHandler;
@@ -10,6 +15,8 @@ import com.admas.ngemp.sms.jpa.SmsConfig;
 import com.admas.ngemp.sms.util.SMSUtil;
 
 public class SmsLogicImpl implements ISmsLogic{
+	
+	Logger logger = LoggerFactory.getLogger(SmsDaoImpl.class);
 	
 	private static ISmsDao smsDaoImpl;
 	
@@ -38,15 +45,31 @@ public class SmsLogicImpl implements ISmsLogic{
 		}catch(ExceptionHandler ex){
 			throw ex;
 		}catch (Exception e) {
-			// TODO: handle exception
+			
 		}
 		return result;
 	}
-
 	@Override
 	public String sendSms(SmsDto smsDto) throws ExceptionHandler {
-		// TODO Auto-generated method stub
-		return null;
+	  
+		String result="";
+		
+		Iterator<String> iterator=smsDto.getContactNos().iterator();
+		String mobileNos="";
+		
+		while(iterator.hasNext()){
+			
+			Object object=iterator.next();
+			logger.info("number string=="+object);
+			
+			mobileNos+=","+object.toString();
+			
+			}
+		result=sendSms(mobileNos, smsDto.getMessage(), smsDto.getRoute().toString());
+		SmsConfig config=smsDaoImpl.getSmsConfig();
+		boolean res=smsDaoImpl.saveAllSms(smsDto, mobileNos, config);
+		
+		return result;
 	}
 	
 	

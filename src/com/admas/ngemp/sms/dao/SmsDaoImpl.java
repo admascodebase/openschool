@@ -1,6 +1,7 @@
 package com.admas.ngemp.sms.dao;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -12,9 +13,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.admas.ngemp.sms.dto.SmsDto;
 import com.admas.ngemp.sms.dto.SmsTemplateDto;
 import com.admas.ngemp.sms.exception.CommServiceErrors;
 import com.admas.ngemp.sms.exception.ExceptionHandler;
+import com.admas.ngemp.sms.jpa.RawMessages;
 import com.admas.ngemp.sms.jpa.SmsConfig;
 import com.admas.ngemp.sms.jpa.SmsInbox;
 
@@ -147,6 +150,51 @@ public class SmsDaoImpl implements ISmsDao{
 			entityManager.close();
 		}
 		return null;
+	}
+
+
+	@Override
+	public boolean saveAllSms(SmsDto smsDto, String mobileNos, SmsConfig config)
+			throws ExceptionHandler {
+		boolean result=false;
+		try{
+		Iterator<String> iterator=smsDto.getContactNos().iterator();
+		SmsInbox inbox=new SmsInbox();
+		while(iterator.hasNext()){
+			
+			Object object=iterator.next();
+			inbox.setMobile(object.toString());
+			inbox.setDeleveredOn(null);
+			inbox.setDelFlg("N");
+			
+			RawMessages messages=new RawMessages();
+			messages.setMsg(smsDto.getMessage());
+			entityManager.persist(messages);
+			entityManager.flush();
+			logger.info("raw messages id==== "+messages.getId());
+			
+			
+			inbox.setMsgId("");
+			inbox.setMsgPushId("");
+			inbox.setMsgStatus("");
+			inbox.setOrgCode(config.getOrgId());
+			
+			inbox.setRawMessages(messages);
+			
+			inbox.setRoute(smsDto.getRoute());
+			inbox.setSentOn(null);
+			
+			entityManager.persist(inbox);
+			return result;
+		}
+		
+		
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return result;
+		
 	}
 
 	
