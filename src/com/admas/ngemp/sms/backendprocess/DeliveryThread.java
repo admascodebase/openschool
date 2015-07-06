@@ -32,7 +32,8 @@ public class DeliveryThread implements Runnable, Serializable {
 	/** The client thread. */
 	private Thread clientThread = null;
 
-	public DeliveryThread() {
+	public DeliveryThread(ISmsDao smsDaoImpl) {
+		DeliveryThread.smsDaoImpl = smsDaoImpl;
 		this.startClient();
 	}
 
