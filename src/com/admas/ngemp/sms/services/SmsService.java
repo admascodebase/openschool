@@ -12,6 +12,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.admas.ngemp.sms.dto.SmsDto;
 import com.admas.ngemp.sms.dto.SmsTemplateDto;
 import com.admas.ngemp.sms.exception.ExceptionHandler;
@@ -22,7 +25,7 @@ public class SmsService {
 
 	static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory
 			.getLogger(SmsService.class);
-	
+	Logger logger = LoggerFactory.getLogger(SmsService.class);
 	private static ISmsLogic smsLogicImpl;
 	
 	/*@GET
@@ -149,6 +152,50 @@ public class SmsService {
 		 return Response.status(200).entity(lSmsTemplates).build();
 	}
 
+	
+	@GET
+	@Path("/getDeleveryReport/{orgCode}/{messageId}")
+	/*@Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})*/
+	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+	public Response getDeleveryReport(@PathParam("orgCode") String orgCode, @PathParam("messageId") String messageId) throws Exception{
+		//System.out.println("customer "+customer.toString());
+		String result="";
+		try {
+			
+			result=  smsLogicImpl.getDeleveryReport(orgCode, messageId);
+//			boolean res=smsLogicImpl.getBalance(4);
+			logger.info("res=^^=="+result);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		 
+		return Response.status(200).entity(result).build();
+	}
+	
+	
+	
+	
+	
+	@GET
+	@Path("/getBalance/{route}")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public Response getBalance(@PathParam("route") String route)
+			throws Exception {
+
+		String result = "";
+		try {
+
+			result = smsLogicImpl.getBalance(Integer.parseInt(route));
+			logger.info("res=^****^==" + result);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return Response.status(200).entity(result).build();
+	}
+	
 	/**
 	 * @return the smsLogicImpl
 	 */

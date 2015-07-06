@@ -21,6 +21,9 @@ public interface ISmsDao {
 	public boolean saveAllSms(SmsDto smsDto, String mobileNos, SmsConfig config) throws ExceptionHandler;
 	
 	public List<SmsInbox> getSentSms() throws ExceptionHandler;
+
+	public String getDeliveryReport(String orgCode, String messageId)throws ExceptionHandler;
+
 	
 
 

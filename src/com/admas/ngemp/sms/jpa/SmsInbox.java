@@ -49,7 +49,7 @@ public class SmsInbox implements Serializable{
 	private String msgPushId;
 	
 	@Column(name="MSG_STATUS")
-	private Character msgStatus;
+	private String msgStatus;
 	
 	@Column(name="SENT_ON")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -152,18 +152,16 @@ public class SmsInbox implements Serializable{
 	/**
 	 * @return the msgStatus
 	 */
-	public Character getMsgStatus() {
+	public String getMsgStatus() {
 		return msgStatus;
 	}
 
 	/**
 	 * @param msgStatus the msgStatus to set
 	 */
-	public void setMsgStatus(Character msgStatus) {
+	public void setMsgStatus(String msgStatus) {
 		this.msgStatus = msgStatus;
 	}
-
-	
 
 	/**
 	 * @return the delFlg

@@ -16,7 +16,7 @@ import com.admas.ngemp.sms.util.SMSUtil;
 
 public class SmsLogicImpl implements ISmsLogic{
 	
-	Logger logger = LoggerFactory.getLogger(SmsDaoImpl.class);
+	Logger logger = LoggerFactory.getLogger(SmsLogicImpl.class);
 	
 	private static ISmsDao smsDaoImpl;
 	
@@ -73,6 +73,40 @@ public class SmsLogicImpl implements ISmsLogic{
 		boolean res=smsDaoImpl.saveAllSms(smsDto, mobileNos, config);
 		
 		return result;
+	}
+
+	@Override
+	public String getDeleveryReport(String orgCode, String messageId) {
+		
+		String result="";
+		try{
+		result=smsDaoImpl.getDeliveryReport(orgCode, messageId);
+		logger.info("logic result==="+result);
+		return result;
+		}catch(ExceptionHandler e){
+			
+		}
+		return result;
+	}
+
+	@Override
+	public String getBalance(Integer route) throws ExceptionHandler {
+
+		String result = "";
+		try {
+
+			SmsConfig smsConfig = smsDaoImpl.getSmsConfig();
+			result =SMSUtil.getBalance(smsConfig, route.toString());
+			logger.info("result==get balance="+result);
+			
+
+		} catch (ExceptionHandler e) {
+			
+		}
+
+		return result;
+		
+				
 	}
 	
 	

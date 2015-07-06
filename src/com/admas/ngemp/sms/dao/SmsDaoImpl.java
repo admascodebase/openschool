@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import org.hibernate.HibernateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -220,6 +221,33 @@ public class SmsDaoImpl implements ISmsDao {
 		return rawMessages;
 	}
 
+	@Override
+	public String getDeliveryReport(String orgCode, String messageId) {
+		String result="";
+	
+		TypedQuery<SmsInbox> query;
+		try {
+			query=entityManager.createQuery("SELECT m FROM SmsInbox m WHERE m.msgId = :msgid and m.orgCode = :orgcode", SmsInbox.class);
+			query.setParameter("msgid", messageId);
+			query.setParameter("orgcode", orgCode);
+			
+			List<SmsInbox> smsInboxs=query.getResultList();
+			
+			
+			for (SmsInbox smsInbox : smsInboxs) {
+				logger.info("--------***-------status ====="+smsInbox.getMsgStatus());
+			}
+			
+			result=smsInboxs.get(0).getMsgStatus();
+			logger.info("dao result==="+result);
+		}catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	
 	/*
 	 * @Override public List<Customer> getCustomerList()throws Exception {
 	 * List<Customer> customerList = new ArrayList<Customer>();

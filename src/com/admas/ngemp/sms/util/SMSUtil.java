@@ -13,7 +13,7 @@ public class SMSUtil {
 	private String url = "http://smsalertbox.com/api/sms.php?";
 	private String urlDelScheduledSms = "http://smsalertbox.com/api/deleteschedule.php?";
 	private String urlDlrRpt = "http://smsalertbox.com/api/dlr.php?";
-	private String urlBalance = "http://smsalertbox.com/api/balance.php?";
+//	private String urlBalance = "http://smsalertbox.com/api/balance.php?";
 	private String uid = "616d6f6c73353036";
 	private String pin = "4f36aa3903768";
 	private String sender = "sender1";
@@ -214,13 +214,15 @@ public class SMSUtil {
 		return true;
 	}
 	
-	public boolean getBalance(String route) {
+	public static String getBalance(SmsConfig smsConfig, String route) {
+		
+		StringBuffer response = new StringBuffer();
 		try {
-			StringBuilder sb = new StringBuilder(urlBalance);
+			StringBuilder sb = new StringBuilder(smsConfig.getUrl()+"balance.php?");
 			sb.append("uid=");
-			sb.append(uid);
+			sb.append(smsConfig.getUid());
 			sb.append("&pin=");
-			sb.append(pin);
+			sb.append(smsConfig.getPin());
 			sb.append("&route="+route);
 
 			URL obj = new URL(sb.toString().replace(" ", ""));
@@ -239,7 +241,7 @@ public class SMSUtil {
 			BufferedReader in = new BufferedReader(
 			        new InputStreamReader(con.getInputStream()));
 			String inputLine;
-			StringBuffer response = new StringBuffer();
+			
 	 
 			while ((inputLine = in.readLine()) != null) {
 				response.append(inputLine);
@@ -252,7 +254,7 @@ public class SMSUtil {
 			e.printStackTrace();
 		}
 		
-		return true;
+		return response.toString();
 	}
 	
 	public static void main(String[] args) {
