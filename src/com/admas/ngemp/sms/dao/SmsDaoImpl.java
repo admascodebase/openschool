@@ -124,8 +124,9 @@ public class SmsDaoImpl implements ISmsDao {
 			// smsInboxJpa.setMsgPushId("");
 			// messageStatus status = null;
 
-			smsInboxJpa.setMsgStatus("" + MessageStatus.PROCESSING);
+			smsInboxJpa.setMessageStatus(MessageStatus.PROCESSING);
 			smsInboxJpa.setOrgCode(smsConfig.getOrgId());
+			//smsInboxJpa.setMsgStatus('P');
 			smsInboxJpa.setRoute(Integer.parseInt(route));
 			// smsInboxJpa.set(new Date());
 
@@ -236,7 +237,7 @@ public class SmsDaoImpl implements ISmsDao {
 			query.setParameter("orgcode", orgCode);
 
 			List<SmsInbox> smsInboxs = query.getResultList();
-			result = smsInboxs.get(0).getMsgStatus();
+			result = smsInboxs.get(0).getMessageStatus().toString();
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		}

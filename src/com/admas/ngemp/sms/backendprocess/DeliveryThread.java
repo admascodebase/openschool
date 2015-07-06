@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.admas.ngemp.sms.dao.ISmsDao;
-import com.admas.ngemp.sms.dao.SmsDaoImpl;
 import com.admas.ngemp.sms.exception.ExceptionHandler;
 import com.admas.ngemp.sms.jpa.SmsInbox;
 
@@ -49,7 +48,7 @@ public class DeliveryThread implements Runnable, Serializable {
 		try {
 			List<SmsInbox> list = smsDaoImpl.getSentSms();
 			for (SmsInbox smsInbox : list) {
-			logger.info("list of msgs"+smsInbox.getMsgStatus());
+			//logger.info("list of msgs"+smsInbox.getMsgStatus());
 			}
 			Thread.sleep(100);
 			

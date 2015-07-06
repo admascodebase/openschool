@@ -5,12 +5,16 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.admas.ngemp.enumuration.MessageStatus;
 
 
 @Entity
@@ -20,6 +24,7 @@ public class SmsInbox implements Serializable{
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = -9032902834294251178L;
 
 
@@ -48,8 +53,11 @@ public class SmsInbox implements Serializable{
 	@Column(name="MSG_PUSH_ID")
 	private String msgPushId;
 	
-	@Column(name="MSG_STATUS")
-	private String msgStatus;
+	@Enumerated(EnumType.STRING)
+    private MessageStatus messageStatus;
+	
+	/*@Column(name="MSG_STATUS")
+	private String msgStatus;*/
 	
 	@Column(name="SENT_ON")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -149,20 +157,7 @@ public class SmsInbox implements Serializable{
 		this.msgPushId = msgPushId;
 	}
 
-	/**
-	 * @return the msgStatus
-	 */
-	public String getMsgStatus() {
-		return msgStatus;
-	}
-
-	/**
-	 * @param msgStatus the msgStatus to set
-	 */
-	public void setMsgStatus(String msgStatus) {
-		this.msgStatus = msgStatus;
-	}
-
+	
 	/**
 	 * @return the delFlg
 	 */
@@ -204,7 +199,20 @@ public class SmsInbox implements Serializable{
 	public void setDeleveredOn(Date deleveredOn) {
 		this.deleveredOn = deleveredOn;
 	}
-	
+
+	/**
+	 * @return the messageStatus
+	 */
+	public MessageStatus getMessageStatus() {
+		return messageStatus;
+	}
+
+	/**
+	 * @param messageStatus the messageStatus to set
+	 */
+	public void setMessageStatus(MessageStatus messageStatus) {
+		this.messageStatus = messageStatus;
+	}
 	
 
 	
