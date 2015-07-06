@@ -1,6 +1,7 @@
 package com.admas.ngemp.sms.dao;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -31,6 +32,7 @@ public class SmsDaoImpl implements ISmsDao {
 
 	private static EntityManager entityManager;
 	Logger logger = LoggerFactory.getLogger(SmsDaoImpl.class);
+
 	/**
 	 * @param entityManager
 	 *            the entityManager to set
@@ -87,14 +89,10 @@ public class SmsDaoImpl implements ISmsDao {
 					com.admas.ngemp.sms.jpa.SmsConfig.class);
 
 			smsTemplateJpa = customerQuery.getResultList();
-			logger.info("@@@@@@smsconfig===" + smsTemplateJpa.get(0).getUrl());
 			if (smsTemplateJpa.size() == 0) {
-				logger.info("@@@@@@smsconfig==="
-						+ smsTemplateJpa.get(0).getUrl());
 				throw new ExceptionHandler(
 						CommServiceErrors.SMS_CONFIG_NOT_FOUND);
 			}
-			logger.info("@@@@@@smsconfig===" + smsTemplateJpa.get(0).getUrl());
 			return smsTemplateJpa.get(0);
 
 		} catch (ExceptionHandler exception) {
@@ -124,9 +122,9 @@ public class SmsDaoImpl implements ISmsDao {
 			// smsInboxJpa.setDeleveredOn(null);
 			smsInboxJpa.setMsgId(messageId);
 			// smsInboxJpa.setMsgPushId("");
-//			messageStatus status = null;
-			
-			 smsInboxJpa.setMsgStatus(""+MessageStatus.DELIVERED);
+			// messageStatus status = null;
+
+			smsInboxJpa.setMsgStatus("" + MessageStatus.PROCESSING);
 			smsInboxJpa.setOrgCode(smsConfig.getOrgId());
 			smsInboxJpa.setRoute(Integer.parseInt(route));
 			// smsInboxJpa.set(new Date());
@@ -144,12 +142,16 @@ public class SmsDaoImpl implements ISmsDao {
 	@Override
 	public List<SmsInbox> getSentSms() throws ExceptionHandler {
 		TypedQuery<SmsInbox> sentSmsQuery = null;
+		List<String> names = Arrays.asList("SENT", "PROCESSING");
+		List<SmsInbox> smsInboxJpa = null;
 		try {
 			sentSmsQuery = entityManager.createQuery(
-					"SELECT s FROM com.admas.ngemp.sms.jpa.SmsInbox s",
+					"SELECT s FROM com.admas.ngemp.sms.jpa.SmsInbox s where s.msgStatus IN msgstatus",
 					com.admas.ngemp.sms.jpa.SmsInbox.class);
+			sentSmsQuery.setParameter("msgstatus", names);
+			
 
-			List<SmsInbox> smsInboxJpa = sentSmsQuery.getResultList();
+			 smsInboxJpa = sentSmsQuery.getResultList();
 
 			return smsInboxJpa;
 
@@ -159,7 +161,7 @@ public class SmsDaoImpl implements ISmsDao {
 		} finally {
 			entityManager.close();
 		}
-		return null;
+		return smsInboxJpa;
 	}
 
 	@Override
@@ -181,7 +183,6 @@ public class SmsDaoImpl implements ISmsDao {
 				messages.setMsg(smsDto.getMessage());
 				entityManager.persist(messages);
 				entityManager.flush();
-				logger.info("raw messages id==== " + messages.getId());
 
 				/*
 				 * inbox.setMsgId(""); inbox.setMsgPushId("");
@@ -223,31 +224,25 @@ public class SmsDaoImpl implements ISmsDao {
 
 	@Override
 	public String getDeliveryReport(String orgCode, String messageId) {
-		String result="";
-	
+		String result = "";
+
 		TypedQuery<SmsInbox> query;
 		try {
-			query=entityManager.createQuery("SELECT m FROM SmsInbox m WHERE m.msgId = :msgid and m.orgCode = :orgcode", SmsInbox.class);
+			query = entityManager
+					.createQuery(
+							"SELECT m FROM SmsInbox m WHERE m.msgId = :msgid and m.orgCode = :orgcode",
+							SmsInbox.class);
 			query.setParameter("msgid", messageId);
 			query.setParameter("orgcode", orgCode);
-			
-			List<SmsInbox> smsInboxs=query.getResultList();
-			
-			
-			for (SmsInbox smsInbox : smsInboxs) {
-				logger.info("--------***-------status ====="+smsInbox.getMsgStatus());
-			}
-			
-			result=smsInboxs.get(0).getMsgStatus();
-			logger.info("dao result==="+result);
-		}catch (HibernateException e) {
+
+			List<SmsInbox> smsInboxs = query.getResultList();
+			result = smsInboxs.get(0).getMsgStatus();
+		} catch (HibernateException e) {
 			e.printStackTrace();
 		}
-		
 		return result;
 	}
 
-	
 	/*
 	 * @Override public List<Customer> getCustomerList()throws Exception {
 	 * List<Customer> customerList = new ArrayList<Customer>();
