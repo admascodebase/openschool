@@ -36,5 +36,10 @@
 		<property name="smsDaoImpl" ref="smsDaoImpl"></property>
 	</bean>
 	<bean id="smsDaoImpl" class="com.admas.ngemp.sms.dao.SmsDaoImpl"></bean>
-
+	
+	 <bean id="deliveryThread"
+		class="com.admas.ngemp.sms.backendprocess.DeliveryThread">
+		
+		<constructor-args ref="smsDaoImpl"/>
+	</bean>
 </beans>
