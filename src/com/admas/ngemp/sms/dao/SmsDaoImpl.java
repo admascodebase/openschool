@@ -253,9 +253,17 @@ public class SmsDaoImpl implements ISmsDao {
 	}
 
 	@Override
+	 @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class, readOnly = false)
 	public void updateSmsInbox(SmsInbox smsInbox) throws ExceptionHandler {
-		SmsInbox inbox=entityManager.merge(smsInbox);
-		logger.info("@##########"+inbox.getMessageStatus());
+		
+		try {
+			SmsInbox inbox=entityManager.merge(smsInbox);
+			entityManager.flush();
+			logger.info("@##########"+inbox.getMessageStatus());	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	/*
