@@ -144,36 +144,23 @@ public class SmsDaoImpl implements ISmsDao {
 		return Result1;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<SmsInbox> getSentSms() throws ExceptionHandler {
-		TypedQuery<SmsInbox> sentSmsQuery = null;
-//		List<String> names = Arrays.asList(""+MessageStatus.PROCESSING,""+MessageStatus.SENT);
-		List<SmsInbox> smsInboxJpa = null;
+		List<SmsInbox> smsInboxs = null;
 		try {
-//			sentSmsQuery = entityManager.createQuery(
-//					"SELECT s FROM com.admas.ngemp.sms.jpa.SmsInbox s where s.messageStatus IN :msgstatus",
-//					com.admas.ngemp.sms.jpa.SmsInbox.class);
-//			sentSmsQuery.setParameter("msgstatus", names);
-//			
-			
-			CriteriaBuilder builder=entityManager.getCriteriaBuilder();
-			CriteriaQuery<SmsInbox> smsinboxquery=builder.createQuery(SmsInbox.class);
-			Root<SmsInbox> root=smsinboxquery.from(SmsInbox.class);
-//			smsinboxquery.select(root);
-//			smsinboxquery.where(builder.equal(root.get("messageStatus"), MessageStatus.SENT));
-			Predicate predicate=builder.equal(root.get("messageStatus"), MessageStatus.SENT);
-			Predicate predicate2=builder.equal(root.get("messageStatus"), MessageStatus.PROCESSING);
-			smsinboxquery.where(builder.and(predicate,predicate2));
-			Query query=entityManager.createQuery(smsinboxquery);
-			
-			List<SmsInbox> smsInboxs=query.getResultList();
-			
-			
-//			 smsInboxJpa = sentSmsQuery.getResultList();
-			
-			for (SmsInbox smsInbox : smsInboxs) {
-				logger.info("list results************="+smsInbox.getMobile()+"  "+smsInbox.getMessageStatus());
-			}
+			CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+			CriteriaQuery<SmsInbox> smsinboxquery = builder
+					.createQuery(SmsInbox.class);
+			Root<SmsInbox> root = smsinboxquery.from(SmsInbox.class);
+			Predicate predicate = builder.equal(root.get("messageStatus"),
+					MessageStatus.SENT);
+			Predicate predicate2 = builder.equal(root.get("messageStatus"),
+					MessageStatus.PROCESSING);
+			smsinboxquery.where(builder.or(predicate, predicate2));
+			Query query = entityManager.createQuery(smsinboxquery);
+
+			smsInboxs = query.getResultList();
 
 			return smsInboxs;
 
@@ -183,7 +170,7 @@ public class SmsDaoImpl implements ISmsDao {
 		} finally {
 			entityManager.close();
 		}
-		return smsInboxJpa;
+		return smsInboxs;
 	}
 
 	@Override
@@ -263,6 +250,12 @@ public class SmsDaoImpl implements ISmsDao {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	@Override
+	public void updateSmsInbox(SmsInbox smsInbox) throws ExceptionHandler {
+		SmsInbox inbox=entityManager.merge(smsInbox);
+		logger.info("@##########"+inbox.getMessageStatus());
 	}
 
 	/*
