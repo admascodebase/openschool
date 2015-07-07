@@ -27,156 +27,61 @@ public class SmsService {
 			.getLogger(SmsService.class);
 	Logger logger = LoggerFactory.getLogger(SmsService.class);
 	private static ISmsLogic smsLogicImpl;
-	
-	/*@GET
-	@Path("/sendSms/{id}")
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public Response getCustomer(@PathParam("id") long id) {
-		Customer customer = new Customer();
-		 try {
-			 customer = smsLogicImpl.getCustomer(id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return Response.status(200).entity(customer).build();
-
-	}*/
-	
-	/*@GET
-	@Path("/getCustomer/{uName}/{password}")
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public Boolean getCustomer(@PathParam("uName") String uName,@PathParam("password")String password) {
-		 try {
-			 return smsLogicImpl.getCustomer(uName,password);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return false;
-
-	}
-	
-	@GET
-	@Path("/getCustomerList")
-	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-	public Response getCustomerList(){
-		RestResponse response =new RestResponse();
-		 try {
-			 response.setCustomersList(smsLogicImpl.getCustomerList());
-			 response.setStatus(smsLogicImpl.getCustomerList().size());
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		 return Response.status(200).entity(response).build();
-	}
-	
-	@POST
-	@Path("/addCustomer")
-	@Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-	public Boolean addCustomer(Customer customer) throws Exception{
-		//System.out.println("customer "+customer.toString());
-		
-		return smsLogicImpl.addCustomer(customer);
-		
-	}
-
-	@POST
-	@Path("/addCustomerDetails")
-	@Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-	public Boolean addCustomerDetail(CustomerDetail customer) throws Exception{
-		
-		return smsLogicImpl.addCustomerDetail(customer);
-		
-	}
-
-	public static ISmsLogic getSmsLogicImpl() {
-		return smsLogicImpl;
-	}
-
-	public static void setSmsLogicImpl(ISmsLogic smsLogicImpl) {
-		SmsService.smsLogicImpl = smsLogicImpl;
-	}*/
 
 	@GET
 	@Path("/sendSms/{mobile}/{message}/{route}")
-	//@Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public Response sendSms(@PathParam("mobile") String mobile , @PathParam("message") String message , @PathParam("route") String route) {		
+	public Response sendSms(@PathParam("mobile") String mobile,
+			@PathParam("message") String message,
+			@PathParam("route") String route) {
 		String result = "";
 		try {
-			 LOG.info("started ");
-			 result = smsLogicImpl.sendSms(mobile , message , route);
-			 /*if(mobile.length()!=10){
-				 throw new ExceptionHandler(CommServiceErrors.INVALID_MOBILE);
-			 }
-			 System.out.println("Mobile : "+mobile);*/
-			// customer = smsLogicImpl.getCustomer(id);
-			 
-			// res=smsLogicImpl.sendSms();
+			LOG.info("started ");
+			result = smsLogicImpl.sendSms(mobile, message, route);
 		} catch (ExceptionHandler e) {
-			//e.printStackTrace();
-		}catch(Exception e){
-			
+		} catch (Exception e) {
 		}
 		return Response.status(200).entity(result).build();
 
 	}
-	
+
 	@POST
 	@Path("/sendSmsToMany")
-	@Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-	public Response addCustomer(SmsDto smsDto) throws Exception{
-		//System.out.println("customer "+customer.toString());
-		
-		String result =  smsLogicImpl.sendSms(smsDto);
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public Response addCustomer(SmsDto smsDto) throws Exception {
+
+		String result = smsLogicImpl.sendSms(smsDto);
 		return Response.status(200).entity(result).build();
 	}
-	
+
 	@GET
 	@Path("/getSmsList")
-	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-	public Response getCustomerList(){
-		//RestResponse response =new RestResponse();
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public Response getCustomerList() {
 		List<SmsTemplateDto> lSmsTemplates = new ArrayList<SmsTemplateDto>();
-		 try {
-			 lSmsTemplates.addAll(smsLogicImpl.getSmsTempltes());
-			// response.setCustomersList(smsLogicImpl.getCustomerList());
-			// response.setStatus(smsLogicImpl.getCustomerList().size());
+		try {
+			lSmsTemplates.addAll(smsLogicImpl.getSmsTempltes());
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		 return Response.status(200).entity(lSmsTemplates).build();
+		return Response.status(200).entity(lSmsTemplates).build();
 	}
 
-	
 	@GET
 	@Path("/getDeleveryReport/{orgCode}/{messageId}")
-	/*@Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})*/
-	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-	public Response getDeleveryReport(@PathParam("orgCode") String orgCode, @PathParam("messageId") String messageId) throws Exception{
-		//System.out.println("customer "+customer.toString());
-		String result="";
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public Response getDeleveryReport(@PathParam("orgCode") String orgCode,
+			@PathParam("messageId") String messageId) throws Exception {
+		String result = "";
 		try {
-			
-			result=  smsLogicImpl.getDeleveryReport(orgCode, messageId);
-//			boolean res=smsLogicImpl.getBalance(4);
-			logger.info("res=^^=="+result);
-			
+			result = smsLogicImpl.getDeleveryReport(orgCode, messageId);
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
-		 
 		return Response.status(200).entity(result).build();
 	}
-	
-	
-	
-	
-	
+
 	@GET
 	@Path("/getBalance/{route}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -185,17 +90,13 @@ public class SmsService {
 
 		String result = "";
 		try {
-
 			result = smsLogicImpl.getBalance(Integer.parseInt(route));
-			logger.info("res=^****^==" + result);
-
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 
 		return Response.status(200).entity(result).build();
 	}
-	
+
 	/**
 	 * @return the smsLogicImpl
 	 */
@@ -204,13 +105,11 @@ public class SmsService {
 	}
 
 	/**
-	 * @param smsLogicImpl the smsLogicImpl to set
+	 * @param smsLogicImpl
+	 *            the smsLogicImpl to set
 	 */
 	public static void setSmsLogicImpl(ISmsLogic smsLogicImpl) {
 		SmsService.smsLogicImpl = smsLogicImpl;
 	}
 
-	
-	
-	
 }

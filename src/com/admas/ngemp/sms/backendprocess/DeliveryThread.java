@@ -3,8 +3,6 @@ package com.admas.ngemp.sms.backendprocess;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -62,18 +60,17 @@ public class DeliveryThread implements Runnable, Serializable {
 					msgStatus = SMSUtil.deleveryReport(smsConfig,
 							smsInbox.getMsgId());
 
-					logger.info("@@listofmsgs" + smsInbox.getMsgId() + "--->"
-							+ msgStatus + "$$$id==" + smsInbox.getId());
-					// SmsInbox inbox=new SmsInbox();
-					if (msgStatus.equals(MessageStatus.SENT)) {
-						smsInbox.setMessageStatus(MessageStatus.SENT);
-					} else if (msgStatus.equals(MessageStatus.DELIVERED)) {
+					msgStatus = msgStatus.replaceAll("%,", "");
+					if (msgStatus.equalsIgnoreCase("Delivered,")) {
 						smsInbox.setMessageStatus(MessageStatus.DELIVERED);
-					} else if (msgStatus.equals(MessageStatus.DND)) {
+					} else if (msgStatus.equalsIgnoreCase("Sent,")) {
+						smsInbox.setMessageStatus(MessageStatus.DELIVERED);
+					} else if (msgStatus.equalsIgnoreCase("DND,")) {
 						smsInbox.setMessageStatus(MessageStatus.DND);
-					} else if (msgStatus.equals(MessageStatus.FAILED)) {
+					} else if (msgStatus
+							.equalsIgnoreCase("Invalid Mobile Number,")) {
 						smsInbox.setMessageStatus(MessageStatus.FAILED);
-					} else if (msgStatus.equals(MessageStatus.PROCESSING)) {
+					} else if (msgStatus.equalsIgnoreCase("Processing,")) {
 						smsInbox.setMessageStatus(MessageStatus.PROCESSING);
 					}
 
@@ -83,10 +80,8 @@ public class DeliveryThread implements Runnable, Serializable {
 				Thread.sleep(100);
 
 			} catch (ExceptionHandler e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
