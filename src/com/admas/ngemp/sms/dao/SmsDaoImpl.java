@@ -10,6 +10,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import org.hibernate.HibernateException;
 import org.slf4j.Logger;
@@ -143,18 +147,35 @@ public class SmsDaoImpl implements ISmsDao {
 	@Override
 	public List<SmsInbox> getSentSms() throws ExceptionHandler {
 		TypedQuery<SmsInbox> sentSmsQuery = null;
-		List<String> names = Arrays.asList("SENT", "PROCESSING");
+//		List<String> names = Arrays.asList(""+MessageStatus.PROCESSING,""+MessageStatus.SENT);
 		List<SmsInbox> smsInboxJpa = null;
 		try {
-			sentSmsQuery = entityManager.createQuery(
-					"SELECT s FROM com.admas.ngemp.sms.jpa.SmsInbox s where s.msgStatus IN msgstatus",
-					com.admas.ngemp.sms.jpa.SmsInbox.class);
-			sentSmsQuery.setParameter("msgstatus", names);
+//			sentSmsQuery = entityManager.createQuery(
+//					"SELECT s FROM com.admas.ngemp.sms.jpa.SmsInbox s where s.messageStatus IN :msgstatus",
+//					com.admas.ngemp.sms.jpa.SmsInbox.class);
+//			sentSmsQuery.setParameter("msgstatus", names);
+//			
 			
+			CriteriaBuilder builder=entityManager.getCriteriaBuilder();
+			CriteriaQuery<SmsInbox> smsinboxquery=builder.createQuery(SmsInbox.class);
+			Root<SmsInbox> root=smsinboxquery.from(SmsInbox.class);
+//			smsinboxquery.select(root);
+//			smsinboxquery.where(builder.equal(root.get("messageStatus"), MessageStatus.SENT));
+			Predicate predicate=builder.equal(root.get("messageStatus"), MessageStatus.SENT);
+			Predicate predicate2=builder.equal(root.get("messageStatus"), MessageStatus.PROCESSING);
+			smsinboxquery.where(builder.and(predicate,predicate2));
+			Query query=entityManager.createQuery(smsinboxquery);
+			
+			List<SmsInbox> smsInboxs=query.getResultList();
+			
+			
+//			 smsInboxJpa = sentSmsQuery.getResultList();
+			
+			for (SmsInbox smsInbox : smsInboxs) {
+				logger.info("list results************="+smsInbox.getMobile()+"  "+smsInbox.getMessageStatus());
+			}
 
-			 smsInboxJpa = sentSmsQuery.getResultList();
-
-			return smsInboxJpa;
+			return smsInboxs;
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -53,11 +53,9 @@ public class SmsInbox implements Serializable{
 	@Column(name="MSG_PUSH_ID")
 	private String msgPushId;
 	
+	@Column(name="MSG_STATUS")
 	@Enumerated(EnumType.STRING)
     private MessageStatus messageStatus;
-	
-	/*@Column(name="MSG_STATUS")
-	private String msgStatus;*/
 	
 	@Column(name="SENT_ON")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -158,6 +156,21 @@ public class SmsInbox implements Serializable{
 	}
 
 	
+
+	/**
+	 * @return the messageStatus
+	 */
+	public MessageStatus getMessageStatus() {
+		return messageStatus;
+	}
+
+	/**
+	 * @param messageStatus the messageStatus to set
+	 */
+	public void setMessageStatus(MessageStatus messageStatus) {
+		this.messageStatus = messageStatus;
+	}
+
 	/**
 	 * @return the delFlg
 	 */
@@ -199,20 +212,7 @@ public class SmsInbox implements Serializable{
 	public void setDeleveredOn(Date deleveredOn) {
 		this.deleveredOn = deleveredOn;
 	}
-
-	/**
-	 * @return the messageStatus
-	 */
-	public MessageStatus getMessageStatus() {
-		return messageStatus;
-	}
-
-	/**
-	 * @param messageStatus the messageStatus to set
-	 */
-	public void setMessageStatus(MessageStatus messageStatus) {
-		this.messageStatus = messageStatus;
-	}
+	
 	
 
 	
