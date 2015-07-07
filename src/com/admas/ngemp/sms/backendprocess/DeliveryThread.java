@@ -20,7 +20,7 @@ public class DeliveryThread implements Runnable, Serializable {
 	/**
 	 * 
 	 */
-	
+
 	Logger logger = LoggerFactory.getLogger(DeliveryThread.class);
 	private static final long serialVersionUID = 1L;
 
@@ -51,40 +51,44 @@ public class DeliveryThread implements Runnable, Serializable {
 
 	@Override
 	public void run() {
-		
-		String msgStatus="";
-		try {
-			List<SmsInbox> list = smsDaoImpl.getSentSms();
-		 SmsConfig	smsConfig=smsDaoImpl.getSmsConfig();
-			for (SmsInbox smsInbox : list) {
-			
-			msgStatus=SMSUtil.deleveryReport(smsConfig, smsInbox.getMsgId());
-			
-			logger.info("@@listofmsgs"+smsInbox.getMsgId()+"--->"+msgStatus+"$$$id=="+smsInbox.getId());
-//			SmsInbox  inbox=new SmsInbox();
-			if(msgStatus.equals(MessageStatus.SENT)){
-				smsInbox.setMessageStatus(MessageStatus.SENT);
-			}else if(msgStatus.equals(MessageStatus.DELIVERED)){
-				smsInbox.setMessageStatus(MessageStatus.DELIVERED);
-			}else if(msgStatus.equals(MessageStatus.DND)){
-				smsInbox.setMessageStatus(MessageStatus.DND);
-			}else if(msgStatus.equals(MessageStatus.FAILED)){
-				smsInbox.setMessageStatus(MessageStatus.FAILED);
-			}else if(msgStatus.equals(MessageStatus.PROCESSING)){
-				smsInbox.setMessageStatus(MessageStatus.PROCESSING);
+
+		while (true) {
+			String msgStatus = "";
+			try {
+				List<SmsInbox> list = smsDaoImpl.getSentSms();
+				SmsConfig smsConfig = smsDaoImpl.getSmsConfig();
+				for (SmsInbox smsInbox : list) {
+
+					msgStatus = SMSUtil.deleveryReport(smsConfig,
+							smsInbox.getMsgId());
+
+					logger.info("@@listofmsgs" + smsInbox.getMsgId() + "--->"
+							+ msgStatus + "$$$id==" + smsInbox.getId());
+					// SmsInbox inbox=new SmsInbox();
+					if (msgStatus.equals(MessageStatus.SENT)) {
+						smsInbox.setMessageStatus(MessageStatus.SENT);
+					} else if (msgStatus.equals(MessageStatus.DELIVERED)) {
+						smsInbox.setMessageStatus(MessageStatus.DELIVERED);
+					} else if (msgStatus.equals(MessageStatus.DND)) {
+						smsInbox.setMessageStatus(MessageStatus.DND);
+					} else if (msgStatus.equals(MessageStatus.FAILED)) {
+						smsInbox.setMessageStatus(MessageStatus.FAILED);
+					} else if (msgStatus.equals(MessageStatus.PROCESSING)) {
+						smsInbox.setMessageStatus(MessageStatus.PROCESSING);
+					}
+
+					smsDaoImpl.updateSmsInbox(smsInbox);
+
+				}
+				Thread.sleep(100);
+
+			} catch (ExceptionHandler e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			
-			smsDaoImpl.updateSmsInbox(smsInbox);
-			
-			}
-			Thread.sleep(100);
-			
-		} catch (ExceptionHandler e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 
