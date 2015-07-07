@@ -178,6 +178,7 @@ public class SMSUtil {
 	public static String deleveryReport(SmsConfig smsConfig, String messageId) {
 		
 		StringBuffer response = new StringBuffer();
+		
 		try {
 			StringBuilder sb = new StringBuilder(smsConfig.getUrl()+"dlr.php?");
 			sb.append("uid=");
