@@ -24,6 +24,8 @@ public interface ISmsDao {
 
 	public String getDeliveryReport(String orgCode, String messageId)throws ExceptionHandler;
 
+	public void updateSmsInbox(SmsInbox smsInbox)throws ExceptionHandler;
+
 	
 
 
