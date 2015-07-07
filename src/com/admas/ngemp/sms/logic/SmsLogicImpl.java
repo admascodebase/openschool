@@ -49,8 +49,6 @@ public class SmsLogicImpl implements ISmsLogic {
 			}
 		} catch (ExceptionHandler ex) {
 			throw ex;
-		} catch (Exception e) {
-
 		}
 		return messageId;
 	}

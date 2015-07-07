@@ -35,12 +35,15 @@ public class SmsService {
 			@PathParam("message") String message,
 			@PathParam("route") String route) {
 		String result = "";
-		try {
-			LOG.info("started ");
+		LOG.info(" start  SmsService- > sendSms");
+		try {			
 			result = smsLogicImpl.sendSms(mobile, message, route);
 		} catch (ExceptionHandler e) {
+		  LOG.error("Error in SmsService- > sendSms",e);
 		} catch (Exception e) {
+			 LOG.error("Error in SmsService- > sendSms",e);
 		}
+		LOG.info(" end  SmsService- > sendSms");
 		return Response.status(200).entity(result).build();
 
 	}
