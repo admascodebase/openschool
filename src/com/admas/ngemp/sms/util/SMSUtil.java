@@ -6,6 +6,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import javax.ws.rs.core.Response;
+
 import com.admas.ngemp.sms.jpa.SmsConfig;
 
 public class SMSUtil {
@@ -173,13 +175,15 @@ public class SMSUtil {
 		return true;
 	}
 	
-	public boolean deleveryReport(String messageId) {
+	public static String deleveryReport(SmsConfig smsConfig, String messageId) {
+		
+		StringBuffer response = new StringBuffer();
 		try {
-			StringBuilder sb = new StringBuilder(urlDlrRpt);
+			StringBuilder sb = new StringBuilder(smsConfig.getUrl()+"dlr.php?");
 			sb.append("uid=");
-			sb.append(uid);
+			sb.append(smsConfig.getUid());
 			sb.append("&pin=");
-			sb.append(pin);
+			sb.append(smsConfig.getPin());
 			sb.append("&msgid="+messageId);
 
 			URL obj = new URL(sb.toString().replace(" ", ""));
@@ -198,7 +202,7 @@ public class SMSUtil {
 			BufferedReader in = new BufferedReader(
 			        new InputStreamReader(con.getInputStream()));
 			String inputLine;
-			StringBuffer response = new StringBuffer();
+			
 	 
 			while ((inputLine = in.readLine()) != null) {
 				response.append(inputLine);
@@ -211,7 +215,7 @@ public class SMSUtil {
 
 		}
 		
-		return true;
+		return response.toString();
 	}
 	
 	public static String getBalance(SmsConfig smsConfig, String route) {
