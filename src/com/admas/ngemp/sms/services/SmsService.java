@@ -57,8 +57,9 @@ public class SmsService {
 		logger.info("#######GG######## json object"+smsDto);
 		for (String Contact: smsDto.getContactNos()) {
 			logger.info("$$$$$$$$$$$contacts==="+Contact);
-			result=smsLogicImpl.sendSms(smsDto, Contact, smsDto.getMessage(), smsDto.getRoute().toString());
+			result=result+smsLogicImpl.sendSms(smsDto, Contact, smsDto.getMessage(), smsDto.getRoute().toString())+",";
 		}
+		
 //		String result = smsLogicImpl.sendSms(smsDto);
 		return Response.status(200).entity(result).build();
 	}
