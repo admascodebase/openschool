@@ -10,6 +10,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,6 +22,20 @@ import com.admas.ngemp.enumuration.MessageStatus;
 @Entity
 @Table(name="sms_inbox")
 public class SmsInbox implements Serializable{
+
+	/**
+	 * @return the rawMessages
+	 */
+	public RawMessages getRawMessages() {
+		return rawMessages;
+	}
+
+	/**
+	 * @param rawMessages the rawMessages to set
+	 */
+	public void setRawMessages(RawMessages rawMessages) {
+		this.rawMessages = rawMessages;
+	}
 
 	/**
 	 * 
@@ -42,9 +58,9 @@ public class SmsInbox implements Serializable{
 	@Column(name="MOBILE")
 	private String mobile;
 	
-	/*@OneToMany
+	@OneToMany
 	@JoinColumn(name="RAW_MSG_ID")
-	private RawMessages rawMessages;*/
+	private RawMessages rawMessages;
 
 		
 	@Column(name="MSG_ID")

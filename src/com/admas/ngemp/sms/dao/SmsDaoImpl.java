@@ -115,6 +115,12 @@ public class SmsDaoImpl implements ISmsDao {
 			SmsInbox smsInboxJpa = new SmsInbox();
 			smsInboxJpa.setMobile(mobileNo);
 			smsInboxJpa.setDelFlg("N");
+			
+			RawMessages messages = new RawMessages();
+			messages.setMsg(message);
+			entityManager.persist(messages);
+			entityManager.flush();
+			smsInboxJpa.setRawMessages(messages);
 			smsInboxJpa.setSentOn(new Date());
 			smsInboxJpa.setMsgId(messageId);
 			smsInboxJpa.setMessageStatus(MessageStatus.PROCESSING);
