@@ -1,5 +1,7 @@
 package com.admas.ngemp.sms.services;
 
+import java.util.Map;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -49,9 +51,9 @@ public class SmsService {
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Response sendSmsToMany(SmsDto smsDto) throws Exception {
-		String result="";
+		
 		logger.info("#######GG######## json object"+smsDto);
-		smsLogicImpl.sendSms(smsDto);
+		Map<String,String> result =smsLogicImpl.sendSms(smsDto);
 		return Response.status(200).entity(result).build();
 	}
 
@@ -75,7 +77,6 @@ public class SmsService {
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Response getBalance(@PathParam("route") String route)
 			throws Exception {
-
 		String result = "";
 		try {
 			result = smsLogicImpl.getBalance(Integer.parseInt(route));
