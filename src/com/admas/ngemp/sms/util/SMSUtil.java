@@ -203,12 +203,5 @@ public class SMSUtil {
 		return response.toString();
 	}
 	
-	/*public static void main(String[] args) {
-		SMSUtil su = new SMSUtil();
-		//su.sendSms();
-		//su.scheduleSms();
-		su.deleteScheduleSms("350503240");
-		//su.deleveryReport("350503078,350503079,350503080,350503081");
-		//su.getBalance("4");
-	}*/
+
 }

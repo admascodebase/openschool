@@ -11,7 +11,7 @@ public interface ISmsLogic {
 
 	public List<SmsTemplateDto> getSmsTempltes();
 
-	public String sendSms(String mobileNo, String message, String route) throws ExceptionHandler;
+	public String sendSms(SmsDto smsDto, String mobileNo, String message, String route) throws ExceptionHandler;
 
 	public String sendSms(SmsDto smsDto)throws ExceptionHandler;
 

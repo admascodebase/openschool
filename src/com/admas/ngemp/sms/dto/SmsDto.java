@@ -8,6 +8,7 @@ public class SmsDto implements Serializable{
 	
 	private static final long serialVersionUID = 3896441132582237804L;
 	
+	private String org_code;
 	private String message;
 	private Integer route;
 	private List<String> contactNos;
@@ -52,6 +53,20 @@ public class SmsDto implements Serializable{
 	 */
 	public void setContactNos(List<String> contactNos) {
 		this.contactNos = contactNos;
+	}
+
+	/**
+	 * @return the org_code
+	 */
+	public String getOrg_code() {
+		return org_code;
+	}
+
+	/**
+	 * @param org_code the org_code to set
+	 */
+	public void setOrg_code(String org_code) {
+		this.org_code = org_code;
 	}
 	
 }

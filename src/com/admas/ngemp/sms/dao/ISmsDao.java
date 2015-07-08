@@ -15,7 +15,7 @@ public interface ISmsDao {
 	
 	public SmsConfig getSmsConfig() throws ExceptionHandler;
 
-	public boolean saveSms(SmsConfig smsConfig, String mobileNo,
+	public boolean saveSms(SmsDto smsDto, String mobileNo,
 			String message, String route , String messageId)throws ExceptionHandler;
 
 	public boolean saveAllSms(SmsDto smsDto, String mobileNos, SmsConfig config) throws ExceptionHandler;

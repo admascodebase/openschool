@@ -33,11 +33,11 @@ public class SmsService {
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Response sendSms(@PathParam("mobile") String mobile,
 			@PathParam("message") String message,
-			@PathParam("route") String route) {
+			@PathParam("route") String route,SmsDto smsDto) {
 		String result = "";
 		LOG.info(" start  SmsService- > sendSms");
 		try {			
-			result = smsLogicImpl.sendSms(mobile, message, route);
+			result = smsLogicImpl.sendSms(smsDto, mobile, message, route);
 		} catch (ExceptionHandler e) {
 		  LOG.error("Error in SmsService- > sendSms",e);
 		} catch (Exception e) {
@@ -52,26 +52,18 @@ public class SmsService {
 	@Path("/sendSmsToMany")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public Response addCustomer(SmsDto smsDto) throws Exception {
-
-		String result = smsLogicImpl.sendSms(smsDto);
+	public Response sendSmsToMany(SmsDto smsDto) throws Exception {
+		String result="";
+		logger.info("#######GG######## json object"+smsDto);
+		for (String Contact: smsDto.getContactNos()) {
+			logger.info("$$$$$$$$$$$contacts==="+Contact);
+			result=smsLogicImpl.sendSms(smsDto, Contact, smsDto.getMessage(), smsDto.getRoute().toString());
+		}
+//		String result = smsLogicImpl.sendSms(smsDto);
 		return Response.status(200).entity(result).build();
 	}
 
-	@GET
-	@Path("/getSmsList")
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public Response getCustomerList() {
-		List<SmsTemplateDto> lSmsTemplates = new ArrayList<SmsTemplateDto>();
-		try {
-			lSmsTemplates.addAll(smsLogicImpl.getSmsTempltes());
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return Response.status(200).entity(lSmsTemplates).build();
-	}
-
+	
 	@GET
 	@Path("/getDeleveryReport/{orgCode}/{messageId}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })

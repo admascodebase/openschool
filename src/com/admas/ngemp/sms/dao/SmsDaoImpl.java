@@ -107,7 +107,7 @@ public class SmsDaoImpl implements ISmsDao {
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-	public boolean saveSms(SmsConfig smsConfig, String mobileNo,
+	public boolean saveSms(SmsDto smsDto, String mobileNo,
 			String message, String route, String messageId)
 			throws ExceptionHandler {
 
@@ -119,7 +119,7 @@ public class SmsDaoImpl implements ISmsDao {
 			smsInboxJpa.setSentOn(new Date());
 			smsInboxJpa.setMsgId(messageId);
 			smsInboxJpa.setMessageStatus(MessageStatus.PROCESSING);
-			smsInboxJpa.setOrgCode(smsConfig.getOrgId());
+			smsInboxJpa.setOrgCode(smsDto.getOrg_code());
 			smsInboxJpa.setRoute(Integer.parseInt(route));
 			entityManager.persist(smsInboxJpa);
 			Result1 = true;

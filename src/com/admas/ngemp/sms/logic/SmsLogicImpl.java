@@ -33,7 +33,7 @@ public class SmsLogicImpl implements ISmsLogic {
 	}
 
 	@Override
-	public String sendSms(String mobileNo, String message, String route)
+	public String sendSms(SmsDto smsDto, String mobileNo, String message, String route)
 			throws ExceptionHandler {
 		String messageId = "";
 		boolean result = false;
@@ -41,7 +41,7 @@ public class SmsLogicImpl implements ISmsLogic {
 			SmsConfig smsConfig = smsDaoImpl.getSmsConfig();
 			messageId = SMSUtil.sendSms(smsConfig, mobileNo, message, route);
 			if (!messageId.equals("")) {
-				result = smsDaoImpl.saveSms(smsConfig, mobileNo, message,
+				result = smsDaoImpl.saveSms(smsDto, mobileNo, message,
 						route, messageId);
 				if (!result) {
 					logger.error("failed to store sms details");
@@ -68,7 +68,7 @@ public class SmsLogicImpl implements ISmsLogic {
 			mobileNos += "," + object.toString();
 
 		}
-		result = sendSms(mobileNos, smsDto.getMessage(), smsDto.getRoute()
+		result = sendSms(smsDto, mobileNos, smsDto.getMessage(), smsDto.getRoute()
 				.toString());
 		SmsConfig config = smsDaoImpl.getSmsConfig();
 		boolean res = smsDaoImpl.saveAllSms(smsDto, mobileNos, config);
