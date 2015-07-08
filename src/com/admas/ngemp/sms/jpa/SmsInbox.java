@@ -10,8 +10,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,21 +20,7 @@ import com.admas.ngemp.enumuration.MessageStatus;
 @Entity
 @Table(name="sms_inbox")
 public class SmsInbox implements Serializable{
-
-	/**
-	 * @return the rawMessages
-	 */
-	public RawMessages getRawMessages() {
-		return rawMessages;
-	}
-
-	/**
-	 * @param rawMessages the rawMessages to set
-	 */
-	public void setRawMessages(RawMessages rawMessages) {
-		this.rawMessages = rawMessages;
-	}
-
+	
 	/**
 	 * 
 	 */
@@ -56,11 +40,10 @@ public class SmsInbox implements Serializable{
 	private Integer route;
 	
 	@Column(name="MOBILE")
-	private String mobile;
+	private String mobile;	
 	
-	@OneToMany
-	@JoinColumn(name="RAW_MSG_ID")
-	private RawMessages rawMessages;
+	@Column(name="RAW_MSG_ID")
+	private Integer rawMsgId;
 
 		
 	@Column(name="MSG_ID")
@@ -193,13 +176,8 @@ public class SmsInbox implements Serializable{
 	public String getDelFlg() {
 		return delFlg;
 	}
-
-	/**
-	 * @param delFlg the delFlg to set
-	 */
-	public void setDelFlg(String delFlg) {
-		this.delFlg = delFlg;
-	}
+	
+	
 
 	/**
 	 * @return the sentOn
@@ -228,6 +206,30 @@ public class SmsInbox implements Serializable{
 	public void setDeleveredOn(Date deleveredOn) {
 		this.deleveredOn = deleveredOn;
 	}
+
+	/**
+	 * @param delFlg the delFlg to set
+	 */
+	public void setDelFlg(String delFlg) {
+		this.delFlg = delFlg;
+	}
+
+	
+
+	/**
+	 * @return the rawMsgId
+	 */
+	public Integer getRawMsgId() {
+		return rawMsgId;
+	}
+
+	/**
+	 * @param rawMsgId the rawMsgId to set
+	 */
+	public void setRawMsgId(Integer rawMsgId) {
+		this.rawMsgId = rawMsgId;
+	}
+	
 	
 	
 

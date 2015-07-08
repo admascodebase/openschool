@@ -120,7 +120,7 @@ public class SmsDaoImpl implements ISmsDao {
 			messages.setMsg(message);
 			entityManager.persist(messages);
 			entityManager.flush();
-			smsInboxJpa.setRawMessages(messages);
+			smsInboxJpa.setRawMsgId(messages.getId());
 			smsInboxJpa.setSentOn(new Date());
 			smsInboxJpa.setMsgId(messageId);
 			smsInboxJpa.setMessageStatus(MessageStatus.PROCESSING);
