@@ -1,8 +1,5 @@
 package com.admas.ngemp.sms.services;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -16,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.admas.ngemp.sms.dto.SmsDto;
-import com.admas.ngemp.sms.dto.SmsTemplateDto;
 import com.admas.ngemp.sms.exception.ExceptionHandler;
 import com.admas.ngemp.sms.logic.ISmsLogic;
 
@@ -29,15 +25,15 @@ public class SmsService {
 	private static ISmsLogic smsLogicImpl;
 
 	@GET
-	@Path("/sendSms/{mobile}/{message}/{route}")
+	@Path("/sendSms/{mobile}/{message}/{route}/{orgCode}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Response sendSms(@PathParam("mobile") String mobile,
 			@PathParam("message") String message,
-			@PathParam("route") String route,SmsDto smsDto) {
+			@PathParam("route") String route,@PathParam("orgCode") String orgCode) {
 		String result = "";
 		LOG.info(" start  SmsService- > sendSms");
 		try {			
-			result = smsLogicImpl.sendSms(smsDto, mobile, message, route);
+			result = smsLogicImpl.sendSms( mobile, message, route,orgCode);
 		} catch (ExceptionHandler e) {
 		  LOG.error("Error in SmsService- > sendSms",e);
 		} catch (Exception e) {
@@ -55,15 +51,11 @@ public class SmsService {
 	public Response sendSmsToMany(SmsDto smsDto) throws Exception {
 		String result="";
 		logger.info("#######GG######## json object"+smsDto);
-		for (String Contact: smsDto.getContactNos()) {
-			logger.info("$$$$$$$$$$$contacts==="+Contact);
-			result=result+smsLogicImpl.sendSms(smsDto, Contact, smsDto.getMessage(), smsDto.getRoute().toString())+",";
-		}
-		
-//		String result = smsLogicImpl.sendSms(smsDto);
+		smsLogicImpl.sendSms(smsDto);
 		return Response.status(200).entity(result).build();
 	}
 
+	
 	
 	@GET
 	@Path("/getDeleveryReport/{orgCode}/{messageId}")

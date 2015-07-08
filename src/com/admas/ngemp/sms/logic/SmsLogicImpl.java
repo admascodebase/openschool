@@ -1,7 +1,8 @@
 package com.admas.ngemp.sms.logic;
 
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +34,7 @@ public class SmsLogicImpl implements ISmsLogic {
 	}
 
 	@Override
-	public String sendSms(SmsDto smsDto, String mobileNo, String message, String route)
+	public String sendSms(String mobileNo, String message, String route, String orgCode)
 			throws ExceptionHandler {
 		String messageId = "";
 		boolean result = false;
@@ -41,8 +42,8 @@ public class SmsLogicImpl implements ISmsLogic {
 			SmsConfig smsConfig = smsDaoImpl.getSmsConfig();
 			messageId = SMSUtil.sendSms(smsConfig, mobileNo, message, route);
 			if (!messageId.equals("")) {
-				result = smsDaoImpl.saveSms(smsDto, mobileNo, message,
-						route, messageId);
+				result = smsDaoImpl.saveSms( mobileNo, message,
+						route,orgCode, messageId);
 				if (!result) {
 					logger.error("failed to store sms details");
 				}
@@ -54,26 +55,22 @@ public class SmsLogicImpl implements ISmsLogic {
 	}
 
 	@Override
-	public String sendSms(SmsDto smsDto) throws ExceptionHandler {
-
-		String result = "";
-
-		Iterator<String> iterator = smsDto.getContactNos().iterator();
-		String mobileNos = "";
-
-		while (iterator.hasNext()) {
-
-			Object object = iterator.next();
-
-			mobileNos += "," + object.toString();
-
+	public Map<String, String> sendSms(SmsDto smsDto) throws ExceptionHandler {
+		boolean result;
+		Map<String,String> resultMap = new HashMap<String,String>();
+		SmsConfig smsConfig = smsDaoImpl.getSmsConfig();
+		for (String contactNo : smsDto.getContactNos()) {			
+			String messageId = SMSUtil.sendSms(smsConfig, contactNo, smsDto.getMessage(), smsDto.getRoute().toString());
+			if (!messageId.equals("")) {
+				resultMap.put(contactNo, messageId);
+				result = smsDaoImpl.saveSms( contactNo,  smsDto.getMessage(),smsDto.getRoute().toString(),smsDto.getOrgCode(), messageId);
+				if (!result) {
+					logger.error("failed to store sms details");
+				}
+			}
 		}
-		result = sendSms(smsDto, mobileNos, smsDto.getMessage(), smsDto.getRoute()
-				.toString());
-		SmsConfig config = smsDaoImpl.getSmsConfig();
-		boolean res = smsDaoImpl.saveAllSms(smsDto, mobileNos, config);
 
-		return result;
+		return resultMap;
 	}
 
 	@Override

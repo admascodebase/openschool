@@ -1,7 +1,6 @@
 package com.admas.ngemp.sms.dao;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -107,8 +106,8 @@ public class SmsDaoImpl implements ISmsDao {
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-	public boolean saveSms(SmsDto smsDto, String mobileNo,
-			String message, String route, String messageId)
+	public boolean saveSms( String mobileNo,
+			String message, String route,String orgCode, String messageId)
 			throws ExceptionHandler {
 
 		boolean Result1 = false;
@@ -119,7 +118,7 @@ public class SmsDaoImpl implements ISmsDao {
 			smsInboxJpa.setSentOn(new Date());
 			smsInboxJpa.setMsgId(messageId);
 			smsInboxJpa.setMessageStatus(MessageStatus.PROCESSING);
-			smsInboxJpa.setOrgCode(smsDto.getOrg_code());
+			smsInboxJpa.setOrgCode(orgCode);
 			smsInboxJpa.setRoute(Integer.parseInt(route));
 			entityManager.persist(smsInboxJpa);
 			Result1 = true;
