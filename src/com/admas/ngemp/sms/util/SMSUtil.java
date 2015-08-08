@@ -6,8 +6,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-import javax.ws.rs.core.Response;
-
 import com.admas.ngemp.sms.jpa.SmsConfig;
 
 public class SMSUtil {

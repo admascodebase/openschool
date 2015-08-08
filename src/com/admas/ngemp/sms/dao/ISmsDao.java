@@ -5,6 +5,7 @@ import java.util.List;
 import com.admas.ngemp.sms.dto.SmsDto;
 import com.admas.ngemp.sms.dto.SmsTemplateDto;
 import com.admas.ngemp.sms.exception.ExceptionHandler;
+import com.admas.ngemp.sms.jpa.RawMessages;
 import com.admas.ngemp.sms.jpa.SmsConfig;
 import com.admas.ngemp.sms.jpa.SmsInbox;
 
@@ -25,6 +26,12 @@ public interface ISmsDao {
 	public String getDeliveryReport(String orgCode, String messageId)throws ExceptionHandler;
 
 	public void updateSmsInbox(SmsInbox smsInbox)throws ExceptionHandler;
+
+	public boolean saveSmsAsync(SmsDto smsDto, String mobileNo)throws ExceptionHandler;
+
+	public List<SmsInbox> getAsyncSms()throws ExceptionHandler;
+
+	public RawMessages getrawsms(Integer integer)throws ExceptionHandler;
 
 	
 

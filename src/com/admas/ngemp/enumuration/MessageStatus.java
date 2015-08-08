@@ -6,5 +6,6 @@ public enum MessageStatus {
 	SENT,
 	FAILED,
 	DND,
-	DELIVERED
+	DELIVERED,
+	ASYNC
 }

@@ -19,4 +19,6 @@ public interface ISmsLogic {
 	public String getDeleveryReport(String orgCode, String messageId)throws ExceptionHandler;
 
 	public String getBalance(Integer route)throws ExceptionHandler;
+
+	public boolean saveSms(SmsDto smsDto)throws ExceptionHandler;
 }

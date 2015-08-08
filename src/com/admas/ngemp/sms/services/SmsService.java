@@ -85,7 +85,18 @@ public class SmsService {
 
 		return Response.status(200).entity(result).build();
 	}
-
+	
+	@POST
+	@Path("/sendSmsToManyAsync")
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public Response sendSmsToManyAsync(SmsDto smsDto) throws Exception {
+		
+boolean result =smsLogicImpl.saveSms(smsDto);
+		return Response.status(200).entity(result).build();
+	}
+	
+	
 	/**
 	 * @return the smsLogicImpl
 	 */

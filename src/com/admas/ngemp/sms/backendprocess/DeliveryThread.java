@@ -1,6 +1,7 @@
 package com.admas.ngemp.sms.backendprocess;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -15,13 +16,10 @@ import com.admas.ngemp.sms.util.SMSUtil;
 
 public class DeliveryThread implements Runnable, Serializable {
 
-	/**
-	 * 
-	 */
+	
 
 	Logger logger = LoggerFactory.getLogger(DeliveryThread.class);
 	private static final long serialVersionUID = 1L;
-
 	private static ISmsDao smsDaoImpl;
 
 	public static ISmsDao getSmsDaoImpl() {
@@ -60,11 +58,12 @@ public class DeliveryThread implements Runnable, Serializable {
 					msgStatus = SMSUtil.deleveryReport(smsConfig,
 							smsInbox.getMsgId());
 
-					msgStatus = msgStatus.replaceAll("%,", "");
 					if (msgStatus.equalsIgnoreCase("Delivered,")) {
+						Date date=new Date();
 						smsInbox.setMessageStatus(MessageStatus.DELIVERED);
+						smsInbox.setDeleveredOn(date);
 					} else if (msgStatus.equalsIgnoreCase("Sent,")) {
-						smsInbox.setMessageStatus(MessageStatus.DELIVERED);
+						smsInbox.setMessageStatus(MessageStatus.SENT);
 					} else if (msgStatus.equalsIgnoreCase("DND,")) {
 						smsInbox.setMessageStatus(MessageStatus.DND);
 					} else if (msgStatus

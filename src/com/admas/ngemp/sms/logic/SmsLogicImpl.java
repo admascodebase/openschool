@@ -102,4 +102,19 @@ public class SmsLogicImpl implements ISmsLogic {
 
 	}
 
+	@Override
+	public boolean saveSms(SmsDto smsDto) throws ExceptionHandler {
+		boolean Result =false;
+		try{
+			
+			for (String mobileNo: smsDto.getContactNos()) {
+				Result=smsDaoImpl.saveSmsAsync(smsDto, mobileNo);
+			}
+		return Result;
+		}catch(Exception e){
+			
+		}
+		return Result;
+	}
+
 }

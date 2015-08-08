@@ -241,6 +241,102 @@ public class SmsDaoImpl implements ISmsDao {
 		
 	}
 
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class, readOnly = false)
+	public boolean saveSmsAsync(SmsDto smsDto, String mobileNo) throws ExceptionHandler {
+		boolean result=false;
+		SmsInbox inbox=new SmsInbox();
+		
+		try {
+		
+		inbox.setDelFlg("N");
+		inbox.setMessageStatus(MessageStatus.ASYNC);
+		inbox.setMobile(mobileNo);
+		inbox.setMsgId("");
+		inbox.setMsgPushId("");
+		inbox.setOrgCode(smsDto.getOrgCode());
+		RawMessages messages=new RawMessages();
+		messages.setMsg(smsDto.getMessage());
+		entityManager.persist(messages);
+		entityManager.flush();
+		inbox.setRawMsgId(messages.getId());
+		inbox.setRoute(smsDto.getRoute());
+//		inbox.setSentOn(null);
+		result=true;
+		entityManager.persist(inbox);
+		return result;
+		} catch (Exception e) {
+e.printStackTrace();
+		}
+		
+		
+		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<SmsInbox> getAsyncSms() throws ExceptionHandler {
+
+		List<SmsInbox> asyncSmsList =new ArrayList<SmsInbox>();
+
+		
+		try{
+		CriteriaBuilder builder=entityManager.getCriteriaBuilder();
+		
+		CriteriaQuery<SmsInbox> criteriaQuery=builder.createQuery(SmsInbox.class);
+		
+		Root<SmsInbox> root=criteriaQuery.from(SmsInbox.class);
+		
+		Predicate predicate=builder.equal(root.get("messageStatus"),MessageStatus.ASYNC);
+		
+		criteriaQuery.where(predicate);
+		
+		Query query=entityManager.createQuery(criteriaQuery);
+		
+		asyncSmsList=query.getResultList();
+		
+		for (SmsInbox smsInbox : asyncSmsList) {
+			logger.info("async messages==="+smsInbox.getMsgId()+"  "+smsInbox.getMessageStatus());
+		}
+		return asyncSmsList;
+		}catch(Exception e){
+			
+		}
+		return asyncSmsList;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public RawMessages getrawsms(Integer rawMessageId) throws ExceptionHandler {
+
+		RawMessages messages=new RawMessages();
+		
+		try {
+			
+			CriteriaBuilder builder=entityManager.getCriteriaBuilder();
+			
+			CriteriaQuery<RawMessages> criteriaQuery=builder.createQuery(RawMessages.class);
+			
+			Root<RawMessages> root=criteriaQuery.from(RawMessages.class);
+			
+			Predicate predicate=builder.equal(root.get("id"),rawMessageId);
+			
+			criteriaQuery.where(predicate);
+			
+			Query query=entityManager.createQuery(criteriaQuery);
+			
+			List<RawMessages> rawMessages=query.getResultList();
+			
+			messages=rawMessages.get(0);
+			return messages;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return messages;
+	}
+
 	
 
 }

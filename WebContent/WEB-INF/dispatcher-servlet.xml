@@ -39,6 +39,7 @@
 	<bean id = "deliveryThread" class="com.admas.ngemp.sms.backendprocess.DeliveryThread">
 		<constructor-arg ref="smsDaoImpl"></constructor-arg>
 	</bean>
-	
-	
+	<bean id = "sendingThread" class="com.admas.ngemp.sms.backendprocess.SendingThread">
+		<constructor-arg ref="smsDaoImpl"></constructor-arg>
+	</bean>
 </beans>
