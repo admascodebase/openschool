@@ -2,7 +2,7 @@ package com.admas.ngemp.enumuration;
 
 public enum MessageStatus {
 	
-	PROCESSING,
+	PROCESSING ,
 	SENT,
 	FAILED,
 	DND,
