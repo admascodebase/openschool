@@ -90,7 +90,7 @@ public class ServiceInvoker implements Serializable {
 			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
 			ClientResponse<ResponseDto> response = clientRequest
 					.get(ResponseDto.class);
-			if (response.getStatus() != 200) {
+			/*if (response.getStatus() != 200) {
 				throw new LogiwareBaseException(response.getStatus() + "",
 						response.getStatus() + "");
 			}
@@ -100,7 +100,7 @@ public class ServiceInvoker implements Serializable {
 				throw new LogiwareBaseException(restResponse
 						.getResponseStatusHeader().getCode(), restResponse
 						.getResponseStatusHeader().getDescription());
-			}
+			}*/
 
 		} catch (LogiwareBaseException b) {
 			throw b;

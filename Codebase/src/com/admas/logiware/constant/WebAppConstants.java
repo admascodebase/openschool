@@ -32,6 +32,4 @@ public interface WebAppConstants {
 
 	public String PASSWORD = "password";
 
-	public String IS_LOGGED_IN = "isLogin";
-
 }
