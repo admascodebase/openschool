@@ -1,0 +1,104 @@
+<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.0">
+<deployment>
+		<dependencies>
+			<module name="org.apache.commons.logging" />
+			<module name="org.apache.commons.digester" />
+			<module name="org.apache.commons.beanutils" />
+			<module name="org.apache.commons.lang" />
+			<module name="org.apache" />
+			<module name="org.springframework">
+				<imports>
+					<include path="META-INF**" />
+					<include path="org**" />
+				</imports>
+			</module>
+			<module name="org.apache.tiles" >
+				 <imports>
+                    <include path="META-INF**" />
+                    <include path="META-INF/tld**" />
+					<include path="org**" />
+                </imports>
+			</module>
+			<module name="org.quartz"/>
+			<module name="org.dom4j"/>
+			<module name="javax.xml.ws.api"/>
+			<module name="com.sun.org.apache.xml.internal.resolver"/>
+	       	<module name="org.apache.commons.lang" />
+	       	<module name="com.sun.xml.bind"/>
+	       	<module name="javax.servlet.api"/>
+	       	<module name="javax.servlet.jsp.api"/>
+	       	<module name="javax.servlet.jstl.api"/>
+	       	<module name="org.apache.taglib"/>
+	       	<module name="org.apache.commons.io"/>
+
+	    </dependencies>
+	</deployment>
+	<!-- <deployment>
+		<dependencies>
+			<module name="org.apache.commons.logging" />
+			<module name="org.apache.commons.digester" />
+			<module name="org.apache.commons.beanutils" />
+			<module name="org.apache.commons.lang" />
+			<module name="org.apache.commons.fileupload" />
+			<module name="org.apache" />
+			<module name="org.springframework">
+				<imports>
+					<include path="META-INF**" />
+					<include path="org**" />
+				</imports>
+			</module>
+			<module name="org.apache.cxf">
+				<imports>
+					<include path="META-INF**" />
+					<include path="org**" />
+				</imports>
+			</module>
+			<module name="org.apache.cxf.impl">
+				<imports>
+					<include path="META-INF**" />
+					<include path="org**" />
+				</imports>
+			</module>
+			<module name="org.infinispan.client.hotrod" />
+			<module name="org.infinispan" />
+			<module name="org.apache.tiles">
+				<imports>
+					<include path="META-INF**" />
+					<include path="META-INF/tld**" />
+					<include path="org**" />
+				</imports>
+			</module>
+			<module name="org.quartz" />
+			<module name="org.dom4j" />
+			<module name="javax.xml.ws.api" />
+			<module name="com.sun.org.apache.xml.internal.resolver" />
+			<module name="org.apache.velocity" />
+			<module name="org.apache.commons.lang" />
+			<module name="com.sun.xml.bind" />
+			<module name="javax.servlet.api" />
+			<module name="javax.servlet.jsp.api" />
+			<module name="javax.servlet.jstl.api" />
+			<module name="org.apache.taglib" />
+			<module name="org.apache.commons.io" />
+			<module name="junit" />
+			<module name="com.lowagie.itext" />
+			<module name="com.mysql" />
+			<module name="javax.naming" />
+			<module name="org.codehaus.jackson.jackson-mapper-asl" />
+			<module name="org.codehaus.jackson.jackson-core-asl" />
+			<module name="com.sun.jersey.json" />
+			<module name="com.googlecode" />
+			<module name="org.jasypt" />
+			<module name="javax.activation.api" />
+			<module name="org.codehaus.woodstox" />
+			<module name="org.antlr" />
+			<module name="com.sun.xml.messaging.saaj" />
+			<module name="javax.wsdl4j.api" />
+			<module name="org.apache.neethi" />
+			<module name="org.apache.poi" />
+			<module name="com.sun.jersey.client" />
+			<module name="com.sun.jersey.core" />
+			<module name="org.xhtmlrenderer" />
+		</dependencies>
+	</deployment> -->
+</jboss-deployment-structure>
