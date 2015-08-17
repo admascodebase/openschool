@@ -12,6 +12,7 @@ import java.util.Map;
 // TODO: Auto-generated Javadoc
 /**
  * The Class FlowData.
+ * This clss used to manage all session data. We can access alll the sessions using this data.
  */
 public class FlowData implements Serializable {
 	/**
