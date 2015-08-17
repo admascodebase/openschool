@@ -28,4 +28,10 @@ public interface WebAppConstants {
 
 	public String APP_CONTENT_TYPE = "application/json";
 
+	public String USERNAME = "userName";
+
+	public String PASSWORD = "password";
+
+	public String IS_LOGGED_IN = "isLogin";
+
 }
