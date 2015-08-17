@@ -93,6 +93,5 @@
 	<bean id="home" class="com.admas.logiware.usrmgt.controller.LoginController"/>
 	
 	<bean id="loginInterceptor" class="com.admas.logiware.util.LoginInterceptor"/>
-	<bean id="userDetails" class="com.admas.logiware.dto.UserDetails"/>
-	<bean id="customer" class="com.admas.logiware.dto.Customer" />
+	<bean id="MasterController" class="com.admas.logiware.sysadmin.controller.MasterController"/>
 </beans>
