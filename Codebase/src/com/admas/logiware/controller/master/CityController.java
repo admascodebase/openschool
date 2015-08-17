@@ -1,4 +1,4 @@
-package com.admas.logiware.controller.sysadmin;
+package com.admas.logiware.controller.master;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,10 +20,10 @@ import com.admas.logiware.dto.FlowData;
 import com.admas.logiware.exception.LogiwarePortalErrors;
 import com.admas.logiware.usrmgt.service.SysAdminServiceImpl;
 
-public class MasterController extends BaseController{
+public class CityController extends BaseController{
 	
 	/** The logger. */
-	Logger logger = LoggerFactory.getLogger(SysAdminController.class);	
+	Logger logger = LoggerFactory.getLogger(CityController.class);	
 
 	/** The controller service. */	
 	@Autowired
