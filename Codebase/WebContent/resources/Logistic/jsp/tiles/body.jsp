@@ -22,11 +22,11 @@
                 <div class="content">
                   <div class="form-group">
                     <label for="userName">User Name</label>
-                    <input type="text" class="form-control"  placeholder="User Name" />
+                    <input type="text" class="form-control" name="userName" placeholder="User Name" />
                   </div>
                   <div class="form-group">
                     <label for="Password1">Password</label>
-                    <input type="password" class="form-control"  placeholder="Password" />
+                    <input type="password" class="form-control" name="password" placeholder="Password" />
                   </div>
                 </div>
                 <div class="actions">
