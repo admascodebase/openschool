@@ -83,26 +83,19 @@ public class BaseController extends AbstractController {
 	 */
 
 	public ModelAndView loginPage(FlowData flowData, HttpServletRequest request) {
-
 		Map<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		logger.info("started loginPage method ");
 		ModelAndView modelRoot = null;
 		try {			
-			String viewName = "login";
-			userManagementServiceImpl.isValidUser(flowData,
+			String viewName = "";
+
+			resDtoObjects = userManagementServiceImpl.login(flowData,
 					reqDtoObjects, resDtoObjects);
-			//resDtoObjects.pu
-			//viewName = (String) resDtoObjects.get(WebAppConstants.VIEW_NAME);
+			viewName = (String) resDtoObjects.get(WebAppConstants.VIEW_NAME);
 			modelRoot = new ModelAndView(viewName);
 			modelRoot.addAllObjects(resDtoObjects);
 			request.getSession().setAttribute(WebAppConstants.FLOWDATA, null);
-			return modelRoot;
-		} catch (LogiwareBaseException  ex) {
-			ex.printStackTrace();
-			logger.error("NGOPServiceException in loginPage()", ex);
-			modelRoot = new ModelAndView(
-					(String) resDtoObjects.get(WebAppConstants.VIEW_NAME));
 			return modelRoot;
 		} catch (Exception ex) {
 			logger.error("Exception in loginPage()", ex);

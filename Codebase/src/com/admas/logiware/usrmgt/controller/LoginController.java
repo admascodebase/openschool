@@ -95,6 +95,9 @@ public class LoginController extends BaseController {
 			reqDtoObjects.put(WebAppConstants.USERNAME, userName);
 			reqDtoObjects.put(WebAppConstants.PASSWORD, password);			
 			resDtoObjects =userManagementServiceImpl.isValidUser(flowData, reqDtoObjects, resDtoObjects);
+			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
+			mv=new ModelAndView(viewName);
+			mv.addObject(resDtoObjects.get("viewName"));
 			mv.addObject("userDetails", resDtoObjects.get("userResponse"));	
 			return mv;//getPostLoginDtls(flowData, request);
 
