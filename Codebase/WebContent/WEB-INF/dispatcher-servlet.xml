@@ -90,8 +90,8 @@
 			</list>
 		</property>
 	</bean>
-	<bean id="home" class="com.admas.logiware.usrmgt.controller.LoginController"/>
+	<bean id="home" class="com.admas.logiware.controller.usrmgt.LoginController"/>
 	
 	<bean id="loginInterceptor" class="com.admas.logiware.util.LoginInterceptor"/>
-	<bean id="MasterController" class="com.admas.logiware.sysadmin.controller.MasterController"/>
+	<bean id="MasterController" class="com.admas.logiware.controller.sysadmin.MasterController"/>
 </beans>

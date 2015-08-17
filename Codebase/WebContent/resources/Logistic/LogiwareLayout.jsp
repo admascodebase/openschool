@@ -66,7 +66,7 @@
 <body>
 
 	<!-- Header Start -->
-	<%-- <header>
+	<header>
        <a href="index.html" class="logo">
         <img src="${pageContext.request.contextPath}/resources/Logistic/assets/img/logo.png" alt="Logo"/>
       </a>
@@ -158,7 +158,7 @@
           </li>
           <li class="list-box user-profile">
             <a id="drop7" href="#" role="button" class="dropdown-toggle user-avtar" data-toggle="dropdown">
-              <img src="img/user5.png" alt="Bluemoon User">
+              <img src="${pageContext.request.contextPath}/resources/Logistic/assets/img/user5.png" alt="Bluemoon User">
             </a>
             <ul class="dropdown-menu server-activity">
               <li>
@@ -197,7 +197,7 @@
           </li>
         </ul>
       </div>
-    </header> --%>
+    </header> 
 	<!-- Header End -->
 
 	<!-- Main Container start -->
