@@ -45,11 +45,11 @@ public class ServiceInvoker implements Serializable {
 			throws LogiwareBaseException {
 		logger.info("ServiceInvoker:invoke method Start.");
 		K response = null;
-		String host = PropertyHandler.getProperty("banking.serivce.host");
+		String host = PropertyHandler.getProperty("logiware.serivce.host");
 		int port = Integer.parseInt(PropertyHandler
-				.getProperty("banking.serivce.port"));
+				.getProperty("logiware.serivce.port"));
 		String urlTemplate = PropertyHandler
-				.getProperty("banking.serivce.url.template");
+				.getProperty("logiware.serivce.url.template");
 
 		String serviceEndPoint = ResourceHandler.instance()
 				.getServiceEndPoints(serviceName.value());
