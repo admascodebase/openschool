@@ -97,6 +97,7 @@ public class LoginController extends BaseController {
 			resDtoObjects =userManagementServiceImpl.isValidUser(flowData, reqDtoObjects, resDtoObjects);
 			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
 			mv=new ModelAndView(viewName);
+			mv.addAllObjects(resDtoObjects);
 			flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
 			mv.addObject("userDetails", resDtoObjects.get("userResponse"));	
 			return mv;
