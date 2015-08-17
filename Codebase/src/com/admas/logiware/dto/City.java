@@ -13,7 +13,7 @@ public class City implements Serializable {
 
 	public City() {
 	}
-	@FormParam("cityName")
+//	@FormParam("cityName")
 	private String cityName;
 
 	/**
