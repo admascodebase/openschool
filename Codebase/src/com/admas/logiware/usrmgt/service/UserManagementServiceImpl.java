@@ -64,11 +64,11 @@ public class UserManagementServiceImpl{
 		String viewName="";
 		try {
 			viewName="Dashboard";
-			responseUser = doServiceCall(flowData, ServiceName.login, reqDtoObjects);
+			/*responseUser = doServiceCall(flowData, ServiceName.login, reqDtoObjects);
 			resDtoObjects.put("userResponse", responseUser);
 			resDtoObjects.put("viewName", viewName);
 		} catch (LogiwareBaseException b) {
-			throw b;
+			throw b;*/
 		} catch (Exception e) {
 			logger.error(
 					"Exception In EnterpriseControllerService: customerLogin client method end.",
