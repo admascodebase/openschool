@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<!-- <definition name="NGEMP_Inquiry_en_base.definition"
+		template="/resources/Hostel/Hostel_Layout.jsp">
+		<put-attribute name="title" value="Dashboard - Target Admin" />
+		<put-attribute name="header" value="/resources/Hostel/jsp/tiles/header.jsp" />
+		<put-attribute name="menu" value="/resources/Hostel/jsp/tiles/menu.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/resources/Hostel/jsp/tiles/footer.jsp" />
+	</definition> -->
+	<definition name="logistic.login.definition" template="/resources/Logistic/login_layout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="" />
+	</definition>
+	
+	<definition name="logistic.baselayout" template="/resources/Logistic/LogiwareLayout.jsp">
+		<put-attribute name="title" value="Logiware"/>
+		<put-attribute name="menu" value="/resources/Logistic/jsp/tiles/menu.jsp"/>
+		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/resources/Logistic/jsp/tiles/footer.jsp"/>	
+	</definition>
+	
+   <definition name="login"
+		extends="logistic.login.definition">
+		<put-attribute name="title" value="Logistic - Login Page" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/tiles/body.jsp" />
+	</definition>
+	
+	<definition name="Dashboard" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic - Login Page" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/tiles/dashbord.jsp" />
+	</definition>
+		
+	<definition name="customer" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic - Customer" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/superadmin/Customer.jsp" />
+	</definition>
+	
+	
+	<definition name="AddCustomer" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic -Add Customer" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/superadmin/AddCustomer.jsp" />
+	</definition>
+	
+	
+	<definition name="SmsSetting" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic -SMS Settings" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/superadmin/SmsSettings.jsp" />
+	</definition>
+	
+	<definition name="addSmsSetting" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic -SMS Settings" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/superadmin/AddSmsSettings.jsp" />
+	</definition>
+	
+	<definition name="pricePlan" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic -Price Plan" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/superadmin/PricePlan.jsp" />
+	</definition>
+	<definition name="addpricePlan" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic -Price Plan" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/superadmin/AddPricePlan.jsp" />
+	</definition>
+</tiles-definitions>
