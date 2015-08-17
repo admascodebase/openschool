@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import com.admas.logiware.client.ServiceEndPointConstants.ServiceName;
 import com.admas.logiware.constant.WebAppConstants;
+import com.admas.logiware.dto.Customer;
 import com.admas.logiware.dto.ResponseDto;
 import com.admas.logiware.dto.RestResponseUser;
 import com.admas.logiware.exception.LogiwareBaseException;
@@ -57,6 +58,10 @@ public class ServiceInvoker implements Serializable {
 		switch (serviceName) {
 		case login: {
 			response = (K) login(url, (Map) request);
+			break;
+		}
+		case getAllCustomer: {
+			response = (K) getAllCustomer(url, (Map) request);
 			break;
 		}
 		default:
@@ -108,6 +113,40 @@ public class ServiceInvoker implements Serializable {
 		}
 		logger.info("ServiceInvoker login method end. ");
 		return true;
+	}
+	
+	public Customer getAllCustomer(String url,Map<String, Object> request) throws LogiwareBaseException {
+		logger.info("ServiceInvoker login method start. ");
+		RestResponseUser restResponse = new RestResponseUser();
+		Customer customer = new Customer();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<ResponseDto> response = clientRequest
+					.get(ResponseDto.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "",
+						response.getStatus() + "");
+			}
+			///restResponse = response.getEntity();
+			if (!restResponse.getResponseStatusHeader().getCode()
+					.equals("0000")) {
+				throw new LogiwareBaseException(restResponse
+						.getResponseStatusHeader().getCode(), restResponse
+						.getResponseStatusHeader().getDescription());
+			}
+
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker login method end.", e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST
+							.getErrorDescription());
+		}
+		logger.info("ServiceInvoker login method end. ");
+		return customer;
 	}
 
 	

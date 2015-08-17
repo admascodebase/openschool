@@ -17,12 +17,14 @@ private static final long serialVersionUID = 1L;
 	private String companyAddress;
 	@FormParam("contactNo1")
 	private String contactNo1;
+	@FormParam("contactNo2")
+	private String contactNo2;
 	@FormParam("emailId")
 	private String emailId;
 	@FormParam("website")
 	private String website;
 	@FormParam("contactPerson")
-	private String contactperson;
+	private String contactPerson;
 	@FormParam("contactPersonNo")
 	private String contactPersonNo;
 	@FormParam("pricePlan")
@@ -73,6 +75,13 @@ private static final long serialVersionUID = 1L;
 	public void setContactNo1(String contactNo1) {
 		this.contactNo1 = contactNo1;
 	}
+	public String getContactNo2() {
+		return contactNo2;
+	}
+
+	public void setContactNo2(String contactNo2) {
+		this.contactNo2 = contactNo2;
+	}
 
 	public String getEmailId() {
 		return emailId;
@@ -90,12 +99,13 @@ private static final long serialVersionUID = 1L;
 		this.website = website;
 	}
 
-	public String getContactperson() {
-		return contactperson;
+	
+	public String getContactPerson() {
+		return contactPerson;
 	}
 
-	public void setContactperson(String contactperson) {
-		this.contactperson = contactperson;
+	public void setContactPerson(String contactPerson) {
+		this.contactPerson = contactPerson;
 	}
 
 	public String getContactPersonNo() {
@@ -127,7 +137,7 @@ private static final long serialVersionUID = 1L;
 		return "Customer [id=" + id + ", companyName=" + companyName
 				+ ", address=" + address + ", companyAddress=" + companyAddress
 				+ ", contactNo1=" + contactNo1 + ", emailId=" + emailId
-				+ ", website=" + website + ", contactperson=" + contactperson
+				+ ", website=" + website + ", contactperson=" + contactPerson
 				+ ", contactPersonNo=" + contactPersonNo + ", pricePlan="
 				+ pricePlan + ", smsGateway=" + smsGateway + "]";
 	}
