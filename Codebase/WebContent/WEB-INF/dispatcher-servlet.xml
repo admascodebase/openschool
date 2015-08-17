@@ -93,5 +93,5 @@
 	<bean id="home" class="com.admas.logiware.controller.usrmgt.LoginController"/>
 	
 	<bean id="loginInterceptor" class="com.admas.logiware.util.LoginInterceptor"/>
-	<bean id="MasterController" class="com.admas.logiware.controller.sysadmin.MasterController"/>
+	<bean id="MasterController" class="com.admas.logiware.controller.master.CityController"/>
 </beans>
