@@ -11,14 +11,16 @@ import org.springframework.stereotype.Component;
 
 import com.admas.logiware.client.ServiceEndPointConstants.ServiceName;
 import com.admas.logiware.client.ServiceInvoker;
+import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.dto.FlowData;
 import com.admas.logiware.dto.RestResponseUser;
 import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
+import com.admas.logiware.exception.WebAppException;
 
 @Component
 @Qualifier("userManagementServiceImpl")
-public class UserManagementServiceImpl implements IUserManagementService {
+public class UserManagementServiceImpl{
 
 	/** The logger. */
 	Logger logger = LoggerFactory.getLogger(UserManagementServiceImpl.class);
@@ -39,13 +41,32 @@ public class UserManagementServiceImpl implements IUserManagementService {
 		return serviceInvoker.invoke(serviceName, request);
 	}
 	
-	@Override
-	public RestResponseUser isValidUser(FlowData flowData,
-			Map<String, Object> reqDtoObjects, Map<String, Object> resDtoObjects) throws LogiwareBaseException {
-		logger.info("EnterpriseControllerService customerLogin client method start. ");
-		RestResponseUser responseUser = new RestResponseUser();
+	public Map<String, Object> login(FlowData flowData,
+			Map<String, Object> reqDtoObjects, Map<String, Object> resDtoObjects)
+			throws WebAppException {
+
+		String viewName = "";
 		try {
+			viewName = "login";
+
+		} catch (Exception exp) {
+			logger.error("Exception in login()", exp);
+		}
+
+		resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
+		return resDtoObjects;
+	}	
+	
+	public  Map<String, Object> isValidUser(FlowData flowData,
+			Map<String, Object> reqDtoObjects, Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+		logger.info("UserManagementServiceImpl isValidUser method start. ");
+		RestResponseUser responseUser = new RestResponseUser();
+		String viewName="";
+		try {
+			viewName="Dashboard";
 			responseUser = doServiceCall(flowData, ServiceName.login, reqDtoObjects);
+			resDtoObjects.put("userResponse", responseUser);
+			resDtoObjects.put("viewName", viewName);
 		} catch (LogiwareBaseException b) {
 			throw b;
 		} catch (Exception e) {
@@ -57,8 +78,8 @@ public class UserManagementServiceImpl implements IUserManagementService {
 					LogiwarePortalErrors.INVALID_REQUEST
 							.getErrorDescription());
 		}
-		logger.info("EnterpriseControllerService customerLogin method end. ");
-		return responseUser;
+		logger.info("UserManagementServiceImpl isValidUser method end. ");
+		return resDtoObjects;
 	}
 	
 }

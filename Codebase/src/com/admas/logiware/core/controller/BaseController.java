@@ -99,6 +99,7 @@ public class BaseController extends AbstractController {
 			request.getSession().setAttribute(WebAppConstants.FLOWDATA, null);
 			return modelRoot;
 		} catch (LogiwareBaseException  ex) {
+			ex.printStackTrace();
 			logger.error("NGOPServiceException in loginPage()", ex);
 			modelRoot = new ModelAndView(
 					(String) resDtoObjects.get(WebAppConstants.VIEW_NAME));

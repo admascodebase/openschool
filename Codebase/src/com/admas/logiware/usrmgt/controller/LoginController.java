@@ -1,4 +1,8 @@
+
 package com.admas.logiware.usrmgt.controller;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +22,8 @@ import com.admas.logiware.core.controller.BaseController;
 import com.admas.logiware.dto.Customer;
 import com.admas.logiware.dto.FlowData;
 import com.admas.logiware.dto.SmsSettings;
+import com.admas.logiware.exception.LogiwareBaseException;
+import com.admas.logiware.exception.LogiwarePortalErrors;
 import com.admas.logiware.usrmgt.service.UserManagementServiceImpl;
 
 
@@ -31,12 +37,20 @@ public class LoginController extends BaseController {
 	@Qualifier("userManagementServiceImpl")
 	private UserManagementServiceImpl userManagementServiceImpl;
 
-	
+	/**
+	 * Etailer login.
+	 * 
+	 * @param request
+	 *            the request
+	 * @param response
+	 *            the response
+	 * @return the model and view
+	 */
 	@RequestMapping(value = "/login.htm", method = RequestMethod.GET)
 	public ModelAndView login(HttpServletRequest request,
 			HttpServletResponse response) {
-		FlowData flowData = null;
 		
+		FlowData flowData = null;		
 		logger.info(LoginController.class.getName()
 				+ ".inside login controller START");
 		super.handleRequestInternal(request, response);
@@ -48,18 +62,58 @@ public class LoginController extends BaseController {
 		if (!flowData.isLoggedIn()) {
 			return super.loginPage(flowData, request);
 		} else {
-			return null;// getPostLoginDtls(flowData, request);
+			//return getPostLoginDtls(flowData, request);
+			return null;
 		}
 	}
 
 	
 	@RequestMapping(value="/userLogin.htm", method=RequestMethod.POST)
-	public ModelAndView loginSubmit(HttpServletRequest request, HttpServletResponse response){
+	public ModelAndView userLogin(HttpServletRequest request, HttpServletResponse response){		
+
+		logger.info(LoginController.class.getName()
+				+ ".inside user login controller START");
+
+		//super.handleRequestInternal(request, response);
+		FlowData flowData = null;
+		/*if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
+			flowData = (FlowData) request.getSession().getAttribute(
+					WebAppConstants.FLOWDATA);
+		}
+
+		if (flowData.isLoggedIn()) {
+			return null;//getPostLoginDtls(flowData, request);
+		}*/
+
+		ModelAndView mv = new ModelAndView();
+		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
+		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
+		String userName = null;
+		try {
+			userName = request.getParameter(WebAppConstants.USERNAME);
+			String password = request.getParameter(WebAppConstants.PASSWORD);
+			reqDtoObjects.put(WebAppConstants.USERNAME, userName);
+			reqDtoObjects.put(WebAppConstants.PASSWORD, password);			
+			resDtoObjects =userManagementServiceImpl.isValidUser(flowData, reqDtoObjects, resDtoObjects);
+			mv.addObject("userDetails", resDtoObjects.get("userResponse"));	
+			return mv;//getPostLoginDtls(flowData, request);
+
+		} catch (LogiwareBaseException we) {
+			logger.error("Exception in LoginController:validateLogin", we);
+			mv.addObject(WebAppConstants.ERROR_CODE, we.getErrorCode());
+			mv.setViewName("login");
+			
+		} catch (Exception e) {
+			logger.error("Exception in LoginController:validateLogin", e);
+			mv.addObject(WebAppConstants.ERROR_CODE,
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode());
+		}
 		
-		FlowData flowData=null;
-//		logger.info("values====="+request.get)
-		logger.info("****************************in login submit action****************************");
-		return super.loginSubmit(flowData, request);
+		logger.info(LoginController.class.getName()
+				+ ".inside user login controller END");
+
+		
+		return mv;
 		
 	}
 	
