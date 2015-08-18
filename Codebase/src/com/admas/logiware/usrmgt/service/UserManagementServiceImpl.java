@@ -20,11 +20,11 @@ import com.admas.logiware.exception.WebAppException;
 
 @Component
 @Qualifier("userManagementServiceImpl")
-public class UserManagementServiceImpl{
+public class UserManagementServiceImpl {
 
 	/** The logger. */
 	Logger logger = LoggerFactory.getLogger(UserManagementServiceImpl.class);
-	
+
 	@Autowired
 	@Qualifier("serviceInvoker")
 	private ServiceInvoker serviceInvoker;
@@ -40,7 +40,7 @@ public class UserManagementServiceImpl{
 			ServiceName serviceName, T request) throws LogiwareBaseException {
 		return serviceInvoker.invoke(serviceName, request);
 	}
-	
+
 	public Map<String, Object> login(FlowData flowData,
 			Map<String, Object> reqDtoObjects, Map<String, Object> resDtoObjects)
 			throws WebAppException {
@@ -55,32 +55,32 @@ public class UserManagementServiceImpl{
 
 		resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
 		return resDtoObjects;
-	}	
-	
-	public  Map<String, Object> isValidUser(FlowData flowData,
-			Map<String, Object> reqDtoObjects, Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+	}
+
+	public Map<String, Object> isValidUser(FlowData flowData,
+			Map<String, Object> reqDtoObjects, Map<String, Object> resDtoObjects)
+			throws LogiwareBaseException {
 		logger.info("UserManagementServiceImpl isValidUser method start. ");
 		RestResponseUser responseUser = new RestResponseUser();
-		String viewName="";
+		String viewName = "";
 		try {
-			viewName="Dashboard";
-			/*responseUser = doServiceCall(flowData, ServiceName.login, reqDtoObjects);
-			resDtoObjects.put("userResponse", responseUser);*/ 
+			viewName = "Dashboard";
+			/*responseUser = doServiceCall(flowData, ServiceName.login,
+					reqDtoObjects);
+			resDtoObjects.put("userResponse", responseUser);*/
 			resDtoObjects.put("viewName", viewName);
 			/*} catch (LogiwareBaseException b) {
-			throw b;*/ 
+			throw b;*/
 		} catch (Exception e) {
 			logger.error(
 					"Exception In EnterpriseControllerService: customerLogin client method end.",
 					e);
 			throw new LogiwareBaseException(
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
-					LogiwarePortalErrors.INVALID_REQUEST
-							.getErrorDescription());
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
 		}
 		logger.info("UserManagementServiceImpl isValidUser method end. ");
 		return resDtoObjects;
 	}
-	
-}
 
+}

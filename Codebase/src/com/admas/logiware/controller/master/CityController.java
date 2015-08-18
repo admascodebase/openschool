@@ -1,6 +1,5 @@
 package com.admas.logiware.controller.master;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,9 +21,9 @@ import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.controller.core.BaseController;
 import com.admas.logiware.dto.City;
 import com.admas.logiware.dto.FlowData;
+import com.admas.logiware.dto.SelectedIds;
 import com.admas.logiware.exception.LogiwarePortalErrors;
 import com.admas.logiware.usrmgt.service.MasterServiceImpl;
-import com.admas.logiware.usrmgt.service.SysAdminServiceImpl;
 
 public class CityController extends BaseController{
 	
@@ -35,12 +34,10 @@ public class CityController extends BaseController{
 	@Autowired
 	@Qualifier("masterServiceImpl")
 	private MasterServiceImpl masterServiceImpl;
-
-	
 	
 	@RequestMapping(value = "/getAllCity.htm", method = RequestMethod.GET)
 	public ModelAndView city(HttpServletRequest request,
-			HttpServletResponse response){		
+			HttpServletResponse response){
 		
 		logger.info("CityController: city Method Start.");
 		FlowData flowData = null;
@@ -63,6 +60,7 @@ public class CityController extends BaseController{
 			@SuppressWarnings("unchecked")
 			List<City> lCities=(List<City>) resDtoObjects.get("lCity");
 			mv.addObject("lCities",lCities);
+			mv.addObject("selectedIds", new SelectedIds());
 //			mv.addObject(viewName);
 			
 		/*} catch (LogiwareBaseException _be) {
@@ -83,20 +81,20 @@ public class CityController extends BaseController{
 	
 	
 	
-	@RequestMapping(value = "/addCity.htm", method = RequestMethod.GET)
+	@RequestMapping(value = "/showAddCity.htm", method = RequestMethod.GET)
 	public ModelAndView addCity(HttpServletRequest request, HttpServletResponse response, Model model) {		
 		
 		logger.info("MasterController: addCity Method Start.");
 		FlowData flowData = null;
-		model.addAttribute("city",new City());
+		
 		ModelAndView mv = new ModelAndView() ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		try {			
-			resDtoObjects=masterServiceImpl.addCity(flowData, reqDtoObjects, resDtoObjects);
+			model.addAttribute("city",new City());
+			resDtoObjects=masterServiceImpl.showAddCity(flowData, reqDtoObjects, resDtoObjects);
 			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
-			mv=new ModelAndView(viewName);
-		
+			mv=new ModelAndView(viewName);		
 		} catch (Exception e) {
 			logger.error(
 					"Exception In PaymentController viewPaymentEntries --", e);
@@ -107,13 +105,29 @@ public class CityController extends BaseController{
 		return mv;
 	}
 	
-	@RequestMapping(value="/addCitySubmit.htm", method=RequestMethod.POST)
+	@RequestMapping(value="/saveCity.htm", method=RequestMethod.POST)
 	public ModelAndView addCitySubmit(@ModelAttribute("city")City city, HttpServletRequest request, HttpServletResponse response){
+		logger.info("MasterController: addCity Method Start.");
+		FlowData flowData = null;
+		ModelAndView mv = new ModelAndView() ;
+		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
+		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
+		try {			
+			reqDtoObjects.put("city", city);
+			resDtoObjects=masterServiceImpl.saveCity(flowData, reqDtoObjects, resDtoObjects);
+			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
+			mv=new ModelAndView(viewName);		
+			@SuppressWarnings("unchecked")
+			List<City> lCities=(List<City>) resDtoObjects.get("lCity");
+			mv.addObject("lCities",lCities);
+		} catch (Exception e) {
+			logger.error(
+					"Exception In PaymentController viewPaymentEntries --", e);
+			mv.addObject(WebAppConstants.ERROR_CODE,
+					LogiwarePortalErrors.ERROR_WHILE_FETCHING_PAYMENT_MONITORING_RECORDS.getErrorCode());
+		}
 		
-		
-		logger.info("City========"+city.toString());
-		
-		return null;
+		return mv;
 	}
 	
 	
@@ -123,22 +137,22 @@ public class CityController extends BaseController{
 		logger.info("cityController: editCity Method Start.");
 		FlowData flowData = null;
 		model.addAttribute("city",new City());
-		ModelAndView mv = new ModelAndView() ;
+		ModelAndView modelView = new ModelAndView() ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		try{
 			resDtoObjects=masterServiceImpl.editCity(flowData, reqDtoObjects, resDtoObjects);
 			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
-			mv=new ModelAndView(viewName);
+			modelView=new ModelAndView(viewName);
 		
 		} catch (Exception e) {
 			logger.error(
 					"Exception In PaymentController viewPaymentEntries --", e);
-			mv.addObject(WebAppConstants.ERROR_CODE,
+			modelView.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.ERROR_WHILE_FETCHING_PAYMENT_MONITORING_RECORDS.getErrorCode());
 		}
 		
-		return mv;
+		return modelView;
 	}
 	
 	

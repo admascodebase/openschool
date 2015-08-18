@@ -6,13 +6,6 @@
 
 <script type="text/javascript">
 
- $(document).ready(function()
-         {
-	 
-	var s=$("#cityForm input[type='radio']:checked").val();
-	 alert("value"+s);
-	 
-         }
 </script>
 
 </head>
@@ -20,9 +13,11 @@
 <body>
 	<div>
 
-		<a href="./addCity.htm"><button type="button" class="btn btn-success">Add</button></a> 
-		<a href="./editCity.htm"><button type="button" class="btn btn-warning">Edit</button></a> 
-		<a href="./deleteCity.htm"><button type="button" class="btn btn-danger">Delete</button></a>
+		<a href="showAddCity.htm"><button type="button"
+				class="btn btn-success">Add</button></a> <a href="showEditCity.htm"><button
+				type="submit" class="btn btn-warning">Edit</button></a> <a
+			href="showDeleteCity.htm"><button type="button"
+				class="btn btn-danger">Delete</button></a>
 
 	</div>
 
@@ -35,41 +30,41 @@
 					<span class="tools"> <i class="fa fa-cogs"></i>
 					</span>
 				</div>
-				<form name="cityForm">
-				<div class="widget-body">
-					<div class="table-responsive">
-
-						
-
-								<table
-									class="table table-condensed table-striped table-bordered table-hover no-margin">
-									<thead>
-										<tr>
-											<th style="width: 2%"><input type="radio"
-												class="no-margin"></th>
-											<th style="width: 5%">City Name</th>
-
-										</tr>
-									</thead>
-									<c:if test="${not empty lCities}">
+				<form:form name="cityForm" commandName="selectedIds">
+					<div class="widget-body">
+						<div class="table-responsive">
 
 
-							<c:forEach var="listValue" items="${lCities}">
-								
-									<tbody>
-										<tr>
-											<td><input type="radio" class="no-margin" value="${listValue.cityName}"></td>
-											<td>${listValue.cityName}</td>
-										</tr>
 
-									</tbody>
+							<table
+								class="table table-condensed table-striped table-bordered table-hover no-margin">
+								<thead>
+									<tr>
+										<th style="width: 2%"><input type="checkbox"
+											class="no-margin"></th>
+										<th style="width: 5%">City Name</th>
+
+									</tr>
+								</thead>
+								<c:if test="${not empty lCities}">
+
+
+									<c:forEach var="listValue" items="${lCities}">
+
+										<tbody>
+											<tr>
+												<td><form:checkbox path="ids" value="${listValue.cityName}"/></td>
+												<td>${listValue.cityName}</td>
+											</tr>
+
+										</tbody>
 									</c:forEach>
-						</c:if>
-								</table>
-							
+								</c:if>
+							</table>
+
+						</div>
 					</div>
-				</div>
-				</form>
+				</form:form>
 			</div>
 		</div>
 	</div>

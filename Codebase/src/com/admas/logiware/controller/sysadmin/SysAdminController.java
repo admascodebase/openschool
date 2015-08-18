@@ -35,7 +35,7 @@ public class SysAdminController extends BaseController {
 	 * customer management actions
 	 */
 	
-	@RequestMapping(value = "/getAllCustomer.htm", method = RequestMethod.GET)
+	@RequestMapping(value = "/getAllCustomer.htm", method = RequestMethod.POST)
 	public ModelAndView getAllCustomer(HttpServletRequest request,
 			HttpServletResponse response) {		
 		

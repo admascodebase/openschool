@@ -46,29 +46,14 @@ public class MasterServiceImpl{
 		return serviceInvoker.invoke(serviceName, request);
 	}
 
-	public Map<String, Object> city(FlowData flowData, HashMap<String, Object> reqDtoObjects,
-			Map<String, Object> resDtoObjects) {
-		
-		String viewName = "";
-		try {
-			viewName = "city";
-
-		} catch (Exception exp) {
-			logger.error("Exception in city()", exp);
-		}
-
-		resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
-		return resDtoObjects;
-	}
-
-	public Map<String, Object> addCity(FlowData flowData,
+	public Map<String, Object> showAddCity(FlowData flowData,
 			HashMap<String, Object> reqDtoObjects,
 			Map<String, Object> resDtoObjects) {
-
-		
 		String viewName = "";
 		try {
-			viewName = "addCity";
+			viewName = "showAddCity";
+			City city = new City();
+			resDtoObjects.put("city", city);
 
 		} catch (Exception exp) {
 			logger.error("Exception in addCity()", exp);
@@ -89,7 +74,7 @@ public class MasterServiceImpl{
 		List<City> lCities=new ArrayList<City>();
 		String viewName="";
 		try {
-			viewName="city";
+			viewName="getAllCities";
 //			city = doServiceCall(flowData, ServiceName.getAllCity, reqDtoObjects);
 			city.setCityName("Pune");
 			city1.setCityName("Mumbai");
@@ -128,6 +113,41 @@ public class MasterServiceImpl{
 		logger.info("MasterServiceImpl editCity() method end. ");
 		return resDtoObjects;
 	}
+	
+	public Map<String, Object> saveCity(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) {
+		
+		logger.info("MasterServiceImpl getAllCity method start. ");
+		City city=new City();
+		City city1=new City();
+		List<City> lCities=new ArrayList<City>();
+		String viewName="";
+		try {
+			viewName="getAllCities";
+//			city = doServiceCall(flowData, ServiceName.getAllCity, reqDtoObjects);
+			city.setCityName("Pune");
+			city1.setCityName("Mumbai");
+			lCities.add(city);
+			lCities.add(city1);
+			resDtoObjects.put("lCity", lCities);
+			resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
+		/*} catch (LogiwareBaseException b) {
+			throw b;*/
+		} catch (Exception e) {
+			logger.error("Exception In MasterServiceImpl getAllCity client method end.",
+					e);
+			/*throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST
+							.getErrorDescription());*/
+		}
+		logger.info("MasterServiceImpl getAllCity() method end. ");
+		//return responseUser;
+		return resDtoObjects;
+	}
+	
+	
 	
 	
 	
