@@ -6,6 +6,16 @@
                 Dashboard
               </a>
             </li>
+             <li>
+              <a href="">
+                <i class="fa fa-users"></i>
+                Masters
+              </a>
+              <ul>
+                 <li><a href='getAllCity.htm'>City</a></li>
+                
+              </ul>
+			</li>
             <li>
               <a href="./Customer.htm">
                 <i class="fa fa-users"></i>

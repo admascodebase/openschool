@@ -77,7 +77,12 @@
 	<definition name="city" extends="logistic.baselayout">
 		<put-attribute name="title" value="Logistic -City Details" />
 		<put-attribute name="body"
-			value="/resources/Logistic/jsp/superadmin/City.jsp" />
+			value="/resources/Logistic/jsp/masters/City.jsp" />
 	</definition>
 	
+	<definition name="addCity" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic -City Details" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/masters/AddCity.jsp" />
+	</definition>
 </tiles-definitions>
