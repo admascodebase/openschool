@@ -30,7 +30,7 @@
 					<span class="tools"> <i class="fa fa-cogs"></i>
 					</span>
 				</div>
-				<form:form name="cityForm" commandName="selectedIds">
+				<form:form name="cityForm">
 					<div class="widget-body">
 						<div class="table-responsive">
 
@@ -40,8 +40,7 @@
 								class="table table-condensed table-striped table-bordered table-hover no-margin">
 								<thead>
 									<tr>
-										<th style="width: 2%"><input type="checkbox"
-											class="no-margin"></th>
+										
 										<th style="width: 15%">City Name</th>
 										<th style="width: 15%">Edit/Delete</th>
 
@@ -54,8 +53,8 @@
 
 										<tbody>
 											<tr>
-												<td><form:checkbox path="ids" value="${listValue.cityName}"/></td>
-												<td><a href="showEditCity.htm"></a></td>
+												
+												<td>${listValue.cityName}</td>
 												 <td class="hidden-phone">
                               <a href="showEditCity.htm?id=${listValue.id}" class="btn btn-warning btn-xs">
                                 Edit

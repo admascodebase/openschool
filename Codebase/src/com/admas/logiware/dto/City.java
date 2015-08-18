@@ -11,7 +11,7 @@ public class City implements Serializable {
 
 	public City() {
 	}
-	@PathParam("cityName")
+
 	private String cityName;
 	
 	private Integer id;

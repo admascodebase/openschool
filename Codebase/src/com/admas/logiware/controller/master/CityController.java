@@ -21,7 +21,6 @@ import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.controller.core.BaseController;
 import com.admas.logiware.dto.City;
 import com.admas.logiware.dto.FlowData;
-import com.admas.logiware.dto.SelectedIds;
 import com.admas.logiware.exception.LogiwarePortalErrors;
 import com.admas.logiware.usrmgt.service.MasterServiceImpl;
 
@@ -60,7 +59,6 @@ public class CityController extends BaseController{
 			@SuppressWarnings("unchecked")
 			List<City> lCities=(List<City>) resDtoObjects.get("lCity");
 			mv.addObject("lCities",lCities);
-			mv.addObject("selectedIds", new SelectedIds());
 //			mv.addObject(viewName);
 			
 		/*} catch (LogiwareBaseException _be) {
@@ -82,7 +80,7 @@ public class CityController extends BaseController{
 	
 	
 	@RequestMapping(value = "/showAddCity.htm", method = RequestMethod.GET)
-	public ModelAndView addCity(HttpServletRequest request, HttpServletResponse response , Model model) {		
+	public ModelAndView addCity(HttpServletRequest request, HttpServletResponse response) {		
 		
 		logger.info("MasterController: addCity Method Start.");
 		FlowData flowData = null;
@@ -95,7 +93,7 @@ public class CityController extends BaseController{
 			resDtoObjects=masterServiceImpl.showAddCity(flowData, reqDtoObjects, resDtoObjects);
 			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
 			mv=new ModelAndView(viewName);	
-			model.addAttribute("city",new City());
+			mv.addObject("city",new City());
 		} catch (Exception e) {
 			logger.error(
 					"Exception In PaymentController viewPaymentEntries --", e);
@@ -134,11 +132,10 @@ public class CityController extends BaseController{
 	
 	
 	@RequestMapping(value="/showEditCity.htm",method=RequestMethod.GET)
-	public ModelAndView editCity(HttpServletRequest request, HttpServletResponse response, Model model){
+	public ModelAndView editCity(HttpServletRequest request, HttpServletResponse response){
 		
 		logger.info("cityController: editCity Method Start.");
 		FlowData flowData = null;
-		model.addAttribute("city",new City());
 		ModelAndView modelView = new ModelAndView() ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
@@ -147,7 +144,7 @@ public class CityController extends BaseController{
 			resDtoObjects=masterServiceImpl.showEditCity(flowData, reqDtoObjects, resDtoObjects);
 			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
 			modelView=new ModelAndView(viewName);
-			modelView.addObject("city",(String)resDtoObjects.get("city"));
+			modelView.addObject("city",resDtoObjects.get("city"));
 		} catch (Exception e) {
 			logger.error(
 					"Exception In PaymentController viewPaymentEntries --", e);
