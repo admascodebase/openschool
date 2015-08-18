@@ -42,7 +42,8 @@
 									<tr>
 										<th style="width: 2%"><input type="checkbox"
 											class="no-margin"></th>
-										<th style="width: 5%">City Name</th>
+										<th style="width: 15%">City Name</th>
+										<th style="width: 15%">Edit/Delete</th>
 
 									</tr>
 								</thead>
@@ -54,7 +55,15 @@
 										<tbody>
 											<tr>
 												<td><form:checkbox path="ids" value="${listValue.cityName}"/></td>
-												<td>${listValue.cityName}</td>
+												<td><a href="showEditCity.htm"></a></td>
+												 <td class="hidden-phone">
+                              <a href="showEditCity.htm?id=${listValue.id}" class="btn btn-warning btn-xs">
+                                Edit
+                              </a>
+                              <a href="showDeleteCity.htm?id=${listValue.id}" class="btn btn-info btn-xs">
+                                Delete
+                              </a>
+                            </td>
 											</tr>
 
 										</tbody>

@@ -13,6 +13,8 @@ public class City implements Serializable {
 	}
 	@PathParam("cityName")
 	private String cityName;
+	
+	private Integer id;
 
 	public String getCityName() {
 		return cityName;
@@ -25,6 +27,20 @@ public class City implements Serializable {
 	@Override
 	public String toString() {
 		return "City [cityName=" + cityName + "]";
+	}
+
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	

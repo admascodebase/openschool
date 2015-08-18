@@ -77,7 +77,9 @@ public class MasterServiceImpl{
 			viewName="getAllCities";
 //			city = doServiceCall(flowData, ServiceName.getAllCity, reqDtoObjects);
 			city.setCityName("Pune");
+			city.setId(1);
 			city1.setCityName("Mumbai");
+			city.setId(2);
 			lCities.add(city);
 			lCities.add(city1);
 			resDtoObjects.put("lCity", lCities);
@@ -98,15 +100,19 @@ public class MasterServiceImpl{
 		
 	}
 
-	public Map<String, Object> editCity(FlowData flowData,
+	public Map<String, Object> showEditCity(FlowData flowData,
 			HashMap<String, Object> reqDtoObjects,
 			Map<String, Object> resDtoObjects) {
 		
 		logger.info("MasterServiceImpl editCity() method Start. ");
 		String viewName = "";
 		try {
-			viewName = "addCity";
-			resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName)
+			viewName = "showAddCity";
+			City city = new City();
+			city.setCityName("Pune");
+			city.setId(1);
+			resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
+			resDtoObjects.put("city", city)
 ;		} catch (Exception exp) {
 			logger.error("Exception in editCity()", exp);
 		}

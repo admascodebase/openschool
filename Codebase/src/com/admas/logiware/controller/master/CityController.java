@@ -82,7 +82,7 @@ public class CityController extends BaseController{
 	
 	
 	@RequestMapping(value = "/showAddCity.htm", method = RequestMethod.GET)
-	public ModelAndView addCity(HttpServletRequest request, HttpServletResponse response, Model model) {		
+	public ModelAndView addCity(HttpServletRequest request, HttpServletResponse response , Model model) {		
 		
 		logger.info("MasterController: addCity Method Start.");
 		FlowData flowData = null;
@@ -91,10 +91,11 @@ public class CityController extends BaseController{
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		try {			
-			model.addAttribute("city",new City());
+			
 			resDtoObjects=masterServiceImpl.showAddCity(flowData, reqDtoObjects, resDtoObjects);
 			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
-			mv=new ModelAndView(viewName);		
+			mv=new ModelAndView(viewName);	
+			model.addAttribute("city",new City());
 		} catch (Exception e) {
 			logger.error(
 					"Exception In PaymentController viewPaymentEntries --", e);
@@ -112,7 +113,8 @@ public class CityController extends BaseController{
 		ModelAndView mv = new ModelAndView() ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
-		try {			
+		try {	
+			System.out.println(city);
 			reqDtoObjects.put("city", city);
 			resDtoObjects=masterServiceImpl.saveCity(flowData, reqDtoObjects, resDtoObjects);
 			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
@@ -131,7 +133,7 @@ public class CityController extends BaseController{
 	}
 	
 	
-	@RequestMapping(value="/editCity.htm",method=RequestMethod.GET)
+	@RequestMapping(value="/showEditCity.htm",method=RequestMethod.GET)
 	public ModelAndView editCity(HttpServletRequest request, HttpServletResponse response, Model model){
 		
 		logger.info("cityController: editCity Method Start.");
@@ -141,10 +143,11 @@ public class CityController extends BaseController{
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		try{
-			resDtoObjects=masterServiceImpl.editCity(flowData, reqDtoObjects, resDtoObjects);
+			System.out.println(request.getParameter("id"));
+			resDtoObjects=masterServiceImpl.showEditCity(flowData, reqDtoObjects, resDtoObjects);
 			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
 			modelView=new ModelAndView(viewName);
-		
+			modelView.addObject("city",(String)resDtoObjects.get("city"));
 		} catch (Exception e) {
 			logger.error(
 					"Exception In PaymentController viewPaymentEntries --", e);
