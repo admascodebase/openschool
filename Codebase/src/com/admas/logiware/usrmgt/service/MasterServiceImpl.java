@@ -1,7 +1,9 @@
 package com.admas.logiware.usrmgt.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -81,28 +83,52 @@ public class MasterServiceImpl{
 			Map<String, Object> resDtoObjects) {
 
 		
-		logger.info("SysAdminServiceImpl getAllCustomer client method start. ");
+		logger.info("MasterServiceImpl getAllCity method start. ");
 		City city=new City();
+		City city1=new City();
+		List<City> lCities=new ArrayList<City>();
+		String viewName="";
 		try {
-//			city = doServiceCall(flowData, ServiceName.getAllCustomer, reqDtoObjects);
+			viewName="city";
+//			city = doServiceCall(flowData, ServiceName.getAllCity, reqDtoObjects);
 			city.setCityName("Pune");
-			city.setCityName("Pune");
-			resDtoObjects.put("city", city);
+			city1.setCityName("Mumbai");
+			lCities.add(city);
+			lCities.add(city1);
+			resDtoObjects.put("lCity", lCities);
+			resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
 		/*} catch (LogiwareBaseException b) {
 			throw b;*/
 		} catch (Exception e) {
-			logger.error("Exception In EnterpriseControllerService: customerLogin client method end.",
+			logger.error("Exception In MasterServiceImpl getAllCity client method end.",
 					e);
 			/*throw new LogiwareBaseException(
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
 					LogiwarePortalErrors.INVALID_REQUEST
 							.getErrorDescription());*/
 		}
-		logger.info("EnterpriseControllerService customerLogin method end. ");
+		logger.info("MasterServiceImpl getAllCity() method end. ");
 		//return responseUser;
 		return resDtoObjects;
 		
 	}
+
+	public Map<String, Object> editCity(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) {
+		
+		logger.info("MasterServiceImpl editCity() method Start. ");
+		String viewName = "";
+		try {
+			viewName = "addCity";
+			resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName)
+;		} catch (Exception exp) {
+			logger.error("Exception in editCity()", exp);
+		}
+		logger.info("MasterServiceImpl editCity() method end. ");
+		return resDtoObjects;
+	}
+	
 	
 	
 	

@@ -16,7 +16,8 @@ public class ServiceEndPointConstants {
 	public enum ServiceName {
 		
 		login("login"),
-		getAllCustomer("getAllCustomer");
+		getAllCustomer("getAllCustomer"),
+		getAllCity("getAllCity");
 
 		/** The value. */
 		private final String value;

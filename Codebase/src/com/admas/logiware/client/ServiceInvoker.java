@@ -50,9 +50,8 @@ public class ServiceInvoker implements Serializable {
 				.getProperty("logiware.serivce.port"));
 		String urlTemplate = PropertyHandler
 				.getProperty("logiware.serivce.url.template");
-
-		String serviceEndPoint = ResourceHandler.instance()
-				.getServiceEndPoints(serviceName.value());
+		logger.info("**************"+serviceName.value());
+		String serviceEndPoint = ResourceHandler.instance().getServiceEndPoints(serviceName.value());
 
 		String url = String.format(urlTemplate, host, port, serviceEndPoint);
 		switch (serviceName) {
