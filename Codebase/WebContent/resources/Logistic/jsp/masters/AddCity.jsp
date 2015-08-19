@@ -21,6 +21,12 @@
 										<form:input type="text" class="form-control" path="cityName" id="orgId"
 											placeholder="City Name"/>
 									</div>
+									<label for="pwd" class="col-sm-2 control-label">State Name</label>
+									<div class="col-md-4 col-sm-4 col-xs-4">
+										<form:select class="form-control" path="">
+										<form:options items="${lState}" itemLabel="stateName" itemValue="id"/>
+										</form:select>
+									</div>
 								</div>
 							</div>
 						</div>

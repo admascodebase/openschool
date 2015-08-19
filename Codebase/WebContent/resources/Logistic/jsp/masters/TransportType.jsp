@@ -13,10 +13,10 @@
 <body>
 	<div>
 
-		<a href="showAddCity.htm"><button type="button"
-				class="btn btn-success">Add</button></a> <a href="showEditCity.htm"><button
+		<a href="./showAddTransportType.htm"><button type="button"
+				class="btn btn-success">Add</button></a> <a href="./showEditTransportType.htm"><button
 				type="submit" class="btn btn-warning">Edit</button></a> <a
-			href="showDeleteCity.htm"><button type="button"
+			href="./showDeleteTransportType.htm"><button type="button"
 				class="btn btn-danger">Delete</button></a>
 
 	</div>
@@ -26,7 +26,7 @@
 		<div class="col-lg-12 col-md-12">
 			<div class="widget">
 				<div class="widget-header">
-					<div class="title">City Details</div>
+					<div class="title">Transport Type</div>
 					<span class="tools"> <i class="fa fa-cogs"></i>
 					</span>
 				</div>
@@ -41,25 +41,27 @@
 								<thead>
 									<tr>
 										<th style="width: 15%">ID</th>
-										<th style="width: 15%">City Name</th>
+										<th style="width: 15%">Transport Type Name</th>
+										<th style="width: 15%">Transport Type Description</th>
 										<th style="width: 15%">Edit/Delete</th>
 										
 									</tr>
 								</thead>
-								<c:if test="${not empty lCities}">
+								<c:if test="${not empty lTransports}">
 
 
-									<c:forEach var="listValue" items="${lCities}">
+									<c:forEach var="listValue" items="${lTransports}">
 
 										<tbody>
 											<tr>
 												<td>${listValue.id}</td>
-												<td>${listValue.cityName}</td>
+												<td>${listValue.name}</td>
+												<td>${listValue.description}</td>
 												 <td class="hidden-phone">
-                              <a href="showEditCity.htm?id=${listValue.id}" class="btn btn-warning btn-xs">
+                              <a href="showEditTransportType.htm?id=${listValue.id}" class="btn btn-warning btn-xs">
                                 Edit
                               </a>
-                              <a href="showDeleteCity.htm?id=${listValue.id}" class="btn btn-info btn-xs">
+                              <a href="showDeleteTransportType.htm?id=${listValue.id}" class="btn btn-info btn-xs">
                                 Delete
                               </a>
                             </td>

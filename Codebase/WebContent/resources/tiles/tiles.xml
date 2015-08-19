@@ -85,4 +85,20 @@
 		<put-attribute name="body"
 			value="/resources/Logistic/jsp/masters/AddCity.jsp" />
 	</definition>
+	
+	
+	
+	<definition name="getAllTransportTypes" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic -Transport Type" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/masters/TransportType.jsp" />
+	</definition>
+	
+	
+	<definition name="showAddTranceportType" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic -Transport Type" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/masters/AddTransportType.jsp" />
+	</definition>
+	
 </tiles-definitions>
