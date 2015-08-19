@@ -21,6 +21,7 @@ import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.controller.core.BaseController;
 import com.admas.logiware.dto.City;
 import com.admas.logiware.dto.FlowData;
+import com.admas.logiware.dto.State;
 import com.admas.logiware.exception.LogiwarePortalErrors;
 import com.admas.logiware.usrmgt.service.MasterServiceImpl;
 
@@ -59,6 +60,9 @@ public class CityController extends BaseController{
 			@SuppressWarnings("unchecked")
 			List<City> lCities=(List<City>) resDtoObjects.get("lCity");
 			mv.addObject("lCities",lCities);
+			@SuppressWarnings("unchecked")
+			List<State> lState=(List<State>) resDtoObjects.get("lState");
+			mv.addObject("lState",lState);
 //			mv.addObject(viewName);
 			
 		/*} catch (LogiwareBaseException _be) {
@@ -141,6 +145,7 @@ public class CityController extends BaseController{
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		try{
 			System.out.println(request.getParameter("id"));
+			logger.info("*******************"+request.getParameter("id"));
 			resDtoObjects=masterServiceImpl.showEditCity(flowData, reqDtoObjects, resDtoObjects);
 			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
 			modelView=new ModelAndView(viewName);
@@ -154,6 +159,34 @@ public class CityController extends BaseController{
 		
 		return modelView;
 	}
+	
+	
+	@RequestMapping(value="/showDeleteCity.htm",method=RequestMethod.GET)
+	public ModelAndView showDeleteCity(HttpServletRequest request, HttpServletResponse response){
+		
+		logger.info("cityController: editCity Method Start.");
+		FlowData flowData = null;
+		ModelAndView modelView = new ModelAndView() ;
+		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
+		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
+		try{
+			System.out.println(request.getParameter("id"));
+			logger.info("*******************"+request.getParameter("id"));
+			resDtoObjects=masterServiceImpl.showDeleteCity(flowData, reqDtoObjects, resDtoObjects);
+			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
+			modelView=new ModelAndView(viewName);
+			modelView.addObject("city",resDtoObjects.get("city"));
+		} catch (Exception e) {
+			logger.error(
+					"Exception In PaymentController viewPaymentEntries --", e);
+			modelView.addObject(WebAppConstants.ERROR_CODE,
+					LogiwarePortalErrors.ERROR_WHILE_FETCHING_PAYMENT_MONITORING_RECORDS.getErrorCode());
+		}
+		
+		return modelView;
+	}
+	
+	
 	
 	
 }

@@ -2,8 +2,6 @@ package com.admas.logiware.dto;
 
 import java.io.Serializable;
 
-import javax.ws.rs.PathParam;
-
 public class City implements Serializable {
 
 	
@@ -15,6 +13,8 @@ public class City implements Serializable {
 	private String cityName;
 	
 	private Integer id;
+	
+	private int stateId;
 
 	public String getCityName() {
 		return cityName;
@@ -43,5 +43,14 @@ public class City implements Serializable {
 		this.id = id;
 	}
 
+	public int getStateId() {
+		return stateId;
+	}
+
+	public void setStateId(int stateId) {
+		this.stateId = stateId;
+	}
+
+	
 	
 }

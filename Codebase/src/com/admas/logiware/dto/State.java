@@ -13,10 +13,9 @@ public class State implements Serializable {
 
 	public State() {
 	}
-	@FormParam("stateName")
+	private int id;
 	private String stateName;
-	@FormParam("district")
-	private District district;
+	
 	/**
 	 * @return the stateName
 	 */
@@ -31,20 +30,14 @@ public class State implements Serializable {
 		this.stateName = stateName;
 	}
 
-	/**
-	 * @return the district
-	 */
-	public District getDistrict() {
-		return district;
+	public int getId() {
+		return id;
 	}
 
-	/**
-	 * @param district the district to set
-	 */
-	public void setDistrict(District district) {
-		this.district = district;
+	public void setId(int id) {
+		this.id = id;
 	}
-	
-	
+
+
 
 }
