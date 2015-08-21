@@ -13,7 +13,8 @@
               </a>
               <ul>
                  <li><a href='getAllCity.htm'>City</a></li>
-                <li><a href='getAllTransportTypes.htm'>Transport Type</a></li>
+                       <li><a href='getAllTransportTypes.htm'>Transport Type</a></li>
+                <li><a href='getAllBranches.htm'>Branch</a></li>
               </ul>
 			</li>
             <li>

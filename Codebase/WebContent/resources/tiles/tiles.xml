@@ -44,6 +44,7 @@
 	</definition>
 	
 	
+	
 	<definition name="AddCustomer" extends="logistic.baselayout">
 		<put-attribute name="title" value="Logistic -Add Customer" />
 		<put-attribute name="body"
@@ -85,7 +86,7 @@
 		<put-attribute name="body"
 			value="/resources/Logistic/jsp/masters/AddCity.jsp" />
 	</definition>
-	
+		
 	
 	
 	<definition name="getAllTransportTypes" extends="logistic.baselayout">
@@ -101,4 +102,10 @@
 			value="/resources/Logistic/jsp/masters/AddTransportType.jsp" />
 	</definition>
 	
+	
+		<definition name="branchTiles" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic Branch Details" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/masters/Branch.jsp" />
+	</definition>
 </tiles-definitions>
