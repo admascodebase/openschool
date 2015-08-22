@@ -5,7 +5,7 @@ import java.util.Set;
 
 import javax.ws.rs.core.Application;
 
-import com.admas.logiware.dto.UserManagementDaoImpl;
+import com.admas.logiware.services.CustomerServices;
 import com.admas.logiware.services.UserManagementService;
 import com.admas.ngemp.sms.services.SmsService;
 
@@ -22,8 +22,8 @@ public class ApplicationConfig extends Application {
     public ApplicationConfig() {
        // singletons.add(new RuleService());
         singletons.add(new SmsService());
+       singletons.add(new CustomerServices());
         singletons.add(new UserManagementService());
-       // singletons.add(new BankingServices());
     }
 
     @Override

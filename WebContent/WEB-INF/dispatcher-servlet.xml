@@ -26,7 +26,10 @@
 	<mvc:default-servlet-handler />
 	<import resource="hibernate-context.xml" />
 
-	
+		<bean id="customerService"
+		class="com.admas.logiware.services.CustomerServices">
+		<!-- <property name="complienceLogicImpl" ref="complienceLogicImpl"></property> -->
+	</bean>
 	<!-- <bean id="smsService"
 		class="com.admas.ngemp.sms.services.SmsService">
 		<property name="smsLogicImpl" ref="smsLogicImpl"></property>
@@ -36,13 +39,12 @@
 		<property name="smsDaoImpl" ref="smsDaoImpl"></property>
 	</bean>
 	<bean id="smsDaoImpl" class="com.admas.ngemp.sms.dao.SmsDaoImpl"></bean>
-	<bean id = "deliveryThread" class="com.admas.ngemp.sms.backendprocess.DeliveryThread">
+ 	<bean id = "deliveryThread" class="com.admas.ngemp.sms.backendprocess.DeliveryThread">
 		<constructor-arg ref="smsDaoImpl"></constructor-arg>
 	</bean>
 	<bean id = "sendingThread" class="com.admas.ngemp.sms.backendprocess.SendingThread">
 		<constructor-arg ref="smsDaoImpl"></constructor-arg>
 	</bean> -->
-	
 	<bean id="userManagementService" class="com.admas.logiware.services.UserManagementService" >
 		<property name="userManagementDao" ref="userManagementDao"></property>
 	</bean>
