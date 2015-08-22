@@ -4,14 +4,7 @@ import java.io.Serializable;
 
 public class CustCompEmployee implements Serializable{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1027290371232957194L;
 
-	
-
-	
 	private Integer id;
 	 
 	private Integer compId;

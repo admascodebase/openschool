@@ -10,6 +10,8 @@ public class LogiwareExceptionHandler extends Exception {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private String errorCode;
+	
 	private LogiwareServiceErrors errorName;
 
 	private String description;
@@ -57,6 +59,7 @@ public class LogiwareExceptionHandler extends Exception {
 	public LogiwareExceptionHandler(LogiwareServiceErrors errorName) {
 		super(errorName.getErrorCode(), new Throwable(
 				errorName.getErrorDescription()));
+		this.errorCode = errorName.getErrorCode();
 		this.errorName = errorName;
 		this.description = errorName.getErrorDescription();
 	}
@@ -65,6 +68,20 @@ public class LogiwareExceptionHandler extends Exception {
 		super(errorName.getErrorCode(), new Throwable(description));
 		this.errorName = errorName;
 		this.description = description;
+	}
+
+	/**
+	 * @return the errorCode
+	 */
+	public String getErrorCode() {
+		return errorCode;
+	}
+
+	/**
+	 * @param errorCode the errorCode to set
+	 */
+	public void setErrorCode(String errorCode) {
+		this.errorCode = errorCode;
 	}
 
 }

@@ -16,11 +16,14 @@ public enum LogiwareServiceErrors {
 	/**
 	 * FAILED Response
 	 */
-	GENERIC_EXCEPTION("LW0000", "Generic exception"),
-		
-	INVALID_INPUT("LW0001", "Please enter valid parameter"),
+	GENERIC_EXCEPTION("LW0001", "Generic exception"),
 	
-	INVALID_CREDENTIALS("LW0002", "Please enter valid username or password");
+	GENERIC_EXCEPTION_HIBERNATE("LW0002", "Generic exception"),
+		
+	INVALID_INPUT("LW-UM-0001", "Please enter valid parameter"),
+	
+	INVALID_CREDENTIALS("LW-UM-0002", "Please enter valid username or password");	
+	
 	
 	/**
 	 * variable for error code

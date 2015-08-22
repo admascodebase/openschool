@@ -6,7 +6,7 @@ import java.util.Set;
 import javax.ws.rs.core.Application;
 
 import com.admas.logiware.services.CustomerServices;
-import com.admas.logiware.services.UserManagementService;
+import com.admas.logiware.services.usermgt.UserManagementService;
 import com.admas.ngemp.sms.services.SmsService;
 
 /**

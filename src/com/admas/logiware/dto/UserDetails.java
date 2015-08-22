@@ -18,29 +18,65 @@ public class UserDetails implements Serializable{
 	
 	private Date lastLogin;
 	
-	
+	private CustCompEmployee custCompEmployee;
+
+	/**
+	 * @return the userName
+	 */
 	public String getUserName() {
 		return userName;
 	}
+
+	/**
+	 * @param userName the userName to set
+	 */
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
+	/**
+	 * @return the password
+	 */
 	public String getPassword() {
 		return password;
 	}
+
+	/**
+	 * @param password the password to set
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	/**
+	 * @return the lastLogin
+	 */
 	public Date getLastLogin() {
 		return lastLogin;
 	}
+
+	/**
+	 * @param lastLogin the lastLogin to set
+	 */
 	public void setLastLogin(Date lastLogin) {
 		this.lastLogin = lastLogin;
 	}
-	@Override
-	public String toString() {
-		return "UserDetails [userName=" + userName + ", password=" + password
-				+ ", lastLogin=" + lastLogin + "]";
+
+	/**
+	 * @return the custCompEmployee
+	 */
+	public CustCompEmployee getCustCompEmployee() {
+		return custCompEmployee;
 	}
+
+	/**
+	 * @param custCompEmployee the custCompEmployee to set
+	 */
+	public void setCustCompEmployee(CustCompEmployee custCompEmployee) {
+		this.custCompEmployee = custCompEmployee;
+	}
+	
+	
+	
 	
 }
