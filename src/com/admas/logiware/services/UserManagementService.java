@@ -7,6 +7,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.admas.logiware.dao.UserDetails;
 import com.admas.logiware.dto.IUserManagementDao;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
 import com.admas.ngemp.sms.services.SmsService;
@@ -23,11 +24,12 @@ public class UserManagementService {
 		@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 		public Response login(@PathParam("username") String userName,
 				@PathParam("password") String password) {
-			Boolean result = false;
+			UserDetails userDetailsDto=null;
 			logger.info(" start  UserManagementService- > login");
 			try {	
 				System.out.println("userid--"+userName+"   "+"passwd=="+password);
-				result = userManagementDao.login(userName, password);
+				userDetailsDto = userManagementDao.login(userName, password);
+				System.out.println("DTO DATA--"+userDetailsDto);
 			} catch (LogiwareExceptionHandler e) {
 				logger.error("Error in UserManagementService- > login",e);
 			} catch (Exception e) {
@@ -35,7 +37,7 @@ public class UserManagementService {
 				logger.error("Error in UserManagementService- > login",e);
 			}
 			logger.info(" end  UserManagementService- > login");
-			return Response.status(200).entity(result).build();
+			return Response.status(200).entity(userDetailsDto).build();
 
 		}
 

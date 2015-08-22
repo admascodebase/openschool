@@ -16,6 +16,7 @@ public enum LogiwareServiceErrors {
 	/**
 	 * FAILED Response
 	 */
+	GENERIC_EXCEPTION("LW0000", "Generic exception"),
 		
 	INVALID_INPUT("LW0001", "Please enter valid parameter"),
 	
