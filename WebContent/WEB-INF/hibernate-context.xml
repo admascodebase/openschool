@@ -19,7 +19,7 @@
 	
 	<!-- Declare a datasource that has pooling capabilities -->
 	<jee:jndi-lookup id="dataSource"
-		jndi-name="java:jboss/datasources/CommHub" />
+		jndi-name="java:jboss/datasources/LogiDS" />
 	
 	<!-- Declare a JPA entityManagerFactory -->
 	<bean id="entityManagerFactory"
@@ -29,7 +29,7 @@
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
 		</property>
-		<property name="packagesToScan" value="com.admas.ngemp.sms.jpa" />
+		<property name="packagesToScan" value="com.admas.logiware.jpa" />
 		<property name="jpaProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServer2008Dialect</prop>

@@ -19,7 +19,7 @@
   		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
 
 	<context:annotation-config />
-	<context:component-scan base-package="com.admas.ngemp" />
+	<context:component-scan base-package="com.admas.logiware" />
 
 	<mvc:annotation-driven />
 
@@ -27,7 +27,7 @@
 	<import resource="hibernate-context.xml" />
 
 	
-	<bean id="smsService"
+	<!-- <bean id="smsService"
 		class="com.admas.ngemp.sms.services.SmsService">
 		<property name="smsLogicImpl" ref="smsLogicImpl"></property>
 	</bean>
@@ -41,5 +41,6 @@
 	</bean>
 	<bean id = "sendingThread" class="com.admas.ngemp.sms.backendprocess.SendingThread">
 		<constructor-arg ref="smsDaoImpl"></constructor-arg>
-	</bean>
+	</bean> -->
+	
 </beans>
