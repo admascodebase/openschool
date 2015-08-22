@@ -14,13 +14,12 @@ import com.admas.logiware.exception.LogiwareExceptionHandler;
 import com.admas.logiware.exception.LogiwareServiceErrors;
 import com.admas.logiware.logic.usermgt.UserManagementLogicImpl;
 import com.admas.logiware.util.LogiWareConstants;
-import com.admas.ngemp.sms.services.SmsService;
 
 @Path("/userMgtServices")
 public class UserManagementService {
 
 		static final org.slf4j.Logger logger = org.slf4j.LoggerFactory
-				.getLogger(SmsService.class);
+				.getLogger(UserManagementService.class);
 
 		private static UserManagementLogicImpl userManagementLogicImpl;
 		
