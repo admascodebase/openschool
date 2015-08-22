@@ -16,7 +16,10 @@ public enum LogiwareServiceErrors {
 	/**
 	 * FAILED Response
 	 */
-	INVALID_INPUT("LW0001", "Invalid username or password");
+		
+	INVALID_INPUT("LW0001", "Please enter valid parameter"),
+	
+	INVALID_CREDENTIALS("LW0002", "Please enter valid username or password");
 	
 	/**
 	 * variable for error code
