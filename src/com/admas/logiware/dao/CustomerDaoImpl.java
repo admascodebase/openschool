@@ -7,15 +7,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import org.springframework.stereotype.Repository;
-
 import com.admas.logiware.dto.Customer;
 
 /**
  * @author MAHESH
  *
  */
-@Repository
 public class CustomerDaoImpl implements CustomerDao {
 	
 	private static EntityManager entityManager;
