@@ -43,4 +43,8 @@
 		<constructor-arg ref="smsDaoImpl"></constructor-arg>
 	</bean> -->
 	
+	<bean id="userManagementService" class="com.admas.logiware.services.UserManagementService" >
+		<property name="userManagementDao" ref="userManagementDao"></property>
+	</bean>
+	<bean id="userManagementDao" class="com.admas.logiware.dto.UserManagementDaoImpl" />
 </beans>
