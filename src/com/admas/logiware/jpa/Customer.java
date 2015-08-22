@@ -32,22 +32,22 @@ public class Customer implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	private int id;
+	private Integer id;
 	private String name;
 	private String contact_no;
 	private String email;
 	private String website;
-	private int pricePlanId;
+	private Integer pricePlanId;
 	private String address;
-	private int employeeId;
+	private Integer employeeId;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID",unique=true,nullable=false)
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	@Column(name="NAME",nullable=false)
@@ -79,10 +79,10 @@ public class Customer implements Serializable {
 		this.website = website;
 	}
 	@Column(name="PRICE_PLAN_ID",nullable=true)
-	public int getPricePlanId() {
+	public Integer getPricePlanId() {
 		return pricePlanId;
 	}
-	public void setPricePlanId(int pricePlanId) {
+	public void setPricePlanId(Integer pricePlanId) {
 		this.pricePlanId = pricePlanId;
 	}
 	@Column(name="ADDRESS",nullable=true)
@@ -93,10 +93,10 @@ public class Customer implements Serializable {
 		this.address = address;
 	}
 	@Column(name="EMP_ID",nullable=true)
-	public int getEmployeeId() {
+	public Integer getEmployeeId() {
 		return employeeId;
 	}
-	public void setEmployeeId(int employeeId) {
+	public void setEmployeeId(Integer employeeId) {
 		this.employeeId = employeeId;
 	}
 	@Override

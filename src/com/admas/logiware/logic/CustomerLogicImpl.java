@@ -6,7 +6,6 @@ package com.admas.logiware.logic;
 import java.util.List;
 
 import com.admas.logiware.dao.CustomerDao;
-import com.admas.logiware.dao.CustomerDaoImpl;
 import com.admas.logiware.dto.Customer;
 
 /**
@@ -15,7 +14,7 @@ import com.admas.logiware.dto.Customer;
  */
 public class CustomerLogicImpl implements CustomerLogic {
 	
-	CustomerDao customerDao=new CustomerDaoImpl();
+	private static CustomerDao customerDao ;//=new CustomerDaoImpl();
 
 	/**
 	 * 
@@ -40,5 +39,20 @@ public class CustomerLogicImpl implements CustomerLogic {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	/**
+	 * @return the customerDao
+	 */
+	public static CustomerDao getCustomerDao() {
+		return customerDao;
+	}
+
+	/**
+	 * @param customerDao the customerDao to set
+	 */
+	public static void setCustomerDao(CustomerDao customerDao) {
+		CustomerLogicImpl.customerDao = customerDao;
+	}
+	
 
 }

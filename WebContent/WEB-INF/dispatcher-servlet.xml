@@ -26,10 +26,18 @@
 	<mvc:default-servlet-handler />
 	<import resource="hibernate-context.xml" />
 
-		<bean id="customerService"
-		class="com.admas.logiware.services.CustomerServices">
-		<!-- <property name="complienceLogicImpl" ref="complienceLogicImpl"></property> -->
+	<bean id="customerService" class="com.admas.logiware.services.CustomerServices">
+		<property name="customerLogic" ref="customerLogic"></property>
 	</bean>
+
+	<bean id="customerLogic" class="com.admas.logiware.logic.CustomerLogicImpl">
+		<property name="customerDao" ref="customerDao"></property>
+	</bean>
+
+	<bean id="customerDao" class="com.admas.logiware.dao.CustomerDaoImpl"/>
+	
+	
+	
 	<!-- <bean id="smsService"
 		class="com.admas.ngemp.sms.services.SmsService">
 		<property name="smsLogicImpl" ref="smsLogicImpl"></property>
