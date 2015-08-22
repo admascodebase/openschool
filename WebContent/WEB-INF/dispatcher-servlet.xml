@@ -38,6 +38,21 @@
 	
 	
 	
+	
+	
+	<!-- Beans required for Usr management services -->
+	
+	<bean id="userManagementService" class="com.admas.logiware.services.usermgt.UserManagementService" >
+		<property name="userManagementLogicImpl" ref="userManagementLogicImpl"></property>
+	</bean>
+	
+	<bean id="userManagementLogicImpl" class="com.admas.logiware.logic.usermgt.UserManagementLogicImpl" >
+		<property name="userManagementDao" ref="userManagementDao"></property>
+	</bean>
+	
+	<bean id="userManagementDao" class="com.admas.logiware.dao.usermgt.UserManagementDaoImpl" />
+	
+	
 	<!-- <bean id="smsService"
 		class="com.admas.ngemp.sms.services.SmsService">
 		<property name="smsLogicImpl" ref="smsLogicImpl"></property>
@@ -53,8 +68,4 @@
 	<bean id = "sendingThread" class="com.admas.ngemp.sms.backendprocess.SendingThread">
 		<constructor-arg ref="smsDaoImpl"></constructor-arg>
 	</bean> -->
-	<bean id="userManagementService" class="com.admas.logiware.services.UserManagementService" >
-		<property name="userManagementDao" ref="userManagementDao"></property>
-	</bean>
-	<bean id="userManagementDao" class="com.admas.logiware.dto.UserManagementDaoImpl" />
 </beans>
