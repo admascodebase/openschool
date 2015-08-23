@@ -80,7 +80,7 @@ public class ServiceInvoker implements Serializable {
 		try {
 			String userName = (String) request.get("userName");
 			String password = (String) request.get("password");
-			ClientRequest clientRequest = new ClientRequest(url
+			/*ClientRequest clientRequest = new ClientRequest(url
 					+ WebAppConstants.URL_SEPERATOR + userName
 					+ WebAppConstants.URL_SEPERATOR + password);
 			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
@@ -94,10 +94,10 @@ public class ServiceInvoker implements Serializable {
 			if (!logiwareResponse.getCode()
 					.equals("0000")) {
 				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
-			}
+			}*/
 
-		} catch (LogiwareBaseException b) {
-			throw b;
+		/*} catch (LogiwareBaseException b) {
+			throw b;*/
 		} catch (Exception e) {
 			logger.error("Exception In ServiceInvoker login method end.", e);
 			throw new LogiwareBaseException(
