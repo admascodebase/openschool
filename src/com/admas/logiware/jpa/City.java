@@ -35,6 +35,24 @@ public class City implements Serializable{
 	
 	@Column(name="NAME" ,nullable = false )
 	private String name;
+	
+	@Column(name="DEL_FLAG")
+	private Character delFlag;
+
+	
+	
+	/**
+	 * @return the delFlag
+	 */
+	public Character getDelFlag() {
+		return delFlag;
+	}
+	/**
+	 * @param delFlag the delFlag to set
+	 */
+	public void setDelFlag(Character delFlag) {
+		this.delFlag = delFlag;
+	}
 	/**
 	 * @return the id
 	 */

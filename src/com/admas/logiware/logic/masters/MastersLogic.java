@@ -9,4 +9,9 @@ public interface MastersLogic {
 
 	public List<CityDto> getAllCity() throws LogiwareExceptionHandler;
 
+	public Boolean addCity(CityDto cityDto)throws LogiwareExceptionHandler;
+
+	public Boolean editCity(CityDto cityDto)throws LogiwareExceptionHandler;
+
+	public Boolean deleteCity(CityDto cityDto)throws LogiwareExceptionHandler;
 }

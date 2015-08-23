@@ -57,4 +57,59 @@ public class MastersLogicImpl implements MastersLogic {
 		return lCityDtos;
 	}
 
+	@Override
+	public Boolean addCity(CityDto cityDto) throws LogiwareExceptionHandler {
+		
+		
+		Boolean result=false;
+		try {
+			result = mastersDao.addCity(cityDto);
+			
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error("Exception Error in MastersLogicImpl - > addCity ",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return result;
+	}
+
+	@Override
+	public Boolean editCity(CityDto cityDto) throws LogiwareExceptionHandler {
+
+		Boolean result=false;
+		try {
+			result = mastersDao.editCity(cityDto);
+			
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error("Exception Error in MastersLogicImpl - > editCity ",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return result;
+	
+	}
+
+	@Override
+	public Boolean deleteCity(CityDto cityDto) throws LogiwareExceptionHandler {
+		
+		Boolean result=false;
+		try {
+			result = mastersDao.deleteCity(cityDto);
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error("Exception Error in MastersLogicImpl - > deleteCity ",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return result;
+	}
+
 }

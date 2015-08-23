@@ -11,6 +11,7 @@ public class CityDto implements Serializable{
 	private Integer id;	
 	private Integer stateId;	
 	private String name;
+	private Character delFlag;
 	/**
 	 * @return the id
 	 */
@@ -46,5 +47,17 @@ public class CityDto implements Serializable{
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+	/**
+	 * @return the delFlag
+	 */
+	public Character getDelFlag() {
+		return delFlag;
+	}
+	/**
+	 * @param delFlag the delFlag to set
+	 */
+	public void setDelFlag(Character delFlag) {
+		this.delFlag = delFlag;
 	}
 }
