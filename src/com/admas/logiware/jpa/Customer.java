@@ -40,6 +40,7 @@ public class Customer implements Serializable {
 	private Integer pricePlanId;
 	private String address;
 	private Integer employeeId;
+	private String del_flag;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -99,11 +100,19 @@ public class Customer implements Serializable {
 	public void setEmployeeId(Integer employeeId) {
 		this.employeeId = employeeId;
 	}
+	@Column(name="DEL_FLG",nullable=false)
+	public String getDel_flag() {
+		return del_flag;
+	}
+	public void setDel_flag(String del_flag) {
+		this.del_flag = del_flag;
+	}
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", name=" + name + ", contact_no=" + contact_no + ", email=" + email
 				+ ", website=" + website + ", pricePlanId=" + pricePlanId + ", address=" + address + ", employeeId="
-				+ employeeId + "]";
+				+ employeeId + ", del_flag=" + del_flag + "]";
 	}
+
 
 }

@@ -3,6 +3,8 @@
  */
 package com.admas.logiware.services;
 
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -11,7 +13,12 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.admas.logiware.dto.Customer;
+import com.admas.logiware.dto.LogiwareRespnse;
+import com.admas.logiware.exception.LogiwareExceptionHandler;
+import com.admas.logiware.exception.LogiwareServiceErrors;
 import com.admas.logiware.logic.CustomerLogic;
+import com.admas.logiware.util.LogiWareConstants;
+import com.admas.ngemp.sms.services.SmsService;
 
 /**
  * @author Raj
@@ -19,6 +26,9 @@ import com.admas.logiware.logic.CustomerLogic;
  */
 @Path("/customerServices")
 public class CustomerServices {
+	
+	static final org.slf4j.Logger logger = org.slf4j.LoggerFactory
+			.getLogger(CustomerServices.class);
 
 	private static CustomerLogic customerLogic;// =new CustomerLogicImpl();
 
@@ -26,14 +36,76 @@ public class CustomerServices {
 	@Path("/getCustomerById/{customerId}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response getCustomerById(@PathParam("customerId") Integer id) {
-		Customer customer = new Customer();
+		Customer customer = null;
+		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
 		try {
 			customer = customerLogic.getCustomer(id);
-		} catch (Exception e) {
-			e.printStackTrace();
+			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+			logiwareRespnse.setData(customer);
+		} catch (LogiwareExceptionHandler e) {
+			
+			logiwareRespnse.setCode(e.getErrorCode());
+			logiwareRespnse.setDescription(e.getDescription());
 		}
-		return Response.status(200).entity(customer).build();
+		catch (Exception e) {
+		}
+		return Response.status(200).entity(logiwareRespnse).build();
 
+	}
+
+	@GET
+	@Path("/getAllCustomer")
+	@Produces({ MediaType.APPLICATION_JSON})
+	public Response getAllCustomer(){
+
+		List<Customer>list=null;
+		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+		try{
+			list=customerLogic.getAllCustomer();
+			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+			logiwareRespnse.setData(list);
+		}
+		catch(LogiwareExceptionHandler handler){
+			logger.error("Error in CustomerService- > getAllCustomer", handler);
+			logiwareRespnse.setCode(handler.getErrorCode());
+			logiwareRespnse.setDescription(handler.getDescription());
+		}
+		catch(Exception handler){
+			logger.error("Error in CustomerService- > getAllCustomer", handler);
+			logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+					.getErrorCode());
+			logiwareRespnse
+			.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+					.getErrorDescription());
+		}
+		return Response.status(200).entity(logiwareRespnse).build();
+	}
+	
+	@GET
+	@Path("deleteCustomer/{customerId}")
+	@Produces({MediaType.APPLICATION_JSON})
+	public Response deleteCustomer(@PathParam("customerId")Integer id){
+		
+		Boolean result=false;
+		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+		try{
+			result=customerLogic.deleteCustomer(id);
+			if(result){
+			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+			logiwareRespnse.setData(result);
+			}
+		}
+		catch(LogiwareExceptionHandler e){
+			
+			logiwareRespnse.setCode(e.getErrorCode());
+			logiwareRespnse.setDescription(e.getDescription());
+			
+		}
+		catch(Exception exception){
+			logger.info(""+exception);
+		}
+		return Response.status(200).entity(logiwareRespnse).build();
+		
 	}
 
 	/**
