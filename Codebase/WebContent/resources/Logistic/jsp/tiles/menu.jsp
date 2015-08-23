@@ -46,22 +46,22 @@
 										<div class="col-md-4">
 											<ul class="mega-menu-submenu">
 												<li>
-													<h3>Layouts</h3>
+													<h3>Setting</h3>
 												</li>
 												<li>
 													<a href="layout_fluid.html" class="iconify">
 													<i class="icon-cursor-move"></i>
-													Fluid Layout </a>
+													Email </a>
 												</li>
 												<li>
 													<a href="layout_mega_menu_fixed.html" class="iconify">
 													<i class="icon-pin"></i>
-													Fixed Mega Menu </a>
+													Email Templates </a>
 												</li>
 												<li>
 													<a href="layout_top_bar_fixed.html" class="iconify">
 													<i class="icon-bar-chart"></i>
-													Fixed Top Bar </a>
+													 SMS </a>
 												</li>
 												<li>
 													<a href="layout_light_header.html" class="iconify">
