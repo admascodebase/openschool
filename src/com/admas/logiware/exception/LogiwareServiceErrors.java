@@ -21,10 +21,12 @@ public enum LogiwareServiceErrors {
 	GENERIC_EXCEPTION_HIBERNATE("LW0002", "Generic exception"),
 		
 	INVALID_INPUT("LW-UM-0001", "Please enter valid parameter"),
+
+
+	INVALID_CREDENTIALS("LW-UM-0002", "Please enter valid username or password"),	
+
 	
-	INVALID_CREDENTIALS("LW-UM-0002", "Please enter valid username or password");	
-	
-	
+	NO_CITY_FOUND("LW-MM-0001","NO Cities Were FOund");
 	/**
 	 * variable for error code
 	 */

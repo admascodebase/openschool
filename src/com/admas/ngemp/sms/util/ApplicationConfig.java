@@ -7,6 +7,7 @@ import javax.ws.rs.core.Application;
 
 import com.admas.logiware.services.CustomerServices;
 import com.admas.logiware.services.usermgt.UserManagementService;
+import com.admas.logiware.services.masters.MasterServices;
 import com.admas.ngemp.sms.services.SmsService;
 
 /**
@@ -24,6 +25,7 @@ public class ApplicationConfig extends Application {
         singletons.add(new SmsService());
        singletons.add(new CustomerServices());
         singletons.add(new UserManagementService());
+        singletons.add(new MasterServices());
     }
 
     @Override

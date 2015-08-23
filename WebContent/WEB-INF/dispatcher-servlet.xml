@@ -37,6 +37,16 @@
 	<bean id="customerDao" class="com.admas.logiware.dao.CustomerDaoImpl"/>
 	
 	
+	<bean id="masterServices" class="com.admas.logiware.services.masters.MasterServices">
+		<property name="mastersLogic" ref="mastersLogic"></property>
+	</bean>
+		
+	<bean id="mastersLogic" class="com.admas.logiware.logic.MastersLogicImpl">
+		<property name="mastersDao" ref="mastersDao"></property>
+	</bean>
+	
+	
+	<bean id="mastersDao" class="com.admas.logiware.dto.MastersDaoImpl"/>
 	
 	
 	
@@ -52,6 +62,7 @@
 	
 	<bean id="userManagementDao" class="com.admas.logiware.dao.usermgt.UserManagementDaoImpl" />
 	
+	<!-- END Beans required for Usr management services -->
 	
 	<!-- <bean id="smsService"
 		class="com.admas.ngemp.sms.services.SmsService">
