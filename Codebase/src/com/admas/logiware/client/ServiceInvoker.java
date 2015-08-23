@@ -17,20 +17,17 @@ import org.springframework.stereotype.Component;
 import com.admas.logiware.client.ServiceEndPointConstants.ServiceName;
 import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.dto.Customer;
-import com.admas.logiware.dto.ResponseDto;
-import com.admas.logiware.dto.RestResponseUser;
+import com.admas.logiware.dto.LogiwareRespnse;
 import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
 import com.admas.logiware.util.PropertyHandler;
 import com.admas.logiware.util.ResourceHandler;
 
 
+
 /**
- * The Class ServiceInvoker.
- */
-/**
- * @author Hitesh S.
- * 
+ * @author Admas Tech
+ *
  */
 @Component
 @Qualifier("serviceInvoker")
@@ -77,9 +74,9 @@ public class ServiceInvoker implements Serializable {
 	 * @return
 	 * @throws LogiwareBaseException
 	 */
-	public Boolean login(String url,Map<String, Object> request) throws LogiwareBaseException {
+	public LogiwareRespnse login(String url,Map<String, Object> request) throws LogiwareBaseException {
 		logger.info("ServiceInvoker login method start. ");
-		RestResponseUser restResponse = new RestResponseUser();
+		LogiwareRespnse logiwareResponse = null;
 		try {
 			String userName = (String) request.get("userName");
 			String password = (String) request.get("password");
@@ -87,19 +84,17 @@ public class ServiceInvoker implements Serializable {
 					+ WebAppConstants.URL_SEPERATOR + userName
 					+ WebAppConstants.URL_SEPERATOR + password);
 			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
-			ClientResponse<ResponseDto> response = clientRequest
-					.get(ResponseDto.class);
-			/*if (response.getStatus() != 200) {
+			ClientResponse<Object> response = clientRequest
+					.get(Object.class);
+			if (response.getStatus() != 200) {
 				throw new LogiwareBaseException(response.getStatus() + "",
 						response.getStatus() + "");
 			}
-			///restResponse = response.getEntity();
-			if (!restResponse.getResponseStatusHeader().getCode()
+			logiwareResponse = (LogiwareRespnse) response.getEntity();
+			if (!logiwareResponse.getCode()
 					.equals("0000")) {
-				throw new LogiwareBaseException(restResponse
-						.getResponseStatusHeader().getCode(), restResponse
-						.getResponseStatusHeader().getDescription());
-			}*/
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			}
 
 		} catch (LogiwareBaseException b) {
 			throw b;
@@ -111,28 +106,26 @@ public class ServiceInvoker implements Serializable {
 							.getErrorDescription());
 		}
 		logger.info("ServiceInvoker login method end. ");
-		return true;
+		return logiwareResponse;
 	}
 	
 	public Customer getAllCustomer(String url,Map<String, Object> request) throws LogiwareBaseException {
 		logger.info("ServiceInvoker login method start. ");
-		RestResponseUser restResponse = new RestResponseUser();
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
 		Customer customer = new Customer();
 		try {
 			ClientRequest clientRequest = new ClientRequest(url);
 			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
-			ClientResponse<ResponseDto> response = clientRequest
-					.get(ResponseDto.class);
+			ClientResponse<LogiwareRespnse> response = clientRequest
+					.get(LogiwareRespnse.class);
 			if (response.getStatus() != 200) {
 				throw new LogiwareBaseException(response.getStatus() + "",
 						response.getStatus() + "");
 			}
 			///restResponse = response.getEntity();
-			if (!restResponse.getResponseStatusHeader().getCode()
+			if (!logiwareResponse.getCode()
 					.equals("0000")) {
-				throw new LogiwareBaseException(restResponse
-						.getResponseStatusHeader().getCode(), restResponse
-						.getResponseStatusHeader().getDescription());
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse .getDescription());
 			}
 
 		} catch (LogiwareBaseException b) {

@@ -21,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.controller.core.BaseController;
-import com.admas.logiware.dto.City;
 import com.admas.logiware.dto.FlowData;
 import com.admas.logiware.dto.TransportType;
 import com.admas.logiware.exception.LogiwarePortalErrors;

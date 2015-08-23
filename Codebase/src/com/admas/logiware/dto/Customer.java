@@ -1,148 +1,82 @@
+/**
+ * 
+ */
 package com.admas.logiware.dto;
 
-import java.io.Serializable;
+/**
+ * @author Raj
+ *
+ */
+public class Customer {
 
-import javax.ws.rs.FormParam;
-
-public class Customer implements Serializable{
-
-private static final long serialVersionUID = 1L;
-	
-	private String id;
-	@FormParam("companyName")
-	private String companyName;
-	@FormParam("address")
-	private String address;
-	@FormParam("companyAddress")
-	private String companyAddress;
-	@FormParam("contactNo1")
-	private String contactNo1;
-	@FormParam("contactNo2")
-	private String contactNo2;
-	@FormParam("emailId")
-	private String emailId;
-	@FormParam("website")
-	private String website;
-	@FormParam("contactPerson")
-	private String contactPerson;
-	@FormParam("contactPersonNo")
-	private String contactPersonNo;
-	@FormParam("pricePlan")
-	private String pricePlan;
-	@FormParam("smsGateway")
-	private String smsGateway;
-	
+	/**
+	 * 
+	 */
 	public Customer() {
-		
+		// TODO Auto-generated constructor stub
 	}
 
-	public String getId() {
+	private int id;
+	private String name;
+	private String contact_no;
+	private String email;
+	private String website;
+	private int pricePlanId;
+	private String address;
+	private int employeeId;
+	public int getId() {
 		return id;
 	}
-
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
-
-	public String getCompanyName() {
-		return companyName;
+	public String getName() {
+		return name;
 	}
-
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
+	public void setName(String name) {
+		this.name = name;
 	}
-
-	public String getAddress() {
-		return address;
+	public String getContact_no() {
+		return contact_no;
 	}
-
-	public void setAddress(String address) {
-		this.address = address;
+	public void setContact_no(String contact_no) {
+		this.contact_no = contact_no;
 	}
-
-	public String getCompanyAddress() {
-		return companyAddress;
+	public String getEmail() {
+		return email;
 	}
-
-	public void setCompanyAddress(String companyAddress) {
-		this.companyAddress = companyAddress;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-
-	public String getContactNo1() {
-		return contactNo1;
-	}
-
-	public void setContactNo1(String contactNo1) {
-		this.contactNo1 = contactNo1;
-	}
-	public String getContactNo2() {
-		return contactNo2;
-	}
-
-	public void setContactNo2(String contactNo2) {
-		this.contactNo2 = contactNo2;
-	}
-
-	public String getEmailId() {
-		return emailId;
-	}
-
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
-	}
-
 	public String getWebsite() {
 		return website;
 	}
-
 	public void setWebsite(String website) {
 		this.website = website;
 	}
-
-	
-	public String getContactPerson() {
-		return contactPerson;
+	public int getPricePlanId() {
+		return pricePlanId;
 	}
-
-	public void setContactPerson(String contactPerson) {
-		this.contactPerson = contactPerson;
+	public void setPricePlanId(int pricePlanId) {
+		this.pricePlanId = pricePlanId;
 	}
-
-	public String getContactPersonNo() {
-		return contactPersonNo;
+	public String getAddress() {
+		return address;
 	}
-
-	public void setContactPersonNo(String contactPersonNo) {
-		this.contactPersonNo = contactPersonNo;
+	public void setAddress(String address) {
+		this.address = address;
 	}
-
-	public String getPricePlan() {
-		return pricePlan;
+	public int getEmployeeId() {
+		return employeeId;
 	}
-
-	public void setPricePlan(String pricePlan) {
-		this.pricePlan = pricePlan;
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
 	}
-
-	public String getSmsGateway() {
-		return smsGateway;
-	}
-
-	public void setSmsGateway(String smsGateway) {
-		this.smsGateway = smsGateway;
-	}
-
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", companyName=" + companyName
-				+ ", address=" + address + ", companyAddress=" + companyAddress
-				+ ", contactNo1=" + contactNo1 + ", emailId=" + emailId
-				+ ", website=" + website + ", contactperson=" + contactPerson
-				+ ", contactPersonNo=" + contactPersonNo + ", pricePlan="
-				+ pricePlan + ", smsGateway=" + smsGateway + "]";
+		return "Customer [id=" + id + ", name=" + name + ", contact_no=" + contact_no + ", email=" + email
+				+ ", website=" + website + ", pricePlanId=" + pricePlanId + ", address=" + address + ", employeeId="
+				+ employeeId + "]";
 	}
-	
-	
-	
 	
 }

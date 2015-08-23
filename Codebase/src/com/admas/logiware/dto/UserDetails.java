@@ -1,42 +1,82 @@
-/**
- * 
- */
 package com.admas.logiware.dto;
 
 import java.io.Serializable;
+import java.util.Date;
 
-import javax.ws.rs.FormParam;
-
-/**
- * @author Ajinkya
- *
- */
-public class UserDetails implements Serializable {
+public class UserDetails implements Serializable{
 
 	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -4963126775886597257L;
+	private static final long serialVersionUID = 8397074284724590559L;
 	
-	@FormParam("userName")
+	
 	private String userName;
-
-	@FormParam("password")
+	
 	private String password;
 	
+	private Date lastLogin;
+	
+	private CustCompEmployee custCompEmployee;
+
+	/**
+	 * @return the userName
+	 */
 	public String getUserName() {
 		return userName;
 	}
+
+	/**
+	 * @param userName the userName to set
+	 */
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
+	/**
+	 * @return the password
+	 */
 	public String getPassword() {
 		return password;
 	}
+
+	/**
+	 * @param password the password to set
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	/**
+	 * @return the lastLogin
+	 */
+	public Date getLastLogin() {
+		return lastLogin;
+	}
+
+	/**
+	 * @param lastLogin the lastLogin to set
+	 */
+	public void setLastLogin(Date lastLogin) {
+		this.lastLogin = lastLogin;
+	}
+
+	/**
+	 * @return the custCompEmployee
+	 */
+	public CustCompEmployee getCustCompEmployee() {
+		return custCompEmployee;
+	}
+
+	/**
+	 * @param custCompEmployee the custCompEmployee to set
+	 */
+	public void setCustCompEmployee(CustCompEmployee custCompEmployee) {
+		this.custCompEmployee = custCompEmployee;
+	}
+	
+	
 	
 	
 }

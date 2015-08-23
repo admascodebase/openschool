@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import com.admas.logiware.client.ServiceEndPointConstants.ServiceName;
 import com.admas.logiware.client.ServiceInvoker;
 import com.admas.logiware.constant.WebAppConstants;
-import com.admas.logiware.dto.City;
+import com.admas.logiware.dto.CityDto;
 import com.admas.logiware.dto.Customer;
 import com.admas.logiware.dto.FlowData;
 import com.admas.logiware.exception.LogiwareBaseException;
@@ -103,11 +103,11 @@ public class SysAdminServiceImpl{
 
 		
 		logger.info("SysAdminServiceImpl getAllCustomer client method start. ");
-		City city=new City();
+		CityDto city=new CityDto();
 		try {
 //			city = doServiceCall(flowData, ServiceName.getAllCustomer, reqDtoObjects);
-			city.setCityName("Pune");
-			city.setCityName("Pune");
+			city.setName("Pune");
+			city.setName("Pune");
 			resDtoObjects.put("city", city);
 		/*} catch (LogiwareBaseException b) {
 			throw b;*/

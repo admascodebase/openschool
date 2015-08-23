@@ -13,7 +13,7 @@ import com.admas.logiware.client.ServiceEndPointConstants.ServiceName;
 import com.admas.logiware.client.ServiceInvoker;
 import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.dto.FlowData;
-import com.admas.logiware.dto.RestResponseUser;
+import com.admas.logiware.dto.LogiwareRespnse;
 import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
 import com.admas.logiware.exception.WebAppException;
@@ -61,16 +61,16 @@ public class UserManagementServiceImpl {
 			Map<String, Object> reqDtoObjects, Map<String, Object> resDtoObjects)
 			throws LogiwareBaseException {
 		logger.info("UserManagementServiceImpl isValidUser method start. ");
-		RestResponseUser responseUser = new RestResponseUser();
+		LogiwareRespnse logiwareResponse = null;
 		String viewName = "";
 		try {
 			viewName = "Dashboard";
-			/*responseUser = doServiceCall(flowData, ServiceName.login,
+			logiwareResponse = doServiceCall(flowData, ServiceName.login,
 					reqDtoObjects);
-			resDtoObjects.put("userResponse", responseUser);*/
+			resDtoObjects.put("userResponse", logiwareResponse);
 			resDtoObjects.put("viewName", viewName);
-			/*} catch (LogiwareBaseException b) {
-			throw b;*/
+			} catch (LogiwareBaseException b) {
+			throw b;
 		} catch (Exception e) {
 			logger.error(
 					"Exception In EnterpriseControllerService: customerLogin client method end.",

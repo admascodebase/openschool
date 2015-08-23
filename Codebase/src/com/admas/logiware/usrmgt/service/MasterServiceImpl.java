@@ -17,7 +17,7 @@ import com.admas.logiware.client.ServiceEndPointConstants.ServiceName;
 import com.admas.logiware.client.ServiceInvoker;
 import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.dto.BranchDetail;
-import com.admas.logiware.dto.City;
+import com.admas.logiware.dto.CityDto;
 import com.admas.logiware.dto.FlowData;
 import com.admas.logiware.dto.State;
 import com.admas.logiware.dto.TransportType;
@@ -54,7 +54,7 @@ public class MasterServiceImpl{
 		String viewName = "";
 		try {
 			viewName = "showAddCity";
-			City city = new City();
+			CityDto city = new CityDto();
 			resDtoObjects.put("city", city);
 
 		} catch (Exception exp) {
@@ -71,11 +71,11 @@ public class MasterServiceImpl{
 
 
 		logger.info("MasterServiceImpl getAllCity method start. ");
-		City city=new City();
-		City city1=new City();
+		CityDto city=new CityDto();
+		CityDto city1=new CityDto();
 		State state=new State();
 		State state1=new State();
-		List<City> lCities=new ArrayList<City>();
+		List<CityDto> lCities=new ArrayList<CityDto>();
 		List<State> lStates=new ArrayList<State>();
 		String viewName="";
 		try {
@@ -85,9 +85,9 @@ public class MasterServiceImpl{
 			state.setStateName("MH");
 			state1.setId(2);
 			state1.setStateName("TS");
-			city.setCityName("Pune");
+			city.setName("Pune");
 			city.setId(1);
-			city1.setCityName("Mumbai");
+			city1.setName("Mumbai");
 			city1.setId(2);
 			lCities.add(city);
 			lCities.add(city1);
@@ -120,8 +120,8 @@ public class MasterServiceImpl{
 		String viewName = "";
 		try {
 			viewName = "showAddCity";
-			City city = new City();
-			city.setCityName("Pune");
+			CityDto city = new CityDto();
+			city.setName("Pune");
 			city.setId(1);
 			resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
 			resDtoObjects.put("city", city)
@@ -137,15 +137,15 @@ public class MasterServiceImpl{
 			Map<String, Object> resDtoObjects) {
 
 		logger.info("MasterServiceImpl getAllCity method start. ");
-		City city=new City();
-		City city1=new City();
-		List<City> lCities=new ArrayList<City>();
+		CityDto city=new CityDto();
+		CityDto city1=new CityDto();
+		List<CityDto> lCities=new ArrayList<CityDto>();
 		String viewName="";
 		try {
 			viewName="getAllCities";
 			//			city = doServiceCall(flowData, ServiceName.getAllCity, reqDtoObjects);
-			city.setCityName("Pune");
-			city1.setCityName("Mumbai");
+			city.setName("Pune");
+			city1.setName("Mumbai");
 			lCities.add(city);
 			lCities.add(city1);
 			resDtoObjects.put("lCity", lCities);
@@ -332,11 +332,11 @@ public class MasterServiceImpl{
 
 
 		logger.info("MasterServiceImpl showDeleteCity method start. ");
-		City city=new City();
-		City city1=new City();
+		CityDto city=new CityDto();
+		CityDto city1=new CityDto();
 		State state=new State();
 		State state1=new State();
-		List<City> lCities=new ArrayList<City>();
+		List<CityDto> lCities=new ArrayList<CityDto>();
 		List<State> lStates=new ArrayList<State>();
 		String viewName="";
 		try {
@@ -346,9 +346,9 @@ public class MasterServiceImpl{
 			state.setStateName("MH");
 			state1.setId(2);
 			state1.setStateName("TS");
-			city.setCityName("Pune");
+			city.setName("Pune");
 			city.setId(1);
-			city1.setCityName("Mumbai");
+			city1.setName("Mumbai");
 			city1.setId(2);
 			lCities.add(city);
 			lCities.add(city1);

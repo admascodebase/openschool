@@ -11,17 +11,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.controller.core.BaseController;
-import com.admas.logiware.dto.Customer;
 import com.admas.logiware.dto.FlowData;
-import com.admas.logiware.dto.SmsSettings;
 import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
 import com.admas.logiware.usrmgt.service.UserManagementServiceImpl;

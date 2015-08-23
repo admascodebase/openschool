@@ -11,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.controller.core.BaseController;
-import com.admas.logiware.dto.City;
+import com.admas.logiware.dto.CityDto;
 import com.admas.logiware.dto.FlowData;
 import com.admas.logiware.dto.State;
 import com.admas.logiware.exception.LogiwarePortalErrors;
@@ -58,7 +57,7 @@ public class CityController extends BaseController{
 			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
 			mv=new ModelAndView(viewName);
 			@SuppressWarnings("unchecked")
-			List<City> lCities=(List<City>) resDtoObjects.get("lCity");
+			List<CityDto> lCities=(List<CityDto>) resDtoObjects.get("lCity");
 			mv.addObject("lCities",lCities);
 			@SuppressWarnings("unchecked")
 			List<State> lState=(List<State>) resDtoObjects.get("lState");
@@ -97,7 +96,7 @@ public class CityController extends BaseController{
 			resDtoObjects=masterServiceImpl.showAddCity(flowData, reqDtoObjects, resDtoObjects);
 			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
 			mv=new ModelAndView(viewName);	
-			mv.addObject("city",new City());
+			mv.addObject("city",new CityDto());
 		} catch (Exception e) {
 			logger.error(
 					"Exception In PaymentController viewPaymentEntries --", e);
@@ -109,7 +108,7 @@ public class CityController extends BaseController{
 	}
 	
 	@RequestMapping(value="/saveCity.htm", method=RequestMethod.POST)
-	public ModelAndView addCitySubmit(@ModelAttribute("city")City city, HttpServletRequest request, HttpServletResponse response){
+	public ModelAndView addCitySubmit(@ModelAttribute("city")CityDto city, HttpServletRequest request, HttpServletResponse response){
 		logger.info("MasterController: addCity Method Start.");
 		FlowData flowData = null;
 		ModelAndView mv = new ModelAndView() ;
@@ -122,7 +121,7 @@ public class CityController extends BaseController{
 			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
 			mv=new ModelAndView(viewName);		
 			@SuppressWarnings("unchecked")
-			List<City> lCities=(List<City>) resDtoObjects.get("lCity");
+			List<CityDto> lCities=(List<CityDto>) resDtoObjects.get("lCity");
 			mv.addObject("lCities",lCities);
 		} catch (Exception e) {
 			logger.error(
