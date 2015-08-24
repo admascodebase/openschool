@@ -2,8 +2,10 @@ package com.admas.logiware.dto;
 
 import java.io.Serializable;
 
-public class CustCompEmployee implements Serializable{
+public class EmployeeDto implements Serializable{
 
+
+	private static final long serialVersionUID = -5453415813139099505L;
 
 	private Integer id;
 	 
@@ -27,6 +29,8 @@ public class CustCompEmployee implements Serializable{
 	
 	private String pan;
 
+	private Character delFlag;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -122,6 +126,20 @@ public class CustCompEmployee implements Serializable{
 				+ address + ", contactNo=" + contactNo + ", gender=" + gender
 				+ ", isSysAcc=" + isSysAcc + ", salaryType=" + salaryType
 				+ ", salary=" + salary + ", pan=" + pan + "]";
+	}
+
+	/**
+	 * @return the delFlag
+	 */
+	public Character getDelFlag() {
+		return delFlag;
+	}
+
+	/**
+	 * @param delFlag the delFlag to set
+	 */
+	public void setDelFlag(Character delFlag) {
+		this.delFlag = delFlag;
 	}
 	
 	

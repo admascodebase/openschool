@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
 
 import com.admas.logiware.exception.LogiwareExceptionHandler;
 import com.admas.logiware.exception.LogiwareServiceErrors;
-import com.admas.logiware.jpa.CustCompanyEmployee;
+import com.admas.logiware.jpa.Employee;
 import com.admas.logiware.jpa.UserDetails;
 
 @Repository
@@ -81,22 +81,22 @@ public class UserManagementDaoImpl implements IUserManagementDao {
 
 	
 	@Override
-	public CustCompanyEmployee getEmployeeById(Integer empId) throws LogiwareExceptionHandler {
+	public Employee getEmployeeById(Integer empId) throws LogiwareExceptionHandler {
 		CriteriaBuilder criteriaBuilder = null;
 		try {
 			criteriaBuilder = entityManager.getCriteriaBuilder();
-			CriteriaQuery<CustCompanyEmployee> criteriaQuery = criteriaBuilder
-					.createQuery(com.admas.logiware.jpa.CustCompanyEmployee.class);
-			Root<CustCompanyEmployee> root = criteriaQuery
-					.from(CustCompanyEmployee.class);
+			CriteriaQuery<Employee> criteriaQuery = criteriaBuilder
+					.createQuery(com.admas.logiware.jpa.Employee.class);
+			Root<Employee> root = criteriaQuery
+					.from(Employee.class);
 			criteriaQuery.select(root);
 			Predicate employeeId = criteriaBuilder.equal(root.get("id"), empId);
 
 			criteriaQuery.where(employeeId);
 
-			TypedQuery<CustCompanyEmployee> typedQuery = entityManager
+			TypedQuery<Employee> typedQuery = entityManager
 					.createQuery(criteriaQuery);
-			List<CustCompanyEmployee> lEmployee = typedQuery.getResultList();
+			List<Employee> lEmployee = typedQuery.getResultList();
 			
 			if (lEmployee != null && lEmployee.size()>0) {
 				return lEmployee.get(0);

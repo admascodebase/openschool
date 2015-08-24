@@ -18,7 +18,7 @@ public class UserDetails implements Serializable{
 	
 	private Date lastLogin;
 	
-	private CustCompEmployee custCompEmployee;
+	private EmployeeDto custCompEmployee;
 
 	/**
 	 * @return the userName
@@ -65,14 +65,14 @@ public class UserDetails implements Serializable{
 	/**
 	 * @return the custCompEmployee
 	 */
-	public CustCompEmployee getCustCompEmployee() {
+	public EmployeeDto getCustCompEmployee() {
 		return custCompEmployee;
 	}
 
 	/**
 	 * @param custCompEmployee the custCompEmployee to set
 	 */
-	public void setCustCompEmployee(CustCompEmployee custCompEmployee) {
+	public void setCustCompEmployee(EmployeeDto custCompEmployee) {
 		this.custCompEmployee = custCompEmployee;
 	}
 	

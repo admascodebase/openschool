@@ -5,11 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.admas.logiware.dao.usermgt.IUserManagementDao;
-import com.admas.logiware.dto.CustCompEmployee;
+import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.UserDetails;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
 import com.admas.logiware.exception.LogiwareServiceErrors;
-import com.admas.logiware.jpa.CustCompanyEmployee;
+import com.admas.logiware.jpa.Employee;
 
 @Repository
 public class UserManagementLogicImpl implements IUserManagementLogic {
@@ -22,14 +22,14 @@ public class UserManagementLogicImpl implements IUserManagementLogic {
 	public UserDetails login(String userName, String password) throws LogiwareExceptionHandler {
 		com.admas.logiware.jpa.UserDetails userDetailsJpa = null;
 		com.admas.logiware.dto.UserDetails userDetailsDto = null;
-		CustCompanyEmployee companyEmployee = null;
+		Employee companyEmployee = null;
 		try {			
 			userDetailsJpa= userManagementDao.login(userName, password);
 			if(userDetailsJpa!=null){
 				logger.info("User authenticated sucessfully");
 				companyEmployee = userManagementDao.getEmployeeById(userDetailsJpa.getEmpId());
 				if(companyEmployee != null){
-					CustCompEmployee employeeDto = new CustCompEmployee();
+					EmployeeDto employeeDto = new EmployeeDto();
 					employeeDto.setAddress(companyEmployee.getAddress());
 					employeeDto.setBranchId(companyEmployee.getBranchId());
 					employeeDto.setCompId(companyEmployee.getCompId());

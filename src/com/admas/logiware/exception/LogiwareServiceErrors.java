@@ -28,10 +28,13 @@ public enum LogiwareServiceErrors {
 	
 	NO_CITY_FOUND("LW-MM-0001","NO Cities Were FOund"),
 	
-	NO_CUSTOMER_FOUND("LW-MM-0001","NO Custmors Were FOund"),
+	NO_COMPANY_FOUND("LW-MM-0002","NO Companies Were FOund"),
 	
-	CUSTOMER_INACTIVE("LA-CI-0001","Customer Inactive");
+	NO_CUSTOMER_FOUND("LW-MM-0003","NO Custmors Were FOund"),
 	
+	CUSTOMER_INACTIVE("LA-CI-0001","Customer Inactive"),
+	
+	NO_EMPLOYEE_FOUND("LW-MM-0004", "No Employees Were Found");
 	
 	
 	/**

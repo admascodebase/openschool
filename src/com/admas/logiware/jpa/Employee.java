@@ -19,12 +19,12 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="cust_comp_employee")
-public class CustCompanyEmployee implements Serializable {
+public class Employee implements Serializable {
 	
 	private static final long serialVersionUID = -820241511542881571L;
 
 	
-	public CustCompanyEmployee() {
+	public Employee() {
 		super();
 	}
 
@@ -77,7 +77,7 @@ public class CustCompanyEmployee implements Serializable {
 	private Date updatedOn;
 	
 	@Column(name="DEL_FLG")
-	private Character delFlg;
+	private Character delFlag;
 
 	/**
 	 * @return the id
@@ -293,14 +293,14 @@ public class CustCompanyEmployee implements Serializable {
 	 * @return the delFlg
 	 */
 	public Character getDelFlg() {
-		return delFlg;
+		return delFlag;
 	}
 
 	/**
 	 * @param delFlg the delFlg to set
 	 */
 	public void setDelFlg(Character delFlg) {
-		this.delFlg = delFlg;
+		this.delFlag = delFlg;
 	}
 
 	/* (non-Javadoc)
@@ -314,7 +314,7 @@ public class CustCompanyEmployee implements Serializable {
 				+ ", isSysAcc=" + isSysAcc + ", salaryType=" + salaryType
 				+ ", salary=" + salary + ", pan=" + pan + ", createdBy="
 				+ createdBy + ", updatedBy=" + updatedBy + ", createdOn="
-				+ createdOn + ", updatedOn=" + updatedOn + ", delFlg=" + delFlg
+				+ createdOn + ", updatedOn=" + updatedOn + ", delFlg=" + delFlag
 				+ "]";
 	}
 	
