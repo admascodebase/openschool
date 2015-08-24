@@ -30,6 +30,8 @@
 	       	<module name="javax.servlet.jstl.api"/>
 	       	<module name="org.apache.taglib"/>
 	       	<module name="org.apache.commons.io"/>
+	       	<module name="org.jboss.resteasy.resteasy-jaxrs"/>
+	       	<module name="org.jasypt" />
 
 	    </dependencies>
 	</deployment>

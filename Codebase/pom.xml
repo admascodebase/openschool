@@ -524,7 +524,7 @@
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jaxrs</artifactId>
 			<version>2.2.1.GA</version>
-			<scope>provided</scope>
+			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>
@@ -559,6 +559,11 @@
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+						</manifest>
+					</archive>
 				</configuration>
 			</plugin>
 
@@ -585,23 +590,13 @@
 				<executions>
 					<execution>
 						<phase>prepare-package</phase>
-						<configuration>
-							<tasks>
-								<replace token="${ngopLogLevel}" value="${log.level}"
-									dir="target/">
-									<include name="**/log4j.properties" />
-								</replace>
-								<replace token="${log}" value="${log.dir}" dir="target/">
-									<include name="**/log4j.properties" />
-								</replace>
-								<replace token="{localip}" value="${ngop.ip}" dir="target/">
-									<include name="**/properties.xml" />
-								</replace>
-								<replace token="{localip}" value="${ngop.ip}" dir="target/">
-									<include name="**/setting.properties" />
-								</replace>
-							</tasks>
-						</configuration>
+						<!-- <configuration> <tasks> <replace token="${ngopLogLevel}" value="${log.level}" 
+							dir="target/"> <include name="**/log4j.properties" /> </replace> <replace 
+							token="${log}" value="${log.dir}" dir="target/"> <include name="**/log4j.properties" 
+							/> </replace> <replace token="{localip}" value="${ngop.ip}" dir="target/"> 
+							<include name="**/properties.xml" /> </replace> <replace token="{localip}" 
+							value="${ngop.ip}" dir="target/"> <include name="**/setting.properties" /> 
+							</replace> </tasks> </configuration> -->
 						<goals>
 							<goal>run</goal>
 						</goals>

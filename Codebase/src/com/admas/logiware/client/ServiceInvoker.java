@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
+import org.jboss.resteasy.util.GenericType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -80,24 +81,28 @@ public class ServiceInvoker implements Serializable {
 		try {
 			String userName = (String) request.get("userName");
 			String password = (String) request.get("password");
-			/*ClientRequest clientRequest = new ClientRequest(url
+			ClientRequest clientRequest = new ClientRequest(url
 					+ WebAppConstants.URL_SEPERATOR + userName
 					+ WebAppConstants.URL_SEPERATOR + password);
 			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
-			ClientResponse<Object> response = clientRequest
-					.get(Object.class);
-			if (response.getStatus() != 200) {
-				throw new LogiwareBaseException(response.getStatus() + "",
-						response.getStatus() + "");
-			}
+			ClientResponse<LogiwareRespnse> response = clientRequest
+					.get(LogiwareRespnse.class);
+			
+			//In case of post request we have to writethe code like
+			
+			/*clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, queryPojo);
+			ClientResponse<LogiwareRespnse> response = clientRequest
+					.post(LogiwareRespnse.class);
+			*/
+			
 			logiwareResponse = (LogiwareRespnse) response.getEntity();
 			if (!logiwareResponse.getCode()
 					.equals("0000")) {
 				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
-			}*/
+			}
 
-		/*} catch (LogiwareBaseException b) {
-			throw b;*/
+		} catch (LogiwareBaseException b) {
+			throw b;
 		} catch (Exception e) {
 			logger.error("Exception In ServiceInvoker login method end.", e);
 			throw new LogiwareBaseException(
