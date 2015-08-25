@@ -215,5 +215,55 @@ public class TransportTypeController extends BaseController {
 		logger.info("TransportTypeController: DeleteTransportType() Method End.");
 		return modelView;
 	}
+
+	
+	
+	@RequestMapping(value="/getAllTransportTypeDetails.htm", method=RequestMethod.GET)
+	public ModelAndView getAllTransportTypeDetails(HttpServletRequest request, HttpServletResponse response){
 		
+		
+		logger.info("TransportTypeController: getAllTransportTypeDetails() Method Start.");
+		FlowData flowData = null;
+		/*
+		 * super.handleRequestInternal(request, response); FlowData flowData =
+		 * null; if (request.getSession().getAttribute(WebAppConstants.FLOWDATA)
+		 * != null) { flowData = (FlowData) request.getSession().getAttribute(
+		 * WebAppConstants.FLOWDATA); } if (!flowData.isLoggedIn()) return
+		 * super.loginPage(flowData, request);
+		 */
+		ModelAndView mv = new ModelAndView();
+		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
+		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
+		try {
+//			resDtoObjects = masterServiceImpl.getAllTransportTypeDetails(flowData,
+//					reqDtoObjects, resDtoObjects);
+			String viewName = (String) resDtoObjects
+					.get(WebAppConstants.VIEW_NAME);
+			mv = new ModelAndView(viewName);
+			@SuppressWarnings("unchecked")
+			List<TransportType> lTransports = (List<TransportType>) resDtoObjects
+					.get("lTransports");
+			mv.addObject("lTransports", lTransports);
+
+			/*
+			 * } catch (LogiwareBaseException _be) {
+			 * logger.error("Exception in PaymentController: viewPaymentEntries"
+			 * , _be); mv.addObject(WebAppConstants.ERROR_CODE,
+			 * _be.getErrorCode());
+			 */
+		} catch (Exception e) {
+			logger.error(
+					"Exception In TransportTypeController: getAllTransportTypeDetails() -- ",
+					e);
+			mv.addObject(
+					WebAppConstants.ERROR_CODE,
+					LogiwarePortalErrors.ERROR_WHILE_FETCHING_PAYMENT_MONITORING_RECORDS
+							.getErrorCode());
+		}
+
+		logger.info("TransportTypeController: getAllTransportTypeDetails() Method End.");
+		return mv;
+		
+		
+	}
 }

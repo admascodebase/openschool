@@ -9,7 +9,6 @@ import java.util.Map;
 
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
-import org.jboss.resteasy.util.GenericType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,6 +17,7 @@ import org.springframework.stereotype.Component;
 import com.admas.logiware.client.ServiceEndPointConstants.ServiceName;
 import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.dto.Customer;
+import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.LogiwareRespnse;
 import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
@@ -59,6 +59,10 @@ public class ServiceInvoker implements Serializable {
 		}
 		case getAllCustomer: {
 			response = (K) getAllCustomer(url, (Map) request);
+			break;
+		}
+		case getAllCompany: {
+			response = (K) getAllCompany(url, (Map) request);
 			break;
 		}
 		default:
@@ -146,5 +150,38 @@ public class ServiceInvoker implements Serializable {
 		return customer;
 	}
 
+	
+	
+	public EmployeeDto getAllCompany(String url,Map<String, Object> request) throws LogiwareBaseException {
+		logger.info("ServiceInvoker getAllCompany method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		EmployeeDto employeeDto=new EmployeeDto();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest
+					.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "",
+						response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode()
+					.equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse .getDescription());
+			}
+
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker login method end.", e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST
+							.getErrorDescription());
+		}
+		logger.info("ServiceInvoker getAllCompany method end. ");
+		return employeeDto;
+	}
 	
 }

@@ -17,7 +17,7 @@
 													<h3>General</h3>
 												</li>
 												<li>
-													<a href="ecommerce_index.html" class="iconify">
+													<a href="./getAllCompany.htm" class="iconify">
 													<i class="icon-home"></i>
 													Company </a>
 												</li>
@@ -40,6 +40,11 @@
 													<a href="ecommerce_products_edit.html" class="iconify">
 													<i class="icon-pencil"></i>
 													Transport Details </a>
+												</li>
+												<li>
+													<a href="./employee.htm" class="iconify">
+													<i class="icon-pencil"></i>
+													Employee </a>
 												</li>
 											</ul>
 										</div>

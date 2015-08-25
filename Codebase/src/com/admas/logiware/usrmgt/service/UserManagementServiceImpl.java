@@ -69,8 +69,8 @@ public class UserManagementServiceImpl {
 					reqDtoObjects);
 			resDtoObjects.put("userResponse", logiwareResponse);
 			resDtoObjects.put("viewName", viewName);
-			} catch (LogiwareBaseException b) {
-			throw b;
+//			} catch (LogiwareBaseException b) {
+//			throw b;
 		} catch (Exception e) {
 			logger.error(
 					"Exception In EnterpriseControllerService: customerLogin client method end.",

@@ -95,4 +95,6 @@
 	<bean id="loginInterceptor" class="com.admas.logiware.util.LoginInterceptor"/>
 	<bean id="MasterController" class="com.admas.logiware.controller.master.CityController"/>
 	<bean id="TransportTypeController" class="com.admas.logiware.controller.master.TransportTypeController"/>
+	<bean id="CompanyController" class="com.admas.logiware.controller.master.CompanyController"/>
+	<bean id="EmployeeController" class="com.admas.logiware.controller.master.EmployeeController"/>
 </beans>
