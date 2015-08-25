@@ -3,10 +3,10 @@
 							http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.admas.ngemp</groupId>
-	<artifactId>NgempService</artifactId>
+	<artifactId>LogiwareService</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
-	<name>NgempService</name>
+	<name>LogiwareService</name>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.core.version>4.0.1.RELEASE</spring.core.version>
