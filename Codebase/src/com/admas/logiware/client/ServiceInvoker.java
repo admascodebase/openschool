@@ -5,6 +5,8 @@
 package com.admas.logiware.client;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.jboss.resteasy.client.ClientRequest;
@@ -16,19 +18,17 @@ import org.springframework.stereotype.Component;
 
 import com.admas.logiware.client.ServiceEndPointConstants.ServiceName;
 import com.admas.logiware.constant.WebAppConstants;
+import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.Customer;
-import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.LogiwareRespnse;
 import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
 import com.admas.logiware.util.PropertyHandler;
 import com.admas.logiware.util.ResourceHandler;
 
-
-
 /**
  * @author Admas Tech
- *
+ * 
  */
 @Component
 @Qualifier("serviceInvoker")
@@ -48,8 +48,9 @@ public class ServiceInvoker implements Serializable {
 				.getProperty("logiware.serivce.port"));
 		String urlTemplate = PropertyHandler
 				.getProperty("logiware.serivce.url.template");
-		logger.info("**************"+serviceName.value());
-		String serviceEndPoint = ResourceHandler.instance().getServiceEndPoints(serviceName.value());
+		logger.info("**************" + serviceName.value());
+		String serviceEndPoint = ResourceHandler.instance()
+				.getServiceEndPoints(serviceName.value());
 
 		String url = String.format(urlTemplate, host, port, serviceEndPoint);
 		switch (serviceName) {
@@ -79,7 +80,8 @@ public class ServiceInvoker implements Serializable {
 	 * @return
 	 * @throws LogiwareBaseException
 	 */
-	public LogiwareRespnse login(String url,Map<String, Object> request) throws LogiwareBaseException {
+	public LogiwareRespnse login(String url, Map<String, Object> request)
+			throws LogiwareBaseException {
 		logger.info("ServiceInvoker login method start. ");
 		LogiwareRespnse logiwareResponse = null;
 		try {
@@ -91,18 +93,19 @@ public class ServiceInvoker implements Serializable {
 			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
 			ClientResponse<LogiwareRespnse> response = clientRequest
 					.get(LogiwareRespnse.class);
-			
-			//In case of post request we have to writethe code like
-			
-			/*clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, queryPojo);
-			ClientResponse<LogiwareRespnse> response = clientRequest
-					.post(LogiwareRespnse.class);
-			*/
-			
+
+			// In case of post request we have to writethe code like
+
+			/*
+			 * clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, queryPojo);
+			 * ClientResponse<LogiwareRespnse> response = clientRequest
+			 * .post(LogiwareRespnse.class);
+			 */
+
 			logiwareResponse = (LogiwareRespnse) response.getEntity();
-			if (!logiwareResponse.getCode()
-					.equals("0000")) {
-				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(),
+						logiwareResponse.getDescription());
 			}
 
 		} catch (LogiwareBaseException b) {
@@ -111,14 +114,14 @@ public class ServiceInvoker implements Serializable {
 			logger.error("Exception In ServiceInvoker login method end.", e);
 			throw new LogiwareBaseException(
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
-					LogiwarePortalErrors.INVALID_REQUEST
-							.getErrorDescription());
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
 		}
 		logger.info("ServiceInvoker login method end. ");
 		return logiwareResponse;
 	}
-	
-	public Customer getAllCustomer(String url,Map<String, Object> request) throws LogiwareBaseException {
+
+	public Customer getAllCustomer(String url, Map<String, Object> request)
+			throws LogiwareBaseException {
 		logger.info("ServiceInvoker login method start. ");
 		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
 		Customer customer = new Customer();
@@ -131,10 +134,10 @@ public class ServiceInvoker implements Serializable {
 				throw new LogiwareBaseException(response.getStatus() + "",
 						response.getStatus() + "");
 			}
-			///restResponse = response.getEntity();
-			if (!logiwareResponse.getCode()
-					.equals("0000")) {
-				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse .getDescription());
+			// /restResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(),
+						logiwareResponse.getDescription());
 			}
 
 		} catch (LogiwareBaseException b) {
@@ -143,19 +146,19 @@ public class ServiceInvoker implements Serializable {
 			logger.error("Exception In ServiceInvoker login method end.", e);
 			throw new LogiwareBaseException(
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
-					LogiwarePortalErrors.INVALID_REQUEST
-							.getErrorDescription());
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
 		}
 		logger.info("ServiceInvoker login method end. ");
 		return customer;
 	}
 
-	
-	
-	public EmployeeDto getAllCompany(String url,Map<String, Object> request) throws LogiwareBaseException {
+	@SuppressWarnings("unchecked")
+	public List<CompanyDto> getAllCompany(String url,
+			Map<String, Object> request) throws LogiwareBaseException {
 		logger.info("ServiceInvoker getAllCompany method start. ");
 		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
-		EmployeeDto employeeDto=new EmployeeDto();
+		List<CompanyDto> lCompanies = new ArrayList<CompanyDto>();
+		// CompanyDto CompanyDto=new CompanyDto();
 		try {
 			ClientRequest clientRequest = new ClientRequest(url);
 			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
@@ -166,9 +169,11 @@ public class ServiceInvoker implements Serializable {
 						response.getStatus() + "");
 			}
 			logiwareResponse = response.getEntity();
-			if (!logiwareResponse.getCode()
-					.equals("0000")) {
-				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse .getDescription());
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(),
+						logiwareResponse.getDescription());
+			} else {
+				lCompanies = (List<CompanyDto>) logiwareResponse.getData();
 			}
 
 		} catch (LogiwareBaseException b) {
@@ -177,11 +182,10 @@ public class ServiceInvoker implements Serializable {
 			logger.error("Exception In ServiceInvoker login method end.", e);
 			throw new LogiwareBaseException(
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
-					LogiwarePortalErrors.INVALID_REQUEST
-							.getErrorDescription());
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
 		}
 		logger.info("ServiceInvoker getAllCompany method end. ");
-		return employeeDto;
+		return lCompanies;
 	}
-	
+
 }
