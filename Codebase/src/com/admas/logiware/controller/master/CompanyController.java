@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -117,4 +118,19 @@ public class CompanyController extends BaseController {
 		
 		return mv;
 }
+	
+	
+	
+	@RequestMapping(value="/saveCompany.htm", method=RequestMethod.POST)
+	public ModelAndView addCustomerSubmit(@ModelAttribute("company") CompanyDto companyDto, HttpServletRequest request, HttpServletResponse response){
+		
+		logger.info("***************customer data"+companyDto.getAddress()+"--"+companyDto.getName());
+		logger.info(companyDto.toString());
+		FlowData flowData=null;
+//		logger.info("values====="+request.get)
+		logger.info("****************************in Add Customer action****************************");
+		return super.addCustomersubmit(flowData, request);
+		
+	}
+	
 }

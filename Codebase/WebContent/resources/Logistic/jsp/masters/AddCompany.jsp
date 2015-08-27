@@ -213,7 +213,7 @@
 									</div> -->
 									<div class="portlet-body form">
 										<!-- BEGIN FORM-->
-										<form action="javascript:;" class="form-horizontal">
+										<form:form action="saveCompany.htm" modelAttribute="company" class="form-horizontal">
 											<div class="form-body">
 												<h3 class="form-section"></h3>
 												<div class="row">
@@ -222,8 +222,8 @@
 															<label class="control-label col-md-3">Company
 																Name</label>
 															<div class="col-md-9">
-																<input type="text" class="form-control"
-																	placeholder="Chee Kin"> <span
+																<form:input type="text" path="name" class="form-control"
+																	placeholder="Chee Kin"/> <span
 																	class="help-block"> Company Name here.. </span>
 															</div>
 														</div>
@@ -233,8 +233,8 @@
 														<div class="form-group">
 															<label class="control-label col-md-3">Address</label>
 															<div class="col-md-9">
-																<input type="text" class="form-control"
-																	placeholder="Chee Kin"> <span
+																<form:input type="text" path="address" class="form-control"
+																	placeholder="Chee Kin"/> <span
 																	class="help-block"> Address here.. </span>
 															</div>
 														</div>
@@ -248,8 +248,8 @@
 															<label class="control-label col-md-3">Contact
 																Number 1</label>
 															<div class="col-md-9">
-																<input type="text" class="form-control"
-																	placeholder="Chee Kin"> <span
+																<form:input type="text" path="contactNo1" class="form-control"
+																	placeholder="Chee Kin"/> <span
 																	class="help-block"> Enter your contact number. </span>
 															</div>
 														</div>
@@ -260,8 +260,8 @@
 															<label class="control-label col-md-3">Contact
 																Number 2</label>
 															<div class="col-md-9">
-																<input type="text" class="form-control"
-																	placeholder="dd/mm/yyyy">
+																<form:input path="contactNo2" type="text" class="form-control"
+																	placeholder="dd/mm/yyyy"/>
 															</div>
 														</div>
 													</div>
@@ -273,7 +273,7 @@
 														<div class="form-group">
 															<label class="control-label col-md-3">Email Id 1</label>
 															<div class="col-md-9">
-																<input type="text" class="form-control" placeholder="Chee Kin">
+																<form:input path="emailId1" type="text" class="form-control" placeholder="Chee Kin"/>
 															</div>
 														</div>
 													</div>
@@ -282,7 +282,7 @@
 														<div class="form-group">
 															<label class="control-label col-md-3">Email Id 2</label>
 															<div class="col-md-9">
-															<input type="text" class="form-control" placeholder="Chee Kin">
+															<form:input path="emailId2" type="text" class="form-control" placeholder="Chee Kin"/>
 															</div>
 														</div>
 													</div>
@@ -295,7 +295,7 @@
 														<div class="form-group">
 															<label class="control-label col-md-3">PAN Number</label>
 															<div class="col-md-9">
-																<input type="text" class="form-control">
+																<form:input path="panNo" type="text" class="form-control"/>
 															</div>
 														</div>
 													</div>
@@ -303,7 +303,7 @@
 														<div class="form-group">
 															<label class="control-label col-md-3">TAN Number</label>
 															<div class="col-md-9">
-																<input type="text" class="form-control">
+																<form:input path="tanNo" type="text" class="form-control"/>
 															</div>
 														</div>
 													</div>
@@ -313,7 +313,7 @@
 														<div class="form-group">
 															<label class="control-label col-md-3">Tag Line</label>
 															<div class="col-md-9">
-																<input type="text" class="form-control">
+																<form:input path="tagLine" type="text" class="form-control"/>
 															</div>
 														</div>
 													</div>
@@ -335,7 +335,7 @@
 													<div class="col-md-6"></div>
 												</div>
 											</div>
-										</form>
+										</form:form>
 										<!-- END FORM-->
 									</div>
 								</div>
