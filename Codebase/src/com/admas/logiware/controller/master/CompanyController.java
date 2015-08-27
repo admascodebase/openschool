@@ -20,14 +20,12 @@ import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.controller.core.BaseController;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.FlowData;
-import com.admas.logiware.dto.State;
 import com.admas.logiware.exception.LogiwarePortalErrors;
 import com.admas.logiware.usrmgt.service.MasterServiceImpl;
 
 public class CompanyController extends BaseController {
 
 	public CompanyController() {
-		// TODO Auto-generated constructor stub
 	}
 
 	Logger logger = LoggerFactory.getLogger(CompanyController.class);
@@ -69,9 +67,6 @@ public class CompanyController extends BaseController {
 			List<CompanyDto> lCompanies = (List<CompanyDto>) resDtoObjects
 					.get("lCompanies");
 			mv.addObject("lCompanies", lCompanies);
-			@SuppressWarnings("unchecked")
-			List<State> lState = (List<State>) resDtoObjects.get("lState");
-			mv.addObject("lState", lState);
 			// mv.addObject(viewName);
 
 			/*
@@ -122,14 +117,32 @@ public class CompanyController extends BaseController {
 	
 	
 	@RequestMapping(value="/saveCompany.htm", method=RequestMethod.POST)
-	public ModelAndView addCustomerSubmit(@ModelAttribute("company") CompanyDto companyDto, HttpServletRequest request, HttpServletResponse response){
+	public ModelAndView saveCompany(@ModelAttribute("company") CompanyDto companyDto, HttpServletRequest request, HttpServletResponse response){
 		
-		logger.info("***************customer data"+companyDto.getAddress()+"--"+companyDto.getName());
-		logger.info(companyDto.toString());
-		FlowData flowData=null;
-//		logger.info("values====="+request.get)
-		logger.info("****************************in Add Customer action****************************");
-		return super.addCustomersubmit(flowData, request);
+		logger.info("CompanyController: saveCompany Method Start.");
+		FlowData flowData = null;
+		
+		ModelAndView mv = new ModelAndView() ;
+		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
+		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
+		try {	
+			reqDtoObjects.put("company", companyDto);
+			resDtoObjects=masterServiceImpl.saveCompany(flowData, reqDtoObjects, resDtoObjects);
+			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
+			resDtoObjects=masterServiceImpl.getAllCompany(flowData, reqDtoObjects, resDtoObjects);
+			@SuppressWarnings("unchecked")
+			List<CompanyDto> lCompanies = (List<CompanyDto>) resDtoObjects.get("lCompanies");
+			mv=new ModelAndView(viewName);	
+			mv.addObject("lCompanies", lCompanies);
+		} catch (Exception e) {
+			logger.error(
+					"Exception In CompanyController saveCompany Method--", e);
+			mv.addObject(WebAppConstants.ERROR_CODE,
+					LogiwarePortalErrors.ERROR_WHILE_FETCHING_PAYMENT_MONITORING_RECORDS.getErrorCode());
+		}
+		
+		return mv;
+		
 		
 	}
 	

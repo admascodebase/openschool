@@ -213,7 +213,7 @@
 									</div> -->
 									<div class="portlet-body form">
 										<!-- BEGIN FORM-->
-										<form action="javascript:;" class="form-horizontal">
+										<form:form action="saveEmployee.htm" modelAttribute="employee" class="form-horizontal">
 											<div class="form-body">
 												<h3 class="form-section"></h3>
 												<div class="row">
@@ -222,8 +222,8 @@
 															<label class="control-label col-md-3">Employee
 																Name</label>
 															<div class="col-md-9">
-																<input type="text" class="form-control"
-																	placeholder="Chee Kin"> <span
+																<form:input path="name" type="text" class="form-control"
+																	placeholder="Chee Kin"/> <span
 																	class="help-block"> Employee Name here.. </span>
 															</div>
 														</div>
@@ -233,8 +233,8 @@
 														<div class="form-group">
 															<label class="control-label col-md-3">Address</label>
 															<div class="col-md-9">
-																<input type="text" class="form-control"
-																	placeholder="Chee Kin"> <span
+																<form:input path="address" type="text" class="form-control"
+																	placeholder="Chee Kin"/> <span
 																	class="help-block"> Address here.. </span>
 															</div>
 														</div>
@@ -248,8 +248,8 @@
 															<label class="control-label col-md-3">Contact
 																Number 1</label>
 															<div class="col-md-9">
-																<input type="text" class="form-control"
-																	placeholder="Chee Kin"> <span
+																<form:input path="contactNo" type="text" class="form-control"
+																	placeholder="Chee Kin"/> <span
 																	class="help-block"> Enter your contact number. </span>
 															</div>
 														</div>
@@ -257,11 +257,21 @@
 													<!--/span-->
 													<div class="col-md-6">
 														<div class="form-group">
-															<label class="control-label col-md-3">Contact
-																Number 2</label>
+															<label class="control-label col-md-3">Gender
+																</label>
+																<div class="icheck-inline">
 															<div class="col-md-9">
-																<input type="text" class="form-control"
-																	placeholder="dd/mm/yyyy">
+															<label class="control-label col-md-3">Male
+																</label>
+																<form:radiobutton path="gender" value="M" class="icheck"
+																	placeholder="dd/mm/yyyy"/> 
+															</div>
+															<div class="col-md-9">
+															<label class="control-label col-md-3">Female
+																</label>
+															<form:radiobutton path="gender" value="F" class="icheck"
+																	placeholder="dd/mm/yyyy"/>
+															</div>
 															</div>
 														</div>
 													</div>
@@ -271,18 +281,31 @@
 												<div class="row">
 													<div class="col-md-6">
 														<div class="form-group">
-															<label class="control-label col-md-3">Email Id 1</label>
+															<label class="control-label col-md-3">System Access
+																</label>
+																<div class="icheck-inline">
 															<div class="col-md-9">
-																<input type="text" class="form-control" placeholder="Chee Kin">
+															<label class="control-label col-md-3">Yes
+																</label>
+																<form:radiobutton path="isSysAcc" value="Y" class="icheck"
+																	placeholder="dd/mm/yyyy"/> 
+															</div>
+															<div class="col-md-9">
+															<label class="control-label col-md-3">No
+																</label>
+															<form:radiobutton path="isSysAcc" value="N" class="icheck"
+																	placeholder="dd/mm/yyyy"/>
+															</div>
 															</div>
 														</div>
 													</div>
 													<!--/span-->
 													<div class="col-md-6">
 														<div class="form-group">
-															<label class="control-label col-md-3">Email Id 2</label>
+															<label class="control-label col-md-3">Salary Type</label>
 															<div class="col-md-9">
-															<input type="text" class="form-control" placeholder="Chee Kin">
+															<form:input path="salaryType" type="text" class="form-control"
+																	placeholder="Chee Kin"/> 
 															</div>
 														</div>
 													</div>
@@ -293,32 +316,28 @@
 												<div class="row">
 													<div class="col-md-6">
 														<div class="form-group">
-															<label class="control-label col-md-3">PAN Number</label>
+															<label class="control-label col-md-3">Salary</label>
 															<div class="col-md-9">
-																<input type="text" class="form-control">
-															</div>
-														</div>
-													</div>
-													<div class="col-md-6">
-														<div class="form-group">
-															<label class="control-label col-md-3">TAN Number</label>
-															<div class="col-md-9">
-																<input type="text" class="form-control">
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-md-6">
-														<div class="form-group">
-															<label class="control-label col-md-3">Tag Line</label>
-															<div class="col-md-9">
-																<input type="text" class="form-control">
+																<form:input path="salary" type="text" class="form-control"
+																	placeholder="Chee Kin"/> 
 															</div>
 														</div>
 													</div>
 													
 												</div>
+												<div class="row">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Pan Number</label>
+															<div class="col-md-9">
+																<form:input path="pan" type="text" class="form-control"
+																	placeholder="Chee Kin"/> 
+															</div>
+														</div>
+													</div>
+													
+												</div>
+												
 												
 												<!--/row-->
 											</div>
@@ -335,7 +354,7 @@
 													<div class="col-md-6"></div>
 												</div>
 											</div>
-										</form>
+										</form:form>
 										<!-- END FORM-->
 									</div>
 								</div>

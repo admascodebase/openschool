@@ -1,3 +1,4 @@
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
@@ -190,6 +191,8 @@
 										<div class="btn-group">
 											<a href="showAddEmployee.htm"><button
 													class="btn btn-circle btn-primary">Add New</button></a>
+										<a href="showEditEmployee.htm"><button
+													class="btn btn-circle yellow-crusta">Edit</button></a>
 										</div>
 									</div>
 									<div class="col-md-6">

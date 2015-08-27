@@ -21,9 +21,11 @@ import com.admas.logiware.dto.CityDto;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.FlowData;
+import com.admas.logiware.dto.LogiwareRespnse;
 import com.admas.logiware.dto.State;
 import com.admas.logiware.dto.TransportType;
 import com.admas.logiware.exception.LogiwareBaseException;
+import com.admas.logiware.exception.LogiwarePortalErrors;
 
 @Component
 @Qualifier("sysAdminServiceImpl")
@@ -472,6 +474,7 @@ public class MasterServiceImpl {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public Map<String, Object> getAllEmployee(FlowData flowData,
 			HashMap<String, Object> reqDtoObjects,
 			Map<String, Object> resDtoObjects) {
@@ -480,13 +483,13 @@ public class MasterServiceImpl {
 		logger.info("MasterServiceImpl getAllEmployee method start.");
 		EmployeeDto employeeDto= new EmployeeDto();
 		List<EmployeeDto> lEmployees = new ArrayList<EmployeeDto>();
+		LogiwareRespnse logiwareRespnse = null;
 		String viewName = "";
 		try {
 			viewName = "getAllEmployee";
-//			 lEmployees = doServiceCall(flowData, ServiceName.getAllEmployee,
-			// reqDtoObjects);
-
-			employeeDto.setAddress("Pune");
+			 logiwareRespnse = doServiceCall(flowData, ServiceName.getAllEmployee, reqDtoObjects);
+			 lEmployees =(List<EmployeeDto>) logiwareRespnse.getData();
+			/*employeeDto.setAddress("Pune");
 			employeeDto.setBranchId(1);
 			employeeDto.setCompId(2);
 			employeeDto.setContactNo("9876543575");
@@ -497,9 +500,8 @@ public class MasterServiceImpl {
 			employeeDto.setName("Ajinkya");
 			employeeDto.setPan("987654321");
 			employeeDto.setSalary(98700.00f);
-			employeeDto.setSalaryType("Monthly");
-
-			lEmployees.add(employeeDto);
+			employeeDto.setSalaryType("Monthly");*/
+			 
 			resDtoObjects.put("lEmployees", lEmployees);
 			resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
 			/*
@@ -529,16 +531,73 @@ public class MasterServiceImpl {
 		String viewName = "";
 		try {
 			viewName = "showAddEmployee";
-			CityDto city = new CityDto();
-			resDtoObjects.put("city", city);
 
 		} catch (Exception exp) {
-			logger.error("Exception in addCity()", exp);
+			logger.error("Exception in addEmployee()", exp);
 		}
 
 		resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
 		return resDtoObjects;
 	
+	}
+
+	public Map<String, Object> saveCompany(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+		
+		logger.info("MasterServiceImpl saveCompany method start.");
+		LogiwareRespnse logiwareResponse = null;
+		String viewName = "";
+		try {
+			viewName = "getAllCompanies";
+			logiwareResponse = doServiceCall(flowData, ServiceName.saveCompany,
+					reqDtoObjects);
+			resDtoObjects.put("userResponse", logiwareResponse);
+			resDtoObjects.put("viewName", viewName);
+			} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error(
+					"Exception In MasterServiceImpl: saveCompany method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("MasterServiceImpl saveCompany method end. ");
+		return resDtoObjects;
+		
+	}
+
+	public Map<String, Object> saveEmployee(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+		
+		
+		logger.info("MasterServiceImpl saveEmployee method start.");
+		LogiwareRespnse logiwareResponse = null;
+		String viewName = "";
+		try {
+			viewName = "getAllEmployee";
+			logiwareResponse = doServiceCall(flowData, ServiceName.saveEmployee,
+					reqDtoObjects);
+			resDtoObjects.put("userResponse", logiwareResponse);
+			resDtoObjects.put("viewName", viewName);
+			} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error(
+					"Exception In MasterServiceImpl: saveCompany method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("MasterServiceImpl saveCompany method end. ");
+		return resDtoObjects;
+		
+		
+		
 	}
 
 }

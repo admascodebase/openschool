@@ -42,7 +42,7 @@
 													Transport Details </a>
 												</li>
 												<li>
-													<a href="./employee.htm" class="iconify">
+													<a href="./getAllEmployee.htm" class="iconify">
 													<i class="icon-pencil"></i>
 													Employee </a>
 												</li>

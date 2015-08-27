@@ -20,6 +20,7 @@ import com.admas.logiware.client.ServiceEndPointConstants.ServiceName;
 import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.Customer;
+import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.LogiwareRespnse;
 import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
@@ -39,6 +40,7 @@ public class ServiceInvoker implements Serializable {
 
 	Logger logger = LoggerFactory.getLogger(ServiceInvoker.class);
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public <T, K> K invoke(ServiceName serviceName, T request)
 			throws LogiwareBaseException {
 		logger.info("ServiceInvoker:invoke method Start.");
@@ -64,6 +66,18 @@ public class ServiceInvoker implements Serializable {
 		}
 		case getAllCompany: {
 			response = (K) getAllCompany(url, (Map) request);
+			break;
+		}
+		case saveCompany: {
+			response = (K) saveCompany(url, (Map) request);
+			break;
+		}
+		case getAllEmployee: {
+			response = (K) getAllEmployee(url, (Map) request);
+			break;
+		}
+		case saveEmployee: {
+			response = (K) saveEmployee(url, (Map) request);
 			break;
 		}
 		default:
@@ -188,4 +202,114 @@ public class ServiceInvoker implements Serializable {
 		return lCompanies;
 	}
 
+	
+	
+	public LogiwareRespnse saveCompany(String url,
+			Map<String, Object> request) throws LogiwareBaseException {
+		
+		logger.info("ServiceInvoker saveCompany method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		Boolean result=false;
+		try {
+			ClientRequest clientRequest = new ClientRequest(url);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("company"));
+			ClientResponse<LogiwareRespnse> response = clientRequest
+					.post(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "",
+						response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(),
+						logiwareResponse.getDescription());
+			} /*else {
+				result = (Boolean) logiwareResponse.getData();
+			}*/
+
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker login method end.", e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker getAllCompany method end. ");
+		return logiwareResponse;
+	}
+	
+	
+	
+	public LogiwareRespnse getAllEmployee(String url, Map<String, Object> request) throws LogiwareBaseException {
+		logger.info("ServiceInvoker getAllEmployee method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+//		List<EmployeeDto> lemployees  = new ArrayList<EmployeeDto>();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "",
+						response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(),
+						logiwareResponse.getDescription());
+			} /*else {
+				lCompanies = (List<CompanyDto>) logiwareResponse.getData();
+			}*/
+
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker login method end.", e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker getAllEmployee method end. ");
+		return logiwareResponse;
+	}
+	
+	
+	
+
+	public LogiwareRespnse saveEmployee(String url,
+			Map<String, Object> request) throws LogiwareBaseException {
+		
+		logger.info("ServiceInvoker saveemployee method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("employee"));
+			ClientResponse<LogiwareRespnse> response = clientRequest
+					.post(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "",
+						response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(),
+						logiwareResponse.getDescription());
+			} /*else {
+				result = (Boolean) logiwareResponse.getData();
+			}*/
+
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker login method end.", e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker getAllCompany method end. ");
+		return logiwareResponse;
+	}
+	
 }
