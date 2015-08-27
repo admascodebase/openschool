@@ -184,6 +184,8 @@
 							</div>
 						</div>
 						<div class="portlet-body">
+						<div id="bootstrap_alerts">
+						</div>
 							<div class="table-toolbar">
 								<div class="row">
 									<div class="col-md-6">
@@ -280,9 +282,20 @@
 	ga('create', 'UA-37564768-1', 'keenthemes.com');
 	ga('send', 'pageview');
 </script>
-</body>
 
-<!-- END BODY -->
-
-<!-- Mirrored from www.keenthemes.com/preview/metronic/theme/templates/admin3/table_managed.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Aug 2015 18:08:04 GMT -->
-</html>
+<script>
+$(window).load(function() {
+ 
+ Metronic.alert({
+                container:'#bootstrap_alerts' , // alerts parent container(by default placed after the page breadcrumbs)
+                place: 'append', // append or prepent in container 
+                type: 'danger',  // alert's type
+                message: 'Records not found',  // alert's message
+                close: '1', // make alert closable
+                reset: '1', // close all previouse alerts first
+                focus: '1', // auto scroll to the alert after shown
+                closeInSeconds: '0', // auto close after defined seconds
+                icon: "" // put icon before the message
+            });
+});
+    </script>

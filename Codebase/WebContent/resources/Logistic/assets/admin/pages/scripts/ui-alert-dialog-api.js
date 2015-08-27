@@ -44,7 +44,7 @@ var UIAlertDialogApi = function () {
                           alert("great success");
                         }
                       },
-                      danger: {
+                      danger: {	
                         label: "Danger!",
                         className: "red",
                         callback: function() {
