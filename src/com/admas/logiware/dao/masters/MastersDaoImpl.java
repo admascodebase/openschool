@@ -8,6 +8,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.HibernateException;
@@ -190,7 +191,9 @@ public class MastersDaoImpl implements MastersDao {
 			CriteriaQuery<Company> criteriaQuery = criteriaBuilder
 					.createQuery(Company.class);
 			Root<Company> companyJpa = criteriaQuery.from(Company.class);
+			Predicate notDeleted=criteriaBuilder.equal(companyJpa.get("delFlag"), 'N');
 			criteriaQuery.select(companyJpa);
+			criteriaQuery.where(notDeleted);
 			TypedQuery<Company> typedQuery = entityManager
 					.createQuery(criteriaQuery);
 			lCompanies = typedQuery.getResultList();
