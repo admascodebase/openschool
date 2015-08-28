@@ -161,13 +161,6 @@ public class EmployeeController extends BaseController{
 		logger.info("EmployeeController: editEmployee Method Start.");
 		FlowData flowData = null;
 		
-		/*if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
-		flowData = (FlowData) request.getSession().getAttribute(
-				WebAppConstants.FLOWDATA);
-		}
-		if (!flowData.isLoggedIn())
-			return super.loginPage(flowData, request);*/
-		
 		ModelAndView mv = new ModelAndView() ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
@@ -198,5 +191,40 @@ public class EmployeeController extends BaseController{
 	
 
 	
+	@RequestMapping(value = "/deleteEmployee.htm", method = RequestMethod.GET)
+	public ModelAndView deleteEmployee(HttpServletRequest request, HttpServletResponse response) {		
+		
+		logger.info("EmployeeController: deleteEmployee Method Start.");
+		FlowData flowData = null;
+		
+		ModelAndView mv = new ModelAndView() ;
+		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
+		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
+		Integer employeeId=3;
+		try {			
+			reqDtoObjects.put("employeeId", employeeId);
+			resDtoObjects = masterServiceImpl.deleteEmployee(flowData, reqDtoObjects, resDtoObjects);
+			String viewName = (String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
+			resDtoObjects = masterServiceImpl.getAllEmployee(flowData, reqDtoObjects, resDtoObjects);
+			@SuppressWarnings("unchecked")
+			List<EmployeeDto> lEmployees = (List<EmployeeDto>) resDtoObjects
+					.get("lEmployees");
+			mv=new ModelAndView(viewName);	
+			mv.addObject("lEmployees", lEmployees);
+			
+		} catch (LogiwareBaseException _be) {
+			logger.error("Exception in EmployeeController: showEditEmployee",
+					_be);
+			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
+
+		} catch (Exception e) {
+			logger.error(
+					"Exception In EmployeeController deleteEmployee Method--", e);
+			mv.addObject(WebAppConstants.ERROR_CODE,
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
+		}
+		
+		return mv;
+}
 	
 }

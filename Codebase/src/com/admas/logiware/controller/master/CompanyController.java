@@ -164,4 +164,43 @@ public class CompanyController extends BaseController {
 		
 	}
 	
+	
+	
+	@RequestMapping(value = "/deleteCompany.htm", method = RequestMethod.GET)
+	public ModelAndView deleteEmployee(HttpServletRequest request, HttpServletResponse response) {		
+		
+		logger.info("CompanyController: deleteCompany Method Start.");
+		FlowData flowData = null;
+		
+		ModelAndView mv = new ModelAndView() ;
+		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
+		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
+		Integer companyId=7;
+		try {			
+			reqDtoObjects.put("companyId", companyId);
+			resDtoObjects = masterServiceImpl.deleteCompany(flowData, reqDtoObjects, resDtoObjects);
+			String viewName = (String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
+			resDtoObjects = masterServiceImpl.getAllCompany(flowData, reqDtoObjects, resDtoObjects);
+			@SuppressWarnings("unchecked")
+			List<CompanyDto> lCompanies = (List<CompanyDto>) resDtoObjects
+					.get("lCompanies");
+			mv=new ModelAndView(viewName);	
+			mv.addObject("lCompanies", lCompanies);
+			
+		} catch (LogiwareBaseException _be) {
+			logger.error("Exception in CompanyController: deleteCompany",
+					_be);
+			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
+
+		} catch (Exception e) {
+			logger.error(
+					"Exception In CompanyController deleteCompany Method--", e);
+			mv.addObject(WebAppConstants.ERROR_CODE,
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
+		}
+		
+		return mv;
+}
+	
+	
 }

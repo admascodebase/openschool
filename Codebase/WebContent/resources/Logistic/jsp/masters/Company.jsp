@@ -193,6 +193,10 @@
 											<a href="showAddCompany.htm"><button
 													class="btn btn-circle btn-primary">Add New</button></a>
 										</div>
+										<div class="btn-group">
+											<a href="deleteCompany.htm"><button
+													class="btn btn-circle btn-primary">delete</button></a>
+										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="btn-group pull-right">

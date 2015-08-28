@@ -83,6 +83,14 @@ public class ServiceInvoker implements Serializable {
 			response = (K) getEmployeeById(url, (Map) request);
 			break;
 		}
+		case deleteEmployee: {
+			response = (K) deleteEmployee(url, (Map) request);
+			break;
+		}
+		case deleteCompany: {
+			response = (K) deleteCompany(url, (Map) request);
+			break;
+		}
 		default:
 			break;
 		}
@@ -320,14 +328,7 @@ public class ServiceInvoker implements Serializable {
 		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
 		try {
 			
-			
-			/*String userName = (String) request.get("userName");
-			String password = (String) request.get("password");
-			ClientRequest clientRequest = new ClientRequest(url
-					+ WebAppConstants.URL_SEPERATOR + userName
-					+ WebAppConstants.URL_SEPERATOR + password);*/
-			
-			String Employeeid=(String) request.get("employeeId");
+			Integer Employeeid= (Integer)request.get("employeeId");
 			ClientRequest clientRequest = new ClientRequest(url+ WebAppConstants.URL_SEPERATOR + Employeeid);
 			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
 			ClientResponse<LogiwareRespnse> response = clientRequest
@@ -353,6 +354,77 @@ public class ServiceInvoker implements Serializable {
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
 		}
 		logger.info("ServiceInvoker getEmployeeById method end. ");
+		return logiwareResponse;
+	}
+	
+	
+	
+	
+	
+	public LogiwareRespnse deleteEmployee(String url,
+			Map<String, Object> request) throws LogiwareBaseException {
+		
+		logger.info("ServiceInvoker deleteEmployee method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url + WebAppConstants.URL_SEPERATOR + request.get("employeeId"));
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest
+					.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "",
+						response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(),
+						logiwareResponse.getDescription());
+			} 
+
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker deleteEmployee method end.", e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker deleteEmployee method end. ");
+		return logiwareResponse;
+	}
+	
+	
+	
+	
+	public LogiwareRespnse deleteCompany(String url,
+			Map<String, Object> request) throws LogiwareBaseException {
+		
+		logger.info("ServiceInvoker deleteCompany method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url + WebAppConstants.URL_SEPERATOR + request.get("companyId"));
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest
+					.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "",
+						response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(),
+						logiwareResponse.getDescription());
+			} 
+
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker deleteCompany method end.", e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker deleteCompany method end. ");
 		return logiwareResponse;
 	}
 	

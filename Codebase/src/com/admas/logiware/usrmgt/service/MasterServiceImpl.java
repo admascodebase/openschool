@@ -416,7 +416,7 @@ public class MasterServiceImpl {
 		List<CompanyDto> lCompanies = new ArrayList<CompanyDto>();
 		String viewName = "";
 		try {
-			viewName = "getAllCompanies";
+			viewName = "getAllCompany";
 			lCompanies = doServiceCall(flowData, ServiceName.getAllCompany,
 					reqDtoObjects);
 			resDtoObjects.put("lCompanies", lCompanies);
@@ -588,13 +588,15 @@ public class MasterServiceImpl {
 			viewName = "getAllEmployee";
 			logiwareResponse = doServiceCall(flowData,
 					ServiceName.getEmployeeById, reqDtoObjects);
-			employeeDto = (EmployeeDto) logiwareResponse.getData();
+			Object object = logiwareResponse.getData();
+			employeeDto =(EmployeeDto) object;
 			resDtoObjects.put("userResponse", logiwareResponse);
 			resDtoObjects.put("viewName", viewName);
 			resDtoObjects.put("employee", employeeDto);
 		} catch (LogiwareBaseException b) {
 			throw b;
 		} catch (Exception e) {
+			e.printStackTrace();
 			logger.error(
 					"Exception In MasterServiceImpl: getEmployeeById method end.",
 					e);
@@ -604,6 +606,70 @@ public class MasterServiceImpl {
 		}
 		logger.info("MasterServiceImpl getEmployeeById method end. ");
 		return resDtoObjects;
+	}
+
+	public Map<String, Object> deleteEmployee(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+		
+		
+		logger.info("MasterServiceImpl deleteEmployee method start.");
+		LogiwareRespnse logiwareResponse = null;
+		EmployeeDto employeeDto = new EmployeeDto();
+		String viewName = "";
+		Boolean result=false;
+		try {
+			viewName = "getAllEmployee";
+			logiwareResponse = doServiceCall(flowData,	ServiceName.deleteEmployee, reqDtoObjects);
+			result = (Boolean) logiwareResponse.getData();
+			resDtoObjects.put("userResponse", logiwareResponse);
+			resDtoObjects.put("viewName", viewName);
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(
+					"Exception In MasterServiceImpl: deleteEmployee method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("MasterServiceImpl deleteEmployee method end. ");
+		return resDtoObjects;
+		
+	}
+
+	public Map<String, Object> deleteCompany(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+		
+		
+		
+		logger.info("MasterServiceImpl deleteCompany method start.");
+		LogiwareRespnse logiwareResponse = null;
+		String viewName = "";
+		Boolean result=false;
+		try {
+			viewName = "getAllCompany";
+			logiwareResponse = doServiceCall(flowData,	ServiceName.deleteCompany, reqDtoObjects);
+			result = (Boolean) logiwareResponse.getData();
+			resDtoObjects.put("userResponse", logiwareResponse);
+			resDtoObjects.put("viewName", viewName);
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(
+					"Exception In MasterServiceImpl: deleteEmployee method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("MasterServiceImpl deleteEmployee method end. ");
+		return resDtoObjects;
+		
 	}
 
 }

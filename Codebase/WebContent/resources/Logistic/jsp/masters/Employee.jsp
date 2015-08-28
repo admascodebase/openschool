@@ -193,6 +193,10 @@
 													class="btn btn-circle btn-primary">Add New</button></a>
 										<a href="showEditEmployee.htm"><button
 													class="btn btn-circle yellow-crusta">Edit</button></a>
+									
+									<a href="deleteEmployee.htm"><button
+													class="btn btn-circle yellow-crusta">delete</button></a>
+									
 										</div>
 									</div>
 									<div class="col-md-6">

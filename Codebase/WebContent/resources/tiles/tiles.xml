@@ -107,7 +107,7 @@
 			value="/resources/Logistic/jsp/masters/Branch.jsp" />
 	</definition>
 
-	<definition name="getAllCompanies" extends="logistic.baselayout">
+	<definition name="getAllCompany" extends="logistic.baselayout">
 		<put-attribute name="title" value="Logistic -Company Details" />
 		<put-attribute name="body"
 			value="/resources/Logistic/jsp/masters/Company.jsp" />
