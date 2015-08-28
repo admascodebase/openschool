@@ -265,17 +265,16 @@ public class MasterServices {
 		return Response.status(200).entity(logiwareRespnse).build();
 	}
 	
-	@POST
-	@Path("/deleteCompany")
+	@GET
+	@Path("/deleteCompany/{companyId}")
 	@Produces({ MediaType.APPLICATION_JSON })
-	@Consumes({MediaType.APPLICATION_JSON })
-	public Response deleteCompany(CompanyDto companyDto) {
+	public Response deleteCompany(@PathParam("companyId")Integer companyId) {
 
 		logger.info(" Start  MasterService- > deleteCompany ");
 		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
 		Boolean result=false;
 		try {
-			result=mastersLogic.deleteCompany(companyDto);
+			result=mastersLogic.deleteCompany(companyId);
 			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
 			logiwareRespnse.setData(result);
 		} catch (LogiwareExceptionHandler e) {
@@ -477,17 +476,16 @@ public class MasterServices {
 	
 
 	
-	@POST
-	@Path("/deleteEmployee")
+	@GET
+	@Path("/deleteEmployee/{employeeId}")
 	@Produces({ MediaType.APPLICATION_JSON })
-	@Consumes({MediaType.APPLICATION_JSON })
-	public Response deleteEmployee(EmployeeDto employeeDto) {
+	public Response deleteEmployee(@PathParam("employeeId")Integer employeeId) {
 
 		logger.info(" Start  MasterService- > deleteEmployee ");
 		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
 		Boolean result=false;
 		try {
-			result=mastersLogic.deleteEmployee(employeeDto);
+			result=mastersLogic.deleteEmployee(employeeId);
 			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
 			logiwareRespnse.setData(result);
 		} catch (LogiwareExceptionHandler e) {

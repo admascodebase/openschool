@@ -189,12 +189,12 @@ public class MastersLogicImpl implements MastersLogic {
 	}
 
 	@Override
-	public Boolean deleteCompany(CompanyDto companyDto)
+	public Boolean deleteCompany(Integer companyId)
 			throws LogiwareExceptionHandler {
 
 		Boolean result = false;
 		try {
-			result = mastersDao.deleteCompany(companyDto);
+			result = mastersDao.deleteCompany(companyId);
 		} catch (LogiwareExceptionHandler e) {
 			throw e;
 		} catch (Exception e) {
@@ -380,12 +380,12 @@ public class MastersLogicImpl implements MastersLogic {
 	}
 
 	@Override
-	public Boolean deleteEmployee(EmployeeDto employeeDto)
+	public Boolean deleteEmployee(Integer employeeId)
 			throws LogiwareExceptionHandler {
 		
 		Boolean result = false;
 		try {
-			result = mastersDao.deleteEmployee(employeeDto);
+			result = mastersDao.deleteEmployee(employeeId);
 		} catch (LogiwareExceptionHandler e) {
 			throw e;
 		} catch (Exception e) {

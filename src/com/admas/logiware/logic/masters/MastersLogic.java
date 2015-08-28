@@ -19,7 +19,7 @@ public interface MastersLogic {
 
 	public List<CompanyDto> getAllcompany()throws LogiwareExceptionHandler;
 
-	public Boolean deleteCompany(CompanyDto companyDto)throws LogiwareExceptionHandler;
+	public Boolean deleteCompany(Integer companyId)throws LogiwareExceptionHandler;
 
 	public Boolean editCompany(CompanyDto companyDto)throws LogiwareExceptionHandler;
 
@@ -37,5 +37,5 @@ public interface MastersLogic {
 
 	public Boolean editEmployee(EmployeeDto employeeDto)throws LogiwareExceptionHandler;
 
-	public Boolean deleteEmployee(EmployeeDto employeeDto)throws LogiwareExceptionHandler;
+	public Boolean deleteEmployee(Integer employeeId)throws LogiwareExceptionHandler;
 }

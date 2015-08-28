@@ -318,14 +318,14 @@ public class MastersDaoImpl implements MastersDao {
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-	public Boolean deleteCompany(CompanyDto companyDto)
+	public Boolean deleteCompany(Integer companyId)
 			throws LogiwareExceptionHandler {
 
 		Boolean result = false;
 		try {
 			Query query = entityManager
 					.createQuery("UPDATE Company SET  delFlag = 'Y' WHERE id = :id");
-			query.setParameter("id", companyDto.getId());
+			query.setParameter("id", companyId);
 			int updateResult = query.executeUpdate();
 
 			if (updateResult != 0) {
@@ -433,7 +433,9 @@ public class MastersDaoImpl implements MastersDao {
 			CriteriaQuery<Employee> criteriaQuery = criteriaBuilder
 					.createQuery(Employee.class);
 			Root<Employee> employeeJpa = criteriaQuery.from(Employee.class);
+			Predicate notDeleted=criteriaBuilder.equal(employeeJpa.get("delFlag"), 'N');
 			criteriaQuery.select(employeeJpa);
+			criteriaQuery.where(notDeleted);
 			TypedQuery<Employee> typedQuery = entityManager
 					.createQuery(criteriaQuery);
 			lEmployees = typedQuery.getResultList();
@@ -595,14 +597,14 @@ public class MastersDaoImpl implements MastersDao {
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-	public Boolean deleteEmployee(EmployeeDto employeeDto)
+	public Boolean deleteEmployee(Integer employeeId)
 			throws LogiwareExceptionHandler {
 		
 		Boolean result = false;
 		try {
 			Query query = entityManager
 					.createQuery("UPDATE Employee SET  delFlag = 'Y' WHERE id = :id");
-			query.setParameter("id", employeeDto.getId());
+			query.setParameter("id", employeeId);
 			int updateResult = query.executeUpdate();
 
 			if (updateResult != 0) {

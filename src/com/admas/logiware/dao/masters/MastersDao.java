@@ -27,7 +27,7 @@ public interface MastersDao {
 
 	public Boolean editCompany(CompanyDto companyDto)throws LogiwareExceptionHandler;
 
-	public Boolean deleteCompany(CompanyDto companyDto)throws LogiwareExceptionHandler;
+	public Boolean deleteCompany(Integer companyId)throws LogiwareExceptionHandler;
 
 	public Company getCompanyById(Integer companyId)throws LogiwareExceptionHandler;
 
@@ -41,5 +41,5 @@ public interface MastersDao {
 
 	public Boolean editEmployee(EmployeeDto employeeDto)throws LogiwareExceptionHandler;
 
-	public Boolean deleteEmployee(EmployeeDto employeeDto)throws LogiwareExceptionHandler;
+	public Boolean deleteEmployee(Integer employeeId)throws LogiwareExceptionHandler;
 }
