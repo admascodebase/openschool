@@ -223,8 +223,7 @@
 																Name</label>
 															<div class="col-md-9">
 																<form:input type="text" path="name" class="form-control"
-																	placeholder="Chee Kin"/> <span
-																	class="help-block"> Company Name here.. </span>
+																	placeholder="Company Name here.."/> 
 															</div>
 														</div>
 													</div>
@@ -234,8 +233,7 @@
 															<label class="control-label col-md-3">Address</label>
 															<div class="col-md-9">
 																<form:input type="text" path="address" class="form-control"
-																	placeholder="Chee Kin"/> <span
-																	class="help-block"> Address here.. </span>
+																	placeholder="Address here.. "/> 
 															</div>
 														</div>
 													</div>
@@ -246,11 +244,10 @@
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label col-md-3">Contact
-																Number 1</label>
+																No.1</label>
 															<div class="col-md-9">
 																<form:input type="text" path="contactNo1" class="form-control"
-																	placeholder="Chee Kin"/> <span
-																	class="help-block"> Enter your contact number. </span>
+																	placeholder="Enter your contact number."/> 
 															</div>
 														</div>
 													</div>
@@ -258,10 +255,10 @@
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label col-md-3">Contact
-																Number 2</label>
+																No.2</label>
 															<div class="col-md-9">
 																<form:input path="contactNo2" type="text" class="form-control"
-																	placeholder="dd/mm/yyyy"/>
+																	placeholder="Enter your contact number."/>
 															</div>
 														</div>
 													</div>
@@ -273,7 +270,7 @@
 														<div class="form-group">
 															<label class="control-label col-md-3">Email Id 1</label>
 															<div class="col-md-9">
-																<form:input path="emailId1" type="text" class="form-control" placeholder="Chee Kin"/>
+																<form:input path="emailId1" type="text" class="form-control" placeholder="Enter email id 1."/>
 															</div>
 														</div>
 													</div>
@@ -282,7 +279,7 @@
 														<div class="form-group">
 															<label class="control-label col-md-3">Email Id 2</label>
 															<div class="col-md-9">
-															<form:input path="emailId2" type="text" class="form-control" placeholder="Chee Kin"/>
+															<form:input path="emailId2" type="text" class="form-control" placeholder="Enter email id 2"/>
 															</div>
 														</div>
 													</div>
@@ -295,7 +292,7 @@
 														<div class="form-group">
 															<label class="control-label col-md-3">PAN Number</label>
 															<div class="col-md-9">
-																<form:input path="panNo" type="text" class="form-control"/>
+																<form:input path="panNo" type="text" class="form-control" placeholder="PAN Number"/>
 															</div>
 														</div>
 													</div>
@@ -303,7 +300,7 @@
 														<div class="form-group">
 															<label class="control-label col-md-3">TAN Number</label>
 															<div class="col-md-9">
-																<form:input path="tanNo" type="text" class="form-control"/>
+																<form:input path="tanNo" type="text" class="form-control" placeholder="TAN Number"/>
 															</div>
 														</div>
 													</div>
@@ -313,7 +310,7 @@
 														<div class="form-group">
 															<label class="control-label col-md-3">Tag Line</label>
 															<div class="col-md-9">
-																<form:input path="tagLine" type="text" class="form-control"/>
+																<form:input path="tagLine" type="text" class="form-control" placeholder="Company tag line"/>
 															</div>
 														</div>
 													</div>
@@ -322,7 +319,11 @@
 												
 												<!--/row-->
 											</div>
-											<div class="form-actions">
+											<div class="form-actions right">
+												<button class="btn default" type="button">Cancel</button>
+												<button class="btn blue" type="submit"><i class="fa fa-check"></i> Save</button>
+											</div>
+											<!-- <div class="form-actions">
 												<div class="row">
 													<div class="col-md-6">
 														<div class="row">
@@ -334,7 +335,7 @@
 													</div>
 													<div class="col-md-6"></div>
 												</div>
-											</div>
+											</div> -->
 										</form:form>
 										<!-- END FORM-->
 									</div>
