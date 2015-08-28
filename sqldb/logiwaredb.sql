@@ -2,7 +2,8 @@
 SQLyog Enterprise - MySQL GUI v7.02 
 MySQL - 5.5.43-0ubuntu0.14.04.1 : Database - sql687652
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
