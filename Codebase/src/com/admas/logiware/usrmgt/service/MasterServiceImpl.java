@@ -600,4 +600,49 @@ public class MasterServiceImpl {
 		
 	}
 
+	public Map<String, Object> showEditEmployee(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) {
+		
+		String viewName = "";
+		try {
+			viewName = "showAddCompany";
+
+		} catch (Exception exp) {
+			logger.error("Exception in EditEmployee()", exp);
+		}
+
+		resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
+		return resDtoObjects;
+	}
+
+	public Map<String, Object> getEmployeeById(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+		
+		logger.info("MasterServiceImpl getEmployeeById method start.");
+		LogiwareRespnse logiwareResponse = null;
+		EmployeeDto employeeDto = new EmployeeDto();
+		String viewName = "";
+		try {
+			viewName = "getAllEmployee";
+			logiwareResponse = doServiceCall(flowData, ServiceName.getEmployeeById, reqDtoObjects);
+			employeeDto=(EmployeeDto) logiwareResponse.getData();
+			resDtoObjects.put("userResponse", logiwareResponse);
+			resDtoObjects.put("viewName", viewName);
+			resDtoObjects.put("employee",employeeDto );
+			} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error(
+					"Exception In MasterServiceImpl: getEmployeeById method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("MasterServiceImpl getEmployeeById method end. ");
+		return resDtoObjects;
+	}
+
 }

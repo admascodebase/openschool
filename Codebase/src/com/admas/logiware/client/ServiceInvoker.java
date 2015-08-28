@@ -80,6 +80,10 @@ public class ServiceInvoker implements Serializable {
 			response = (K) saveEmployee(url, (Map) request);
 			break;
 		}
+		case getEmployeeById: {
+			response = (K) getEmployeeById(url, (Map) request);
+			break;
+		}
 		default:
 			break;
 		}
@@ -311,5 +315,44 @@ public class ServiceInvoker implements Serializable {
 		logger.info("ServiceInvoker getAllCompany method end. ");
 		return logiwareResponse;
 	}
+	
+	/*
+	 *Get Employee By Id 
+	 */
+	public LogiwareRespnse getEmployeeById(String url,
+			Map<String, Object> request) throws LogiwareBaseException {
+		
+		logger.info("ServiceInvoker getEmployeeById method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+//			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("employee"));
+			ClientResponse<LogiwareRespnse> response = clientRequest
+					.post(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "",
+						response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(),
+						logiwareResponse.getDescription());
+			} /*else {
+				result = (Boolean) logiwareResponse.getData();
+			}*/
+
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker getEmployeeById method end.", e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker getEmployeeById method end. ");
+		return logiwareResponse;
+	}
+	
 	
 }

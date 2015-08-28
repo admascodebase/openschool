@@ -145,8 +145,7 @@ public class EmployeeController extends BaseController{
 		
 	}
 	
-	
-	/*@RequestMapping(value = "/showEditEmployee.htm", method = RequestMethod.GET)
+	@RequestMapping(value = "/showEditEmployee.htm", method = RequestMethod.GET)
 	public ModelAndView editEmployee(HttpServletRequest request, HttpServletResponse response) {		
 		
 		logger.info("EmployeeController: editEmployee Method Start.");
@@ -155,12 +154,16 @@ public class EmployeeController extends BaseController{
 		ModelAndView mv = new ModelAndView() ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
+		EmployeeDto employeeDto=null;
+		Integer employeeId=3;
 		try {			
-			
-			resDtoObjects=masterServiceImpl.showAddEmployee(flowData, reqDtoObjects, resDtoObjects);
+			reqDtoObjects.put("employeeId", employeeId);
+			resDtoObjects=masterServiceImpl.showEditEmployee(flowData, reqDtoObjects, resDtoObjects);
 			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
 			mv=new ModelAndView(viewName);	
-			mv.addObject("employee",new EmployeeDto());
+			resDtoObjects=masterServiceImpl.getEmployeeById(flowData, reqDtoObjects, resDtoObjects);
+			employeeDto=(EmployeeDto) resDtoObjects.get("employee");
+			mv.addObject("employee",employeeDto);
 		} catch (Exception e) {
 			logger.error(
 					"Exception In EmployeeController: editEmployee Method--", e);
@@ -169,7 +172,7 @@ public class EmployeeController extends BaseController{
 		}
 		
 		return mv;
-}*/
+}
 	
 
 	

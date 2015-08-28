@@ -21,7 +21,8 @@ public class ServiceEndPointConstants {
 		getAllCompany("getAllCompany"),
 		getAllEmployee("getAllEmployee"),
 		saveCompany("saveCompany"),
-		saveEmployee("saveEmployee");
+		saveEmployee("saveEmployee"),
+		getEmployeeById("getEmployeeById");
 
 		/** The value. */
 		private final String value;
