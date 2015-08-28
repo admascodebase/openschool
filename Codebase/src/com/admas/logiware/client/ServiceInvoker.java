@@ -319,11 +319,19 @@ public class ServiceInvoker implements Serializable {
 		logger.info("ServiceInvoker getEmployeeById method start. ");
 		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
 		try {
-			ClientRequest clientRequest = new ClientRequest(url);
+			
+			
+			/*String userName = (String) request.get("userName");
+			String password = (String) request.get("password");
+			ClientRequest clientRequest = new ClientRequest(url
+					+ WebAppConstants.URL_SEPERATOR + userName
+					+ WebAppConstants.URL_SEPERATOR + password);*/
+			
+			String Employeeid=(String) request.get("employeeId");
+			ClientRequest clientRequest = new ClientRequest(url+ WebAppConstants.URL_SEPERATOR + Employeeid);
 			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
-//			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("employee"));
 			ClientResponse<LogiwareRespnse> response = clientRequest
-					.post(LogiwareRespnse.class);
+					.get(LogiwareRespnse.class);
 			if (response.getStatus() != 200) {
 				throw new LogiwareBaseException(response.getStatus() + "",
 						response.getStatus() + "");
