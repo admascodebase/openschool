@@ -20,7 +20,6 @@ import com.admas.logiware.client.ServiceEndPointConstants.ServiceName;
 import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.Customer;
-import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.LogiwareRespnse;
 import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
@@ -176,7 +175,6 @@ public class ServiceInvoker implements Serializable {
 		logger.info("ServiceInvoker getAllCompany method start. ");
 		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
 		List<CompanyDto> lCompanies = new ArrayList<CompanyDto>();
-		// CompanyDto CompanyDto=new CompanyDto();
 		try {
 			ClientRequest clientRequest = new ClientRequest(url);
 			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
@@ -213,7 +211,6 @@ public class ServiceInvoker implements Serializable {
 		
 		logger.info("ServiceInvoker saveCompany method start. ");
 		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
-		Boolean result=false;
 		try {
 			ClientRequest clientRequest = new ClientRequest(url);
 			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
@@ -228,9 +225,7 @@ public class ServiceInvoker implements Serializable {
 			if (!logiwareResponse.getCode().equals("0000")) {
 				throw new LogiwareBaseException(logiwareResponse.getCode(),
 						logiwareResponse.getDescription());
-			} /*else {
-				result = (Boolean) logiwareResponse.getData();
-			}*/
+			} 
 
 		} catch (LogiwareBaseException b) {
 			throw b;
@@ -249,7 +244,6 @@ public class ServiceInvoker implements Serializable {
 	public LogiwareRespnse getAllEmployee(String url, Map<String, Object> request) throws LogiwareBaseException {
 		logger.info("ServiceInvoker getAllEmployee method start. ");
 		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
-//		List<EmployeeDto> lemployees  = new ArrayList<EmployeeDto>();
 		try {
 			ClientRequest clientRequest = new ClientRequest(url);
 			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);

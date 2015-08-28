@@ -79,7 +79,7 @@ public class TransportTypeController extends BaseController {
 					e);
 			mv.addObject(
 					WebAppConstants.ERROR_CODE,
-					LogiwarePortalErrors.ERROR_WHILE_FETCHING_PAYMENT_MONITORING_RECORDS
+					LogiwarePortalErrors.GENERIC_EXCEPTION
 							.getErrorCode());
 		}
 
@@ -110,7 +110,7 @@ public class TransportTypeController extends BaseController {
 					"Exception In PaymentController viewPaymentEntries --", e);
 			mv.addObject(
 					WebAppConstants.ERROR_CODE,
-					LogiwarePortalErrors.ERROR_WHILE_FETCHING_PAYMENT_MONITORING_RECORDS
+					LogiwarePortalErrors.GENERIC_EXCEPTION
 							.getErrorCode());
 		}
 		logger.info("TransportTypeController: addTransportType() Method End.");
@@ -145,7 +145,7 @@ public class TransportTypeController extends BaseController {
 					"Exception In PaymentController viewPaymentEntries --", e);
 			mv.addObject(
 					WebAppConstants.ERROR_CODE,
-					LogiwarePortalErrors.ERROR_WHILE_FETCHING_PAYMENT_MONITORING_RECORDS
+					LogiwarePortalErrors.GENERIC_EXCEPTION
 							.getErrorCode());
 		}
 		logger.info("TransportTypeController: saveTransportType() Method End.");
@@ -178,7 +178,7 @@ public class TransportTypeController extends BaseController {
 			modelView
 					.addObject(
 							WebAppConstants.ERROR_CODE,
-							LogiwarePortalErrors.ERROR_WHILE_FETCHING_PAYMENT_MONITORING_RECORDS
+							LogiwarePortalErrors.GENERIC_EXCEPTION
 									.getErrorCode());
 		}
 		logger.info("TransportTypeController: EditTransportType() Method End.");
@@ -209,7 +209,7 @@ public class TransportTypeController extends BaseController {
 					"Exception In TransportTypeController DeleteTransportType  --",
 					e);
 			modelView.addObject(WebAppConstants.ERROR_CODE,
-							LogiwarePortalErrors.ERROR_WHILE_FETCHING_PAYMENT_MONITORING_RECORDS
+							LogiwarePortalErrors.GENERIC_EXCEPTION
 									.getErrorCode());
 		}
 		logger.info("TransportTypeController: DeleteTransportType() Method End.");
@@ -257,7 +257,7 @@ public class TransportTypeController extends BaseController {
 					e);
 			mv.addObject(
 					WebAppConstants.ERROR_CODE,
-					LogiwarePortalErrors.ERROR_WHILE_FETCHING_PAYMENT_MONITORING_RECORDS
+					LogiwarePortalErrors.GENERIC_EXCEPTION
 							.getErrorCode());
 		}
 

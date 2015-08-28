@@ -64,7 +64,7 @@ public class SysAdminController extends BaseController {
 			logger.error(
 					"Exception In PaymentController viewPaymentEntries --", e);
 			mv.addObject(WebAppConstants.ERROR_CODE,
-					LogiwarePortalErrors.ERROR_WHILE_FETCHING_PAYMENT_MONITORING_RECORDS.getErrorCode());
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
 		
 		return mv;

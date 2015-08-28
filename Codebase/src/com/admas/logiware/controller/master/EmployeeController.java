@@ -20,6 +20,7 @@ import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.controller.core.BaseController;
 import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.FlowData;
+import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
 import com.admas.logiware.usrmgt.service.MasterServiceImpl;
 
@@ -38,23 +39,16 @@ public class EmployeeController extends BaseController{
 	public ModelAndView getAllEmployee(HttpServletRequest request,
 			HttpServletResponse response) {
 
-		/*
-		 * FlowData flowData=null; //HashMap<String,Object>reqDtoObject = new
-		 * HashMap<String, Object>(); HashMap<String,Object>resDtoObject = new
-		 * HashMap<String, Object>();
-		 * 
-		 * return masterServiceImpl.getAllBranches(flowData, resDtoObject);
-		 */
-
 		logger.info("EmployeeController: getAllEmployee Method Start.");
 		FlowData flowData = null;
-		/*
-		 * super.handleRequestInternal(request, response); FlowData flowData =
-		 * null; if (request.getSession().getAttribute(WebAppConstants.FLOWDATA)
-		 * != null) { flowData = (FlowData) request.getSession().getAttribute(
-		 * WebAppConstants.FLOWDATA); } if (!flowData.isLoggedIn()) return
-		 * super.loginPage(flowData, request);
-		 */
+		
+		/*if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
+		flowData = (FlowData) request.getSession().getAttribute(
+				WebAppConstants.FLOWDATA);
+		}
+		if (!flowData.isLoggedIn())
+			return super.loginPage(flowData, request);*/
+		
 		ModelAndView mv = new ModelAndView();
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
@@ -69,19 +63,16 @@ public class EmployeeController extends BaseController{
 					.get("lEmployees");
 			mv.addObject("lEmployees", lEmployees);
 			
-			// mv.addObject(viewName);
-			/*
-			 * } catch (LogiwareBaseException _be) {
-			 * logger.error("Exception in PaymentController: viewPaymentEntries"
-			 * , _be); mv.addObject(WebAppConstants.ERROR_CODE,
-			 * _be.getErrorCode());
-			 */
+		} catch (LogiwareBaseException _be) {
+			logger.error("Exception in CompanyController: getAllCompany",
+					_be);
+			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
+
 		} catch (Exception e) {
-			logger.error("Exception In EmployeeController  --", e);
-			mv.addObject(
-					WebAppConstants.ERROR_CODE,
-					LogiwarePortalErrors.ERROR_WHILE_FETCHING_PAYMENT_MONITORING_RECORDS
-							.getErrorCode());
+			logger.error(
+					"Exception In CompanyController addCompany Method--", e);
+			mv.addObject(WebAppConstants.ERROR_CODE,
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
 
 		return mv;
@@ -96,6 +87,13 @@ public class EmployeeController extends BaseController{
 		logger.info("EmployeeController: addEmployee Method Start.");
 		FlowData flowData = null;
 		
+		/*if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
+		flowData = (FlowData) request.getSession().getAttribute(
+				WebAppConstants.FLOWDATA);
+		}
+		if (!flowData.isLoggedIn())
+			return super.loginPage(flowData, request);*/
+		
 		ModelAndView mv = new ModelAndView() ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
@@ -109,7 +107,7 @@ public class EmployeeController extends BaseController{
 			logger.error(
 					"Exception In EmployeeController: addEmployee Method--", e);
 			mv.addObject(WebAppConstants.ERROR_CODE,
-					LogiwarePortalErrors.ERROR_WHILE_FETCHING_PAYMENT_MONITORING_RECORDS.getErrorCode());
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
 		
 		return mv;
@@ -118,8 +116,15 @@ public class EmployeeController extends BaseController{
 	@RequestMapping(value="/saveEmployee.htm", method=RequestMethod.POST)
 	public ModelAndView saveEmployee(@ModelAttribute("employee")EmployeeDto employeeDto, HttpServletRequest request, HttpServletResponse response){
 		
-		logger.info("CompanyController: saveCompany Method Start.");
+		logger.info("EmployeeController: saveCompany Method Start.");
 		FlowData flowData = null;
+		
+		/*if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
+		flowData = (FlowData) request.getSession().getAttribute(
+				WebAppConstants.FLOWDATA);
+		}
+		if (!flowData.isLoggedIn())
+			return super.loginPage(flowData, request);*/
 		
 		ModelAndView mv = new ModelAndView() ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
@@ -133,11 +138,16 @@ public class EmployeeController extends BaseController{
 			List<EmployeeDto> lEmployees = (List<EmployeeDto>) resDtoObjects.get("lEmployees");
 			mv=new ModelAndView(viewName);	
 			mv.addObject("lEmployees", lEmployees);
+		} catch (LogiwareBaseException _be) {
+			logger.error("Exception in EmployeeController: saveCompany",
+					_be);
+			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
+
 		} catch (Exception e) {
 			logger.error(
-					"Exception In CompanyController saveEmployee Method--", e);
+					"Exception In EmployeeController saveCompany Method--", e);
 			mv.addObject(WebAppConstants.ERROR_CODE,
-					LogiwarePortalErrors.ERROR_WHILE_FETCHING_PAYMENT_MONITORING_RECORDS.getErrorCode());
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
 		
 		return mv;
@@ -146,10 +156,17 @@ public class EmployeeController extends BaseController{
 	}
 	
 	@RequestMapping(value = "/showEditEmployee.htm", method = RequestMethod.GET)
-	public ModelAndView editEmployee(HttpServletRequest request, HttpServletResponse response) {		
+	public ModelAndView showEditEmployee(HttpServletRequest request, HttpServletResponse response) {		
 		
 		logger.info("EmployeeController: editEmployee Method Start.");
 		FlowData flowData = null;
+		
+		/*if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
+		flowData = (FlowData) request.getSession().getAttribute(
+				WebAppConstants.FLOWDATA);
+		}
+		if (!flowData.isLoggedIn())
+			return super.loginPage(flowData, request);*/
 		
 		ModelAndView mv = new ModelAndView() ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
@@ -164,11 +181,16 @@ public class EmployeeController extends BaseController{
 			resDtoObjects=masterServiceImpl.getEmployeeById(flowData, reqDtoObjects, resDtoObjects);
 			employeeDto=(EmployeeDto) resDtoObjects.get("employee");
 			mv.addObject("employee",employeeDto);
+		} catch (LogiwareBaseException _be) {
+			logger.error("Exception in EmployeeController: showEditEmployee",
+					_be);
+			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
+
 		} catch (Exception e) {
 			logger.error(
-					"Exception In EmployeeController: editEmployee Method--", e);
+					"Exception In EmployeeController showEditEmployee Method--", e);
 			mv.addObject(WebAppConstants.ERROR_CODE,
-					LogiwarePortalErrors.ERROR_WHILE_FETCHING_PAYMENT_MONITORING_RECORDS.getErrorCode());
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
 		
 		return mv;

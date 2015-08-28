@@ -410,66 +410,48 @@ public class MasterServiceImpl {
 
 	public Map<String, Object> getAllCompany(FlowData flowData,
 			HashMap<String, Object> reqDtoObjects,
-			Map<String, Object> resDtoObjects) {
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
 
 		logger.info("MasterServiceImpl getAllCompany method start. ");
-		CompanyDto companyDto = new CompanyDto();
-		CompanyDto companyDto1 = new CompanyDto();
 		List<CompanyDto> lCompanies = new ArrayList<CompanyDto>();
 		String viewName = "";
 		try {
 			viewName = "getAllCompanies";
-			lCompanies = doServiceCall(flowData, ServiceName.getAllCompany, reqDtoObjects);
-
-			/*companyDto.setId(1);
-			companyDto.setAddress("Puneee");
-			companyDto.setContactNo1("87988");
-			companyDto.setContactNo2("87988");
-			companyDto.setEmailId1("EmailId1");
-			companyDto.setEmailId2("EmailId1");
-			companyDto.setCustId(1);
-			companyDto.setLogo("logoooo");
-			companyDto.setName("ADMAS");
-			companyDto.setPanNo("65464654");
-			companyDto.setTanNo("6999898");
-			companyDto.setTagLine("taglineeeeeee");
-			companyDto.setTanNo("tannnnnnn98789");
-
-			lCompanies.add(companyDto);*/
+			lCompanies = doServiceCall(flowData, ServiceName.getAllCompany,
+					reqDtoObjects);
 			resDtoObjects.put("lCompanies", lCompanies);
 			resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
-			/*
-			 * } catch (LogiwareBaseException b) { throw b;
-			 */
+
+		} catch (LogiwareBaseException b) {
+			throw b;
 		} catch (Exception e) {
-			logger.error(
-					"Exception In MasterServiceImpl getAllCompany method end.",
-					e);
-			/*
-			 * throw new LogiwareBaseException(
-			 * LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
-			 * LogiwarePortalErrors.INVALID_REQUEST .getErrorDescription());
-			 */
+			logger.error("Exception In MasterServiceImpl getAllCompany method end.",e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode(),
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorDescription());
+
 		}
 		logger.info("MasterServiceImpl getAllCompany method End. ");
-		// return responseUser;
 		return resDtoObjects;
 
 	}
 
 	public Map<String, Object> showAddCompany(FlowData flowData,
 			HashMap<String, Object> reqDtoObjects,
-			Map<String, Object> resDtoObjects) {
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
 
 		String viewName = "";
 		try {
 			viewName = "showAddCompany";
-
-		} catch (Exception exp) {
+			resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
+		}catch (Exception exp) {
 			logger.error("Exception in addCompany()", exp);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode(),
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorDescription());
 		}
 
-		resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
+		
 		return resDtoObjects;
 
 	}
@@ -477,11 +459,9 @@ public class MasterServiceImpl {
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> getAllEmployee(FlowData flowData,
 			HashMap<String, Object> reqDtoObjects,
-			Map<String, Object> resDtoObjects) {
-		
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException{		
 		
 		logger.info("MasterServiceImpl getAllEmployee method start.");
-		EmployeeDto employeeDto= new EmployeeDto();
 		List<EmployeeDto> lEmployees = new ArrayList<EmployeeDto>();
 		LogiwareRespnse logiwareRespnse = null;
 		String viewName = "";
@@ -489,36 +469,19 @@ public class MasterServiceImpl {
 			viewName = "getAllEmployee";
 			 logiwareRespnse = doServiceCall(flowData, ServiceName.getAllEmployee, reqDtoObjects);
 			 lEmployees =(List<EmployeeDto>) logiwareRespnse.getData();
-			/*employeeDto.setAddress("Pune");
-			employeeDto.setBranchId(1);
-			employeeDto.setCompId(2);
-			employeeDto.setContactNo("9876543575");
-			employeeDto.setDelFlag('N');
-			employeeDto.setGender('F');
-			employeeDto.setId(2);
-			employeeDto.setIsSysAcc('Y');
-			employeeDto.setName("Ajinkya");
-			employeeDto.setPan("987654321");
-			employeeDto.setSalary(98700.00f);
-			employeeDto.setSalaryType("Monthly");*/
 			 
 			resDtoObjects.put("lEmployees", lEmployees);
 			resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
-			/*
-			 * } catch (LogiwareBaseException b) { throw b;
-			 */
+		} catch (LogiwareBaseException b) {
+			throw b;
 		} catch (Exception e) {
-			logger.error(
-					"Exception In MasterServiceImpl getAllCompany method end.",
-					e);
-			/*
-			 * throw new LogiwareBaseException(
-			 * LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
-			 * LogiwarePortalErrors.INVALID_REQUEST .getErrorDescription());
-			 */
+			logger.error("Exception In MasterServiceImpl getAllEmployee method end.",e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode(),
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorDescription());
+
 		}
-		logger.info("MasterServiceImpl getAllCompany method End. ");
-		// return responseUser;
+		logger.info("MasterServiceImpl getAllEmployee method End. ");
 		return resDtoObjects;
 		
 	}
@@ -544,7 +507,7 @@ public class MasterServiceImpl {
 	public Map<String, Object> saveCompany(FlowData flowData,
 			HashMap<String, Object> reqDtoObjects,
 			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
-		
+
 		logger.info("MasterServiceImpl saveCompany method start.");
 		LogiwareRespnse logiwareResponse = null;
 		String viewName = "";
@@ -554,7 +517,7 @@ public class MasterServiceImpl {
 					reqDtoObjects);
 			resDtoObjects.put("userResponse", logiwareResponse);
 			resDtoObjects.put("viewName", viewName);
-			} catch (LogiwareBaseException b) {
+		} catch (LogiwareBaseException b) {
 			throw b;
 		} catch (Exception e) {
 			logger.error(
@@ -566,24 +529,23 @@ public class MasterServiceImpl {
 		}
 		logger.info("MasterServiceImpl saveCompany method end. ");
 		return resDtoObjects;
-		
+
 	}
 
 	public Map<String, Object> saveEmployee(FlowData flowData,
 			HashMap<String, Object> reqDtoObjects,
 			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
-		
-		
+
 		logger.info("MasterServiceImpl saveEmployee method start.");
 		LogiwareRespnse logiwareResponse = null;
 		String viewName = "";
 		try {
 			viewName = "getAllEmployee";
-			logiwareResponse = doServiceCall(flowData, ServiceName.saveEmployee,
-					reqDtoObjects);
+			logiwareResponse = doServiceCall(flowData,
+					ServiceName.saveEmployee, reqDtoObjects);
 			resDtoObjects.put("userResponse", logiwareResponse);
 			resDtoObjects.put("viewName", viewName);
-			} catch (LogiwareBaseException b) {
+		} catch (LogiwareBaseException b) {
 			throw b;
 		} catch (Exception e) {
 			logger.error(
@@ -595,15 +557,13 @@ public class MasterServiceImpl {
 		}
 		logger.info("MasterServiceImpl saveCompany method end. ");
 		return resDtoObjects;
-		
-		
-		
+
 	}
 
 	public Map<String, Object> showEditEmployee(FlowData flowData,
 			HashMap<String, Object> reqDtoObjects,
 			Map<String, Object> resDtoObjects) {
-		
+
 		String viewName = "";
 		try {
 			viewName = "showAddCompany";
@@ -619,19 +579,20 @@ public class MasterServiceImpl {
 	public Map<String, Object> getEmployeeById(FlowData flowData,
 			HashMap<String, Object> reqDtoObjects,
 			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
-		
+
 		logger.info("MasterServiceImpl getEmployeeById method start.");
 		LogiwareRespnse logiwareResponse = null;
 		EmployeeDto employeeDto = new EmployeeDto();
 		String viewName = "";
 		try {
 			viewName = "getAllEmployee";
-			logiwareResponse = doServiceCall(flowData, ServiceName.getEmployeeById, reqDtoObjects);
-			employeeDto=(EmployeeDto) logiwareResponse.getData();
+			logiwareResponse = doServiceCall(flowData,
+					ServiceName.getEmployeeById, reqDtoObjects);
+			employeeDto = (EmployeeDto) logiwareResponse.getData();
 			resDtoObjects.put("userResponse", logiwareResponse);
 			resDtoObjects.put("viewName", viewName);
-			resDtoObjects.put("employee",employeeDto );
-			} catch (LogiwareBaseException b) {
+			resDtoObjects.put("employee", employeeDto);
+		} catch (LogiwareBaseException b) {
 			throw b;
 		} catch (Exception e) {
 			logger.error(
