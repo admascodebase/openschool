@@ -17,5 +17,6 @@ public interface CustomerDao {
 	public Customer getCustomer(Integer id)throws LogiwareExceptionHandler;
 	public List<com.admas.logiware.jpa.Customer> getAllCustomer()throws LogiwareExceptionHandler;
 	public Boolean deleteCustomer(Integer id)throws LogiwareExceptionHandler;
+	public Boolean addCustomer(Customer customer)throws LogiwareExceptionHandler;
 
 }

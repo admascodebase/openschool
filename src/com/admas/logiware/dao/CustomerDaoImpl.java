@@ -15,6 +15,8 @@ import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.HibernateException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +34,7 @@ import com.admas.logiware.exception.LogiwareServiceErrors;
 public class CustomerDaoImpl implements CustomerDao {
 
 	private static EntityManager entityManager;
+	Logger logger = LoggerFactory.getLogger(CustomerDaoImpl.class);
 
 
 	@PersistenceContext
@@ -63,7 +66,15 @@ public class CustomerDaoImpl implements CustomerDao {
 					throw new LogiwareExceptionHandler(LogiwareServiceErrors.CUSTOMER_INACTIVE);
 				}
 				else{
+					customer.setId(cust.getId());
 					customer.setName(cust.getName());
+					customer.setContact_no(cust.getContact_no());
+					customer.setEmail(cust.getEmail());
+					customer.setWebsite(cust.getWebsite());
+					customer.setPricePlanId(cust.getPricePlanId());
+					customer.setAddress(cust.getAddress());
+					customer.setEmployeeId(cust.getEmployeeId());
+					customer.setDel_flag(cust.getDel_flag());
 					return customer;
 				}
 		}
@@ -145,6 +156,46 @@ public class CustomerDaoImpl implements CustomerDao {
 			entityManager.close();
 		}
 		return result;
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public Boolean addCustomer(Customer customer) throws LogiwareExceptionHandler {
+
+		Boolean result = false;
+		try {
+			com.admas.logiware.jpa.Customer cust = new com.admas.logiware.jpa.Customer();
+			cust.setName(customer.getName());
+			cust.setContact_no(customer.getContact_no());
+			cust.setEmail(customer.getEmail());
+			cust.setWebsite(customer.getWebsite());
+			cust.setPricePlanId(customer.getPricePlanId());
+			cust.setAddress(customer.getAddress());
+			cust.setEmployeeId(customer.getEmployeeId());
+			cust.setDel_flag(customer.getDel_flag());
+
+			entityManager.persist(cust);
+			entityManager.flush();
+
+			if (cust.getId() != null || cust.getId() != 0) {
+				result = true;
+			}
+			return result;
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in MastersDaoImpl - > getAllCity",
+					he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch (Exception e) {
+			logger.error(
+					"Exception Error in UserManagementDaoImpl - > getAllCity ",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			entityManager.close();
+		}
 	}
 
 }

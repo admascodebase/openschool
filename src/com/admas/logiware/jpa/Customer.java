@@ -100,7 +100,7 @@ public class Customer implements Serializable {
 	public void setEmployeeId(Integer employeeId) {
 		this.employeeId = employeeId;
 	}
-	@Column(name="DEL_FLG",nullable=false)
+	@Column(name="DEL_FLAG",nullable=false)
 	public String getDel_flag() {
 		return del_flag;
 	}

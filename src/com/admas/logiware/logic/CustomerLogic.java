@@ -17,5 +17,6 @@ public interface CustomerLogic {
 	public Customer getCustomer(Integer id)throws LogiwareExceptionHandler;
 	public List<Customer> getAllCustomer()throws LogiwareExceptionHandler;
 	public Boolean deleteCustomer(Integer id)throws LogiwareExceptionHandler,Exception;
+	public Boolean addCustomer(Customer customer)throws LogiwareExceptionHandler;
 
 }

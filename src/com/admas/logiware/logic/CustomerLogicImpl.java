@@ -9,6 +9,7 @@ import java.util.List;
 import com.admas.logiware.dao.CustomerDao;
 import com.admas.logiware.dto.Customer;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
+import com.admas.logiware.exception.LogiwareServiceErrors;
 import com.admas.ngemp.sms.services.SmsService;
 
 /**
@@ -95,6 +96,22 @@ public class CustomerLogicImpl implements CustomerLogic {
 	 */
 	public static void setCustomerDao(CustomerDao customerDao) {
 		CustomerLogicImpl.customerDao = customerDao;
+	}
+
+	@Override
+	public Boolean addCustomer(Customer customer) throws LogiwareExceptionHandler {
+		Boolean result = false;
+		try {
+			result = customerDao.addCustomer(customer);
+
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error("Exception Error in MastersLogicImpl - > addCity ", e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return result;
 	}
 
 

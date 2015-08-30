@@ -5,7 +5,9 @@ package com.admas.logiware.services;
 
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -18,7 +20,6 @@ import com.admas.logiware.exception.LogiwareExceptionHandler;
 import com.admas.logiware.exception.LogiwareServiceErrors;
 import com.admas.logiware.logic.CustomerLogic;
 import com.admas.logiware.util.LogiWareConstants;
-import com.admas.ngemp.sms.services.SmsService;
 
 /**
  * @author Raj
@@ -103,6 +104,26 @@ public class CustomerServices {
 		}
 		catch(Exception exception){
 			logger.info(""+exception);
+		}
+		return Response.status(200).entity(logiwareRespnse).build();
+		
+	}
+	
+	@POST
+	@Path("/addCustomer")
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON})
+	public Response addCustomer(Customer customer){
+		
+		Boolean result =false;
+		LogiwareRespnse logiwareRespnse=new LogiwareRespnse();
+		try{
+			result=customerLogic.addCustomer(customer);
+				logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+				logiwareRespnse.setData(result);
+		}catch(LogiwareExceptionHandler le){
+			logiwareRespnse.setCode(le.getErrorCode());
+			logiwareRespnse.setDescription(le.getDescription());
 		}
 		return Response.status(200).entity(logiwareRespnse).build();
 		
