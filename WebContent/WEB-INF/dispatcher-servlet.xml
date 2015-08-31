@@ -51,7 +51,7 @@
 
 	<!-- Beans required for Masters services END -->
 
-	<!-- Beans required for Usr management services -->
+	<!-- Beans required for contract company services -->
 
 	<bean id="userManagementService"
 		class="com.admas.logiware.services.usermgt.UserManagementService">
@@ -66,6 +66,21 @@
 	<bean id="userManagementDao" class="com.admas.logiware.dao.usermgt.UserManagementDaoImpl" />
 
 	<!-- END Beans required for Usr management services -->
+	
+	<!-- Beans required for Masters services START -->
+
+	<bean id="contractCompServices" class="com.admas.logiware.services.contractcomp.ContractCompServices">
+		<property name="contractCompLogic" ref="contractCompLogic"></property>
+	</bean>
+
+	<bean id="contractCompLogic" class="com.admas.logiware.logic.contractcomp.ContractCompLogicImpl">
+		<property name="contractCompDao" ref="contractCompDao"></property>
+	</bean>
+
+
+	<bean id="contractCompDao" class="com.admas.logiware.dao.contractcomp.ContractCompDaoImpl" />
+
+	<!-- Beans required for contract company END -->
 
 	<!-- <bean id="smsService" class="com.admas.ngemp.sms.services.SmsService"> 
 		<property name="smsLogicImpl" ref="smsLogicImpl"></property> </bean> <bean 
