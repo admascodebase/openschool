@@ -10,11 +10,13 @@ import com.admas.logiware.dao.masters.MastersDao;
 import com.admas.logiware.dto.CityDto;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.EmployeeDto;
+import com.admas.logiware.dto.TransportTypeDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
 import com.admas.logiware.exception.LogiwareServiceErrors;
 import com.admas.logiware.jpa.City;
 import com.admas.logiware.jpa.Company;
 import com.admas.logiware.jpa.Employee;
+import com.admas.logiware.jpa.TransportType;
 
 public class MastersLogicImpl implements MastersLogic {
 
@@ -396,6 +398,81 @@ public class MastersLogicImpl implements MastersLogic {
 		}
 		return result;
 		
+	}
+
+	@Override
+	public Boolean addTransportType(TransportTypeDto transportTypeDto) throws LogiwareExceptionHandler {
+
+		Boolean result = false;
+		try {
+			result = mastersDao.addaddTransportType(transportTypeDto);
+
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error("Exception Error in MastersLogicImpl - > addTransportType Method ", e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return result;
+	
+	}
+
+	@Override
+	public List<TransportTypeDto> getAllTransportType()
+			throws LogiwareExceptionHandler {
+		
+		List<TransportTypeDto> lTransportTypes = new ArrayList<TransportTypeDto>();
+		List<TransportType> transportTypes=null;
+		try {
+			transportTypes = mastersDao.getAllTransportType();
+			for (TransportType transportType : transportTypes) {
+				
+				TransportTypeDto transportTypeDto = new TransportTypeDto();
+				transportTypeDto.setCompId(transportType.getCompId());
+				transportTypeDto.setDescription(transportType.getDescription());
+				transportTypeDto.setId(transportType.getId());
+				transportTypeDto.setName(transportType.getName());
+				lTransportTypes.add(transportTypeDto);
+				logger.info("Successfully Converted TransportType To Dto.");
+			}
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error("Exception Error in MastersLogicImpl - > getAllTransportType ",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return lTransportTypes;
+		
+	}
+
+	@Override
+	public TransportTypeDto getTransportTypeById(Integer transportTypeId)
+			throws LogiwareExceptionHandler {
+	
+		TransportType transportType = null;
+		TransportTypeDto transportTypeDto = new TransportTypeDto();
+		try {
+			transportType = mastersDao.getTransportTypeById(transportTypeId);
+
+			transportTypeDto.setCompId(transportType.getCompId());
+			transportTypeDto.setDescription(transportType.getDescription());
+			transportTypeDto.setName(transportType.getName());
+			transportTypeDto.setId(transportType.getId());
+			logger.info("TransportType Converted to Dto Successfully");
+
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error(
+					"Exception Error in MastersLogicImpl - > getTransportTypeById ", e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return transportTypeDto;
+
 	}
 
 }

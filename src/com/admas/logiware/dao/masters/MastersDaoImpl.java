@@ -20,11 +20,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.admas.logiware.dto.CityDto;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.EmployeeDto;
+import com.admas.logiware.dto.TransportTypeDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
 import com.admas.logiware.exception.LogiwareServiceErrors;
 import com.admas.logiware.jpa.City;
 import com.admas.logiware.jpa.Company;
 import com.admas.logiware.jpa.Employee;
+import com.admas.logiware.jpa.TransportType;
 
 public class MastersDaoImpl implements MastersDao {
 
@@ -628,5 +630,123 @@ public class MastersDaoImpl implements MastersDao {
 			entityManager.close();
 		}
 
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public Boolean addaddTransportType(TransportTypeDto transportTypeDto)
+			throws LogiwareExceptionHandler {
+
+		Boolean result = false;
+		try {
+			TransportType transportType = new TransportType();
+			transportType.setCompId(transportTypeDto.getCompId());
+			transportType.setName(transportTypeDto.getName());
+			transportType.setDescription(transportTypeDto.getDescription());
+			entityManager.persist(transportType);
+			entityManager.flush();
+
+			if (transportType.getId() != null || transportType.getId() != 0) {
+				result = true;
+			}
+			return result;
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in MastersDaoImpl - > addaddTransportType",
+					he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+//			logger.error(
+//					"Exception Error in UserManagementDaoImpl - > addaddTransportType ",
+//					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			entityManager.close();
+		}
+	}
+
+	@Override
+	public List<TransportType> getAllTransportType()
+			throws LogiwareExceptionHandler {
+
+		List<TransportType> lTransportTypes = null;
+		CriteriaBuilder criteriaBuilder = null;
+		try {
+
+			criteriaBuilder = entityManager.getCriteriaBuilder();
+			CriteriaQuery<TransportType> criteriaQuery = criteriaBuilder
+					.createQuery(TransportType.class);
+			Root<TransportType> transportTypeJpa = criteriaQuery.from(TransportType.class);
+			criteriaQuery.select(transportTypeJpa);
+			TypedQuery<TransportType> typedQuery = entityManager
+					.createQuery(criteriaQuery);
+			lTransportTypes = typedQuery.getResultList();
+
+			if (lTransportTypes != null && lTransportTypes.size() != 0) {
+				return lTransportTypes;
+			} else {
+				throw new LogiwareExceptionHandler(
+						LogiwareServiceErrors.NO_CITY_FOUND);
+			}
+
+		} catch (LogiwareExceptionHandler ex) {
+			throw ex;
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in MastersDaoImpl - > getAllCity",
+					he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch (Exception e) {
+			logger.error(
+					"Exception Error in UserManagementDaoImpl - > getAllCity ",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			criteriaBuilder = null;
+		}
+	
+	}
+
+	@Override
+	public TransportType getTransportTypeById(Integer transportTypeId)
+			throws LogiwareExceptionHandler {
+		
+		
+		TransportType transportType = null;
+		try {
+
+			TypedQuery<TransportType> transportTypeQuery = entityManager.createQuery(
+					"SELECT t FROM TransportType t WHERE id = :id", TransportType.class);
+			transportTypeQuery.setParameter("id", transportTypeId);
+			transportType = transportTypeQuery.getSingleResult();
+
+			if (transportType != null) {
+				return transportType;
+			} else {
+				throw new LogiwareExceptionHandler(
+						LogiwareServiceErrors.NO_TRANSPORTTYPE_FOUND);
+			}
+
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in MastersDaoImpl - > getTransportTypeById",
+					he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch (Exception e) {
+			logger.error(
+					"Exception Error in UserManagementDaoImpl - > getTransportTypeById",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			entityManager.close();
+		}
 	}
 }

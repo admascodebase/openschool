@@ -34,7 +34,9 @@ public enum LogiwareServiceErrors {
 	
 	CUSTOMER_INACTIVE("LA-CI-0001","Customer Inactive"),
 	
-	NO_EMPLOYEE_FOUND("LW-MM-0004", "No Employees Were Found");
+	NO_EMPLOYEE_FOUND("LW-MM-0004", "No Employees Were Found"),
+	
+	NO_TRANSPORTTYPE_FOUND("LW-MM-0004", "No TransportType were Found");
 	
 	
 	/**
