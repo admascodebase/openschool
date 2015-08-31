@@ -26,17 +26,19 @@ public enum LogiwareServiceErrors {
 	INVALID_CREDENTIALS("LW-UM-0002", "Please enter valid username or password"),	
 
 	
-	NO_CITY_FOUND("LW-MM-0001","NO Cities Were FOund"),
+	NO_CITY_FOUND("LW-MM-0001","No cities found"),
 	
-	NO_COMPANY_FOUND("LW-MM-0002","NO Companies Were FOund"),
+	NO_COMPANY_FOUND("LW-MM-0002","No companies found"),
 	
-	NO_CUSTOMER_FOUND("LW-MM-0003","NO Custmors Were FOund"),
+	NO_CUSTOMER_FOUND("LW-MM-0003","No customers found"),
 	
 	CUSTOMER_INACTIVE("LA-CI-0001","Customer Inactive"),
 	
-	NO_EMPLOYEE_FOUND("LW-MM-0004", "No Employees Were Found"),
+	NO_EMPLOYEE_FOUND("LW-MM-0004", "No employee found"),
 	
-	NO_TRANSPORTTYPE_FOUND("LW-MM-0004", "No TransportType were Found");
+	NO_TRANSPORTTYPE_FOUND("LW-MM-0004", "No transport type found"),
+	
+	NO_CONTRACT_COMP_FOUND("LW-CC-0001", "No contract company found");
 	
 	
 	/**
