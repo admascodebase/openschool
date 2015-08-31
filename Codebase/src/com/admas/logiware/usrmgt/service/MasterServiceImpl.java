@@ -23,7 +23,7 @@ import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.FlowData;
 import com.admas.logiware.dto.LogiwareRespnse;
 import com.admas.logiware.dto.State;
-import com.admas.logiware.dto.TransportType;
+import com.admas.logiware.dto.TransportTypeDto;
 import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
 
@@ -174,33 +174,26 @@ public class MasterServiceImpl {
 		return resDtoObjects;
 	}
 
+	@SuppressWarnings("unchecked")
 	public Map<String, Object> getAllTransportTypes(FlowData flowData,
 			HashMap<String, Object> reqDtoObjects,
-			Map<String, Object> resDtoObjects) {
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
 
 		logger.info("MasterServiceImpl getAllTransportTypes() method start. ");
-		TransportType type = new TransportType();
-		TransportType type1 = new TransportType();
-		List<TransportType> lTransports = new ArrayList<TransportType>();
+		List<TransportTypeDto> lTransports = new ArrayList<TransportTypeDto>();
+		LogiwareRespnse logiwareRespnse = null;
 		String viewName = "";
 		try {
 			viewName = "getAllTransportTypes";
-			// city = doServiceCall(flowData, ServiceName.getAllCity,
-			// reqDtoObjects);
-			type.setId(1);
-			type.setName("ADMAS");
-			type.setDescription("ADMASTECH...");
-			type1.setId(2);
-			type1.setName("HENX");
-			type1.setDescription("henx...");
-			lTransports.add(type);
-			lTransports.add(type1);
-
+			logiwareRespnse  = doServiceCall(flowData, ServiceName.getAllTransportTypes, reqDtoObjects);
+			
+			lTransports = (List<TransportTypeDto>) logiwareRespnse.getData();			
 			resDtoObjects.put("lTransports", lTransports);
 			resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
-			/*
-			 * } catch (LogiwareBaseException b) { throw b;
-			 */
+			
+			  } catch (LogiwareBaseException b) {
+				  throw b;
+			 
 		} catch (Exception e) {
 			logger.error(
 					"Exception In MasterServiceImpl  getAllTransportTypes() method end.",
@@ -217,18 +210,16 @@ public class MasterServiceImpl {
 
 	}
 
-	public Map<String, Object> showAddTransportType(FlowData flowData,
+	public Map<String, Object> addTransportType(FlowData flowData,
 			HashMap<String, Object> reqDtoObjects,
 			Map<String, Object> resDtoObjects) {
 
 		String viewName = "";
 		try {
 			viewName = "showAddTranceportType";
-			TransportType transportType = new TransportType();
-			resDtoObjects.put("transportType", transportType);
 
 		} catch (Exception exp) {
-			logger.error("Exception in TransportType()", exp);
+			logger.error("Exception in addTransportType()", exp);
 		}
 
 		resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
@@ -240,24 +231,15 @@ public class MasterServiceImpl {
 			Map<String, Object> resDtoObjects) {
 
 		logger.info("MasterServiceImpl saveTransportType method start. ");
-		TransportType type = new TransportType();
-		TransportType type1 = new TransportType();
-		List<TransportType> lTransports = new ArrayList<TransportType>();
 		String viewName = "";
+		LogiwareRespnse logiwareRespnse = null;
+		Boolean result=false;
 		try {
 			viewName = "getAllTransportTypes";
-			// city = doServiceCall(flowData, ServiceName.getAllCity,
-			// reqDtoObjects);
-			type.setId(1);
-			type.setName("ADMAS");
-			type.setDescription("ADMASTECH...");
-			type1.setId(2);
-			type1.setName("HENX");
-			type1.setDescription("henx...");
-			lTransports.add(type);
-			lTransports.add(type1);
-
-			resDtoObjects.put("lTransports", lTransports);
+			logiwareRespnse = doServiceCall(flowData, ServiceName.saveTransportType,
+			 reqDtoObjects);
+			logiwareRespnse.getData();
+			resDtoObjects.put("result", result);
 			resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
 			/*
 			 * } catch (LogiwareBaseException b) { throw b;
@@ -288,8 +270,8 @@ public class MasterServiceImpl {
 		String viewName = "";
 		try {
 			viewName = "showAddTranceportType";
-			TransportType type = new TransportType();
-			type.setCompanyId(123);
+			TransportTypeDto type = new TransportTypeDto();
+			type.setCompId(123);
 			type.setDescription("XXXXXX");
 			logger.info("########################" + reqDtoObjects.get("id"));
 			type.setId(Integer.parseInt(reqDtoObjects.get("id").toString()));
@@ -309,9 +291,9 @@ public class MasterServiceImpl {
 			Map<String, Object> resDtoObjects) {
 
 		logger.info("MasterServiceImpl showDeleteTransportType() method Start. ");
-		TransportType type = new TransportType();
-		TransportType type1 = new TransportType();
-		List<TransportType> lTransports = new ArrayList<TransportType>();
+		TransportTypeDto type = new TransportTypeDto();
+		TransportTypeDto type1 = new TransportTypeDto();
+		List<TransportTypeDto> lTransports = new ArrayList<TransportTypeDto>();
 		String viewName = "";
 		try {
 			viewName = "getAllTransportTypes";

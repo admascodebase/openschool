@@ -32,7 +32,7 @@
 													City </a>
 												</li>
 												<li>
-													<a href="ecommerce_products.html" class="iconify">
+													<a href="getAllTransportTypes.htm" class="iconify">
 													<i class="icon-handbag"></i>
 													Transport </a>
 												</li>

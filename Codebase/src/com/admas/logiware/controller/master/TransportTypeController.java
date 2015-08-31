@@ -22,12 +22,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.controller.core.BaseController;
 import com.admas.logiware.dto.FlowData;
-import com.admas.logiware.dto.TransportType;
+import com.admas.logiware.dto.TransportTypeDto;
 import com.admas.logiware.exception.LogiwarePortalErrors;
 import com.admas.logiware.usrmgt.service.MasterServiceImpl;
 
 /**
- * @author Ajinkya
+ * @author Admas Technologies
  * 
  */
 public class TransportTypeController extends BaseController {
@@ -63,7 +63,7 @@ public class TransportTypeController extends BaseController {
 					.get(WebAppConstants.VIEW_NAME);
 			mv = new ModelAndView(viewName);
 			@SuppressWarnings("unchecked")
-			List<TransportType> lTransports = (List<TransportType>) resDtoObjects
+			List<TransportTypeDto> lTransports = (List<TransportTypeDto>) resDtoObjects
 					.get("lTransports");
 			mv.addObject("lTransports", lTransports);
 
@@ -88,7 +88,7 @@ public class TransportTypeController extends BaseController {
 	}
 
 	@RequestMapping(value = "/showAddTransportType.htm", method = RequestMethod.GET)
-	public ModelAndView showAddTransportType(HttpServletRequest request,
+	public ModelAndView addTransportType(HttpServletRequest request,
 			HttpServletResponse response) {
 
 		logger.info("TransportTypeController: addTransportType() Method Start.");
@@ -99,15 +99,15 @@ public class TransportTypeController extends BaseController {
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		try {
 
-			resDtoObjects = masterServiceImpl.showAddTransportType(flowData,
+			resDtoObjects = masterServiceImpl.addTransportType(flowData,
 					reqDtoObjects, resDtoObjects);
 			String viewName = (String) resDtoObjects
 					.get(WebAppConstants.VIEW_NAME);
 			mv = new ModelAndView(viewName);
-			mv.addObject(resDtoObjects.get("transportType"));
+			mv.addObject("transportType", new TransportTypeDto());
 		} catch (Exception e) {
 			logger.error(
-					"Exception In PaymentController viewPaymentEntries --", e);
+					"Exception In TransportTypeController addTransportType --", e);
 			mv.addObject(
 					WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION
@@ -120,7 +120,7 @@ public class TransportTypeController extends BaseController {
 
 	@RequestMapping(value = "/saveTransportType.htm", method = RequestMethod.POST)
 	public ModelAndView saveTransportType(
-			@ModelAttribute("transportType") TransportType transportType,
+			@ModelAttribute("transportType") TransportTypeDto transportType,
 			HttpServletRequest request, HttpServletResponse response) {
 
 		logger.info("TransportTypeController: saveTransportType() Method Start.");
@@ -130,19 +130,20 @@ public class TransportTypeController extends BaseController {
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		try {
 			System.out.println(transportType);
-			reqDtoObjects.put("city", transportType);
-			resDtoObjects = masterServiceImpl.saveTransportType(flowData,
-					reqDtoObjects, resDtoObjects);
+			transportType.setCompId(8);
+			reqDtoObjects.put("transportType", transportType);
+			resDtoObjects = masterServiceImpl.saveTransportType(flowData, reqDtoObjects, resDtoObjects);
 			String viewName = (String) resDtoObjects
 					.get(WebAppConstants.VIEW_NAME);
 			mv = new ModelAndView(viewName);
+			resDtoObjects = masterServiceImpl.getAllTransportTypes(flowData, reqDtoObjects, resDtoObjects);
 			@SuppressWarnings("unchecked")
-			List<TransportType> lTransports = (List<TransportType>) resDtoObjects
-					.get("lTransports");
+			List<TransportTypeDto> lTransports = (List<TransportTypeDto>) resDtoObjects.get("lTransports");
 			mv.addObject("lTransports", lTransports);
+			
 		} catch (Exception e) {
 			logger.error(
-					"Exception In PaymentController viewPaymentEntries --", e);
+					"Exception In TransportTypeController saveTransportType --", e);
 			mv.addObject(
 					WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION
@@ -241,7 +242,7 @@ public class TransportTypeController extends BaseController {
 					.get(WebAppConstants.VIEW_NAME);
 			mv = new ModelAndView(viewName);
 			@SuppressWarnings("unchecked")
-			List<TransportType> lTransports = (List<TransportType>) resDtoObjects
+			List<TransportTypeDto> lTransports = (List<TransportTypeDto>) resDtoObjects
 					.get("lTransports");
 			mv.addObject("lTransports", lTransports);
 
