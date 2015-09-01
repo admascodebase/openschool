@@ -10,6 +10,7 @@ import com.admas.logiware.dao.masters.MastersDao;
 import com.admas.logiware.dto.CityDto;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.EmployeeDto;
+import com.admas.logiware.dto.TransportTypeDtlDto;
 import com.admas.logiware.dto.TransportTypeDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
 import com.admas.logiware.exception.LogiwareServiceErrors;
@@ -17,6 +18,7 @@ import com.admas.logiware.jpa.City;
 import com.admas.logiware.jpa.Company;
 import com.admas.logiware.jpa.Employee;
 import com.admas.logiware.jpa.TransportType;
+import com.admas.logiware.jpa.TransportTypeDtl;
 
 public class MastersLogicImpl implements MastersLogic {
 
@@ -509,5 +511,104 @@ public class MastersLogicImpl implements MastersLogic {
 		}
 		return result;
 	}
+
+	//start transport type details logic impl services
+	
+	@Override
+	public Boolean addTransportTypeDtl(TransportTypeDtlDto transportTypeDto)
+			throws LogiwareExceptionHandler {
+		Boolean result = false;
+		try {
+			result = mastersDao.addaddTransportTypeDtl(transportTypeDto);
+
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error("Exception Error in MastersLogicImpl - > addTransportTypeDtl ", e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return result;
+	}
+
+	@Override
+	public List<TransportTypeDtlDto> getAllTransportTypeDtl()
+			throws LogiwareExceptionHandler {
+		List<TransportTypeDtlDto> lTransportTypeDtls = new ArrayList<TransportTypeDtlDto>();
+		List<TransportTypeDtl> transportTypeDtls=null;
+		try {
+			transportTypeDtls = mastersDao.getAllTransportTypeDtl();
+			for (TransportTypeDtl transportType : transportTypeDtls) {
+				TransportTypeDtlDto transportTypeDto = new TransportTypeDtlDto();
+				lTransportTypeDtls.add(transportTypeDto._toDto(transportType));
+				logger.info("Successfully Converted TransportType To Dto.");
+			}
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error("Exception Error in MastersLogicImpl - > getAllTransportType ",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return lTransportTypeDtls;
+	}
+
+	@Override
+	public TransportTypeDtlDto getTransportTypeDtlById(Integer transportTypeId)
+			throws LogiwareExceptionHandler {
+		TransportTypeDtl transportTypeDtl = null;
+		TransportTypeDtlDto transportTypeDto = new TransportTypeDtlDto();
+		try {
+			transportTypeDtl = mastersDao.getTransportTypeDtlById(transportTypeId);	
+			transportTypeDto = transportTypeDto._toDto(transportTypeDtl);
+			logger.info("getTransportTypeDtl Converted to Dto Successfully");
+
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error(
+					"Exception Error in MastersLogicImpl - > getTransportTypeDtlById ", e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return transportTypeDto;
+	}
+
+	@Override
+	public Boolean editTransportTypeDtl(TransportTypeDtlDto traTypeDtlDto)
+			throws LogiwareExceptionHandler {
+		Boolean result = false;
+		try {
+			result = mastersDao.editTransportTypeDtl(traTypeDtlDto);
+
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error("Exception Error in MastersLogicImpl - > editTransportTypeDtl ", e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return result;
+	}
+
+	@Override
+	public Boolean deleteTransportTypeDtl(Integer transportTypeDtlId)
+			throws LogiwareExceptionHandler {
+		Boolean result = false;
+		try {
+			result = mastersDao.deleteTransportTypeDtl(transportTypeDtlId);
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error("Exception Error in MastersLogicImpl - > deleteTransportTypeDtl ",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return result;
+	}
+	
+	//end transport type details logic impl services
 
 }

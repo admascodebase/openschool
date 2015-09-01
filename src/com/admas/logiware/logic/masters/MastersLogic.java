@@ -5,6 +5,7 @@ import java.util.List;
 import com.admas.logiware.dto.CityDto;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.EmployeeDto;
+import com.admas.logiware.dto.TransportTypeDtlDto;
 import com.admas.logiware.dto.TransportTypeDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
 
@@ -49,4 +50,18 @@ public interface MastersLogic {
 	public Boolean editTransportType(TransportTypeDto traTypeDto)throws LogiwareExceptionHandler;
 
 	public Boolean deleteTransportType(Integer transportTypeId)throws LogiwareExceptionHandler;
+	
+	//Start transport type details services
+	
+	public Boolean addTransportTypeDtl(TransportTypeDtlDto transportTypeDto) throws LogiwareExceptionHandler;
+
+	public List<TransportTypeDtlDto> getAllTransportTypeDtl()throws LogiwareExceptionHandler;
+
+	public TransportTypeDtlDto getTransportTypeDtlById(Integer transportTypeId)throws LogiwareExceptionHandler;
+	
+	public Boolean editTransportTypeDtl(TransportTypeDtlDto traTypeDto)throws LogiwareExceptionHandler;
+
+	public Boolean deleteTransportTypeDtl(Integer transportTypeId)throws LogiwareExceptionHandler;
+	
+	//End transport type detail services
 }

@@ -5,12 +5,14 @@ import java.util.List;
 import com.admas.logiware.dto.CityDto;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.EmployeeDto;
+import com.admas.logiware.dto.TransportTypeDtlDto;
 import com.admas.logiware.dto.TransportTypeDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
 import com.admas.logiware.jpa.City;
 import com.admas.logiware.jpa.Company;
 import com.admas.logiware.jpa.Employee;
 import com.admas.logiware.jpa.TransportType;
+import com.admas.logiware.jpa.TransportTypeDtl;
 
 public interface MastersDao {
 
@@ -54,4 +56,18 @@ public interface MastersDao {
 	public Boolean editTransportType(TransportTypeDto transportTypeDto)throws LogiwareExceptionHandler;
 
 	public Boolean deleteTransportType(Integer transportTypeId)throws LogiwareExceptionHandler;
+	
+	//start transport type details dao 
+	
+	public Boolean addaddTransportTypeDtl(TransportTypeDtlDto transportTypeDto)throws LogiwareExceptionHandler;
+
+	public List<TransportTypeDtl> getAllTransportTypeDtl()throws LogiwareExceptionHandler;
+
+	public TransportTypeDtl getTransportTypeDtlById(Integer transportTypeId)throws LogiwareExceptionHandler;
+	
+	public Boolean editTransportTypeDtl(TransportTypeDtlDto transportTypeDto)throws LogiwareExceptionHandler;
+
+	public Boolean deleteTransportTypeDtl(Integer transportTypeId)throws LogiwareExceptionHandler;
+	
+	//end transport type detail dao
 }

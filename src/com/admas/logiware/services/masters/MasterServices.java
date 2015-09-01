@@ -19,6 +19,7 @@ import com.admas.logiware.dto.CityDto;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.LogiwareRespnse;
+import com.admas.logiware.dto.TransportTypeDtlDto;
 import com.admas.logiware.dto.TransportTypeDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
 import com.admas.logiware.exception.LogiwareServiceErrors;
@@ -630,13 +631,13 @@ public class MasterServices {
 	@GET
 	@Path("/deleteTransportType/{transportTypeId}")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Response deleteTransportType(@PathParam("transportTypeId")Integer employeeId) {
+	public Response deleteTransportType(@PathParam("transportTypeId")Integer transportTypeId) {
 
 		logger.info(" Start  MasterService- > deleteTransportType ");
 		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
 		Boolean result=false;
 		try {
-			result=mastersLogic.deleteEmployee(employeeId);
+			result=mastersLogic.deleteTransportType(transportTypeId);
 			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
 			logiwareRespnse.setData(result);
 		} catch (LogiwareExceptionHandler e) {
@@ -659,5 +660,147 @@ public class MasterServices {
 	
 	//Transport type details services Start 
 	
+	@POST
+	@Path("/addTransportTypeDtl")
+	@Produces({ MediaType.APPLICATION_JSON })
+	@Consumes({MediaType.APPLICATION_JSON })
+	public Response addTransportTypeDtl(TransportTypeDtlDto transportTypeDtlDto) {
+
+		logger.info(" Start  MasterService- > addTransportTypeDtl Method");
+		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+		Boolean result=false;
+		try {
+			result=mastersLogic.addTransportTypeDtl(transportTypeDtlDto);
+			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+			logiwareRespnse.setData(result);
+		} catch (LogiwareExceptionHandler e) {
+			logger.error("Error in MasterService- > addTransportTypeDtl Method", e);
+			logiwareRespnse.setCode(e.getErrorCode());
+			logiwareRespnse.setDescription(e.getDescription());
+		} catch (Exception e) {
+			logger.error("Error in MasterService- > addTransportTypeDtl", e);
+			logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+					.getErrorCode());
+			logiwareRespnse
+					.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+							.getErrorDescription());
+		}
+		logger.info(" end  MasterService- > addTransportTypeDtl Method");
+		return Response.status(200).entity(logiwareRespnse).build();
+	}
 	
+	@GET
+	@Path("/getAllTransportTypeDtl")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Response getAllTransportTypeDtl() {
+
+		List<TransportTypeDtlDto> lTransportTypesDtl = new ArrayList<TransportTypeDtlDto>();
+		logger.info(" Start  MasterService- > getAllTransportTypeDtl Method");
+		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+		try {
+
+			lTransportTypesDtl = mastersLogic.getAllTransportTypeDtl();
+			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+			logiwareRespnse.setData(lTransportTypesDtl);
+		} catch (LogiwareExceptionHandler e) {
+			logger.error("Error in MasterService- > getAllTransportTypeDtl", e);
+			logiwareRespnse.setCode(e.getErrorCode());
+			logiwareRespnse.setDescription(e.getDescription());
+		} catch (Exception e) {
+			logger.error("Error in MasterService- > getAllTransportTypeDtl", e);
+			logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+					.getErrorCode());
+			logiwareRespnse
+					.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+							.getErrorDescription());
+		}
+		logger.info(" end  MasterService- > getAllTransportType");
+		return Response.status(200).entity(logiwareRespnse).build();
+	}
+
+	
+	@GET
+	@Path("/getTransportTypeDtlById/{id}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Response getTransportTypeDtlById(@PathParam("id")Integer TransportTypeId) {
+		logger.info(" Start  MasterService- > getTransportTypeDtlById ");
+		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+		TransportTypeDtlDto transportTypeDtlDto = null;
+		try {
+			transportTypeDtlDto = mastersLogic.getTransportTypeDtlById(TransportTypeId);
+			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+			logiwareRespnse.setData(transportTypeDtlDto);
+		} catch (LogiwareExceptionHandler e) {
+			logger.error("Error in MasterService- > getTransportTypeDtlById ", e);
+			logiwareRespnse.setCode(e.getErrorCode());
+			logiwareRespnse.setDescription(e.getDescription());
+		} catch (Exception e) {
+			logger.error("Error in MasterService- > getTransportTypeDtlById ", e);
+			logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+					.getErrorCode());
+			logiwareRespnse
+					.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+							.getErrorDescription());
+		}
+		logger.info(" end  MasterService- > getTransportTypeDtlById ");
+		return Response.status(200).entity(logiwareRespnse).build();
+	}
+	
+	@POST
+	@Path("/editTransportTypeDtl")
+	@Produces({ MediaType.APPLICATION_JSON })
+	@Consumes({MediaType.APPLICATION_JSON })
+	public Response editTransportTypeDtl(TransportTypeDtlDto transportTypeDtlDto) {
+
+		logger.info(" Start  MasterService- > editTransportTypeDtl ");
+		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+		Boolean result=false;
+		try {
+			result=mastersLogic.editTransportTypeDtl(transportTypeDtlDto);
+			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+			logiwareRespnse.setData(result);
+		} catch (LogiwareExceptionHandler e) {
+			logger.error("Error in MasterService- > editTransportTypeDtl ", e);
+			logiwareRespnse.setCode(e.getErrorCode());
+			logiwareRespnse.setDescription(e.getDescription());
+		} catch (Exception e) {
+			logger.error("Error in MasterService- > editTransportTypeDtl ", e);
+			logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+					.getErrorCode());
+			logiwareRespnse
+					.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+							.getErrorDescription());
+		}
+		logger.info(" end  MasterService- > editTransportTypeDtl ");
+		return Response.status(200).entity(logiwareRespnse).build();
+	}
+	
+	@GET
+	@Path("/deleteTransportTypeDtl/{transportTypeDtlId}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Response editTransportTypeDtl(@PathParam("transportTypeDtlId")Integer transportTypeDtlId) {
+
+		logger.info(" Start  MasterService- > editTransportTypeDtl ");
+		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+		Boolean result=false;
+		try {
+			result=mastersLogic.deleteTransportTypeDtl(transportTypeDtlId);
+			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+			logiwareRespnse.setData(result);
+		} catch (LogiwareExceptionHandler e) {
+			logger.error("Error in MasterService- > editTransportTypeDtl ", e);
+			logiwareRespnse.setCode(e.getErrorCode());
+			logiwareRespnse.setDescription(e.getDescription());
+		} catch (Exception e) {
+			logger.error("Error in MasterService- > editTransportTypeDtl ", e);
+			logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+					.getErrorCode());
+			logiwareRespnse
+					.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+							.getErrorDescription());
+		}
+		logger.info(" end  MasterService- > editTransportTypeDtl ");
+		return Response.status(200).entity(logiwareRespnse).build();
+	}
+		
 }
