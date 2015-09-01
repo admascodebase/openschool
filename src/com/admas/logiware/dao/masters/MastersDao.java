@@ -50,4 +50,8 @@ public interface MastersDao {
 	public List<TransportType> getAllTransportType()throws LogiwareExceptionHandler;
 
 	public TransportType getTransportTypeById(Integer transportTypeId)throws LogiwareExceptionHandler;
+	
+	public Boolean editTransportType(TransportTypeDto transportTypeDto)throws LogiwareExceptionHandler;
+
+	public Boolean deleteTransportType(Integer transportTypeId)throws LogiwareExceptionHandler;
 }

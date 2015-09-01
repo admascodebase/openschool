@@ -475,4 +475,39 @@ public class MastersLogicImpl implements MastersLogic {
 
 	}
 
+	@Override
+	public Boolean editTransportType(TransportTypeDto traTypeDto)
+			throws LogiwareExceptionHandler {
+		Boolean result = false;
+		try {
+			result = mastersDao.editTransportType(traTypeDto);
+
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error("Exception Error in MastersLogicImpl - > editTransportType ", e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return result;
+	}
+
+	@Override
+	public Boolean deleteTransportType(Integer transportTypeId)
+			throws LogiwareExceptionHandler {
+
+		Boolean result = false;
+		try {
+			result = mastersDao.deleteTransportType(transportTypeId);
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error("Exception Error in MastersLogicImpl - > deleteTransportType ",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return result;
+	}
+
 }

@@ -657,11 +657,8 @@ public class MastersDaoImpl implements MastersDao {
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
 		} catch (Exception e) {
-			
-			e.printStackTrace();
-//			logger.error(
-//					"Exception Error in UserManagementDaoImpl - > addaddTransportType ",
-//					e);
+			logger.error(
+					"Exception Error in UserManagementDaoImpl - > addaddTransportType ",e);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
 		} finally {
@@ -743,6 +740,71 @@ public class MastersDaoImpl implements MastersDao {
 			logger.error(
 					"Exception Error in UserManagementDaoImpl - > getTransportTypeById",
 					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			entityManager.close();
+		}
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public Boolean editTransportType(TransportTypeDto transportTypeDto)
+			throws LogiwareExceptionHandler {
+		Boolean result = false;
+		try {
+			TransportType transportType = new TransportType();
+			transportType.setCompId(transportTypeDto.getCompId());
+			transportType.setDescription(transportTypeDto.getDescription());
+			transportType.setId(transportTypeDto.getId());
+			transportType.setName(transportTypeDto.getName());
+			entityManager.merge(transportType);
+			entityManager.flush();
+			
+			if (transportType.getId() != null || transportType.getId() != 0) {
+				result = true;
+			}
+			return result;
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in MastersDaoImpl - > editTransportType",
+					he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch (Exception e) {
+			 logger.error("Exception Error in MastersDaoImpl - > editTransportType ", e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			entityManager.close();
+		}
+
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public Boolean deleteTransportType(Integer transportTypeId)
+			throws LogiwareExceptionHandler {
+		Boolean result = false;
+		try {
+			Query query = entityManager
+					.createQuery("UPDATE TransportType SET  delFlag = 'Y' WHERE id = :id");
+			query.setParameter("id", transportTypeId);
+			int updateResult = query.executeUpdate();
+
+			if (updateResult != 0) {
+				result = true;
+			}
+
+			return result;
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in MastersDaoImpl - > deleteTransportType",
+					he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch (Exception e) {
+			 logger.error( "Exception Error in MastersDaoImpl - > deleteTransportType", e);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
 		} finally {

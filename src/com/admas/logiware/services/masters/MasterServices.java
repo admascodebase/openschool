@@ -594,5 +594,66 @@ public class MasterServices {
 		return Response.status(200).entity(logiwareRespnse).build();
 	}
 	
+	@POST
+	@Path("/editTransportType")
+	@Produces({ MediaType.APPLICATION_JSON })
+	@Consumes({MediaType.APPLICATION_JSON })
+	public Response editTransportType(TransportTypeDto transportTypeDto) {
+
+		logger.info(" Start  MasterService- > editTransportType ");
+		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+		Boolean result=false;
+		try {
+			result=mastersLogic.editTransportType(transportTypeDto);
+			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+			logiwareRespnse.setData(result);
+		} catch (LogiwareExceptionHandler e) {
+			logger.error("Error in MasterService- > editTransportType ", e);
+			logiwareRespnse.setCode(e.getErrorCode());
+			logiwareRespnse.setDescription(e.getDescription());
+		} catch (Exception e) {
+			logger.error("Error in MasterService- > editTransportType ", e);
+			logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+					.getErrorCode());
+			logiwareRespnse
+					.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+							.getErrorDescription());
+		}
+		logger.info(" end  MasterService- > editTransportType ");
+		return Response.status(200).entity(logiwareRespnse).build();
+	}
+	
+	
+
+	
+	@GET
+	@Path("/deleteTransportType/{transportTypeId}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Response deleteTransportType(@PathParam("transportTypeId")Integer employeeId) {
+
+		logger.info(" Start  MasterService- > deleteTransportType ");
+		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+		Boolean result=false;
+		try {
+			result=mastersLogic.deleteEmployee(employeeId);
+			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+			logiwareRespnse.setData(result);
+		} catch (LogiwareExceptionHandler e) {
+			logger.error("Error in MasterService- > deleteTransportType ", e);
+			logiwareRespnse.setCode(e.getErrorCode());
+			logiwareRespnse.setDescription(e.getDescription());
+		} catch (Exception e) {
+			logger.error("Error in MasterService- > deleteTransportType ", e);
+			logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+					.getErrorCode());
+			logiwareRespnse
+					.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+							.getErrorDescription());
+		}
+		logger.info(" end  MasterService- > deleteTransportType ");
+		return Response.status(200).entity(logiwareRespnse).build();
+	}
+
+	
 	
 }
