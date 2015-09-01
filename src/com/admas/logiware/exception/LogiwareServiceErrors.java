@@ -40,6 +40,8 @@ public enum LogiwareServiceErrors {
 	
 	NO_TRANSPORTTYPE_DTL_FOUND("LW-MM-0005","No transport type details found"),
 	
+	NO_BRANCH_FOUND("LW-MM-0006","No branch details found"),
+	
 	NO_CONTRACT_COMP_FOUND("LW-CC-0001", "No contract company found");
 	
 	

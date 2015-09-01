@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import com.admas.logiware.dao.masters.MastersDao;
 import com.admas.logiware.dto.CityDto;
+import com.admas.logiware.dto.CompanyBranchDto;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.TransportTypeDtlDto;
@@ -16,6 +17,7 @@ import com.admas.logiware.exception.LogiwareExceptionHandler;
 import com.admas.logiware.exception.LogiwareServiceErrors;
 import com.admas.logiware.jpa.City;
 import com.admas.logiware.jpa.Company;
+import com.admas.logiware.jpa.CompanyBranch;
 import com.admas.logiware.jpa.Employee;
 import com.admas.logiware.jpa.TransportType;
 import com.admas.logiware.jpa.TransportTypeDtl;
@@ -608,7 +610,102 @@ public class MastersLogicImpl implements MastersLogic {
 		}
 		return result;
 	}
-	
+
 	//end transport type details logic impl services
+	
+	//start branch logic impl services
+	
+	@Override
+	public Boolean addBranch(CompanyBranchDto companyBranchDto)
+			throws LogiwareExceptionHandler {
+		Boolean result = false;
+		try {
+			result = mastersDao.addBranch(companyBranchDto);
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error("Exception Error in MastersLogicImpl - > addBranch ", e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return result;
+	}
+
+	@Override
+	public List<CompanyBranchDto> getAllBranch()
+			throws LogiwareExceptionHandler {
+		List<CompanyBranchDto> lCompanyBranchDto = new ArrayList<CompanyBranchDto>();
+		List<CompanyBranch> lBranch=null;
+		try {
+			lBranch = mastersDao.getAllBranch();
+			for (CompanyBranch companyBranchJpa : lBranch) {
+				lCompanyBranchDto.add(companyBranchJpa._toDto());
+			}
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error("Exception Error in MastersLogicImpl - > getAllBranch ",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return lCompanyBranchDto;
+	}
+
+	@Override
+	public CompanyBranchDto getBranchById(Integer compBranchId)
+			throws LogiwareExceptionHandler {
+		CompanyBranch companyBranch = null;
+		try {
+			companyBranch = mastersDao.getBranchById(compBranchId);	
+			logger.info("getTransportTypeDtl Converted to Dto Successfully");
+
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error(
+					"Exception Error in MastersLogicImpl - > getBranchById ", e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return companyBranch._toDto();
+	}
+
+	@Override
+	public Boolean editBranch(CompanyBranchDto comBranchDto)
+			throws LogiwareExceptionHandler {
+		Boolean result = false;
+		try {
+			result = mastersDao.editBranch(comBranchDto);
+
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error("Exception Error in MastersLogicImpl - > editBranch ", e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return result;
+	}
+
+	@Override
+	public Boolean deleteBranch(Integer compBranchId)
+			throws LogiwareExceptionHandler {
+		Boolean result = false;
+		try {
+			result = mastersDao.deleteBranch(compBranchId);
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error("Exception Error in MastersLogicImpl - > deleteBranch ",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return result;
+	}
+	
+	//end branch logic impl services
+	
 
 }

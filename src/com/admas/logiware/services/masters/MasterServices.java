@@ -16,6 +16,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.admas.logiware.dto.CityDto;
+import com.admas.logiware.dto.CompanyBranchDto;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.LogiwareRespnse;
@@ -803,4 +804,155 @@ public class MasterServices {
 		return Response.status(200).entity(logiwareRespnse).build();
 	}
 		
+	// end transport type details services
+	
+	
+	//start branch details services  
+	
+		@POST
+		@Path("/addBranch")
+		@Produces({ MediaType.APPLICATION_JSON })
+		@Consumes({MediaType.APPLICATION_JSON })
+		public Response addBranch(CompanyBranchDto companyBranchDto) {
+
+			logger.info(" Start  MasterService- > addBranch Method");
+			LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+			Boolean result=false;
+			try {
+				result=mastersLogic.addBranch(companyBranchDto);
+				logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+				logiwareRespnse.setData(result);
+			} catch (LogiwareExceptionHandler e) {
+				logger.error("Error in MasterService- > addBranch Method", e);
+				logiwareRespnse.setCode(e.getErrorCode());
+				logiwareRespnse.setDescription(e.getDescription());
+			} catch (Exception e) {
+				logger.error("Error in MasterService- > addBranch", e);
+				logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+						.getErrorCode());
+				logiwareRespnse
+						.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+								.getErrorDescription());
+			}
+			logger.info(" end  MasterService- > addBranch Method");
+			return Response.status(200).entity(logiwareRespnse).build();
+		}
+		
+		@GET
+		@Path("/getAllBranch")
+		@Produces({ MediaType.APPLICATION_JSON })
+		public Response getAllBranch() {
+
+			List<CompanyBranchDto> lBranch = new ArrayList<CompanyBranchDto>();
+			logger.info(" Start  MasterService- > getAllBranch Method");
+			LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+			try {
+
+				lBranch = mastersLogic.getAllBranch();
+				logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+				logiwareRespnse.setData(lBranch);
+			} catch (LogiwareExceptionHandler e) {
+				logger.error("Error in MasterService- > getAllBranch", e);
+				logiwareRespnse.setCode(e.getErrorCode());
+				logiwareRespnse.setDescription(e.getDescription());
+			} catch (Exception e) {
+				logger.error("Error in MasterService- > getAllBranch", e);
+				logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+						.getErrorCode());
+				logiwareRespnse
+						.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+								.getErrorDescription());
+			}
+			logger.info(" end  MasterService- > getAllBranch");
+			return Response.status(200).entity(logiwareRespnse).build();
+		}
+
+		
+		@GET
+		@Path("/getBranchById/{id}")
+		@Produces({ MediaType.APPLICATION_JSON })
+		public Response getBranchById(@PathParam("id")Integer branchId) {
+			logger.info(" Start  MasterService- > getBranchById ");
+			LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+			CompanyBranchDto companyBranchDto = null;
+			try {
+				companyBranchDto = mastersLogic.getBranchById(branchId);
+				logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+				logiwareRespnse.setData(companyBranchDto);
+			} catch (LogiwareExceptionHandler e) {
+				logger.error("Error in MasterService- > getBranchById ", e);
+				logiwareRespnse.setCode(e.getErrorCode());
+				logiwareRespnse.setDescription(e.getDescription());
+			} catch (Exception e) {
+				logger.error("Error in MasterService- > getBranchById ", e);
+				logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+						.getErrorCode());
+				logiwareRespnse
+						.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+								.getErrorDescription());
+			}
+			logger.info(" end  MasterService- > getBranchById ");
+			return Response.status(200).entity(logiwareRespnse).build();
+		}
+		
+		@POST
+		@Path("/editBranch")
+		@Produces({ MediaType.APPLICATION_JSON })
+		@Consumes({MediaType.APPLICATION_JSON })
+		public Response editBranch(CompanyBranchDto companyBranchDto) {
+
+			logger.info(" Start  MasterService- > editBranch ");
+			LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+			Boolean result=false;
+			try {
+				result=mastersLogic.editBranch(companyBranchDto);
+				logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+				logiwareRespnse.setData(result);
+			} catch (LogiwareExceptionHandler e) {
+				logger.error("Error in MasterService- > editBranch ", e);
+				logiwareRespnse.setCode(e.getErrorCode());
+				logiwareRespnse.setDescription(e.getDescription());
+			} catch (Exception e) {
+				logger.error("Error in MasterService- > editBranch ", e);
+				logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+						.getErrorCode());
+				logiwareRespnse
+						.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+								.getErrorDescription());
+			}
+			logger.info(" end  MasterService- > editBranch ");
+			return Response.status(200).entity(logiwareRespnse).build();
+		}
+		
+		@GET
+		@Path("/deleteBranch/{branchId}")
+		@Produces({ MediaType.APPLICATION_JSON })
+		public Response deleteBranch(@PathParam("branchId")Integer branchId) {
+
+			logger.info(" Start  MasterService- > deleteBranch ");
+			LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+			Boolean result=false;
+			try {
+				result=mastersLogic.deleteBranch(branchId);
+				logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+				logiwareRespnse.setData(result);
+			} catch (LogiwareExceptionHandler e) {
+				logger.error("Error in MasterService- > deleteBranch ", e);
+				logiwareRespnse.setCode(e.getErrorCode());
+				logiwareRespnse.setDescription(e.getDescription());
+			} catch (Exception e) {
+				logger.error("Error in MasterService- > deleteBranch ", e);
+				logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+						.getErrorCode());
+				logiwareRespnse
+						.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+								.getErrorDescription());
+			}
+			logger.info(" end  MasterService- > deleteBranch ");
+			return Response.status(200).entity(logiwareRespnse).build();
+		}
+			
+		// end branch details services
+	
+	
 }

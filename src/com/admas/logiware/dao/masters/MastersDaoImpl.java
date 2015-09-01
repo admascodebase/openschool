@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.admas.logiware.dto.CityDto;
+import com.admas.logiware.dto.CompanyBranchDto;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.TransportTypeDtlDto;
@@ -26,6 +27,7 @@ import com.admas.logiware.exception.LogiwareExceptionHandler;
 import com.admas.logiware.exception.LogiwareServiceErrors;
 import com.admas.logiware.jpa.City;
 import com.admas.logiware.jpa.Company;
+import com.admas.logiware.jpa.CompanyBranch;
 import com.admas.logiware.jpa.Employee;
 import com.admas.logiware.jpa.TransportType;
 import com.admas.logiware.jpa.TransportTypeDtl;
@@ -958,7 +960,7 @@ public class MastersDaoImpl implements MastersDao {
 		Boolean result = false;
 		try {
 			Query query = entityManager
-					.createQuery("UPDATE TransportTypeDtlDto SET  delFlag = 'Y' WHERE id = :id");
+					.createQuery("UPDATE TransportTypeDtl SET  delFlag = 'Y' WHERE id = :id");
 			query.setParameter("id", transportTypeDtlId);
 			int updateResult = query.executeUpdate();
 
@@ -983,4 +985,172 @@ public class MastersDaoImpl implements MastersDao {
 	}
 	
 	// end transport type details dao 
+	
+	// start branch details dao 
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public Boolean addBranch(CompanyBranchDto companyBranchDto)
+			throws LogiwareExceptionHandler {
+		Boolean result = false;
+		try {			
+			entityManager.persist(companyBranchDto._toJpa());
+			entityManager.flush();			
+			if (companyBranchDto._toJpa().getId() != null || companyBranchDto._toJpa().getId() != 0) {
+				result = true;
+			}
+			return result;
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in MastersDaoImpl - > addaddTransportTypeDtl",he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch (Exception e) {
+			logger.error(
+					"Exception Error in UserManagementDaoImpl - > addaddTransportTypeDtl ",e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			entityManager.close();
+		}
+	}
+
+	@Override
+	public List<CompanyBranch> getAllBranch() throws LogiwareExceptionHandler {
+		List<CompanyBranch> lCompanyBranchs = null;
+		CriteriaBuilder criteriaBuilder = null;
+		try {
+
+			criteriaBuilder = entityManager.getCriteriaBuilder();
+			CriteriaQuery<CompanyBranch> criteriaQuery = criteriaBuilder
+					.createQuery(CompanyBranch.class);
+			Root<CompanyBranch> transportTypeJpa = criteriaQuery.from(CompanyBranch.class);
+			criteriaQuery.select(transportTypeJpa);
+			TypedQuery<CompanyBranch> typedQuery = entityManager
+					.createQuery(criteriaQuery);
+			lCompanyBranchs = typedQuery.getResultList();
+
+			if (lCompanyBranchs != null && lCompanyBranchs.size() != 0) {
+				return lCompanyBranchs;
+			} else {
+				throw new LogiwareExceptionHandler(
+						LogiwareServiceErrors.NO_BRANCH_FOUND);
+			}
+
+		} catch (LogiwareExceptionHandler ex) {
+			throw ex;
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in MastersDaoImpl - > getAllBranch",
+					he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch (Exception e) {
+			logger.error(
+					"Exception Error in UserManagementDaoImpl - > getAllBranch ",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			criteriaBuilder = null;
+		}
+	}
+
+	@Override
+	public CompanyBranch getBranchById(Integer companyBranchId)
+			throws LogiwareExceptionHandler {
+		CompanyBranch companyBranch = null;
+		try {
+
+			TypedQuery<CompanyBranch> transportTypeQuery = entityManager.createQuery(
+					"SELECT c FROM CompanyBranch c WHERE id = :id", CompanyBranch.class);
+			transportTypeQuery.setParameter("id", companyBranchId);
+			companyBranch = transportTypeQuery.getSingleResult();
+
+			if (companyBranch != null) {
+				return companyBranch;
+			} else {
+				throw new LogiwareExceptionHandler(
+						LogiwareServiceErrors.NO_BRANCH_FOUND);
+			}
+
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in MastersDaoImpl - > getBranchById",
+					he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch (Exception e) {
+			logger.error(
+					"Exception Error in UserManagementDaoImpl - > getBranchById",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			entityManager.close();
+		}
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public Boolean editBranch(CompanyBranchDto companyBranchDto)
+			throws LogiwareExceptionHandler {
+		Boolean result = false;
+		try {
+			entityManager.merge(companyBranchDto._toJpa());
+			entityManager.flush();
+			
+			if (companyBranchDto._toJpa().getId() != null || companyBranchDto._toJpa().getId() != 0) {
+				result = true;
+			}
+			return result;
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in MastersDaoImpl - > editBranch",
+					he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch (Exception e) {
+			 logger.error("Exception Error in MastersDaoImpl - > editBranch ", e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			entityManager.close();
+		}
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public Boolean deleteBranch(Integer companyBranchId)
+			throws LogiwareExceptionHandler {
+		Boolean result = false;
+		try {
+			Query query = entityManager
+					.createQuery("UPDATE CompanyBranch SET  delFlag = 'Y' WHERE id = :id");
+			query.setParameter("id", companyBranchId);
+			int updateResult = query.executeUpdate();
+
+			if (updateResult != 0) {
+				result = true;
+			}
+
+			return result;
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in MastersDaoImpl - > deleteTransportTypeDtl",
+					he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch (Exception e) {
+			 logger.error( "Exception Error in MastersDaoImpl - > deleteTransportTypeDtl", e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			entityManager.close();
+		}
+	}
+	
+	// end branch details dao 
+	
+	
 }

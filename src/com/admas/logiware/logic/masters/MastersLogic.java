@@ -3,6 +3,7 @@ package com.admas.logiware.logic.masters;
 import java.util.List;
 
 import com.admas.logiware.dto.CityDto;
+import com.admas.logiware.dto.CompanyBranchDto;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.TransportTypeDtlDto;
@@ -64,4 +65,19 @@ public interface MastersLogic {
 	public Boolean deleteTransportTypeDtl(Integer transportTypeId)throws LogiwareExceptionHandler;
 	
 	//End transport type detail services
+	
+	
+	//Start branch details services
+	
+	public Boolean addBranch(CompanyBranchDto companyBranchDto) throws LogiwareExceptionHandler;
+
+	public List<CompanyBranchDto> getAllBranch()throws LogiwareExceptionHandler;
+
+	public CompanyBranchDto getBranchById(Integer compBranchId)throws LogiwareExceptionHandler;
+		
+	public Boolean editBranch(CompanyBranchDto comBranchDto)throws LogiwareExceptionHandler;
+
+	public Boolean deleteBranch(Integer compBranchId)throws LogiwareExceptionHandler;
+		
+	//End branch services
 }
