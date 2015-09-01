@@ -505,6 +505,7 @@ public class MasterServices {
 		return Response.status(200).entity(logiwareRespnse).build();
 	}
 
+	//Transport type services start 
 	
 	@POST
 	@Path("/addTransportType")
@@ -654,6 +655,9 @@ public class MasterServices {
 		return Response.status(200).entity(logiwareRespnse).build();
 	}
 
+	//Transport type services End 
+	
+	//Transport type details services Start 
 	
 	
 }
