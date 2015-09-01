@@ -647,6 +647,7 @@ public class MastersDaoImpl implements MastersDao {
 			transportType.setCompId(transportTypeDto.getCompId());
 			transportType.setName(transportTypeDto.getName());
 			transportType.setDescription(transportTypeDto.getDescription());
+			transportType.setDelFlag('N');
 			entityManager.persist(transportType);
 			entityManager.flush();
 
@@ -716,7 +717,8 @@ public class MastersDaoImpl implements MastersDao {
 
 	@Override
 	public TransportType getTransportTypeById(Integer transportTypeId)
-			throws LogiwareExceptionHandler {		
+			throws LogiwareExceptionHandler {
+		
 		
 		TransportType transportType = null;
 		try {

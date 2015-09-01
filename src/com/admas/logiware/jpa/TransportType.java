@@ -23,7 +23,7 @@ public class TransportType implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Integer id; 
 	
 	@Column(name="COMP_ID" ,nullable = false )
 	private Integer compId;
@@ -34,11 +34,29 @@ public class TransportType implements Serializable{
 	@Column(name="DESCRIPTION" ,nullable = false )
 	private String description;
 
+	@Column(name="delFlag", nullable = true)
+	private Character delFlag;
+	
+	
 	/**
 	 * @return the id
 	 */
 	public Integer getId() {
 		return id;
+	}
+
+	/**
+	 * @return the delFlag
+	 */
+	public Character getDelFlag() {
+		return delFlag;
+	}
+
+	/**
+	 * @param delFlag the delFlag to set
+	 */
+	public void setDelFlag(Character delFlag) {
+		this.delFlag = delFlag;
 	}
 
 	/**

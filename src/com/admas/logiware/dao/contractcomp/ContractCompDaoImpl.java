@@ -114,6 +114,7 @@ public class ContractCompDaoImpl implements ContractCompDao {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Boolean addContractComp(ContractCompDto contractCompDto)
 			throws LogiwareExceptionHandler {
 		Boolean result = false;

@@ -10,11 +10,11 @@ public class TransportTypeDto implements Serializable{
 		
 	}
 
-
 	private Integer id;
 	private Integer compId;
 	private String name;
 	private String description;
+	private Character delFlag;
 	
 	
 	/**
@@ -76,6 +76,18 @@ public class TransportTypeDto implements Serializable{
 	public String toString() {
 		return "TransportTypeDto [id=" + id + ", compId=" + compId + ", name="
 				+ name + ", description=" + description + "]";
+	}
+	/**
+	 * @return the delFlag
+	 */
+	public Character getDelFlag() {
+		return delFlag;
+	}
+	/**
+	 * @param delFlag the delFlag to set
+	 */
+	public void setDelFlag(Character delFlag) {
+		this.delFlag = delFlag;
 	}
 
 	

@@ -30,7 +30,7 @@ public class TransportTypeDtl implements Serializable{
 	@Column(name="TRUCK_NAME" ,nullable = false )
 	private String truckName;
 	
-	@Column(name="TRUCK_NAME" )
+	@Column(name="DESCRIPTION" )
 	private String description;
 	
 	@Column(name="SIZE" ,nullable = false )
@@ -51,6 +51,11 @@ public class TransportTypeDtl implements Serializable{
 	@Column(name="CAPACITY" ,nullable = false)
 	private String capacity;
 
+	@Column(name="DEL_FLAG" ,nullable = true)
+	private Character delFlag;
+	
+	
+	
 	/**
 	 * @return the id
 	 */
@@ -189,6 +194,24 @@ public class TransportTypeDtl implements Serializable{
 	 */
 	public void setCapacity(String capacity) {
 		this.capacity = capacity;
+	}
+	
+	
+
+	
+
+	/**
+	 * @return the delFlag
+	 */
+	public Character getDelFlag() {
+		return delFlag;
+	}
+
+	/**
+	 * @param delFlag the delFlag to set
+	 */
+	public void setDelFlag(Character delFlag) {
+		this.delFlag = delFlag;
 	}
 
 	/* (non-Javadoc)
