@@ -194,7 +194,7 @@
 										<a href="showEditTransportType.htm"><button
 													class="btn btn-circle yellow-crusta">Edit</button></a>
 									
-									<a href="deleteTransportType.htm"><button
+									<a href="showDeleteTransportType.htm"><button
 													class="btn btn-circle yellow-crusta">delete</button></a>
 									
 										</div>

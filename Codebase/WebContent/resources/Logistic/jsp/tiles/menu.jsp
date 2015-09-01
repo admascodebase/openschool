@@ -34,12 +34,12 @@
 												<li>
 													<a href="getAllTransportTypes.htm" class="iconify">
 													<i class="icon-handbag"></i>
-													Transport </a>
+													Transport Type </a>
 												</li>
 												<li>
-													<a href="ecommerce_products_edit.html" class="iconify">
+													<a href="getAllTransportTypeDetails.htm" class="iconify">
 													<i class="icon-pencil"></i>
-													Transport Details </a>
+													Transport Type Details </a>
 												</li>
 												<li>
 													<a href="./getAllEmployee.htm" class="iconify">

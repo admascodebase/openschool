@@ -131,4 +131,17 @@
 		<put-attribute name="body"
 			value="/resources/Logistic/jsp/masters/AddEmployee.jsp" />
 	</definition>
+	
+	
+	<definition name="getAllTransportTypeDetails" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic -Transport Type Details" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/masters/TransportTypeDetails.jsp" />
+	</definition>
+	
+	<definition name="showAddTranceportTypeDetails" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic -Transport Type Details" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/masters/AddTransportTypeDetails.jsp" />
+	</definition>
 </tiles-definitions>
