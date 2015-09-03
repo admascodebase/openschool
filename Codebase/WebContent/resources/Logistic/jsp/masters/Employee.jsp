@@ -229,6 +229,7 @@
 										<th>PAN</th>
 										<th>Salary Type</th>
 										<th>Salary</th>
+										<th>Edit/Delete</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -247,6 +248,14 @@
 											<td>${Employee.pan}</td>
 											<td>${Employee.salaryType}</td>
 											<td>${Employee.salary}</td>
+											<td>
+												<a href="showEditEmployee.htm?id=${Employee.id}"
+													class="btn btn-warning btn-xs"> Edit 
+												</a> 
+												<a href="deleteEmployee.htm?id=${Employee.id}"
+													class="btn btn-info btn-xs"> Delete 
+												</a>
+											</td>
 										</tr>
 									</c:forEach>
 								</tbody>
