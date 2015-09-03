@@ -361,7 +361,7 @@ public class ServiceInvoker implements Serializable {
 				throw new LogiwareBaseException(response.getStatus() + "",
 						response.getStatus() + "");
 			}
-			logiwareResponse = response.getEntity();
+			logiwareResponse = (LogiwareRespnse) response.getEntity();
 			if (!logiwareResponse.getCode().equals("0000")) {
 				throw new LogiwareBaseException(logiwareResponse.getCode(),
 						logiwareResponse.getDescription());
