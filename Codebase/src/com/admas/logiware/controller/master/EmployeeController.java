@@ -165,7 +165,7 @@ public class EmployeeController extends BaseController{
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		EmployeeDto employeeDto=null;
-		Integer employeeId=3;
+		Integer employeeId=Integer.parseInt(request.getParameter("id"));
 		try {			
 			reqDtoObjects.put("employeeId", employeeId);
 			resDtoObjects=masterServiceImpl.showEditEmployee(flowData, reqDtoObjects, resDtoObjects);
@@ -200,7 +200,7 @@ public class EmployeeController extends BaseController{
 		ModelAndView mv = new ModelAndView() ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
-		Integer employeeId=3;
+		Integer employeeId=Integer.parseInt(request.getParameter("id")); 
 		try {			
 			reqDtoObjects.put("employeeId", employeeId);
 			resDtoObjects = masterServiceImpl.deleteEmployee(flowData, reqDtoObjects, resDtoObjects);
