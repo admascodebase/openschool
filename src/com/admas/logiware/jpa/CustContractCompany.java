@@ -25,7 +25,7 @@ public class CustContractCompany {
 	@Column(name="COMP_ID" ,nullable = false )
     private Integer compId; 
 	
-	@Column(name="ADDRESS" ,nullable = false )
+	@Column(name="ADDRESS" ,nullable = true )
 	private String address;
 	
 	@Column(name="TYPE" ,nullable = false )
