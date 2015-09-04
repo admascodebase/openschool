@@ -397,7 +397,7 @@ public class MasterServices {
 		try {
 			employeeDto=mastersLogic.getEmployeeById(employeeId);
 			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
-			logiwareRespnse.setData(employeeDto);
+			logiwareRespnse.setEmployeeDto(employeeDto);
 		} catch (LogiwareExceptionHandler e) {
 			logger.error("Error in MasterService- > getEmployeeById ", e);
 			logiwareRespnse.setCode(e.getErrorCode());
