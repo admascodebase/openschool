@@ -1,4 +1,9 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
 	<div class="page-head">
@@ -6,7 +11,7 @@
 			<!-- BEGIN PAGE TITLE -->
 			<div class="page-title">
 				<h1>
-					Master Details <small>Master Data</small>
+					Master Data <small>Master Data</small>
 				</h1>
 			</div>
 			<!-- END PAGE TITLE -->
@@ -158,155 +163,164 @@
 			<!-- BEGIN PAGE BREADCRUMB -->
 			<ul class="page-breadcrumb breadcrumb">
 				<li><a href="#">Home</a><i class="fa fa-circle"></i></li>
-				<li><a href="table_managed.html">Masters</a> <i
-					class="fa fa-circle"></i></li>
-				<li><a href="table_managed.html">Company Details</a> <i
-					class="fa fa-circle"></i></li>
-				<li class="active">Company Details</li>
+				<li><a href="#">Masters</a> <i class="fa fa-circle"></i></li>
+				<li class="active">Add Contract Company</li>
 			</ul>
 			<!-- END PAGE BREADCRUMB -->
 			<!-- BEGIN PAGE CONTENT INNER -->
 			<div class="row">
 				<div class="col-md-12">
-					<!-- BEGIN EXAMPLE TABLE PORTLET-->
-					<div class="portlet light">
-						<div class="portlet-title">
-							<div class="caption">
-								<i class="fa fa-cogs font-green-sharp"></i> <span
-									class="caption-subject font-green-sharp bold uppercase">Company
-									Details</span>
-							</div>
-							<div class="tools">
-								<a href="javascript:;" class="collapse"> </a> <a
-									href="#portlet-config" data-toggle="modal" class="config">
-								</a> <a href="javascript:;" class="reload"> </a> <a
-									href="javascript:;" class="remove"> </a>
-							</div>
-						</div>
-						<div class="portlet-body">
-						<div id="bootstrap_alerts">
-						</div>
-							<div class="table-toolbar">
-								<div class="row">
-									<div class="col-md-6">
-										<div class="btn-group">
-											<a href="showAddCompany.htm"><button
-													class="btn btn-circle btn-primary">Add New</button></a>
-										</div>
-										<div class="btn-group">
-											<a href="deleteCompany.htm"><button
-													class="btn btn-circle btn-primary">delete</button></a>
-										</div>
+					<div
+						class="tabbable tabbable-custom tabbable-noborder tabbable-reversed">
+						<div class="tab-pane" id="tab_2">
+							<div class="portlet box green">
+								<div class="portlet-title">
+									<div class="caption">
+										<i class="fa fa-gift"></i>Contract Company Details
 									</div>
-									<div class="col-md-6">
-										<div class="btn-group pull-right">
-											<button class="btn dropdown-toggle" data-toggle="dropdown">
-												Tools <i class="fa fa-angle-down"></i>
-											</button>
-											<ul class="dropdown-menu pull-right">
-												<li><a href="javascript:;"> Print </a></li>
-												<li><a href="javascript:;"> Save as PDF </a></li>
-												<li><a href="javascript:;"> Export to Excel </a></li>
-											</ul>
-										</div>
+									<div class="tools">
+										<a href="javascript:;" class="collapse"> </a> <a
+											href="#portlet-config" data-toggle="modal" class="config">
+										</a> <a href="javascript:;" class="reload"> </a> <a
+											href="javascript:;" class="remove"> </a>
 									</div>
 								</div>
-							</div>
-							<table class="table table-striped table-bordered table-hover"
-								id="sample_1">
-								<thead>
-									<tr>
-										<th class="table-checkbox"><input type="checkbox"
-											class="group-checkable" data-set="#sample_1 .checkboxes" /></th>
-										<th>Name</th>
-										<th>Customer Id</th>
-										<th>Contact Number 1</th>
-										<th>Contact Number 2</th>
-										<th>Address</th>
-										<th>Email-Id 1</th>
-										<th>Email-Id 2</th>
-										<th>PAN</th>
-										<th>TAN</th>
-										<th>Tag Line</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${lCompanies}" var="company">
-										<tr class="odd gradeX">
 
-											<td><input type="checkbox" class="checkboxes" value="1" />
-											</td>
-											<td>${company.name}</td>
-											<td>${company.custId}</td>
-											<td>${company.contactNo1}</td>
-											<td>${company.contactNo2}</td>
-											<td>${company.address}</td>
-											<td>${company.emailId1}</td>
-											<td>${company.emailId2}</td>
-											<td>${company.panNo}</td>
-											<td>${company.tanNo}</td>
-											<td>${company.tagLine}</td>
-											<td><a href="showEditCompany.htm?id=${company.id}"
-													class="btn btn-warning btn-xs"> Edit 
-												</a> 
-												<a href="deleteCompany.htm?id=${company.id}"
-													class="btn btn-info btn-xs"> Delete 
-												</a>
-											</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
+								<!-- CompanyStart -->
+								<div class="portlet box green">
+									<!-- <div class="portlet-title">
+										<div class="caption">
+											<i class="fa fa-gift"></i>Form Sample
+										</div>
+										<div class="tools">
+											<a href="javascript:;" class="collapse">
+											</a>
+											<a href="#portlet-config" data-toggle="modal" class="config">
+											</a>
+											<a href="javascript:;" class="reload">
+											</a>
+											<a href="javascript:;" class="remove">
+											</a>
+										</div>
+									</div> -->
+									<div class="portlet-body form">
+										<!-- BEGIN FORM-->
+										<form:form action="saveContractCompany.htm" modelAttribute="contractCompany" class="form-horizontal">
+											<div class="form-body">
+												<h3 class="form-section"></h3>
+												<div class="row">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Contract Company
+																Name</label>
+															<div class="col-md-9">
+																<form:input type="text" path="name" class="form-control"
+																	placeholder="Company Name here.."/> 
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Address</label>
+															<div class="col-md-9">
+																<form:input type="text" path="address" class="form-control"
+																	placeholder="Address here.. "/> 
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+												</div>
+												<!--/row-->
+												<div class="row">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Company</label>
+															<div class="col-md-9">
+																<form:input type="text" path="compId" class="form-control"
+																	placeholder="Select Your company."/> 
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Type
+																</label>
+															<div class="col-md-9">
+																<form:input path="type" type="text" class="form-control"
+																	placeholder="Enter your contact number."/>
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+												</div>
+												<!--/row-->
+												<div class="row">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Contact Person</label>
+															<div class="col-md-9">
+																<form:input path="contactPersion" type="text" class="form-control" placeholder="Contact Person name."/>
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Contact Number 1</label>
+															<div class="col-md-9">
+															<form:input path="contactNo1" type="text" class="form-control" placeholder="Enter email id 2"/>
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+												</div>
+												<!-- <h3 class="form-section">PAN Number</h3> -->
+												<!--/row-->
+												<div class="row">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Contact Number 2</label>
+															<div class="col-md-9">
+																<form:input path="contactNo2" type="text" class="form-control" placeholder="PAN Number"/>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!--/row-->
+											</div>
+											<div class="form-actions right">
+												<button class="btn default" type="button">Cancel</button>
+												<button class="btn blue" type="submit"><i class="fa fa-check"></i> Save</button>
+											</div>
+											<!-- <div class="form-actions">
+												<div class="row">
+													<div class="col-md-6">
+														<div class="row">
+															<div class="col-md-offset-3 col-md-9">
+																<button type="submit" class="btn green">Submit</button>
+																<button type="button" class="btn default">Cancel</button>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-6"></div>
+												</div>
+											</div> -->
+										</form:form>
+										<!-- END FORM-->
+									</div>
+								</div>
+								<!--companyEnd  -->
+							</div>
 						</div>
 					</div>
-					<!-- END EXAMPLE TABLE PORTLET-->
 				</div>
 			</div>
-
-
 			<!-- END PAGE CONTENT INNER -->
 		</div>
 	</div>
 	<!-- END PAGE CONTENT -->
 </div>
 
-<script>
-	jQuery(document).ready(function() {
-		Metronic.init(); // init metronic core components
-		Layout.init(); // init current layout
-		Demo.init(); // init demo features
-		TableManaged.init();
-	});
-</script>
-<script>
-	(function(i, s, o, g, r, a, m) {
-		i['GoogleAnalyticsObject'] = r;
-		i[r] = i[r] || function() {
-			(i[r].q = i[r].q || []).push(arguments)
-		}, i[r].l = 1 * new Date();
-		a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-		a.async = 1;
-		a.src = g;
-		m.parentNode.insertBefore(a, m)
-	})(window, document, 'script',
-			'../../../../../../www.google-analytics.com/analytics.js', 'ga');
-	ga('create', 'UA-37564768-1', 'keenthemes.com');
-	ga('send', 'pageview');
-</script>
 
-<script>
-$(window).load(function() {
- 
- Metronic.alert({
-                container:'#bootstrap_alerts' , // alerts parent container(by default placed after the page breadcrumbs)
-                place: 'append', // append or prepent in container 
-                type: 'danger',  // alert's type
-                message: 'Records not found',  // alert's message
-                close: '1', // make alert closable
-                reset: '1', // close all previouse alerts first
-                focus: '1', // auto scroll to the alert after shown
-                closeInSeconds: '0', // auto close after defined seconds
-                icon: "" // put icon before the message
-            });
-});
-    </script>

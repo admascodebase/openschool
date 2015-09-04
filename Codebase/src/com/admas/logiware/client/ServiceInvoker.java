@@ -87,6 +87,10 @@ public class ServiceInvoker implements Serializable {
 			response = (K) deleteEmployee(url, (Map) request);
 			break;
 		}
+		case getCompanyById: {
+			response = (K) getCompanyById(url, (Map) request);
+			break;
+		}
 		case deleteCompany: {
 			response = (K) deleteCompany(url, (Map) request);
 			break;
@@ -113,6 +117,30 @@ public class ServiceInvoker implements Serializable {
 		}
 		case saveTransportTypeDetails: {
 			response = (K) saveTransportTypeDetails(url, (Map) request);
+			break;
+		}
+		case getTransportTypeDtlById: {
+			response = (K) getTransportTypeDtlById(url, (Map) request);
+			break;
+		}
+		case deleteTransportTypeDtl: {
+			response = (K) deleteTransportTypeDtl(url, (Map) request);
+			break;
+		}
+		case saveContractCompany: {
+			response = (K) saveContractCompany(url, (Map) request);
+			break;
+		}
+		case getAllContractCompany: {
+			response = (K) getAllContractCompany(url, (Map) request);
+			break;
+		}
+		case getContractCompanyById: {
+			response = (K) getContractCompanyById(url, (Map) request);
+			break;
+		}
+		case deleteContractCompany: {
+			response = (K) deleteContractCompany(url, (Map) request);
 			break;
 		}
 		default:
@@ -553,12 +581,12 @@ public class ServiceInvoker implements Serializable {
 		} catch (LogiwareBaseException b) {
 			throw b;
 		} catch (Exception e) {
-			logger.error("Exception In ServiceInvoker getEmployeeById method end.", e);
+			logger.error("Exception In ServiceInvoker gettransportTypeById method end.", e);
 			throw new LogiwareBaseException(
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
 		}
-		logger.info("ServiceInvoker getEmployeeById method end. ");
+		logger.info("ServiceInvoker gettransportTypeById method end. ");
 		return logiwareResponse;
 	}
 	
@@ -662,6 +690,255 @@ public class ServiceInvoker implements Serializable {
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
 		}
 		logger.info("ServiceInvoker saveTransportTypeDetails method end. ");
+		return logiwareResponse;
+	}
+
+	public LogiwareRespnse getTransportTypeDtlById(String url,
+			Map<String, Object> request) throws LogiwareBaseException {
+		logger.info("ServiceInvoker gettransportTypeDtlById method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+
+			Integer transportTypeId = (Integer) request.get("transportTypeDtlId");
+			ClientRequest clientRequest = new ClientRequest(url
+					+ WebAppConstants.URL_SEPERATOR + transportTypeId);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest
+					.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "",
+						response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(),
+						logiwareResponse.getDescription());
+			} /*
+			 * else { result = (Boolean) logiwareResponse.getData(); }
+			 */
+
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error(
+					"Exception In ServiceInvoker gettransportTypeDtlById method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker gettransportTypeDtlById method end. ");
+		return logiwareResponse;
+	}
+
+
+
+/*
+ * Delete Transport Type Details
+ * 
+ */
+	public LogiwareRespnse deleteTransportTypeDtl(String url,
+			Map<String, Object> request) throws LogiwareBaseException {
+		logger.info("ServiceInvoker deleteTransportTypeDtl method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url + WebAppConstants.URL_SEPERATOR + request.get("transportTypeDtlId"));
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest
+					.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "",
+						response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(),
+						logiwareResponse.getDescription());
+			} 
+
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker deleteTransportTypeDtl method end.", e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker deleteTransportTypeDtl method end. ");
+		return logiwareResponse;
+	}
+
+	
+	/*
+	 *Get Company By Id 
+	 */
+	public LogiwareRespnse getCompanyById(String url,
+			Map<String, Object> request) throws LogiwareBaseException {
+		
+		logger.info("ServiceInvoker getCompanyById method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			
+			Integer companyId= (Integer)request.get("companyId");
+			ClientRequest clientRequest = new ClientRequest(url+ WebAppConstants.URL_SEPERATOR + companyId);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest
+					.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "",
+						response.getStatus() + "");
+			}
+			logiwareResponse = (LogiwareRespnse) response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(),
+						logiwareResponse.getDescription());
+			} /*else {
+				result = (Boolean) logiwareResponse.getData();
+			}*/
+
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker getCompanyById method end.", e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker getCompanyById method end. ");
+		return logiwareResponse;
+	}
+	
+	
+	public LogiwareRespnse saveContractCompany(String url,
+			Map<String, Object> request) throws LogiwareBaseException {
+		
+		logger.info("ServiceInvoker saveContractCompany method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("contractCompDto"));
+			ClientResponse<LogiwareRespnse> response = clientRequest
+					.post(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "",
+						response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(),
+						logiwareResponse.getDescription());
+			} 
+
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker saveContractCompany method end.", e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker saveContractCompany method end. ");
+		return logiwareResponse;
+	}
+	
+	
+	
+	public LogiwareRespnse getAllContractCompany(String url,
+			Map<String, Object> request) throws LogiwareBaseException {
+		logger.info("ServiceInvoker getAllContractCompany method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest
+					.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "",
+						response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(),
+						logiwareResponse.getDescription());
+			}
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error(
+					"Exception In ServiceInvoker getAllContractCompany method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker getAllContractCompany method end. ");
+		return logiwareResponse;
+	}
+	
+	
+	/*
+	 *Get Employee By Id 
+	 */
+	public LogiwareRespnse getContractCompanyById(String url,
+			Map<String, Object> request) throws LogiwareBaseException {
+		logger.info("ServiceInvoker getContractCompanyById method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			Integer contractCompanyId= (Integer)request.get("contractCompanyId");
+			ClientRequest clientRequest = new ClientRequest(url+ WebAppConstants.URL_SEPERATOR + contractCompanyId);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest
+					.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "",
+						response.getStatus() + "");
+			}
+			logiwareResponse = (LogiwareRespnse) response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(),
+						logiwareResponse.getDescription());
+			} 		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker getContractCompanyById method end.", e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker getContractCompanyById method end. ");
+		return logiwareResponse;
+	}
+
+	
+	public LogiwareRespnse deleteContractCompany(String url,
+			Map<String, Object> request) throws LogiwareBaseException {
+		
+		logger.info("ServiceInvoker deleteContractCompany method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url + WebAppConstants.URL_SEPERATOR + request.get("ContractcompanyId"));
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest
+					.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "",
+						response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(),
+						logiwareResponse.getDescription());
+			} 
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker deleteContractCompany method end.", e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker deleteContractCompany method end. ");
 		return logiwareResponse;
 	}
 	

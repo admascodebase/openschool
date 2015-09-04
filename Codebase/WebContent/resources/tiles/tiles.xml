@@ -144,4 +144,17 @@
 		<put-attribute name="body"
 			value="/resources/Logistic/jsp/masters/AddTransportTypeDetails.jsp" />
 	</definition>
+
+	<definition name="showAddContractCompany" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic -Contract Company Details" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/masters/AddContractCompany.jsp" />
+	</definition>
+	
+		<definition name="getAllContractCompany" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic -Contract Company Details" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/masters/ContractCompany.jsp" />
+	</definition>
+	
 </tiles-definitions>

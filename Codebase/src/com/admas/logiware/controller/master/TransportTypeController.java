@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.admas.logiware.controller.master;
 
 import java.util.HashMap;
@@ -159,15 +156,13 @@ public class TransportTypeController extends BaseController {
 	@RequestMapping(value = "/showEditTransportType.htm", method = RequestMethod.GET)
 	public ModelAndView EditTransportType(HttpServletRequest request,
 			HttpServletResponse response) {
-
 		logger.info("TransportTypeController: editTransportType Method Start.");
 		FlowData flowData = null;
-		
 		ModelAndView mv = new ModelAndView() ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		TransportTypeDto transportTypeDto = null;
-		Integer transportTypeId=3;
+		Integer transportTypeId=Integer.parseInt(request.getParameter("id"));
 		try {			
 			reqDtoObjects.put("transportTypeId", transportTypeId);
 			resDtoObjects=masterServiceImpl.EditTransportType(flowData, reqDtoObjects, resDtoObjects);
@@ -180,7 +175,6 @@ public class TransportTypeController extends BaseController {
 			logger.error("Exception in TransportTypeController: showEditTransportType",
 					_be);
 			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
-
 		} catch (Exception e) {
 			logger.error(
 					"Exception In TransportTypeController showEditTransportType Method--", e);
@@ -200,7 +194,7 @@ public class TransportTypeController extends BaseController {
 		ModelAndView mv = new ModelAndView() ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
-		Integer transportTypeId=3;
+		Integer transportTypeId=Integer.parseInt(request.getParameter("id"));
 		try {			
 			reqDtoObjects.put("transportTypeId", transportTypeId);
 			resDtoObjects = masterServiceImpl.deleteTransportType(flowData, reqDtoObjects, resDtoObjects);
@@ -351,5 +345,83 @@ public class TransportTypeController extends BaseController {
 		
 		
 	}
+	
+	
+	/*
+	 * Edit Transport Type Details
+	 */
+	
+	@RequestMapping(value = "/showEditTransportTypeDetails.htm", method = RequestMethod.GET)
+	public ModelAndView EditTransportTypeDetails(HttpServletRequest request, HttpServletResponse response) {		
+		
+		logger.info("TransportTypeController: EditTransportTypeDetails Method Start.");
+		FlowData flowData = null;
+		
+		ModelAndView mv = new ModelAndView() ;
+		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
+		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
+		EmployeeDto employeeDto=null;
+		Integer transportTypeDtlId=Integer.parseInt(request.getParameter("id"));
+		try {			
+			reqDtoObjects.put("transportTypeDtlId", transportTypeDtlId);
+			resDtoObjects=masterServiceImpl.EditTransportTypeDetails(flowData, reqDtoObjects, resDtoObjects);
+			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
+			mv=new ModelAndView(viewName);	
+			resDtoObjects=masterServiceImpl.getTransportTypeDetailsById(flowData, reqDtoObjects, resDtoObjects);
+			employeeDto=(EmployeeDto) resDtoObjects.get("employee");
+			mv.addObject("employee",employeeDto);
+		} catch (LogiwareBaseException _be) {
+			logger.error("Exception in TransportTypeController: EditTransportTypeDetails",
+					_be);
+			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
+
+		} catch (Exception e) {
+			logger.error(
+					"Exception In TransportTypeController EditTransportTypeDetails Method--", e);
+			mv.addObject(WebAppConstants.ERROR_CODE,
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
+		}
+		return mv;
+}
+	
+	/*
+	 * Delete Transport Type Details
+	 * 
+	 * */
+	
+	@RequestMapping(value = "/showDeleteTransportTypeDetails.htm", method = RequestMethod.GET)
+	public ModelAndView deleteTransportTypeDetails(HttpServletRequest request, HttpServletResponse response) {		
+		
+		logger.info("TransportTypeController: deleteTransportTypeDetails Method Start.");
+		FlowData flowData = null;
+		
+		ModelAndView mv = new ModelAndView() ;
+		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
+		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
+		Integer transportTypeDtlId=Integer.parseInt(request.getParameter("id")); 
+		try {			
+			reqDtoObjects.put("transportTypeDtlId", transportTypeDtlId);
+			resDtoObjects = masterServiceImpl.deleteTransportTypeDetails(flowData, reqDtoObjects, resDtoObjects);
+			String viewName = (String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
+			resDtoObjects = masterServiceImpl.getAllTransportTypeDetails(flowData, reqDtoObjects, resDtoObjects);
+			mv=new ModelAndView(viewName);	
+			@SuppressWarnings("unchecked")
+			List<TransportTypeDtlDto> lTransportTypeDtls = (List<TransportTypeDtlDto>) resDtoObjects
+					.get("lTransportTypeDtls");
+			mv.addObject("lTransportTypeDtls", lTransportTypeDtls);
+		} catch (LogiwareBaseException _be) {
+			logger.error("Exception in TransportTypeController: deleteTransportTypeDetails",
+					_be);
+			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
+
+		} catch (Exception e) {
+			logger.error(
+					"Exception In TransportTypeController deleteTransportTypeDetails Method--", e);
+			mv.addObject(WebAppConstants.ERROR_CODE,
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
+		}
+		
+		return mv;
+}
 	
 }

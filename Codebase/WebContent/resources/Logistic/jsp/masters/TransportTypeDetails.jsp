@@ -229,24 +229,34 @@
 										<th>Width</th>
 										<th>Capacity</th>
 										<th>Max Capacity</th>
+										<th>Edit/Delete</th>
+										
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${lTransportTypeDtls}" var="Employee">
+									<c:forEach items="${lTransportTypeDtls}" var="transportTypeDtl">
 										<tr class="odd gradeX">
 
 											<td><input type="checkbox" class="checkboxes" value="1" />
 											</td>
-											<td>${Employee.id}</td>
-											<td>${Employee.transId}</td>
-											<td>${Employee.truckName}</td>
-											<td>${Employee.description}</td>
-											<td>${Employee.size}</td>
-											<td>${Employee.unit}</td>
-											<td>${Employee.wheelsNo}</td>
-											<td>${Employee.width}</td>
-											<td>${Employee.maxCapacity}</td>
-											<td>${Employee.capacity}</td>
+											<td>${transportTypeDtl.id}</td>
+											<td>${transportTypeDtl.transId}</td>
+											<td>${transportTypeDtl.truckName}</td>
+											<td>${transportTypeDtl.description}</td>
+											<td>${transportTypeDtl.size}</td>
+											<td>${transportTypeDtl.unit}</td>
+											<td>${transportTypeDtl.wheelsNo}</td>
+											<td>${transportTypeDtl.width}</td>
+											<td>${transportTypeDtl.maxCapacity}</td>
+											<td>${transportTypeDtl.capacity}</td>
+											<td>
+												<a href="showEditTransportTypeDetails.htm?id=${transportTypeDtl.id}"
+													class="btn btn-warning btn-xs"> Edit 
+												</a> 
+												 <a href="showDeleteTransportTypeDetails.htm?id=${transportTypeDtl.id}"
+													class="btn btn-info btn-xs"> Delete 
+												</a> 
+											</td>
 										</tr>
 									</c:forEach>
 								</tbody>

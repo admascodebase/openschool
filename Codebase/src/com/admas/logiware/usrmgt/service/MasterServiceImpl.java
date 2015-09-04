@@ -598,8 +598,6 @@ public class MasterServiceImpl {
 			HashMap<String, Object> reqDtoObjects,
 			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
 		
-		
-		
 		logger.info("MasterServiceImpl deleteCompany method start.");
 		LogiwareRespnse logiwareResponse = null;
 		String viewName = "";
@@ -771,6 +769,301 @@ public class MasterServiceImpl {
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
 		}
 		logger.info("MasterServiceImpl saveTransportTypeDetails method end. ");
+		return resDtoObjects;
+		
+	}
+
+	public Map<String, Object> EditTransportTypeDetails(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) {
+
+		String viewName = "";
+		try {
+			viewName = "showAddTranceportTypeDetails";
+
+		} catch (Exception exp) {
+			logger.error("Exception in EditTransportTypeDetails()", exp);
+		}
+
+		resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
+		return resDtoObjects;
+	
+	}
+
+	public Map<String, Object> getTransportTypeDetailsById(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+		logger.info("MasterServiceImpl getTransportTypeDetailsById method start.");
+		LogiwareRespnse logiwareResponse = null;
+		EmployeeDto employeeDto = new EmployeeDto();
+		String viewName = "";
+		try {
+			viewName = "getAllTransportTypeDetails";
+			logiwareResponse = doServiceCall(flowData,
+					ServiceName.getTransportTypeDtlById, reqDtoObjects);
+			Object object = logiwareResponse.getData();
+			employeeDto =(EmployeeDto) object;
+			resDtoObjects.put("userResponse", logiwareResponse);
+			resDtoObjects.put("viewName", viewName);
+			resDtoObjects.put("employee", employeeDto);
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(
+					"Exception In MasterServiceImpl: getEmployeeById method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("MasterServiceImpl getEmployeeById method end. ");
+		return resDtoObjects;
+
+		
+	}
+
+	public Map<String, Object> deleteTransportTypeDetails(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+		logger.info("MasterServiceImpl deleteTransportTypeDetails() method Start. ");
+		LogiwareRespnse logiwareResponse = null;
+		String viewName = "";
+		Boolean result=false;
+		try {
+			viewName = "getAllTransportTypeDetails";
+			logiwareResponse = doServiceCall(flowData,	ServiceName.deleteTransportTypeDtl, reqDtoObjects);
+			result = (Boolean) logiwareResponse.getData();
+			resDtoObjects.put("userResponse", logiwareResponse);
+			resDtoObjects.put("viewName", viewName);
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(
+					"Exception In MasterServiceImpl: deleteTransportTypeDetails method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("MasterServiceImpl deleteTransportTypeDetails() method End. ");
+		return resDtoObjects;
+	}
+
+	public Map<String, Object> showEditCompany(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) {
+		String viewName = "";
+		try {
+			viewName = "showAddCompany";
+		} catch (Exception exp) {
+			logger.error("Exception in EditCompany()", exp);
+		}
+		resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
+		return resDtoObjects;
+	}
+
+	public Map<String, Object> getCompanyById(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+			
+		logger.info("MasterServiceImpl getCompanyById method start.");
+		LogiwareRespnse logiwareResponse = null;
+		EmployeeDto employeeDto = new EmployeeDto();
+		String viewName = "";
+		try {
+			viewName = "getAllCompany";
+			logiwareResponse = doServiceCall(flowData,
+					ServiceName.getCompanyById, reqDtoObjects);
+			Object object = logiwareResponse.getData();
+			employeeDto =(EmployeeDto) object;
+			resDtoObjects.put("userResponse", logiwareResponse);
+			resDtoObjects.put("viewName", viewName);
+			resDtoObjects.put("employee", employeeDto);
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(
+					"Exception In MasterServiceImpl: getCompanyById method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("MasterServiceImpl getCompanyById method end. ");
+		return resDtoObjects;
+	
+	}
+
+	public Map<String, Object> addContractCompany(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+		String viewName = "";
+		try {
+			viewName = "showAddContractCompany";
+			resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
+		} catch (Exception exp) {
+			logger.error("Exception in addContractCompany()", exp);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode(),
+					LogiwarePortalErrors.GENERIC_EXCEPTION
+							.getErrorDescription());
+		}
+		return resDtoObjects;
+
+	}
+
+	public Map<String, Object> saveCOntractCompany(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+		
+		logger.info("MasterServiceImpl saveCOntractCompany method start.");
+		LogiwareRespnse logiwareResponse = null;
+		String viewName = "";
+		try {
+			viewName = "getAllCompanies";
+			logiwareResponse = doServiceCall(flowData, ServiceName.saveContractCompany,
+					reqDtoObjects);
+			resDtoObjects.put("userResponse", logiwareResponse);
+			resDtoObjects.put("viewName", viewName);
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error(
+					"Exception In MasterServiceImpl: saveCOntractCompany method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("MasterServiceImpl saveCOntractCompany method end. ");
+		return resDtoObjects;
+
+	
+	}
+	
+
+	public Map<String, Object> showEditEmployee(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) {
+
+		String viewName = "";
+		try {
+			viewName = "showAddEmployee";
+
+		} catch (Exception exp) {
+			logger.error("Exception in EditEmployee()", exp);
+		}
+
+		resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
+		return resDtoObjects;
+	}
+
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> getAllContractCompany(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+		logger.info("MasterServiceImpl getAllContractCompany() method start. ");
+		List<TransportTypeDto> lTransports = new ArrayList<TransportTypeDto>();
+		LogiwareRespnse logiwareRespnse = null;
+		String viewName = "";
+		try {
+			viewName = "getAllContractCompany";
+			logiwareRespnse  = doServiceCall(flowData, ServiceName.getAllContractCompany, reqDtoObjects);
+			
+			lTransports = (List<TransportTypeDto>) logiwareRespnse.getData();			
+			resDtoObjects.put("lTransports", lTransports);
+			resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
+			
+			  } catch (LogiwareBaseException b) {
+				  throw b;
+		} catch (Exception e) {
+			logger.error(
+					"Exception In MasterServiceImpl  getAllContractCompany() method end.",
+					e);
+			/*
+			 * throw new LogiwareBaseException(
+			 * LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+			 * LogiwarePortalErrors.INVALID_REQUEST .getErrorDescription());
+			 */
+		}
+		logger.info("MasterServiceImpl  getAllContractCompany() method end. ");
+		// return responseUser;
+		return resDtoObjects;
+
+	}
+
+	public Map<String, Object> showEditContractCompany(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) {
+
+		String viewName = "";
+		try {
+			viewName = "showAddContractCompany";
+
+		} catch (Exception exp) {
+			logger.error("Exception in showEditContractCompany()", exp);
+		}
+		resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
+		return resDtoObjects;
+	}
+
+	public Map<String, Object> getContractCompanyById(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+		logger.info("MasterServiceImpl getContractCompanyById method start.");
+		LogiwareRespnse logiwareResponse = null;
+		String viewName = "";
+		try {
+			viewName = "getAllContractCompany";
+			logiwareResponse = doServiceCall(flowData,
+					ServiceName.getContractCompanyById, reqDtoObjects);
+			resDtoObjects.put("userResponse", logiwareResponse);
+			resDtoObjects.put("viewName", viewName);
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error(
+					"Exception In MasterServiceImpl: getContractCompanyById method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("MasterServiceImpl getContractCompanyById method end. ");
+		return resDtoObjects;
+	}
+
+	public Map<String, Object> deleteContractCompany(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+		logger.info("MasterServiceImpl deleteContractCompany method start.");
+		LogiwareRespnse logiwareResponse = null;
+		String viewName = "";
+		Boolean result=false;
+		try {
+			viewName = "getAllCompany";
+			logiwareResponse = doServiceCall(flowData,	ServiceName.deleteContractCompany, reqDtoObjects);
+			result = (Boolean) logiwareResponse.getData();
+			resDtoObjects.put("userResponse", logiwareResponse);
+			resDtoObjects.put("viewName", viewName);
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(
+					"Exception In MasterServiceImpl: deleteContractCompany method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("MasterServiceImpl deleteContractCompany method end. ");
 		return resDtoObjects;
 		
 	}

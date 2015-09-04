@@ -22,6 +22,11 @@
 													Company </a>
 												</li>
 												<li>
+													<a href="./getAllContractCompany.htm" class="iconify">
+													<i class="icon-home"></i>
+													Contract Company </a>
+												</li>
+												<li>
 													<a href="ecommerce_orders.html" class="iconify">
 													<i class="icon-basket"></i>
 													Branch </a>

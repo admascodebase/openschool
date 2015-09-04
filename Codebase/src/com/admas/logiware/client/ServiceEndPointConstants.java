@@ -23,6 +23,7 @@ public class ServiceEndPointConstants {
 		saveCompany("saveCompany"),
 		saveEmployee("saveEmployee"),
 		getEmployeeById("getEmployeeById"),
+		getCompanyById("getCompanyById"),
 		deleteEmployee("deleteEmployee"),
 		deleteCompany("deleteCompany"),
 		getAllTransportTypes("getAllTransportTypes"),
@@ -33,7 +34,11 @@ public class ServiceEndPointConstants {
 		getTransportTypeDtlById("getTransportTypeDtlById"),
 		editTransportTypeDtl("editTransportTypeDtl"),
 		deleteTransportTypeDtl("deleteTransportTypeDtl"),
-		saveTransportTypeDetails("saveTransportTypeDetails");
+		saveTransportTypeDetails("saveTransportTypeDetails"),
+		saveContractCompany("saveContractCompany"),
+		getAllContractCompany("getAllContractCompany"),
+		getContractCompanyById("getContractCompanyById"),
+		deleteContractCompany("deleteContractCompany");
 
 		/** The value. */
 		private final String value;

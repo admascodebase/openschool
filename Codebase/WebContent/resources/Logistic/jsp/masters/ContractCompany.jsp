@@ -160,9 +160,9 @@
 				<li><a href="#">Home</a><i class="fa fa-circle"></i></li>
 				<li><a href="table_managed.html">Masters</a> <i
 					class="fa fa-circle"></i></li>
-				<li><a href="table_managed.html">Company Details</a> <i
+				<li><a href="table_managed.html">Contract Company Details</a> <i
 					class="fa fa-circle"></i></li>
-				<li class="active">Company Details</li>
+				<li class="active">Contract Company Details</li>
 			</ul>
 			<!-- END PAGE BREADCRUMB -->
 			<!-- BEGIN PAGE CONTENT INNER -->
@@ -173,7 +173,7 @@
 						<div class="portlet-title">
 							<div class="caption">
 								<i class="fa fa-cogs font-green-sharp"></i> <span
-									class="caption-subject font-green-sharp bold uppercase">Company
+									class="caption-subject font-green-sharp bold uppercase">Contract Company
 									Details</span>
 							</div>
 							<div class="tools">
@@ -190,11 +190,11 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="btn-group">
-											<a href="showAddCompany.htm"><button
+											<a href="showAddContractCompany.htm"><button
 													class="btn btn-circle btn-primary">Add New</button></a>
 										</div>
 										<div class="btn-group">
-											<a href="deleteCompany.htm"><button
+											<a href="showAddContractCompany.htm"><button
 													class="btn btn-circle btn-primary">delete</button></a>
 										</div>
 									</div>
@@ -219,40 +219,34 @@
 										<th class="table-checkbox"><input type="checkbox"
 											class="group-checkable" data-set="#sample_1 .checkboxes" /></th>
 										<th>Name</th>
-										<th>Customer Id</th>
+										<th>Company</th>
+										<th>Address</th>
+										<th>Type</th>
+										<th>Contact Person</th>
 										<th>Contact Number 1</th>
 										<th>Contact Number 2</th>
-										<th>Address</th>
-										<th>Email-Id 1</th>
-										<th>Email-Id 2</th>
-										<th>PAN</th>
-										<th>TAN</th>
-										<th>Tag Line</th>
+										<th>Edit/Delete</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${lCompanies}" var="company">
+									<c:forEach items="${lContractCompanies}" var="contractCompany">
 										<tr class="odd gradeX">
-
 											<td><input type="checkbox" class="checkboxes" value="1" />
 											</td>
-											<td>${company.name}</td>
-											<td>${company.custId}</td>
-											<td>${company.contactNo1}</td>
-											<td>${company.contactNo2}</td>
-											<td>${company.address}</td>
-											<td>${company.emailId1}</td>
-											<td>${company.emailId2}</td>
-											<td>${company.panNo}</td>
-											<td>${company.tanNo}</td>
-											<td>${company.tagLine}</td>
-											<td><a href="showEditCompany.htm?id=${company.id}"
+											<td>${contractCompany.name}</td>
+											<td>${contractCompany.compId}</td>
+											<td>${contractCompany.address}</td>
+											<td>${contractCompany.type}</td>
+											<td>${contractCompany.contactPerson}</td>
+											<td>${contractCompany.contactNo1}</td>
+											<td>${contractCompany.contactNo2}</td>
+											<td><a href="showEditContractCompany.htm?id=${contractCompany.id}"
 													class="btn btn-warning btn-xs"> Edit 
 												</a> 
-												<a href="deleteCompany.htm?id=${company.id}"
+												<a href="deleteContractCompany.htm?id=${contractCompany.id}"
 													class="btn btn-info btn-xs"> Delete 
 												</a>
-											</td>
+											</td>											
 										</tr>
 									</c:forEach>
 								</tbody>

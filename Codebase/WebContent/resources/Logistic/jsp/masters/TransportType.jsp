@@ -223,18 +223,27 @@
 										<th>Name</th>
 										<th>Company Id</th>
 										<th>Description</th>
+										<th>Edit/Delete</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${lTransports}" var="Employee">
+									<c:forEach items="${lTransports}" var="transportType">
 										<tr class="odd gradeX">
 
 											<td><input type="checkbox" class="checkboxes" value="1" />
 											</td>
-											<td>${Employee.id}</td>
-											<td>${Employee.name}</td>
-											<td>${Employee.companyId}</td>
-											<td>${Employee.description}</td>
+											<td>${transportType.id}</td>
+											<td>${transportType.name}</td>
+											<td>${transportType.companyId}</td>
+											<td>${transportType.description}</td>
+											<td>
+											<a href="showEditTransportType.htm?id=${transportType.id}"
+													class="btn btn-warning btn-xs"> Edit 
+												</a> 
+												 <a href="showDeleteTransportType.htm?id=${transportType.id}"
+													class="btn btn-info btn-xs"> Delete 
+												</a> 
+											</td>
 										</tr>
 									</c:forEach>
 								</tbody>
