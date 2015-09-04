@@ -534,39 +534,19 @@ public class MasterServiceImpl {
 
 	}
 
-	public Map<String, Object> showEditEmployee(FlowData flowData,
-			HashMap<String, Object> reqDtoObjects,
-			Map<String, Object> resDtoObjects) {
-
-		String viewName = "";
-		try {
-			viewName = "showAddCompany";
-
-		} catch (Exception exp) {
-			logger.error("Exception in EditEmployee()", exp);
-		}
-
-		resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
-		return resDtoObjects;
-	}
-
 	public Map<String, Object> getEmployeeById(FlowData flowData,
 			HashMap<String, Object> reqDtoObjects,
 			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
 
 		logger.info("MasterServiceImpl getEmployeeById method start.");
 		LogiwareRespnse logiwareResponse = null;
-		EmployeeDto employeeDto = new EmployeeDto();
 		String viewName = "";
 		try {
-			viewName = "getAllEmployee";
+			viewName = "showAddEmployee";
 			logiwareResponse = doServiceCall(flowData,
 					ServiceName.getEmployeeById, reqDtoObjects);
-			Object object = logiwareResponse.getData();
-			employeeDto =(EmployeeDto) object;
-			resDtoObjects.put("userResponse", logiwareResponse);
 			resDtoObjects.put("viewName", viewName);
-			resDtoObjects.put("employee", employeeDto);
+			resDtoObjects.put("employee", logiwareResponse.getEmployeeDto());
 		} catch (LogiwareBaseException b) {
 			throw b;
 		} catch (Exception e) {

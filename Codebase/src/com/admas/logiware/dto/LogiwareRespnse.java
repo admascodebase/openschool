@@ -8,6 +8,7 @@ public class LogiwareRespnse implements Serializable{
 	private String code;
 	private String description;
 	private Object data;
+	private EmployeeDto employeeDto;
 	/**
 	 * @return the code
 	 */
@@ -45,5 +46,16 @@ public class LogiwareRespnse implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	/**
+	 * @return the employeeDto
+	 */
+	public EmployeeDto getEmployeeDto() {
+		return employeeDto;
+	}
+	/**
+	 * @param employeeDto the employeeDto to set
+	 */
+	public void setEmployeeDto(EmployeeDto employeeDto) {
+		this.employeeDto = employeeDto;
+	}
 }

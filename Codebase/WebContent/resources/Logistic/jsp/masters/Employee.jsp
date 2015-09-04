@@ -191,7 +191,7 @@
 										<div class="btn-group">
 											<a href="showAddEmployee.htm"><button
 													class="btn btn-circle btn-primary">Add New</button></a>
-										<a href="showEditEmployee.htm"><button
+										<a href="editEmployee.htm"><button
 													class="btn btn-circle yellow-crusta">Edit</button></a>
 									
 									<a href="deleteEmployee.htm"><button
