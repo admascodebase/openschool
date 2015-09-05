@@ -33,7 +33,7 @@ public class UserManagementService {
 		try {
 			userDetailsDto = userManagementLogicImpl.login(userName, password);
 			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
-			logiwareRespnse.setData(userDetailsDto);
+			logiwareRespnse.setUerDetailsDto(userDetailsDto);
 		} catch (LogiwareExceptionHandler e) {
 			logger.error("Error in UserManagementService- > login", e);
 			logiwareRespnse.setCode(e.getErrorCode());
