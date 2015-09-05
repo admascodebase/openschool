@@ -118,14 +118,10 @@ public class ContractCompDaoImpl implements ContractCompDao {
 	public Boolean addContractComp(ContractCompDto contractCompDto)
 			throws LogiwareExceptionHandler {
 		Boolean result = false;
-		try {
-			CustContractCompany custContractCompany = new CustContractCompany();
-			
-			// set the details
-			
-			entityManager.persist(custContractCompany);
+		try {			
+			entityManager.persist(contractCompDto._toJpa());
 			entityManager.flush();
-			if (custContractCompany.getId() != null || custContractCompany.getId() != 0) {
+			if (contractCompDto._toJpa().getId() != null || contractCompDto._toJpa().getId() != 0) {
 				result = true;
 			}
 			return result;
@@ -151,13 +147,9 @@ public class ContractCompDaoImpl implements ContractCompDao {
 			throws LogiwareExceptionHandler {
 		Boolean result = false;
 		try {
-			CustContractCompany custContractCompany = new CustContractCompany();
-			//custContractCompany.set
-			// set the details
-			
-			entityManager.persist(custContractCompany);
+			entityManager.persist(contractCompDto._toJpa());
 			entityManager.flush();
-			if (custContractCompany.getId() != null || custContractCompany.getId() != 0) {
+			if (contractCompDto._toJpa().getId() != null || contractCompDto._toJpa().getId() != 0) {
 				result = true;
 			}
 			return result;

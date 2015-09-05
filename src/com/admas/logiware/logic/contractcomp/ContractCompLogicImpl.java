@@ -26,14 +26,13 @@ public class ContractCompLogicImpl implements ContractCompLogic {
 	@Override
 	public List<ContractCompDto> getAllContractComp()
 			throws LogiwareExceptionHandler {
-		List<CustContractCompany> contractcompany = null;
+		List<CustContractCompany> lContractcompany = null;
 		List<ContractCompDto> lContractCompDtos = new ArrayList<ContractCompDto>();
 		try {
-			contractcompany = contractCompDao.getAllContractComp();
+			lContractcompany = contractCompDao.getAllContractComp();
 
-			for (CustContractCompany employee : contractcompany) {
-				EmployeeDto employeeDto = new EmployeeDto();
-				//employeeDto.setId(id);
+			for (CustContractCompany contractcompany : lContractcompany) {
+				lContractCompDtos.add(contractcompany._toDto());
 			}
 
 		} catch (LogiwareExceptionHandler e) {
@@ -51,7 +50,6 @@ public class ContractCompLogicImpl implements ContractCompLogic {
 	public ContractCompDto getContractCompById(Integer contractCompId)
 			throws LogiwareExceptionHandler {
 		CustContractCompany contractcompany = null;
-		ContractCompDto lContractCompDtos = null;
 		try {
 			contractcompany = contractCompDao.getContractCompById(contractCompId);			
 
@@ -64,7 +62,7 @@ public class ContractCompLogicImpl implements ContractCompLogic {
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
 		}
-		return lContractCompDtos;
+		return contractcompany._toDto();
 	}
 	@Override
 	public Boolean addContractComp(ContractCompDto contractCompDto)

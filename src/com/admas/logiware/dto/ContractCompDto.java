@@ -3,6 +3,8 @@ package com.admas.logiware.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.admas.logiware.jpa.CustContractCompany;
+
 public class ContractCompDto implements Serializable{
 
 	/**
@@ -217,6 +219,25 @@ public class ContractCompDto implements Serializable{
 				+ createdBy + ", updatedBy=" + updatedBy + ", createdOn="
 				+ createdOn + ", updatedOn=" + updatedOn + ", delFlag="
 				+ delFlag + "]";
+	}
+	
+	public CustContractCompany _toJpa(){
+		CustContractCompany custContractCompany = new CustContractCompany();
+		custContractCompany.setAddress(this.address);
+		custContractCompany.setCompId(this.getCompId());
+		custContractCompany.setContactNo1(this.contactNo1);
+		custContractCompany.setContactNo2(this.contactNo2);
+		custContractCompany.setContactNo2(this.contactNo2);
+		custContractCompany.setContactPersion(this.contactPersion);
+		custContractCompany.setCreatedBy(this.createdBy);
+		custContractCompany.setCreatedOn(this.createdOn);
+		custContractCompany.setDelFlag(this.delFlag);
+		custContractCompany.setId(this.id);
+		custContractCompany.setName(this.name);
+		custContractCompany.setType(this.type);
+		custContractCompany.setUpdatedBy(this.updatedBy);
+		custContractCompany.setUpdatedOn(this.updatedOn);
+		return custContractCompany;
 	}
 	
 }

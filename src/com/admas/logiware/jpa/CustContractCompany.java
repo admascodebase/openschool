@@ -11,6 +11,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.admas.logiware.dto.ContractCompDto;
+
 @Entity
 @Table(name="cust_contract_company")
 public class CustContractCompany {
@@ -251,6 +253,25 @@ public class CustContractCompany {
 				+ createdBy + ", updatedBy=" + updatedBy + ", createdOn="
 				+ createdOn + ", updatedOn=" + updatedOn + ", delFlag="
 				+ delFlag + "]";
+	}
+	
+	public ContractCompDto _toDto(){
+		ContractCompDto contractCompDto = new ContractCompDto();
+		contractCompDto.setAddress(this.address);
+		contractCompDto.setCompId(this.getCompId());
+		contractCompDto.setContactNo1(this.contactNo1);
+		contractCompDto.setContactNo2(this.contactNo2);
+		contractCompDto.setContactNo2(this.contactNo2);
+		contractCompDto.setContactPersion(this.contactPersion);
+		contractCompDto.setCreatedBy(this.createdBy);
+		contractCompDto.setCreatedOn(this.createdOn);
+		contractCompDto.setDelFlag(this.delFlag);
+		contractCompDto.setId(this.id);
+		contractCompDto.setName(this.name);
+		contractCompDto.setType(this.type);
+		contractCompDto.setUpdatedBy(this.updatedBy);
+		contractCompDto.setUpdatedOn(this.updatedOn);
+		return contractCompDto;
 	}
 	
 }
