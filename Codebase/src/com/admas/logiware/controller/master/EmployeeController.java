@@ -134,7 +134,12 @@ public class EmployeeController extends BaseController{
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		try {	
 			reqDtoObjects.put("employee", employeeDto);
-			resDtoObjects=masterServiceImpl.saveEmployee(flowData, reqDtoObjects, resDtoObjects);
+			if(employeeDto.getId()!=null && employeeDto.getId()>0){
+				resDtoObjects=masterServiceImpl.saveEditEmployee(flowData, reqDtoObjects, resDtoObjects);
+			}else{
+				resDtoObjects=masterServiceImpl.saveEmployee(flowData, reqDtoObjects, resDtoObjects);
+			}
+			
 			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
 			resDtoObjects=masterServiceImpl.getAllEmployee(flowData, reqDtoObjects, resDtoObjects);
 			@SuppressWarnings("unchecked")

@@ -523,7 +523,35 @@ public class MasterServiceImpl {
 			throw b;
 		} catch (Exception e) {
 			logger.error(
-					"Exception In MasterServiceImpl: saveCompany method end.",
+					"Exception In MasterServiceImpl: saveEmployee method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("MasterServiceImpl saveEmployee method end. ");
+		return resDtoObjects;
+
+	}
+	
+	public Map<String, Object> saveEditEmployee(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+		logger.info("MasterServiceImpl saveEditEmployee method start.");
+		LogiwareRespnse logiwareResponse = null;
+		String viewName = "";
+		try {
+			viewName = "getAllEmployee";
+			logiwareResponse = doServiceCall(flowData,
+					ServiceName.saveEditEmployee, reqDtoObjects);
+			resDtoObjects.put("userResponse", logiwareResponse);
+			resDtoObjects.put("viewName", viewName);
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error(
+					"Exception In MasterServiceImpl: saveEditEmployee method end.",
 					e);
 			throw new LogiwareBaseException(
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),

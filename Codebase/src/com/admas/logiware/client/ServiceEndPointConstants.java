@@ -22,6 +22,7 @@ public class ServiceEndPointConstants {
 		getAllEmployee("getAllEmployee"),
 		saveCompany("saveCompany"),
 		saveEmployee("saveEmployee"),
+		saveEditEmployee("saveEditEmployee"),
 		getEmployeeById("getEmployeeById"),
 		getCompanyById("getCompanyById"),
 		deleteEmployee("deleteEmployee"),

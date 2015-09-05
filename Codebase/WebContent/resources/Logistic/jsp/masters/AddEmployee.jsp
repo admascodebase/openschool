@@ -214,6 +214,9 @@
 									<div class="portlet-body form">
 										<!-- BEGIN FORM-->
 										<form:form action="saveEmployee.htm" modelAttribute="employee" class="form-horizontal">
+										<form:hidden path="id" />
+										<form:hidden path="delFlag" />
+										<form:hidden path="compId" />
 											<div class="form-body">
 												<h3 class="form-section"></h3>
 												<div class="row">
@@ -315,8 +318,6 @@
 														</div>
 													</div>
 													
-												</div>
-												<div class="row">
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label col-md-3">Address</label>
@@ -325,8 +326,10 @@
 															<form:textarea class="form-control" rows="3" path="address"></form:textarea>
 															</div>
 														</div>
-													</div>													
+													</div>	
+													
 												</div>
+												
 												<!--/row-->
 											</div>
 											
