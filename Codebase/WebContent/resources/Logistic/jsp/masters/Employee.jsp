@@ -249,7 +249,7 @@
 											<td>${Employee.salaryType}</td>
 											<td>${Employee.salary}</td>
 											<td>
-												<a href="showEditEmployee.htm?id=${Employee.id}"
+												<a href="editEmployee.htm?id=${Employee.id}"
 													class="btn btn-warning btn-xs"> Edit 
 												</a> 
 												<a href="deleteEmployee.htm?id=${Employee.id}"

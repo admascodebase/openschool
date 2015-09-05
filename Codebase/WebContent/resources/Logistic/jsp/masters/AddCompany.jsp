@@ -27,7 +27,7 @@
 						<div class="row">
 							<div class="col-md-6 col-sm-6 col-xs-12">
 								<h3>THEME COLORS</h3>
-								<div class="row">
+								<div class="row">	
 									<div class="col-md-6 col-sm-6 col-xs-12">
 										<ul class="theme-colors">
 											<li class="theme-color theme-color-default"
@@ -321,21 +321,9 @@
 											</div>
 											<div class="form-actions right">
 												<button class="btn default" type="button">Cancel</button>
-												<button class="btn blue" type="submit"><i class="fa fa-check"></i> Save</button>
+												<button class="btn blue" type="submit"><i class="fa fa-check"></i> Submit</button>
 											</div>
-											<!-- <div class="form-actions">
-												<div class="row">
-													<div class="col-md-6">
-														<div class="row">
-															<div class="col-md-offset-3 col-md-9">
-																<button type="submit" class="btn green">Submit</button>
-																<button type="button" class="btn default">Cancel</button>
-															</div>
-														</div>
-													</div>
-													<div class="col-md-6"></div>
-												</div>
-											</div> -->
+											
 										</form:form>
 										<!-- END FORM-->
 									</div>

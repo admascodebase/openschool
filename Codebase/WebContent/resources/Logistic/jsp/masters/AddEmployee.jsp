@@ -219,93 +219,84 @@
 												<div class="row">
 													<div class="col-md-6">
 														<div class="form-group">
-															<label class="control-label col-md-3">Employee
-																Name</label>
+															<label class="control-label col-md-3">Name</label>
 															<div class="col-md-9">
 																<form:input path="name" type="text" class="form-control"
-																	placeholder="Chee Kin"/> <span
-																	class="help-block"> Employee Name here.. </span>
+																	placeholder="Enter name ..."/> 
 															</div>
 														</div>
 													</div>
 													<!--/span-->
-													<div class="col-md-6">
-														<div class="form-group">
-															<label class="control-label col-md-3">Address</label>
-															<div class="col-md-9">
-																<form:input path="address" type="text" class="form-control"
-																	placeholder="Chee Kin"/> <span
-																	class="help-block"> Address here.. </span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-												</div>
-												<!--/row-->
-												<div class="row">
+													
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label col-md-3">Contact
-																Number 1</label>
+																No</label>
 															<div class="col-md-9">
 																<form:input path="contactNo" type="text" class="form-control"
-																	placeholder="Chee Kin"/> <span
-																	class="help-block"> Enter your contact number. </span>
+																	placeholder=" Enter your contact number."/> 
 															</div>
 														</div>
 													</div>
-													<!--/span-->
-													<div class="col-md-6">
-														<div class="form-group">
-															<label class="control-label col-md-3">Gender
-																</label>
-																<div class="icheck-inline">
-															<div class="col-md-9">
-															<label class="control-label col-md-3">Male
-																</label>
-																<form:radiobutton path="gender" value="M" class="icheck"
-																	placeholder="dd/mm/yyyy"/> 
-															</div>
-															<div class="col-md-9">
-															<label class="control-label col-md-3">Female
-																</label>
-															<form:radiobutton path="gender" value="F" class="icheck"
-																	placeholder="dd/mm/yyyy"/>
-															</div>
-															</div>
-														</div>
-													</div>
+													
 													<!--/span-->
 												</div>
 												<!--/row-->
 												<div class="row">
 													<div class="col-md-6">
 														<div class="form-group">
-															<label class="control-label col-md-3">System Access
-																</label>
-																<div class="icheck-inline">
+															<label class="control-label col-md-3">Pan Number</label>
 															<div class="col-md-9">
-															<label class="control-label col-md-3">Yes
-																</label>
-																<form:radiobutton path="isSysAcc" value="Y" class="icheck"
-																	placeholder="dd/mm/yyyy"/> 
+																<form:input path="pan" type="text" class="form-control"
+																	placeholder="Enter PAN"/> 
 															</div>
+														</div>
+													</div>												
+													
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Gender</label>
 															<div class="col-md-9">
-															<label class="control-label col-md-3">No
-																</label>
-															<form:radiobutton path="isSysAcc" value="N" class="icheck"
-																	placeholder="dd/mm/yyyy"/>
-															</div>
+																<label class="radio-inline">
+																<form:radiobutton path="gender" value="M" class="icheck" />
+																 Male </label>
+																<label class="radio-inline">
+																<form:radiobutton path="gender" value="F" class="icheck" /> Female </label>
 															</div>
 														</div>
 													</div>
+												</div>
+												<!--/row-->
+												<div class="row">
+												
+												
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">System Access</label>
+															<div class="col-md-9">
+																<label class="radio-inline">
+																<form:radiobutton path="isSysAcc" value="Y" class="icheck" />
+																 Yes </label>
+																<label class="radio-inline">
+																<form:radiobutton path="isSysAcc" value="N" class="icheck" /> No </label>
+															</div>
+														</div>
+													</div>
+													
+												
 													<!--/span-->
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label col-md-3">Salary Type</label>
 															<div class="col-md-9">
-															<form:input path="salaryType" type="text" class="form-control"
-																	placeholder="Chee Kin"/> 
+															
+															<form:select path="salaryType" class="form-control">
+															   <form:option value="NONE" label="--- Select ---"/>
+															  <form:option value="Daily" label="Daily"/>
+															  <form:option value="Hourly" label="Hourly"/>
+															  <form:option value="Weekly" label="Weekly"/>
+															  <form:option value="Monthly" label="Monthly"/>
+															</form:select>
 															</div>
 														</div>
 													</div>
@@ -319,7 +310,7 @@
 															<label class="control-label col-md-3">Salary</label>
 															<div class="col-md-9">
 																<form:input path="salary" type="text" class="form-control"
-																	placeholder="Chee Kin"/> 
+																	placeholder="Enter salary ..."/> 
 															</div>
 														</div>
 													</div>
@@ -328,31 +319,20 @@
 												<div class="row">
 													<div class="col-md-6">
 														<div class="form-group">
-															<label class="control-label col-md-3">Pan Number</label>
+															<label class="control-label col-md-3">Address</label>
 															<div class="col-md-9">
-																<form:input path="pan" type="text" class="form-control"
-																	placeholder="Chee Kin"/> 
+															
+															<form:textarea class="form-control" rows="3" path="address"></form:textarea>
 															</div>
 														</div>
-													</div>
-													
+													</div>													
 												</div>
-												
-												
 												<!--/row-->
 											</div>
-											<div class="form-actions">
-												<div class="row">
-													<div class="col-md-6">
-														<div class="row">
-															<div class="col-md-offset-3 col-md-9">
-																<button type="submit" class="btn green">Submit</button>
-																<button type="button" class="btn default">Cancel</button>
-															</div>
-														</div>
-													</div>
-													<div class="col-md-6"></div>
-												</div>
+											
+											<div class="form-actions right">
+												<button class="btn default" type="button">Cancel</button>
+												<button class="btn blue" type="submit"><i class="fa fa-check"></i> Submit</button>
 											</div>
 										</form:form>
 										<!-- END FORM-->

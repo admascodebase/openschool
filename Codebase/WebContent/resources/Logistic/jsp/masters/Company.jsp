@@ -3,7 +3,7 @@
 	<!-- BEGIN PAGE HEAD -->
 	<div class="page-head">
 		<div class="container">
-			<!-- BEGIN PAGE TITLE -->
+			<!--+- BEGIN PAGE TITLE -->
 			<div class="page-title">
 				<h1>
 					Master Details <small>Master Data</small>

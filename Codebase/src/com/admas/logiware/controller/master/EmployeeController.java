@@ -126,6 +126,9 @@ public class EmployeeController extends BaseController{
 		if (!flowData.isLoggedIn())
 			return super.loginPage(flowData, request);*/
 		
+		employeeDto.setCompId(1);
+		employeeDto.setDelFlag('N');
+		//employeeDto.set(1);
 		ModelAndView mv = new ModelAndView() ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
