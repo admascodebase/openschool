@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.admas.logiware.constant.WebAppConstants;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class FlowData.
@@ -80,8 +82,8 @@ public class FlowData implements Serializable {
 	 */
 	public boolean isLoggedIn() {
 		boolean loggedIn = false;
-		if (getSessionData("ISLOGEDIN") != null) {
-			loggedIn = Boolean.parseBoolean(getSessionData("ISLOGEDIN"));
+		if (getSessionData(WebAppConstants.ISLOGEDIN) != null) {
+			loggedIn = Boolean.parseBoolean(getSessionData(WebAppConstants.ISLOGEDIN));
 		}
 		return loggedIn;
 	}

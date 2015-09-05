@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,8 +59,7 @@ public class LoginController extends BaseController {
 		if (!flowData.isLoggedIn()) {
 			return super.loginPage(flowData, request);
 		} else {
-			//return getPostLoginDtls(flowData, request);
-			return null;
+			return getPostLoginDtls(flowData, request);
 		}
 	}
 
@@ -78,7 +78,7 @@ public class LoginController extends BaseController {
 		}
 
 		if (flowData.isLoggedIn()) {
-			return null;//getPostLoginDtls(flowData, request);
+			getPostLoginDtls(flowData, request);
 		}
 
 		ModelAndView mv = new ModelAndView();
@@ -94,7 +94,7 @@ public class LoginController extends BaseController {
 			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
 			mv=new ModelAndView(viewName);
 			flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
-			mv.addObject("userName", flowData.getSessionData("userName"));	
+			mv.addObject(WebAppConstants.USERNAME, flowData.getSessionData(WebAppConstants.USERNAME));	
 			return mv;
 
 		} catch (LogiwareBaseException we) {
@@ -116,158 +116,49 @@ public class LoginController extends BaseController {
 		
 	}
 	
-	
-	
-	/*@RequestMapping(value="/Customer.htm", method=RequestMethod.GET)
-	public ModelAndView customer(HttpServletRequest request, HttpServletResponse response){
-		
-		FlowData flowData=null;
-//		logger.info("values====="+request.get)
-		logger.info("****************************in Customer action****************************");
-		return super.customer(flowData, request);
-		
-	}
-	
-	
-	
-	
-	@RequestMapping(value="/addCustomer.htm", method=RequestMethod.GET)
-	public ModelAndView addCustomer(HttpServletRequest request, HttpServletResponse response, Model model){
-		
-		
-		FlowData flowData=null;
-//		logger.info("values====="+request.get)
-		model.addAttribute("customer",new Customer());
-		logger.info("****************************in Add Customer action****************************");
-		return super.addCustomer(flowData, request, model);
-		
-	}
-	
-	
-	
-	@RequestMapping(value="/addCustomerSubmit.htm", method=RequestMethod.POST)
-	public ModelAndView addCustomerSubmit(@ModelAttribute("customer") Customer customer, HttpServletRequest request, HttpServletResponse response){
-		
-		logger.info("***************customer data"+customer.getAddress()+"--"+customer.getCompanyName());
-		logger.info(customer.toString());
-		FlowData flowData=null;
-//		logger.info("values====="+request.get)
-		logger.info("****************************in Add Customer action****************************");
-		return super.addCustomersubmit(flowData, request);
-		
-	}
-	
-	
-	@RequestMapping(value="/editCustomer.htm", method=RequestMethod.POST)
-	public ModelAndView editCustomer(HttpServletRequest request, HttpServletResponse response){
-		
-		
-		FlowData flowData=null;
-//		logger.info("values====="+request.get)
-		logger.info("****************************in edit Customer action****************************");
-		return super.editCustomersubmit(flowData, request);
-		
-	}
-	
-	
-	
-	@RequestMapping(value="/deleteCustomer.htm", method=RequestMethod.POST)
-	public ModelAndView deleteCustomer(HttpServletRequest request, HttpServletResponse response){
-		
-		FlowData flowData=null;
-//		logger.info("values====="+request.get)
-		logger.info("****************************in edit Customer action****************************");
-		return super.deleteCustomersubmit(flowData, request);
-		
-	}
-	
-	Sms Setting
-	
-	
-	@RequestMapping(value="/smsSetting.htm", method=RequestMethod.GET)
-	public ModelAndView smsSetting(HttpServletRequest request, HttpServletResponse response){
-		
-		FlowData flowData=null;
-//		logger.info("values====="+request.get)
-		logger.info("****************************in SMS Setting action****************************");
-		return super.smssetting(flowData, request);
-		
-	}
-	
-	
-	@RequestMapping(value="/addsmssetting.htm", method=RequestMethod.GET)
-	public ModelAndView addSmsSetting(HttpServletRequest request, HttpServletResponse response,Model model){
-		
-		FlowData flowData=null;
-//		logger.info("values====="+request.get)
-		model.addAttribute("smssettings",new SmsSettings());
-		logger.info("****************************in Add SMS Setting action****************************");
-		return super.addSmssetting(flowData, request);
-		
-	}
-	
-	
-	@RequestMapping(value="/addsmssettingsubmit.htm", method=RequestMethod.POST)
-	public ModelAndView addSmsSettingSubmit(@ModelAttribute("smssettings")SmsSettings smsSettings, HttpServletRequest request, HttpServletResponse response,Model model){
-		
-		FlowData flowData=null;
-		logger.info("***********smsSettings"+smsSettings.toString());
-		model.addAttribute("smssettings",new SmsSettings());
-		logger.info("****************************in Add SMS submit Setting action****************************");
-		return super.addSmssettingSubmit(flowData, request);
-		
-	}
-	
-	
-	@RequestMapping(value="/editSmsSetting.htm", method=RequestMethod.GET)
-	public ModelAndView editSmsSetting(HttpServletRequest request, HttpServletResponse response,Model model){
-		
-		FlowData flowData=null;
-//		logger.info("values====="+request.get)
-		model.addAttribute("smssettings",new SmsSettings());
-		logger.info("****************************in edit SMS Setting action****************************");
-		return super.editSmssetting(flowData, request);
-		
-	}
-	
-	@RequestMapping(value="/deleteSmsSetting.htm", method=RequestMethod.GET)
-	public ModelAndView deleteSmsSetting(HttpServletRequest request, HttpServletResponse response,Model model){
-		
-		FlowData flowData=null;
-//		logger.info("values====="+request.get)
-		model.addAttribute("smssettings",new SmsSettings());
-		logger.info("****************************in delete SMS Setting action****************************");
-		return super.deleteSmssetting(flowData, request);
-		
-	}
-	
-	
-	@RequestMapping(value="./pricePlan", method=RequestMethod.GET)
-	public ModelAndView pricePlan(HttpServletRequest request, HttpServletResponse response,Model model){
-		
-		FlowData flowData=null;
-//		logger.info("values====="+request.get)
-		model.addAttribute("smssettings",new SmsSettings());
-		logger.info("****************************in Price Action action****************************");
-		return super.pricePlan(flowData, request);
-		
-	}
-	
-	*//**
-	 * @return the userManagementServiceImpl
-	 *//*
-	public UserManagementServiceImpl getUserManagementServiceImpl() {
-		return userManagementServiceImpl;
-	}
 
-	*//**
-	 * @param userManagementServiceImpl the userManagementServiceImpl to set
-	 *//*
-	public void setUserManagementServiceImpl(
-			UserManagementServiceImpl userManagementServiceImpl) {
-		this.userManagementServiceImpl = userManagementServiceImpl;
-	}*/
+
+	public ModelAndView getPostLoginDtls(FlowData flowData,
+			HttpServletRequest request) {
+		logger.info("LoginController:getPostLoginDtls start");
+		ModelAndView mv = new ModelAndView("Enterprise_en_dashBoard");
+		String viewName="";
+		try {
+			viewName = "Dashboard";
+			mv=new ModelAndView(viewName);
+			flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
+			mv.addObject(WebAppConstants.USERNAME, flowData.getSessionData(WebAppConstants.USERNAME));	
+			return mv;
+
+		} catch (Exception e) {
+			logger.error("Exception in LoginController:getPostLoginDtls", e);
+			mv.addObject(WebAppConstants.ERROR_CODE,
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode());
+		}
+		
+		logger.info(LoginController.class.getName()
+				+ ".inside user login controller END");
+		
+		return mv;
+	}
 	
-	
+	/**
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/logout.htm", method = RequestMethod.GET)
+	public ModelAndView logout(HttpServletRequest request,
+			HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView("login");
+		try {			
+			HttpSession session = request.getSession();
+			session.removeAttribute(WebAppConstants.FLOWDATA);
+			session.invalidate();
+		} catch (Exception e) {
+			logger.error("Exception in LoginController:logout--->", e);
+		}
+		return mv;
+	}
 	
 }

@@ -32,4 +32,12 @@ public interface WebAppConstants {
 
 	public String PASSWORD = "password";
 
+	public String USER = "user";
+
+	public String COMPID = "compId";
+
+	public String BRANCHID = "branchId";
+
+	public String ROLEID = "roleId";
+
 }

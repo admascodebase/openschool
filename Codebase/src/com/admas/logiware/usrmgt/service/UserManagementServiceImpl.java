@@ -69,10 +69,13 @@ public class UserManagementServiceImpl {
 			logiwareResponse = doServiceCall(flowData, ServiceName.login,
 					reqDtoObjects);
 			UserDetails userDetails = (UserDetails)logiwareResponse.getUerDetailsDto();
-			flowData.setSessionDataObject("user", userDetails);
-			flowData.setSessionData("userName", userDetails.getCustCompEmployee().getName());
+			flowData.setSessionDataObject(WebAppConstants.USER, userDetails);
+			flowData.setSessionData(WebAppConstants.USERNAME, userDetails.getCustCompEmployee().getName());
+			flowData.setSessionData(WebAppConstants.COMPID, userDetails.getCustCompEmployee().getCompId()!=null ? userDetails.getCustCompEmployee().getCompId().toString() : "");
+			flowData.setSessionData(WebAppConstants.BRANCHID, userDetails.getCustCompEmployee().getBranchId() != null ? userDetails.getCustCompEmployee().getBranchId().toString() : "");
+			flowData.setSessionData(WebAppConstants.ROLEID, "2");
 			resDtoObjects.put("viewName", viewName);
-			} catch (LogiwareBaseException b) {
+		} catch (LogiwareBaseException b) {
 			throw b;
 		} catch (Exception e) {
 			logger.error(

@@ -191,12 +191,6 @@
 										<div class="btn-group">
 											<a href="showAddEmployee.htm"><button
 													class="btn btn-circle btn-primary">Add New</button></a>
-										<a href="editEmployee.htm"><button
-													class="btn btn-circle yellow-crusta">Edit</button></a>
-									
-									<a href="deleteEmployee.htm"><button
-													class="btn btn-circle yellow-crusta">delete</button></a>
-									
 										</div>
 									</div>
 									<div class="col-md-6">
@@ -220,8 +214,6 @@
 										<th class="table-checkbox"><input type="checkbox"
 											class="group-checkable" data-set="#sample_1 .checkboxes" /></th>
 										<th>Name</th>
-										<th>Company Id</th>
-										<th>Branch Id</th>
 										<th>Contact Number</th>
 										<th>Address</th>
 										<th>Gender</th>
@@ -239,8 +231,6 @@
 											<td><input type="checkbox" class="checkboxes" value="1" />
 											</td>
 											<td>${Employee.name}</td>
-											<td>${Employee.compId}</td>
-											<td>${Employee.branchId}</td>
 											<td>${Employee.address}</td>
 											<td>${Employee.contactNo}</td>
 											<td>${Employee.gender}</td>

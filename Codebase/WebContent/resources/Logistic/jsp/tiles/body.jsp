@@ -1,19 +1,27 @@
 <!-- Main Container start -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-   <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-   
-   
+   <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>   
+   <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
    
    <div class="content">
 	<!-- BEGIN LOGIN FORM -->
+	<h3 class="form-title">Login to your account</h3>
+	<c:if test="${errorCode ne null}">
+		<div class="alert alert-danger">
+			<button class="close" data-close="alert"></button>
+			<span>
+			<spring:message code="${errorCode}"></spring:message> </span>
+		</div>
+		</c:if>
 	<form class="login-form" action="userLogin.htm" method="post">
-		<h3 class="form-title">Login to your account</h3>
+		
 		<div class="alert alert-danger display-hide">
 			<button class="close" data-close="alert"></button>
 			<span>
 			Enter any username and password. </span>
 		</div>
+		
 		<div class="form-group">
 			<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
 			<label class="control-label visible-ie8 visible-ie9">Username</label>
@@ -401,7 +409,7 @@
 			Terms of Service </a>
 			and <a href="javascript:;">
 			Privacy Policy </a>
-			</label>
+			</label> 	 		
 			<div id="register_tnc_error">
 			</div>
 		</div>
