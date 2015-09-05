@@ -119,9 +119,11 @@ public class ContractCompDaoImpl implements ContractCompDao {
 			throws LogiwareExceptionHandler {
 		Boolean result = false;
 		try {			
-			entityManager.persist(contractCompDto._toJpa());
+			CustContractCompany contractCompany = new CustContractCompany();
+			contractCompany = contractCompDto._toJpa();
+			entityManager.persist(contractCompany);
 			entityManager.flush();
-			if (contractCompDto._toJpa().getId() != null || contractCompDto._toJpa().getId() != 0) {
+			if (contractCompany.getId() != null || contractCompany.getId() != 0) {
 				result = true;
 			}
 			return result;
@@ -132,6 +134,7 @@ public class ContractCompDaoImpl implements ContractCompDao {
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
 		} catch (Exception e) {
+			e.printStackTrace();
 			logger.error(
 					"Exception Error in ContractCompDaoImpl - > addContractComp",
 					e);

@@ -230,13 +230,13 @@ public class ContractCompDto implements Serializable{
 		custContractCompany.setContactNo2(this.contactNo2);
 		custContractCompany.setContactPersion(this.contactPersion);
 		custContractCompany.setCreatedBy(this.createdBy);
-		custContractCompany.setCreatedOn(this.createdOn);
-		custContractCompany.setDelFlag(this.delFlag);
+		custContractCompany.setCreatedOn(new Date());
+		custContractCompany.setDelFlag('N');
 		custContractCompany.setId(this.id);
 		custContractCompany.setName(this.name);
 		custContractCompany.setType(this.type);
 		custContractCompany.setUpdatedBy(this.updatedBy);
-		custContractCompany.setUpdatedOn(this.updatedOn);
+		custContractCompany.setUpdatedOn(new Date());
 		return custContractCompany;
 	}
 	

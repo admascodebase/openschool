@@ -91,7 +91,7 @@ public class ContractCompServices {
 		try {
 			contractCompDto=contractCompLogic.getContractCompById(contractCompId);
 			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
-			logiwareRespnse.setData(contractCompDto);
+			logiwareRespnse.setContractCompDto(contractCompDto);
 		} catch (LogiwareExceptionHandler e) {
 			logger.error("Error in ContractCompServices- > getContractCompById ", e);
 			logiwareRespnse.setCode(e.getErrorCode());
