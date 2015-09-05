@@ -19,6 +19,7 @@ import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.dto.BranchDetail;
 import com.admas.logiware.dto.CityDto;
 import com.admas.logiware.dto.CompanyDto;
+import com.admas.logiware.dto.ContractCompDto;
 import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.FlowData;
 import com.admas.logiware.dto.LogiwareRespnse;
@@ -952,7 +953,7 @@ public class MasterServiceImpl {
 		LogiwareRespnse logiwareResponse = null;
 		String viewName = "";
 		try {
-			viewName = "getAllCompanies";
+			viewName = "getAllContractCompany";
 			logiwareResponse = doServiceCall(flowData, ServiceName.saveContractCompany,
 					reqDtoObjects);
 			resDtoObjects.put("userResponse", logiwareResponse);
@@ -996,15 +997,15 @@ public class MasterServiceImpl {
 			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
 
 		logger.info("MasterServiceImpl getAllContractCompany() method start. ");
-		List<TransportTypeDto> lTransports = new ArrayList<TransportTypeDto>();
+		List<ContractCompDto> lContractCompanies = new ArrayList<ContractCompDto>();
 		LogiwareRespnse logiwareRespnse = null;
 		String viewName = "";
 		try {
 			viewName = "getAllContractCompany";
 			logiwareRespnse  = doServiceCall(flowData, ServiceName.getAllContractCompany, reqDtoObjects);
 			
-			lTransports = (List<TransportTypeDto>) logiwareRespnse.getData();			
-			resDtoObjects.put("lTransports", lTransports);
+			lContractCompanies = (List<ContractCompDto>) logiwareRespnse.getData();			
+			resDtoObjects.put("lContractCompanies", lContractCompanies);
 			resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
 			
 			  } catch (LogiwareBaseException b) {
@@ -1094,6 +1095,33 @@ public class MasterServiceImpl {
 		logger.info("MasterServiceImpl deleteContractCompany method end. ");
 		return resDtoObjects;
 		
+	}
+
+	public Map<String, Object> saveEditContractCompany(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+		logger.info("MasterServiceImpl saveEditContractCompany method start.");
+		LogiwareRespnse logiwareResponse = null;
+		String viewName = "";
+		try {
+			viewName = "getAllContractCompany";
+			logiwareResponse = doServiceCall(flowData,
+					ServiceName.saveEditContractCompany, reqDtoObjects);
+			resDtoObjects.put("userResponse", logiwareResponse);
+			resDtoObjects.put("viewName", viewName);
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error(
+					"Exception In MasterServiceImpl: saveEditContractCompany method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("MasterSe" +
+				"rviceImpl saveEditContractCompany method end. ");
+		return resDtoObjects;
 	}
 
 }

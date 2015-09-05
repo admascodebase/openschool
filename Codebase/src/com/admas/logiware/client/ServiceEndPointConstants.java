@@ -39,7 +39,8 @@ public class ServiceEndPointConstants {
 		saveContractCompany("saveContractCompany"),
 		getAllContractCompany("getAllContractCompany"),
 		getContractCompanyById("getContractCompanyById"),
-		deleteContractCompany("deleteContractCompany");
+		deleteContractCompany("deleteContractCompany"),
+		saveEditContractCompany("saveEditContractCompany");
 
 		/** The value. */
 		private final String value;

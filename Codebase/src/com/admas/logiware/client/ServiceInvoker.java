@@ -148,6 +148,11 @@ public class ServiceInvoker implements Serializable {
 			response = (K) deleteContractCompany(url, (Map) request);
 			break;
 		}
+
+		case saveEditContractCompany: {
+			response = (K) saveEditContractCompany(url, (Map) request);
+			break;
+		}
 		default:
 			break;
 		}
@@ -981,5 +986,39 @@ public class ServiceInvoker implements Serializable {
 	}
 	
 	
+	
+	public LogiwareRespnse saveEditContractCompany(String url,
+			Map<String, Object> request) throws LogiwareBaseException {
+		
+		logger.info("ServiceInvoker saveEditContractCompany method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("employee"));
+			ClientResponse<LogiwareRespnse> response = clientRequest
+					.post(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "",
+						response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(),
+						logiwareResponse.getDescription());
+			}
+
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker saveEditContractCompany method end.", e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker saveEditContractCompany method end. ");
+		return logiwareResponse;
+	}
+
 	
 }

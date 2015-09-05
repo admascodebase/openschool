@@ -270,7 +270,7 @@
 														<div class="form-group">
 															<label class="control-label col-md-3">Contact Number 1</label>
 															<div class="col-md-9">
-															<form:input path="contactNo1" type="text" class="form-control" placeholder="Enter email id 2"/>
+															<form:input path="contactNo1" type="text" class="form-control" placeholder="Enter Contact Number 1"/>
 															</div>
 														</div>
 													</div>
@@ -283,7 +283,7 @@
 														<div class="form-group">
 															<label class="control-label col-md-3">Contact Number 2</label>
 															<div class="col-md-9">
-																<form:input path="contactNo2" type="text" class="form-control" placeholder="PAN Number"/>
+																<form:input path="contactNo2" type="text" class="form-control" placeholder="Enter Contact Number 2"/>
 															</div>
 														</div>
 													</div>

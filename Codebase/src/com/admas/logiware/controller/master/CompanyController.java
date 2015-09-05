@@ -21,6 +21,7 @@ import com.admas.logiware.controller.core.BaseController;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.ContractCompDto;
 import com.admas.logiware.dto.FlowData;
+import com.admas.logiware.dto.LogiwareRespnse;
 import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
 import com.admas.logiware.usrmgt.service.MasterServiceImpl;
@@ -290,14 +291,19 @@ public class CompanyController extends BaseController {
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		try {	
+			contractCompDto.setCompId(8);
+			if(contractCompDto.getId()!=null && contractCompDto.getId()>0){
+				resDtoObjects=masterServiceImpl.saveEditContractCompany(flowData, reqDtoObjects, resDtoObjects);
+			}
 			reqDtoObjects.put("contractCompDto", contractCompDto);
 			resDtoObjects=masterServiceImpl.saveCOntractCompany(flowData, reqDtoObjects, resDtoObjects);
 			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
-//			resDtoObjects=masterServiceImpl.getAllCompany(flowData, reqDtoObjects, resDtoObjects);
-//			@SuppressWarnings("unchecked")
-//			List<CompanyDto> lCompanies = (List<CompanyDto>) resDtoObjects.get("lCompanies");
+			resDtoObjects=masterServiceImpl.getAllContractCompany(flowData, reqDtoObjects, resDtoObjects);
 			mv=new ModelAndView(viewName);	
-//			mv.addObject("lCompanies", lCompanies);
+			@SuppressWarnings("unchecked")
+			List<ContractCompDto> lContractCompanies = (List<ContractCompDto>) resDtoObjects
+					.get("lContractCompanies");
+			mv.addObject("lContractCompanies", lContractCompanies);
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in CompanyController: saveContractCompany",
 					_be);
@@ -356,7 +362,6 @@ public class CompanyController extends BaseController {
 		return mv;
 
 	}
-
 	
 	@RequestMapping(value = "/showEditContractCompany.htm", method = RequestMethod.GET)
 	public ModelAndView editContractCompany(HttpServletRequest request, HttpServletResponse response) {		
@@ -368,13 +373,15 @@ public class CompanyController extends BaseController {
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		Integer contractCompanyId=Integer.parseInt(request.getParameter("id"));
+		ContractCompDto contractCompDto = new ContractCompDto(); 
 		try {			
 			reqDtoObjects.put("contractCompanyId", contractCompanyId);
 			resDtoObjects=masterServiceImpl.showEditContractCompany(flowData, reqDtoObjects, resDtoObjects);
 			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
 			mv=new ModelAndView(viewName);	
 			resDtoObjects=masterServiceImpl.getContractCompanyById(flowData, reqDtoObjects, resDtoObjects);
-			mv.addObject("contractCompany", resDtoObjects.get("contractCompany"));
+			LogiwareRespnse logiwareRespnse = (LogiwareRespnse) resDtoObjects.get("userResponse");
+			mv.addObject("contractCompany", logiwareRespnse.getContractCompDto());
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in CompanyController: EditContractCompany",
 					_be);
@@ -399,15 +406,19 @@ public class CompanyController extends BaseController {
 		Integer ContractcompanyId=Integer.parseInt(request.getParameter("id"));
 		try {			
 			reqDtoObjects.put("ContractcompanyId", ContractcompanyId);
-			resDtoObjects = masterServiceImpl.deleteContractCompany(flowData, reqDtoObjects, resDtoObjects);
-			String viewName = (String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
-			resDtoObjects = masterServiceImpl.getAllContractCompany(flowData, reqDtoObjects, resDtoObjects);
+			resDtoObjects = masterServiceImpl.deleteContractCompany(flowData,
+					reqDtoObjects, resDtoObjects);
+			String viewName = (String) resDtoObjects
+					.get(WebAppConstants.VIEW_NAME);
+			resDtoObjects = masterServiceImpl.getAllContractCompany(flowData,
+					reqDtoObjects, resDtoObjects);
 			@SuppressWarnings("unchecked")
 			List<ContractCompDto> lContractCompanies = (List<ContractCompDto>) resDtoObjects
 					.get("lContractCompanies");
-			mv=new ModelAndView(viewName);	
 			mv.addObject("lContractCompanies", lContractCompanies);
-			
+			mv = new ModelAndView(viewName);
+			mv.addObject("lContractCompanies", lContractCompanies);
+
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in CompanyController: deleteContractCompany",
 					_be);
