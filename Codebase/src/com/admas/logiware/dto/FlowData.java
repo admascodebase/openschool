@@ -24,6 +24,8 @@ public class FlowData implements Serializable {
 	 * Lifetime.
 	 */
 	private Map<String, String> sessionData = new HashMap<String, String>();
+	
+	private Map<String, Object> sessionDataObject = new HashMap<String, Object>();
 
 	/**
 	 * 
@@ -57,6 +59,18 @@ public class FlowData implements Serializable {
 
 	public void setSessionData(String id, String value) {
 		sessionData.put(id, value);
+	}
+	
+	/**
+	 * @return the sessionDataObject
+	 */
+
+	public Object getSessionDataObject(String id) {
+		return sessionDataObject.get(id);
+	}
+
+	public void setSessionDataObject(String id, Object value) {
+		sessionDataObject.put(id, value);
 	}
 
 	/**

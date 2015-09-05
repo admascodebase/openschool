@@ -31,6 +31,8 @@ public class CustCompEmployee implements Serializable{
 	private Float salary;
 	
 	private String pan;
+	
+	private Character delFlag;
 
 	public Integer getId() {
 		return id;
@@ -127,6 +129,20 @@ public class CustCompEmployee implements Serializable{
 				+ address + ", contactNo=" + contactNo + ", gender=" + gender
 				+ ", isSysAcc=" + isSysAcc + ", salaryType=" + salaryType
 				+ ", salary=" + salary + ", pan=" + pan + "]";
+	}
+
+	/**
+	 * @return the delFlag
+	 */
+	public Character getDelFlag() {
+		return delFlag;
+	}
+
+	/**
+	 * @param delFlag the delFlag to set
+	 */
+	public void setDelFlag(Character delFlag) {
+		this.delFlag = delFlag;
 	}
 	
 	

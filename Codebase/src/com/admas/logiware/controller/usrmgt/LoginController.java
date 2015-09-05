@@ -94,7 +94,7 @@ public class LoginController extends BaseController {
 			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
 			mv=new ModelAndView(viewName);
 			flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
-			mv.addObject("userDetails", resDtoObjects.get("userResponse"));	
+			mv.addObject("userName", flowData.getSessionData("userName"));	
 			return mv;
 
 		} catch (LogiwareBaseException we) {

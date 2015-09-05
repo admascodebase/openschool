@@ -14,6 +14,7 @@ import com.admas.logiware.client.ServiceInvoker;
 import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.dto.FlowData;
 import com.admas.logiware.dto.LogiwareRespnse;
+import com.admas.logiware.dto.UserDetails;
 import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
 import com.admas.logiware.exception.WebAppException;
@@ -67,7 +68,9 @@ public class UserManagementServiceImpl {
 			viewName = "Dashboard";
 			logiwareResponse = doServiceCall(flowData, ServiceName.login,
 					reqDtoObjects);
-			resDtoObjects.put("userResponse", logiwareResponse);
+			UserDetails userDetails = (UserDetails)logiwareResponse.getUerDetailsDto();
+			flowData.setSessionDataObject("user", userDetails);
+			flowData.setSessionData("userName", userDetails.getCustCompEmployee().getName());
 			resDtoObjects.put("viewName", viewName);
 			} catch (LogiwareBaseException b) {
 			throw b;
