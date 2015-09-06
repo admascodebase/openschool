@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.admas.logiware.client.ServiceEndPointConstants.ServiceName;
 import com.admas.logiware.client.ServiceInvoker;
 import com.admas.logiware.constant.WebAppConstants;
-import com.admas.logiware.dto.BranchDetail;
+import com.admas.logiware.dto.CompanyBranchDto;
 import com.admas.logiware.dto.CityDto;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.ContractCompDto;
@@ -365,9 +365,9 @@ public class MasterServiceImpl {
 
 	public ModelAndView getAllBranches(FlowData flowData,
 			HashMap<String, Object> resDtoObject) {
-		BranchDetail detail = new BranchDetail();
-		detail.setBranchName("Hyderabad Branch");
-		List<BranchDetail> branchList = new ArrayList<BranchDetail>();
+		CompanyBranchDto detail = new CompanyBranchDto();
+		detail.setName("Hyderabad Branch");
+		List<CompanyBranchDto> branchList = new ArrayList<CompanyBranchDto>();
 		branchList.add(detail);
 		resDtoObject.put("allBranch", branchList);
 		String viewName = "";
