@@ -91,16 +91,8 @@ public class EmployeeController extends BaseController {
 		if (!flowData.isLoggedIn())
 			return super.loginPage(flowData, request);
 
-		ModelAndView mv = new ModelAndView();
-		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
-		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
+		ModelAndView mv = new ModelAndView("showAddEmployee");
 		try {
-
-			resDtoObjects = masterServiceImpl.showAddEmployee(flowData,
-					reqDtoObjects, resDtoObjects);
-			String viewName = (String) resDtoObjects
-					.get(WebAppConstants.VIEW_NAME);
-			mv = new ModelAndView(viewName);
 			mv.addObject("employee", new EmployeeDto());			
 		} catch (Exception e) {
 			logger.error(

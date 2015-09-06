@@ -176,10 +176,6 @@
 				<div class="col-md-12">
 					<div
 						class="tabbable tabbable-custom tabbable-noborder tabbable-reversed">
-
-
-
-
 						<div class="tab-pane" id="tab_2">
 							<div class="portlet box green">
 								<div class="portlet-title">

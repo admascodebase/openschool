@@ -1,5 +1,5 @@
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
 	<div class="page-head">
@@ -174,7 +174,7 @@
 						<div class="portlet-title">
 							<div class="caption">
 								<i class="fa fa-cogs font-green-sharp"></i> <span
-									class="caption-subject font-green-sharp bold uppercase">Employee
+									class="caption-subject font-green-sharp bold uppercase">Transport
 									Details</span>
 							</div>
 							<div class="tools">
@@ -184,6 +184,19 @@
 									href="javascript:;" class="remove"> </a>
 							</div>
 						</div>
+						<c:if test="${errorCode ne null}">
+						<div class="alert alert-danger">
+							<button class="close" data-close="alert"></button>
+							<span><spring:message code="${errorCode}"></spring:message> </span>
+						</div>
+					</c:if>
+					
+					<c:if test="${sucessMessage ne null}">
+						<div class="alert alert-success">
+							<button class="close" data-close="alert"></button>
+							<spring:message code="${sucessMessage}"></spring:message>
+						</div>
+					</c:if>
 						<div class="portlet-body">
 							<div class="table-toolbar">
 								<div class="row">
@@ -191,11 +204,6 @@
 										<div class="btn-group">
 											<a href="showAddTransportType.htm"><button
 													class="btn btn-circle btn-primary">Add New</button></a>
-										<a href="showEditTransportType.htm"><button
-													class="btn btn-circle yellow-crusta">Edit</button></a>
-									
-									<a href="showDeleteTransportType.htm"><button
-													class="btn btn-circle yellow-crusta">delete</button></a>
 									
 										</div>
 									</div>
@@ -219,11 +227,11 @@
 									<tr>
 										<th class="table-checkbox"><input type="checkbox"
 											class="group-checkable" data-set="#sample_1 .checkboxes" /></th>
-										<th>Id</th>
 										<th>Name</th>
-										<th>Company Id</th>
 										<th>Description</th>
 										<th>Edit/Delete</th>
+										<th>Trnsport type details</th>
+										
 									</tr>
 								</thead>
 								<tbody>
@@ -232,16 +240,20 @@
 
 											<td><input type="checkbox" class="checkboxes" value="1" />
 											</td>
-											<td>${transportType.id}</td>
 											<td>${transportType.name}</td>
-											<td>${transportType.companyId}</td>
 											<td>${transportType.description}</td>
+											
 											<td>
-											<a href="showEditTransportType.htm?id=${transportType.id}"
+											<a href="editTransportType.htm?id=${transportType.id}"
 													class="btn btn-warning btn-xs"> Edit 
 												</a> 
-												 <a href="showDeleteTransportType.htm?id=${transportType.id}"
+												 <a href="deleteTransportType.htm?id=${transportType.id}"
 													class="btn btn-info btn-xs"> Delete 
+												</a> 
+											</td>
+											
+											<td>
+											<a href="showTransportType.htm?id=${transportType.id}"> Trnsport type details 
 												</a> 
 											</td>
 										</tr>

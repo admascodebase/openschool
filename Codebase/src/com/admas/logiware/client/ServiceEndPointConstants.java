@@ -29,6 +29,7 @@ public class ServiceEndPointConstants {
 		deleteCompany("deleteCompany"),
 		getAllTransportTypes("getAllTransportTypes"),
 		saveTransportType("saveTransportType"),
+		saveEditTransportType("saveEditTransportType"),
 		getTransportTypeById("getTransportTypeById"),
 		deleteTransportType("deleteTransportType"),
 		getAllTransportTypeDetails("getAllTransportTypeDetails"),

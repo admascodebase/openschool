@@ -1,7 +1,4 @@
-/*
- * Copyright Currencies Direct Ltd 2013-2015. All rights reserved worldwide.
- * Currencies Direct Ltd PROPRIETARY/CONFIDENTIAL.
- */
+
 package com.admas.logiware.client;
 
 import java.io.Serializable;
@@ -104,6 +101,10 @@ public class ServiceInvoker implements Serializable {
 			response = (K) saveTransportType(url, (Map) request);
 			break;
 		}
+		case saveEditTransportType: {
+			response = (K) saveEditTransportType(url, (Map) request);
+			break;
+		}		
 		case getTransportTypeById: {
 			response = (K) getTransportTypeById(url, (Map) request);
 			break;
@@ -520,7 +521,40 @@ public class ServiceInvoker implements Serializable {
 		logger.info("ServiceInvoker saveTransportType method end. ");
 		return logiwareResponse;
 	}
+	
+	public LogiwareRespnse saveEditTransportType(String url,
+			Map<String, Object> request) throws LogiwareBaseException {
+		
+		logger.info("ServiceInvoker saveTransportType method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("transportType"));
+			ClientResponse<LogiwareRespnse> response = clientRequest
+					.post(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "",
+						response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(),
+						logiwareResponse.getDescription());
+			} 
 
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("Exception In ServiceInvoker saveEditTransportType method.", e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker saveEditTransportType method end. ");
+		return logiwareResponse;
+	}
 	/*
 	 * get TransportType By Id
 	 */

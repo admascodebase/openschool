@@ -10,11 +10,11 @@ public class TransportTypeDto implements Serializable{
 		
 	}
 
-
 	private Integer id;
 	private Integer compId;
 	private String name;
 	private String description;
+	private Character delFlag;
 	
 	
 	/**
@@ -72,11 +72,28 @@ public class TransportTypeDto implements Serializable{
 		this.id = id;
 	}
 	
+	/**
+	 * @return the delFlag
+	 */
+	public Character getDelFlag() {
+		return delFlag;
+	}
+	/**
+	 * @param delFlag the delFlag to set
+	 */
+	public void setDelFlag(Character delFlag) {
+		this.delFlag = delFlag;
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "TransportTypeDto [id=" + id + ", compId=" + compId + ", name="
-				+ name + ", description=" + description + "]";
+				+ name + ", description=" + description + ", delFlag="
+				+ delFlag + "]";
 	}
+	
 
 	
 }
