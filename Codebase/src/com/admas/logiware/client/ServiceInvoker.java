@@ -918,8 +918,7 @@ public class ServiceInvoker implements Serializable {
 		try {
 			ClientRequest clientRequest = new ClientRequest(url);
 			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
-			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("employee"));
-			ClientResponse<LogiwareRespnse> response = clientRequest.post(LogiwareRespnse.class);
+			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
 			if (response.getStatus() != 200) {
 				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
 			}
