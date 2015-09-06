@@ -1082,7 +1082,7 @@ public class MasterServiceImpl {
 		String viewName = "";
 		Boolean result=false;
 		try {
-			viewName = "getAllCompany";
+			viewName = "getAllContractCompany";
 			logiwareResponse = doServiceCall(flowData,	ServiceName.deleteContractCompany, reqDtoObjects);
 			result = (Boolean) logiwareResponse.getData();
 			resDtoObjects.put("userResponse", logiwareResponse);

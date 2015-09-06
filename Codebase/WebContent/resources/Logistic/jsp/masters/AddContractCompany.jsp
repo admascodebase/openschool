@@ -206,6 +206,10 @@
 									<div class="portlet-body form">
 										<!-- BEGIN FORM-->
 										<form:form action="saveContractCompany.htm" modelAttribute="contractCompany" class="form-horizontal">
+										<form:hidden path="id" />
+										<form:hidden path="delFlag" />
+										<form:hidden path="compId" />
+										
 											<div class="form-body">
 												<h3 class="form-section"></h3>
 												<div class="row">

@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+ <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
 	<div class="page-head">
@@ -183,6 +184,22 @@
 									href="javascript:;" class="remove"> </a>
 							</div>
 						</div>
+						
+						<c:if test="${errorCode ne null}">
+						<div class="alert alert-danger">
+							<button class="close" data-close="alert"></button>
+							<span><spring:message code="${errorCode}"></spring:message> </span>
+						</div>
+					</c:if>
+					
+					<c:if test="${sucessMessage ne null}">
+						<div class="alert alert-success">
+							<button class="close" data-close="alert"></button>
+							<spring:message code="${sucessMessage}"></spring:message>
+						</div>
+					</c:if>
+						
+						
 						<div class="portlet-body">
 						<div id="bootstrap_alerts">
 						</div>
@@ -237,7 +254,7 @@
 											<td>${contractCompany.compId}</td>
 											<td>${contractCompany.address}</td>
 											<td>${contractCompany.type}</td>
-											<td>${contractCompany.contactPerson}</td>
+											<td>${contractCompany.contactPersion}</td>
 											<td>${contractCompany.contactNo1}</td>
 											<td>${contractCompany.contactNo2}</td>
 											<td><a href="showEditContractCompany.htm?id=${contractCompany.id}"

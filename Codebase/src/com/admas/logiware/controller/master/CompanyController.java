@@ -280,41 +280,50 @@ public class CompanyController extends BaseController {
 		logger.info("CompanyController: saveContractCompany Method Start.");
 		FlowData flowData = null;
 		
-		/*if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
-		flowData = (FlowData) request.getSession().getAttribute(
-				WebAppConstants.FLOWDATA);
+		super.handleRequestInternal(request, response);
+		if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
+			flowData = (FlowData) request.getSession().getAttribute(
+					WebAppConstants.FLOWDATA);
 		}
 		if (!flowData.isLoggedIn())
-			return super.loginPage(flowData, request);*/
+			return super.loginPage(flowData, request);
 		
 		ModelAndView mv = new ModelAndView() ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
+		String sucessMessage= "";
 		try {	
-			contractCompDto.setCompId(8);
+			reqDtoObjects.put("contractCompDto", contractCompDto);
+			
 			if(contractCompDto.getId()!=null && contractCompDto.getId()>0){
 				resDtoObjects=masterServiceImpl.saveEditContractCompany(flowData, reqDtoObjects, resDtoObjects);
-			}
-			reqDtoObjects.put("contractCompDto", contractCompDto);
+				sucessMessage = WebAppConstants.LW_SUCESS_EDIT;
+			}else{
+			
 			resDtoObjects=masterServiceImpl.saveCOntractCompany(flowData, reqDtoObjects, resDtoObjects);
+			sucessMessage= WebAppConstants.LW_SUCESS_ADD;
+			}
 			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
 			resDtoObjects=masterServiceImpl.getAllContractCompany(flowData, reqDtoObjects, resDtoObjects);
 			mv=new ModelAndView(viewName);	
-			@SuppressWarnings("unchecked")
-			List<ContractCompDto> lContractCompanies = (List<ContractCompDto>) resDtoObjects
-					.get("lContractCompanies");
-			mv.addObject("lContractCompanies", lContractCompanies);
+			mv.addObject(WebAppConstants.SUCESS_MESSAGE,sucessMessage);
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in CompanyController: saveContractCompany",
 					_be);
 			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
-
 		} catch (Exception e) {
 			logger.error(
 					"Exception In CompanyController saveContractCompany() ", e);
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
+		
+		@SuppressWarnings("unchecked")
+		List<ContractCompDto> lContractCompanies = (List<ContractCompDto>) resDtoObjects
+				.get("lContractCompanies");
+		mv.addObject("lContractCompanies", lContractCompanies);
+		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
+		mv.addObject("userName", flowData.getSessionData("userName"));	
 		logger.info("CompanyController: saveContractCompany Method End.");
 		return mv;
 		
@@ -398,27 +407,24 @@ public class CompanyController extends BaseController {
 	
 	@RequestMapping(value = "/deleteContractCompany.htm", method = RequestMethod.GET)
 	public ModelAndView deleteContractCompany(HttpServletRequest request, HttpServletResponse response) {		
-		logger.info("CompanyController: deleteCompany Method Start.");
+		logger.info("CompanyController: deleteContractCompany Method Start.");
 		FlowData flowData = null;
 		ModelAndView mv = new ModelAndView() ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		Integer ContractcompanyId=Integer.parseInt(request.getParameter("id"));
+		String sucessMessage= "";
 		try {			
 			reqDtoObjects.put("ContractcompanyId", ContractcompanyId);
 			resDtoObjects = masterServiceImpl.deleteContractCompany(flowData,
 					reqDtoObjects, resDtoObjects);
+			sucessMessage= WebAppConstants.LW_SUCESS_DELETE;
 			String viewName = (String) resDtoObjects
 					.get(WebAppConstants.VIEW_NAME);
+			mv = new ModelAndView(viewName);
 			resDtoObjects = masterServiceImpl.getAllContractCompany(flowData,
 					reqDtoObjects, resDtoObjects);
-			@SuppressWarnings("unchecked")
-			List<ContractCompDto> lContractCompanies = (List<ContractCompDto>) resDtoObjects
-					.get("lContractCompanies");
-			mv.addObject("lContractCompanies", lContractCompanies);
-			mv = new ModelAndView(viewName);
-			mv.addObject("lContractCompanies", lContractCompanies);
-
+			mv.addObject(WebAppConstants.SUCESS_MESSAGE,sucessMessage);
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in CompanyController: deleteContractCompany",
 					_be);
@@ -430,7 +436,11 @@ public class CompanyController extends BaseController {
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
-		
+		@SuppressWarnings("unchecked")
+		List<ContractCompDto> lContractCompanies = (List<ContractCompDto>) resDtoObjects
+				.get("lContractCompanies");
+		mv.addObject("lContractCompanies", lContractCompanies);
+		logger.info("CompanyController: deleteContractCompany Method End.");
 		return mv;
 }
 	
