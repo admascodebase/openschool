@@ -21,7 +21,6 @@ import com.admas.logiware.dto.ContractCompDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
 import com.admas.logiware.exception.LogiwareServiceErrors;
 import com.admas.logiware.jpa.CustContractCompany;
-import com.admas.logiware.jpa.Employee;
 
 public class ContractCompDaoImpl implements ContractCompDao {
 
@@ -146,11 +145,15 @@ public class ContractCompDaoImpl implements ContractCompDao {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Boolean editContractComp(ContractCompDto contractCompDto)
 			throws LogiwareExceptionHandler {
 		Boolean result = false;
 		try {
-			entityManager.persist(contractCompDto._toJpa());
+			CustContractCompany contractCompany= new CustContractCompany();
+			contractCompany = contractCompDto._toJpa();
+			
+			entityManager.merge(contractCompany);
 			entityManager.flush();
 			if (contractCompDto._toJpa().getId() != null || contractCompDto._toJpa().getId() != 0) {
 				result = true;
@@ -163,6 +166,7 @@ public class ContractCompDaoImpl implements ContractCompDao {
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
 		} catch (Exception e) {
+			e.printStackTrace();
 			logger.error(
 					"Exception Error in ContractCompDaoImpl - > editContractComp",
 					e);
