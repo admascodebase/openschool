@@ -48,7 +48,7 @@
 									</tr>
 								</thead> -->
 								<%-- <c:set var="allBranch" value="${allBranch}"></c:set> --%>
-								<c:if test="${empty allBranch}">
+								<c:if test="${empty lBranches}">
 								
 								hi guys...
 
@@ -74,7 +74,7 @@
 								</c:if>
 						<!-- 	</table> -->
 						
-						fu** off an sleep..its 2:33
+						an sleep..its 2:33
 
 						</div>
 					</div>

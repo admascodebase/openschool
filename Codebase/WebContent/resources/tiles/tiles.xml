@@ -157,4 +157,12 @@
 			value="/resources/Logistic/jsp/masters/ContractCompany.jsp" />
 	</definition>
 	
+			<definition name="getAllBranch" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic -Contract Company Details" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/masters/AllBranch.jsp" />
+	</definition>
+	
+	
+	
 </tiles-definitions>

@@ -27,7 +27,7 @@
 													Contract Company </a>
 												</li>
 												<li>
-													<a href="ecommerce_orders.html" class="iconify">
+													<a href="./getAllBranch.htm" class="iconify">
 													<i class="icon-basket"></i>
 													Branch </a>
 												</li>
