@@ -54,8 +54,8 @@ License: You must have a valid license purchased only from themeforest(the above
 <body class="login">
 <!-- BEGIN LOGO -->
 <div class="logo">
-	<a href="index-2.html">
-	<img src="${pageContext.request.contextPath}/resources/Logistic/assets/admin/layout3/img/logo-big.png" alt=""/>
+	<a href="login.htm">
+	<%-- <img src="${pageContext.request.contextPath}/resources/Logistic/assets/admin/layout3/img/logo-big.png" alt=""/> --%> Logiware 
 	</a>
 </div>
 <!-- END LOGO -->
@@ -70,7 +70,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END LOGIN -->
 <!-- BEGIN COPYRIGHT -->
 <div class="copyright">
-	 2014 &copy; Metronic. Admin Dashboard Template.
+	 2015 &copy; Logiware Portal (Admas technologies ).
 </div>
 <!-- END COPYRIGHT -->
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
@@ -116,6 +116,4 @@ jQuery(document).ready(function() {
 </body>
 
 <!-- END BODY -->
-
-<!-- Mirrored from www.keenthemes.com/preview/metronic/theme/templates/admin3/login_3.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Aug 2015 18:13:35 GMT -->
 </html>

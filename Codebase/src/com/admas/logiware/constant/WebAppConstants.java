@@ -39,5 +39,13 @@ public interface WebAppConstants {
 	public String BRANCHID = "branchId";
 
 	public String ROLEID = "roleId";
+	
+	public String SUCESS_MESSAGE ="sucessMessage";
+
+	public String LW_SUCESS_ADD = "LW_SUCESS_ADD";
+	
+	public String LW_SUCESS_EDIT = "LW_SUCESS_EDIT";
+	
+	public String LW_SUCESS_DELETE = "LW_SUCESS_DELETE";
 
 }

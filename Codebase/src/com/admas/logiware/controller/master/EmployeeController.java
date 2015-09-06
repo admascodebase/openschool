@@ -50,21 +50,16 @@ public class EmployeeController extends BaseController {
 		if (!flowData.isLoggedIn())
 			return super.loginPage(flowData, request);
 
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("getAllEmployee");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		try {
 			resDtoObjects = masterServiceImpl.getAllEmployee(flowData,
 					reqDtoObjects, resDtoObjects);
-			String viewName = (String) resDtoObjects
-					.get(WebAppConstants.VIEW_NAME);
-			mv = new ModelAndView(viewName);
 			@SuppressWarnings("unchecked")
 			List<EmployeeDto> lEmployees = (List<EmployeeDto>) resDtoObjects
 					.get("lEmployees");
-			mv.addObject("lEmployees", lEmployees);
-			flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
-			mv.addObject("userName", flowData.getSessionData("userName"));	
+			mv.addObject("lEmployees", lEmployees);			
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in CompanyController: getAllCompany", _be);
 			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
@@ -75,7 +70,8 @@ public class EmployeeController extends BaseController {
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
-
+		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
+		mv.addObject("userName", flowData.getSessionData("userName"));	
 		return mv;
 
 	}
@@ -105,16 +101,15 @@ public class EmployeeController extends BaseController {
 			String viewName = (String) resDtoObjects
 					.get(WebAppConstants.VIEW_NAME);
 			mv = new ModelAndView(viewName);
-			mv.addObject("employee", new EmployeeDto());
-			flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
-			mv.addObject("userName", flowData.getSessionData("userName"));	
+			mv.addObject("employee", new EmployeeDto());			
 		} catch (Exception e) {
 			logger.error(
 					"Exception In EmployeeController: addEmployee Method--", e);
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
-
+		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
+		mv.addObject("userName", flowData.getSessionData("userName"));	
 		return mv;
 	}
 
@@ -137,41 +132,38 @@ public class EmployeeController extends BaseController {
 		employeeDto.setCompId(Integer.parseInt(flowData
 				.getSessionData(WebAppConstants.COMPID)));
 		employeeDto.setDelFlag('N');
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("getAllEmployee");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
+		String sucessMessage= "";
 		try {
 			reqDtoObjects.put("employee", employeeDto);
 			if (employeeDto.getId() != null && employeeDto.getId() > 0) {
 				resDtoObjects = masterServiceImpl.saveEditEmployee(flowData,
 						reqDtoObjects, resDtoObjects);
+				sucessMessage= WebAppConstants.LW_SUCESS_EDIT;
 			} else {
 				resDtoObjects = masterServiceImpl.saveEmployee(flowData,
 						reqDtoObjects, resDtoObjects);
+				sucessMessage= WebAppConstants.LW_SUCESS_ADD;
 			}
-
-			String viewName = (String) resDtoObjects
-					.get(WebAppConstants.VIEW_NAME);
-			resDtoObjects = masterServiceImpl.getAllEmployee(flowData,
-					reqDtoObjects, resDtoObjects);
-			@SuppressWarnings("unchecked")
-			List<EmployeeDto> lEmployees = (List<EmployeeDto>) resDtoObjects
-					.get("lEmployees");
-			mv = new ModelAndView(viewName);
-			mv.addObject("lEmployees", lEmployees);
-			flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
-			mv.addObject("userName", flowData.getSessionData("userName"));	
+			mv.addObject(WebAppConstants.SUCESS_MESSAGE,sucessMessage);
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in EmployeeController: saveCompany", _be);
 			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
-
 		} catch (Exception e) {
 			logger.error(
 					"Exception In EmployeeController saveCompany Method--", e);
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
-
+					
+		@SuppressWarnings("unchecked")
+		List<EmployeeDto> lEmployees = (List<EmployeeDto>) resDtoObjects
+				.get("lEmployees");		
+		mv.addObject("lEmployees", lEmployees);		
+		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
+		mv.addObject("userName", flowData.getSessionData("userName"));	
 		return mv;
 
 	}
@@ -191,7 +183,7 @@ public class EmployeeController extends BaseController {
 		if (!flowData.isLoggedIn())
 			return super.loginPage(flowData, request);
 
-		ModelAndView mv = null;
+		ModelAndView mv = new ModelAndView("getAllEmployee");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		Integer employeeId = Integer.parseInt(request.getParameter("id"));
@@ -201,23 +193,20 @@ public class EmployeeController extends BaseController {
 					reqDtoObjects, resDtoObjects);
 			mv = new ModelAndView(
 					(String) resDtoObjects.get(WebAppConstants.VIEW_NAME));
-			mv.addObject("employee", resDtoObjects.get("employee"));
-			flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
-			mv.addObject("userName", flowData.getSessionData("userName"));	
+			mv.addObject("employee", resDtoObjects.get("employee"));			
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in EmployeeController: showEditEmployee",
 					_be);
-			mv = new ModelAndView("getAllEmployee");
 			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
 		} catch (Exception e) {
 			logger.error(
 					"Exception In EmployeeController showEditEmployee Method--",
 					e);
-			mv = new ModelAndView("getAllEmployee");
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
-
+		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
+		mv.addObject("userName", flowData.getSessionData("userName"));	
 		return mv;
 	}
 
@@ -236,7 +225,7 @@ public class EmployeeController extends BaseController {
 		if (!flowData.isLoggedIn())
 			return super.loginPage(flowData, request);
 
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("getAllEmployee");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		Integer employeeId = Integer.parseInt(request.getParameter("id"));
@@ -244,18 +233,7 @@ public class EmployeeController extends BaseController {
 			reqDtoObjects.put("employeeId", employeeId);
 			resDtoObjects = masterServiceImpl.deleteEmployee(flowData,
 					reqDtoObjects, resDtoObjects);
-			String viewName = (String) resDtoObjects
-					.get(WebAppConstants.VIEW_NAME);
-			resDtoObjects = masterServiceImpl.getAllEmployee(flowData,
-					reqDtoObjects, resDtoObjects);
-			@SuppressWarnings("unchecked")
-			List<EmployeeDto> lEmployees = (List<EmployeeDto>) resDtoObjects
-					.get("lEmployees");
-			mv = new ModelAndView(viewName);
-			mv.addObject("lEmployees", lEmployees);
-			flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
-			mv.addObject("userName", flowData.getSessionData("userName"));	
-
+			mv.addObject(WebAppConstants.SUCESS_MESSAGE,WebAppConstants.LW_SUCESS_DELETE);
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in EmployeeController: showEditEmployee",
 					_be);
@@ -268,7 +246,12 @@ public class EmployeeController extends BaseController {
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
-
+		@SuppressWarnings("unchecked")
+		List<EmployeeDto> lEmployees = (List<EmployeeDto>) resDtoObjects
+				.get("lEmployees");		
+		mv.addObject("lEmployees", lEmployees);	
+		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
+		mv.addObject("userName", flowData.getSessionData("userName"));	
 		return mv;
 	}
 

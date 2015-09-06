@@ -439,14 +439,10 @@ public class MasterServiceImpl {
 		logger.info("MasterServiceImpl getAllEmployee method start.");
 		List<EmployeeDto> lEmployees = new ArrayList<EmployeeDto>();
 		LogiwareRespnse logiwareRespnse = null;
-		String viewName = "";
 		try {
-			viewName = "getAllEmployee";
 			 logiwareRespnse = doServiceCall(flowData, ServiceName.getAllEmployee, reqDtoObjects);
-			 lEmployees =(List<EmployeeDto>) logiwareRespnse.getData();
-			 
-			resDtoObjects.put("lEmployees", lEmployees);
-			resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
+			 lEmployees =(List<EmployeeDto>) logiwareRespnse.getData();			 
+			 resDtoObjects.put("lEmployees", lEmployees);
 		} catch (LogiwareBaseException b) {
 			throw b;
 		} catch (Exception e) {
@@ -521,15 +517,21 @@ public class MasterServiceImpl {
 			resDtoObjects.put("userResponse", logiwareResponse);
 			resDtoObjects.put("viewName", viewName);
 		} catch (LogiwareBaseException b) {
+			resDtoObjects = getAllEmployee(flowData,
+					reqDtoObjects, resDtoObjects);
 			throw b;
-		} catch (Exception e) {
+		} catch (Exception e) {			
 			logger.error(
 					"Exception In MasterServiceImpl: saveEmployee method end.",
 					e);
+			resDtoObjects = getAllEmployee(flowData,
+					reqDtoObjects, resDtoObjects);
 			throw new LogiwareBaseException(
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
 		}
+		resDtoObjects = getAllEmployee(flowData,
+				reqDtoObjects, resDtoObjects);
 		logger.info("MasterServiceImpl saveEmployee method end. ");
 		return resDtoObjects;
 
@@ -541,23 +543,26 @@ public class MasterServiceImpl {
 
 		logger.info("MasterServiceImpl saveEditEmployee method start.");
 		LogiwareRespnse logiwareResponse = null;
-		String viewName = "";
 		try {
-			viewName = "getAllEmployee";
 			logiwareResponse = doServiceCall(flowData,
 					ServiceName.saveEditEmployee, reqDtoObjects);
 			resDtoObjects.put("userResponse", logiwareResponse);
-			resDtoObjects.put("viewName", viewName);
 		} catch (LogiwareBaseException b) {
+			resDtoObjects = getAllEmployee(flowData,
+					reqDtoObjects, resDtoObjects);
 			throw b;
 		} catch (Exception e) {
 			logger.error(
 					"Exception In MasterServiceImpl: saveEditEmployee method end.",
 					e);
+			resDtoObjects = getAllEmployee(flowData,
+					reqDtoObjects, resDtoObjects);
 			throw new LogiwareBaseException(
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
 		}
+		resDtoObjects = getAllEmployee(flowData,
+				reqDtoObjects, resDtoObjects);
 		logger.info("MasterServiceImpl saveCompany method end. ");
 		return resDtoObjects;
 
@@ -598,19 +603,14 @@ public class MasterServiceImpl {
 		
 		logger.info("MasterServiceImpl deleteEmployee method start.");
 		LogiwareRespnse logiwareResponse = null;
-		EmployeeDto employeeDto = new EmployeeDto();
-		String viewName = "";
 		Boolean result=false;
 		try {
-			viewName = "getAllEmployee";
 			logiwareResponse = doServiceCall(flowData,	ServiceName.deleteEmployee, reqDtoObjects);
 			result = (Boolean) logiwareResponse.getData();
 			resDtoObjects.put("userResponse", logiwareResponse);
-			resDtoObjects.put("viewName", viewName);
 		} catch (LogiwareBaseException b) {
 			throw b;
 		} catch (Exception e) {
-			e.printStackTrace();
 			logger.error(
 					"Exception In MasterServiceImpl: deleteEmployee method end.",
 					e);
@@ -638,16 +638,22 @@ public class MasterServiceImpl {
 			resDtoObjects.put("userResponse", logiwareResponse);
 			resDtoObjects.put("viewName", viewName);
 		} catch (LogiwareBaseException b) {
+			resDtoObjects = getAllEmployee(flowData,
+					reqDtoObjects, resDtoObjects);
 			throw b;
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error(
 					"Exception In MasterServiceImpl: deleteEmployee method end.",
 					e);
+			resDtoObjects = getAllEmployee(flowData,
+					reqDtoObjects, resDtoObjects);
 			throw new LogiwareBaseException(
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
 		}
+		resDtoObjects = getAllEmployee(flowData,
+				reqDtoObjects, resDtoObjects);
 		logger.info("MasterServiceImpl deleteEmployee method end. ");
 		return resDtoObjects;
 		

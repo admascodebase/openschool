@@ -213,7 +213,7 @@
 									</div> -->
 									<div class="portlet-body form">
 										<!-- BEGIN FORM-->
-										<form:form action="saveEmployee.htm" modelAttribute="employee" class="form-horizontal">
+										<form:form action="saveEmployee.htm" modelAttribute="employee" id="form_sample_1" class="form-horizontal">
 										<form:hidden path="id" />
 										<form:hidden path="delFlag" />
 										<form:hidden path="compId" />
@@ -225,7 +225,7 @@
 															<label class="control-label col-md-3">Name</label>
 															<div class="col-md-9">
 																<form:input path="name" type="text" class="form-control"
-																	placeholder="Enter name ..."/> 
+																	placeholder="Enter name ..." name="name" data-required="1"/> 
 															</div>
 														</div>
 													</div>

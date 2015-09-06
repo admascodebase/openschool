@@ -1,5 +1,6 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+ <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
 	<div class="page-head">
@@ -165,6 +166,7 @@
 					class="fa fa-circle"></i></li>
 				<li class="active">Employee Details</li>
 			</ul>
+			
 			<!-- END PAGE BREADCRUMB -->
 			<!-- BEGIN PAGE CONTENT INNER -->
 			<div class="row">
@@ -177,6 +179,7 @@
 									class="caption-subject font-green-sharp bold uppercase">Employee
 									Details</span>
 							</div>
+							
 							<div class="tools">
 								<a href="javascript:;" class="collapse"> </a> <a
 									href="#portlet-config" data-toggle="modal" class="config">
@@ -184,6 +187,20 @@
 									href="javascript:;" class="remove"> </a>
 							</div>
 						</div>
+					<c:if test="${errorCode ne null}">
+						<div class="alert alert-danger">
+							<button class="close" data-close="alert"></button>
+							<span><spring:message code="${errorCode}"></spring:message> </span>
+						</div>
+					</c:if>
+					
+					<c:if test="${sucessMessage ne null}">
+						<div class="alert alert-success">
+							<button class="close" data-close="alert"></button>
+							<spring:message code="${sucessMessage}"></spring:message>
+						</div>
+					</c:if>
+
 						<div class="portlet-body">
 							<div class="table-toolbar">
 								<div class="row">
