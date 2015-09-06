@@ -11,6 +11,7 @@ public class LogiwareRespnse implements Serializable{
 	private EmployeeDto employeeDto;
 	private ContractCompDto contractCompDto;
 	private UserDetails uerDetailsDto;
+	private TransportTypeDto transportTypeDto;
 	/**
 	 * @return the code
 	 */
@@ -78,5 +79,17 @@ public class LogiwareRespnse implements Serializable{
 	 */
 	public void setUerDetailsDto(UserDetails uerDetailsDto) {
 		this.uerDetailsDto = uerDetailsDto;
+	}
+	/**
+	 * @return the transportTypeDto
+	 */
+	public TransportTypeDto getTransportTypeDto() {
+		return transportTypeDto;
+	}
+	/**
+	 * @param transportTypeDto the transportTypeDto to set
+	 */
+	public void setTransportTypeDto(TransportTypeDto transportTypeDto) {
+		this.transportTypeDto = transportTypeDto;
 	}
 }

@@ -683,16 +683,18 @@ public class MastersDaoImpl implements MastersDao {
 			CriteriaQuery<TransportType> criteriaQuery = criteriaBuilder
 					.createQuery(TransportType.class);
 			Root<TransportType> transportTypeJpa = criteriaQuery.from(TransportType.class);
+			Predicate notDeleted=criteriaBuilder.equal(transportTypeJpa.get("delFlag"), 'N');
 			criteriaQuery.select(transportTypeJpa);
+			criteriaQuery.where(notDeleted);
 			TypedQuery<TransportType> typedQuery = entityManager
 					.createQuery(criteriaQuery);
 			lTransportTypes = typedQuery.getResultList();
-
+			
 			if (lTransportTypes != null && lTransportTypes.size() != 0) {
 				return lTransportTypes;
 			} else {
 				throw new LogiwareExceptionHandler(
-						LogiwareServiceErrors.NO_CITY_FOUND);
+						LogiwareServiceErrors.NO_TRANSPORTTYPE_FOUND);
 			}
 
 		} catch (LogiwareExceptionHandler ex) {
@@ -717,12 +719,9 @@ public class MastersDaoImpl implements MastersDao {
 
 	@Override
 	public TransportType getTransportTypeById(Integer transportTypeId)
-			throws LogiwareExceptionHandler {
-		
-		
+			throws LogiwareExceptionHandler {		
 		TransportType transportType = null;
 		try {
-
 			TypedQuery<TransportType> transportTypeQuery = entityManager.createQuery(
 					"SELECT t FROM TransportType t WHERE id = :id", TransportType.class);
 			transportTypeQuery.setParameter("id", transportTypeId);
@@ -762,6 +761,7 @@ public class MastersDaoImpl implements MastersDao {
 			transportType.setCompId(transportTypeDto.getCompId());
 			transportType.setDescription(transportTypeDto.getDescription());
 			transportType.setId(transportTypeDto.getId());
+			transportType.setDelFlag(transportTypeDto.getDelFlag());
 			transportType.setName(transportTypeDto.getName());
 			entityManager.merge(transportType);
 			entityManager.flush();

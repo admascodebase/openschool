@@ -465,6 +465,7 @@ public class MastersLogicImpl implements MastersLogic {
 			transportTypeDto.setDescription(transportType.getDescription());
 			transportTypeDto.setName(transportType.getName());
 			transportTypeDto.setId(transportType.getId());
+			transportTypeDto.setDelFlag(transportType.getDelFlag());
 			logger.info("TransportType Converted to Dto Successfully");
 
 		} catch (LogiwareExceptionHandler e) {

@@ -34,7 +34,7 @@ public class TransportType implements Serializable{
 	@Column(name="DESCRIPTION" ,nullable = false )
 	private String description;
 
-	@Column(name="delFlag", nullable = true)
+	@Column(name="DEL_FLG", nullable = false)
 	private Character delFlag;
 	
 	
