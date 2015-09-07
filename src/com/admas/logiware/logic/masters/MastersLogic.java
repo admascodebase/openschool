@@ -58,7 +58,7 @@ public interface MastersLogic {
 	
 	public Boolean addTransportTypeDtl(TransportTypeDtlDto transportTypeDto) throws LogiwareExceptionHandler;
 
-	public List<TransportTypeDtlDto> getAllTransportTypeDtl()throws LogiwareExceptionHandler;
+	public List<TransportTypeDtlDto> getAllTransportTypeDtl(Integer transportTypeId)throws LogiwareExceptionHandler;
 
 	public TransportTypeDtlDto getTransportTypeDtlById(Integer transportTypeId)throws LogiwareExceptionHandler;
 	

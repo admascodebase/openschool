@@ -839,7 +839,7 @@ public class MastersDaoImpl implements MastersDao {
 	}
 
 	@Override
-	public List<TransportTypeDtl> getAllTransportTypeDtl()
+	public List<TransportTypeDtl> getAllTransportTypeDtl(Integer transportTypeId)
 			throws LogiwareExceptionHandler {
 		List<TransportTypeDtl> lTransportTypeDtls = null;
 		CriteriaBuilder criteriaBuilder = null;
@@ -849,11 +849,13 @@ public class MastersDaoImpl implements MastersDao {
 			CriteriaQuery<TransportTypeDtl> criteriaQuery = criteriaBuilder
 					.createQuery(TransportTypeDtl.class);
 			Root<TransportTypeDtl> transportTypeJpa = criteriaQuery.from(TransportTypeDtl.class);
+			Predicate notDeleted=criteriaBuilder.equal(transportTypeJpa.get("transId"), transportTypeId);
 			criteriaQuery.select(transportTypeJpa);
+			criteriaQuery.where(notDeleted);
 			TypedQuery<TransportTypeDtl> typedQuery = entityManager
 					.createQuery(criteriaQuery);
-			lTransportTypeDtls = typedQuery.getResultList();
-
+			lTransportTypeDtls = typedQuery.getResultList();		
+			
 			if (lTransportTypeDtls != null && lTransportTypeDtls.size() != 0) {
 				return lTransportTypeDtls;
 			} else {

@@ -693,16 +693,15 @@ public class MasterServices {
 	}
 	
 	@GET
-	@Path("/getAllTransportTypeDtl")
+	@Path("/getAllTransportTypeDtl/{transportTypeId}")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Response getAllTransportTypeDtl() {
+	public Response getAllTransportTypeDtl(@PathParam("transportTypeId")Integer transportTypeId) {
 
 		List<TransportTypeDtlDto> lTransportTypesDtl = new ArrayList<TransportTypeDtlDto>();
 		logger.info(" Start  MasterService- > getAllTransportTypeDtl Method");
 		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
 		try {
-
-			lTransportTypesDtl = mastersLogic.getAllTransportTypeDtl();
+			lTransportTypesDtl = mastersLogic.getAllTransportTypeDtl(transportTypeId);
 			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
 			logiwareRespnse.setData(lTransportTypesDtl);
 		} catch (LogiwareExceptionHandler e) {

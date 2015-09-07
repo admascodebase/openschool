@@ -67,7 +67,7 @@ public interface MastersDao {
 	
 	public Boolean addaddTransportTypeDtl(TransportTypeDtlDto transportTypeDto)throws LogiwareExceptionHandler;
 
-	public List<TransportTypeDtl> getAllTransportTypeDtl()throws LogiwareExceptionHandler;
+	public List<TransportTypeDtl> getAllTransportTypeDtl(Integer transportTypeId)throws LogiwareExceptionHandler;
 
 	public TransportTypeDtl getTransportTypeDtlById(Integer transportTypeId)throws LogiwareExceptionHandler;
 	

@@ -528,12 +528,12 @@ public class MastersLogicImpl implements MastersLogic {
 	}
 
 	@Override
-	public List<TransportTypeDtlDto> getAllTransportTypeDtl()
+	public List<TransportTypeDtlDto> getAllTransportTypeDtl(Integer transportTypeId)
 			throws LogiwareExceptionHandler {
 		List<TransportTypeDtlDto> lTransportTypeDtls = new ArrayList<TransportTypeDtlDto>();
 		List<TransportTypeDtl> transportTypeDtls=null;
 		try {
-			transportTypeDtls = mastersDao.getAllTransportTypeDtl();
+			transportTypeDtls = mastersDao.getAllTransportTypeDtl(transportTypeId);
 			for (TransportTypeDtl transportType : transportTypeDtls) {
 				TransportTypeDtlDto transportTypeDto = new TransportTypeDtlDto();
 				lTransportTypeDtls.add(transportTypeDto._toDto(transportType));
