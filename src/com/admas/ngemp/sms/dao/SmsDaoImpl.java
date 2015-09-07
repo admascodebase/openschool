@@ -21,14 +21,14 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.admas.logiware.dto.sms.SmsDto;
+import com.admas.logiware.dto.sms.SmsTemplateDto;
+import com.admas.logiware.jpa.sms.RawMessages;
+import com.admas.logiware.jpa.sms.SmsConfig;
+import com.admas.logiware.jpa.sms.SmsInbox;
 import com.admas.ngemp.enumuration.MessageStatus;
-import com.admas.ngemp.sms.dto.SmsDto;
-import com.admas.ngemp.sms.dto.SmsTemplateDto;
 import com.admas.ngemp.sms.exception.CommServiceErrors;
 import com.admas.ngemp.sms.exception.ExceptionHandler;
-import com.admas.ngemp.sms.jpa.RawMessages;
-import com.admas.ngemp.sms.jpa.SmsConfig;
-import com.admas.ngemp.sms.jpa.SmsInbox;
 
 @Repository
 public class SmsDaoImpl implements ISmsDao {
@@ -52,15 +52,15 @@ public class SmsDaoImpl implements ISmsDao {
 	@Override
 	public List<SmsTemplateDto> getSmsTempltes() {
 		List<SmsTemplateDto> lSmsTemplates = new ArrayList<SmsTemplateDto>();
-		TypedQuery<com.admas.ngemp.sms.jpa.SmsTemplate> customerQuery = null;
+		TypedQuery<com.admas.logiware.jpa.sms.SmsTemplate> customerQuery = null;
 		try {
 			customerQuery = entityManager.createQuery(
 					"SELECT s FROM com.admas.ngemp.sms.jpa.SmsTemplate s",
-					com.admas.ngemp.sms.jpa.SmsTemplate.class);
+					com.admas.logiware.jpa.sms.SmsTemplate.class);
 			try {
-				List<com.admas.ngemp.sms.jpa.SmsTemplate> smsTemplateJpa = customerQuery
+				List<com.admas.logiware.jpa.sms.SmsTemplate> smsTemplateJpa = customerQuery
 						.getResultList();
-				for (com.admas.ngemp.sms.jpa.SmsTemplate stj : smsTemplateJpa) {
+				for (com.admas.logiware.jpa.sms.SmsTemplate stj : smsTemplateJpa) {
 					SmsTemplateDto smsTemplate = new SmsTemplateDto();
 					smsTemplate.setId(stj.getId());
 					smsTemplate.setMessage(stj.getMessage());
@@ -84,7 +84,7 @@ public class SmsDaoImpl implements ISmsDao {
 		try {
 			customerQuery = entityManager.createQuery(
 					"SELECT s FROM com.admas.ngemp.sms.jpa.SmsConfig s",
-					com.admas.ngemp.sms.jpa.SmsConfig.class);
+					com.admas.logiware.jpa.sms.SmsConfig.class);
 
 			smsTemplateJpa = customerQuery.getResultList();
 			if (smsTemplateJpa.size() == 0) {

@@ -2,12 +2,12 @@ package com.admas.ngemp.sms.dao;
 
 import java.util.List;
 
-import com.admas.ngemp.sms.dto.SmsDto;
-import com.admas.ngemp.sms.dto.SmsTemplateDto;
+import com.admas.logiware.dto.sms.SmsDto;
+import com.admas.logiware.dto.sms.SmsTemplateDto;
+import com.admas.logiware.jpa.sms.RawMessages;
+import com.admas.logiware.jpa.sms.SmsConfig;
+import com.admas.logiware.jpa.sms.SmsInbox;
 import com.admas.ngemp.sms.exception.ExceptionHandler;
-import com.admas.ngemp.sms.jpa.RawMessages;
-import com.admas.ngemp.sms.jpa.SmsConfig;
-import com.admas.ngemp.sms.jpa.SmsInbox;
 
 
 public interface ISmsDao {

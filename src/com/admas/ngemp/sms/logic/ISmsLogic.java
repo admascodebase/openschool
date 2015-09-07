@@ -3,8 +3,8 @@ package com.admas.ngemp.sms.logic;
 import java.util.List;
 import java.util.Map;
 
-import com.admas.ngemp.sms.dto.SmsDto;
-import com.admas.ngemp.sms.dto.SmsTemplateDto;
+import com.admas.logiware.dto.sms.SmsDto;
+import com.admas.logiware.dto.sms.SmsTemplateDto;
 import com.admas.ngemp.sms.exception.ExceptionHandler;
 
 

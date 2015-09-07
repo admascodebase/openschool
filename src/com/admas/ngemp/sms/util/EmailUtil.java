@@ -19,7 +19,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-import com.admas.ngemp.sms.dto.EmailMessage;
+import com.admas.logiware.dto.sms.EmailMessage;
 
 public class EmailUtil {
 

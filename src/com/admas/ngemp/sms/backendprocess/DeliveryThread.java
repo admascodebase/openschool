@@ -7,11 +7,11 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.admas.logiware.jpa.sms.SmsConfig;
+import com.admas.logiware.jpa.sms.SmsInbox;
 import com.admas.ngemp.enumuration.MessageStatus;
 import com.admas.ngemp.sms.dao.ISmsDao;
 import com.admas.ngemp.sms.exception.ExceptionHandler;
-import com.admas.ngemp.sms.jpa.SmsConfig;
-import com.admas.ngemp.sms.jpa.SmsInbox;
 import com.admas.ngemp.sms.util.SMSUtil;
 
 public class DeliveryThread implements Runnable, Serializable {

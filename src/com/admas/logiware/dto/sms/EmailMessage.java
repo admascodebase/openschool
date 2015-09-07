@@ -1,4 +1,4 @@
-package com.admas.ngemp.sms.dto;
+package com.admas.logiware.dto.sms;
 
 import java.io.Serializable;
 
