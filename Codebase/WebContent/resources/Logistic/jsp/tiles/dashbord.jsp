@@ -126,7 +126,7 @@
 	</div>
 	<!-- END PAGE HEAD -->
 	<!-- BEGIN PAGE CONTENT -->
-	<div class="page-content">
+	<%-- <div class="page-content">
 		<div class="container">
 			<!-- BEGIN PAGE BREADCRUMB -->
 			<ul class="page-breadcrumb breadcrumb">
@@ -2105,6 +2105,6 @@
 			</div>
 		</div>
 		<!-- END QUICK SIDEBAR -->
-	</div>
+	</div> --%>
 	<!-- END PAGE CONTENT -->
 </div>

@@ -7,14 +7,14 @@
 						<a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;" class="dropdown-toggle">
 						Masters <i class="fa fa-angle-down"></i>
 						</a>
-						<ul class="dropdown-menu" style="min-width: 710px">
+						<ul class="dropdown-menu"  style="min-width: 610px">
 							<li>
 								<div class="mega-menu-content">
 									<div class="row">
 										<div class="col-md-4">
 											<ul class="mega-menu-submenu">
 												<li>
-													<h3>General</h3>
+													<h3>Company Setup</h3>
 												</li>
 												<li>
 													<a href="./getAllCompany.htm" class="iconify">
@@ -22,101 +22,244 @@
 													Company </a>
 												</li>
 												<li>
-													<a href="./getAllContractCompany.htm" class="iconify">
-													<i class="icon-home"></i>
-													Contract Company </a>
-												</li>
-												<li>
 													<a href="./getAllBranch.htm" class="iconify">
 													<i class="icon-basket"></i>
 													Branch </a>
-												</li>
-												<li>
-													<a href="getAllCity.htm" class="iconify">
-													<i class="icon-tag"></i>
-													City </a>
-												</li>
-												<li>
-													<a href="getAllTransportTypes.htm" class="iconify">
-													<i class="icon-handbag"></i>
-													Transport Type </a>
-												</li>
-												<li>
-													<a href="getAllTransportTypeDetails.htm" class="iconify">
-													<i class="icon-pencil"></i>
-													Transport Type Details </a>
 												</li>
 												<li>
 													<a href="./getAllEmployee.htm" class="iconify">
 													<i class="icon-pencil"></i>
 													Employee </a>
 												</li>
+												
 											</ul>
 										</div>
-										<!-- <div class="col-md-4">
+										
+										<div class="col-md-4">
 											<ul class="mega-menu-submenu">
 												<li>
-													<h3>Setting</h3>
+													<h3>General</h3>
 												</li>
 												<li>
-													<a href="layout_fluid.html" class="iconify">
-													<i class="icon-cursor-move"></i>
-													Email </a>
+													<a href="getAllCity.htm" class="iconify">
+													<i class="icon-tag"></i>
+													City </a>
 												</li>
+												<!-- <li>
+													<a href="./getAllContractCompany.htm" class="iconify">
+													<i class="icon-home"></i>
+													Contract Company </a>
+												</li> -->
+												
 												<li>
-													<a href="layout_mega_menu_fixed.html" class="iconify">
-													<i class="icon-pin"></i>
-													Email Templates </a>
-												</li>
-												<li>
-													<a href="layout_top_bar_fixed.html" class="iconify">
-													<i class="icon-bar-chart"></i>
-													 SMS </a>
-												</li>
-												<li>
-													<a href="layout_light_header.html" class="iconify">
-													<i class="icon-paper-plane"></i>
-													Light Header Dropdowns </a>
-												</li>
-												<li>
-													<a href="layout_blank_page.html" class="iconify">
-													<i class="icon-doc"></i>
-													Blank Page Layout </a>
-												</li>
+													<a href="getAllTransportTypes.htm" class="iconify">
+													<i class="icon-handbag"></i>
+													Transport Type </a>
+												</li>												
+												
 											</ul>
-										</div> -->
-										<!-- <div class="col-md-4">
+										</div>
+										
+										<div class="col-md-4">
 											<ul class="mega-menu-submenu">
 												<li>
-													<h3>More Layouts</h3>
+													<h3>Communiction</h3>
 												</li>
 												<li>
-													<a href="layout_click_dropdowns.html" class="iconify">
-													<i class="icon-speech"></i>
-													Click vs. Hover Dropdowns </a>
+													<a href="#" class="iconify">
+													<i class="icon-tag"></i>
+													Email Setting </a>
 												</li>
 												<li>
-													<a href="layout_fontawesome_icons.html" class="iconify">
-													<i class="icon-link"></i>
-													Layout with Fontawesome </a>
+													<a href="#" class="iconify">
+													<i class="icon-tag"></i>
+													Email configuration </a>
 												</li>
 												<li>
-													<a href="layout_glyphicons.html" class="iconify">
-													<i class="icon-settings"></i>
-													Layout with Glyphicon </a>
+													<a href="#" class="iconify">
+													<i class="icon-handbag"></i>
+													SMS configuration </a>
 												</li>
 												<li>
-													<a href="layout_language_bar.html" class="iconify">
-													<i class="icon-globe"></i>
-													Language Switch Bar </a>
-												</li>
-												<li>
-													<a href="layout_disabled_menu.html" class="iconify">
-													<i class=" icon-lock"></i>
-													Disabled Menu Links </a>
-												</li>
+													<a href="#" class="iconify">
+													<i class="icon-home"></i>
+													SMS Templates </a>
+												</li>											
+												
 											</ul>
-										</div> -->
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</li>
+					
+					
+					<li class="menu-dropdown mega-menu-dropdown ">
+						<a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;" class="dropdown-toggle">
+						Contract Company <i class="fa fa-angle-down"></i>
+						</a>
+						<ul class="dropdown-menu"  style="min-width: 610px">
+							<li>
+								<div class="mega-menu-content">
+									<div class="row">
+										<div class="col-md-4">
+											<ul class="mega-menu-submenu">
+												<li>
+													<h3>Company Setup</h3>
+												</li>
+												<li>
+													<a href="./getAllContractCompany.htm" class="iconify">
+													<i class="icon-home"></i>
+													Contract Company </a>
+												</li> 
+												<li>
+													<a href="./getAllContractCompany.htm" class="iconify">
+													<i class="icon-home"></i>
+													Document Upload </a>
+												</li>
+												<li>
+													<a href="#" class="iconify">
+													<i class="icon-basket"></i>
+													Payment Setting </a>
+												</li>
+												<li>
+													<a href="#" class="iconify">
+													<i class="icon-basket"></i>
+													Payment Exception </a>
+												</li>
+												
+											</ul>
+										</div>
+										
+										<div class="col-md-4">
+											<ul class="mega-menu-submenu">
+												<li>
+													<h3>Other Setting</h3>
+												</li>
+												<li>
+													<a href="getAllCity.htm" class="iconify">
+													<i class="icon-tag"></i>
+													Company Route setup </a>
+												</li>
+												<li>
+													<a href="#" class="iconify">
+													<i class="icon-handbag"></i>
+													 Route Cost setup </a>
+												</li>												
+												
+											</ul>
+										</div>
+										
+										<div class="col-md-4">
+											<ul class="mega-menu-submenu">
+												<li>
+													<h3>Payment </h3>
+												</li>
+												<li>
+													<a href="#" class="iconify">
+													<i class="icon-tag"></i>
+													Payment Details </a>
+												</li>
+												<li>
+													<a href="#" class="iconify">
+													<i class="icon-tag"></i>
+													Payment Balance </a>
+												</li>
+												<li>
+													<a href="#" class="iconify">
+													<i class="icon-handbag"></i>
+													Other </a>
+												</li>									
+												
+											</ul>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</li>
+					
+					
+						<li class="menu-dropdown mega-menu-dropdown ">
+						<a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;" class="dropdown-toggle">
+						Transport Owner/Agent <i class="fa fa-angle-down"></i>
+						</a>
+						<ul class="dropdown-menu"  style="min-width: 610px">
+							<li>
+								<div class="mega-menu-content">
+									<div class="row">
+										<div class="col-md-4">
+											<ul class="mega-menu-submenu">
+												<li>
+													<h3>Owner/Agent Setup</h3>
+												</li>
+												<li>
+													<a href="./getAllContractCompany.htm" class="iconify">
+													<i class="icon-home"></i>
+													Agent Registration </a>
+												</li> 
+												<li>
+													<a href="./getAllContractCompany.htm" class="iconify">
+													<i class="icon-home"></i>
+													Transport Registration </a>
+												</li>
+												<li>
+													<a href="./getAllContractCompany.htm" class="iconify">
+													<i class="icon-home"></i>
+													Document Upload </a>
+												</li>
+												<li>
+													<a href="#" class="iconify">
+													<i class="icon-basket"></i>
+													Payment Setting </a>
+												</li>
+												
+											</ul>
+										</div>
+										
+										<div class="col-md-4">
+											<ul class="mega-menu-submenu">
+												<li>
+													<h3>Load Details</h3>
+												</li>
+												<li>
+													<a href="getAllCity.htm" class="iconify">
+													<i class="icon-tag"></i>
+													Assign load </a>
+												</li>
+												<li>
+													<a href="#" class="iconify">
+													<i class="icon-handbag"></i>
+													Load Traking </a>
+												</li>												
+												
+											</ul>
+										</div>
+										
+										<div class="col-md-4">
+											<ul class="mega-menu-submenu">
+												<li>
+													<h3>Payment </h3>
+												</li>
+												<li>
+													<a href="#" class="iconify">
+													<i class="icon-tag"></i>
+													Payment Details </a>
+												</li>
+												<li>
+													<a href="#" class="iconify">
+													<i class="icon-tag"></i>
+													Payment Balance </a>
+												</li>
+												<li>
+													<a href="#" class="iconify">
+													<i class="icon-handbag"></i>
+													Other </a>
+												</li>									
+												
+											</ul>
+										</div>
 									</div>
 								</div>
 							</li>
