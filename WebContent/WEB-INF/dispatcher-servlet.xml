@@ -82,11 +82,17 @@
 
 	<!-- Beans required for contract company END -->
 
-	<!-- <bean id="smsService" class="com.admas.ngemp.sms.services.SmsService"> 
-		<property name="smsLogicImpl" ref="smsLogicImpl"></property> </bean> <bean 
-		id="smsLogicImpl" class="com.admas.ngemp.sms.logic.SmsLogicImpl"> <property 
-		name="smsDaoImpl" ref="smsDaoImpl"></property> </bean> <bean id="smsDaoImpl" 
-		class="com.admas.ngemp.sms.dao.SmsDaoImpl"></bean> <bean id = "deliveryThread" 
+	<!-- Beans required for SMS START -->
+	
+	<bean id="smsService" class="com.admas.ngemp.sms.services.SmsService">
+	<property name="smsLogicImpl" ref="smsLogicImpl"></property>
+	</bean>
+
+	<bean id="smsLogicImpl" class="com.admas.ngemp.sms.logic.SmsLogicImpl">
+		<property name="smsDaoImpl" ref="smsDaoImpl"></property>
+	</bean> 
+	<bean id="smsDaoImpl" class="com.admas.ngemp.sms.dao.SmsDaoImpl"></bean> 
+	<!-- <bean id = "deliveryThread" 
 		class="com.admas.ngemp.sms.backendprocess.DeliveryThread"> <constructor-arg 
 		ref="smsDaoImpl"></constructor-arg> </bean> <bean id = "sendingThread" class="com.admas.ngemp.sms.backendprocess.SendingThread"> 
 		<constructor-arg ref="smsDaoImpl"></constructor-arg> </bean> -->
