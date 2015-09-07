@@ -20,6 +20,8 @@ import com.admas.logiware.dto.CompanyBranchDto;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.LogiwareRespnse;
+import com.admas.logiware.dto.SettingsDto;
+import com.admas.logiware.dto.StateDto;
 import com.admas.logiware.dto.TransportTypeDtlDto;
 import com.admas.logiware.dto.TransportTypeDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
@@ -954,5 +956,61 @@ public class MasterServices {
 			
 		// end branch details services
 	
-	
+		//start of state services
+		
+		@GET
+		@Path("/getAllState")
+		@Produces({ MediaType.APPLICATION_JSON })
+		public Response getAllState() {
+			List<StateDto> lState = new ArrayList<StateDto>();
+			logger.info(" Start  MasterService- > getAllBranch Method");
+			LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+			try {
+				lState = mastersLogic.getAllState();
+				logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+				logiwareRespnse.setData(lState);
+			} catch (LogiwareExceptionHandler e) {
+				logger.error("Error in MasterService- > getAllBranch", e);
+				logiwareRespnse.setCode(e.getErrorCode());
+				logiwareRespnse.setDescription(e.getDescription());
+			} catch (Exception e) {
+				logger.error("Error in MasterService- > getAllBranch", e);
+				logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+						.getErrorCode());
+				logiwareRespnse
+						.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+								.getErrorDescription());
+			}
+			logger.info(" end  MasterService- > getAllBranch");
+			return Response.status(200).entity(logiwareRespnse).build();
+		}
+		
+		@GET
+		@Path("/getSettingByType/{compId}/{type}")
+		@Produces({ MediaType.APPLICATION_JSON })
+		public Response getSettingByType(@PathParam("compId")Integer compId,@PathParam("type")String type) {
+			SettingsDto setting = new SettingsDto();
+			logger.info(" Start  MasterService- > getSettingByType Method");
+			LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+			try {
+				setting = mastersLogic.getSettingByType(compId,type);
+				logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+				logiwareRespnse.setData(setting);
+			} catch (LogiwareExceptionHandler e) {
+				logger.error("Error in MasterService- > getSettingByType", e);
+				logiwareRespnse.setCode(e.getErrorCode());
+				logiwareRespnse.setDescription(e.getDescription());
+			} catch (Exception e) {
+				logger.error("Error in MasterService- > getSettingByType", e);
+				logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+						.getErrorCode());
+				logiwareRespnse
+						.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+								.getErrorDescription());
+			}
+			logger.info(" end  MasterService- > getSettingByType");
+			return Response.status(200).entity(logiwareRespnse).build();
+		}
+		
+		
 }

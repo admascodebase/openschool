@@ -72,7 +72,7 @@ public class State implements Serializable{
 		this.name = name;
 	}
 	
-	public StateDto _toJpa(){
+	public StateDto _toDto(){
 		StateDto stateDto = new StateDto();
 		stateDto.setCountryId(this.countryId);
 		stateDto.setId(this.id);

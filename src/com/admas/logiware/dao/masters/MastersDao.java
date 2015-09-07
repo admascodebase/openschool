@@ -6,6 +6,8 @@ import com.admas.logiware.dto.CityDto;
 import com.admas.logiware.dto.CompanyBranchDto;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.EmployeeDto;
+import com.admas.logiware.dto.SettingsDto;
+import com.admas.logiware.dto.StateDto;
 import com.admas.logiware.dto.TransportTypeDtlDto;
 import com.admas.logiware.dto.TransportTypeDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
@@ -13,6 +15,8 @@ import com.admas.logiware.jpa.City;
 import com.admas.logiware.jpa.Company;
 import com.admas.logiware.jpa.CompanyBranch;
 import com.admas.logiware.jpa.Employee;
+import com.admas.logiware.jpa.Settings;
+import com.admas.logiware.jpa.State;
 import com.admas.logiware.jpa.TransportType;
 import com.admas.logiware.jpa.TransportTypeDtl;
 
@@ -86,4 +90,8 @@ public interface MastersDao {
 	public Boolean deleteBranch(Integer companyBranchId)throws LogiwareExceptionHandler;
 		
 		//end transport type detail dao
+	
+	public List<State> getAllState()throws LogiwareExceptionHandler;
+	
+	public Settings getSettingByType(Integer compId,String type)throws LogiwareExceptionHandler;
 }

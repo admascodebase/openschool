@@ -11,6 +11,8 @@ import com.admas.logiware.dto.CityDto;
 import com.admas.logiware.dto.CompanyBranchDto;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.EmployeeDto;
+import com.admas.logiware.dto.SettingsDto;
+import com.admas.logiware.dto.StateDto;
 import com.admas.logiware.dto.TransportTypeDtlDto;
 import com.admas.logiware.dto.TransportTypeDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
@@ -19,6 +21,8 @@ import com.admas.logiware.jpa.City;
 import com.admas.logiware.jpa.Company;
 import com.admas.logiware.jpa.CompanyBranch;
 import com.admas.logiware.jpa.Employee;
+import com.admas.logiware.jpa.Settings;
+import com.admas.logiware.jpa.State;
 import com.admas.logiware.jpa.TransportType;
 import com.admas.logiware.jpa.TransportTypeDtl;
 
@@ -704,6 +708,44 @@ public class MastersLogicImpl implements MastersLogic {
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
 		}
 		return result;
+	}
+
+	@Override
+	public List<StateDto> getAllState() throws LogiwareExceptionHandler {
+		List<StateDto> lStateDto = new ArrayList<StateDto>();
+		List<State> lState=null;
+		try {
+			lState = mastersDao.getAllState();
+			for (State state : lState) {
+				lStateDto.add(state._toDto());
+			}
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error("Exception Error in MastersLogicImpl - > getAllState ",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return lStateDto;
+	}
+
+	@Override
+	public SettingsDto getSettingByType(Integer compId, String type)
+			throws LogiwareExceptionHandler {
+		Settings settings = null;
+		try {
+			settings = mastersDao.getSettingByType(compId, type);	
+
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error(
+					"Exception Error in MastersLogicImpl - > getSettingByType ", e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return settings._toDto();
 	}
 	
 	//end branch logic impl services

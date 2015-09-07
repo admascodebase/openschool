@@ -29,6 +29,8 @@ import com.admas.logiware.jpa.City;
 import com.admas.logiware.jpa.Company;
 import com.admas.logiware.jpa.CompanyBranch;
 import com.admas.logiware.jpa.Employee;
+import com.admas.logiware.jpa.Settings;
+import com.admas.logiware.jpa.State;
 import com.admas.logiware.jpa.TransportType;
 import com.admas.logiware.jpa.TransportTypeDtl;
 
@@ -1145,6 +1147,82 @@ public class MastersDaoImpl implements MastersDao {
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
 		} catch (Exception e) {
 			 logger.error( "Exception Error in MastersDaoImpl - > deleteTransportTypeDtl", e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			entityManager.close();
+		}
+	}
+
+	@Override
+	public List<State> getAllState() throws LogiwareExceptionHandler {
+		List<State> lStates = null;
+		CriteriaBuilder criteriaBuilder = null;
+		try {
+
+			criteriaBuilder = entityManager.getCriteriaBuilder();
+			CriteriaQuery<State> criteriaQuery = criteriaBuilder
+					.createQuery(State.class);
+			Root<State> transportTypeJpa = criteriaQuery.from(State.class);
+			criteriaQuery.select(transportTypeJpa);
+			TypedQuery<State> typedQuery = entityManager
+					.createQuery(criteriaQuery);
+			lStates = typedQuery.getResultList();
+
+			if (lStates != null && lStates.size() != 0) {
+				return lStates;
+			} else {
+				throw new LogiwareExceptionHandler(
+						LogiwareServiceErrors.NO_BRANCH_FOUND);
+			}
+
+		} catch (LogiwareExceptionHandler ex) {
+			throw ex;
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in MastersDaoImpl - > getAllBranch",
+					he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch (Exception e) {
+			logger.error(
+					"Exception Error in UserManagementDaoImpl - > getAllBranch ",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			criteriaBuilder = null;
+		}
+	}
+
+	@Override
+	public Settings getSettingByType(Integer compId, String type)
+			throws LogiwareExceptionHandler {
+		Settings settings = null;
+		try {
+			TypedQuery<Settings> transportTypeQuery = entityManager.createQuery(
+					"SELECT c FROM CompanyBranch c WHERE compId = :compId AND type = :type", Settings.class);
+			transportTypeQuery.setParameter("compId", compId );
+			transportTypeQuery.setParameter("type", type );
+			settings = transportTypeQuery.getSingleResult();
+
+			if (settings != null) {
+				return settings;
+			} else {
+				throw new LogiwareExceptionHandler(
+						LogiwareServiceErrors.NO_BRANCH_FOUND);
+			}
+
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in MastersDaoImpl - > getSettingByType",
+					he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch (Exception e) {
+			logger.error(
+					"Exception Error in UserManagementDaoImpl - > getSettingByType",
+					e);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
 		} finally {

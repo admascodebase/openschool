@@ -6,6 +6,8 @@ import com.admas.logiware.dto.CityDto;
 import com.admas.logiware.dto.CompanyBranchDto;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.EmployeeDto;
+import com.admas.logiware.dto.SettingsDto;
+import com.admas.logiware.dto.StateDto;
 import com.admas.logiware.dto.TransportTypeDtlDto;
 import com.admas.logiware.dto.TransportTypeDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
@@ -80,4 +82,10 @@ public interface MastersLogic {
 	public Boolean deleteBranch(Integer compBranchId)throws LogiwareExceptionHandler;
 		
 	//End branch services
+	
+	//start other services 
+	
+	public List<StateDto> getAllState()throws LogiwareExceptionHandler;
+	
+	public SettingsDto getSettingByType(Integer compId,String type)throws LogiwareExceptionHandler;
 }
