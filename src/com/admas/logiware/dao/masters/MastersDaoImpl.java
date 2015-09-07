@@ -286,6 +286,7 @@ public class MastersDaoImpl implements MastersDao {
 			company.setPanNo(companyDto.getPanNo());
 			company.setTanNo(companyDto.getTanNo());
 			company.setTagLine(companyDto.getTagLine());
+			company.setDelFlag('N');
 
 			entityManager.merge(company);
 			entityManager.flush();
@@ -983,10 +984,12 @@ public class MastersDaoImpl implements MastersDao {
 	public Boolean addBranch(CompanyBranchDto companyBranchDto)
 			throws LogiwareExceptionHandler {
 		Boolean result = false;
-		try {			
-			entityManager.persist(companyBranchDto._toJpa());
+		try {	
+			CompanyBranch companyBranch = new CompanyBranch();
+			companyBranch = companyBranchDto._toJpa();
+			entityManager.persist(companyBranch);
 			entityManager.flush();			
-			if (companyBranchDto._toJpa().getId() != null || companyBranchDto._toJpa().getId() != 0) {
+			if (companyBranch.getId() != null || companyBranch.getId() != 0) {
 				result = true;
 			}
 			return result;
@@ -1014,8 +1017,10 @@ public class MastersDaoImpl implements MastersDao {
 			criteriaBuilder = entityManager.getCriteriaBuilder();
 			CriteriaQuery<CompanyBranch> criteriaQuery = criteriaBuilder
 					.createQuery(CompanyBranch.class);
-			Root<CompanyBranch> transportTypeJpa = criteriaQuery.from(CompanyBranch.class);
-			criteriaQuery.select(transportTypeJpa);
+			Root<CompanyBranch> BranchJpa = criteriaQuery.from(CompanyBranch.class);
+			Predicate notDeleted=criteriaBuilder.equal(BranchJpa.get("delFlag"), 'N');
+			criteriaQuery.select(BranchJpa);
+			criteriaQuery.where(notDeleted);
 			TypedQuery<CompanyBranch> typedQuery = entityManager
 					.createQuery(criteriaQuery);
 			lCompanyBranchs = typedQuery.getResultList();

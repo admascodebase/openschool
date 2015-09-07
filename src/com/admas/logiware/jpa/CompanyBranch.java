@@ -3,12 +3,16 @@ package com.admas.logiware.jpa;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.admas.logiware.dto.CompanyBranchDto;
 
+@Entity
+@Table(name="cust_comp_branch")
 public class CompanyBranch implements Serializable{
 
 	/**
@@ -34,6 +38,10 @@ public class CompanyBranch implements Serializable{
 	
 	@Column(name="EMAIL_ID")
 	private String emailId;
+	
+	@Column(name="DEL_FLAG")
+	private Character delFlag;
+	
 
 	/**
 	 * @return the id
@@ -117,6 +125,16 @@ public class CompanyBranch implements Serializable{
 	 */
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
+	}
+	
+	
+	
+	public Character getDelFlag() {
+		return delFlag;
+	}
+
+	public void setDelFlag(Character delFlag) {
+		this.delFlag = delFlag;
 	}
 
 	/* (non-Javadoc)

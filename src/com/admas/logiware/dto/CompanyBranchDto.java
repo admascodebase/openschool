@@ -19,6 +19,7 @@ public class CompanyBranchDto implements Serializable{
 	private String address;
 	private String contactNo;
 	private String emailId;
+	private Character delFlag;
 
 	/**
 	 * @return the id
@@ -122,7 +123,16 @@ public class CompanyBranchDto implements Serializable{
 		companyBranch.setEmailId(this.emailId);
 		companyBranch.setId(this.id);
 		companyBranch.setName(this.name);
+		companyBranch.setDelFlag(this.getDelFlag());
 		return companyBranch;		
+	}
+
+	public Character getDelFlag() {
+		return delFlag;
+	}
+
+	public void setDelFlag(Character delFlag) {
+		this.delFlag = delFlag;
 	}
 	
 

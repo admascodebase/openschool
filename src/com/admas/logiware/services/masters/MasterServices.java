@@ -311,7 +311,7 @@ public class MasterServices {
 		try {
 			companyDto=mastersLogic.getCompanyById(companyId);
 			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
-			logiwareRespnse.setData(companyDto);
+			logiwareRespnse.setCompanyDto(companyDto);
 		} catch (LogiwareExceptionHandler e) {
 			logger.error("Error in MasterService- > getCompanyById ", e);
 			logiwareRespnse.setCode(e.getErrorCode());
@@ -880,7 +880,7 @@ public class MasterServices {
 			try {
 				companyBranchDto = mastersLogic.getBranchById(branchId);
 				logiwareRespnse.setCode(LogiWareConstants.SUCESS);
-				logiwareRespnse.setData(companyBranchDto);
+				logiwareRespnse.setCompanyBranchDto(companyBranchDto);
 			} catch (LogiwareExceptionHandler e) {
 				logger.error("Error in MasterService- > getBranchById ", e);
 				logiwareRespnse.setCode(e.getErrorCode());
