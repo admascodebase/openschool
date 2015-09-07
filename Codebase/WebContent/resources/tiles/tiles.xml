@@ -158,11 +158,14 @@
 	</definition>
 	
 			<definition name="getAllBranch" extends="logistic.baselayout">
-		<put-attribute name="title" value="Logistic -Contract Company Details" />
+		<put-attribute name="title" value="Logistic -Company Branch Details" />
 		<put-attribute name="body"
 			value="/resources/Logistic/jsp/masters/AllBranch.jsp" />
 	</definition>
 	
-	
-	
+	<definition name="showAddCompanyBranch" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic -Company Branch Details" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/masters/AddCompanyBranch.jsp" />
+	</definition>
 </tiles-definitions>

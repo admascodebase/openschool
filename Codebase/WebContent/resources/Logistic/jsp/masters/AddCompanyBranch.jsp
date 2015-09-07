@@ -164,7 +164,7 @@
 			<ul class="page-breadcrumb breadcrumb">
 				<li><a href="#">Home</a><i class="fa fa-circle"></i></li>
 				<li><a href="#">Masters</a> <i class="fa fa-circle"></i></li>
-				<li class="active">Add Company</li>
+				<li class="active">Company Branch</li>
 			</ul>
 			<!-- END PAGE BREADCRUMB -->
 			<!-- BEGIN PAGE CONTENT INNER -->
@@ -184,7 +184,7 @@
 							<div class="portlet box green">
 								<div class="portlet-title">
 									<div class="caption">
-										<i class="fa fa-gift"></i>Company Details
+										<i class="fa fa-gift"></i>Company Branch Details
 									</div>
 									<div class="tools">
 										<a href="javascript:;" class="collapse"> </a> <a
@@ -213,20 +213,20 @@
 									</div> -->
 									<div class="portlet-body form">
 										<!-- BEGIN FORM-->
-										<form:form action="saveCompany.htm" modelAttribute="company" class="form-horizontal">
+										<form:form action="saveCompanyBranch.htm" modelAttribute="companyBranch" class="form-horizontal">
 										<form:hidden path="id" />
 										<form:hidden path="delFlag" />
-										<%-- <form:hidden path="compId" /> --%>
+										<form:hidden path="compId" />
 											<div class="form-body">
 												<h3 class="form-section"></h3>
 												<div class="row">
 													<div class="col-md-6">
 														<div class="form-group">
-															<label class="control-label col-md-3">Company
+															<label class="control-label col-md-3">Branch
 																Name</label>
 															<div class="col-md-9">
 																<form:input type="text" path="name" class="form-control"
-																	placeholder="Company Name here.."/> 
+																	placeholder="Company branch Name here.."/> 
 															</div>
 														</div>
 													</div>
@@ -246,11 +246,11 @@
 												<div class="row">
 													<div class="col-md-6">
 														<div class="form-group">
-															<label class="control-label col-md-3">Contact
-																No.1</label>
+															<label class="control-label col-md-3">company
+															</label>
 															<div class="col-md-9">
-																<form:input type="text" path="contactNo1" class="form-control"
-																	placeholder="Enter your contact number."/> 
+																<form:input type="text" path="compId" class="form-control"
+																	placeholder="Select your company."/> 
 															</div>
 														</div>
 													</div>
@@ -258,9 +258,9 @@
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label col-md-3">Contact
-																No.2</label>
+																No</label>
 															<div class="col-md-9">
-																<form:input path="contactNo2" type="text" class="form-control"
+																<form:input path="contactNo" type="text" class="form-control"
 																	placeholder="Enter your contact number."/>
 															</div>
 														</div>
@@ -271,56 +271,16 @@
 												<div class="row">
 													<div class="col-md-6">
 														<div class="form-group">
-															<label class="control-label col-md-3">Email Id 1</label>
+															<label class="control-label col-md-3">Email Id</label>
 															<div class="col-md-9">
-																<form:input path="emailId1" type="text" class="form-control" placeholder="Enter email id 1."/>
+																<form:input path="emailId" type="text" class="form-control" placeholder="Enter email id."/>
 															</div>
 														</div>
 													</div>
 													<!--/span-->
-													<div class="col-md-6">
-														<div class="form-group">
-															<label class="control-label col-md-3">Email Id 2</label>
-															<div class="col-md-9">
-															<form:input path="emailId2" type="text" class="form-control" placeholder="Enter email id 2"/>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-												</div>
-												<!-- <h3 class="form-section">PAN Number</h3> -->
-												<!--/row-->
-												<div class="row">
-													<div class="col-md-6">
-														<div class="form-group">
-															<label class="control-label col-md-3">PAN Number</label>
-															<div class="col-md-9">
-																<form:input path="panNo" type="text" class="form-control" placeholder="PAN Number"/>
-															</div>
-														</div>
-													</div>
-													<div class="col-md-6">
-														<div class="form-group">
-															<label class="control-label col-md-3">TAN Number</label>
-															<div class="col-md-9">
-																<form:input path="tanNo" type="text" class="form-control" placeholder="TAN Number"/>
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-md-6">
-														<div class="form-group">
-															<label class="control-label col-md-3">Tag Line</label>
-															<div class="col-md-9">
-																<form:input path="tagLine" type="text" class="form-control" placeholder="Company tag line"/>
-															</div>
-														</div>
-													</div>
 													
 												</div>
 												
-												<!--/row-->
 											</div>
 											<div class="form-actions right">
 												<button class="btn default" type="button">Cancel</button>

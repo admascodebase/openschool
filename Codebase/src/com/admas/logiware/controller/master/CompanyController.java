@@ -40,17 +40,18 @@ public class CompanyController extends BaseController {
 	public ModelAndView getAllCompany(HttpServletRequest request,
 			HttpServletResponse response) {
 
-		logger.info("CityController: city Method Start.");
+		logger.info("CityController: getAllCompany Method Start.");
 		FlowData flowData = null;
 
 		super.handleRequestInternal(request, response);
 
-		/*if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
-		flowData = (FlowData) request.getSession().getAttribute(
-				WebAppConstants.FLOWDATA);
+		super.handleRequestInternal(request, response);
+		if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
+			flowData = (FlowData) request.getSession().getAttribute(
+					WebAppConstants.FLOWDATA);
 		}
 		if (!flowData.isLoggedIn())
-			return super.loginPage(flowData, request);*/
+			return super.loginPage(flowData, request);
 		
 		ModelAndView mv = new ModelAndView();
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
@@ -78,7 +79,9 @@ public class CompanyController extends BaseController {
 					LogiwarePortalErrors.GENERIC_EXCEPTION
 							.getErrorCode());
 		}
-
+		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
+		mv.addObject("userName", flowData.getSessionData("userName"));
+		logger.info("CityController: getAllCompany Method End.");
 		return mv;
 
 	}
@@ -91,12 +94,13 @@ public class CompanyController extends BaseController {
 		logger.info("CompanyController: addCompany Method Start.");
 		FlowData flowData = null;
 		
-		/*if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
-		flowData = (FlowData) request.getSession().getAttribute(
-				WebAppConstants.FLOWDATA);
+		super.handleRequestInternal(request, response);
+		if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
+			flowData = (FlowData) request.getSession().getAttribute(
+					WebAppConstants.FLOWDATA);
 		}
 		if (!flowData.isLoggedIn())
-			return super.loginPage(flowData, request);*/
+			return super.loginPage(flowData, request);
 		
 		ModelAndView mv = new ModelAndView() ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
@@ -118,7 +122,9 @@ public class CompanyController extends BaseController {
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
-		
+		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
+		mv.addObject("userName", flowData.getSessionData("userName"));
+		logger.info("CompanyController: addCompany Method End.");
 		return mv;
 	}
 	
@@ -130,25 +136,36 @@ public class CompanyController extends BaseController {
 		logger.info("CompanyController: saveCompany Method Start.");
 		FlowData flowData = null;
 		
-		/*if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
-		flowData = (FlowData) request.getSession().getAttribute(
-				WebAppConstants.FLOWDATA);
+		super.handleRequestInternal(request, response);
+		if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
+			flowData = (FlowData) request.getSession().getAttribute(
+					WebAppConstants.FLOWDATA);
 		}
 		if (!flowData.isLoggedIn())
-			return super.loginPage(flowData, request);*/
+			return super.loginPage(flowData, request);
 		
 		ModelAndView mv = new ModelAndView() ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
+		String sucessMessage = null;
 		try {	
 			reqDtoObjects.put("company", companyDto);
+			if(companyDto.getId()!=null && companyDto.getId()>0){
+					resDtoObjects = masterServiceImpl.saveEditCompany(flowData, reqDtoObjects, resDtoObjects);
+					sucessMessage = WebAppConstants.LW_SUCESS_EDIT;
+			}
+			else{
 			resDtoObjects=masterServiceImpl.saveCompany(flowData, reqDtoObjects, resDtoObjects);
+			sucessMessage = WebAppConstants.LW_SUCESS_ADD;
+			}
+			
 			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
 			resDtoObjects=masterServiceImpl.getAllCompany(flowData, reqDtoObjects, resDtoObjects);
 			@SuppressWarnings("unchecked")
 			List<CompanyDto> lCompanies = (List<CompanyDto>) resDtoObjects.get("lCompanies");
 			mv=new ModelAndView(viewName);	
 			mv.addObject("lCompanies", lCompanies);
+			mv.addObject(WebAppConstants.SUCESS_MESSAGE,sucessMessage);
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in CompanyController: saveCompany",
 					_be);
@@ -160,7 +177,9 @@ public class CompanyController extends BaseController {
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
-		
+		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
+		mv.addObject("userName", flowData.getSessionData("userName"));
+		logger.info("CompanyController: saveCompany Method End.");
 		return mv;
 		
 		
@@ -173,16 +192,27 @@ public class CompanyController extends BaseController {
 		logger.info("CompanyController: EditCompany Method Start.");
 		FlowData flowData = null;
 		
+		super.handleRequestInternal(request, response);
+		if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
+			flowData = (FlowData) request.getSession().getAttribute(
+					WebAppConstants.FLOWDATA);
+		}
+		if (!flowData.isLoggedIn())
+			return super.loginPage(flowData, request);
+		
 		ModelAndView mv = new ModelAndView() ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		Integer companyId=Integer.parseInt(request.getParameter("id"));
+		CompanyDto companyDto=new CompanyDto();
 		try {			
 			reqDtoObjects.put("companyId", companyId);
 			resDtoObjects=masterServiceImpl.showEditCompany(flowData, reqDtoObjects, resDtoObjects);
 			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
 			mv=new ModelAndView(viewName);	
 			resDtoObjects=masterServiceImpl.getCompanyById(flowData, reqDtoObjects, resDtoObjects);
+			companyDto = (CompanyDto)resDtoObjects.get("companyDto");
+			mv.addObject("company", companyDto);
 			
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in CompanyController: EditCompany",
@@ -195,6 +225,8 @@ public class CompanyController extends BaseController {
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
+		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
+		mv.addObject("userName", flowData.getSessionData("userName"));
 		logger.info("CompanyController: EditCompany Method End.");
 		return mv;
 }
@@ -206,13 +238,23 @@ public class CompanyController extends BaseController {
 		logger.info("CompanyController: deleteCompany Method Start.");
 		FlowData flowData = null;
 		
+		super.handleRequestInternal(request, response);
+		if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
+			flowData = (FlowData) request.getSession().getAttribute(
+					WebAppConstants.FLOWDATA);
+		}
+		if (!flowData.isLoggedIn())
+			return super.loginPage(flowData, request);
+		
 		ModelAndView mv = new ModelAndView() ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		Integer companyId=Integer.parseInt(request.getParameter("id"));
+		String sucessMessage = null;
 		try {			
 			reqDtoObjects.put("companyId", companyId);
 			resDtoObjects = masterServiceImpl.deleteCompany(flowData, reqDtoObjects, resDtoObjects);
+			sucessMessage = WebAppConstants.LW_SUCESS_DELETE;
 			String viewName = (String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
 			resDtoObjects = masterServiceImpl.getAllCompany(flowData, reqDtoObjects, resDtoObjects);
 			@SuppressWarnings("unchecked")
@@ -220,7 +262,7 @@ public class CompanyController extends BaseController {
 					.get("lCompanies");
 			mv=new ModelAndView(viewName);	
 			mv.addObject("lCompanies", lCompanies);
-			
+			mv.addObject(WebAppConstants.SUCESS_MESSAGE,sucessMessage);
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in CompanyController: deleteCompany",
 					_be);
@@ -232,7 +274,9 @@ public class CompanyController extends BaseController {
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
-		
+		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
+		mv.addObject("userName", flowData.getSessionData("userName"));
+		logger.info("CompanyController: deleteCompany Method End.");
 		return mv;
 }
 	
@@ -245,12 +289,15 @@ public class CompanyController extends BaseController {
 	public ModelAndView addContractCompany(HttpServletRequest request, HttpServletResponse response) {		
 		logger.info("CompanyController: addContractCompany Method Start.");
 		FlowData flowData = null;
-		/*if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
-		flowData = (FlowData) request.getSession().getAttribute(
-				WebAppConstants.FLOWDATA);
+		
+		super.handleRequestInternal(request, response);
+		if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
+			flowData = (FlowData) request.getSession().getAttribute(
+					WebAppConstants.FLOWDATA);
 		}
 		if (!flowData.isLoggedIn())
-			return super.loginPage(flowData, request);*/
+			return super.loginPage(flowData, request);
+		
 		ModelAndView mv = new ModelAndView() ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
@@ -269,6 +316,9 @@ public class CompanyController extends BaseController {
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
+		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
+		mv.addObject("userName", flowData.getSessionData("userName"));	
+		logger.info("CompanyController: addContractCompany Method End.");
 		return mv;
 	}
 	
@@ -335,13 +385,15 @@ public class CompanyController extends BaseController {
 			HttpServletResponse response) {
 		logger.info("CompanyController: getAllContractCompany Method Start.");
 		FlowData flowData = null;
+
 		super.handleRequestInternal(request, response);
-		/*if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
-		flowData = (FlowData) request.getSession().getAttribute(
-				WebAppConstants.FLOWDATA);
+		if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
+			flowData = (FlowData) request.getSession().getAttribute(
+					WebAppConstants.FLOWDATA);
 		}
 		if (!flowData.isLoggedIn())
-			return super.loginPage(flowData, request);*/
+			return super.loginPage(flowData, request);
+		
 		ModelAndView mv = new ModelAndView();
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
@@ -367,7 +419,9 @@ public class CompanyController extends BaseController {
 					LogiwarePortalErrors.GENERIC_EXCEPTION
 							.getErrorCode());
 		}
-
+		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
+		mv.addObject("userName", flowData.getSessionData("userName"));	
+		logger.info("CompanyController: getAllContractCompany Method End.");
 		return mv;
 
 	}
@@ -377,6 +431,14 @@ public class CompanyController extends BaseController {
 		
 		logger.info("CompanyController: EditContractCompany Method Start.");
 		FlowData flowData = null;
+		
+		super.handleRequestInternal(request, response);
+		if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
+			flowData = (FlowData) request.getSession().getAttribute(
+					WebAppConstants.FLOWDATA);
+		}
+		if (!flowData.isLoggedIn())
+			return super.loginPage(flowData, request);
 		
 		ModelAndView mv = new ModelAndView() ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
@@ -401,6 +463,9 @@ public class CompanyController extends BaseController {
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
+		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
+		mv.addObject("userName", flowData.getSessionData("userName"));	
+		
 		logger.info("CompanyController: EditContractCompany Method End.");
 		return mv;
 }
@@ -409,6 +474,15 @@ public class CompanyController extends BaseController {
 	public ModelAndView deleteContractCompany(HttpServletRequest request, HttpServletResponse response) {		
 		logger.info("CompanyController: deleteContractCompany Method Start.");
 		FlowData flowData = null;
+		
+		super.handleRequestInternal(request, response);
+		if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
+			flowData = (FlowData) request.getSession().getAttribute(
+					WebAppConstants.FLOWDATA);
+		}
+		if (!flowData.isLoggedIn())
+			return super.loginPage(flowData, request);
+		
 		ModelAndView mv = new ModelAndView() ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
@@ -440,6 +514,8 @@ public class CompanyController extends BaseController {
 		List<ContractCompDto> lContractCompanies = (List<ContractCompDto>) resDtoObjects
 				.get("lContractCompanies");
 		mv.addObject("lContractCompanies", lContractCompanies);
+		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
+		mv.addObject("userName", flowData.getSessionData("userName"));	
 		logger.info("CompanyController: deleteContractCompany Method End.");
 		return mv;
 }

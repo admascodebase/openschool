@@ -1,10 +1,5 @@
 package com.admas.logiware.dto;
 import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 public class CompanyBranchDto implements Serializable{
 
 	/**
@@ -12,25 +7,20 @@ public class CompanyBranchDto implements Serializable{
 	 */
 	private static final long serialVersionUID = -4190526634246757540L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name="COMP_ID" ,nullable = false )
 	private Integer compId;
 	
-	@Column(name="NAME" ,nullable = false )
 	private String name;
 	
-	@Column(name="ADDRESS" ,nullable = false )
 	private String address;
 	
-	@Column(name="CONTACT_NO" ,nullable = false )
 	private String contactNo;
 	
-	@Column(name="EMAIL_ID")
 	private String emailId;
-
+	
+	private Character delFlag;
+	
 	/**
 	 * @return the id
 	 */
@@ -123,6 +113,14 @@ public class CompanyBranchDto implements Serializable{
 		return "CompBranch [id=" + id + ", compId=" + compId + ", name=" + name
 				+ ", address=" + address + ", contactNo=" + contactNo
 				+ ", emailId=" + emailId + "]";
+	}
+
+	public Character getDelFlag() {
+		return delFlag;
+	}
+
+	public void setDelFlag(Character delFlag) {
+		this.delFlag = delFlag;
 	}
 
 }

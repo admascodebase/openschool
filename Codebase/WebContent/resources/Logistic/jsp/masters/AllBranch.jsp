@@ -1,9 +1,5 @@
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags"
-	prefix="spring"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+ <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <script type="text/javascript">
 	
 </script>
@@ -190,27 +186,28 @@
 									href="javascript:;" class="remove"> </a>
 							</div>
 						</div>
+						
 						<c:if test="${errorCode ne null}">
-							<div class="alert alert-danger">
-								<button class="close" data-close="alert"></button>
-								<span><spring:message code="${errorCode}"></spring:message>
-								</span>
-							</div>
-						</c:if>
-
-						<c:if test="${sucessMessage ne null}">
-							<div class="alert alert-success">
-								<button class="close" data-close="alert"></button>
-								<spring:message code="${sucessMessage}"></spring:message>
-							</div>
-						</c:if>
+						<div class="alert alert-danger">
+							<button class="close" data-close="alert"></button>
+							<span><spring:message code="${errorCode}"></spring:message> </span>
+						</div>
+					</c:if>
+					
+					<c:if test="${sucessMessage ne null}">
+						<div class="alert alert-success">
+							<button class="close" data-close="alert"></button>
+							<spring:message code="${sucessMessage}"></spring:message>
+						</div>
+					</c:if>
+					
 
 						<div class="portlet-body">
 							<div class="table-toolbar">
 								<div class="row">
 									<div class="col-md-6">
 										<div class="btn-group">
-											<a href="showAddBranch.htm"><button
+											<a href="showAddCompanyBranch.htm"><button
 													class="btn btn-circle btn-primary">Add New</button></a>
 										</div>
 									</div>
@@ -239,6 +236,7 @@
 										<th>Address</th>
 										<th>Contact</th>
 										<th>Email Id</th>
+										<th>Edit/Delete</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -252,9 +250,9 @@
 											<td>${branch.address}</td>
 											<td>${branch.contactNo}</td>
 											<td>${branch.emailId}</td>
-											<td><a href="editBranch.htm?id=${branch.id}"
+											<td><a href="editCompanyBranch.htm?id=${branch.id}"
 												class="btn btn-warning btn-xs"> Edit </a> <a
-												href="deleteBranch.htm?id=${branch.id}"
+												href="deleteCompanyBranch.htm?id=${branch.id}"
 												class="btn btn-info btn-xs"> Delete </a></td>
 										</tr>
 									</c:forEach>

@@ -53,7 +53,7 @@
 												</li>
 											</ul>
 										</div>
-										<div class="col-md-4">
+										<!-- <div class="col-md-4">
 											<ul class="mega-menu-submenu">
 												<li>
 													<h3>Setting</h3>
@@ -84,8 +84,8 @@
 													Blank Page Layout </a>
 												</li>
 											</ul>
-										</div>
-										<div class="col-md-4">
+										</div> -->
+										<!-- <div class="col-md-4">
 											<ul class="mega-menu-submenu">
 												<li>
 													<h3>More Layouts</h3>
@@ -116,13 +116,13 @@
 													Disabled Menu Links </a>
 												</li>
 											</ul>
-										</div>
+										</div> -->
 									</div>
 								</div>
 							</li>
 						</ul>
 					</li>
-					<li class="menu-dropdown mega-menu-dropdown mega-menu-full ">
+					<!-- <li class="menu-dropdown mega-menu-dropdown mega-menu-full ">
 						<a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;" class="dropdown-toggle">
 						UI Components <i class="fa fa-angle-down"></i>
 						</a>
@@ -364,8 +364,8 @@
 								</div>
 							</li>
 						</ul>
-					</li>
-					<li class="menu-dropdown classic-menu-dropdown ">
+					</li> -->
+					<!-- <li class="menu-dropdown classic-menu-dropdown ">
 						<a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
 						Extra <i class="fa fa-angle-down"></i>
 						</a>
@@ -520,8 +520,8 @@
 								</ul>
 							</li>
 						</ul>
-					</li>
-					<li class="menu-dropdown mega-menu-dropdown mega-menu-full ">
+					</li> -->
+					<!-- <li class="menu-dropdown mega-menu-dropdown mega-menu-full ">
 						<a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;" class="dropdown-toggle">
 						Pages <i class="fa fa-angle-down"></i>
 						</a>
@@ -717,9 +717,9 @@
 								</div>
 							</li>
 						</ul>
-					</li>
-					<li class="menu-dropdown">
+					</li> -->
+					<!-- <li class="menu-dropdown">
 						<a href="angularjs/index.html" target="_blank" class="tooltips" data-container="body" data-placement="bottom" data-html="true" data-original-title="AngularJS version demo">
 						AngularJS Version </a>
-					</li>
+					</li> -->
 				</ul>

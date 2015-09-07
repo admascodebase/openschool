@@ -16,8 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.admas.logiware.client.ServiceEndPointConstants.ServiceName;
 import com.admas.logiware.client.ServiceInvoker;
 import com.admas.logiware.constant.WebAppConstants;
-import com.admas.logiware.dto.CompanyBranchDto;
 import com.admas.logiware.dto.CityDto;
+import com.admas.logiware.dto.CompanyBranchDto;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.ContractCompDto;
 import com.admas.logiware.dto.EmployeeDto;
@@ -471,7 +471,7 @@ public class MasterServiceImpl {
 		LogiwareRespnse logiwareResponse = null;
 		String viewName = "";
 		try {
-			viewName = "getAllCompanies";
+			viewName = "getAllCompany";
 			logiwareResponse = doServiceCall(flowData, ServiceName.saveCompany,
 					reqDtoObjects);
 			resDtoObjects.put("userResponse", logiwareResponse);
@@ -488,7 +488,6 @@ public class MasterServiceImpl {
 		}
 		logger.info("MasterServiceImpl saveCompany method end. ");
 		return resDtoObjects;
-
 	}
 
 	public Map<String, Object> saveEmployee(FlowData flowData,
@@ -826,17 +825,15 @@ public class MasterServiceImpl {
 			
 		logger.info("MasterServiceImpl getCompanyById method start.");
 		LogiwareRespnse logiwareResponse = null;
-		EmployeeDto employeeDto = new EmployeeDto();
 		String viewName = "";
 		try {
 			viewName = "getAllCompany";
 			logiwareResponse = doServiceCall(flowData,
 					ServiceName.getCompanyById, reqDtoObjects);
-			Object object = logiwareResponse.getData();
-			employeeDto =(EmployeeDto) object;
+			
 			resDtoObjects.put("userResponse", logiwareResponse);
 			resDtoObjects.put("viewName", viewName);
-			resDtoObjects.put("employee", employeeDto);
+			resDtoObjects.put("companyDto",  logiwareResponse.getCompanyDto());
 		} catch (LogiwareBaseException b) {
 			throw b;
 		} catch (Exception e) {
@@ -1048,6 +1045,35 @@ public class MasterServiceImpl {
 		logger.info("MasterSe" +
 				"rviceImpl saveEditContractCompany method end. ");
 		return resDtoObjects;
+	}
+
+	public Map<String, Object> saveEditCompany(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+		
+		logger.info("MasterServiceImpl saveEditCompany method start.");
+		LogiwareRespnse logiwareResponse = null;
+		String viewName = "";
+		try {
+			viewName = "getAllCompany";
+			logiwareResponse = doServiceCall(flowData,
+					ServiceName.saveEditCompany, reqDtoObjects);
+			resDtoObjects.put("userResponse", logiwareResponse);
+			resDtoObjects.put("viewName", viewName);
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error(
+					"Exception In MasterServiceImpl: saveEditCompany method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("MasterSe" +
+				"rviceImpl saveEditCompany method end. ");
+		return resDtoObjects;
+	
 	}
 
 }
