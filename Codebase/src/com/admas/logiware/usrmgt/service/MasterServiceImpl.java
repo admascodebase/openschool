@@ -650,37 +650,23 @@ public class MasterServiceImpl {
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> getAllTransportTypeDetails(FlowData flowData,
 			HashMap<String, Object> reqDtoObjects,
-			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
-
-	
-		
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {		
 		logger.info("MasterServiceImpl getAllTransportTypeDetails() method start. ");
 		List<TransportTypeDtlDto> lTransportTypeDtls = new ArrayList<TransportTypeDtlDto>();
 		LogiwareRespnse logiwareRespnse = null;
-		String viewName = "";
 		try {
-			viewName = "getAllTransportTypeDetails";
-			logiwareRespnse  = doServiceCall(flowData, ServiceName.getAllTransportTypeDetails, reqDtoObjects);
-			
+			logiwareRespnse  = doServiceCall(flowData, ServiceName.getAllTransportTypeDetails, reqDtoObjects);			
 			lTransportTypeDtls = (List<TransportTypeDtlDto>) logiwareRespnse.getData();			
-			resDtoObjects.put("lTransportTypeDtls", lTransportTypeDtls);
-			resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
-			
-			  } catch (LogiwareBaseException b) {
-				  throw b;
-			 
+			resDtoObjects.put("lTransportTypeDtls", lTransportTypeDtls);			
+		} catch (LogiwareBaseException b) {
+			throw b;
 		} catch (Exception e) {
-			logger.error(
-					"Exception In MasterServiceImpl  getAllTransportTypeDetails() method end.",
-					e);
-			/*
-			 * throw new LogiwareBaseException(
-			 * LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
-			 * LogiwarePortalErrors.INVALID_REQUEST .getErrorDescription());
-			 */
+			logger.error("Exception In MasterServiceImpl getAllTransportTypeDetails method end.",e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode(),
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorDescription());
 		}
 		logger.info("MasterServiceImpl  getAllTransportTypeDetails() method end. ");
-		// return responseUser;
 		return resDtoObjects;
 		
 	}

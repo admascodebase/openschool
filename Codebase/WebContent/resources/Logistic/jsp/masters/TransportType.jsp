@@ -253,7 +253,7 @@
 											</td>
 											
 											<td>
-											<a href="showTransportType.htm?id=${transportType.id}"> Trnsport type details 
+											<a href="getAllTransportTypeDetails.htm?id=${transportType.id}"> Trnsport type details 
 												</a> 
 											</td>
 										</tr>

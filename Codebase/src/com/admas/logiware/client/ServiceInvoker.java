@@ -649,7 +649,8 @@ public class ServiceInvoker implements Serializable {
 		logger.info("ServiceInvoker getAllTransportTypeDetails method start. ");
 		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
 		try {
-			ClientRequest clientRequest = new ClientRequest(url);
+			Integer transportTypeId = Integer.parseInt(request.get("transId").toString());
+			ClientRequest clientRequest = new ClientRequest(url+ WebAppConstants.URL_SEPERATOR +transportTypeId);
 			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
 			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
 			if (response.getStatus() != 200) {

@@ -249,41 +249,42 @@ public class TransportTypeController extends BaseController {
 
 		logger.info("TransportTypeController: getAllTransportTypeDetails() Method Start.");
 		FlowData flowData = null;
-		/*
-		 * super.handleRequestInternal(request, response); FlowData flowData =
-		 * null; if (request.getSession().getAttribute(WebAppConstants.FLOWDATA)
-		 * != null) { flowData = (FlowData) request.getSession().getAttribute(
-		 * WebAppConstants.FLOWDATA); } if (!flowData.isLoggedIn()) return
-		 * super.loginPage(flowData, request);
-		 */
-		ModelAndView mv = new ModelAndView();
+
+		super.handleRequestInternal(request, response);
+		if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
+			flowData = (FlowData) request.getSession().getAttribute(
+					WebAppConstants.FLOWDATA);
+		}
+		if (!flowData.isLoggedIn())
+			return super.loginPage(flowData, request);
+		
+		ModelAndView mv = new ModelAndView("getAllTransportTypeDetails");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		try {
+			Integer transportTypeId=Integer.parseInt(request.getParameter("id"));
+			reqDtoObjects.put("transId", transportTypeId);
+			mv.addObject("transId", transportTypeId);
 			resDtoObjects = masterServiceImpl.getAllTransportTypeDetails(
 					flowData, reqDtoObjects, resDtoObjects);
-			String viewName = (String) resDtoObjects
-					.get(WebAppConstants.VIEW_NAME);
-			mv = new ModelAndView(viewName);
-			@SuppressWarnings("unchecked")
-			List<TransportTypeDtlDto> lTransportTypeDtls = (List<TransportTypeDtlDto>) resDtoObjects
-					.get("lTransportTypeDtls");
-			mv.addObject("lTransportTypeDtls", lTransportTypeDtls);
+			
+		} catch (LogiwareBaseException _be) {
+			logger.error("Exception in TransportTypeController: getAllTransportTypeDetails",
+					_be);
+			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
 
-			/*
-			 * } catch (LogiwareBaseException _be) {
-			 * logger.error("Exception in PaymentController: viewPaymentEntries"
-			 * , _be); mv.addObject(WebAppConstants.ERROR_CODE,
-			 * _be.getErrorCode());
-			 */
 		} catch (Exception e) {
 			logger.error(
-					"Exception In TransportTypeController: getAllTransportTypes() -- ",
-					e);
+					"Exception In TransportTypeController getAllTransportTypeDetails Method--", e);
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
-
+		@SuppressWarnings("unchecked")
+		List<TransportTypeDtlDto> lTransportTypeDtls = (List<TransportTypeDtlDto>) resDtoObjects
+				.get("lTransportTypeDtls");
+		mv.addObject("lTransportTypeDtls", lTransportTypeDtls);
+		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
+		mv.addObject("userName", flowData.getSessionData("userName"));	
 		return mv;
 
 	}
@@ -295,25 +296,21 @@ public class TransportTypeController extends BaseController {
 		logger.info("TransportTypeController: addTransportTypeDetails Method Start.");
 		FlowData flowData = null;
 		
-		/*if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
-		flowData = (FlowData) request.getSession().getAttribute(
-				WebAppConstants.FLOWDATA);
+		super.handleRequestInternal(request, response);
+		if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
+			flowData = (FlowData) request.getSession().getAttribute(
+					WebAppConstants.FLOWDATA);
 		}
 		if (!flowData.isLoggedIn())
-			return super.loginPage(flowData, request);*/
+			return super.loginPage(flowData, request);
 		
-		ModelAndView mv = new ModelAndView() ;
-		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
-		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
-		try {			
-			
-			resDtoObjects=masterServiceImpl.addTransportTypeDetails(flowData, reqDtoObjects, resDtoObjects);
-			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
-			mv=new ModelAndView(viewName);	
-			mv.addObject("transportTypeDetails",new TransportTypeDtlDto());
+		ModelAndView mv = new ModelAndView("showAddTranceportTypeDetails") ;
+		try {
+			TransportTypeDtlDto transportTypeDtlDto = new TransportTypeDtlDto();
+			transportTypeDtlDto.setTransId(Integer.parseInt(request.getParameter("transId")));
+			mv.addObject("transportTypeDetails",transportTypeDtlDto);
 		} catch (Exception e) {
-			logger.error(
-					"Exception In TransportTypeController: addTransportTypeDetails Method--", e);
+			logger.error("Exception In TransportTypeController: addTransportTypeDetails Method--", e);
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
