@@ -53,11 +53,7 @@ public class MastersLogicImpl implements MastersLogic {
 		try {
 			lCities = mastersDao.getAllCity();
 			for (City city : lCities) {
-				CityDto cityDto = new CityDto();
-				cityDto.setId(city.getId());
-				cityDto.setName(city.getName());
-				cityDto.setStateId(city.getStateId());
-				lCityDtos.add(cityDto);
+				lCityDtos.add(city._toDto());
 				logger.info("City converted to Dto Successfully");
 			}
 		} catch (LogiwareExceptionHandler e) {
@@ -255,15 +251,8 @@ public class MastersLogicImpl implements MastersLogic {
 	public CityDto getCityById(Integer cityId) throws LogiwareExceptionHandler {
 
 		City city = null;
-		CityDto cityDto = new CityDto();
 		try {
 			city = mastersDao.getCityById(cityId);
-
-			cityDto.setId(city.getId());
-			cityDto.setName(city.getName());
-			cityDto.setStateId(city.getStateId());
-			cityDto.setDelFlag(city.getDelFlag());
-			logger.info("City converted to Dto Successfully");
 
 		} catch (LogiwareExceptionHandler e) {
 			throw e;
@@ -273,7 +262,7 @@ public class MastersLogicImpl implements MastersLogic {
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
 		}
-		return cityDto;
+		return city._toDto();
 
 	}
 

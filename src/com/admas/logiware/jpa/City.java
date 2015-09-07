@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.admas.logiware.dto.CityDto;
+
 @Entity
 @Table(name="city")
 public class City implements Serializable{
@@ -29,6 +31,9 @@ public class City implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@Column(name="COMP_ID" ,nullable = false )
+	private Integer compId;
 	
 	@Column(name="STATE_ID" ,nullable = false )
 	private Integer stateId;
@@ -89,15 +94,28 @@ public class City implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * @return the compId
 	 */
-	@Override
-	public String toString() {
-		return "City [id=" + id + ", stateId=" + stateId + ", name=" + name
-				+ "]";
+	public Integer getCompId() {
+		return compId;
 	}
+	/**
+	 * @param compId the compId to set
+	 */
+	public void setCompId(Integer compId) {
+		this.compId = compId;
+	}
+	
+	public CityDto _toDto(){
+		CityDto cityDto = new CityDto();
+		cityDto .setCompId(this.compId);
+		cityDto.setDelFlag(this.delFlag);
+		cityDto.setId(this.id);
+		cityDto.setName(this.name);
+		cityDto.setStateId(this.stateId);
+		return cityDto;
+	}
+	
+	
 }

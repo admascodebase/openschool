@@ -2,13 +2,16 @@ package com.admas.logiware.dto;
 
 import java.io.Serializable;
 
+import com.admas.logiware.jpa.City;
+
 public class CityDto implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Integer id;	
+	private Integer id;
+	private Integer compId;
 	private Integer stateId;	
 	private String name;
 	private Character delFlag;
@@ -59,5 +62,27 @@ public class CityDto implements Serializable{
 	 */
 	public void setDelFlag(Character delFlag) {
 		this.delFlag = delFlag;
+	}
+	/**
+	 * @return the compId
+	 */
+	public Integer getCompId() {
+		return compId;
+	}
+	/**
+	 * @param compId the compId to set
+	 */
+	public void setCompId(Integer compId) {
+		this.compId = compId;
+	}
+	
+	public City _toJpa(){
+		City city = new City();
+		city .setCompId(this.compId);
+		city.setDelFlag(this.delFlag);
+		city.setId(this.id);
+		city.setName(this.name);
+		city.setStateId(this.stateId);
+		return city;
 	}
 }

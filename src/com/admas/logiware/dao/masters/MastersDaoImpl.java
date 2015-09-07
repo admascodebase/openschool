@@ -92,13 +92,9 @@ public class MastersDaoImpl implements MastersDao {
 
 		Boolean result = false;
 		try {
-			City city = new City();
-			city.setName(cityDto.getName());
-			city.setStateId(cityDto.getStateId());
-			city.setDelFlag('N');
+			City city = cityDto._toJpa();
 			entityManager.persist(city);
 			entityManager.flush();
-
 			if (city.getId() != null || city.getId() != 0) {
 				result = true;
 			}
@@ -126,11 +122,7 @@ public class MastersDaoImpl implements MastersDao {
 
 		Boolean result = false;
 		try {
-			City city = new City();
-			city.setId(cityDto.getId());
-			city.setName(cityDto.getName());
-			city.setStateId(cityDto.getStateId());
-			city.setDelFlag('N');
+			City city =cityDto._toJpa();
 			entityManager.merge(city);
 			entityManager.flush();
 			if (city.getId() != null || city.getId() != 0) {
@@ -144,9 +136,6 @@ public class MastersDaoImpl implements MastersDao {
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
 		} catch (Exception e) {
-			e.printStackTrace();
-			// logger.error("Exception Error in MastersDaoImpl - > editCity ",
-			// e);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
 		} finally {
@@ -177,9 +166,6 @@ public class MastersDaoImpl implements MastersDao {
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
 		} catch (Exception e) {
-			e.printStackTrace();
-			// logger.error(
-			// "Exception Error in UserManagementDaoImpl - > deleteCity", e);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
 		} finally {
