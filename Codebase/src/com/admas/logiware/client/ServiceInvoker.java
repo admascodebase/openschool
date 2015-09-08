@@ -181,6 +181,36 @@ public class ServiceInvoker implements Serializable {
 			break;
 		}
 		
+		case getAllCity: {
+			response = (K) getAllCity(url, (Map) request);
+			break;
+		}
+		
+		case saveEditCity: {
+			response = (K) saveEditCity(url, (Map) request);
+			break;
+		}
+		
+		case saveCity: {
+			response = (K) saveCity(url, (Map) request);
+			break;
+		}
+		
+		case deleteCity: {
+			response = (K) deleteCity(url, (Map) request);
+			break;
+		}
+		
+		case getCityById: {
+			response = (K) getCityById(url, (Map) request);
+			break;
+		}
+		
+		case getAllStates: {
+			response = (K) getAllStates(url, (Map) request);
+			break;
+		}
+		
 		default:
 			break;
 		}
@@ -1117,5 +1147,174 @@ public class ServiceInvoker implements Serializable {
 		logger.info("ServiceInvoker deleteCompanyBranch method end. ");
 		return logiwareResponse;
 	}
+
+	
+	public LogiwareRespnse getAllCity(String url, Map<String, Object> request) throws LogiwareBaseException {
+		logger.info("ServiceInvoker getAllCity method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			} 
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker getAllCity method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker getAllCity method end. ");
+		return logiwareResponse;
+	}
+
+
+	
+	public LogiwareRespnse saveEditCity(String url, Map<String, Object> request) throws LogiwareBaseException {
+
+		logger.info("ServiceInvoker saveEditCity method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("city"));
+			ClientResponse<LogiwareRespnse> response = clientRequest.post(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			}
+
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker saveEditCity method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker saveEditCity method end. ");
+		return logiwareResponse;
+	}
+
+	public LogiwareRespnse saveCity(String url, Map<String, Object> request) throws LogiwareBaseException {
+
+		logger.info("ServiceInvoker saveCity method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("city"));
+			ClientResponse<LogiwareRespnse> response = clientRequest.post(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			} 
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker saveCity method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker saveCity method end. ");
+		return logiwareResponse;
+	}
+
+	
+	public LogiwareRespnse deleteCity(String url, Map<String, Object> request) throws LogiwareBaseException {
+
+		logger.info("ServiceInvoker deleteCity method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(
+					url + WebAppConstants.URL_SEPERATOR + request.get("cityId"));
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			}
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker deleteCity method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker deleteCity method end. ");
+		return logiwareResponse;
+	}
+
+
+	/*
+	 * Get City By Id
+	 */
+	public LogiwareRespnse getCityById(String url, Map<String, Object> request) throws LogiwareBaseException {
+
+		logger.info("ServiceInvoker getCityById method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			Integer cityId = (Integer) request.get("cityId");
+			ClientRequest clientRequest = new ClientRequest(url + WebAppConstants.URL_SEPERATOR + cityId);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = (LogiwareRespnse) response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			} 
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker getCityById method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker getCityById method end. ");
+		return logiwareResponse;
+	}
+
+	
+	public LogiwareRespnse getAllStates(String url, Map<String, Object> request) throws LogiwareBaseException {
+		logger.info("ServiceInvoker getAllStates method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			} 
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker getAllStates method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker getAllStates method end. ");
+		return logiwareResponse;
+	}
+
 	
 }

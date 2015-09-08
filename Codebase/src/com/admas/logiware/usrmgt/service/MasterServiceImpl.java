@@ -23,7 +23,7 @@ import com.admas.logiware.dto.ContractCompDto;
 import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.FlowData;
 import com.admas.logiware.dto.LogiwareRespnse;
-import com.admas.logiware.dto.State;
+import com.admas.logiware.dto.StateDto;
 import com.admas.logiware.dto.TransportTypeDtlDto;
 import com.admas.logiware.dto.TransportTypeDto;
 import com.admas.logiware.exception.LogiwareBaseException;
@@ -69,54 +69,29 @@ public class MasterServiceImpl {
 		return resDtoObjects;
 	}
 
+	@SuppressWarnings("unchecked")
 	public Map<String, Object> getAllCities(FlowData flowData,
 			HashMap<String, Object> reqDtoObjects,
-			Map<String, Object> resDtoObjects) {
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
 
 		logger.info("MasterServiceImpl getAllCity method start. ");
-		CityDto city = new CityDto();
-		CityDto city1 = new CityDto();
-		State state = new State();
-		State state1 = new State();
 		List<CityDto> lCities = new ArrayList<CityDto>();
-		List<State> lStates = new ArrayList<State>();
-		String viewName = "";
+		LogiwareRespnse logiwareRespnse = null;
 		try {
-			viewName = "getAllCities";
-			// city = doServiceCall(flowData, ServiceName.getAllCity,
-			// reqDtoObjects);
-			state.setId(1);
-			state.setStateName("MH");
-			state1.setId(2);
-			state1.setStateName("TS");
-			city.setName("Pune");
-			city.setId(1);
-			city1.setName("Mumbai");
-			city1.setId(2);
-			lCities.add(city);
-			lCities.add(city1);
-			lStates.add(state);
-			lStates.add(state1);
-			resDtoObjects.put("lCity", lCities);
-			resDtoObjects.put("lState", lStates);
-			resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
-			/*
-			 * } catch (LogiwareBaseException b) { throw b;
-			 */
+			 logiwareRespnse = doServiceCall(flowData, ServiceName.getAllCity, reqDtoObjects);
+			 lCities =(List<CityDto>) logiwareRespnse.getData();			 
+			 resDtoObjects.put("lCities", lCities);
+		} catch (LogiwareBaseException b) {
+			throw b;
 		} catch (Exception e) {
-			logger.error(
-					"Exception In MasterServiceImpl getAllCity client method end.",
-					e);
-			/*
-			 * throw new LogiwareBaseException(
-			 * LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
-			 * LogiwarePortalErrors.INVALID_REQUEST .getErrorDescription());
-			 */
-		}
-		logger.info("MasterServiceImpl getAllCity() method end. ");
-		// return responseUser;
-		return resDtoObjects;
+			logger.error("Exception In MasterServiceImpl getAllCity method ->.",e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode(),
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorDescription());
 
+		}
+		logger.info("MasterServiceImpl getAllCity method End. ");
+		return resDtoObjects;
 	}
 
 	public Map<String, Object> showEditCity(FlowData flowData,
@@ -141,39 +116,36 @@ public class MasterServiceImpl {
 
 	public Map<String, Object> saveCity(FlowData flowData,
 			HashMap<String, Object> reqDtoObjects,
-			Map<String, Object> resDtoObjects) {
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
 
-		logger.info("MasterServiceImpl getAllCity method start. ");
-		CityDto city = new CityDto();
-		CityDto city1 = new CityDto();
-		List<CityDto> lCities = new ArrayList<CityDto>();
+		logger.info("MasterServiceImpl saveCity method start.");
+		LogiwareRespnse logiwareResponse = null;
 		String viewName = "";
 		try {
 			viewName = "getAllCities";
-			// city = doServiceCall(flowData, ServiceName.getAllCity,
-			// reqDtoObjects);
-			city.setName("Pune");
-			city1.setName("Mumbai");
-			lCities.add(city);
-			lCities.add(city1);
-			resDtoObjects.put("lCity", lCities);
-			resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
-			/*
-			 * } catch (LogiwareBaseException b) { throw b;
-			 */
-		} catch (Exception e) {
+			logiwareResponse = doServiceCall(flowData,
+					ServiceName.saveCity, reqDtoObjects);
+			resDtoObjects.put("userResponse", logiwareResponse);
+			resDtoObjects.put("viewName", viewName);
+		} catch (LogiwareBaseException b) {
+			resDtoObjects = getAllCities(flowData,
+					reqDtoObjects, resDtoObjects);
+			throw b;
+		} catch (Exception e) {			
 			logger.error(
-					"Exception In MasterServiceImpl getAllCity client method end.",
+					"Exception In MasterServiceImpl: saveCity method end.",
 					e);
-			/*
-			 * throw new LogiwareBaseException(
-			 * LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
-			 * LogiwarePortalErrors.INVALID_REQUEST .getErrorDescription());
-			 */
+			resDtoObjects = getAllEmployee(flowData,
+					reqDtoObjects, resDtoObjects);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
 		}
-		logger.info("MasterServiceImpl getAllCity() method end. ");
-		// return responseUser;
+		resDtoObjects = getAllCities(flowData,
+				reqDtoObjects, resDtoObjects);
+		logger.info("MasterServiceImpl saveCity method end. ");
 		return resDtoObjects;
+
 	}
 
 	//Start of the transport type services
@@ -326,10 +298,10 @@ public class MasterServiceImpl {
 		logger.info("MasterServiceImpl showDeleteCity method start. ");
 		CityDto city = new CityDto();
 		CityDto city1 = new CityDto();
-		State state = new State();
-		State state1 = new State();
+		StateDto state = new StateDto();
+		StateDto state1 = new StateDto();
 		List<CityDto> lCities = new ArrayList<CityDto>();
-		List<State> lStates = new ArrayList<State>();
+		List<StateDto> lStates = new ArrayList<StateDto>();
 		String viewName = "";
 		try {
 			viewName = "getAllCities";
@@ -1060,6 +1032,121 @@ public class MasterServiceImpl {
 				"rviceImpl saveEditCompany method end. ");
 		return resDtoObjects;
 	
+	}
+
+	public Map<String, Object> saveEditCity(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+
+		logger.info("MasterServiceImpl saveEditCity method start.");
+		LogiwareRespnse logiwareResponse = null;
+		try {
+			logiwareResponse = doServiceCall(flowData,
+					ServiceName.saveEditCity, reqDtoObjects);
+			resDtoObjects.put("userResponse", logiwareResponse);
+		} catch (LogiwareBaseException b) {
+			resDtoObjects = getAllCities(flowData,
+					reqDtoObjects, resDtoObjects);
+			throw b;
+		} catch (Exception e) {
+			logger.error(
+					"Exception In MasterServiceImpl: saveEditCity method end.",
+					e);
+			resDtoObjects = getAllEmployee(flowData,
+					reqDtoObjects, resDtoObjects);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		resDtoObjects = getAllCities(flowData,
+				reqDtoObjects, resDtoObjects);
+		logger.info("MasterServiceImpl saveCity method end. ");
+		return resDtoObjects;
+		
+	}
+
+	public Map<String, Object> deleteCity(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+		logger.info("MasterServiceImpl deleteCity method start.");
+		LogiwareRespnse logiwareResponse = null;
+		Boolean result=false;
+		try {
+			logiwareResponse = doServiceCall(flowData,	ServiceName.deleteCity, reqDtoObjects);
+			result = (Boolean) logiwareResponse.getData();
+			resDtoObjects.put("userResponse", logiwareResponse);
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error(
+					"Exception In MasterServiceImpl: deleteCity method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("MasterServiceImpl deleteCity method end. ");
+		return resDtoObjects;
+
+	}
+
+	public Map<String, Object> getCityById(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+		logger.info("MasterServiceImpl getCityById method start.");
+		LogiwareRespnse logiwareResponse = null;
+		String viewName = "";
+		try {
+			viewName = "showAddCity";
+			logiwareResponse = doServiceCall(flowData,
+					ServiceName.getCityById, reqDtoObjects);
+			resDtoObjects.put("viewName", viewName);
+			resDtoObjects.put("city", logiwareResponse.getCityDto());
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(
+					"Exception In MasterServiceImpl: getCityById method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("MasterServiceImpl getCityById method end. ");
+		return resDtoObjects;
+
+		
+		
+	}
+
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> getAllStates(FlowData flowData,
+			Map<String, Object> resDtoObjects,
+			HashMap<String, Object> reqDtoObjects) throws LogiwareBaseException {
+
+		logger.info("MasterServiceImpl getAllStates method start. ");
+		List<CityDto> lCities = new ArrayList<CityDto>();
+		LogiwareRespnse logiwareRespnse = null;
+		try {
+			 logiwareRespnse = doServiceCall(flowData, ServiceName.getAllStates, reqDtoObjects);
+			 lCities =(List<CityDto>) logiwareRespnse.getData();			 
+			 resDtoObjects.put("lCities", lCities);
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In MasterServiceImpl getAllStates method ->.",e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode(),
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorDescription());
+
+		}
+		logger.info("MasterServiceImpl getAllStates method End. ");
+		return resDtoObjects;
+
 	}
 
 }

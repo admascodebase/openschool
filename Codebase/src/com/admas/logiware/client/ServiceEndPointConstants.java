@@ -47,7 +47,12 @@ public class ServiceEndPointConstants {
 		saveEditCompanyBranch("saveEditCompanyBranch"),
 		saveCompanyBranch("saveCompanyBranch"),
 		getCompanyBranchById("getCompanyBranchById"),
-		deleteCompanyBranch("deleteCompanyBranch");
+		deleteCompanyBranch("deleteCompanyBranch"),
+		saveEditCity("saveEditCity"),
+		saveCity("saveCity"),
+		deleteCity("deleteCity"),
+		getCityById("getCityById"),
+		getAllStates("getAllStates");
 
 		/** The value. */
 		private final String value;

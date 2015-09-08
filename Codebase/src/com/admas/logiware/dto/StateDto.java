@@ -4,14 +4,14 @@ import java.io.Serializable;
 
 import javax.ws.rs.FormParam;
 
-public class State implements Serializable {
+public class StateDto implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public State() {
+	public StateDto() {
 	}
 	private int id;
 	private String stateName;

@@ -9,8 +9,10 @@ public class CityDto implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer id;	
+	private Integer compId;
 	private Integer stateId;	
 	private String name;
+	private Character delFlag;
 	/**
 	 * @return the id
 	 */
@@ -46,5 +48,29 @@ public class CityDto implements Serializable{
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+	/**
+	 * @return the delFlag
+	 */
+	public Character getDelFlag() {
+		return delFlag;
+	}
+	/**
+	 * @param delFlag the delFlag to set
+	 */
+	public void setDelFlag(Character delFlag) {
+		this.delFlag = delFlag;
+	}
+	/**
+	 * @return the compId
+	 */
+	public Integer getCompId() {
+		return compId;
+	}
+	/**
+	 * @param compId the compId to set
+	 */
+	public void setCompId(Integer compId) {
+		this.compId = compId;
 	}
 }

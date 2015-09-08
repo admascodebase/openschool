@@ -1,5 +1,6 @@
 package com.admas.logiware.controller.master;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +21,8 @@ import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.controller.core.BaseController;
 import com.admas.logiware.dto.CityDto;
 import com.admas.logiware.dto.FlowData;
-import com.admas.logiware.dto.State;
+import com.admas.logiware.dto.StateDto;
+import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
 import com.admas.logiware.usrmgt.service.MasterServiceImpl;
 
@@ -34,158 +36,222 @@ public class CityController extends BaseController{
 	@Qualifier("masterServiceImpl")
 	private MasterServiceImpl masterServiceImpl;
 	
+	
 	@RequestMapping(value = "/getAllCity.htm", method = RequestMethod.GET)
-	public ModelAndView city(HttpServletRequest request,
+	public ModelAndView getAllCity(HttpServletRequest request,
 			HttpServletResponse response){
-		
-		logger.info("CityController: city Method Start.");
+
+		logger.info("CityController: getAllCity Method Start.");
 		FlowData flowData = null;
-		/*super.handleRequestInternal(request, response);
-		FlowData flowData = null;
+
+		super.handleRequestInternal(request, response);
 		if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
 			flowData = (FlowData) request.getSession().getAttribute(
 					WebAppConstants.FLOWDATA);
 		}
 		if (!flowData.isLoggedIn())
 			return super.loginPage(flowData, request);
-*/
-		ModelAndView mv = new ModelAndView() ;
+
+		ModelAndView mv = new ModelAndView("getAllCities");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
-		try {			
-			resDtoObjects=masterServiceImpl.getAllCities(flowData, reqDtoObjects, resDtoObjects);
-			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
-			mv=new ModelAndView(viewName);
+		try {
+			resDtoObjects = masterServiceImpl.getAllCities(flowData, reqDtoObjects, resDtoObjects);
 			@SuppressWarnings("unchecked")
-			List<CityDto> lCities=(List<CityDto>) resDtoObjects.get("lCity");
-			mv.addObject("lCities",lCities);
-			@SuppressWarnings("unchecked")
-			List<State> lState=(List<State>) resDtoObjects.get("lState");
-			mv.addObject("lState",lState);
-//			mv.addObject(viewName);
-			
-		/*} catch (LogiwareBaseException _be) {
-			logger.error("Exception in PaymentController: viewPaymentEntries",
-					_be);
-			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());*/
+			List<CityDto> lCities=(List<CityDto>) resDtoObjects.get("lCities");
+			mv.addObject("lCities",lCities);			
+		} catch (LogiwareBaseException _be) {
+			logger.error("Exception in CityController: getAllCity", _be);
+			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
+
 		} catch (Exception e) {
-			logger.error(
-					"Exception In CityController  --", e);
+			logger.error("Exception In CityController getAllCity Method--",
+					e);
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
-		
+		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
+		mv.addObject("userName", flowData.getSessionData("userName"));
+		logger.info("CityController: getAllCity Method End.");
 		return mv;
-		
-		
+
 	}
-	
-	
+
 	
 	@RequestMapping(value = "/showAddCity.htm", method = RequestMethod.GET)
 	public ModelAndView addCity(HttpServletRequest request, HttpServletResponse response) {		
 		
-		logger.info("MasterController: addCity Method Start.");
-		FlowData flowData = null;
 		
-		ModelAndView mv = new ModelAndView() ;
+		logger.info("CityController: addCity Method Start.");
+		FlowData flowData = null;
+		super.handleRequestInternal(request, response);
+		if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
+			flowData = (FlowData) request.getSession().getAttribute(
+					WebAppConstants.FLOWDATA);
+		}
+		if (!flowData.isLoggedIn())
+			return super.loginPage(flowData, request);
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
-		try {			
-			
-			resDtoObjects=masterServiceImpl.showAddCity(flowData, reqDtoObjects, resDtoObjects);
-			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
-			mv=new ModelAndView(viewName);	
-			mv.addObject("city",new CityDto());
+		ModelAndView mv = new ModelAndView("showAddCity");
+		try {
+			resDtoObjects = masterServiceImpl.getAllStates(flowData, resDtoObjects, reqDtoObjects);
+			@SuppressWarnings("unchecked")
+			List<StateDto> lStates = (List<StateDto>) resDtoObjects.get("lStates");
+			mv.addObject("city", new CityDto());
+			mv.addObject("lStates", lStates);
 		} catch (Exception e) {
 			logger.error(
-					"Exception In PaymentController viewPaymentEntries --", e);
+					"Exception In CityController: addCity Method--", e);
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
-		
+		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
+		mv.addObject("userName", flowData.getSessionData("userName"));	
+		logger.info("MasterController: addCity Method End.");
 		return mv;
-	}
+	}		
+
 	
 	@RequestMapping(value="/saveCity.htm", method=RequestMethod.POST)
 	public ModelAndView addCitySubmit(@ModelAttribute("city")CityDto city, HttpServletRequest request, HttpServletResponse response){
-		logger.info("MasterController: addCity Method Start.");
+		
+		logger.info("CityController: saveCity Method Start.");
 		FlowData flowData = null;
-		ModelAndView mv = new ModelAndView() ;
+
+		super.handleRequestInternal(request, response);
+		if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
+			flowData = (FlowData) request.getSession().getAttribute(
+					WebAppConstants.FLOWDATA);
+		}
+		if (!flowData.isLoggedIn())
+			return super.loginPage(flowData, request);
+
+		city.setDelFlag('N');
+		ModelAndView mv = new ModelAndView("getAllCities");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
-		try {	
-			System.out.println(city);
+		String sucessMessage= "";
+		try {
+			city.setCompId(8);
+			city.setStateId(2);
 			reqDtoObjects.put("city", city);
-			resDtoObjects=masterServiceImpl.saveCity(flowData, reqDtoObjects, resDtoObjects);
-			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
-			mv=new ModelAndView(viewName);		
-			@SuppressWarnings("unchecked")
-			List<CityDto> lCities=(List<CityDto>) resDtoObjects.get("lCity");
-			mv.addObject("lCities",lCities);
+			if (city.getId() != null && city.getId() > 0) {
+				resDtoObjects = masterServiceImpl.saveEditCity(flowData,
+						reqDtoObjects, resDtoObjects);
+				sucessMessage= WebAppConstants.LW_SUCESS_EDIT;
+			} else {
+				resDtoObjects = masterServiceImpl.saveCity(flowData,
+						reqDtoObjects, resDtoObjects);
+				sucessMessage= WebAppConstants.LW_SUCESS_ADD;
+			}
+			mv.addObject(WebAppConstants.SUCESS_MESSAGE,sucessMessage);
+		} catch (LogiwareBaseException _be) {
+			logger.error("Exception in CityController: saveCompany", _be);
+			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
 		} catch (Exception e) {
 			logger.error(
-					"Exception In PaymentController viewPaymentEntries --", e);
+					"Exception In CityController saveCompany Method--", e);
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
-		
+					
+		@SuppressWarnings("unchecked")
+		List<CityDto> lCities = (List<CityDto>) resDtoObjects.get("lCities");		
+		mv.addObject("lCities", lCities);		
+		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
+		mv.addObject("userName", flowData.getSessionData("userName"));
+		logger.info("CityController: addCity Method End.");
 		return mv;
+		
 	}
 	
 	
 	@RequestMapping(value="/showEditCity.htm",method=RequestMethod.GET)
-	public ModelAndView editCity(HttpServletRequest request, HttpServletResponse response){
+	public ModelAndView showEditCity(HttpServletRequest request, HttpServletResponse response){
 		
-		logger.info("cityController: editCity Method Start.");
+		logger.info("CityController: showEditCity Method Start.");
 		FlowData flowData = null;
-		ModelAndView modelView = new ModelAndView() ;
+		super.handleRequestInternal(request, response);
+		if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
+			flowData = (FlowData) request.getSession().getAttribute(
+					WebAppConstants.FLOWDATA);
+		}
+		if (!flowData.isLoggedIn())
+			return super.loginPage(flowData, request);
+
+		ModelAndView mv = new ModelAndView("getAllCities");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
-		try{
-			System.out.println(request.getParameter("id"));
-			logger.info("*******************"+request.getParameter("id"));
-			resDtoObjects=masterServiceImpl.showEditCity(flowData, reqDtoObjects, resDtoObjects);
-			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
-			modelView=new ModelAndView(viewName);
-			modelView.addObject("city",resDtoObjects.get("city"));
+		Integer cityId = Integer.parseInt(request.getParameter("id"));
+		try {
+			reqDtoObjects.put("cityId", cityId);
+			resDtoObjects = masterServiceImpl.getCityById(flowData,
+					reqDtoObjects, resDtoObjects);
+			mv = new ModelAndView(
+					(String) resDtoObjects.get(WebAppConstants.VIEW_NAME));
+			mv.addObject("city", resDtoObjects.get("city"));			
+		} catch (LogiwareBaseException _be) {
+			logger.error("Exception in CityController: showEditCity",
+					_be);
+			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
 		} catch (Exception e) {
 			logger.error(
-					"Exception In PaymentController viewPaymentEntries --", e);
-			modelView.addObject(WebAppConstants.ERROR_CODE,
+					"Exception In CityController showEditCity Method--",
+					e);
+			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
+		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
+		mv.addObject("userName", flowData.getSessionData("userName"));	
+		return mv;
 		
-		return modelView;
+		
 	}
 	
 	
 	@RequestMapping(value="/showDeleteCity.htm",method=RequestMethod.GET)
 	public ModelAndView showDeleteCity(HttpServletRequest request, HttpServletResponse response){
-		
-		logger.info("cityController: editCity Method Start.");
+
+		logger.info("CityController: deleteCity Method Start.");
 		FlowData flowData = null;
-		ModelAndView modelView = new ModelAndView() ;
+		super.handleRequestInternal(request, response);
+		if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
+			flowData = (FlowData) request.getSession().getAttribute(
+					WebAppConstants.FLOWDATA);
+		}
+		if (!flowData.isLoggedIn())
+			return super.loginPage(flowData, request);
+		ModelAndView mv = new ModelAndView("getAllCities");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
-		try{
-			System.out.println(request.getParameter("id"));
-			logger.info("*******************"+request.getParameter("id"));
-			resDtoObjects=masterServiceImpl.showDeleteCity(flowData, reqDtoObjects, resDtoObjects);
-			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
-			modelView=new ModelAndView(viewName);
-			modelView.addObject("city",resDtoObjects.get("city"));
+		Integer cityId = Integer.parseInt(request.getParameter("id"));
+		try {
+			reqDtoObjects.put("cityId", cityId);
+			resDtoObjects = masterServiceImpl.deleteCity(flowData,
+					reqDtoObjects, resDtoObjects);
+			resDtoObjects = masterServiceImpl.getAllCities(flowData, reqDtoObjects, resDtoObjects);
+			mv.addObject(WebAppConstants.SUCESS_MESSAGE,WebAppConstants.LW_SUCESS_DELETE);
+		} catch (LogiwareBaseException _be) {
+			logger.error("Exception in CityController: deleteCity",
+					_be);
+			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
+
 		} catch (Exception e) {
 			logger.error(
-					"Exception In PaymentController viewPaymentEntries --", e);
-			modelView.addObject(WebAppConstants.ERROR_CODE,
+					"Exception In CityController deleteCity Method--",
+					e);
+			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
-		
-		return modelView;
+		@SuppressWarnings("unchecked")
+		List<CityDto> lCities = (List<CityDto>) resDtoObjects
+				.get("lCities");		
+		mv.addObject("lCities", lCities);	
+		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
+		mv.addObject("userName", flowData.getSessionData("userName"));	
+		logger.info("CityController: deleteCity Method End.");
+		return mv;
+
 	}
-	
-	
-	
-	
 }

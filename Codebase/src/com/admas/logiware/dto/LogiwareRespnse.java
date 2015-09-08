@@ -15,6 +15,7 @@ public class LogiwareRespnse implements Serializable{
 	private CompanyBranchDto companyBranchDto;
 	private CompanyDto companyDto;
 	private SettingsDto settingDto;
+	private CityDto cityDto;
 	/**
 	 * @return the code
 	 */
@@ -123,5 +124,17 @@ public class LogiwareRespnse implements Serializable{
 	 */
 	public void setSettingDto(SettingsDto settingDto) {
 		this.settingDto = settingDto;
+	}
+	/**
+	 * @return the cityDto
+	 */
+	public CityDto getCityDto() {
+		return cityDto;
+	}
+	/**
+	 * @param cityDto the cityDto to set
+	 */
+	public void setCityDto(CityDto cityDto) {
+		this.cityDto = cityDto;
 	}
 }
