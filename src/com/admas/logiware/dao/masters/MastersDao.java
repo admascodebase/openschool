@@ -29,7 +29,7 @@ public interface MastersDao {
 
 	public Boolean editCity(CityDto cityDto)throws LogiwareExceptionHandler;
 
-	public Boolean deleteCity(CityDto cityDto)throws LogiwareExceptionHandler;
+	public Boolean deleteCity(Integer cityId)throws LogiwareExceptionHandler;
 
 	public List<Company> getAllCompany()throws LogiwareExceptionHandler;
 
@@ -94,4 +94,6 @@ public interface MastersDao {
 	public List<State> getAllState()throws LogiwareExceptionHandler;
 	
 	public Settings getSettingByType(Integer compId,String type)throws LogiwareExceptionHandler;
+
+	public List<State> getAllStates()throws LogiwareExceptionHandler;
 }

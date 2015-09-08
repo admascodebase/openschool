@@ -20,7 +20,7 @@ public interface MastersLogic {
 
 	public Boolean editCity(CityDto cityDto)throws LogiwareExceptionHandler;
 
-	public Boolean deleteCity(CityDto cityDto)throws LogiwareExceptionHandler;
+	public Boolean deleteCity(Integer cityId)throws LogiwareExceptionHandler;
 
 	public List<CompanyDto> getAllcompany()throws LogiwareExceptionHandler;
 
@@ -88,4 +88,6 @@ public interface MastersLogic {
 	public List<StateDto> getAllState()throws LogiwareExceptionHandler;
 	
 	public SettingsDto getSettingByType(Integer compId,String type)throws LogiwareExceptionHandler;
+
+	public List<StateDto> getAllStates()throws LogiwareExceptionHandler;
 }

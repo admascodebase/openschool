@@ -103,11 +103,11 @@ public class MastersLogicImpl implements MastersLogic {
 	}
 
 	@Override
-	public Boolean deleteCity(CityDto cityDto) throws LogiwareExceptionHandler {
+	public Boolean deleteCity(Integer cityId) throws LogiwareExceptionHandler {
 
 		Boolean result = false;
 		try {
-			result = mastersDao.deleteCity(cityDto);
+			result = mastersDao.deleteCity(cityId);
 		} catch (LogiwareExceptionHandler e) {
 			throw e;
 		} catch (Exception e) {
@@ -736,8 +736,32 @@ public class MastersLogicImpl implements MastersLogic {
 		}
 		return settings._toDto();
 	}
-	
+
 	//end branch logic impl services
+	
+	
+	@Override
+	public List<StateDto> getAllStates() throws LogiwareExceptionHandler {
+		List<State> lStates = null;
+		List<StateDto> lStateDtos = new ArrayList<StateDto>();
+		try {
+			lStates = mastersDao.getAllStates();
+			for (State state : lStates) {
+				lStateDtos.add(state._toDto());
+				logger.info("State converted to Dto Successfully");
+			}
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error("Exception Error in MastersLogicImpl - > getAllStates ",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return lStateDtos;
+	}
+	
+	
 	
 
 }

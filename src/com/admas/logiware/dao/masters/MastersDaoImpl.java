@@ -145,19 +145,17 @@ public class MastersDaoImpl implements MastersDao {
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-	public Boolean deleteCity(CityDto cityDto) throws LogiwareExceptionHandler {
+	public Boolean deleteCity(Integer cityId) throws LogiwareExceptionHandler {
 
 		Boolean result = false;
 		try {
 			Query query = entityManager
 					.createQuery("UPDATE City SET  delFlag = 'Y' WHERE id = :id");
-			query.setParameter("id", cityDto.getId());
+			query.setParameter("id", cityId);
 			int updateResult = query.executeUpdate();
-
 			if (updateResult != 0) {
 				result = true;
 			}
-
 			return result;
 		} catch (HibernateException he) {
 			logger.error(
@@ -1222,8 +1220,56 @@ public class MastersDaoImpl implements MastersDao {
 			entityManager.close();
 		}
 	}
+
+	// end branch details dao
 	
-	// end branch details dao 
+	
+	@Override
+	public List<State> getAllStates() throws LogiwareExceptionHandler {
+
+
+		List<State> lStates = null;
+		CriteriaBuilder criteriaBuilder = null;
+		try {
+
+			criteriaBuilder = entityManager.getCriteriaBuilder();
+			CriteriaQuery<State> criteriaQuery = criteriaBuilder
+					.createQuery(State.class);
+			Root<State> stateJpa = criteriaQuery.from(State.class);
+			criteriaQuery.select(stateJpa);
+			TypedQuery<State> typedQuery = entityManager
+					.createQuery(criteriaQuery);
+			lStates = typedQuery.getResultList();
+
+			if (lStates != null && lStates.size() != 0) {
+				return lStates;
+			} else {
+				throw new LogiwareExceptionHandler(
+						LogiwareServiceErrors.NO_STATE_FOUND);
+			}
+
+		} catch (LogiwareExceptionHandler ex) {
+			throw ex;
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in MastersDaoImpl - > getAllStates",
+					he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch (Exception e) {
+			logger.error(
+					"Exception Error in UserManagementDaoImpl - > getAllStates ",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			criteriaBuilder = null;
+		}
+
+	
+	}
+	
+ 
 	
 	
 }

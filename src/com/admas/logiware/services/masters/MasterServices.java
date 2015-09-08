@@ -149,18 +149,17 @@ public class MasterServices {
 	
 	
 
-	
-	@POST
-	@Path("/deleteCity")
+
+	@GET
+	@Path("/deleteCity/{cityId}")
 	@Produces({ MediaType.APPLICATION_JSON })
-	@Consumes({MediaType.APPLICATION_JSON })
-	public Response deleteCity(CityDto cityDto) {
+	public Response deleteCity(@PathParam("cityId")Integer cityId) {
 
 		logger.info(" Start  MasterService- > deleteCity ");
 		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
 		Boolean result=false;
 		try {
-			result=mastersLogic.deleteCity(cityDto);
+			result=mastersLogic.deleteCity(cityId);
 			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
 			logiwareRespnse.setData(result);
 		} catch (LogiwareExceptionHandler e) {
@@ -178,7 +177,7 @@ public class MasterServices {
 		logger.info(" end  MasterService- > deleteCity ");
 		return Response.status(200).entity(logiwareRespnse).build();
 	}
-
+	
 	
 	@GET
 	@Path("/getAllCompany")
@@ -339,7 +338,7 @@ public class MasterServices {
 		try {
 			cityDto=mastersLogic.getCityById(cityId);
 			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
-			logiwareRespnse.setData(cityDto);
+			logiwareRespnse.setCityDto(cityDto);
 		} catch (LogiwareExceptionHandler e) {
 			logger.error("Error in MasterService- > getCityById ", e);
 			logiwareRespnse.setCode(e.getErrorCode());
@@ -1011,5 +1010,35 @@ public class MasterServices {
 			return Response.status(200).entity(logiwareRespnse).build();
 		}
 		
+		
+		@GET
+		@Path("/getAllStates")
+		@Produces({ MediaType.APPLICATION_JSON })
+		public Response getAllStates() {
+
+			List<StateDto> lStates = new ArrayList<StateDto>();
+			logger.info(" Start  MasterService- > getAllStates ");
+			LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+			try {
+
+				lStates = mastersLogic.getAllStates();
+				logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+				logiwareRespnse.setData(lStates);
+			} catch (LogiwareExceptionHandler e) {
+				logger.error("Error in MasterService- > getAllStates", e);
+				logiwareRespnse.setCode(e.getErrorCode());
+				logiwareRespnse.setDescription(e.getDescription());
+			} catch (Exception e) {
+				logger.error("Error in MasterService- > getAllStates", e);
+				logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+						.getErrorCode());
+				logiwareRespnse
+						.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+								.getErrorDescription());
+			}
+			logger.info(" end  MasterService- > getAllStates");
+			return Response.status(200).entity(logiwareRespnse).build();
+		}
+
 		
 }

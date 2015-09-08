@@ -26,6 +26,8 @@ public enum LogiwareServiceErrors {
 	INVALID_CREDENTIALS("LW-UM-0002", "Please enter valid username or password"),	
 
 	
+	NO_STATE_FOUND("LW-MM-0001","No States found"),
+	
 	NO_CITY_FOUND("LW-MM-0001","No cities found"),
 	
 	NO_COMPANY_FOUND("LW-MM-0002","No companies found"),

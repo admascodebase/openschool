@@ -15,18 +15,10 @@ import com.admas.logiware.dto.CityDto;
 @Table(name="city")
 public class City implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	
-	
-	
 	public City() {
 		super();
 	}
-
-
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

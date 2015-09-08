@@ -1,7 +1,5 @@
 package com.admas.logiware.dto;
 
-import javax.persistence.Column;
-
 import com.admas.logiware.jpa.Settings;
 
 public class SettingsDto {
