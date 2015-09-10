@@ -83,8 +83,7 @@ public class SmsDaoImpl implements ISmsDao {
 		List<SmsConfig> smsTemplateJpa = new ArrayList<SmsConfig>();
 		try {
 			customerQuery = entityManager.createQuery(
-					"SELECT s FROM com.admas.ngemp.sms.jpa.SmsConfig s",
-					com.admas.logiware.jpa.sms.SmsConfig.class);
+					"SELECT s FROM SmsConfig s", SmsConfig.class);
 
 			smsTemplateJpa = customerQuery.getResultList();
 			if (smsTemplateJpa.size() == 0) {

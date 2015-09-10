@@ -1192,7 +1192,7 @@ public class MastersDaoImpl implements MastersDao {
 		Settings settings = null;
 		try {
 			TypedQuery<Settings> transportTypeQuery = entityManager.createQuery(
-					"SELECT c FROM CompanyBranch c WHERE compId = :compId AND type = :type", Settings.class);
+					"SELECT c FROM Settings c WHERE compId = :compId AND type = :type", Settings.class);
 			transportTypeQuery.setParameter("compId", compId );
 			transportTypeQuery.setParameter("type", type );
 			settings = transportTypeQuery.getSingleResult();
@@ -1201,7 +1201,7 @@ public class MastersDaoImpl implements MastersDao {
 				return settings;
 			} else {
 				throw new LogiwareExceptionHandler(
-						LogiwareServiceErrors.NO_BRANCH_FOUND);
+						LogiwareServiceErrors.NO_SETTINGS_FOUND);
 			}
 
 		} catch (HibernateException he) {

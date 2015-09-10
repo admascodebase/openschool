@@ -993,7 +993,7 @@ public class MasterServices {
 			try {
 				setting = mastersLogic.getSettingByType(compId,type);
 				logiwareRespnse.setCode(LogiWareConstants.SUCESS);
-				logiwareRespnse.setData(setting);
+				logiwareRespnse.setSettingDto(setting);
 			} catch (LogiwareExceptionHandler e) {
 				logger.error("Error in MasterService- > getSettingByType", e);
 				logiwareRespnse.setCode(e.getErrorCode());

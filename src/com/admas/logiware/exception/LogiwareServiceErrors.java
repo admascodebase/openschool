@@ -26,7 +26,7 @@ public enum LogiwareServiceErrors {
 	INVALID_CREDENTIALS("LW-UM-0002", "Please enter valid username or password"),	
 
 	
-	NO_STATE_FOUND("LW-MM-0001","No States found"),
+	NO_STATE_FOUND("LW-MM-0007","No States found"),
 	
 	NO_CITY_FOUND("LW-MM-0001","No cities found"),
 	
@@ -44,7 +44,8 @@ public enum LogiwareServiceErrors {
 	
 	NO_BRANCH_FOUND("LW-MM-0006","No branch details found"),
 	
-	NO_CONTRACT_COMP_FOUND("LW-CC-0001", "No contract company found");
+	NO_CONTRACT_COMP_FOUND("LW-CC-0001", "No contract company found"),
+	NO_SETTINGS_FOUND("LW-MM-0006","No Settings were found");
 	
 	
 	/**
