@@ -52,7 +52,9 @@ public class ServiceEndPointConstants {
 		saveCity("saveCity"),
 		deleteCity("deleteCity"),
 		getCityById("getCityById"),
-		getAllStates("getAllStates");
+		getAllStates("getAllStates"),
+		getSettingByType("getSettingByType"),
+		sendSmsToContractCompany("sendSmsToContractCompany");
 
 		/** The value. */
 		private final String value;

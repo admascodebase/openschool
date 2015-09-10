@@ -1149,4 +1149,64 @@ public class MasterServiceImpl {
 
 	}
 
+	public Map<String, Object> getSettingByType(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+
+		logger.info("MasterServiceImpl getSettingByType method start.");
+		LogiwareRespnse logiwareResponse = null;
+		Integer compId = Integer.parseInt(flowData.getSessionData(WebAppConstants.COMPID));
+		String typeValue = "CONTRACT_COMP_SMS";
+		reqDtoObjects.put("compId", compId);
+		reqDtoObjects.put("typeValue", typeValue);
+		try {
+			logiwareResponse = doServiceCall(flowData,
+					ServiceName.getSettingByType, reqDtoObjects);
+			
+			resDtoObjects.put("userResponse", logiwareResponse);
+			resDtoObjects.put("settingDto",  logiwareResponse.getSettingDto());
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(
+					"Exception In MasterServiceImpl: getSettingByType method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("MasterServiceImpl getSettingByType method end. ");
+		return resDtoObjects;
+
+	}
+
+	public Map<String, Object> sendSmsToContractCompany(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+			
+		logger.info("MasterServiceImpl sendSmsToContractCompany method start.");
+		LogiwareRespnse logiwareResponse = null;
+		try {
+			logiwareResponse = doServiceCall(flowData,	ServiceName.sendSmsToContractCompany, reqDtoObjects);
+			resDtoObjects.put("userResponse", logiwareResponse);
+			resDtoObjects.put("settingDto",  logiwareResponse.getSettingDto());
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(
+					"Exception In MasterServiceImpl: sendSmsToContractCompany method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("MasterServiceImpl sendSmsToContractCompany method end. ");
+		return resDtoObjects;
+		
+	}
+
 }

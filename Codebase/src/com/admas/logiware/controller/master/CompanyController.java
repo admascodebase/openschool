@@ -22,6 +22,7 @@ import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.ContractCompDto;
 import com.admas.logiware.dto.FlowData;
 import com.admas.logiware.dto.LogiwareRespnse;
+import com.admas.logiware.dto.SettingsDto;
 import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
 import com.admas.logiware.usrmgt.service.MasterServiceImpl;
@@ -352,6 +353,16 @@ public class CompanyController extends BaseController {
 			
 			resDtoObjects=masterServiceImpl.saveCOntractCompany(flowData, reqDtoObjects, resDtoObjects);
 			sucessMessage= WebAppConstants.LW_SUCESS_ADD;
+			
+			
+			resDtoObjects = masterServiceImpl.getSettingByType(flowData, reqDtoObjects, resDtoObjects);
+			SettingsDto settingsDto = (SettingsDto) resDtoObjects.get("settingDto");
+			
+			if(settingsDto.getValue().equals("Y")){
+				//send sms logic
+				masterServiceImpl.sendSmsToContractCompany(flowData, reqDtoObjects, resDtoObjects);
+			}
+			
 			}
 			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
 			resDtoObjects=masterServiceImpl.getAllContractCompany(flowData, reqDtoObjects, resDtoObjects);

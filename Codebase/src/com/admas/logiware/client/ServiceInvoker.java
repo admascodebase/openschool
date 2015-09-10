@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 import com.admas.logiware.client.ServiceEndPointConstants.ServiceName;
 import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.dto.CompanyDto;
+import com.admas.logiware.dto.ContractCompDto;
 import com.admas.logiware.dto.Customer;
 import com.admas.logiware.dto.LogiwareRespnse;
 import com.admas.logiware.exception.LogiwareBaseException;
@@ -208,6 +209,16 @@ public class ServiceInvoker implements Serializable {
 		
 		case getAllStates: {
 			response = (K) getAllStates(url, (Map) request);
+			break;
+		}
+		
+		case getSettingByType: {
+			response = (K) getSettingByType(url, (Map) request);
+			break;
+		}
+		
+		case sendSmsToContractCompany: {
+			response = (K) sendSmsToContractCompany(url, (Map) request);
 			break;
 		}
 		
@@ -1316,5 +1327,84 @@ public class ServiceInvoker implements Serializable {
 		return logiwareResponse;
 	}
 
+	
+
+	/*
+	 * Get Setting By Type
+	 */
+	public LogiwareRespnse getSettingByType(String url, Map<String, Object> request) throws LogiwareBaseException {
+
+		logger.info("ServiceInvoker getSettingByType method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+
+			Integer companyId = (Integer) request.get("compId");
+			String typeValue = (String) request.get("typeValue");
+			ClientRequest clientRequest = new ClientRequest(url + WebAppConstants.URL_SEPERATOR + companyId + WebAppConstants.URL_SEPERATOR + typeValue);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = (LogiwareRespnse) response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			} 
+			
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker getSettingByType method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker getSettingByType method end. ");
+		return logiwareResponse;
+	}
+
+
+	
+	
+	/*
+	 * snd sms to contract company
+	 */
+	public LogiwareRespnse sendSmsToContractCompany(String url, Map<String, Object> request) throws LogiwareBaseException {
+
+		logger.info("ServiceInvoker sendSmsToContractCompany method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+
+			ContractCompDto company = (ContractCompDto) request.get("contractCompDto");
+			
+			String mobile = company.getContactNo1();
+			String message="";
+			String route="4";
+			String orgCode=company.getName();
+			
+			ClientRequest clientRequest = new ClientRequest(url
+					+ WebAppConstants.URL_SEPERATOR + mobile
+					+ WebAppConstants.URL_SEPERATOR + message
+					+ WebAppConstants.URL_SEPERATOR + route
+					+ WebAppConstants.URL_SEPERATOR + orgCode);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = (LogiwareRespnse) response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			} 
+			
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker sendSmsToContractCompany method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker sendSmsToContractCompany method end. ");
+		return logiwareResponse;
+	}
 	
 }
