@@ -1,69 +1,27 @@
-package com.admas.logiware.jpa;
+package com.admas.logiware.dto;
 
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import com.admas.logiware.jpa.LoweryOwner;
 
-import com.admas.logiware.dto.LoweryOwnerDto;
+public class LoweryOwnerDto implements Serializable{
 
-@Entity
-@Table(name="lowery_owner")
-public class LoweryOwner implements Serializable{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	 
-	@Column(name="COMP_ID" ,nullable = false )
 	private Integer compId;
-	
-	@Column(name="BRANCH_ID")
 	private Integer branchId;
-	
-	@Column(name="NAME" ,nullable = false)
 	private String name;
-	
-	@Column(name="ADDRESS" ,nullable = false)
 	private String address;
-	
-	@Column(name="CONTACT_NO" ,nullable = false)
 	private String contactNo;
-	
-	@Column(name="CONTACT_PERSION")
 	private String contactPersion;
-	
-	@Column(name="EMAIL_ID")
 	private String emailId;
-	
-	@Column(name="CREATED_BY" ,nullable = false)
 	private Integer createdBy;
-	
-	@Column(name="UPDATED_BY")
 	private Integer updatedBy;
-	
-	@Column(name="CREATED_ON",nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdOn;
-	
-	@Column(name="UPDATED_ON")
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedOn;
-	
-	@Column(name="DEL_FLG" ,nullable = false) 
 	private Character delFlag;
+	
+	
 
 	/**
 	 * @return the id
@@ -261,22 +219,22 @@ public class LoweryOwner implements Serializable{
 				+ delFlag + "]";
 	}
 	
-	public LoweryOwnerDto _toDto(){
-		LoweryOwnerDto loweryOwnerDto = new LoweryOwnerDto();
-		loweryOwnerDto.setAddress(this.address);
-		loweryOwnerDto.setBranchId(this.branchId);
-		loweryOwnerDto.setCompId(this.compId);
-		loweryOwnerDto.setContactNo(this.contactNo);
-		loweryOwnerDto.setContactPersion(this.contactPersion);
-		loweryOwnerDto.setCreatedBy(this.createdBy);
-		loweryOwnerDto.setCreatedOn(this.createdOn);
-		loweryOwnerDto.setDelFlag(this.delFlag);
-		loweryOwnerDto.setEmailId(this.emailId);
-		loweryOwnerDto.setId(this.id);
-		loweryOwnerDto.setName(this.name);
-		loweryOwnerDto.setUpdatedBy(this.updatedBy);
-		loweryOwnerDto.setUpdatedOn(this.updatedOn);
-		return loweryOwnerDto;
+	public LoweryOwner _toJpa(){
+		LoweryOwner loweryOwner = new LoweryOwner();
+		loweryOwner.setAddress(this.address);
+		loweryOwner.setBranchId(this.branchId);
+		loweryOwner.setCompId(this.compId);
+		loweryOwner.setContactNo(this.contactNo);
+		loweryOwner.setContactPersion(this.contactPersion);
+		loweryOwner.setCreatedBy(this.createdBy);
+		loweryOwner.setCreatedOn(this.createdOn);
+		loweryOwner.setDelFlag(this.delFlag);
+		loweryOwner.setEmailId(this.emailId);
+		loweryOwner.setId(this.id);
+		loweryOwner.setName(this.name);
+		loweryOwner.setUpdatedBy(this.updatedBy);
+		loweryOwner.setUpdatedOn(this.updatedOn);
+		return loweryOwner;
 	}
 	
 }
