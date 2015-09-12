@@ -195,7 +195,7 @@
 													<h3>Owner/Agent Setup</h3>
 												</li>
 												<li>
-													<a href="./getAllContractCompany.htm" class="iconify">
+													<a href="./getAllTransportOwners.htm" class="iconify">
 													<i class="icon-home"></i>
 													Agent Registration </a>
 												</li> 

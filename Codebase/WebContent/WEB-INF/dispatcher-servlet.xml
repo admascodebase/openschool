@@ -98,4 +98,5 @@
 	<bean id="CompanyController" class="com.admas.logiware.controller.master.CompanyController"/>
 	<bean id="EmployeeController" class="com.admas.logiware.controller.master.EmployeeController"/>
 	<bean id="BranchController" class="com.admas.logiware.controller.master.BranchController"/>
+	<bean id="TransportOwnerController" class="com.admas.logiware.controller.master.TransportOwnerController"/>
 </beans>

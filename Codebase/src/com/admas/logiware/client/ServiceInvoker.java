@@ -222,6 +222,31 @@ public class ServiceInvoker implements Serializable {
 			break;
 		}
 		
+		case getAllTransportOwners: {
+			response = (K) getAllTransportOwners(url, (Map) request);
+			break;
+		}
+		
+		case getTransportOwnerById: {
+			response = (K) getTransportOwnerById(url, (Map) request);
+			break;
+		}
+		
+		case saveTransportOwner: {
+			response = (K) saveTransportOwner(url, (Map) request);
+			break;
+		}
+		
+		case saveEditTransportOwner: {
+			response = (K) saveTransportOwner(url, (Map) request);
+			break;
+		}
+		
+		case deleteTransportOwner: {
+			response = (K) saveTransportOwner(url, (Map) request);
+			break;
+		}
+		
 		default:
 			break;
 		}
@@ -377,7 +402,7 @@ public class ServiceInvoker implements Serializable {
 		} catch (LogiwareBaseException b) {
 			throw b;
 		} catch (Exception e) {
-			logger.error("Exception In ServiceInvoker login method end.", e);
+			logger.error("Exception In ServiceInvoker getAllEmployee method end.", e);
 			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
 		}
@@ -1406,5 +1431,155 @@ public class ServiceInvoker implements Serializable {
 		logger.info("ServiceInvoker sendSmsToContractCompany method end. ");
 		return logiwareResponse;
 	}
+
 	
+	
+	/**
+	 *Transport Owner Services START. 
+	 */
+	
+	public LogiwareRespnse getAllTransportOwners(String url, Map<String, Object> request) throws LogiwareBaseException {
+		logger.info("ServiceInvoker getAllTransportOwners method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			} 
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker getAllTransportOwners method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker getAllTransportOwners method end. ");
+		return logiwareResponse;
+	}
+
+
+
+	public LogiwareRespnse saveTransportOwner(String url, Map<String, Object> request) throws LogiwareBaseException {
+
+		logger.info("ServiceInvoker saveTransportOwener method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("transportOwner"));
+			ClientResponse<LogiwareRespnse> response = clientRequest.post(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			} 
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker saveTransportOwener method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker saveTransportOwener method end. ");
+		return logiwareResponse;
+	}
+
+
+	public LogiwareRespnse saveEditTransportOwner(String url, Map<String, Object> request) throws LogiwareBaseException {
+
+		logger.info("ServiceInvoker saveEditTransportOwener method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("transportOwner"));
+			ClientResponse<LogiwareRespnse> response = clientRequest.post(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			}
+
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker saveEditTransportOwener method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker saveEditTransportOwener method end. ");
+		return logiwareResponse;
+	}
+
+	
+	public LogiwareRespnse getTransportOwnerById(String url, Map<String, Object> request) throws LogiwareBaseException {
+
+		logger.info("ServiceInvoker getTransportOwnerById method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+
+			Integer transportOwnerId = (Integer) request.get("transportOwnerId");
+			ClientRequest clientRequest = new ClientRequest(url + WebAppConstants.URL_SEPERATOR + transportOwnerId);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = (LogiwareRespnse) response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			} 
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker getTransportOwnerById method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker getTransportOwnerById method end. ");
+		return logiwareResponse;
+	}
+
+	public LogiwareRespnse deleteTransportOwner(String url, Map<String, Object> request) throws LogiwareBaseException {
+
+		logger.info("ServiceInvoker deleteTransportOwner method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(
+					url + WebAppConstants.URL_SEPERATOR + request.get("transportOwnerId"));
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			}
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker deleteTransportOwner method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker deleteTransportOwner method end. ");
+		return logiwareResponse;
+	}
+
+	
+	
+	/**
+	 *Transport Owner Services END. 
+	 */
 }

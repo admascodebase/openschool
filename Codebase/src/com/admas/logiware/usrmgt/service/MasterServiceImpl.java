@@ -24,6 +24,7 @@ import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.FlowData;
 import com.admas.logiware.dto.LogiwareRespnse;
 import com.admas.logiware.dto.StateDto;
+import com.admas.logiware.dto.TransportOwnerDto;
 import com.admas.logiware.dto.TransportTypeDtlDto;
 import com.admas.logiware.dto.TransportTypeDto;
 import com.admas.logiware.exception.LogiwareBaseException;
@@ -1209,4 +1210,152 @@ public class MasterServiceImpl {
 		
 	}
 
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> getAllTransportOwners(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+			
+			logger.info("MasterServiceImpl getAllTransportOwners method start.");
+			List<TransportOwnerDto> lTransportOwners = new ArrayList<TransportOwnerDto>();
+			LogiwareRespnse logiwareRespnse = null;
+			try {
+				 logiwareRespnse = doServiceCall(flowData, ServiceName.getAllTransportOwners, reqDtoObjects);
+				 lTransportOwners =(List<TransportOwnerDto>) logiwareRespnse.getData();			 
+				 resDtoObjects.put("lTransportOwners", lTransportOwners);
+			} catch (LogiwareBaseException b) {
+				throw b;
+			} catch (Exception e) {
+				logger.error("Exception In MasterServiceImpl getAllTransportOwners method end.",e);
+				throw new LogiwareBaseException(
+						LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode(),
+						LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorDescription());
+			}
+			logger.info("MasterServiceImpl getAllTransportOwners method End. ");
+			return resDtoObjects;
+			
+		}
+
+
+	public Map<String, Object> saveTransportOwner(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+		logger.info("MasterServiceImpl saveTransportOwner method start.");
+		LogiwareRespnse logiwareResponse = null;
+		String viewName = "";
+		try {
+			viewName = "getAllTransportOwners";
+			logiwareResponse = doServiceCall(flowData,
+					ServiceName.saveTransportOwner, reqDtoObjects);
+			resDtoObjects.put("userResponse", logiwareResponse);
+			resDtoObjects.put("viewName", viewName);
+		} catch (LogiwareBaseException b) {
+			resDtoObjects = getAllTransportOwners(flowData,
+					reqDtoObjects, resDtoObjects);
+			throw b;
+		} catch (Exception e) {			
+			logger.error(
+					"Exception In MasterServiceImpl: saveTransportOwner method end.",
+					e);
+			resDtoObjects = getAllTransportOwners(flowData,
+					reqDtoObjects, resDtoObjects);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		resDtoObjects = getAllTransportOwners(flowData,
+				reqDtoObjects, resDtoObjects);
+		logger.info("MasterServiceImpl saveTransportOwner method end. ");
+		return resDtoObjects;
+
+	}
+	
+	public Map<String, Object> saveEditTransportOwner(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+		logger.info("MasterServiceImpl saveEditTransportOwner method start.");
+		LogiwareRespnse logiwareResponse = null;
+		try {
+			logiwareResponse = doServiceCall(flowData,
+					ServiceName.saveEditTransportOwner, reqDtoObjects);
+			resDtoObjects.put("userResponse", logiwareResponse);
+		} catch (LogiwareBaseException b) {
+			resDtoObjects = getAllTransportOwners(flowData,
+					reqDtoObjects, resDtoObjects);
+			throw b;
+		} catch (Exception e) {
+			logger.error(
+					"Exception In MasterServiceImpl: saveEditTransportOwner method end.",
+					e);
+			resDtoObjects = getAllTransportOwners(flowData,
+					reqDtoObjects, resDtoObjects);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		resDtoObjects = getAllTransportOwners(flowData,
+				reqDtoObjects, resDtoObjects);
+		logger.info("MasterServiceImpl saveEditTransportOwner method end. ");
+		return resDtoObjects;
+
+	}
+
+	public Map<String, Object> getTransportOwnerById(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+		
+		logger.info("MasterServiceImpl getTransportOwnerById method start.");
+		LogiwareRespnse logiwareResponse = null;
+		String viewName = "";
+		try {
+			viewName = "showAddTransportOwner";
+			logiwareResponse = doServiceCall(flowData,
+					ServiceName.getTransportOwnerById, reqDtoObjects);
+			resDtoObjects.put("viewName", viewName);
+			resDtoObjects.put("transportOwner", logiwareResponse.getTransportOwnerDto());
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(
+					"Exception In MasterServiceImpl: getTransportOwnerById method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("MasterServiceImpl getTransportOwnerById method end. ");
+		return resDtoObjects;
+
+		
+	}
+
+	public Map<String, Object> deleteTransportOwner(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+		logger.info("MasterServiceImpl deleteTransportOwner method start.");
+		LogiwareRespnse logiwareResponse = null;
+		Boolean result=false;
+		try {
+			logiwareResponse = doServiceCall(flowData,	ServiceName.deleteTransportOwner, reqDtoObjects);
+			result = (Boolean) logiwareResponse.getData();
+			resDtoObjects.put("userResponse", logiwareResponse);
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error(
+					"Exception In MasterServiceImpl: deleteTransportOwner method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("MasterServiceImpl deleteTransportOwner method end. ");
+		return resDtoObjects;
+	}
+
+	
+	
 }

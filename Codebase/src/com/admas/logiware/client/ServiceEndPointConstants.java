@@ -54,7 +54,12 @@ public class ServiceEndPointConstants {
 		getCityById("getCityById"),
 		getAllStates("getAllStates"),
 		getSettingByType("getSettingByType"),
-		sendSmsToContractCompany("sendSmsToContractCompany");
+		sendSmsToContractCompany("sendSmsToContractCompany"),
+		getAllTransportOwners("getAllTransportOwners"), 
+		saveEditTransportOwner("saveEditTransportOwner"),
+		saveTransportOwner("saveTransportOwner"),
+		deleteTransportOwner("deleteTransportOwner"),
+		getTransportOwnerById("getTransportOwnerById");
 
 		/** The value. */
 		private final String value;
