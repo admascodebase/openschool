@@ -13,8 +13,8 @@
 			</div>
 			<!-- END PAGE TITLE -->
 			<!-- BEGIN PAGE TOOLBAR -->
-			<div class="page-toolbar">
-				<!-- BEGIN THEME PANEL -->
+			<!-- <div class="page-toolbar">
+				BEGIN THEME PANEL
 				<div class="btn-group btn-theme-panel">
 					<a href="javascript:;" class="btn dropdown-toggle"
 						data-toggle="dropdown"> <i class="icon-settings"></i>
@@ -126,8 +126,8 @@
 						</div>
 					</div>
 				</div>
-				<!-- END THEME PANEL -->
-			</div>
+				END THEME PANEL
+			</div> -->
 			<!-- END PAGE TOOLBAR -->
 		</div>
 	</div>
@@ -211,7 +211,7 @@
 										</div>
 									</div>
 									<div class="col-md-6">
-										<div class="btn-group pull-right">
+										<!-- <div class="btn-group pull-right">
 											<button class="btn dropdown-toggle" data-toggle="dropdown">
 												Tools <i class="fa fa-angle-down"></i>
 											</button>
@@ -220,18 +220,17 @@
 												<li><a href="javascript:;"> Save as PDF </a></li>
 												<li><a href="javascript:;"> Export to Excel </a></li>
 											</ul>
-										</div>
+										</div> -->
 									</div>
 								</div>
 							</div>
 							<table class="table table-striped table-bordered table-hover"
-								id="sample_1">
+								id="sample_2">
 								<thead>
 									<tr>
 										<th class="table-checkbox"><input type="checkbox"
-											class="group-checkable" data-set="#sample_1 .checkboxes" /></th>
+											class="group-checkable" data-set="sample_2 .checkboxes" /></th>
 										<th>City</th>
-										<th>State</th>
 										<th>Edit/Delete</th>
 									</tr>
 								</thead>
@@ -242,7 +241,6 @@
 											<td><input type="checkbox" class="checkboxes" value="1" />
 											</td>
 											<td>${city.name}</td>
-											<td>${city.stateId}</td>
 											<td>
 												<a href="showEditCity.htm?id=${city.id}"
 													class="btn btn-warning btn-xs"> Edit 

@@ -305,25 +305,7 @@ public class MasterServiceImpl {
 		List<StateDto> lStates = new ArrayList<StateDto>();
 		String viewName = "";
 		try {
-			viewName = "getAllCities";
-			// city = doServiceCall(flowData, ServiceName.getAllCity,
-			// reqDtoObjects);
-			state.setId(1);
-			state.setStateName("MH");
-			state1.setId(2);
-			state1.setStateName("TS");
-			city.setName("Pune");
-			city.setId(1);
-			city1.setName("Mumbai");
-			city1.setId(2);
-			lCities.add(city);
-			lCities.add(city1);
-			lStates.add(state);
-			lStates.add(state1);
-			resDtoObjects.put("lCity", lCities);
-			resDtoObjects.put("lState", lStates);
-			resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
-			/*
+			viewName = "getAllCities";			/*
 			 * } catch (LogiwareBaseException b) { throw b;
 			 */
 		} catch (Exception e) {
@@ -371,9 +353,9 @@ public class MasterServiceImpl {
 		String viewName = "";
 		try {
 			viewName = "getAllCompany";
-			lCompanies = doServiceCall(flowData, ServiceName.getAllCompany,
+			lCompanies =(List<CompanyDto>) doServiceCall(flowData, ServiceName.getAllCompany,
 					reqDtoObjects);
-			resDtoObjects.put("lCompanies", lCompanies);
+			resDtoObjects.put("lCompanies",lCompanies);
 			resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
 
 		} catch (LogiwareBaseException b) {
@@ -592,11 +574,9 @@ public class MasterServiceImpl {
 		String viewName = "";
 		Boolean result=false;
 		try {
-			viewName = "getAllCompany";
 			logiwareResponse = doServiceCall(flowData,	ServiceName.deleteCompany, reqDtoObjects);
 			result = (Boolean) logiwareResponse.getData();
 			resDtoObjects.put("userResponse", logiwareResponse);
-			resDtoObjects.put("viewName", viewName);
 		} catch (LogiwareBaseException b) {
 			resDtoObjects = getAllEmployee(flowData,
 					reqDtoObjects, resDtoObjects);
@@ -612,8 +592,7 @@ public class MasterServiceImpl {
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
 		}
-		resDtoObjects = getAllEmployee(flowData,
-				reqDtoObjects, resDtoObjects);
+		resDtoObjects = getAllCompany(flowData, reqDtoObjects, resDtoObjects);
 		logger.info("MasterServiceImpl deleteEmployee method end. ");
 		return resDtoObjects;
 		
@@ -1130,12 +1109,12 @@ public class MasterServiceImpl {
 			HashMap<String, Object> reqDtoObjects) throws LogiwareBaseException {
 
 		logger.info("MasterServiceImpl getAllStates method start. ");
-		List<CityDto> lCities = new ArrayList<CityDto>();
+		List<StateDto> lStates = new ArrayList<StateDto>();
 		LogiwareRespnse logiwareRespnse = null;
 		try {
 			 logiwareRespnse = doServiceCall(flowData, ServiceName.getAllStates, reqDtoObjects);
-			 lCities =(List<CityDto>) logiwareRespnse.getData();			 
-			 resDtoObjects.put("lCities", lCities);
+			 lStates =(List<StateDto>) logiwareRespnse.getlStateDto();			 
+			 resDtoObjects.put("lStates", lStates);
 		} catch (LogiwareBaseException b) {
 			throw b;
 		} catch (Exception e) {

@@ -2,42 +2,56 @@ package com.admas.logiware.dto;
 
 import java.io.Serializable;
 
-import javax.ws.rs.FormParam;
-
 public class StateDto implements Serializable {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-
-	public StateDto() {
-	}
-	private int id;
-	private String stateName;
-	
-	/**
-	 * @return the stateName
-	 */
-	public String getStateName() {
-		return stateName;
-	}
+	private static final long serialVersionUID = 4108636891994069794L;
+	private Integer id;
+	private Integer countryId;
+	private String name;
 
 	/**
-	 * @param stateName the stateName to set
+	 * @return the id
 	 */
-	public void setStateName(String stateName) {
-		this.stateName = stateName;
-	}
-
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	/**
+	 * @return the countryId
+	 */
+	public Integer getCountryId() {
+		return countryId;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	/**
+	 * @param countryId the countryId to set
+	 */
+	public void setCountryId(Integer countryId) {
+		this.countryId = countryId;
+	}
 
-
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 }

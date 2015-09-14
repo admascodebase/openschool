@@ -1,6 +1,7 @@
 package com.admas.logiware.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class LogiwareRespnse implements Serializable{
 	
@@ -16,6 +17,7 @@ public class LogiwareRespnse implements Serializable{
 	private CompanyDto companyDto;
 	private SettingsDto settingDto;
 	private CityDto cityDto;
+	private List<StateDto> lStateDto;
 	private TransportOwnerDto transportOwnerDto;
 	/**
 	 * @return the code
@@ -137,6 +139,18 @@ public class LogiwareRespnse implements Serializable{
 	 */
 	public void setCityDto(CityDto cityDto) {
 		this.cityDto = cityDto;
+	}
+	/**
+	 * @return the lStateDto
+	 */
+	public List<StateDto> getlStateDto() {
+		return lStateDto;
+	}
+	/**
+	 * @param lStateDto the lStateDto to set
+	 */
+	public void setlStateDto(List<StateDto> lStateDto) {
+		this.lStateDto = lStateDto;
 	}
 	/**
 	 * @return the transportOwnerDto

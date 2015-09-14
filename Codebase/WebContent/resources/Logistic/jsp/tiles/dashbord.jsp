@@ -126,7 +126,7 @@
 	</div>
 	<!-- END PAGE HEAD -->
 	<!-- BEGIN PAGE CONTENT -->
-	<%-- <div class="page-content">
+	<div class="page-content">
 		<div class="container">
 			<!-- BEGIN PAGE BREADCRUMB -->
 			<ul class="page-breadcrumb breadcrumb">
@@ -146,7 +146,7 @@
 						<div class="portlet-title">
 							<div class="caption caption-md">
 								<i class="icon-bar-chart theme-font hide"></i>
-								<span class="caption-subject theme-font bold uppercase">Sales Summary</span>
+								<span class="caption-subject theme-font bold uppercase">Payment Summary</span>
 								<span class="caption-helper hide">weekly stats...</span>
 							</div>
 							<div class="actions">
@@ -164,18 +164,18 @@
 							<div class="row list-separated">
 								<div class="col-md-3 col-sm-3 col-xs-6">
 									<div class="font-grey-mint font-sm">
-										 Total Sales
+										 Total Income
 									</div>
 									<div class="uppercase font-hg font-red-flamingo">
-										 13,760 <span class="font-lg font-grey-mint">$</span>
+										 13,760 <span class="font-lg font-grey-mint">&#8377;</span>
 									</div>
 								</div>
 								<div class="col-md-3 col-sm-3 col-xs-6">
 									<div class="font-grey-mint font-sm">
-										 Revenue
+										 Commission Earn
 									</div>
 									<div class="uppercase font-hg theme-font">
-										 4,760 <span class="font-lg font-grey-mint">$</span>
+										 4,760 <span class="font-lg font-grey-mint">&#8377;</span>
 									</div>
 								</div>
 								<div class="col-md-3 col-sm-3 col-xs-6">
@@ -183,15 +183,15 @@
 										 Expenses
 									</div>
 									<div class="uppercase font-hg font-purple">
-										 11,760 <span class="font-lg font-grey-mint">$</span>
+										 11,760 <span class="font-lg font-grey-mint">&#8377;</span>
 									</div>
 								</div>
 								<div class="col-md-3 col-sm-3 col-xs-6">
 									<div class="font-grey-mint font-sm">
-										 Growth
+										 Balance
 									</div>
 									<div class="uppercase font-hg font-blue-sharp">
-										 9,760 <span class="font-lg font-grey-mint">$</span>
+										 9,760 <span class="font-lg font-grey-mint">&#8377;</span>
 									</div>
 								</div>
 							</div>
@@ -201,7 +201,7 @@
 										 Total Sales
 									</div>
 									<div class="uppercase font-hg font-red-flamingo">
-										 13,760 <span class="font-lg font-grey-mint">$</span>
+										 13,760 <span class="font-lg font-grey-mint">&#8377;</span>
 									</div>
 								</li>
 								<li>
@@ -211,7 +211,7 @@
 										 Revenue
 									</div>
 									<div class="uppercase font-hg theme-font">
-										 4,760 <span class="font-lg font-grey-mint">$</span>
+										 4,760 <span class="font-lg font-grey-mint">&#8377;</span>
 									</div>
 								</li>
 								<li class="divider">
@@ -221,7 +221,7 @@
 										 Expenses
 									</div>
 									<div class="uppercase font-hg font-purple">
-										 11,760 <span class="font-lg font-grey-mint">$</span>
+										 11,760 <span class="font-lg font-grey-mint">&#8377;</span>
 									</div>
 								</li>
 								<li class="divider">
@@ -231,7 +231,7 @@
 										 Growth
 									</div>
 									<div class="uppercase font-hg font-blue-sharp">
-										 9,760 <span class="font-lg font-grey-mint">$</span>
+										 9,760 <span class="font-lg font-grey-mint">&#8377;</span>
 									</div>
 								</li>
 							</ul>
@@ -247,7 +247,7 @@
 						<div class="portlet-title">
 							<div class="caption caption-md">
 								<i class="icon-bar-chart theme-font hide"></i>
-								<span class="caption-subject theme-font bold uppercase">Member Activity</span>
+								<span class="caption-subject theme-font bold uppercase">Compnies Activity</span>
 								<span class="caption-helper hide">weekly stats...</span>
 							</div>
 							<div class="actions">
@@ -301,19 +301,19 @@
 								<thead>
 								<tr class="uppercase">
 									<th colspan="2">
-										 MEMBER
+										 Company
 									</th>
 									<th>
 										 Earnings
 									</th>
 									<th>
-										 CASES
+										 Commission
 									</th>
 									<th>
-										 CLOSED
+										 Expense
 									</th>
 									<th>
-										 RATE
+										 Balance
 									</th>
 								</tr>
 								</thead>
@@ -325,16 +325,16 @@
 										<a href="javascript:;" class="primary-link">Brain</a>
 									</td>
 									<td>
-										 $345
+										 345 <span class="font-lg font-grey-mint">&#8377;</span>
 									</td>
 									<td>
-										 45
+										 45 <span class="font-lg font-grey-mint">&#8377;</span>
 									</td>
 									<td>
-										 124
+										 124 <span class="font-lg font-grey-mint">&#8377;</span>
 									</td>
 									<td>
-										<span class="bold theme-font">80%</span>
+										101 <span class="font-lg font-grey-mint">&#8377;</span>
 									</td>
 								</tr>
 								<tr>
@@ -345,16 +345,16 @@
 										<a href="javascript:;" class="primary-link">Nick</a>
 									</td>
 									<td>
-										 $560
+										 345 <span class="font-lg font-grey-mint">&#8377;</span>
 									</td>
 									<td>
-										 12
+										 45 <span class="font-lg font-grey-mint">&#8377;</span>
 									</td>
 									<td>
-										 24
+										 124 <span class="font-lg font-grey-mint">&#8377;</span>
 									</td>
 									<td>
-										<span class="bold theme-font">67%</span>
+										101 <span class="font-lg font-grey-mint">&#8377;</span>
 									</td>
 								</tr>
 								<tr>
@@ -365,16 +365,16 @@
 										<a href="javascript:;" class="primary-link">Tim</a>
 									</td>
 									<td>
-										 $1,345
+										 345 <span class="font-lg font-grey-mint">&#8377;</span>
 									</td>
 									<td>
-										 450
+										 45 <span class="font-lg font-grey-mint">&#8377;</span>
 									</td>
 									<td>
-										 46
+										 124 <span class="font-lg font-grey-mint">&#8377;</span>
 									</td>
 									<td>
-										<span class="bold theme-font">98%</span>
+										101 <span class="font-lg font-grey-mint">&#8377;</span>
 									</td>
 								</tr>
 								<tr>
@@ -385,16 +385,16 @@
 										<a href="javascript:;" class="primary-link">Tom</a>
 									</td>
 									<td>
-										 $645
+										 345 <span class="font-lg font-grey-mint">&#8377;</span>
 									</td>
 									<td>
-										 50
+										 45 <span class="font-lg font-grey-mint">&#8377;</span>
 									</td>
 									<td>
-										 89
+										 124 <span class="font-lg font-grey-mint">&#8377;</span>
 									</td>
 									<td>
-										<span class="bold theme-font">58%</span>
+										101 <span class="font-lg font-grey-mint">&#8377;</span>
 									</td>
 								</tr>
 								</table>
@@ -404,7 +404,7 @@
 					<!-- END PORTLET-->
 				</div>
 			</div>
-			<div class="row">
+			<%-- <div class="row">
 				<div class="col-md-6 col-sm-12">
 					<!-- BEGIN PORTLET-->
 					<div class="portlet light tasks-widget">
@@ -851,8 +851,8 @@
 					</div>
 					<!-- END PORTLET-->
 				</div>
-			</div>
-			<div class="row">
+			</div> --%>
+			<%-- <div class="row">
 				<div class="col-md-6 col-sm-6">
 					<!-- BEGIN REGIONAL STATS PORTLET-->
 					<div class="portlet light ">
@@ -1584,13 +1584,13 @@
 					</div>
 					<!-- END PORTLET-->
 				</div>
-			</div>
+			</div> --%>
 			<!-- END PAGE CONTENT INNER -->
 		</div>
 
 		<!-- BEGIN QUICK SIDEBAR -->
 		<a href="javascript:;" class="page-quick-sidebar-toggler"><i class="icon-login"></i></a>
-		<div class="page-quick-sidebar-wrapper">
+		<%-- <div class="page-quick-sidebar-wrapper">
 			<div class="page-quick-sidebar">
 				<div class="nav-justified">
 					<ul class="nav nav-tabs nav-justified">
@@ -2103,8 +2103,8 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> --%>
 		<!-- END QUICK SIDEBAR -->
-	</div> --%>
+	</div>
 	<!-- END PAGE CONTENT -->
 </div>

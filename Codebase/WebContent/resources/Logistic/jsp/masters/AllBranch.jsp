@@ -1,8 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
  <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<script type="text/javascript">
-	
-</script>
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
 	<div class="page-head">
@@ -15,8 +12,8 @@
 			</div>
 			<!-- END PAGE TITLE -->
 			<!-- BEGIN PAGE TOOLBAR -->
-			<div class="page-toolbar">
-				<!-- BEGIN THEME PANEL -->
+			<!-- <div class="page-toolbar">
+				BEGIN THEME PANEL
 				<div class="btn-group btn-theme-panel">
 					<a href="javascript:;" class="btn dropdown-toggle"
 						data-toggle="dropdown"> <i class="icon-settings"></i>
@@ -128,8 +125,8 @@
 						</div>
 					</div>
 				</div>
-				<!-- END THEME PANEL -->
-			</div>
+				END THEME PANEL
+			</div> -->
 			<!-- END PAGE TOOLBAR -->
 		</div>
 	</div>
@@ -211,7 +208,7 @@
 													class="btn btn-circle btn-primary">Add New</button></a>
 										</div>
 									</div>
-									<div class="col-md-6">
+									<!-- <div class="col-md-6">
 										<div class="btn-group pull-right">
 											<button class="btn dropdown-toggle" data-toggle="dropdown">
 												Tools <i class="fa fa-angle-down"></i>
@@ -222,17 +219,16 @@
 												<li><a href="javascript:;"> Export to Excel </a></li>
 											</ul>
 										</div>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<table class="table table-striped table-bordered table-hover"
-								id="sample_1">
+								id="sample_2">
 								<thead>
 									<tr>
 										<th class="table-checkbox"><input type="checkbox"
-											class="group-checkable" data-set="#sample_1 .checkboxes" /></th>
+											class="group-checkable" data-set="#sample_2 .checkboxes" /></th>
 										<th>Name</th>
-										<th>Company Id</th>
 										<th>Address</th>
 										<th>Contact</th>
 										<th>Email Id</th>
@@ -246,7 +242,6 @@
 											<td><input type="checkbox" class="checkboxes" value="1" />
 											</td>
 											<td>${branch.name}</td>
-											<td>${branch.compId}</td>
 											<td>${branch.address}</td>
 											<td>${branch.contactNo}</td>
 											<td>${branch.emailId}</td>

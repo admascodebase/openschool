@@ -17,17 +17,17 @@
 													<h3>Company Setup</h3>
 												</li>
 												<li>
-													<a href="./getAllCompany.htm" class="iconify">
+													<a href="getAllCompany.htm" class="iconify">
 													<i class="icon-home"></i>
 													Company </a>
 												</li>
 												<li>
-													<a href="./getAllBranch.htm" class="iconify">
+													<a href="getAllBranch.htm" class="iconify">
 													<i class="icon-basket"></i>
 													Branch </a>
 												</li>
 												<li>
-													<a href="./getAllEmployee.htm" class="iconify">
+													<a href="getAllEmployee.htm" class="iconify">
 													<i class="icon-pencil"></i>
 													Employee </a>
 												</li>

@@ -13,8 +13,8 @@
 			</div>
 			<!-- END PAGE TITLE -->
 			<!-- BEGIN PAGE TOOLBAR -->
-			<div class="page-toolbar">
-				<!-- BEGIN THEME PANEL -->
+			<!-- <div class="page-toolbar">
+				BEGIN THEME PANEL
 				<div class="btn-group btn-theme-panel">
 					<a href="javascript:;" class="btn dropdown-toggle"
 						data-toggle="dropdown"> <i class="icon-settings"></i>
@@ -126,8 +126,8 @@
 						</div>
 					</div>
 				</div>
-				<!-- END THEME PANEL -->
-			</div>
+				END THEME PANEL
+			</div> -->
 			<!-- END PAGE TOOLBAR -->
 		</div>
 	</div>
@@ -211,7 +211,7 @@
 										</div>
 									</div>
 									<div class="col-md-6">
-										<div class="btn-group pull-right">
+										<!-- <div class="btn-group pull-right">
 											<button class="btn dropdown-toggle" data-toggle="dropdown">
 												Tools <i class="fa fa-angle-down"></i>
 											</button>
@@ -220,16 +220,16 @@
 												<li><a href="javascript:;"> Save as PDF </a></li>
 												<li><a href="javascript:;"> Export to Excel </a></li>
 											</ul>
-										</div>
+										</div> -->
 									</div>
 								</div>
 							</div>
 							<table class="table table-striped table-bordered table-hover"
-								id="sample_1">
+								id="sample_2">
 								<thead>
 									<tr>
 										<th class="table-checkbox"><input type="checkbox"
-											class="group-checkable" data-set="#sample_1 .checkboxes" /></th>
+											class="group-checkable" data-set="#sample_2 .checkboxes" /></th>
 										<th>Name</th>
 										<th>Contact Number</th>
 										<th>Address</th>
@@ -279,33 +279,3 @@
 	</div>
 	<!-- END PAGE CONTENT -->
 </div>
-
-<script>
-	jQuery(document).ready(function() {
-		Metronic.init(); // init metronic core components
-		Layout.init(); // init current layout
-		Demo.init(); // init demo features
-		TableManaged.init();
-	});
-</script>
-<script>
-	(function(i, s, o, g, r, a, m) {
-		i['GoogleAnalyticsObject'] = r;
-		i[r] = i[r] || function() {
-			(i[r].q = i[r].q || []).push(arguments)
-		}, i[r].l = 1 * new Date();
-		a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-		a.async = 1;
-		a.src = g;
-		m.parentNode.insertBefore(a, m)
-	})(window, document, 'script',
-			'../../../../../../www.google-analytics.com/analytics.js', 'ga');
-	ga('create', 'UA-37564768-1', 'keenthemes.com');
-	ga('send', 'pageview');
-</script>
-</body>
-
-<!-- END BODY -->
-
-<!-- Mirrored from www.keenthemes.com/preview/metronic/theme/templates/admin3/table_managed.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Aug 2015 18:08:04 GMT -->
-</html>

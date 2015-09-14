@@ -40,14 +40,10 @@ public class BranchServiceImpl implements BranchService {
 		logger.info("BranchServiceImpl getAllEmployee method start.");
 		List<CompanyBranchDto> lBranches = new ArrayList<CompanyBranchDto>();
 		LogiwareRespnse logiwareRespnse = null;
-		String viewName = "";
 		try {
-			viewName = "getAllBranch";
 			 logiwareRespnse = doServiceCall(flowData, ServiceName.getAllBranch, reqDtoObjects);
-			 lBranches =(List<CompanyBranchDto>) logiwareRespnse.getData();
-			 
+			 lBranches =(List<CompanyBranchDto>) logiwareRespnse.getData();			 
 			resDtoObjects.put("lBranches", lBranches);
-			resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
 		} catch (LogiwareBaseException b) {
 			throw b;
 		} catch (Exception e) {

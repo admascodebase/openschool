@@ -16,8 +16,8 @@
 			</div>
 			<!-- END PAGE TITLE -->
 			<!-- BEGIN PAGE TOOLBAR -->
-			<div class="page-toolbar">
-				<!-- BEGIN THEME PANEL -->
+			<!-- <div class="page-toolbar">
+				BEGIN THEME PANEL
 				<div class="btn-group btn-theme-panel">
 					<a href="javascript:;" class="btn dropdown-toggle"
 						data-toggle="dropdown"> <i class="icon-settings"></i>
@@ -129,8 +129,8 @@
 						</div>
 					</div>
 				</div>
-				<!-- END THEME PANEL -->
-			</div>
+				END THEME PANEL
+			</div> -->
 			<!-- END PAGE TOOLBAR -->
 		</div>
 	</div>
@@ -330,7 +330,7 @@
 											</div>
 											
 											<div class="form-actions right">
-												<button class="btn default" type="button">Cancel</button>
+												<a href="getAllEmployee.htm"><button class="btn default" type="button">Cancel</button></a>
 												<button class="btn blue" type="submit"><i class="fa fa-check"></i> Submit</button>
 											</div>
 										</form:form>

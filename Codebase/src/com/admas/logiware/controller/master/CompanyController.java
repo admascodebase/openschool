@@ -247,7 +247,7 @@ public class CompanyController extends BaseController {
 		if (!flowData.isLoggedIn())
 			return super.loginPage(flowData, request);
 		
-		ModelAndView mv = new ModelAndView() ;
+		ModelAndView mv = new ModelAndView("getAllCompany") ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		Integer companyId=Integer.parseInt(request.getParameter("id"));
@@ -255,14 +255,7 @@ public class CompanyController extends BaseController {
 		try {			
 			reqDtoObjects.put("companyId", companyId);
 			resDtoObjects = masterServiceImpl.deleteCompany(flowData, reqDtoObjects, resDtoObjects);
-			sucessMessage = WebAppConstants.LW_SUCESS_DELETE;
-			String viewName = (String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
-			resDtoObjects = masterServiceImpl.getAllCompany(flowData, reqDtoObjects, resDtoObjects);
-			@SuppressWarnings("unchecked")
-			List<CompanyDto> lCompanies = (List<CompanyDto>) resDtoObjects
-					.get("lCompanies");
-			mv=new ModelAndView(viewName);	
-			mv.addObject("lCompanies", lCompanies);
+			sucessMessage = WebAppConstants.LW_SUCESS_DELETE;			
 			mv.addObject(WebAppConstants.SUCESS_MESSAGE,sucessMessage);
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in CompanyController: deleteCompany",
@@ -275,6 +268,11 @@ public class CompanyController extends BaseController {
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
+		
+		@SuppressWarnings("unchecked")
+		List<CompanyDto> lCompanies = (List<CompanyDto>) resDtoObjects
+				.get("lCompanies");
+		mv.addObject("lCompanies", lCompanies);
 		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
 		mv.addObject("userName", flowData.getSessionData("userName"));
 		logger.info("CompanyController: deleteCompany Method End.");

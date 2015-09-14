@@ -52,21 +52,29 @@ public class BranchController extends BaseController {
 		if (!flowData.isLoggedIn())
 			return super.loginPage(flowData, request);
 
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("getAllBranch");
 		Map<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		try {
 			resDtoObjects = branchService.getAllBranch(flowData, reqDtoObjects, resDtoObjects);
-			String viewName = (String) resDtoObjects.get(WebAppConstants.VIEW_NAME);
-			mv = new ModelAndView(viewName);
 			@SuppressWarnings("unchecked")
 			List<CompanyBranchDto> lBranches = (List<CompanyBranchDto>) resDtoObjects.get("lBranches");
 			mv.addObject("lBranches", lBranches);
 
+		} catch (LogiwareBaseException _be) {
+			logger.error("Exception in CompanyController: getAllBranch",
+					_be);
+			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
+
 		} catch (Exception e) {
-			logger.error("Exception In BranchController  --", e);
-			mv.addObject(WebAppConstants.ERROR_CODE, LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
+			logger.error("Exception In CompanyController  -- getAllBranch", e);
+			mv.addObject(
+					WebAppConstants.ERROR_CODE,
+					LogiwarePortalErrors.GENERIC_EXCEPTION
+							.getErrorCode());
 		}
+		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
+		mv.addObject("userName", flowData.getSessionData("userName"));
 
 		return mv;
 
