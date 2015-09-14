@@ -1023,7 +1023,7 @@ public class MasterServices {
 
 				lStates = mastersLogic.getAllStates();
 				logiwareRespnse.setCode(LogiWareConstants.SUCESS);
-				logiwareRespnse.setData(lStates);
+				logiwareRespnse.setlStateDto(lStates);
 			} catch (LogiwareExceptionHandler e) {
 				logger.error("Error in MasterService- > getAllStates", e);
 				logiwareRespnse.setCode(e.getErrorCode());
