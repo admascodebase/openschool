@@ -7,6 +7,10 @@ import com.admas.logiware.jpa.LoweryOwner;
 
 public class LoweryOwnerDto implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5115786611617705919L;
 	private Integer id;
 	private Integer compId;
 	private Integer branchId;

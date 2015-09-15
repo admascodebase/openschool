@@ -15,12 +15,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.LogiwareRespnse;
 import com.admas.logiware.dto.LoweryOwnerDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
 import com.admas.logiware.exception.LogiwareServiceErrors;
-import com.admas.logiware.logic.masters.MastersLogic;
 import com.admas.logiware.services.masters.MasterServices;
 import com.admas.logiware.transowner.logic.TransOwnerLogic;
 import com.admas.logiware.util.LogiWareConstants;
@@ -57,7 +55,7 @@ public class TransOwnerServices {
 
 
 	/*
-	 * Employee Services
+	 * Lowery Owner Services
 	 * */
 	@GET
 	@Path("/getTransOwner")
@@ -181,7 +179,7 @@ public class TransOwnerServices {
 
 	
 	@GET
-	@Path("/deleteTransOwner{transId}")
+	@Path("/deleteTransOwner/{transId}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response deleteTransOwner(@PathParam("employeeId")Integer transOwnerId) {
 

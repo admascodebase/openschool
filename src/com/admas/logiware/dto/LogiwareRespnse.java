@@ -137,18 +137,7 @@ public class LogiwareRespnse implements Serializable{
 	public void setCityDto(CityDto cityDto) {
 		this.cityDto = cityDto;
 	}
-	/**
-	 * @return the loweryOwnerDto
-	 */
-	public LoweryOwnerDto getLoweryOwnerDto() {
-		return loweryOwnerDto;
-	}
-	/**
-	 * @param loweryOwnerDto the loweryOwnerDto to set
-	 */
-	public void setLoweryOwnerDto(LoweryOwnerDto loweryOwnerDto) {
-		this.loweryOwnerDto = loweryOwnerDto;
-	}
+	
 	/**
 	 * @return the lStateDto
 	 */
@@ -161,4 +150,18 @@ public class LogiwareRespnse implements Serializable{
 	public void setlStateDto(List<StateDto> lStateDto) {
 		this.lStateDto = lStateDto;
 	}
+	/**
+	 * @return the loweryOwnerDto
+	 */
+	public LoweryOwnerDto getLoweryOwnerDto() {
+		return loweryOwnerDto;
+	}
+	/**
+	 * @param loweryOwnerDto the loweryOwnerDto to set
+	 */
+	public void setLoweryOwnerDto(LoweryOwnerDto loweryOwnerDto) {
+		this.loweryOwnerDto = loweryOwnerDto;
+	}
+	
+	
 }

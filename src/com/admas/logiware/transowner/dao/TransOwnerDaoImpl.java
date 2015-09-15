@@ -18,6 +18,8 @@ import org.hibernate.HibernateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.admas.logiware.dto.LoweryOwnerDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
@@ -49,6 +51,7 @@ public class TransOwnerDaoImpl implements TransOwnerDao {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Boolean addTransOwner(LoweryOwnerDto loweryOwnerDto)
 			throws LogiwareExceptionHandler {
 		Boolean result = false;
@@ -98,7 +101,7 @@ public class TransOwnerDaoImpl implements TransOwnerDao {
 				return lLoweryOwners;
 			} else {
 				throw new LogiwareExceptionHandler(
-						LogiwareServiceErrors.NO_BRANCH_FOUND);
+						LogiwareServiceErrors.NO_LOWERYOWNERS_FOUND);
 			}
 
 		} catch (LogiwareExceptionHandler ex) {
@@ -156,6 +159,7 @@ public class TransOwnerDaoImpl implements TransOwnerDao {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Boolean editTransOwner(LoweryOwnerDto loweryOwnerDto)
 			throws LogiwareExceptionHandler {
 		Boolean result = false;
@@ -182,6 +186,7 @@ public class TransOwnerDaoImpl implements TransOwnerDao {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Boolean deleteTransOwner(Integer loweryOwnerId)
 			throws LogiwareExceptionHandler {
 		Boolean result = false;

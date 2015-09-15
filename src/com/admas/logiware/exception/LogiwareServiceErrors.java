@@ -45,7 +45,9 @@ public enum LogiwareServiceErrors {
 	NO_BRANCH_FOUND("LW-MM-0006","No branch details found"),
 	
 	NO_CONTRACT_COMP_FOUND("LW-CC-0001", "No contract company found"),
-	NO_SETTINGS_FOUND("LW-MM-0006","No Settings were found");
+	NO_SETTINGS_FOUND("LW-MM-0006","No Settings were found"),
+	NO_LOWERYOWNERS_FOUND("LW-LO-0001", "No Lowery Owners found");
+	
 	
 	
 	/**
