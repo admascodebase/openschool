@@ -81,6 +81,21 @@
 	<bean id="contractCompDao" class="com.admas.logiware.dao.contractcomp.ContractCompDaoImpl" />
 
 	<!-- Beans required for contract company END -->
+	
+	<!-- Beans required for TransportOwner services START -->
+
+	<bean id="transOwnerServices" class="com.admas.logiware.transowner.services.TransOwnerServices">
+		<property name="transOwnerLogicImpl" ref="transOwnerLogicImpl"></property>
+	</bean>
+
+	<bean id="transOwnerLogicImpl" class="com.admas.logiware.transowner.logic.TransOwnerLogicImpl">
+		<property name="transOwnerDao" ref="transOwnerDao"></property>
+	</bean>
+
+
+	<bean id="transOwnerDao" class="com.admas.logiware.transowner.dao.TransOwnerDaoImpl" />
+
+	<!-- Beans required for TransportOwner END -->
 
 	<!-- Beans required for SMS START -->
 	

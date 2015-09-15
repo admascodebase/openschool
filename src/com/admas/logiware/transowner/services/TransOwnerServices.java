@@ -17,10 +17,12 @@ import javax.ws.rs.core.Response;
 
 import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.LogiwareRespnse;
+import com.admas.logiware.dto.LoweryOwnerDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
 import com.admas.logiware.exception.LogiwareServiceErrors;
 import com.admas.logiware.logic.masters.MastersLogic;
 import com.admas.logiware.services.masters.MasterServices;
+import com.admas.logiware.transowner.logic.TransOwnerLogic;
 import com.admas.logiware.util.LogiWareConstants;
 
 /**
@@ -34,24 +36,26 @@ public class TransOwnerServices {
 	static final org.slf4j.Logger logger = org.slf4j.LoggerFactory
 			.getLogger(MasterServices.class);
 
-	private static MastersLogic mastersLogic;
-
-	/**
-	 * @return the mastersLogic
-	 */
-	public static MastersLogic getMastersLogic() {
-		return mastersLogic;
-	}
-
-	/**
-	 * @param mastersLogic
-	 *            the mastersLogic to set
-	 */
-	public static void setMastersLogic(MastersLogic mastersLogic) {
-		TransOwnerServices.mastersLogic = mastersLogic;
-	}
+	private static TransOwnerLogic transOwnerLogicImpl;	
 	
 	
+
+	/**
+	 * @return the transOwnerLogicImpl
+	 */
+	public static TransOwnerLogic getTransOwnerLogicImpl() {
+		return transOwnerLogicImpl;
+	}
+
+
+	/**
+	 * @param transOwnerLogicImpl the transOwnerLogicImpl to set
+	 */
+	public static void setTransOwnerLogicImpl(TransOwnerLogic transOwnerLogicImpl) {
+		TransOwnerServices.transOwnerLogicImpl = transOwnerLogicImpl;
+	}
+
+
 	/*
 	 * Employee Services
 	 * */
@@ -59,27 +63,27 @@ public class TransOwnerServices {
 	@Path("/getTransOwner")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response getAllTransOwner(){
-		List<EmployeeDto> lEmployees= new ArrayList<EmployeeDto>();
-		logger.info(" Start  MasterService- > getAllEmployee ");
+		List<LoweryOwnerDto> lLoweryOwnerDtos= new ArrayList<LoweryOwnerDto>();
+		logger.info(" Start  TransOwnerServices- > getAllTransOwner ");
 		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
 		try {
 
-			lEmployees = mastersLogic.getAllEmployee();
+			lLoweryOwnerDtos = transOwnerLogicImpl.getAllTransOwner();
 			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
-			logiwareRespnse.setData(lEmployees);
+			logiwareRespnse.setData(lLoweryOwnerDtos);
 		} catch (LogiwareExceptionHandler e) {
-			logger.error("Error in MasterService- > getAllEmployee", e);
+			logger.error("Error in TransOwnerServices- > getAllTransOwner", e);
 			logiwareRespnse.setCode(e.getErrorCode());
 			logiwareRespnse.setDescription(e.getDescription());
 		} catch (Exception e) {
-			logger.error("Error in MasterService- > getAllEmployee", e);
+			logger.error("Error in TransOwnerServices- > getAllTransOwner", e);
 			logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
 					.getErrorCode());
 			logiwareRespnse
 					.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
 							.getErrorDescription());
 		}
-		logger.info(" end  MasterService- > getAllEmployee");
+		logger.info(" end  TransOwnerServices- > getAllTransOwner");
 		return Response.status(200).entity(logiwareRespnse).build();
 	}
 	
@@ -87,27 +91,27 @@ public class TransOwnerServices {
 	@GET
 	@Path("/getTransOwnerById/{id}")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Response getTransOwnerById(@PathParam("id")Integer employeeId) {
-		logger.info(" Start  MasterService- > getEmployeeById ");
+	public Response getTransOwnerById(@PathParam("id")Integer transOwnerId) {
+		logger.info(" Start  TransOwnerServices- > getTransOwnerById ");
 		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
-		EmployeeDto employeeDto = null;
+		LoweryOwnerDto loweryOwnerDto = null;
 		try {
-			employeeDto=mastersLogic.getEmployeeById(employeeId);
+			loweryOwnerDto=transOwnerLogicImpl.getTransOwnerById(transOwnerId);
 			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
-			logiwareRespnse.setEmployeeDto(employeeDto);
+			logiwareRespnse.setLoweryOwnerDto(loweryOwnerDto);
 		} catch (LogiwareExceptionHandler e) {
-			logger.error("Error in MasterService- > getEmployeeById ", e);
+			logger.error("Error in TransOwnerServices- > getTransOwnerById ", e);
 			logiwareRespnse.setCode(e.getErrorCode());
 			logiwareRespnse.setDescription(e.getDescription());
 		} catch (Exception e) {
-			logger.error("Error in MasterService- > getEmployeeById ", e);
+			logger.error("Error in TransOwnerServices- > getTransOwnerById ", e);
 			logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
 					.getErrorCode());
 			logiwareRespnse
 					.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
 							.getErrorDescription());
 		}
-		logger.info(" end  MasterService- > getEmployeeById ");
+		logger.info(" end  TransOwnerServices- > getTransOwnerById ");
 		return Response.status(200).entity(logiwareRespnse).build();
 	}
 
@@ -117,28 +121,28 @@ public class TransOwnerServices {
 	@Path("/addTransOwner")
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Consumes({MediaType.APPLICATION_JSON })
-	public Response addTransOwner(EmployeeDto employeeDto) {
+	public Response addTransOwner(LoweryOwnerDto transOwnerDto) {
 
-		logger.info(" Start  MasterService- > addEmployee ");
+		logger.info(" Start  TransOwnerServices- > addTransOwner ");
 		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
 		Boolean result=false;
 		try {
-			result=mastersLogic.addEmployee(employeeDto);
+			result=transOwnerLogicImpl.addTransOwner(transOwnerDto);
 			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
 			logiwareRespnse.setData(result);
 		} catch (LogiwareExceptionHandler e) {
-			logger.error("Error in MasterService- > addEmployee", e);
+			logger.error("Error in TransOwnerServices- > addTransOwner", e);
 			logiwareRespnse.setCode(e.getErrorCode());
 			logiwareRespnse.setDescription(e.getDescription());
 		} catch (Exception e) {
-			logger.error("Error in MasterService- > addEmployee", e);
+			logger.error("Error in TransOwnerServices- > addTransOwner", e);
 			logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
 					.getErrorCode());
 			logiwareRespnse
 					.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
 							.getErrorDescription());
 		}
-		logger.info(" end  MasterService- > addEmployee");
+		logger.info(" end  TransOwnerServices- > addTransOwner");
 		return Response.status(200).entity(logiwareRespnse).build();
 	}
 	
@@ -148,28 +152,28 @@ public class TransOwnerServices {
 	@Path("/editTransOwner")
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Consumes({MediaType.APPLICATION_JSON })
-	public Response editEmployee(EmployeeDto employeeDto) {
+	public Response editTransOwner(LoweryOwnerDto transOwnerDto) {
 
-		logger.info(" Start  MasterService- > editEmployee ");
+		logger.info(" Start  TransOwnerServices- > editTransOwner ");
 		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
 		Boolean result=false;
 		try {
-			result=mastersLogic.editEmployee(employeeDto);
+			result=transOwnerLogicImpl.editTransOwner(transOwnerDto);
 			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
 			logiwareRespnse.setData(result);
 		} catch (LogiwareExceptionHandler e) {
-			logger.error("Error in MasterService- > editEmployee ", e);
+			logger.error("Error in TransOwnerServices- > editTransOwner ", e);
 			logiwareRespnse.setCode(e.getErrorCode());
 			logiwareRespnse.setDescription(e.getDescription());
 		} catch (Exception e) {
-			logger.error("Error in MasterService- > editEmployee ", e);
+			logger.error("Error in TransOwnerServices- > editTransOwner ", e);
 			logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
 					.getErrorCode());
 			logiwareRespnse
 					.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
 							.getErrorDescription());
 		}
-		logger.info(" end  MasterService- > editEmployee ");
+		logger.info(" end  TransOwnerServices- > editTransOwner ");
 		return Response.status(200).entity(logiwareRespnse).build();
 	}
 	
@@ -179,28 +183,28 @@ public class TransOwnerServices {
 	@GET
 	@Path("/deleteTransOwner{transId}")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Response deleteTransOwner(@PathParam("employeeId")Integer employeeId) {
+	public Response deleteTransOwner(@PathParam("employeeId")Integer transOwnerId) {
 
-		logger.info(" Start  MasterService- > deleteTransOwner ");
+		logger.info(" Start  TransOwnerServices- > deleteTransOwner ");
 		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
 		Boolean result=false;
 		try {
-			result=mastersLogic.deleteEmployee(employeeId);
+			result=transOwnerLogicImpl.deleteTransOwner(transOwnerId);
 			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
 			logiwareRespnse.setData(result);
 		} catch (LogiwareExceptionHandler e) {
-			logger.error("Error in MasterService- > deleteTransOwner ", e);
+			logger.error("Error in TransOwnerServices- > deleteTransOwner ", e);
 			logiwareRespnse.setCode(e.getErrorCode());
 			logiwareRespnse.setDescription(e.getDescription());
 		} catch (Exception e) {
-			logger.error("Error in MasterService- > deleteTransOwner ", e);
+			logger.error("Error in TransOwnerServices- > deleteTransOwner ", e);
 			logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
 					.getErrorCode());
 			logiwareRespnse
 					.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
 							.getErrorDescription());
 		}
-		logger.info(" end  MasterService- > deleteTransOwner ");
+		logger.info(" end  TransOwnerServices- > deleteTransOwner ");
 		return Response.status(200).entity(logiwareRespnse).build();
 	}
 	}
