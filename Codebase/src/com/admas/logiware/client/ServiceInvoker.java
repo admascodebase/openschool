@@ -288,6 +288,7 @@ public class ServiceInvoker implements Serializable {
 		} catch (LogiwareBaseException b) {
 			throw b;
 		} catch (Exception e) {
+			e.printStackTrace();
 			logger.error("Exception In ServiceInvoker login method end.", e);
 			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
@@ -1472,7 +1473,7 @@ public class ServiceInvoker implements Serializable {
 		try {
 			ClientRequest clientRequest = new ClientRequest(url);
 			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
-			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("transportOwner"));
+			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("transportOwnerDto"));
 			ClientResponse<LogiwareRespnse> response = clientRequest.post(LogiwareRespnse.class);
 			if (response.getStatus() != 200) {
 				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");

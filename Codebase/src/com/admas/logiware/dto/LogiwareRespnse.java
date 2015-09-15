@@ -13,12 +13,12 @@ public class LogiwareRespnse implements Serializable{
 	private ContractCompDto contractCompDto;
 	private UserDetails uerDetailsDto;
 	private TransportTypeDto transportTypeDto;
-	private CompanyBranchDto companyBranchDto;
 	private CompanyDto companyDto;
+	private CompanyBranchDto companyBranchDto;
 	private SettingsDto settingDto;
 	private CityDto cityDto;
+	private LoweryOwnerDto loweryOwnerDto;
 	private List<StateDto> lStateDto;
-	private TransportOwnerDto transportOwnerDto;
 	/**
 	 * @return the code
 	 */
@@ -74,6 +74,7 @@ public class LogiwareRespnse implements Serializable{
 	public void setContractCompDto(ContractCompDto contractCompDto) {
 		this.contractCompDto = contractCompDto;
 	}
+
 	/**
 	 * @return the uerDetailsDto
 	 */
@@ -98,24 +99,20 @@ public class LogiwareRespnse implements Serializable{
 	public void setTransportTypeDto(TransportTypeDto transportTypeDto) {
 		this.transportTypeDto = transportTypeDto;
 	}
-	/**
-	 * @return the companyBranchDto
-	 */
-	public CompanyBranchDto getCompanyBranchDto() {
-		return companyBranchDto;
-	}
-	/**
-	 * @param companyBranchDto the companyBranchDto to set
-	 */
-	public void setCompanyBranchDto(CompanyBranchDto companyBranchDto) {
-		this.companyBranchDto = companyBranchDto;
-	}
 	public CompanyDto getCompanyDto() {
 		return companyDto;
 	}
 	public void setCompanyDto(CompanyDto companyDto) {
 		this.companyDto = companyDto;
 	}
+	public CompanyBranchDto getCompanyBranchDto() {
+		return companyBranchDto;
+	}
+	public void setCompanyBranchDto(CompanyBranchDto companyBranchDto) {
+		this.companyBranchDto = companyBranchDto;
+	}
+	
+	
 	/**
 	 * @return the settingDto
 	 */
@@ -140,6 +137,7 @@ public class LogiwareRespnse implements Serializable{
 	public void setCityDto(CityDto cityDto) {
 		this.cityDto = cityDto;
 	}
+	
 	/**
 	 * @return the lStateDto
 	 */
@@ -153,15 +151,17 @@ public class LogiwareRespnse implements Serializable{
 		this.lStateDto = lStateDto;
 	}
 	/**
-	 * @return the transportOwnerDto
+	 * @return the loweryOwnerDto
 	 */
-	public TransportOwnerDto getTransportOwnerDto() {
-		return transportOwnerDto;
+	public LoweryOwnerDto getLoweryOwnerDto() {
+		return loweryOwnerDto;
 	}
 	/**
-	 * @param transportOwnerDto the transportOwnerDto to set
+	 * @param loweryOwnerDto the loweryOwnerDto to set
 	 */
-	public void setTransportOwnerDto(TransportOwnerDto transportOwnerDto) {
-		this.transportOwnerDto = transportOwnerDto;
+	public void setLoweryOwnerDto(LoweryOwnerDto loweryOwnerDto) {
+		this.loweryOwnerDto = loweryOwnerDto;
 	}
+	
+	
 }

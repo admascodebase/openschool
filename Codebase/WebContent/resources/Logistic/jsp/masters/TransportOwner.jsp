@@ -235,6 +235,7 @@
 										<th>Address</th>
 										<th>Contact Number</th>
 										<th>Contact Person</th>
+										<th>Email</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -246,7 +247,8 @@
 											<td>${transportOwner.name}</td>
 											<td>${transportOwner.address}</td>
 											<td>${transportOwner.contactNo}</td>
-											<td>${transportOwner.contactPerson}</td>
+											<td>${transportOwner.contactPersion}</td>
+											<td>${transportOwner.emailId}</td>
 											<td><a href="editTransportOwner.htm?id=${transportOwner.id}"
 												class="btn btn-warning btn-xs"> Edit </a> <a
 												href="deleteTransportOwner.htm?id=${transportOwner.id}"

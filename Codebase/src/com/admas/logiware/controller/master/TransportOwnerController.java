@@ -22,7 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.controller.core.BaseController;
 import com.admas.logiware.dto.FlowData;
-import com.admas.logiware.dto.TransportOwnerDto;
+import com.admas.logiware.dto.LoweryOwnerDto;
 import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
 import com.admas.logiware.usrmgt.service.MasterServiceImpl;
@@ -57,14 +57,14 @@ public class TransportOwnerController extends BaseController {
 		if (!flowData.isLoggedIn())
 			return super.loginPage(flowData, request);
 
-		ModelAndView mv = new ModelAndView("getAllTransportOwners");
+		ModelAndView mv = new ModelAndView("getAllTransportOwner");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		try {
 			resDtoObjects = masterServiceImpl.getAllTransportOwners(flowData,
 					reqDtoObjects, resDtoObjects);
 			@SuppressWarnings("unchecked")
-			List<TransportOwnerDto> lTransportOwners = (List<TransportOwnerDto>) resDtoObjects
+			List<LoweryOwnerDto> lTransportOwners = (List<LoweryOwnerDto>) resDtoObjects
 					.get("lTransportOwners");
 			mv.addObject("lTransportOwners", lTransportOwners);			
 		} catch (LogiwareBaseException _be) {
@@ -101,7 +101,7 @@ public class TransportOwnerController extends BaseController {
 
 		ModelAndView mv = new ModelAndView("showAddTransportOwner");
 		try {
-			mv.addObject("transportOwner", new TransportOwnerDto());			
+			mv.addObject("transportOwner", new LoweryOwnerDto());			
 		} catch (Exception e) {
 			logger.error(
 					"Exception In TransportOwnerController: showAddTransportOwner Method--", e);
@@ -118,7 +118,7 @@ public class TransportOwnerController extends BaseController {
 	
 	@RequestMapping(value = "/saveTransportOwner.htm", method = RequestMethod.POST)
 	public ModelAndView saveTransportOwner(
-			@ModelAttribute("transportOwner") TransportOwnerDto transportOwnerDto,
+			@ModelAttribute("transportOwner") LoweryOwnerDto transportOwnerDto,
 			HttpServletRequest request, HttpServletResponse response) {
 
 		logger.info("TransportOwnerController: saveTransportOwner Method Start.");
@@ -131,6 +131,9 @@ public class TransportOwnerController extends BaseController {
 		}
 		if (!flowData.isLoggedIn())
 			return super.loginPage(flowData, request);
+
+		transportOwnerDto.setCompId(Integer.parseInt(flowData.getSessionData(WebAppConstants.COMPID)));
+		transportOwnerDto.setBranchId(Integer.parseInt(flowData.getSessionData(WebAppConstants.BRANCHID)));
 
 		transportOwnerDto.setDelFlag('N');
 		ModelAndView mv = new ModelAndView("getAllTransportOwner");
@@ -160,7 +163,7 @@ public class TransportOwnerController extends BaseController {
 		}
 					
 		@SuppressWarnings("unchecked")
-		List<TransportOwnerDto> lTransportOwners = (List<TransportOwnerDto>) resDtoObjects
+		List<LoweryOwnerDto> lTransportOwners = (List<LoweryOwnerDto>) resDtoObjects
 				.get("lTransportOwners");		
 		mv.addObject("lTransportOwners", lTransportOwners);		
 		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
@@ -185,7 +188,7 @@ public class TransportOwnerController extends BaseController {
 		if (!flowData.isLoggedIn())
 			return super.loginPage(flowData, request);
 
-		ModelAndView mv = new ModelAndView("getAllTransportOwners");
+		ModelAndView mv = new ModelAndView("getAllTransportOwner");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		Integer TransportOwnerId = Integer.parseInt(request.getParameter("id"));
@@ -227,7 +230,7 @@ public class TransportOwnerController extends BaseController {
 		}
 		if (!flowData.isLoggedIn())
 			return super.loginPage(flowData, request);
-		ModelAndView mv = new ModelAndView("getAllTransportOwners");
+		ModelAndView mv = new ModelAndView("getAllTransportOwner");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		Integer transportOwnerId = Integer.parseInt(request.getParameter("id"));
@@ -248,7 +251,7 @@ public class TransportOwnerController extends BaseController {
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
-		List<TransportOwnerDto> lTransportOwners = (List<TransportOwnerDto>) resDtoObjects
+		List<LoweryOwnerDto> lTransportOwners = (List<LoweryOwnerDto>) resDtoObjects
 				.get("lTransportOwners");		
 		mv.addObject("lTransportOwners", lTransportOwners);	
 		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");

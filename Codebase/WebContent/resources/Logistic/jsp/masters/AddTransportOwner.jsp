@@ -246,7 +246,7 @@
 														<div class="form-group">
 															<label class="control-label col-md-3">Contact Person</label>
 															<div class="col-md-9">
-																<form:input path="contactPerson" type="text" class="form-control"
+																<form:input path="contactPersion" type="text" class="form-control"
 																	placeholder="Enter Contact Person Name" />
 															</div>
 														</div>
@@ -264,8 +264,21 @@
 													</div>
 													
 												</div>
-												<!--/row-->
 												
+												<!--/row-->
+												<div class="row">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Email Id</label>
+															<div class="col-md-9">
+																<form:input path="emailId" type="text" class="form-control"
+																	placeholder="Enter Email Id.." />
+															</div>
+														</div>
+													</div>
+
+
+												</div>
 												
 
 												<!--/row-->

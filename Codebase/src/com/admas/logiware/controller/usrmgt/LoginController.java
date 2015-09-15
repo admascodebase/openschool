@@ -98,11 +98,13 @@ public class LoginController extends BaseController {
 			return mv;
 
 		} catch (LogiwareBaseException we) {
+			we.printStackTrace();
 			logger.error("Exception in LoginController:validateLogin", we);
 			mv.addObject(WebAppConstants.ERROR_CODE, we.getErrorCode());
 			mv.setViewName("login");
 			
 		} catch (Exception e) {
+			e.printStackTrace();
 			logger.error("Exception in LoginController:validateLogin", e);
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode());

@@ -23,8 +23,8 @@ import com.admas.logiware.dto.ContractCompDto;
 import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.FlowData;
 import com.admas.logiware.dto.LogiwareRespnse;
+import com.admas.logiware.dto.LoweryOwnerDto;
 import com.admas.logiware.dto.StateDto;
-import com.admas.logiware.dto.TransportOwnerDto;
 import com.admas.logiware.dto.TransportTypeDtlDto;
 import com.admas.logiware.dto.TransportTypeDto;
 import com.admas.logiware.exception.LogiwareBaseException;
@@ -1195,11 +1195,11 @@ public class MasterServiceImpl {
 			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
 			
 			logger.info("MasterServiceImpl getAllTransportOwners method start.");
-			List<TransportOwnerDto> lTransportOwners = new ArrayList<TransportOwnerDto>();
+			List<LoweryOwnerDto> lTransportOwners = new ArrayList<LoweryOwnerDto>();
 			LogiwareRespnse logiwareRespnse = null;
 			try {
 				 logiwareRespnse = doServiceCall(flowData, ServiceName.getAllTransportOwners, reqDtoObjects);
-				 lTransportOwners =(List<TransportOwnerDto>) logiwareRespnse.getData();			 
+				 lTransportOwners =(List<LoweryOwnerDto>) logiwareRespnse.getData();			 
 				 resDtoObjects.put("lTransportOwners", lTransportOwners);
 			} catch (LogiwareBaseException b) {
 				throw b;
@@ -1292,7 +1292,7 @@ public class MasterServiceImpl {
 			logiwareResponse = doServiceCall(flowData,
 					ServiceName.getTransportOwnerById, reqDtoObjects);
 			resDtoObjects.put("viewName", viewName);
-			resDtoObjects.put("transportOwner", logiwareResponse.getTransportOwnerDto());
+			resDtoObjects.put("transportOwner", logiwareResponse.getLoweryOwnerDto());
 		} catch (LogiwareBaseException b) {
 			throw b;
 		} catch (Exception e) {
