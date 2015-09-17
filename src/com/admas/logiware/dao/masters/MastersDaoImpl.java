@@ -3,6 +3,7 @@ package com.admas.logiware.dao.masters;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -1210,7 +1211,13 @@ public class MastersDaoImpl implements MastersDao {
 					he);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
-		} catch (Exception e) {
+		} catch(NoResultException noResult){
+			logger.error(
+					"Exception Error in UserManagementDaoImpl - > NoResultException",
+					noResult);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.NO_SETTINGS_FOUND);
+		}catch (Exception e) {
 			logger.error(
 					"Exception Error in UserManagementDaoImpl - > getSettingByType",
 					e);

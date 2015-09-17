@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 
 import com.admas.logiware.dao.contractcomp.ContractCompDao;
 import com.admas.logiware.dto.ContractCompDto;
-import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
 import com.admas.logiware.exception.LogiwareServiceErrors;
 import com.admas.logiware.jpa.CustContractCompany;

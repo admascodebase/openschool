@@ -46,7 +46,7 @@ public class SMSUtil {
 			result = response.toString();
 			System.out.println(response.toString());
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 
 		return result;
