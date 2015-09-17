@@ -337,35 +337,35 @@ public class CompanyController extends BaseController {
 		if (!flowData.isLoggedIn())
 			return super.loginPage(flowData, request);
 		
-		ModelAndView mv = new ModelAndView() ;
+		ModelAndView mv = new ModelAndView("getAllContractCompany") ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		String sucessMessage= "";
-		try {	
+		try {
+			contractCompDto.setCompId(Integer.parseInt(flowData
+					.getSessionData(WebAppConstants.COMPID)));
 			reqDtoObjects.put("contractCompDto", contractCompDto);
-			
-			if(contractCompDto.getId()!=null && contractCompDto.getId()>0){
-				resDtoObjects=masterServiceImpl.saveEditContractCompany(flowData, reqDtoObjects, resDtoObjects);
+
+			if (contractCompDto.getId() != null && contractCompDto.getId() > 0) {
+				resDtoObjects = masterServiceImpl.saveEditContractCompany(
+						flowData, reqDtoObjects, resDtoObjects);
 				sucessMessage = WebAppConstants.LW_SUCESS_EDIT;
-			}else{
-			
-			resDtoObjects=masterServiceImpl.saveCOntractCompany(flowData, reqDtoObjects, resDtoObjects);
-			sucessMessage= WebAppConstants.LW_SUCESS_ADD;
-			
-			
-			resDtoObjects = masterServiceImpl.getSettingByType(flowData, reqDtoObjects, resDtoObjects);
-			SettingsDto settingsDto = (SettingsDto) resDtoObjects.get("settingDto");
-			
-			if(settingsDto.getValue().equals("Y")){
-				//send sms logic
-				masterServiceImpl.sendSmsToContractCompany(flowData, reqDtoObjects, resDtoObjects);
+			} else {
+				resDtoObjects = masterServiceImpl.saveCOntractCompany(flowData,
+						reqDtoObjects, resDtoObjects);
+				sucessMessage = WebAppConstants.LW_SUCESS_ADD;
+				resDtoObjects = masterServiceImpl.getSettingByType(flowData,
+						reqDtoObjects, resDtoObjects);
+				SettingsDto settingsDto = (SettingsDto) resDtoObjects
+						.get("settingDto");
+				if (settingsDto.getValue().equals("Y")) {
+					// send sms logic
+					masterServiceImpl.sendSmsToContractCompany(flowData,
+							reqDtoObjects, resDtoObjects);
+				}
+
 			}
-			
-			}
-			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
-			resDtoObjects=masterServiceImpl.getAllContractCompany(flowData, reqDtoObjects, resDtoObjects);
-			mv=new ModelAndView(viewName);	
-			mv.addObject(WebAppConstants.SUCESS_MESSAGE,sucessMessage);
+			mv.addObject(WebAppConstants.SUCESS_MESSAGE, sucessMessage);
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in CompanyController: saveContractCompany",
 					_be);

@@ -1403,9 +1403,9 @@ public class ServiceInvoker implements Serializable {
 			ContractCompDto company = (ContractCompDto) request.get("contractCompDto");
 			
 			String mobile = company.getContactNo1();
-			String message="";
+			String message="Yuor company registered in our company ";
 			String route="4";
-			String orgCode=company.getName();
+			String orgCode="1";//company.getName();
 			
 			ClientRequest clientRequest = new ClientRequest(url
 					+ WebAppConstants.URL_SEPERATOR + mobile

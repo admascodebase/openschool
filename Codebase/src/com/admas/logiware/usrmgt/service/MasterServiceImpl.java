@@ -812,13 +812,10 @@ public class MasterServiceImpl {
 		
 		logger.info("MasterServiceImpl saveCOntractCompany method start.");
 		LogiwareRespnse logiwareResponse = null;
-		String viewName = "";
 		try {
-			viewName = "getAllContractCompany";
 			logiwareResponse = doServiceCall(flowData, ServiceName.saveContractCompany,
 					reqDtoObjects);
 			resDtoObjects.put("userResponse", logiwareResponse);
-			resDtoObjects.put("viewName", viewName);
 		} catch (LogiwareBaseException b) {
 			throw b;
 		} catch (Exception e) {
@@ -830,8 +827,8 @@ public class MasterServiceImpl {
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
 		}
 		logger.info("MasterServiceImpl saveCOntractCompany method end. ");
+		resDtoObjects = getAllContractCompany(flowData, reqDtoObjects, resDtoObjects);
 		return resDtoObjects;
-
 	
 	}
 	
