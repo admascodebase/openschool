@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.controller.core.BaseController;
+import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.FlowData;
 import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
@@ -141,6 +142,35 @@ public class LoginController extends BaseController {
 		logger.info(LoginController.class.getName()
 				+ ".inside user login controller END");
 		
+		return mv;
+	}
+	
+	@RequestMapping(value = "/showUserProfile.htm", method = RequestMethod.GET)
+	public ModelAndView showUserProfile(HttpServletRequest request,
+			HttpServletResponse response) {
+
+		logger.info("LoginController: addEmployee Method Start.");
+		FlowData flowData = null;
+
+		super.handleRequestInternal(request, response);
+		if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
+			flowData = (FlowData) request.getSession().getAttribute(
+					WebAppConstants.FLOWDATA);
+		}
+		if (!flowData.isLoggedIn())
+			return super.loginPage(flowData, request);
+
+		ModelAndView mv = new ModelAndView("showUserProfile");
+		try {
+			mv.addObject("user", flowData.getSessionDataObject(WebAppConstants.USER));			
+		} catch (Exception e) {
+			logger.error(
+					"Exception In LoginController: showUserProfile Method--", e);
+			mv.addObject(WebAppConstants.ERROR_CODE,
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
+		}
+		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
+		mv.addObject("userName", flowData.getSessionData("userName"));	
 		return mv;
 	}
 	
