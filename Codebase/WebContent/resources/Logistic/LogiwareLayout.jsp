@@ -53,6 +53,10 @@ License: You must have a valid license purchased only from themeforest(the above
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/Logistic/assets/global/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/Logistic/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css"/>
 
+<link href="${pageContext.request.contextPath}/resources/Logistic/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css"/>
+<link href="${pageContext.request.contextPath}/resources/Logistic/assets/admin/pages/css/profile.css" rel="stylesheet" type="text/css"/>
+<link href="${pageContext.request.contextPath}/resources/Logistic/assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css"/>
+
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/Logistic/assets/global/plugins/jquery-validation/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/Logistic/assets/global/plugins/jquery-validation/js/additional-methods.min.js"></script>
@@ -397,7 +401,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						</a>
 						<ul class="dropdown-menu dropdown-menu-default">
 							<li>
-								<a href="extra_profile.html">
+								<a href="showUserProfile.htm">
 								<i class="icon-user"></i> My Profile </a>
 							</li>
 							<li>
@@ -418,10 +422,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							</li>
 							<li class="divider">
 							</li>
-							<li>
-								<a href="extra_lock.html">
-								<i class="icon-lock"></i> Lock Screen </a>
-							</li>
+							
 							<li>
 								<a href="logout.htm">
 								<i class="icon-key"></i> Log Out </a>
@@ -523,10 +524,16 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="${pageContext.request.contextPath}/resources/Logistic/assets/global/scripts/metronic.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/resources/Logistic/assets/admin/layout3/scripts/layout.js" type="text/javascript"></script>
 
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="${pageContext.request.contextPath}/resources/Logistic/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/resources/Logistic/assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+
 <script src="${pageContext.request.contextPath}/resources/Logistic/assets/admin/layout3/scripts/demo.js" type="text/javascript"></script>
 
 <script src="${pageContext.request.contextPath}/resources/Logistic/assets/admin/pages/scripts/form-samples.js"></script>
 <script src="${pageContext.request.contextPath}/resources/Logistic/assets/admin/pages/scripts/form-validation.js"></script>
+<script src="${pageContext.request.contextPath}/resources/Logistic/assets/admin/pages/scripts/profile.js" type="text/javascript"></script>
 
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
@@ -539,7 +546,7 @@ Layout.init(); // init current layout
    Tasks.initDashboardWidget(); // init tash dashboard widget
    FormSamples.init();
    FormValidation.init();
-  
+   Profile.init(); // init page demo
 });
 </script>
 <script>
