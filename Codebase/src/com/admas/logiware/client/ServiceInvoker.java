@@ -243,7 +243,7 @@ public class ServiceInvoker implements Serializable {
 		}
 		
 		case deleteTransportOwner: {
-			response = (K) saveTransportOwner(url, (Map) request);
+			response = (K) deleteTransportOwner(url, (Map) request);
 			break;
 		}
 		
@@ -1529,7 +1529,7 @@ public class ServiceInvoker implements Serializable {
 		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
 		try {
 
-			Integer transportOwnerId = (Integer) request.get("transportOwnerId");
+			Integer transportOwnerId = (Integer) request.get("TransportOwnerId");
 			ClientRequest clientRequest = new ClientRequest(url + WebAppConstants.URL_SEPERATOR + transportOwnerId);
 			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
 			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
