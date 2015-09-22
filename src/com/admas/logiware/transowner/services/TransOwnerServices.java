@@ -181,7 +181,7 @@ public class TransOwnerServices {
 	@GET
 	@Path("/deleteTransOwner/{transId}")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Response deleteTransOwner(@PathParam("employeeId")Integer transOwnerId) {
+	public Response deleteTransOwner(@PathParam("transId")Integer transOwnerId) {
 
 		logger.info(" Start  TransOwnerServices- > deleteTransOwner ");
 		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
