@@ -181,4 +181,10 @@
 			value="/resources/Logistic/jsp/masters/AddTransportOwner.jsp" />
 	</definition>
 	
+	<definition name="showUserProfile" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic -User Profile" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/user/profile.jsp" />
+	</definition>
+	
 </tiles-definitions>
