@@ -45,8 +45,20 @@ public enum LogiwareServiceErrors {
 	NO_BRANCH_FOUND("LW-MM-0006","No branch details found"),
 	
 	NO_CONTRACT_COMP_FOUND("LW-CC-0001", "No contract company found"),
+	
 	NO_SETTINGS_FOUND("LW-MM-0008","No Settings were found"),
-	NO_LOWERYOWNERS_FOUND("LW-LO-0001", "No Lowery Owners found");
+	
+	NO_LOWERYOWNERS_FOUND("LW-LO-0001", "No Lowery Owners found"),
+	
+	SMS_CONFIG_NOT_FOUND("LW-SM-0001", "Sms Config not found"),
+	
+	SMS_SENDING_FAIL("LW-SM-0002", "Sms sending fail"),
+	
+	SMS_DELIVERY_REPORT_FEATCHING_FAIL("LW-SM-0003", "Sms delivery report featching fail"),
+	
+	SMS_BALANCE_FEATCHING_FAIL("LW-SM-0004", "Sms balance featching fail"),
+	
+	SMS_SAVING_FAIL("LW-SM-0005", "Sms saving fail");
 	
 	
 	

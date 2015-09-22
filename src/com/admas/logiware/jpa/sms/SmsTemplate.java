@@ -20,6 +20,37 @@ public class SmsTemplate implements Serializable{
 	
 	private Integer id;
 	private String message;
+	
+	@Column(name="COMP_ID" ,nullable = false )
+	private Integer compId;
+	
+	@Column(name="TEMPLATE_TYPE")
+	private String templateType;
+	
+	/**
+	 * @return the templateType
+	 */
+	public String getTemplateType() {
+		return templateType;
+	}
+	/**
+	 * @param templateType the templateType to set
+	 */
+	public void setTemplateType(String templateType) {
+		this.templateType = templateType;
+	}
+	/**
+	 * @return the compId
+	 */
+	public Integer getCompId() {
+		return compId;
+	}
+	/**
+	 * @param compId the compId to set
+	 */
+	public void setCompId(Integer compId) {
+		this.compId = compId;
+	}
 	/**
 	 * @return the id
 	 */

@@ -14,8 +14,11 @@ import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.admas.logiware.dto.LogiwareRespnse;
 import com.admas.logiware.dto.sms.SmsDto;
-import com.admas.ngemp.sms.exception.ExceptionHandler;
+import com.admas.logiware.exception.LogiwareExceptionHandler;
+import com.admas.logiware.exception.LogiwareServiceErrors;
+import com.admas.logiware.util.LogiWareConstants;
 import com.admas.ngemp.sms.logic.ISmsLogic;
 
 @Path("/smsServices")
@@ -33,16 +36,26 @@ public class SmsService {
 			@PathParam("message") String message,
 			@PathParam("route") String route,@PathParam("orgCode") String orgCode) {
 		String result = "";
-		LOG.info(" start  SmsService- > sendSms");
-		try {			
+		LOG.info(" start  SmsService- > sendSms");		
+		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+		try {
 			result = smsLogicImpl.sendSms( mobile, message, route,orgCode);
-		} catch (ExceptionHandler e) {
-		  LOG.error("Error in SmsService- > sendSms",e);
+			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+			logiwareRespnse.setData(result);
+		} catch (LogiwareExceptionHandler e) {
+			logger.error("Error in MasterService- > sendSms", e);
+			logiwareRespnse.setCode(e.getErrorCode());
+			logiwareRespnse.setDescription(e.getDescription());
 		} catch (Exception e) {
-			 LOG.error("Error in SmsService- > sendSms",e);
+			logger.error("Error in MasterService- > sendSms", e);
+			logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+					.getErrorCode());
+			logiwareRespnse
+					.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+							.getErrorDescription());
 		}
-		LOG.info(" end  SmsService- > sendSms");
-		return Response.status(200).entity(result).build();
+		logger.info(" end  MasterService- > sendSms");
+		return Response.status(200).entity(logiwareRespnse).build();	
 
 	}
 
@@ -52,9 +65,25 @@ public class SmsService {
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Response sendSmsToMany(SmsDto smsDto) throws Exception {
 		
-		logger.info("#######GG######## json object"+smsDto);
-		Map<String,String> result =smsLogicImpl.sendSms(smsDto);
-		return Response.status(200).entity(result).build();
+		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+		try {
+			Map<String,String> result =smsLogicImpl.sendSms(smsDto);
+			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+			logiwareRespnse.setData(result);
+		} catch (LogiwareExceptionHandler e) {
+			logger.error("Error in MasterService- > sendSmsToMany", e);
+			logiwareRespnse.setCode(e.getErrorCode());
+			logiwareRespnse.setDescription(e.getDescription());
+		} catch (Exception e) {
+			logger.error("Error in MasterService- > sendSmsToMany", e);
+			logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+					.getErrorCode());
+			logiwareRespnse
+					.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+							.getErrorDescription());
+		}
+		logger.info(" end  MasterService- > sendSmsToMany ");
+		return Response.status(200).entity(logiwareRespnse).build();
 	}
 
 	
@@ -65,11 +94,25 @@ public class SmsService {
 	public Response getDeleveryReport(@PathParam("orgCode") String orgCode,
 			@PathParam("messageId") String messageId) throws Exception {
 		String result = "";
+		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
 		try {
 			result = smsLogicImpl.getDeleveryReport(orgCode, messageId);
+			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+			logiwareRespnse.setData(result);
+		} catch (LogiwareExceptionHandler e) {
+			logger.error("Error in MasterService- > getDeleveryReport", e);
+			logiwareRespnse.setCode(e.getErrorCode());
+			logiwareRespnse.setDescription(e.getDescription());
 		} catch (Exception e) {
+			logger.error("Error in MasterService- > getDeleveryReport", e);
+			logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+					.getErrorCode());
+			logiwareRespnse
+					.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+							.getErrorDescription());
 		}
-		return Response.status(200).entity(result).build();
+		logger.info(" end  MasterService- > getDeleveryReport");
+		return Response.status(200).entity(logiwareRespnse).build();
 	}
 
 	@GET
@@ -78,12 +121,25 @@ public class SmsService {
 	public Response getBalance(@PathParam("route") String route)
 			throws Exception {
 		String result = "";
+		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
 		try {
 			result = smsLogicImpl.getBalance(Integer.parseInt(route));
+			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+			logiwareRespnse.setData(result);
+		} catch (LogiwareExceptionHandler e) {
+			logger.error("Error in MasterService- > getBalance", e);
+			logiwareRespnse.setCode(e.getErrorCode());
+			logiwareRespnse.setDescription(e.getDescription());
 		} catch (Exception e) {
+			logger.error("Error in MasterService- > getBalance", e);
+			logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+					.getErrorCode());
+			logiwareRespnse
+					.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+							.getErrorDescription());
 		}
-
-		return Response.status(200).entity(result).build();
+		logger.info(" end  MasterService- > getBalance");
+		return Response.status(200).entity(logiwareRespnse).build();
 	}
 	
 	@POST
@@ -92,8 +148,25 @@ public class SmsService {
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Response sendSmsToManyAsync(SmsDto smsDto) throws Exception {
 		
-boolean result =smsLogicImpl.saveSms(smsDto);
-		return Response.status(200).entity(result).build();
+		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+		try {
+			boolean result =smsLogicImpl.saveSms(smsDto);
+			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+			logiwareRespnse.setData(result);
+		} catch (LogiwareExceptionHandler e) {
+			logger.error("Error in MasterService- > getBalance", e);
+			logiwareRespnse.setCode(e.getErrorCode());
+			logiwareRespnse.setDescription(e.getDescription());
+		} catch (Exception e) {
+			logger.error("Error in MasterService- > getBalance", e);
+			logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+					.getErrorCode());
+			logiwareRespnse
+					.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+							.getErrorDescription());
+		}
+		logger.info(" end  MasterService- > getBalance");
+		return Response.status(200).entity(logiwareRespnse).build();
 	}
 	
 	

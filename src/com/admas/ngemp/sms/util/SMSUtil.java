@@ -6,13 +6,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import com.admas.logiware.exception.LogiwareExceptionHandler;
+import com.admas.logiware.exception.LogiwareServiceErrors;
 import com.admas.logiware.jpa.sms.SmsConfig;
 
 public class SMSUtil {
 
 	
 	public static String sendSms(SmsConfig smsConfig, String mobileNo,
-			String message, String route) {
+			String message, String route) throws LogiwareExceptionHandler{
 		String result = "";
 		try {
 			StringBuilder sb = new StringBuilder(smsConfig.getUrl()
@@ -29,7 +31,6 @@ public class SMSUtil {
 			sb.append(mobileNo);
 			sb.append("&message=");
 			sb.append(URLEncoder.encode(message, "UTF-8"));
-
 			URL obj = new URL(sb.toString().replace(" ", ""));
 			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
@@ -44,9 +45,9 @@ public class SMSUtil {
 			}
 			in.close();
 			result = response.toString();
-			System.out.println(response.toString());
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.SMS_SENDING_FAIL);
 		}
 
 		return result;
@@ -127,10 +128,8 @@ public class SMSUtil {
 		return true;
 	}
 */
-	public static String deleveryReport(SmsConfig smsConfig, String messageId) {
-
+	public static String deleveryReport(SmsConfig smsConfig, String messageId) throws LogiwareExceptionHandler{
 		StringBuffer response = new StringBuffer();
-
 		try {
 			StringBuilder sb = new StringBuilder(smsConfig.getUrl()
 					+ "dlr.php?");
@@ -139,33 +138,25 @@ public class SMSUtil {
 			sb.append("&pin=");
 			sb.append(smsConfig.getPin());
 			sb.append("&msgid=" + messageId);
-
 			URL obj = new URL(sb.toString().replace(" ", ""));
 			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-
 			con.setRequestMethod("GET");
-			int responseCode = con.getResponseCode();
-			System.out.println("\nSending 'GET' request to URL : "
-					+ sb.toString());
-			System.out.println("Response Code : " + responseCode);
+			con.getResponseCode();
 			BufferedReader in = new BufferedReader(new InputStreamReader(
 					con.getInputStream()));
 			String inputLine;
-
 			while ((inputLine = in.readLine()) != null) {
 				response.append(inputLine);
 			}
 			in.close();
-			System.out.println(response.toString());
 		} catch (Exception e) {
-
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.SMS_DELIVERY_REPORT_FEATCHING_FAIL);
 		}
-
 		return response.toString();
 	}
 
-	public static String getBalance(SmsConfig smsConfig, String route) {
-
+	public static String getBalance(SmsConfig smsConfig, String route) throws LogiwareExceptionHandler{
 		StringBuffer response = new StringBuffer();
 		try {
 			StringBuilder sb = new StringBuilder(smsConfig.getUrl()
@@ -175,29 +166,21 @@ public class SMSUtil {
 			sb.append("&pin=");
 			sb.append(smsConfig.getPin());
 			sb.append("&route=" + route);
-
 			URL obj = new URL(sb.toString().replace(" ", ""));
 			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-
 			con.setRequestMethod("GET");
-			int responseCode = con.getResponseCode();
-			System.out.println("\nSending 'GET' request to URL : "
-					+ sb.toString());
-			System.out.println("Response Code : " + responseCode);
-
+			con.getResponseCode();
 			BufferedReader in = new BufferedReader(new InputStreamReader(
 					con.getInputStream()));
 			String inputLine;
-
 			while ((inputLine = in.readLine()) != null) {
 				response.append(inputLine);
 			}
 			in.close();
-			System.out.println(response.toString());
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.SMS_BALANCE_FEATCHING_FAIL);
 		}
-
 		return response.toString();
 	}
 	

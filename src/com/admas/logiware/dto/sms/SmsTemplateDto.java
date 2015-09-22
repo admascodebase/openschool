@@ -11,6 +11,9 @@ public class SmsTemplateDto implements Serializable{
 	
 	private Integer id;
 	private String message;
+	private Integer compId;
+	private String templateType;
+	
 	/**
 	 * @return the id
 	 */
@@ -34,6 +37,30 @@ public class SmsTemplateDto implements Serializable{
 	 */
 	public void setMessage(String message) {
 		this.message = message;
+	}
+	/**
+	 * @return the compId
+	 */
+	public Integer getCompId() {
+		return compId;
+	}
+	/**
+	 * @param compId the compId to set
+	 */
+	public void setCompId(Integer compId) {
+		this.compId = compId;
+	}
+	/**
+	 * @return the templateType
+	 */
+	public String getTemplateType() {
+		return templateType;
+	}
+	/**
+	 * @param templateType the templateType to set
+	 */
+	public void setTemplateType(String templateType) {
+		this.templateType = templateType;
 	}
 	
 	
