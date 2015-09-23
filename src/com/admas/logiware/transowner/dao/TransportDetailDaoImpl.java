@@ -18,6 +18,8 @@ import org.hibernate.HibernateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.admas.logiware.dto.TransportDetailsDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
@@ -49,6 +51,7 @@ public class TransportDetailDaoImpl implements TransportDetailDao {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Boolean addTransportDetail(TransportDetailsDto transportDetailsDto)
 			throws LogiwareExceptionHandler {
 		Boolean result = false;
@@ -158,6 +161,7 @@ public class TransportDetailDaoImpl implements TransportDetailDao {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Boolean editTransportDetail(TransportDetailsDto transportDetailsDto)
 			throws LogiwareExceptionHandler {
 			Boolean result = false;
@@ -184,6 +188,7 @@ public class TransportDetailDaoImpl implements TransportDetailDao {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Boolean deleteTransportDetail(Integer transportDetailsId) throws LogiwareExceptionHandler {
 		Boolean result = false;
 		try {
