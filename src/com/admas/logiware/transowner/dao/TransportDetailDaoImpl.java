@@ -55,15 +55,76 @@ public class TransportDetailDaoImpl implements TransportDetailDao {
 	@Override
 	public Boolean addTransportDetail(TransportDetailsDto transportDetailsDto)
 			throws LogiwareExceptionHandler {
-		// TODO Auto-generated method stub
-		return null;
+		Boolean result = false;
+		try {
+			TransportDetails transportDetails = transportDetailsDto._toJpa();
+			entityManager.persist(transportDetails);
+			entityManager.flush();
+			if (transportDetails.getId() != null || transportDetails.getId() != 0) {
+				result = true;
+			}
+			return result;
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in TransportDetailDaoImpl - > addTransportDetail",
+					he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch (Exception e) {
+			logger.error(
+					"Exception Error in TransportDetailDaoImpl - > addTransportDetail ",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			entityManager.close();
+		}
 	}
 
 	@Override
 	public List<TransportDetails> getAllTransportDetail(Integer transOwnerId)
 			throws LogiwareExceptionHandler {
-		// TODO Auto-generated method stub
-		return null;
+		List<TransportDetails> transportDetails = null;
+		CriteriaBuilder criteriaBuilder = null;
+		try {
+
+			criteriaBuilder = entityManager.getCriteriaBuilder();
+			CriteriaQuery<TransportDetails> criteriaQuery = criteriaBuilder
+					.createQuery(TransportDetails.class);
+			Root<TransportDetails> transportDetailJpa = criteriaQuery.from(TransportDetails.class);
+			Predicate notDeleted=criteriaBuilder.equal(transportDetailJpa.get("delFlag"), 'N');
+			Predicate transOwner=criteriaBuilder.equal(transportDetailJpa.get("loweryNo"),transOwnerId);
+			criteriaQuery.select(transportDetailJpa);
+			criteriaQuery.where(notDeleted);
+			criteriaQuery.where(transOwner);
+			TypedQuery<TransportDetails> typedQuery = entityManager
+					.createQuery(criteriaQuery);
+			transportDetails = typedQuery.getResultList();
+
+			if (transportDetails != null && transportDetails.size() != 0) {
+				return transportDetails;
+			} else {
+				throw new LogiwareExceptionHandler(
+						LogiwareServiceErrors.NO_LOWERY_FOUND);
+			}
+
+		} catch (LogiwareExceptionHandler ex) {
+			throw ex;
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in TransOwnerDaoImpl - > getAllTransOwner",
+					he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch (Exception e) {
+			logger.error(
+					"Exception Error in TransOwnerDaoImpl - > getAllBranch ",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			criteriaBuilder = null;
+		}
 	}
 
 	@Override
@@ -86,37 +147,8 @@ public class TransportDetailDaoImpl implements TransportDetailDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	/*@Override
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-	public Boolean addTransOwner(LoweryOwnerDto loweryOwnerDto)
-			throws LogiwareExceptionHandler {
-		Boolean result = false;
-		try {
-			LoweryOwner loweryOwner = loweryOwnerDto._toJpa();
-			entityManager.persist(loweryOwner);
-			entityManager.flush();
-			if (loweryOwner.getId() != null || loweryOwner.getId() != 0) {
-				result = true;
-			}
-			return result;
-		} catch (HibernateException he) {
-			logger.error(
-					"HibernateException Error in TransOwnerDaoImpl - > addTransOwner",
-					he);
-			throw new LogiwareExceptionHandler(
-					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
-		} catch (Exception e) {
-			logger.error(
-					"Exception Error in TransOwnerDaoImpl - > addTransOwner ",
-					e);
-			throw new LogiwareExceptionHandler(
-					LogiwareServiceErrors.GENERIC_EXCEPTION);
-		} finally {
-			entityManager.close();
-		}
-	}
-
+	
+	/*
 	@Override
 	public List<LoweryOwner> getAllTransOwner() throws LogiwareExceptionHandler {
 		List<LoweryOwner> lLoweryOwners = null;
