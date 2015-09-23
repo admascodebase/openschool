@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 import com.admas.logiware.dto.TransportDetailsDto;
 
 @Entity
-@Table(name="transport_details")
+@Table(name="owner_transport_details")
 public class TransportDetails implements Serializable{
 
 	/**
@@ -27,14 +27,18 @@ public class TransportDetails implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	 
-	@Column(name="OWN_ID" ,nullable = false )
+	@Column(name="LOWERY_OWNER_ID" ,nullable = false )
 	private Integer ownId;
 	
 	@Column(name="LOWERY_NO" ,nullable = false )
 	private Integer loweryNo;
 	
-	@Column(name="TRAN_TYPE_DTL_ID" ,nullable = false )
+	@Column(name="TRANSPORT_TYPE_DTL_ID" ,nullable = false )
 	private Integer tranTypeDtlId;
+	
+	
+	@Column(name="CREATED_BY")
+	private Integer createdBy;
 	
 	@Column(name="UPDATED_BY")
 	private Integer updatedBy;
@@ -47,7 +51,7 @@ public class TransportDetails implements Serializable{
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedOn;
 	
-	@Column(name="DEL_FLG" ,nullable = false) 
+	@Column(name="DEL_FLAG" ,nullable = false) 
 	private Character delFlag;
 
 	/**

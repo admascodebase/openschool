@@ -62,7 +62,6 @@ public class TransportDetailServices {
 		logger.info(" Start  TransportDetailServices- > getTransportDetail ");
 		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
 		try {
-
 			transportDetailsDto = transportDetailLogicImpl.getAllTransportDetail(transOwnerId);
 			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
 			logiwareRespnse.setData(transportDetailsDto);
