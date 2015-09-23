@@ -67,7 +67,7 @@
 
 	<!-- END Beans required for Usr management services -->
 	
-	<!-- Beans required for Masters services START -->
+	<!-- Beans required for contract company services START -->
 
 	<bean id="contractCompServices" class="com.admas.logiware.services.contractcomp.ContractCompServices">
 		<property name="contractCompLogic" ref="contractCompLogic"></property>
@@ -81,6 +81,21 @@
 	<bean id="contractCompDao" class="com.admas.logiware.dao.contractcomp.ContractCompDaoImpl" />
 
 	<!-- Beans required for contract company END -->
+	
+	<!-- Beans required for contract company route services START -->
+
+	<bean id="compRouteServices" class="com.admas.logiware.services.contractcomp.CompRouteServices">
+		<property name="compRouteLogicImpl" ref="compRouteLogicImpl"></property>
+	</bean>
+
+	<bean id="compRouteLogicImpl" class="com.admas.logiware.logic.contractcomp.CompRouteLogicImpl">
+		<property name="compRouteDaoImpl" ref="compRouteDaoImpl"></property>
+	</bean>
+
+
+	<bean id="compRouteDaoImpl" class="com.admas.logiware.dao.contractcomp.ComRouteDaoImpl" />
+
+	<!-- Beans required for contract company route services END -->
 	
 	<!-- Beans required for TransportOwner services START -->
 
