@@ -22,17 +22,19 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.admas.logiware.dto.LoweryOwnerDto;
+import com.admas.logiware.dto.TransportDetailsDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
 import com.admas.logiware.exception.LogiwareServiceErrors;
 import com.admas.logiware.jpa.LoweryOwner;
+import com.admas.logiware.jpa.TransportDetails;
 
 /**
- * @author Raj
+ * @author 
  *
  */
 
 @Repository
-public class TransportDetailDaoImpl implements TransOwnerDao {
+public class TransportDetailDaoImpl implements TransportDetailDao {
 
 	private static EntityManager entityManager;
 	Logger logger = LoggerFactory.getLogger(TransportDetailDaoImpl.class);
@@ -51,6 +53,41 @@ public class TransportDetailDaoImpl implements TransOwnerDao {
 	}
 
 	@Override
+	public Boolean addTransportDetail(TransportDetailsDto transportDetailsDto)
+			throws LogiwareExceptionHandler {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<TransportDetails> getAllTransportDetail(Integer transOwnerId)
+			throws LogiwareExceptionHandler {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TransportDetails getTransportDetailById(Integer transOwnerId,
+			Integer transportDetailsId) throws LogiwareExceptionHandler {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean editTransportDetail(TransportDetailsDto transportDetailsDto)
+			throws LogiwareExceptionHandler {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean deleteTransportDetail(Integer transOwnerId,
+			Integer transportDetailsId) throws LogiwareExceptionHandler {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Boolean addTransOwner(LoweryOwnerDto loweryOwnerDto)
 			throws LogiwareExceptionHandler {
@@ -212,6 +249,6 @@ public class TransportDetailDaoImpl implements TransOwnerDao {
 			entityManager.close();
 		}
 	}
-	
+	*/
 
 }

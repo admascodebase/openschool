@@ -5,9 +5,9 @@ package com.admas.logiware.transowner.dao;
 
 import java.util.List;
 
-import com.admas.logiware.dto.LoweryOwnerDto;
+import com.admas.logiware.dto.TransportDetailsDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
-import com.admas.logiware.jpa.LoweryOwner;
+import com.admas.logiware.jpa.TransportDetails;
 
 /**
  * @author Raj
@@ -15,13 +15,13 @@ import com.admas.logiware.jpa.LoweryOwner;
  */
 public interface TransportDetailDao {
 	
-	public Boolean addTransOwner(LoweryOwnerDto loweryOwnerDto)throws LogiwareExceptionHandler;
+	public Boolean addTransportDetail(TransportDetailsDto transportDetailsDto)throws LogiwareExceptionHandler;
 
-	public List<LoweryOwner> getAllTransOwner()throws LogiwareExceptionHandler;
+	public List<TransportDetails> getAllTransportDetail(Integer transOwnerId)throws LogiwareExceptionHandler;
 
-	public LoweryOwner getTransOwnerById(Integer loweryOwnerId)throws LogiwareExceptionHandler;
+	public TransportDetails getTransportDetailById(Integer transOwnerId , Integer transportDetailsId)throws LogiwareExceptionHandler;
 		
-	public Boolean editTransOwner(LoweryOwnerDto loweryOwnerDto)throws LogiwareExceptionHandler;
+	public Boolean editTransportDetail(TransportDetailsDto  transportDetailsDto)throws LogiwareExceptionHandler;
 
-	public Boolean deleteTransOwner(Integer loweryOwnerId)throws LogiwareExceptionHandler;
+	public Boolean deleteTransportDetail(Integer transOwnerId ,Integer  transportDetailsId)throws LogiwareExceptionHandler;
 }
