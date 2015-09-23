@@ -1,6 +1,7 @@
 package com.admas.logiware.usrmgt.service;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -87,6 +88,32 @@ public class UserManagementServiceImpl {
 		}
 		logger.info("UserManagementServiceImpl isValidUser method end. ");
 		return resDtoObjects;
+	}
+
+	public Map<String, Object> getSmsBalance(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+		logger.info("UserManagementServiceImpl getSmsBalance method start. ");
+		LogiwareRespnse logiwareResponse = null;
+		String balance="";
+		try {
+			logiwareResponse = doServiceCall(flowData, ServiceName.getSmsBalance, reqDtoObjects);
+			balance = (String)logiwareResponse.getData();
+			resDtoObjects.put("balance", balance);
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error(
+					"Exception In UserManagementServiceImpl: getSmsBalance method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("UserManagementServiceImpl getSmsBalance method end. ");
+		return resDtoObjects;
+		
 	}
 
 }

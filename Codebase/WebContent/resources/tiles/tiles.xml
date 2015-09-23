@@ -186,5 +186,17 @@
 		<put-attribute name="body"
 			value="/resources/Logistic/jsp/user/profile.jsp" />
 	</definition>
+
+	<definition name="getAllTransportDetails" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic -Transport Details" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/masters/TransportDetails.jsp" />
+	</definition>
+
+	<definition name="showAddTransportDetails" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic -Transport Details" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/masters/AddTransportDetails.jsp" />
+	</definition>
 	
 </tiles-definitions>

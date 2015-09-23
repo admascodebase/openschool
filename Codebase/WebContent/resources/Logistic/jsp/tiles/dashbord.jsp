@@ -29,6 +29,34 @@
 			<!-- BEGIN PAGE CONTENT INNER -->
 			<div class="row margin-top-10">
 				<div class="col-md-6 col-sm-12">
+				<!-- BEGIN PORTLET-->
+					<div class="portlet light ">
+						<div class="portlet-title">
+							<div class="caption caption-md">
+								<i class="icon-bar-chart theme-font hide"></i>
+								<span class="caption-subject theme-font bold uppercase">Sms Balance</span>
+								<span class="caption-helper hide">weekly stats...</span>
+							</div>
+							<!-- <div class="actions">
+								<div class="btn-group btn-group-devided" data-toggle="buttons">
+									<label class="btn btn-transparent grey-salsa btn-circle btn-sm active">
+									<input type="radio" name="options" class="toggle" id="option1">Today</label>
+									<label class="btn btn-transparent grey-salsa btn-circle btn-sm">
+									<input type="radio" name="options" class="toggle" id="option2">Week</label>
+									<label class="btn btn-transparent grey-salsa btn-circle btn-sm">
+									<input type="radio" name="options" class="toggle" id="option2">Month</label>
+								</div>
+							</div> -->
+						</div>
+						<div class="portlet-body">
+							<div>${balance}</div>
+						</div>
+					</div>
+					<!-- END PORTLET-->
+				</div>
+				</div>
+			<div class="row margin-top-10">
+				<div class="col-md-6 col-sm-12">
 					<!-- BEGIN PORTLET-->
 					<div class="portlet light ">
 						<div class="portlet-title">

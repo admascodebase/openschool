@@ -200,7 +200,7 @@
 													Agent Registration </a>
 												</li> 
 												<li>
-													<a href="./getAllContractCompany.htm" class="iconify">
+													<a href="./getAllTransportDetails.htm" class="iconify">
 													<i class="icon-home"></i>
 													Transport Registration </a>
 												</li>

@@ -25,6 +25,7 @@ import com.admas.logiware.dto.FlowData;
 import com.admas.logiware.dto.LogiwareRespnse;
 import com.admas.logiware.dto.LoweryOwnerDto;
 import com.admas.logiware.dto.StateDto;
+import com.admas.logiware.dto.TransportDetailsDto;
 import com.admas.logiware.dto.TransportTypeDtlDto;
 import com.admas.logiware.dto.TransportTypeDto;
 import com.admas.logiware.exception.LogiwareBaseException;
@@ -1332,6 +1333,145 @@ public class MasterServiceImpl {
 		return resDtoObjects;
 	}
 
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> getAllTransportDetails(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+		logger.info("MasterServiceImpl getAllTransportDetails method start.");
+		List<TransportDetailsDto> lTransportDetails = new ArrayList<TransportDetailsDto>();
+		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+		try {
+			 logiwareRespnse = doServiceCall(flowData, ServiceName.getAllTransportDetails, reqDtoObjects);
+			 lTransportDetails =(List<TransportDetailsDto>) logiwareRespnse.getData();			 
+			 resDtoObjects.put("lTransportDetails", lTransportDetails);
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In MasterServiceImpl getAllTransportDetails method end.",e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode(),
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorDescription());
+		}
+		logger.info("MasterServiceImpl getAllTransportDetails method End. ");
+		return resDtoObjects;
+	}
+
+	public Map<String, Object> saveEditTransportDetails(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
 	
+		logger.info("MasterServiceImpl saveEditTransportDetails method start.");
+		LogiwareRespnse logiwareResponse = null;
+		try {
+			logiwareResponse = doServiceCall(flowData,
+					ServiceName.saveEditTransportDetails, reqDtoObjects);
+			resDtoObjects.put("userResponse", logiwareResponse);
+		} catch (LogiwareBaseException b) {
+			resDtoObjects = getAllEmployee(flowData,
+					reqDtoObjects, resDtoObjects);
+			throw b;
+		} catch (Exception e) {
+			logger.error(
+					"Exception In MasterServiceImpl: saveEditTransportDetails method end.",
+					e);
+			resDtoObjects = getAllTransportDetails(flowData,
+					reqDtoObjects, resDtoObjects);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		resDtoObjects = getAllTransportDetails(flowData,
+				reqDtoObjects, resDtoObjects);
+		logger.info("MasterServiceImpl saveEditTransportDetails method end. ");
+		return resDtoObjects;
+	}
+
+	public Map<String, Object> saveTransportDetails(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+		logger.info("MasterServiceImpl saveTransportDetails method start.");
+		LogiwareRespnse logiwareResponse = null;
+		String viewName = "";
+		try {
+			viewName = "getAllTransportDetails";
+			logiwareResponse = doServiceCall(flowData,
+					ServiceName.saveTransportDetails, reqDtoObjects);
+			resDtoObjects.put("userResponse", logiwareResponse);
+			resDtoObjects.put("viewName", viewName);
+		} catch (LogiwareBaseException b) {
+			resDtoObjects = getAllTransportDetails(flowData,
+					reqDtoObjects, resDtoObjects);
+			throw b;
+		} catch (Exception e) {			
+			logger.error(
+					"Exception In MasterServiceImpl: saveTransportDetails method end.",
+					e);
+			resDtoObjects = getAllTransportDetails(flowData,
+					reqDtoObjects, resDtoObjects);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		resDtoObjects = getAllTransportDetails(flowData,
+				reqDtoObjects, resDtoObjects);
+		logger.info("MasterServiceImpl saveTransportDetails method end. ");
+		return resDtoObjects;
+	}
+
+	public Map<String, Object> getTransportDetailsById(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+		logger.info("MasterServiceImpl getTransportDetailsById method start.");
+		LogiwareRespnse logiwareResponse = null;
+		String viewName = "";
+		try {
+			viewName = "showAddTransportDetails";
+			logiwareResponse = doServiceCall(flowData,
+					ServiceName.getTransportDetailsById, reqDtoObjects);
+			resDtoObjects.put("viewName", viewName);
+			resDtoObjects.put("TransportDetailsDto", logiwareResponse.getEmployeeDto());
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(
+					"Exception In MasterServiceImpl: getTransportDetailsById method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("MasterServiceImpl getTransportDetailsById method end. ");
+		return resDtoObjects;
+	
+	}
+
+	public Map<String, Object> deleteTransportDetails(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+		logger.info("MasterServiceImpl deleteTransportDetails method start.");
+		LogiwareRespnse logiwareResponse = null;
+		Boolean result=false;
+		try {
+			logiwareResponse = doServiceCall(flowData,	ServiceName.deleteTransportDetails, reqDtoObjects);
+			result = (Boolean) logiwareResponse.getData();
+			resDtoObjects.put("userResponse", logiwareResponse);
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error(
+					"Exception In MasterServiceImpl: deleteTransportDetails method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("MasterServiceImpl deleteTransportDetails method end. ");
+		return resDtoObjects;
+	}
 	
 }

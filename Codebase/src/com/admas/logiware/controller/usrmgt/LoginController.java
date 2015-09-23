@@ -85,7 +85,7 @@ public class LoginController extends BaseController {
 		ModelAndView mv = new ModelAndView();
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
-		String userName = null;
+		String userName = null,balance = "";
 		try {
 			userName = request.getParameter(WebAppConstants.USERNAME);
 			String password = request.getParameter(WebAppConstants.PASSWORD);
@@ -93,19 +93,20 @@ public class LoginController extends BaseController {
 			reqDtoObjects.put(WebAppConstants.PASSWORD, password);			
 			resDtoObjects =userManagementServiceImpl.isValidUser(flowData, reqDtoObjects, resDtoObjects);
 			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
+			resDtoObjects = userManagementServiceImpl.getSmsBalance(flowData, reqDtoObjects, resDtoObjects);
+			balance = (String) resDtoObjects.get("balance");
 			mv=new ModelAndView(viewName);
 			flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
-			mv.addObject(WebAppConstants.USERNAME, flowData.getSessionData(WebAppConstants.USERNAME));	
+			mv.addObject(WebAppConstants.USERNAME, flowData.getSessionData(WebAppConstants.USERNAME));
+			mv.addObject("balance", balance);
 			return mv;
 
 		} catch (LogiwareBaseException we) {
-			we.printStackTrace();
 			logger.error("Exception in LoginController:validateLogin", we);
 			mv.addObject(WebAppConstants.ERROR_CODE, we.getErrorCode());
 			mv.setViewName("login");
 			
 		} catch (Exception e) {
-			e.printStackTrace();
 			logger.error("Exception in LoginController:validateLogin", e);
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode());
