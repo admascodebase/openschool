@@ -96,6 +96,21 @@
 	<bean id="transOwnerDao" class="com.admas.logiware.transowner.dao.TransOwnerDaoImpl" />
 
 	<!-- Beans required for TransportOwner END -->
+	
+		<!-- Beans required for TransportDetail services START -->
+
+	<bean id="transportDetailServices" class="com.admas.logiware.transowner.services.TransportDetailServices">
+		<property name="transportDetailLogicImpl" ref="transportDetailLogicImpl"></property>
+	</bean>
+
+	<bean id="transportDetailLogicImpl" class="com.admas.logiware.transowner.logic.TransportDetailLogicImpl">
+		<property name="transportDetailDao" ref="transportDetailDao"></property>
+	</bean>
+
+
+	<bean id="transportDetailDao" class="com.admas.logiware.transowner.dao.TransportDetailDaoImpl" />
+
+	<!-- Beans required for TransportDetail END -->
 
 	<!-- Beans required for SMS START -->
 	

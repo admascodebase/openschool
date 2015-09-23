@@ -18,14 +18,10 @@ import org.hibernate.HibernateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.admas.logiware.dto.LoweryOwnerDto;
 import com.admas.logiware.dto.TransportDetailsDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
 import com.admas.logiware.exception.LogiwareServiceErrors;
-import com.admas.logiware.jpa.LoweryOwner;
 import com.admas.logiware.jpa.TransportDetails;
 
 /**
