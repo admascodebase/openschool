@@ -19,7 +19,6 @@ import com.admas.logiware.dto.LogiwareRespnse;
 import com.admas.logiware.dto.LoweryOwnerDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
 import com.admas.logiware.exception.LogiwareServiceErrors;
-import com.admas.logiware.services.masters.MasterServices;
 import com.admas.logiware.transowner.logic.TransOwnerLogic;
 import com.admas.logiware.util.LogiWareConstants;
 
@@ -32,7 +31,7 @@ public class TransOwnerServices {
 	
 	
 	static final org.slf4j.Logger logger = org.slf4j.LoggerFactory
-			.getLogger(MasterServices.class);
+			.getLogger(TransOwnerServices.class);
 
 	private static TransOwnerLogic transOwnerLogicImpl;	
 	
