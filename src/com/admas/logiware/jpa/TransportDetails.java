@@ -173,7 +173,7 @@ public class TransportDetails implements Serializable{
 				+ ", updatedOn=" + updatedOn + ", delFlag=" + delFlag + "]";
 	}
 	
-	public TransportDetailsDto to_Dto(){
+	public TransportDetailsDto _toDto(){
 		TransportDetailsDto transportDetailsDto =  new TransportDetailsDto();
 		transportDetailsDto.setCreatedOn(this.createdOn);
 		transportDetailsDto.setDelFlag(this.delFlag);

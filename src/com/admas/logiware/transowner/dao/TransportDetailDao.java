@@ -19,9 +19,9 @@ public interface TransportDetailDao {
 
 	public List<TransportDetails> getAllTransportDetail(Integer transOwnerId)throws LogiwareExceptionHandler;
 
-	public TransportDetails getTransportDetailById(Integer transOwnerId , Integer transportDetailsId)throws LogiwareExceptionHandler;
+	public TransportDetails getTransportDetailById(Integer transportDetailsId)throws LogiwareExceptionHandler;
 		
 	public Boolean editTransportDetail(TransportDetailsDto  transportDetailsDto)throws LogiwareExceptionHandler;
 
-	public Boolean deleteTransportDetail(Integer transOwnerId ,Integer  transportDetailsId)throws LogiwareExceptionHandler;
+	public Boolean deleteTransportDetail(Integer  transportDetailsId)throws LogiwareExceptionHandler;
 }

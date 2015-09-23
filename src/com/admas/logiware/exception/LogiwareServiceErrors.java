@@ -50,6 +50,8 @@ public enum LogiwareServiceErrors {
 	
 	NO_LOWERYOWNERS_FOUND("LW-LO-0001", "No Lowery Owners found"),
 	
+	NO_LOWERY_FOUND("LW-TD-0001", "No Transport Details found"),
+	
 	SMS_CONFIG_NOT_FOUND("LW-SM-0001", "Sms Config not found"),
 	
 	SMS_SENDING_FAIL("LW-SM-0002", "Sms sending fail"),

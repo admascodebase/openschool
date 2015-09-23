@@ -144,7 +144,7 @@ public class TransportDetailsDto implements Serializable{
 				+ ", updatedOn=" + updatedOn + ", delFlag=" + delFlag + "]";
 	}
 	
-	public TransportDetails to_Jpa(){
+	public TransportDetails _toJpa(){
 		TransportDetails transportDetails =  new TransportDetails();
 		transportDetails.setCreatedOn(this.createdOn);
 		transportDetails.setDelFlag(this.delFlag);

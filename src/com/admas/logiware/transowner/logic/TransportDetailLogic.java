@@ -7,13 +7,13 @@ import com.admas.logiware.exception.LogiwareExceptionHandler;
 
 public interface TransportDetailLogic {
 
-	public List<TransportDetailsDto> getAllTransportDetail()throws LogiwareExceptionHandler;
+	public List<TransportDetailsDto> getAllTransportDetail(Integer transportDetailsId)throws LogiwareExceptionHandler;
 
-	public TransportDetailsDto getTransportDetailById(Integer transOwnerId)throws LogiwareExceptionHandler;
+	public TransportDetailsDto getTransportDetailById(Integer transportDetailsId)throws LogiwareExceptionHandler;
 
-	public Boolean addTransportDetail(TransportDetailsDto transOwnerDto)throws LogiwareExceptionHandler;
+	public Boolean addTransportDetail(TransportDetailsDto transportDetailsDto)throws LogiwareExceptionHandler;
 
-	public Boolean editTransportDetail(TransportDetailsDto transOwnerDto)throws LogiwareExceptionHandler;
+	public Boolean editTransportDetail(TransportDetailsDto transportDetailsDto)throws LogiwareExceptionHandler;
 
-	public Boolean deleteTransportDetail(Integer transOwnerId)throws LogiwareExceptionHandler;
+	public Boolean deleteTransportDetail(Integer transportDetailsId)throws LogiwareExceptionHandler;
 }
