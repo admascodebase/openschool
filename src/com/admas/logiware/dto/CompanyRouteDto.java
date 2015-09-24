@@ -3,7 +3,6 @@ package com.admas.logiware.dto;
 import java.io.Serializable;
 
 import com.admas.logiware.jpa.CompanyRoute;
-import com.admas.logiware.jpa.State;
 
 public class CompanyRouteDto implements Serializable{
 

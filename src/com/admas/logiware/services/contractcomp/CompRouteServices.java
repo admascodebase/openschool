@@ -32,6 +32,21 @@ public class CompRouteServices {
 
 	private static CompRouteLogic compRouteLogicImpl;
 
+	/**
+	 * @return the compRouteLogicImpl
+	 */
+	public static CompRouteLogic getCompRouteLogicImpl() {
+		return compRouteLogicImpl;
+	}
+
+
+	/**
+	 * @param compRouteLogicImpl the compRouteLogicImpl to set
+	 */
+	public static void setCompRouteLogicImpl(CompRouteLogic compRouteLogicImpl) {
+		CompRouteServices.compRouteLogicImpl = compRouteLogicImpl;
+	}
+
 
 	/*
 	 * Employee Services
