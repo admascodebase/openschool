@@ -203,6 +203,5 @@ public class LogiwareRespnse implements Serializable{
 	public void setPaymentExceptionDto(PaymentExceptionDto paymentExceptionDto) {
 		this.paymentExceptionDto = paymentExceptionDto;
 	}
-*/	
 	
 }
