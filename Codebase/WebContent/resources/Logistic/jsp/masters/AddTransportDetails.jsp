@@ -205,7 +205,7 @@
 									</div> -->
 									<div class="portlet-body form">
 										<!-- BEGIN FORM-->
-										<form:form action="saveCompany.htm" modelAttribute="TransportDetailsDto" class="form-horizontal">
+										<form:form action="saveTransportDetails.htm" modelAttribute="TransportDetailsDto" class="form-horizontal">
 										<form:hidden path="id" />
 										<form:hidden path="delFlag" />
 										<%-- <form:hidden path="compId" /> --%>

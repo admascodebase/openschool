@@ -1622,7 +1622,7 @@ public class ServiceInvoker implements Serializable {
 		logger.info("ServiceInvoker getAllTransportDetails method start. ");
 		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
 		try {
-			Integer ownerId = (Integer) request.get("ownerId");
+			Integer ownerId = 1;
 			ClientRequest clientRequest = new ClientRequest(url + WebAppConstants.URL_SEPERATOR + ownerId);
 			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
 			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
@@ -1679,7 +1679,7 @@ public class ServiceInvoker implements Serializable {
 		try {
 			ClientRequest clientRequest = new ClientRequest(url);
 			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
-			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("employee"));
+			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("transportDetailsDto"));
 			ClientResponse<LogiwareRespnse> response = clientRequest.post(LogiwareRespnse.class);
 			if (response.getStatus() != 200) {
 				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");

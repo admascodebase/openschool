@@ -154,8 +154,8 @@ public class TransportDetailsController extends BaseController implements Serial
 					
 		@SuppressWarnings("unchecked")
 		List<TransportDetailsDto> lTransportDetailsDto = (List<TransportDetailsDto>) resDtoObjects
-				.get("lTransportDetailsDto");		
-		mv.addObject("lTransportDetailsDto", lTransportDetailsDto);		
+				.get("lTransportDetails");		
+		mv.addObject("lTransportDetails", lTransportDetailsDto);		
 		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
 		mv.addObject("userName", flowData.getSessionData("userName"));
 		logger.info("TransportDetailsController: saveTransportDetails Method End.");
@@ -218,7 +218,7 @@ public class TransportDetailsController extends BaseController implements Serial
 		}
 		if (!flowData.isLoggedIn())
 			return super.loginPage(flowData, request);
-		ModelAndView mv = new ModelAndView("getAllEmployee");
+		ModelAndView mv = new ModelAndView("getAllTransportDetails");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		Integer transportDetailsId = Integer.parseInt(request.getParameter("id"));
@@ -227,6 +227,7 @@ public class TransportDetailsController extends BaseController implements Serial
 			resDtoObjects = masterServiceImpl.deleteTransportDetails(flowData,
 					reqDtoObjects, resDtoObjects);
 			mv.addObject(WebAppConstants.SUCESS_MESSAGE,WebAppConstants.LW_SUCESS_DELETE);
+			resDtoObjects = masterServiceImpl.getAllTransportDetails(flowData, reqDtoObjects, resDtoObjects);
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in TransportDetailsController: deleteTransportDetails",
 					_be);
@@ -240,8 +241,8 @@ public class TransportDetailsController extends BaseController implements Serial
 		}
 		@SuppressWarnings("unchecked")
 		List<TransportDetailsDto> lTransportDetailsDto = (List<TransportDetailsDto>) resDtoObjects
-				.get("lTransportDetailsDto");		
-		mv.addObject("lTransportDetailsDto", lTransportDetailsDto);	
+				.get("lTransportDetails");
+		mv.addObject("lTransportDetails", lTransportDetailsDto);	
 		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
 		mv.addObject("userName", flowData.getSessionData("userName"));
 		logger.info("TransportDetailsController: deleteTransportDetails Method End.");

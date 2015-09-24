@@ -62,7 +62,7 @@ public class ServiceEndPointConstants {
 		getTransportOwnerById("getTransportOwnerById"),
 		getAllTransportDetails("getAllTransportDetails"),
 		saveTransportDetails("saveTransportDetails"),
-		saveEditTransportDetails("saveTransportDetails"),
+		saveEditTransportDetails("saveEditTransportDetails"),
 		getTransportDetailsById("getTransportDetailsById"),
 		deleteTransportDetails("deleteTransportDetails"),
 		getSmsBalance("getSmsBalance");

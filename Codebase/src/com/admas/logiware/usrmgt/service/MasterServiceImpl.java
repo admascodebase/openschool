@@ -1432,7 +1432,7 @@ public class MasterServiceImpl {
 			logiwareResponse = doServiceCall(flowData,
 					ServiceName.getTransportDetailsById, reqDtoObjects);
 			resDtoObjects.put("viewName", viewName);
-			resDtoObjects.put("TransportDetailsDto", logiwareResponse.getEmployeeDto());
+			resDtoObjects.put("TransportDetailsDto", logiwareResponse.getTransportDetailsDto());
 		} catch (LogiwareBaseException b) {
 			throw b;
 		} catch (Exception e) {
