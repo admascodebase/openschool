@@ -10,6 +10,7 @@ public class PaymentExceptionDto implements Serializable{
 	
 	private Integer id;
 	private Integer compId;
+	private Integer contractCompId;
 	private Integer settingId;
 	private String valueType;
 	private Double value;
@@ -99,6 +100,20 @@ public class PaymentExceptionDto implements Serializable{
 		this.delFlag = delFlag;
 	}
 	
+	/**
+	 * @return the contractCompId
+	 */
+	public Integer getContractCompId() {
+		return contractCompId;
+	}
+
+	/**
+	 * @param contractCompId the contractCompId to set
+	 */
+	public void setContractCompId(Integer contractCompId) {
+		this.contractCompId = contractCompId;
+	}
+	
 	public PaymentException _toJpa(){
 		PaymentException paymentException = new PaymentException();
 		paymentException.setCompId(this.compId);
@@ -107,6 +122,7 @@ public class PaymentExceptionDto implements Serializable{
 		paymentException.setSettingId(this.settingId);
 		paymentException.setValue(this.value);
 		paymentException.setValueType(this.valueType);
+		paymentException.setContractCompId(this.contractCompId);
 		return paymentException;
 	}
 	

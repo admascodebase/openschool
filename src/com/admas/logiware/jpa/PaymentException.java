@@ -24,6 +24,9 @@ public class PaymentException implements Serializable{
 	@Column(name="COMP_ID" ,nullable = false )
 	private Integer compId;
 	
+	@Column(name="CONTRACT_COMP_ID" ,nullable = false )
+	private Integer contractCompId;
+	
 	@Column(name="SETTING_ID" ,nullable = false )
 	private Integer settingId;
 	
@@ -120,6 +123,20 @@ public class PaymentException implements Serializable{
 		this.delFlag = delFlag;
 	}
 	
+	/**
+	 * @return the contractCompId
+	 */
+	public Integer getContractCompId() {
+		return contractCompId;
+	}
+
+	/**
+	 * @param contractCompId the contractCompId to set
+	 */
+	public void setContractCompId(Integer contractCompId) {
+		this.contractCompId = contractCompId;
+	}
+
 	public PaymentExceptionDto _toDto(){
 		PaymentExceptionDto paymentExceptionDto = new PaymentExceptionDto();
 		paymentExceptionDto.setCompId(this.compId);
@@ -128,6 +145,7 @@ public class PaymentException implements Serializable{
 		paymentExceptionDto.setSettingId(this.settingId);
 		paymentExceptionDto.setValue(this.value);
 		paymentExceptionDto.setValueType(this.valueType);
+		paymentExceptionDto.setContractCompId(this.contractCompId);
 		return paymentExceptionDto;
 	}
 	
