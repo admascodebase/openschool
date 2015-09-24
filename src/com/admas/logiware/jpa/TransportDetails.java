@@ -186,6 +186,7 @@ public class TransportDetails implements Serializable{
 		transportDetailsDto.setTranTypeDtlId(this.tranTypeDtlId);
 		transportDetailsDto.setUpdatedBy(this.updatedBy);
 		transportDetailsDto.setUpdatedOn(this.updatedOn);
+		transportDetailsDto.setOwnId(this.ownId);
 		return transportDetailsDto;
 	}
 }

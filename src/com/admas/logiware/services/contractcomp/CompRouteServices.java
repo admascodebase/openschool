@@ -90,7 +90,7 @@ public class CompRouteServices {
 		try {
 			companyRouteDto=compRouteLogicImpl.getCompRouteById(CompRouteId);
 			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
-			logiwareRespnse.setCompanyRouteDto(companyRouteDto);
+//			logiwareRespnse.setCompanyRouteDto(companyRouteDto);
 		} catch (LogiwareExceptionHandler e) {
 			logger.error("Error in CompRouteServices- > getCompRouteById ", e);
 			logiwareRespnse.setCode(e.getErrorCode());

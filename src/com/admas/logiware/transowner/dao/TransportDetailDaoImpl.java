@@ -93,9 +93,10 @@ public class TransportDetailDaoImpl implements TransportDetailDao {
 			Root<TransportDetails> transportDetailJpa = criteriaQuery.from(TransportDetails.class);
 			Predicate notDeleted=criteriaBuilder.equal(transportDetailJpa.get("delFlag"), 'N');
 			Predicate transOwner=criteriaBuilder.equal(transportDetailJpa.get("ownId"),transOwnerId);
+//			criteriaQuery.where(notDeleted);
+//			criteriaQuery.where(transOwner);
+			criteriaQuery.where(transOwner,notDeleted);
 			criteriaQuery.select(transportDetailJpa);
-			criteriaQuery.where(notDeleted);
-			criteriaQuery.where(transOwner);
 			TypedQuery<TransportDetails> typedQuery = entityManager
 					.createQuery(criteriaQuery);
 			transportDetails = typedQuery.getResultList();
