@@ -70,7 +70,7 @@ public class PaymentExceptionServices {
 		try {
 			paymentExceptionDto=paymentExceptionLogicImpl.getPaymentExceptionById(id);
 			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
-			logiwareRespnse.setPaymentExceptionDto(paymentExceptionDto);
+//			logiwareRespnse.setPaymentExceptionDto(paymentExceptionDto);
 		} catch (LogiwareExceptionHandler e) {
 			logger.error("Error in PaymentExceptionServices- > getPaymentExceptionById ", e);
 			logiwareRespnse.setCode(e.getErrorCode());

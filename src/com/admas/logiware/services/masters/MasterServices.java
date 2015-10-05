@@ -730,7 +730,7 @@ public class MasterServices {
 		try {
 			transportTypeDtlDto = mastersLogic.getTransportTypeDtlById(TransportTypeId);
 			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
-			logiwareRespnse.setData(transportTypeDtlDto);
+			logiwareRespnse.setTransportTypeDtlDto(transportTypeDtlDto);
 		} catch (LogiwareExceptionHandler e) {
 			logger.error("Error in MasterService- > getTransportTypeDtlById ", e);
 			logiwareRespnse.setCode(e.getErrorCode());

@@ -238,6 +238,7 @@ public class TransportTypeDtl implements Serializable{
 		transportTypeDtl.setUnit(transportTypeDto.getUnit());
 		transportTypeDtl.setWheelsNo(transportTypeDto.getWheelsNo());
 		transportTypeDtl.setWidth(transportTypeDto.getWidth());
+		transportTypeDtl.setDelFlag(transportTypeDto.getDelFlag());
 		return transportTypeDtl;
 	}
 	

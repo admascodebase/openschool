@@ -21,7 +21,8 @@ public class LogiwareRespnse implements Serializable{
 	private List<StateDto> lStateDto;
 	private TransportDetailsDto transportDetailsDto;
 	/*private CompanyRouteDto companyRouteDto;*/
-	private PaymentExceptionDto paymentExceptionDto;
+//	private PaymentExceptionDto paymentExceptionDto;
+	private TransportTypeDtlDto transportTypeDtlDto;
 	
 	
 	/**
@@ -194,14 +195,27 @@ public class LogiwareRespnse implements Serializable{
 	/**
 	 * @return the paymentExceptionDto
 	 */
-	public PaymentExceptionDto getPaymentExceptionDto() {
+	/*public PaymentExceptionDto getPaymentExceptionDto() {
 		return paymentExceptionDto;
 	}
-	/**
+	*//**
 	 * @param paymentExceptionDto the paymentExceptionDto to set
-	 */
+	 *//*
 	public void setPaymentExceptionDto(PaymentExceptionDto paymentExceptionDto) {
 		this.paymentExceptionDto = paymentExceptionDto;
+	}*/
+	/**
+	 * @return the transportTypeDtlDto
+	 */
+	public TransportTypeDtlDto getTransportTypeDtlDto() {
+		return transportTypeDtlDto;
 	}
+	/**
+	 * @param transportTypeDtlDto the transportTypeDtlDto to set
+	 */
+	public void setTransportTypeDtlDto(TransportTypeDtlDto transportTypeDtlDto) {
+		this.transportTypeDtlDto = transportTypeDtlDto;
+	}
+	
 	
 }

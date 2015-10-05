@@ -848,9 +848,10 @@ public class MastersDaoImpl implements MastersDao {
 			CriteriaQuery<TransportTypeDtl> criteriaQuery = criteriaBuilder
 					.createQuery(TransportTypeDtl.class);
 			Root<TransportTypeDtl> transportTypeJpa = criteriaQuery.from(TransportTypeDtl.class);
-			Predicate notDeleted=criteriaBuilder.equal(transportTypeJpa.get("transId"), transportTypeId);
+			Predicate transId=criteriaBuilder.equal(transportTypeJpa.get("transId"), transportTypeId);
+			Predicate notDeleted=criteriaBuilder.equal(transportTypeJpa.get("delFlag"), 'N');
 			criteriaQuery.select(transportTypeJpa);
-			criteriaQuery.where(notDeleted);
+			criteriaQuery.where(transId, notDeleted);
 			TypedQuery<TransportTypeDtl> typedQuery = entityManager
 					.createQuery(criteriaQuery);
 			lTransportTypeDtls = typedQuery.getResultList();		
@@ -923,7 +924,8 @@ public class MastersDaoImpl implements MastersDao {
 		Boolean result = false;
 		try {
 			TransportTypeDtl transportTypeDtl = new TransportTypeDtl();
-			entityManager.merge(transportTypeDtl._toJpa(transportTypeDto));
+			transportTypeDtl = transportTypeDtl._toJpa(transportTypeDto);
+			entityManager.merge(transportTypeDtl);
 			entityManager.flush();
 			
 			if (transportTypeDtl.getId() != null || transportTypeDtl.getId() != 0) {
