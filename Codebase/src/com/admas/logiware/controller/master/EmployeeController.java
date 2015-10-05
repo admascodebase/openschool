@@ -226,6 +226,7 @@ public class EmployeeController extends BaseController {
 			resDtoObjects = masterServiceImpl.deleteEmployee(flowData,
 					reqDtoObjects, resDtoObjects);
 			mv.addObject(WebAppConstants.SUCESS_MESSAGE,WebAppConstants.LW_SUCESS_DELETE);
+			resDtoObjects = masterServiceImpl.getAllEmployee(flowData, reqDtoObjects, resDtoObjects);
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in EmployeeController: showEditEmployee",
 					_be);

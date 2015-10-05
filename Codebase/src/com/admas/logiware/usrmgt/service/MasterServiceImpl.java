@@ -689,17 +689,14 @@ public class MasterServiceImpl {
 
 		logger.info("MasterServiceImpl getTransportTypeDetailsById method start.");
 		LogiwareRespnse logiwareResponse = null;
-		EmployeeDto employeeDto = new EmployeeDto();
 		String viewName = "";
 		try {
 			viewName = "getAllTransportTypeDetails";
 			logiwareResponse = doServiceCall(flowData,
 					ServiceName.getTransportTypeDtlById, reqDtoObjects);
-			Object object = logiwareResponse.getData();
-			employeeDto =(EmployeeDto) object;
 			resDtoObjects.put("userResponse", logiwareResponse);
 			resDtoObjects.put("viewName", viewName);
-			resDtoObjects.put("employee", employeeDto);
+			resDtoObjects.put("transportTypeDetails", logiwareResponse.getTransportTypeDtlDto());
 		} catch (LogiwareBaseException b) {
 			throw b;
 		} catch (Exception e) {
@@ -1472,6 +1469,37 @@ public class MasterServiceImpl {
 		}
 		logger.info("MasterServiceImpl deleteTransportDetails method end. ");
 		return resDtoObjects;
+	}
+
+	public Map<String, Object> saveEditTransportTypeDtl(FlowData flowData,
+			HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+		logger.info("MasterServiceImpl saveEditTransportTypeDtl method start.");
+		LogiwareRespnse logiwareResponse = null;
+		try {
+			logiwareResponse = doServiceCall(flowData,
+					ServiceName.saveEditTransportTypeDtl, reqDtoObjects);
+			resDtoObjects.put("userResponse", logiwareResponse);
+		} catch (LogiwareBaseException b) {
+			resDtoObjects = getAllTransportTypeDetails(flowData, reqDtoObjects, resDtoObjects);
+			throw b;
+		} catch (Exception e) {
+			logger.error(
+					"Exception In MasterServiceImpl: saveEditTransportTypeDtl method end.",
+					e);
+			resDtoObjects = getAllEmployee(flowData,
+					reqDtoObjects, resDtoObjects);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		resDtoObjects = getAllEmployee(flowData,
+				reqDtoObjects, resDtoObjects);
+		logger.info("MasterServiceImpl saveEditTransportTypeDtl method end. ");
+		return resDtoObjects;
+
+	
 	}
 	
 }

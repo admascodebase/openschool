@@ -208,6 +208,7 @@
 										<form:form action="saveTransportDetails.htm" modelAttribute="TransportDetailsDto" class="form-horizontal">
 										<form:hidden path="id" />
 										<form:hidden path="delFlag" />
+										<form:hidden path="ownId"/>
 										<%-- <form:hidden path="compId" /> --%>
 											<div class="form-body">
 												<h3 class="form-section"></h3>

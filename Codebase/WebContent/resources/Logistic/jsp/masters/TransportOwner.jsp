@@ -236,6 +236,8 @@
 										<th>Contact Number</th>
 										<th>Contact Person</th>
 										<th>Email</th>
+										<th>Edit/Delete</th>
+										<th>Transport Details</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -253,6 +255,10 @@
 												class="btn btn-warning btn-xs"> Edit </a> <a
 												href="deleteTransportOwner.htm?id=${transportOwner.id}"
 												class="btn btn-info btn-xs"> Delete </a></td>
+											<td>
+											<a href="getAllTransportDetails.htm?id=${transportOwner.id}"> Trnsport Details 
+												</a> 
+											</td>
 										</tr>
 									</c:forEach>
 								</tbody>

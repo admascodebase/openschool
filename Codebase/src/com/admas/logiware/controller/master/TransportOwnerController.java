@@ -133,7 +133,7 @@ public class TransportOwnerController extends BaseController {
 			return super.loginPage(flowData, request);
 
 		transportOwnerDto.setCompId(Integer.parseInt(flowData.getSessionData(WebAppConstants.COMPID)));
-		transportOwnerDto.setBranchId(Integer.parseInt(flowData.getSessionData(WebAppConstants.BRANCHID)));
+//		transportOwnerDto.setBranchId(Integer.parseInt(flowData.getSessionData(WebAppConstants.BRANCHID)));
 
 		transportOwnerDto.setDelFlag('N');
 		ModelAndView mv = new ModelAndView("getAllTransportOwner");

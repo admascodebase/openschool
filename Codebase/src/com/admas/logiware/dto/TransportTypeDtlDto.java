@@ -27,6 +27,7 @@ public class TransportTypeDtlDto implements Serializable{
 	private String width;
 	private String maxCapacity;
 	private String capacity;
+	private Character delFlag;
 
 	/**
 	 * @return the id
@@ -178,6 +179,20 @@ public class TransportTypeDtlDto implements Serializable{
 				+ ", size=" + size + ", unit=" + unit + ", wheelsNo="
 				+ wheelsNo + ", width=" + width + ", maxCapacity="
 				+ maxCapacity + ", capacity=" + capacity + "]";
+	}
+
+	/**
+	 * @return the delFlag
+	 */
+	public Character getDelFlag() {
+		return delFlag;
+	}
+
+	/**
+	 * @param delFlag the delFlag to set
+	 */
+	public void setDelFlag(Character delFlag) {
+		this.delFlag = delFlag;
 	}
 	
 	}

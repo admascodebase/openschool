@@ -1,7 +1,9 @@
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
- <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
+
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
 	<div class="page-head">
@@ -9,13 +11,13 @@
 			<!-- BEGIN PAGE TITLE -->
 			<div class="page-title">
 				<h1>
-					Master Details <small>Master Data</small>
+					Master Data <small>Master Data</small>
 				</h1>
 			</div>
 			<!-- END PAGE TITLE -->
 			<!-- BEGIN PAGE TOOLBAR -->
-			<div class="page-toolbar">
-				<!-- BEGIN THEME PANEL -->
+			<!-- <div class="page-toolbar">
+				BEGIN THEME PANEL
 				<div class="btn-group btn-theme-panel">
 					<a href="javascript:;" class="btn dropdown-toggle"
 						data-toggle="dropdown"> <i class="icon-settings"></i>
@@ -25,7 +27,7 @@
 						<div class="row">
 							<div class="col-md-6 col-sm-6 col-xs-12">
 								<h3>THEME COLORS</h3>
-								<div class="row">
+								<div class="row">	
 									<div class="col-md-6 col-sm-6 col-xs-12">
 										<ul class="theme-colors">
 											<li class="theme-color theme-color-default"
@@ -127,8 +129,8 @@
 						</div>
 					</div>
 				</div>
-				<!-- END THEME PANEL -->
-			</div>
+				END THEME PANEL
+			</div> -->
 			<!-- END PAGE TOOLBAR -->
 		</div>
 	</div>
@@ -161,163 +163,127 @@
 			<!-- BEGIN PAGE BREADCRUMB -->
 			<ul class="page-breadcrumb breadcrumb">
 				<li><a href="#">Home</a><i class="fa fa-circle"></i></li>
-				<li><a href="table_managed.html">Masters</a> <i
-					class="fa fa-circle"></i></li>
-				<li><a href="table_managed.html">Transport Type Details</a> <i
-					class="fa fa-circle"></i></li>
-				<li class="active">Transport Type Details</li>
+				<li><a href="#">Masters</a> <i class="fa fa-circle"></i></li>
+				<li class="active">Add Contract Company</li>
 			</ul>
 			<!-- END PAGE BREADCRUMB -->
 			<!-- BEGIN PAGE CONTENT INNER -->
 			<div class="row">
 				<div class="col-md-12">
-					<!-- BEGIN EXAMPLE TABLE PORTLET-->
-					<div class="portlet light">
-						<div class="portlet-title">
-							<div class="caption">
-								<i class="fa fa-cogs font-green-sharp"></i> <span
-									class="caption-subject font-green-sharp bold uppercase">Transport Type
-									Details</span>
-							</div>
-							<div class="tools">
-								<a href="javascript:;" class="collapse"> </a> <a
-									href="#portlet-config" data-toggle="modal" class="config">
-								</a> <a href="javascript:;" class="reload"> </a> <a
-									href="javascript:;" class="remove"> </a>
-							</div>
-						</div>
-						
-						<c:if test="${errorCode ne null}">
-						<div class="alert alert-danger">
-							<button class="close" data-close="alert"></button>
-							<span><spring:message code="${errorCode}"></spring:message> </span>
-						</div>
-					</c:if>
-					
-					<c:if test="${sucessMessage ne null}">
-						<div class="alert alert-success">
-							<button class="close" data-close="alert"></button>
-							<spring:message code="${sucessMessage}"></spring:message>
-						</div>
-					</c:if>
-						
-						<div class="portlet-body">
-							<div class="table-toolbar">
-								<div class="row">
-									<div class="col-md-6">
-										<div class="btn-group">
-											<a href="showAddTransportTypeDetails.htm?transId=${transId}"><button
-													class="btn btn-circle btn-primary">Add New</button></a>
-										<a href="showEditTransportTypeDetails.htm"><button
-													class="btn btn-circle yellow-crusta">Edit</button></a>
-									
-									<a href="showDeleteTransportTypeDetails.htm"><button
-													class="btn btn-circle yellow-crusta">delete</button></a>
-									
-										</div>
+					<div class="tabbable tabbable-custom tabbable-noborder tabbable-reversed">
+						<div class="tab-pane" id="tab_2">
+							<div class="portlet box green">
+								<div class="portlet-title">
+									<div class="caption">
+										<i class="fa fa-gift"></i>Company Route Details
 									</div>
-									<div class="col-md-6">
-										<div class="btn-group pull-right">
-											<button class="btn dropdown-toggle" data-toggle="dropdown">
-												Tools <i class="fa fa-angle-down"></i>
-											</button>
-											<ul class="dropdown-menu pull-right">
-												<li><a href="javascript:;"> Print </a></li>
-												<li><a href="javascript:;"> Save as PDF </a></li>
-												<li><a href="javascript:;"> Export to Excel </a></li>
-											</ul>
-										</div>
+									<div class="tools">
+										<a href="javascript:;" class="collapse"> </a> <a
+											href="#portlet-config" data-toggle="modal" class="config">
+										</a> <a href="javascript:;" class="reload"> </a> <a
+											href="javascript:;" class="remove"> </a>
 									</div>
 								</div>
+
+								<!-- CompanyStart -->
+								<div class="portlet box green">
+									<!-- <div class="portlet-title">
+										<div class="caption">
+											<i class="fa fa-gift"></i>Form Sample
+										</div>
+										<div class="tools">
+											<a href="javascript:;" class="collapse">
+											</a>
+											<a href="#portlet-config" data-toggle="modal" class="config">
+											</a>
+											<a href="javascript:;" class="reload">
+											</a>
+											<a href="javascript:;" class="remove">
+											</a>
+										</div>
+									</div> -->
+									<div class="portlet-body form">
+										<!-- BEGIN FORM-->
+										<form:form action="saveCompanyRoute.htm" modelAttribute="companyRoute" class="form-horizontal">
+										<form:hidden path="id" />
+										<form:hidden path="delFlag" />
+										<%-- <form:hidden path="compId" /> --%>
+											<div class="form-body">
+												<h3 class="form-section"></h3>
+												<div class="row">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Contract Company</label>
+															<div class="col-md-9">
+																<form:select path="compId"
+																class="select2me form-control">
+																<form:option value="0" label="-- Select -- " />
+																<form:options itemValue="id" itemLabel="name"
+																	items="${lContractCompanies}" />
+															</form:select> 
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+													
+													<!--/span-->
+												</div>
+												<!--/row-->
+												<div class="row">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Start City</label>
+															<div class="col-md-9">
+																<form:select path="startCityId"
+																class="select2me form-control">
+																<form:option value="0" label="-- Select -- " />
+																<form:options itemValue="id" itemLabel="name"
+																	items="${lCities}" />
+															</form:select> 
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">End City</label>
+															<div class="col-md-9">
+																<form:select path="endCityId"
+																class="select2me form-control">
+																<form:option value="0" label="-- Select -- " />
+																<form:options itemValue="id" itemLabel="name"
+																	items="${lCities}" />
+															</form:select> 
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+												</div>
+												<!--/row-->
+											</div>
+											<div class="form-actions right">
+											<a href="getAllContractCompany.htm">
+												<button class="btn default" type="button">Cancel</button></a>
+												<button class="btn blue" type="submit"><i class="fa fa-check"></i> Submit</button>
+											</div>
+											
+										</form:form>
+										<!-- END FORM-->
+									</div>
+								</div>
+								<!--companyEnd  -->
 							</div>
-							
-							<table class="table table-striped table-bordered table-hover"
-								id="sample_1">
-								<thead>
-									<tr>
-										<th class="table-checkbox"><input type="checkbox"
-											class="group-checkable" data-set="#sample_1 .checkboxes" /></th>
-										<th>Id</th>
-										<th>Transport Id</th>
-										<th>Truck Name</th>
-										<th>Description</th>
-										<th>Size</th>
-										<th>Unit</th>
-										<th>Wheels</th>
-										<th>Width</th>
-										<th>Capacity</th>
-										<th>Max Capacity</th>
-										<th>Edit/Delete</th>
-										
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${lTransportTypeDtls}" var="transportTypeDtl">
-										<tr class="odd gradeX">
-											<form:hidden path="transId"/>
-											<td><input type="checkbox" class="checkboxes" value="1" />
-											</td>
-											<td>${transportTypeDtl.id}</td>
-											<td>${transportTypeDtl.transId}</td>
-											<td>${transportTypeDtl.truckName}</td>
-											<td>${transportTypeDtl.description}</td>
-											<td>${transportTypeDtl.size}</td>
-											<td>${transportTypeDtl.unit}</td>
-											<td>${transportTypeDtl.wheelsNo}</td>
-											<td>${transportTypeDtl.width}</td>
-											<td>${transportTypeDtl.maxCapacity}</td>
-											<td>${transportTypeDtl.capacity}</td>
-											<td>
-												<a href="showEditTransportTypeDetails.htm?id=${transportTypeDtl.id}"
-													class="btn btn-warning btn-xs"> Edit 
-												</a> 
-												 <a href="showDeleteTransportTypeDetails.htm?id=${transportTypeDtl.id}?transId=${transportTypeDtl.transId}"
-													class="btn btn-info btn-xs"> Delete 
-												</a> 
-											</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
+
 						</div>
+
+
 					</div>
-					<!-- END EXAMPLE TABLE PORTLET-->
 				</div>
 			</div>
-
-
 			<!-- END PAGE CONTENT INNER -->
 		</div>
 	</div>
 	<!-- END PAGE CONTENT -->
 </div>
 
-<script>
-	jQuery(document).ready(function() {
-		Metronic.init(); // init metronic core components
-		Layout.init(); // init current layout
-		Demo.init(); // init demo features
-		TableManaged.init();
-	});
-</script>
-<script>
-	(function(i, s, o, g, r, a, m) {
-		i['GoogleAnalyticsObject'] = r;
-		i[r] = i[r] || function() {
-			(i[r].q = i[r].q || []).push(arguments)
-		}, i[r].l = 1 * new Date();
-		a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-		a.async = 1;
-		a.src = g;
-		m.parentNode.insertBefore(a, m)
-	})(window, document, 'script',
-			'../../../../../../www.google-analytics.com/analytics.js', 'ga');
-	ga('create', 'UA-37564768-1', 'keenthemes.com');
-	ga('send', 'pageview');
-</script>
-</body>
 
-<!-- END BODY -->
-
-<!-- Mirrored from www.keenthemes.com/preview/metronic/theme/templates/admin3/table_managed.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Aug 2015 18:08:04 GMT -->
-</html>

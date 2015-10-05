@@ -206,6 +206,8 @@
 									<div class="portlet-body form">
 										<!-- BEGIN FORM-->
 										<form:form action="saveTransportTypeDetails.htm" modelAttribute="transportTypeDetails" class="form-horizontal">
+											<form:hidden path="transId"/>
+											<form:hidden path="id"/>
 											<div class="form-body">
 												<h3 class="form-section"></h3>
 												<div class="row">

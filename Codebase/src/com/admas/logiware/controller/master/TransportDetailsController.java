@@ -56,7 +56,7 @@ public class TransportDetailsController extends BaseController implements Serial
 		ModelAndView mv = new ModelAndView("getAllTransportDetails");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
-		Integer ownerId = 1;
+		Integer ownerId=Integer.parseInt(request.getParameter("id"));
 		try {
 			reqDtoObjects.put("ownerId", ownerId);
 			resDtoObjects = masterServiceImpl.getAllTransportDetails(flowData,
@@ -92,7 +92,7 @@ public class TransportDetailsController extends BaseController implements Serial
 		if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
 			flowData = (FlowData) request.getSession().getAttribute(
 					WebAppConstants.FLOWDATA);
-		}
+		}	
 		if (!flowData.isLoggedIn())
 			return super.loginPage(flowData, request);
 		ModelAndView mv = new ModelAndView("showAddTransportDetails");
@@ -131,6 +131,9 @@ public class TransportDetailsController extends BaseController implements Serial
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		String sucessMessage= "";
+		
+		Integer transOwnId = Integer.parseInt(request.getParameter("ownId"));
+		reqDtoObjects.put("transOwnId", transOwnId);
 		try {
 			reqDtoObjects.put("transportDetailsDto", transportDetailsDto);
 			if (transportDetailsDto.getId() != null && transportDetailsDto.getId() > 0) {

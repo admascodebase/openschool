@@ -65,7 +65,8 @@ public class ServiceEndPointConstants {
 		saveEditTransportDetails("saveEditTransportDetails"),
 		getTransportDetailsById("getTransportDetailsById"),
 		deleteTransportDetails("deleteTransportDetails"),
-		getSmsBalance("getSmsBalance");
+		getSmsBalance("getSmsBalance"),
+		saveEditTransportTypeDtl("saveEditTransportTypeDtl");
 
 		/** The value. */
 		private final String value;

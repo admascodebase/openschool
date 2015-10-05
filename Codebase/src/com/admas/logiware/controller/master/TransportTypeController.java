@@ -325,27 +325,36 @@ public class TransportTypeController extends BaseController {
 		
 		logger.info("TransportTypeController: saveTransportTypeDetails Method Start.");
 		FlowData flowData = null;
-		
 		/*if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
 		flowData = (FlowData) request.getSession().getAttribute(
 				WebAppConstants.FLOWDATA);
 		}
 		if (!flowData.isLoggedIn())
 			return super.loginPage(flowData, request);*/
-		
-		ModelAndView mv = new ModelAndView() ;
+		transportTypeDtlDto.setDelFlag('N');
+		ModelAndView mv = new ModelAndView("getAllTransportTypeDetails") ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		try {	
 			reqDtoObjects.put("transportTypeDtlDto", transportTypeDtlDto);
-			resDtoObjects=masterServiceImpl.saveTransportTypeDetails(flowData, reqDtoObjects, resDtoObjects);
-			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
+			Integer transId = Integer.parseInt(request.getParameter("transId"));
+			reqDtoObjects.put("transId", transId);
+			String sucessMessage="";
+			if (transportTypeDtlDto.getId() != null && transportTypeDtlDto.getId() > 0) {
+				resDtoObjects = masterServiceImpl.saveEditTransportTypeDtl(flowData, reqDtoObjects, resDtoObjects);
+				sucessMessage= WebAppConstants.LW_SUCESS_EDIT;
+			} else {
+				resDtoObjects=masterServiceImpl.saveTransportTypeDetails(flowData, reqDtoObjects, resDtoObjects);
+				sucessMessage= WebAppConstants.LW_SUCESS_ADD;
+			}
+//			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
 			resDtoObjects=masterServiceImpl.getAllTransportTypeDetails(flowData, reqDtoObjects, resDtoObjects);
 			@SuppressWarnings("unchecked")
 			List<TransportTypeDtlDto> lTransportTypeDtls = (List<TransportTypeDtlDto>) resDtoObjects
 					.get("lTransportTypeDtls");
-			mv=new ModelAndView(viewName);	
+//			mv=new ModelAndView(viewName);	
 			mv.addObject("lTransportTypeDtls", lTransportTypeDtls);
+			mv.addObject(WebAppConstants.SUCESS_MESSAGE,sucessMessage);
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in TransportTypeController: saveTransportTypeDetails",
 					_be);
@@ -357,7 +366,6 @@ public class TransportTypeController extends BaseController {
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
-		
 		return mv;
 		
 		
@@ -377,7 +385,6 @@ public class TransportTypeController extends BaseController {
 		ModelAndView mv = new ModelAndView() ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
-		EmployeeDto employeeDto=null;
 		Integer transportTypeDtlId=Integer.parseInt(request.getParameter("id"));
 		try {			
 			reqDtoObjects.put("transportTypeDtlId", transportTypeDtlId);
@@ -385,8 +392,8 @@ public class TransportTypeController extends BaseController {
 			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
 			mv=new ModelAndView(viewName);	
 			resDtoObjects=masterServiceImpl.getTransportTypeDetailsById(flowData, reqDtoObjects, resDtoObjects);
-			employeeDto=(EmployeeDto) resDtoObjects.get("employee");
-			mv.addObject("employee",employeeDto);
+			TransportTypeDtlDto transportTypeDtlDto=(TransportTypeDtlDto) resDtoObjects.get("transportTypeDetails");
+			mv.addObject("transportTypeDetails",transportTypeDtlDto);
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in TransportTypeController: EditTransportTypeDetails",
 					_be);
@@ -416,6 +423,8 @@ public class TransportTypeController extends BaseController {
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		Integer transportTypeDtlId=Integer.parseInt(request.getParameter("id")); 
+		/*Integer transId = Integer.parseInt(request.getParameter("transId"));
+		reqDtoObjects.put("transId", transId);*/
 		try {			
 			reqDtoObjects.put("transportTypeDtlId", transportTypeDtlId);
 			resDtoObjects = masterServiceImpl.deleteTransportTypeDetails(flowData, reqDtoObjects, resDtoObjects);

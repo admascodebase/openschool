@@ -1,4 +1,4 @@
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <div class="page-container">
@@ -207,7 +207,7 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="btn-group">
-											<a href="showAddTransportDetails.htm"><button
+											<a href="showAddTransportDetails.htm?transOwnId=${ownId}"><button
 													class="btn btn-circle btn-primary">Add New</button></a>
 										</div>
 									</div>
@@ -240,7 +240,7 @@
 								<tbody>
 									<c:forEach items="${lTransportDetails}" var="TransportDetails">
 										<tr class="odd gradeX">
-
+											<form:hidden path="ownId"/>
 											<td><input type="checkbox" class="checkboxes" value="1" />
 											</td>
 											<td>${TransportDetails.loweryNo}</td>
