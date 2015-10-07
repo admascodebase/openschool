@@ -16,6 +16,7 @@ import com.admas.logiware.dto.SettingsDto;
 import com.admas.logiware.dto.StateDto;
 import com.admas.logiware.dto.TransportTypeDtlDto;
 import com.admas.logiware.dto.TransportTypeDto;
+import com.admas.logiware.dto.sms.SmsTemplateDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
 import com.admas.logiware.exception.LogiwareServiceErrors;
 import com.admas.logiware.jpa.City;
@@ -27,6 +28,7 @@ import com.admas.logiware.jpa.Settings;
 import com.admas.logiware.jpa.State;
 import com.admas.logiware.jpa.TransportType;
 import com.admas.logiware.jpa.TransportTypeDtl;
+import com.admas.logiware.jpa.sms.SmsTemplate;
 
 public class MastersLogicImpl implements MastersLogic {
 
@@ -803,6 +805,45 @@ public class MastersLogicImpl implements MastersLogic {
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
 		}
 		return lRoleDtos;
+	}
+
+	@Override
+	public SmsTemplateDto getTemplateByType(Integer compId, String type)
+			throws LogiwareExceptionHandler {
+		SmsTemplate smsTemplate = null;
+		try {
+			smsTemplate = mastersDao.getTemplateByType(compId, type);	
+
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error(
+					"Exception Error in MastersLogicImpl - > getTemplateByType ", e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return smsTemplate._toDto();
+	}
+
+	@Override
+	public List<SmsTemplateDto> getAllTemplateByType(Integer compId, String type)
+			throws LogiwareExceptionHandler {
+		 List<SmsTemplateDto> lTemplateDao = new ArrayList<SmsTemplateDto>();
+		 List<SmsTemplate> lTemplate=null;
+		try {
+			lTemplate = mastersDao.getAllTemplateByType(compId, type);
+			for (SmsTemplate template : lTemplate) {
+				lTemplateDao.add(template._toDto());
+			}
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error(
+					"Exception Error in MastersLogicImpl - > getAllTemplateByType ", e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return lTemplateDao;
 	}
 	
 

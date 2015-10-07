@@ -11,6 +11,7 @@ import com.admas.logiware.dto.SettingsDto;
 import com.admas.logiware.dto.StateDto;
 import com.admas.logiware.dto.TransportTypeDtlDto;
 import com.admas.logiware.dto.TransportTypeDto;
+import com.admas.logiware.dto.sms.SmsTemplateDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
 
 public interface MastersLogic {
@@ -95,4 +96,10 @@ public interface MastersLogic {
 	public List<StateDto> getAllStates()throws LogiwareExceptionHandler;
 	
 	public List<RoleDto> getAllRoles(int compId)throws LogiwareExceptionHandler;
+	
+	//SMS template API
+	
+	public SmsTemplateDto getTemplateByType(Integer compId,String type)throws LogiwareExceptionHandler;
+	
+	public List<SmsTemplateDto> getAllTemplateByType(Integer compId,String type)throws LogiwareExceptionHandler;
 }

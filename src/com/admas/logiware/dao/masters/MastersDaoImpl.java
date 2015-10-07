@@ -35,6 +35,7 @@ import com.admas.logiware.jpa.Settings;
 import com.admas.logiware.jpa.State;
 import com.admas.logiware.jpa.TransportType;
 import com.admas.logiware.jpa.TransportTypeDtl;
+import com.admas.logiware.jpa.sms.SmsTemplate;
 
 public class MastersDaoImpl implements MastersDao {
 
@@ -1360,6 +1361,88 @@ public class MastersDaoImpl implements MastersDao {
 			criteriaBuilder = null;
 		}
 
+	}
+
+	@Override
+	public SmsTemplate getTemplateByType(Integer compId, String type)
+			throws LogiwareExceptionHandler {
+		SmsTemplate template = null;
+		try {
+			TypedQuery<SmsTemplate> templateTypeQuery = entityManager.createQuery(
+					"SELECT c FROM SmsTemplate c WHERE compId = :compId AND type = :type", SmsTemplate.class);
+			templateTypeQuery.setParameter("compId", compId );
+			templateTypeQuery.setParameter("type", type );
+			template = templateTypeQuery.getSingleResult();
+
+			if (template != null) {
+				return template;
+			} else {
+				throw new LogiwareExceptionHandler(
+						LogiwareServiceErrors.NO_SETTINGS_FOUND);
+			}
+
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in MastersDaoImpl - > getTemplateByType",
+					he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch(NoResultException noResult){
+			logger.error(
+					"Exception Error in MastersDaoImpl - > NoResultException",
+					noResult);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.NO_SETTINGS_FOUND);
+		}catch (Exception e) {
+			logger.error(
+					"Exception Error in MastersDaoImpl - > getTemplateByType",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			entityManager.close();
+		}
+	}
+
+	@Override
+	public List<SmsTemplate> getAllTemplateByType(Integer compId, String type)
+			throws LogiwareExceptionHandler {
+		 List<SmsTemplate> lSettings = null;
+			try {
+				TypedQuery<SmsTemplate> settingQuery = entityManager.createQuery(
+						"SELECT c FROM SmsTemplate c WHERE compId = :compId AND templateType = :templateType", SmsTemplate.class);
+				settingQuery.setParameter("compId", compId );
+				settingQuery.setParameter("templateType", type );
+				lSettings = settingQuery.getResultList();
+
+				if (lSettings != null) {
+					return lSettings;
+				} else {
+					throw new LogiwareExceptionHandler(
+							LogiwareServiceErrors.NO_SETTINGS_FOUND);
+				}
+
+			} catch (HibernateException he) {
+				logger.error(
+						"HibernateException Error in MastersDaoImpl - > getAllTemplateByType",
+						he);
+				throw new LogiwareExceptionHandler(
+						LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+			} catch(NoResultException noResult){
+				logger.error(
+						"Exception Error in MastersDaoImpl - > getAllTemplateByType",
+						noResult);
+				throw new LogiwareExceptionHandler(
+						LogiwareServiceErrors.NO_SETTINGS_FOUND);
+			}catch (Exception e) {
+				logger.error(
+						"Exception Error in MastersDaoImpl - > getAllTemplateByType",
+						e);
+				throw new LogiwareExceptionHandler(
+						LogiwareServiceErrors.GENERIC_EXCEPTION);
+			} finally {
+				entityManager.close();
+			}
 	}
 	
 	

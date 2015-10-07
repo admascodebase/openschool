@@ -1096,6 +1096,63 @@ public class MasterServices {
 			logger.info(" end  MasterService- > getAllRolesByComp");
 			return Response.status(200).entity(logiwareRespnse).build();
 		}
+		
+		///SMS templates API
+		
+		@GET
+		@Path("/getTemplateByType/{compId}/{type}")
+		@Produces({ MediaType.APPLICATION_JSON })
+		public Response getTemplateByType(@PathParam("compId")Integer compId,@PathParam("type")String type) {
+			SettingsDto setting = new SettingsDto();
+			logger.info(" Start  MasterService- > getTemplateByType Method");
+			LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+			try {
+				setting = mastersLogic.getSettingByType(compId,type);
+				logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+				logiwareRespnse.setSettingDto(setting);
+			} catch (LogiwareExceptionHandler e) {
+				logger.error("Error in MasterService- > getTemplateByType", e);
+				logiwareRespnse.setCode(e.getErrorCode());
+				logiwareRespnse.setDescription(e.getDescription());
+			} catch (Exception e) {
+				logger.error("Error in MasterService- > getTemplateByType", e);
+				logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+						.getErrorCode());
+				logiwareRespnse
+						.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+								.getErrorDescription());
+			}
+			logger.info(" end  MasterService- > getTemplateByType");
+			return Response.status(200).entity(logiwareRespnse).build();
+		}
+		
+		@GET
+		@Path("/getAllTemplateByType/{compId}/{type}")
+		@Produces({ MediaType.APPLICATION_JSON })
+		public Response getAllTemplateByType(@PathParam("compId")Integer compId,@PathParam("type")String type) {
+			List<SettingsDto> setting = new ArrayList<SettingsDto>();
+			logger.info(" Start  MasterService- > getAllTemplateByType Method");
+			LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+			try {
+				setting = mastersLogic.getSettingAllByType(compId,type);
+				logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+				logiwareRespnse.setData(setting);
+			} catch (LogiwareExceptionHandler e) {
+				logger.error("Error in MasterService- > getAllTemplateByType", e);
+				logiwareRespnse.setCode(e.getErrorCode());
+				logiwareRespnse.setDescription(e.getDescription());
+			} catch (Exception e) {
+				logger.error("Error in MasterService- > getAllTemplateByType", e);
+				logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+						.getErrorCode());
+				logiwareRespnse
+						.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+								.getErrorDescription());
+			}
+			logger.info(" end  MasterService- > getAllTemplateByType");
+			return Response.status(200).entity(logiwareRespnse).build();
+		}
+		
 
 		
 }

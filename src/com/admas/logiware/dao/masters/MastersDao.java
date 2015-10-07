@@ -20,6 +20,7 @@ import com.admas.logiware.jpa.Settings;
 import com.admas.logiware.jpa.State;
 import com.admas.logiware.jpa.TransportType;
 import com.admas.logiware.jpa.TransportTypeDtl;
+import com.admas.logiware.jpa.sms.SmsTemplate;
 
 public interface MastersDao {
 
@@ -101,6 +102,12 @@ public interface MastersDao {
 	public List<State> getAllStates()throws LogiwareExceptionHandler;
 	
 	public List<Role> getAllRole(int compId)throws LogiwareExceptionHandler;
+	
+	//SMS template API
+	
+	public SmsTemplate getTemplateByType(Integer compId,String type)throws LogiwareExceptionHandler;
+	
+	public List<SmsTemplate> getAllTemplateByType(Integer compId,String type)throws LogiwareExceptionHandler;
 	
 	
 }

@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.admas.logiware.dto.sms.SmsTemplateDto;
+
 @Entity
 @Table(name = "sms_template")
 public class SmsTemplate implements Serializable{
@@ -78,6 +80,14 @@ public class SmsTemplate implements Serializable{
 	 */
 	public void setMessage(String message) {
 		this.message = message;
+	}
+	public SmsTemplateDto _toDto() {
+		SmsTemplateDto smsTemplateDto = new SmsTemplateDto();
+		smsTemplateDto.setCompId(this.compId);
+		smsTemplateDto.setId(this.id);
+		smsTemplateDto.setMessage(this.message);
+		smsTemplateDto.setTemplateType(this.templateType);
+		return smsTemplateDto;
 	}
 	
 

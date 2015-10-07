@@ -2,6 +2,8 @@ package com.admas.logiware.dto.sms;
 
 import java.io.Serializable;
 
+import com.admas.logiware.jpa.sms.SmsTemplate;
+
 public class SmsTemplateDto implements Serializable{
 
 	/**
@@ -61,6 +63,15 @@ public class SmsTemplateDto implements Serializable{
 	 */
 	public void setTemplateType(String templateType) {
 		this.templateType = templateType;
+	}
+	
+	public SmsTemplate _toJpa() {
+		SmsTemplate smsTemplate = new SmsTemplate();
+		smsTemplate.setCompId(this.compId);
+		smsTemplate.setId(this.id);
+		smsTemplate.setMessage(this.message);
+		smsTemplate.setTemplateType(this.templateType);
+		return smsTemplate;
 	}
 	
 	
