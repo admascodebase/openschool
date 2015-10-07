@@ -198,5 +198,16 @@
 		<put-attribute name="body"
 			value="/resources/Logistic/jsp/masters/AddTransportDetails.jsp" />
 	</definition>
-	
+
+	<definition name="getAllContractCompRoute" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic -Route Details" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/masters/ContractCompanyRoutes.jsp" />
+	</definition>
+
+<definition name="showAddContractCompRoute" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic -Route Details" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/masters/AddContractCompRoute.jsp" />
+	</definition>		
 </tiles-definitions>

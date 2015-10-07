@@ -100,4 +100,5 @@
 	<bean id="BranchController" class="com.admas.logiware.controller.master.BranchController"/>
 	<bean id="TransportOwnerController" class="com.admas.logiware.controller.master.TransportOwnerController"/>
 	<bean id="TransportDetailsController" class="com.admas.logiware.controller.master.TransportDetailsController"/>
+	<bean id="ContractCompanyRouteController" class="com.admas.logiware.controller.routes.ContractCompanyRouteController" />
 </beans>

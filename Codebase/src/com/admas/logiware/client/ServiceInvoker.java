@@ -282,6 +282,11 @@ public class ServiceInvoker implements Serializable {
 			break;
 		}
 		
+		case getAllContractCompRoutes: {
+			response = (K) getAllContractCompRoutes(url, (Map) request);
+			break;
+		}
+				
 		default:
 			break;
 		}
@@ -1019,7 +1024,7 @@ public class ServiceInvoker implements Serializable {
 		try {
 			ClientRequest clientRequest = new ClientRequest(url);
 			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
-			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("employee"));
+			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("contractCompDto"));
 			ClientResponse<LogiwareRespnse> response = clientRequest.post(LogiwareRespnse.class);
 			if (response.getStatus() != 200) {
 				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
@@ -1623,6 +1628,7 @@ public class ServiceInvoker implements Serializable {
 	/**
 	 *Transport Details Services Start. 
 	 */
+	
 	public LogiwareRespnse getAllTransportDetails(String url, Map<String, Object> request) throws LogiwareBaseException {
 		logger.info("ServiceInvoker getAllTransportDetails method start. ");
 		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
@@ -1822,6 +1828,32 @@ public class ServiceInvoker implements Serializable {
 		return logiwareResponse;
 	}
 
+	
+	public LogiwareRespnse getAllContractCompRoutes(String url, Map<String, Object> request) throws LogiwareBaseException {
+		logger.info("ServiceInvoker getAllContractCompRoutes method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			Integer contractCompId = (Integer) request.get("contractCompId");
+			ClientRequest clientRequest = new ClientRequest(url + WebAppConstants.URL_SEPERATOR + contractCompId);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			} 
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker getAllContractCompRoutes method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker getAllContractCompRoutes method end. ");
+		return logiwareResponse;
+	}
 	
 	
 }

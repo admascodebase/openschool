@@ -16,9 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.admas.logiware.client.ServiceEndPointConstants.ServiceName;
 import com.admas.logiware.client.ServiceInvoker;
 import com.admas.logiware.constant.WebAppConstants;
+import com.admas.logiware.controller.routes.ContractCompanyRouteController;
 import com.admas.logiware.dto.CityDto;
 import com.admas.logiware.dto.CompanyBranchDto;
 import com.admas.logiware.dto.CompanyDto;
+import com.admas.logiware.dto.CompanyRouteDto;
 import com.admas.logiware.dto.ContractCompDto;
 import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.FlowData;
@@ -975,6 +977,7 @@ public class MasterServiceImpl {
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
 		}
+		resDtoObjects = getAllContractCompany(flowData, reqDtoObjects, resDtoObjects);
 		logger.info("MasterSe" +
 				"rviceImpl saveEditContractCompany method end. ");
 		return resDtoObjects;
@@ -1500,6 +1503,30 @@ public class MasterServiceImpl {
 		return resDtoObjects;
 
 	
+	}
+
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> getAllContractCompRoutes(FlowData flowData, HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+		logger.info("MasterServiceImpl getAllContractCompRoutes method start.");
+		List<CompanyRouteDto> lCompanyRouteDtos = new ArrayList<CompanyRouteDto>();
+		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+		try {
+			 logiwareRespnse = doServiceCall(flowData, ServiceName.getAllContractCompRoutes, reqDtoObjects);
+			 lCompanyRouteDtos =(List<CompanyRouteDto>) logiwareRespnse.getData();			 
+			 resDtoObjects.put("lCompanyRouteDtos", lCompanyRouteDtos);
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In MasterServiceImpl getAllContractCompRoutes method end.",e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode(),
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorDescription());
+		}
+		logger.info("MasterServiceImpl getAllContractCompRoutes method End. ");
+		return resDtoObjects;
+
 	}
 	
 }
