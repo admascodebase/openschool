@@ -172,15 +172,13 @@ public class ContractCompanyRouteController extends BaseController{
 		logger.info("TransportDetailsController: saveTransportDetails Method End.");
 		return mv;
 
-	}
+	}*/
 
-	@RequestMapping(value = "/editTransportDetails.htm", method = RequestMethod.GET)
-	public ModelAndView editTransportDetails(HttpServletRequest request,
+	@RequestMapping(value = "/editContractCompanyRoute.htm", method = RequestMethod.GET)
+	public ModelAndView editContractCompanyRoute(HttpServletRequest request,
 			HttpServletResponse response) {
-
-		logger.info("TransportDetailsController: editTransportDetails Method Start.");
+		logger.info("ContractCompanyRouteController: editContractCompanyRoute Method Start.");
 		FlowData flowData = null;
-
 		super.handleRequestInternal(request, response);
 		if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
 			flowData = (FlowData) request.getSession().getAttribute(
@@ -188,39 +186,39 @@ public class ContractCompanyRouteController extends BaseController{
 		}
 		if (!flowData.isLoggedIn())
 			return super.loginPage(flowData, request);
-		ModelAndView mv = new ModelAndView("getAllEmployee");
+		ModelAndView mv = new ModelAndView("getAllContractCompRoute");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
-		Integer transportDetailsId = Integer.parseInt(request.getParameter("id"));
+		Integer contractCompRouteId = Integer.parseInt(request.getParameter("id"));
 		try {
-			reqDtoObjects.put("transportDetailsId", transportDetailsId);
-			resDtoObjects = masterServiceImpl.getTransportDetailsById(flowData,
+			reqDtoObjects.put("contractCompRouteId", contractCompRouteId);
+			resDtoObjects = masterServiceImpl.getContractCompRouteById(flowData,
 					reqDtoObjects, resDtoObjects);
 			mv = new ModelAndView(
 					(String) resDtoObjects.get(WebAppConstants.VIEW_NAME));
-			mv.addObject("TransportDetailsDto", resDtoObjects.get("TransportDetailsDto"));			
+			mv.addObject("contractCompRouteDto", resDtoObjects.get("contractCompRouteDto"));			
 		} catch (LogiwareBaseException _be) {
-			logger.error("Exception in TransportDetailsController: editTransportDetails",
+			logger.error("Exception in ContractCompanyRouteController: editContractCompanyRoute",
 					_be);
 			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
 		} catch (Exception e) {
 			logger.error(
-					"Exception In TransportDetailsController editTransportDetails Method--",
+					"Exception In ContractCompanyRouteController editContractCompanyRoute Method--",
 					e);
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
 		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
 		mv.addObject("userName", flowData.getSessionData("userName"));	
-		logger.info("TransportDetailsController: editTransportDetails Method End.");
+		logger.info("ContractCompanyRouteController: editContractCompanyRoute Method End.");
 		return mv;
 	}
 
-	@RequestMapping(value = "/deleteTransportDetails.htm", method = RequestMethod.GET)
-	public ModelAndView deleteTransportDetails(HttpServletRequest request,
+	@RequestMapping(value = "/deleteContractCompanyRoute.htm", method = RequestMethod.GET)
+	public ModelAndView deleteContractCompanyRoute(HttpServletRequest request,
 			HttpServletResponse response) {
 
-		logger.info("TransportDetailsController: deleteTransportDetails Method Start.");
+		logger.info("TransportDetailsController: deleteContractCompanyRoute Method Start.");
 		FlowData flowData = null;
 		super.handleRequestInternal(request, response);
 		if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
@@ -232,34 +230,35 @@ public class ContractCompanyRouteController extends BaseController{
 		ModelAndView mv = new ModelAndView("getAllTransportDetails");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
-		Integer transportDetailsId = Integer.parseInt(request.getParameter("id"));
+		Integer companyRouteId = Integer.parseInt(request.getParameter("id"));
 		try {
-			reqDtoObjects.put("transportDetailsId", transportDetailsId);
-			Integer transOwnId = (Integer)request.getAttribute("ownId");
-			reqDtoObjects.put("ownId", transOwnId);
+			reqDtoObjects.put("companyRouteId", companyRouteId);
+			Integer contractCompanyId = (Integer)request.getAttribute("contractCompanyId");
+			reqDtoObjects.put("contractCompanyId", contractCompanyId);
+			
 			resDtoObjects = masterServiceImpl.deleteTransportDetails(flowData,
 					reqDtoObjects, resDtoObjects);
 			mv.addObject(WebAppConstants.SUCESS_MESSAGE,WebAppConstants.LW_SUCESS_DELETE);
 			resDtoObjects = masterServiceImpl.getAllTransportDetails(flowData, reqDtoObjects, resDtoObjects);
 		} catch (LogiwareBaseException _be) {
-			logger.error("Exception in TransportDetailsController: deleteTransportDetails",
+			logger.error("Exception in TransportDetailsController: deleteContractCompanyRoute",
 					_be);
 			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
 		} catch (Exception e) {
 			logger.error(
-					"Exception In TransportDetailsController deleteTransportDetails Method--",
+					"Exception In TransportDetailsController deleteContractCompanyRoute Method--",
 					e);
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
 		@SuppressWarnings("unchecked")
-		List<TransportDetailsDto> lTransportDetailsDto = (List<TransportDetailsDto>) resDtoObjects
+		List<CompanyRouteDto> lCompanyRouteDtos = (List<CompanyRouteDto>) resDtoObjects
 				.get("lTransportDetails");
-		mv.addObject("lTransportDetails", lTransportDetailsDto);	
+		mv.addObject("lCompanyRouteDtos", lCompanyRouteDtos);	
 		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
 		mv.addObject("userName", flowData.getSessionData("userName"));
-		logger.info("TransportDetailsController: deleteTransportDetails Method End.");
+		logger.info("TransportDetailsController: deleteContractCompanyRoute Method End.");
 		return mv;
 	}
-*/
+
 }

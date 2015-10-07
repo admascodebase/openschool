@@ -1528,5 +1528,38 @@ public class MasterServiceImpl {
 		return resDtoObjects;
 
 	}
+
+	public Map<String, Object> getContractCompRouteById(FlowData flowData, HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+
+		logger.info("MasterServiceImpl getContractCompRouteById method start.");
+		LogiwareRespnse logiwareResponse = null;
+		String viewName = "";
+		try {
+			viewName = "getAllContractCompRoute";
+			logiwareResponse = doServiceCall(flowData,
+					ServiceName.getContractCompRouteById, reqDtoObjects);
+			resDtoObjects.put("userResponse", logiwareResponse);
+			resDtoObjects.put("viewName", viewName);
+			resDtoObjects.put("contractCompRouteDto", logiwareResponse.getCompanyRouteDto());
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(
+					"Exception In MasterServiceImpl: getContractCompRouteById method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("MasterServiceImpl getContractCompRouteById method end. ");
+		return resDtoObjects;
+
+		
+
+		
+	}
 	
 }

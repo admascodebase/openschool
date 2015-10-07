@@ -286,7 +286,12 @@ public class ServiceInvoker implements Serializable {
 			response = (K) getAllContractCompRoutes(url, (Map) request);
 			break;
 		}
-				
+		
+		case getContractCompRouteById: {
+			response = (K) getContractCompRouteById(url, (Map) request);
+			break;
+		}
+		
 		default:
 			break;
 		}
@@ -1854,6 +1859,31 @@ public class ServiceInvoker implements Serializable {
 		logger.info("ServiceInvoker getAllContractCompRoutes method end. ");
 		return logiwareResponse;
 	}
-	
-	
+
+	public LogiwareRespnse getContractCompRouteById(String url, Map<String, Object> request) throws LogiwareBaseException {
+		logger.info("ServiceInvoker getContractCompRouteById method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			Integer companyRouteId = (Integer) request.get("contractCompRouteId");
+			ClientRequest clientRequest = new ClientRequest(url + WebAppConstants.URL_SEPERATOR + companyRouteId);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = (LogiwareRespnse) response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			} 
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker getContractCompRouteById method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker getContractCompRouteById method end. ");
+		return logiwareResponse;
+	}
+
 }
