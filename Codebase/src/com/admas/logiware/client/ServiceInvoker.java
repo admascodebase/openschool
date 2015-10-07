@@ -1627,7 +1627,7 @@ public class ServiceInvoker implements Serializable {
 		logger.info("ServiceInvoker getAllTransportDetails method start. ");
 		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
 		try {
-			Integer ownerId = 1;
+			Integer ownerId = (Integer) request.get("ownId");
 			ClientRequest clientRequest = new ClientRequest(url + WebAppConstants.URL_SEPERATOR + ownerId);
 			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
 			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);

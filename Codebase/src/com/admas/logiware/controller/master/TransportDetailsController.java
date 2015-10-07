@@ -56,15 +56,17 @@ public class TransportDetailsController extends BaseController implements Serial
 		ModelAndView mv = new ModelAndView("getAllTransportDetails");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
-		Integer ownerId=Integer.parseInt(request.getParameter("id"));
+		
 		try {
-			reqDtoObjects.put("ownerId", ownerId);
+			Integer ownId=Integer.parseInt(request.getParameter("id"));
+			reqDtoObjects.put("ownId", ownId);
+			mv.addObject("ownId", ownId);
 			resDtoObjects = masterServiceImpl.getAllTransportDetails(flowData,
 					reqDtoObjects, resDtoObjects);
 			@SuppressWarnings("unchecked")
 			List<TransportDetailsDto> lTransportDetails = (List<TransportDetailsDto>) resDtoObjects
 					.get("lTransportDetails");
-			mv.addObject("lTransportDetails", lTransportDetails);			
+			mv.addObject("lTransportDetails", lTransportDetails);
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in TransportDetailsController: getAllTransportDetails", _be);
 			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
@@ -97,7 +99,9 @@ public class TransportDetailsController extends BaseController implements Serial
 			return super.loginPage(flowData, request);
 		ModelAndView mv = new ModelAndView("showAddTransportDetails");
 		try {
-			mv.addObject("TransportDetailsDto", new TransportDetailsDto());			
+			TransportDetailsDto transportDetailsDto = new TransportDetailsDto();
+			transportDetailsDto.setOwnId(Integer.parseInt(request.getParameter("ownId")));
+			mv.addObject("TransportDetailsDto", transportDetailsDto);
 		} catch (Exception e) {
 			logger.error(
 					"Exception In TransportDetailsController: showAddTransportDetails Method--", e);
@@ -131,11 +135,13 @@ public class TransportDetailsController extends BaseController implements Serial
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		String sucessMessage= "";
+//		Integer transId = Integer.parseInt(request.getParameter("transId"));
 		
-		Integer transOwnId = Integer.parseInt(request.getParameter("ownId"));
-		reqDtoObjects.put("transOwnId", transOwnId);
 		try {
 			reqDtoObjects.put("transportDetailsDto", transportDetailsDto);
+			Integer transOwnId = (Integer) Integer.parseInt(request.getParameter("ownId"));
+//			Integer	transOwnId = transportDetailsDto.getOwnId();
+			reqDtoObjects.put("ownId", transOwnId);
 			if (transportDetailsDto.getId() != null && transportDetailsDto.getId() > 0) {
 				resDtoObjects = masterServiceImpl.saveEditTransportDetails(flowData, reqDtoObjects, resDtoObjects);
 				sucessMessage= WebAppConstants.LW_SUCESS_EDIT;
@@ -227,6 +233,8 @@ public class TransportDetailsController extends BaseController implements Serial
 		Integer transportDetailsId = Integer.parseInt(request.getParameter("id"));
 		try {
 			reqDtoObjects.put("transportDetailsId", transportDetailsId);
+			Integer transOwnId = (Integer)request.getAttribute("ownId");
+			reqDtoObjects.put("ownId", transOwnId);
 			resDtoObjects = masterServiceImpl.deleteTransportDetails(flowData,
 					reqDtoObjects, resDtoObjects);
 			mv.addObject(WebAppConstants.SUCESS_MESSAGE,WebAppConstants.LW_SUCESS_DELETE);

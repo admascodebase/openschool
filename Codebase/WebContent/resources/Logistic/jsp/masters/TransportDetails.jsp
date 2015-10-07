@@ -207,7 +207,7 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="btn-group">
-											<a href="showAddTransportDetails.htm?transOwnId=${ownId}"><button
+											<a href="showAddTransportDetails.htm?ownId=${ownId}"><button
 													class="btn btn-circle btn-primary">Add New</button></a>
 										</div>
 									</div>
@@ -237,10 +237,11 @@
 										<th>Edit/Delete</th>
 									</tr>
 								</thead>
+								
 								<tbody>
 									<c:forEach items="${lTransportDetails}" var="TransportDetails">
 										<tr class="odd gradeX">
-											<form:hidden path="ownId"/>
+											<form:hidden path="ownId" />
 											<td><input type="checkbox" class="checkboxes" value="1" />
 											</td>
 											<td>${TransportDetails.loweryNo}</td>
