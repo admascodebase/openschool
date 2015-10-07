@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import com.admas.logiware.dto.CompanyRouteDto;
 
 @Entity
-@Table(name="company_route")
+@Table(name="cust_contract_route")
 public class CompanyRoute implements Serializable{
 
 	/**
@@ -24,14 +24,23 @@ public class CompanyRoute implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name="COMP_ID" ,nullable = false )
+	@Column(name="CONTRACT_COMP_ID" ,nullable = false )
 	private Integer compId;
 	
-	@Column(name="startCityId" ,nullable = false )
+	@Column(name="START_ROUTE" ,nullable = false )
 	private Integer startCityId;
 	
-	@Column(name="endCityId" ,nullable = false )
+	@Column(name="END_ROUTE" ,nullable = false )
 	private Integer endCityId;
+	
+	@Column(name="TRANSPORT_DTL_ID" ,nullable = false )
+	private Integer transportDetailId;
+	
+	@Column(name="COST" ,nullable = false )
+	private Integer cost;
+	
+	@Column(name="ADVANCE_AMT" ,nullable = false )
+	private Integer advanceAmt;
 	
 	@Column(name="DEL_FLAG" ,nullable = false)
 	private Character delFlag;
@@ -106,6 +115,49 @@ public class CompanyRoute implements Serializable{
 		this.delFlag = delFlag;
 	}
 	
+	
+	/**
+	 * @return the transportDetailId
+	 */
+	public Integer getTransportDetailId() {
+		return transportDetailId;
+	}
+
+	/**
+	 * @param transportDetailId the transportDetailId to set
+	 */
+	public void setTransportDetailId(Integer transportDetailId) {
+		this.transportDetailId = transportDetailId;
+	}
+
+	/**
+	 * @return the cost
+	 */
+	public Integer getCost() {
+		return cost;
+	}
+
+	/**
+	 * @param cost the cost to set
+	 */
+	public void setCost(Integer cost) {
+		this.cost = cost;
+	}
+
+	/**
+	 * @return the advanceAmt
+	 */
+	public Integer getAdvanceAmt() {
+		return advanceAmt;
+	}
+
+	/**
+	 * @param advanceAmt the advanceAmt to set
+	 */
+	public void setAdvanceAmt(Integer advanceAmt) {
+		this.advanceAmt = advanceAmt;
+	}
+
 	public CompanyRouteDto _toDto(){
 		CompanyRouteDto companyRouteDto = new CompanyRouteDto();
 		companyRouteDto.setCompId(this.compId);
@@ -113,6 +165,9 @@ public class CompanyRoute implements Serializable{
 		companyRouteDto.setEndCityId(this.endCityId);
 		companyRouteDto.setId(this.compId);
 		companyRouteDto.setStartCityId(this.startCityId);
+		companyRouteDto.setTransportDetailsId(this.transportDetailId);
+		companyRouteDto.setCost(this.cost);
+		companyRouteDto.setAdvanceAmt(this.advanceAmt);
 		return companyRouteDto;
 	}
 

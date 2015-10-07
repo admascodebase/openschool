@@ -9,7 +9,7 @@ import com.admas.logiware.jpa.CompanyRoute;
 
 public interface CompRouteDao {
 	
-	public List<CompanyRoute> getAllCompRoute()throws LogiwareExceptionHandler;
+	public List<CompanyRoute> getAllCompRoute(Integer contractCompId)throws LogiwareExceptionHandler;
 
 	public CompanyRoute getCompRouteById(Integer comprouteId)throws LogiwareExceptionHandler;
 

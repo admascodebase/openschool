@@ -34,12 +34,12 @@ public class CompRouteLogicImpl implements CompRouteLogic {
 	}
 
 	@Override
-	public List<CompanyRouteDto> getAllCompRoute()
+	public List<CompanyRouteDto> getAllCompRoute(Integer contractCompId)
 			throws LogiwareExceptionHandler {
 		List<CompanyRoute> lCompRoute = null;
 		List<CompanyRouteDto> lContractCompDtos = new ArrayList<CompanyRouteDto>();
 		try {
-			lCompRoute = compRouteDaoImpl.getAllCompRoute();
+			lCompRoute = compRouteDaoImpl.getAllCompRoute(contractCompId);
 
 			for (CompanyRoute compRoute : lCompRoute) {
 				lContractCompDtos.add(compRoute._toDto());

@@ -8,7 +8,7 @@ import com.admas.logiware.exception.LogiwareExceptionHandler;
 
 public interface CompRouteLogic {
 	
-	public List<CompanyRouteDto> getAllCompRoute()throws LogiwareExceptionHandler;
+	public List<CompanyRouteDto> getAllCompRoute(Integer contractCompId)throws LogiwareExceptionHandler;
 
 	public CompanyRouteDto getCompRouteById(Integer comprouteId)throws LogiwareExceptionHandler;
 

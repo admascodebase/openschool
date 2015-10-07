@@ -33,7 +33,7 @@ public class ComRouteDaoImpl implements CompRouteDao {
 	}
 
 	@Override
-	public List<CompanyRoute> getAllCompRoute() throws LogiwareExceptionHandler {
+	public List<CompanyRoute> getAllCompRoute(Integer contractCompId) throws LogiwareExceptionHandler {
 		List<CompanyRoute> lCompRoutes = null;
 		CriteriaBuilder criteriaBuilder = null;
 		try {
@@ -43,8 +43,9 @@ public class ComRouteDaoImpl implements CompRouteDao {
 					.createQuery(CompanyRoute.class);
 			Root<CompanyRoute> companyRouteJpa = criteriaQuery.from(CompanyRoute.class);
 			Predicate notDeleted=criteriaBuilder.equal(companyRouteJpa.get("delFlag"), 'N');
+			Predicate contCompId=criteriaBuilder.equal(companyRouteJpa.get("compId"), contractCompId);
 			criteriaQuery.select(companyRouteJpa);
-			criteriaQuery.where(notDeleted);
+			criteriaQuery.where(notDeleted, contCompId);
 			TypedQuery<CompanyRoute> typedQuery = entityManager
 					.createQuery(criteriaQuery);
 			lCompRoutes = typedQuery.getResultList();

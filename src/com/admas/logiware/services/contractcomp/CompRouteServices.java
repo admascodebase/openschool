@@ -52,15 +52,15 @@ public class CompRouteServices {
 	 * Employee Services
 	 * */
 	@GET
-	@Path("/getAllCompRoute")
+	@Path("/getAllCompRoute/{contractCompId}")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Response getAllCompRoute(){
+	public Response getAllCompRoute(@PathParam("contractCompId")Integer contractCompId){
 		List<CompanyRouteDto> lCompRoute= new ArrayList<CompanyRouteDto>();
 		logger.info(" Start  CompRouteServices- > getAllCompRoute ");
 		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
 		try {
 
-			lCompRoute =compRouteLogicImpl.getAllCompRoute();
+			lCompRoute =compRouteLogicImpl.getAllCompRoute(contractCompId);
 			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
 			logiwareRespnse.setData(lCompRoute);
 		} catch (LogiwareExceptionHandler e) {
@@ -68,6 +68,7 @@ public class CompRouteServices {
 			logiwareRespnse.setCode(e.getErrorCode());
 			logiwareRespnse.setDescription(e.getDescription());
 		} catch (Exception e) {
+			e.printStackTrace();
 			logger.error("Error in CompRouteServices- > getAllCompRoute", e);
 			logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
 					.getErrorCode());

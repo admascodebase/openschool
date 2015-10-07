@@ -84,7 +84,7 @@
 	
 	<!-- Beans required for contract company route services START -->
 
-	<!-- <bean id="compRouteServices" class="com.admas.logiware.services.contractcomp.CompRouteServices">
+	 <bean id="compRouteServices" class="com.admas.logiware.services.contractcomp.CompRouteServices">
 		<property name="compRouteLogicImpl" ref="compRouteLogicImpl"></property>
 	</bean>
 
@@ -93,7 +93,7 @@
 	</bean>
 
 
-	<bean id="compRouteDaoImpl" class="com.admas.logiware.dao.contractcomp.ComRouteDaoImpl" /> -->
+	<bean id="compRouteDaoImpl" class="com.admas.logiware.dao.contractcomp.ComRouteDaoImpl" />
 
 	<!-- Beans required for contract company route services END -->
 	
