@@ -70,6 +70,7 @@ public class MasterServices {
 
 			lCities = mastersLogic.getAllCity();
 			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+			logiwareRespnse.setlCityDto(lCities);
 			logiwareRespnse.setData(lCities);
 		} catch (LogiwareExceptionHandler e) {
 			logger.error("Error in MasterService- > getAllCity", e);
