@@ -23,7 +23,6 @@ import com.admas.logiware.dto.ContractCompDto;
 import com.admas.logiware.dto.FlowData;
 import com.admas.logiware.dto.LogiwareRespnse;
 import com.admas.logiware.dto.SettingsDto;
-import com.admas.logiware.dto.TransportDetailsDto;
 import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
 import com.admas.logiware.usrmgt.service.MasterServiceImpl;
@@ -133,7 +132,7 @@ public class CompanyController extends BaseController {
 	
 	
 	@RequestMapping(value="/saveCompany.htm", method=RequestMethod.POST)
-	public ModelAndView saveCompany(@ModelAttribute("TransportDetailsDto") TransportDetailsDto transportDetailsDto, HttpServletRequest request, HttpServletResponse response){
+	public ModelAndView saveCompany(@ModelAttribute("company") CompanyDto companyDto, HttpServletRequest request, HttpServletResponse response){
 		
 		logger.info("CompanyController: saveCompany Method Start.");
 		FlowData flowData = null;
@@ -151,8 +150,8 @@ public class CompanyController extends BaseController {
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		String sucessMessage = null;
 		try {	
-			reqDtoObjects.put("transportDetailsDto", transportDetailsDto);
-			if(transportDetailsDto.getId()!=null && transportDetailsDto.getId()>0){
+			reqDtoObjects.put("company", companyDto);
+			if(companyDto.getId()!=null && companyDto.getId()>0){
 					resDtoObjects = masterServiceImpl.saveEditCompany(flowData, reqDtoObjects, resDtoObjects);
 					sucessMessage = WebAppConstants.LW_SUCESS_EDIT;
 			}
