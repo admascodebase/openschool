@@ -1,6 +1,6 @@
 /*
-SQLyog Enterprise - MySQL GUI v7.02 
-MySQL - 5.5.13 : Database - logiware
+SQLyog Enterprise Trial - MySQL GUI v7.11 
+MySQL - 5.5.46 : Database - logiware
 *********************************************************************
 */
 
@@ -31,7 +31,7 @@ CREATE TABLE `city` (
   KEY `FK_city_comp` (`COMP_ID`),
   CONSTRAINT `FK_city` FOREIGN KEY (`STATE_ID`) REFERENCES `state` (`ID`),
   CONSTRAINT `FK_city_comp` FOREIGN KEY (`COMP_ID`) REFERENCES `cust_comp_branch` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `country` */
 
@@ -41,7 +41,7 @@ CREATE TABLE `country` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `NAME` varchar(100) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `cust_comp_branch` */
 
@@ -58,7 +58,7 @@ CREATE TABLE `cust_comp_branch` (
   PRIMARY KEY (`ID`),
   KEY `FK_cust_comp_branch` (`COMP_ID`),
   CONSTRAINT `FK_cust_comp_branch` FOREIGN KEY (`COMP_ID`) REFERENCES `cust_company` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `cust_comp_employee` */
 
@@ -86,7 +86,7 @@ CREATE TABLE `cust_comp_employee` (
   KEY `FK_cust_comp_employee_brnch` (`BRANCH_ID`),
   CONSTRAINT `FK_cust_comp_employee` FOREIGN KEY (`COMP_ID`) REFERENCES `cust_company` (`ID`),
   CONSTRAINT `FK_cust_comp_employee_brnch` FOREIGN KEY (`BRANCH_ID`) REFERENCES `cust_comp_branch` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `cust_company` */
 
@@ -109,7 +109,7 @@ CREATE TABLE `cust_company` (
   PRIMARY KEY (`ID`),
   KEY `FK_cust_company` (`CUST_ID`),
   CONSTRAINT `FK_cust_company` FOREIGN KEY (`CUST_ID`) REFERENCES `customer` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `cust_contract_company` */
 
@@ -132,7 +132,7 @@ CREATE TABLE `cust_contract_company` (
   PRIMARY KEY (`ID`),
   KEY `FK_cust_contract_company` (`COMP_ID`),
   CONSTRAINT `FK_cust_contract_company` FOREIGN KEY (`COMP_ID`) REFERENCES `cust_company` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `cust_contract_company_exceptions` */
 
@@ -177,11 +177,11 @@ CREATE TABLE `cust_contract_route` (
   `TRANSPORT_DTL_ID` int(10) unsigned NOT NULL,
   `COST` double NOT NULL,
   `ADVANCE_AMT` double DEFAULT NULL,
-  `CREATED_BY` int(10) unsigned NOT NULL,
-  `CREATED_ON` datetime NOT NULL,
+  `CREATED_BY` int(10) unsigned DEFAULT NULL,
+  `CREATED_ON` datetime DEFAULT NULL,
   `UPDATED_BY` int(10) unsigned DEFAULT NULL,
   `UPDATED_ON` datetime DEFAULT NULL,
-  `DEL_FLG` char(1) NOT NULL DEFAULT 'Y',
+  `DEL_FLAG` char(1) DEFAULT 'Y',
   PRIMARY KEY (`ID`),
   KEY `FK_cust_contract_route` (`CONTRACT_COMP_ID`),
   KEY `FK_cust_contract_route_tr` (`TRANSPORT_DTL_ID`),
@@ -191,7 +191,7 @@ CREATE TABLE `cust_contract_route` (
   CONSTRAINT `FK_cust_contract_route_end` FOREIGN KEY (`END_ROUTE`) REFERENCES `city` (`ID`),
   CONSTRAINT `FK_cust_contract_route_strt` FOREIGN KEY (`START_ROUTE`) REFERENCES `city` (`ID`),
   CONSTRAINT `FK_cust_contract_route_tr` FOREIGN KEY (`TRANSPORT_DTL_ID`) REFERENCES `cust_transport_type_dtl` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `cust_transport_type` */
 
@@ -206,7 +206,7 @@ CREATE TABLE `cust_transport_type` (
   PRIMARY KEY (`ID`),
   KEY `FK_cust_transport_type` (`COMP_ID`),
   CONSTRAINT `FK_cust_transport_type` FOREIGN KEY (`COMP_ID`) REFERENCES `cust_company` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `cust_transport_type_dtl` */
 
@@ -229,7 +229,7 @@ CREATE TABLE `cust_transport_type_dtl` (
   KEY `FK_cust_transport_type_dtl_unit` (`UNIT`),
   CONSTRAINT `FK_cust_transport_type_dtl` FOREIGN KEY (`TRANS_ID`) REFERENCES `cust_transport_type` (`ID`),
   CONSTRAINT `FK_cust_transport_type_dtl_unit` FOREIGN KEY (`UNIT`) REFERENCES `unit` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `customer` */
 
@@ -249,7 +249,7 @@ CREATE TABLE `customer` (
   KEY `FK_customer_emp` (`EMP_ID`),
   CONSTRAINT `FK_customer_emp` FOREIGN KEY (`EMP_ID`) REFERENCES `cust_comp_employee` (`ID`),
   CONSTRAINT `FK_customer_plan` FOREIGN KEY (`PRICE_PLAN_ID`) REFERENCES `price_plan` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `lowery_owner` */
 
@@ -270,7 +270,7 @@ CREATE TABLE `lowery_owner` (
   `UPDATED_ON` datetime DEFAULT NULL,
   `DEL_FLG` char(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `module` */
 
@@ -298,7 +298,7 @@ CREATE TABLE `owner_transport_details` (
   `UPDATED_ON` datetime DEFAULT NULL,
   `DEL_FLAG` char(1) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `pages` */
 
@@ -328,7 +328,7 @@ CREATE TABLE `price_plan` (
   PRIMARY KEY (`ID`),
   KEY `FK_price_plan` (`ROLE_ID`),
   CONSTRAINT `FK_price_plan` FOREIGN KEY (`ROLE_ID`) REFERENCES `role` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `price_plan_details` */
 
@@ -368,7 +368,7 @@ CREATE TABLE `role` (
   `UPDATED_ON` datetime DEFAULT NULL,
   `UPDATED_BY` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `role_tab` */
 
@@ -410,7 +410,7 @@ CREATE TABLE `sms_config` (
   `UID` varchar(100) NOT NULL,
   `PIN` varchar(100) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `sms_inbox` */
 
@@ -456,7 +456,7 @@ CREATE TABLE `state` (
   PRIMARY KEY (`ID`),
   KEY `FK_state` (`COUNTRY_ID`),
   CONSTRAINT `FK_state` FOREIGN KEY (`COUNTRY_ID`) REFERENCES `country` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `tabs` */
 
@@ -485,7 +485,7 @@ CREATE TABLE `unit` (
   `NAME` varchar(100) NOT NULL,
   `DESCRIPTION` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `user_login` */
 
@@ -503,7 +503,7 @@ CREATE TABLE `user_login` (
   PRIMARY KEY (`ID`),
   KEY `FK_user_login_emp` (`EMP_ID`),
   CONSTRAINT `FK_user_login_emp` FOREIGN KEY (`EMP_ID`) REFERENCES `cust_comp_employee` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
