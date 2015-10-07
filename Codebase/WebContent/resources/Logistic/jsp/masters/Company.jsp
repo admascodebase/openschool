@@ -88,10 +88,10 @@
 							<div class="table-toolbar">
 								<div class="row">
 									<div class="col-md-6">
-										<div class="btn-group">
+										<!-- <div class="btn-group">
 											<a href="showAddCompany.htm"><button
 													class="btn btn-circle btn-primary">Add New</button></a>
-										</div>
+										</div> -->
 									</div>
 									<!-- <div class="col-md-6">
 										<div class="btn-group pull-right">
@@ -118,7 +118,7 @@
 										<th>Address</th>
 										<th>Email-Id 1</th>
 										<th>PAN</th>
-										<th>Edit/Delete</th>
+										<th>Edit<!-- /Delete --></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -135,9 +135,9 @@
 											<td><a href="showEditCompany.htm?id=${company.id}"
 													class="btn btn-warning btn-xs"> Edit 
 												</a> 
-												<a href="deleteCompany.htm?id=${company.id}"
+												<%-- /<a href="deleteCompany.htm?id=${company.id}"
 													class="btn btn-info btn-xs"> Delete 
-												</a>
+												</a> --%>
 											</td>
 										</tr>
 									</c:forEach>
