@@ -30,6 +30,7 @@ import com.admas.logiware.jpa.City;
 import com.admas.logiware.jpa.Company;
 import com.admas.logiware.jpa.CompanyBranch;
 import com.admas.logiware.jpa.Employee;
+import com.admas.logiware.jpa.Role;
 import com.admas.logiware.jpa.Settings;
 import com.admas.logiware.jpa.State;
 import com.admas.logiware.jpa.TransportType;
@@ -78,7 +79,7 @@ public class MastersDaoImpl implements MastersDao {
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
 		} catch (Exception e) {
 			logger.error(
-					"Exception Error in UserManagementDaoImpl - > getAllCity ",
+					"Exception Error in MastersDaoImpl - > getAllCity ",
 					e);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
@@ -108,7 +109,7 @@ public class MastersDaoImpl implements MastersDao {
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
 		} catch (Exception e) {
 			logger.error(
-					"Exception Error in UserManagementDaoImpl - > getAllCity ",
+					"Exception Error in MastersDaoImpl - > getAllCity ",
 					e);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
@@ -208,7 +209,7 @@ public class MastersDaoImpl implements MastersDao {
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
 		} catch (Exception e) {
 			logger.error(
-					"Exception Error in UserManagementDaoImpl - > getAllCompany ",
+					"Exception Error in MastersDaoImpl - > getAllCompany ",
 					e);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
@@ -254,7 +255,7 @@ public class MastersDaoImpl implements MastersDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 			// logger.error(
-			// "Exception Error in UserManagementDaoImpl - > addCompany",
+			// "Exception Error in MastersDaoImpl - > addCompany",
 			// e);
 
 			throw new LogiwareExceptionHandler(
@@ -335,7 +336,7 @@ public class MastersDaoImpl implements MastersDao {
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
 		} catch (Exception e) {
 			logger.error(
-					"Exception Error in UserManagementDaoImpl - > deleteCity",
+					"Exception Error in MastersDaoImpl - > deleteCity",
 					e);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
@@ -372,7 +373,7 @@ public class MastersDaoImpl implements MastersDao {
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
 		} catch (Exception e) {
 			logger.error(
-					"Exception Error in UserManagementDaoImpl - > getCompanyById",
+					"Exception Error in MastersDaoImpl - > getCompanyById",
 					e);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
@@ -407,7 +408,7 @@ public class MastersDaoImpl implements MastersDao {
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
 		} catch (Exception e) {
 			logger.error(
-					"Exception Error in UserManagementDaoImpl - > getCityById",
+					"Exception Error in MastersDaoImpl - > getCityById",
 					e);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
@@ -451,7 +452,7 @@ public class MastersDaoImpl implements MastersDao {
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
 		} catch (Exception e) {
 			logger.error(
-					"Exception Error in UserManagementDaoImpl - > getAllEmployee ",
+					"Exception Error in MastersDaoImpl - > getAllEmployee ",
 					e);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
@@ -488,7 +489,7 @@ public class MastersDaoImpl implements MastersDao {
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
 		} catch (Exception e) {
 			logger.error(
-					"Exception Error in UserManagementDaoImpl - > getEmployeeById",
+					"Exception Error in MastersDaoImpl - > getEmployeeById",
 					e);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
@@ -532,7 +533,7 @@ public class MastersDaoImpl implements MastersDao {
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
 		} catch (Exception e) {
 			logger.error(
-					"Exception Error in UserManagementDaoImpl - > addEmployee",
+					"Exception Error in MastersDaoImpl - > addEmployee",
 					e);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
@@ -615,7 +616,7 @@ public class MastersDaoImpl implements MastersDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 			// logger.error(
-			// "Exception Error in UserManagementDaoImpl - > deleteCity", e);
+			// "Exception Error in MastersDaoImpl - > deleteCity", e);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
 		} finally {
@@ -651,7 +652,7 @@ public class MastersDaoImpl implements MastersDao {
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
 		} catch (Exception e) {
 			logger.error(
-					"Exception Error in UserManagementDaoImpl - > addaddTransportType ",e);
+					"Exception Error in MastersDaoImpl - > addaddTransportType ",e);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
 		} finally {
@@ -695,7 +696,7 @@ public class MastersDaoImpl implements MastersDao {
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
 		} catch (Exception e) {
 			logger.error(
-					"Exception Error in UserManagementDaoImpl - > getAllCity ",
+					"Exception Error in MastersDaoImpl - > getAllCity ",
 					e);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
@@ -730,7 +731,7 @@ public class MastersDaoImpl implements MastersDao {
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
 		} catch (Exception e) {
 			logger.error(
-					"Exception Error in UserManagementDaoImpl - > getTransportTypeById",
+					"Exception Error in MastersDaoImpl - > getTransportTypeById",
 					e);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
@@ -829,7 +830,7 @@ public class MastersDaoImpl implements MastersDao {
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
 		} catch (Exception e) {
 			logger.error(
-					"Exception Error in UserManagementDaoImpl - > addaddTransportTypeDtl ",e);
+					"Exception Error in MastersDaoImpl - > addaddTransportTypeDtl ",e);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
 		} finally {
@@ -873,7 +874,7 @@ public class MastersDaoImpl implements MastersDao {
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
 		} catch (Exception e) {
 			logger.error(
-					"Exception Error in UserManagementDaoImpl - > getAllTransportTypeDtl ",
+					"Exception Error in MastersDaoImpl - > getAllTransportTypeDtl ",
 					e);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
@@ -908,7 +909,7 @@ public class MastersDaoImpl implements MastersDao {
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
 		} catch (Exception e) {
 			logger.error(
-					"Exception Error in UserManagementDaoImpl - > getTransportTypeDtlById",
+					"Exception Error in MastersDaoImpl - > getTransportTypeDtlById",
 					e);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
@@ -1003,7 +1004,7 @@ public class MastersDaoImpl implements MastersDao {
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
 		} catch (Exception e) {
 			logger.error(
-					"Exception Error in UserManagementDaoImpl - > addaddTransportTypeDtl ",e);
+					"Exception Error in MastersDaoImpl - > addaddTransportTypeDtl ",e);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
 		} finally {
@@ -1045,7 +1046,7 @@ public class MastersDaoImpl implements MastersDao {
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
 		} catch (Exception e) {
 			logger.error(
-					"Exception Error in UserManagementDaoImpl - > getAllBranch ",
+					"Exception Error in MastersDaoImpl - > getAllBranch ",
 					e);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
@@ -1080,7 +1081,7 @@ public class MastersDaoImpl implements MastersDao {
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
 		} catch (Exception e) {
 			logger.error(
-					"Exception Error in UserManagementDaoImpl - > getBranchById",
+					"Exception Error in MastersDaoImpl - > getBranchById",
 					e);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
@@ -1180,7 +1181,7 @@ public class MastersDaoImpl implements MastersDao {
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
 		} catch (Exception e) {
 			logger.error(
-					"Exception Error in UserManagementDaoImpl - > getAllBranch ",
+					"Exception Error in MastersDaoImpl - > getAllBranch ",
 					e);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
@@ -1215,13 +1216,13 @@ public class MastersDaoImpl implements MastersDao {
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
 		} catch(NoResultException noResult){
 			logger.error(
-					"Exception Error in UserManagementDaoImpl - > NoResultException",
+					"Exception Error in MastersDaoImpl - > NoResultException",
 					noResult);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.NO_SETTINGS_FOUND);
 		}catch (Exception e) {
 			logger.error(
-					"Exception Error in UserManagementDaoImpl - > getSettingByType",
+					"Exception Error in MastersDaoImpl - > getSettingByType",
 					e);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
@@ -1267,7 +1268,7 @@ public class MastersDaoImpl implements MastersDao {
 					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
 		} catch (Exception e) {
 			logger.error(
-					"Exception Error in UserManagementDaoImpl - > getAllStates ",
+					"Exception Error in MastersDaoImpl - > getAllStates ",
 					e);
 			throw new LogiwareExceptionHandler(
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
@@ -1276,6 +1277,48 @@ public class MastersDaoImpl implements MastersDao {
 		}
 
 	
+	}
+
+	@Override
+	public List<Role> getAllRole(int compId) throws LogiwareExceptionHandler {
+		List<Role> lRoles = null;
+		CriteriaBuilder criteriaBuilder = null;
+		try {
+
+			criteriaBuilder = entityManager.getCriteriaBuilder();
+			CriteriaQuery<Role> criteriaQuery = criteriaBuilder
+					.createQuery(Role.class);
+			Root<Role> stateJpa = criteriaQuery.from(Role.class);
+			criteriaQuery.select(stateJpa);
+			TypedQuery<Role> typedQuery = entityManager
+					.createQuery(criteriaQuery);
+			lRoles = typedQuery.getResultList();
+
+			if (lRoles != null && lRoles.size() != 0) {
+				return lRoles;
+			} else {
+				throw new LogiwareExceptionHandler(
+						LogiwareServiceErrors.NO_ROLE_FOUND);
+			}
+
+		} catch (LogiwareExceptionHandler ex) {
+			throw ex;
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in MastersDaoImpl - > getAllRole",
+					he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch (Exception e) {
+			logger.error(
+					"Exception Error in MastersDaoImpl - > getAllRole ",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			criteriaBuilder = null;
+		}
+
 	}
 	
  

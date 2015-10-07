@@ -28,6 +28,8 @@ public enum LogiwareServiceErrors {
 	
 	NO_STATE_FOUND("LW-MM-0007","No States found"),
 	
+	NO_ROLE_FOUND("LW-MM-0009","No Roles found"),
+	
 	NO_CITY_FOUND("LW-MM-0001","No cities found"),
 	
 	NO_COMPANY_FOUND("LW-MM-0002","No companies found"),

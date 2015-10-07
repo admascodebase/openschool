@@ -20,6 +20,7 @@ import com.admas.logiware.dto.CompanyBranchDto;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.LogiwareRespnse;
+import com.admas.logiware.dto.RoleDto;
 import com.admas.logiware.dto.SettingsDto;
 import com.admas.logiware.dto.StateDto;
 import com.admas.logiware.dto.TransportTypeDtlDto;
@@ -1037,6 +1038,35 @@ public class MasterServices {
 								.getErrorDescription());
 			}
 			logger.info(" end  MasterService- > getAllStates");
+			return Response.status(200).entity(logiwareRespnse).build();
+		}
+		
+		@GET
+		@Path("/getAllRolesByComp/{compId}")
+		@Produces({ MediaType.APPLICATION_JSON })
+		public Response getAllRolesByComp(@PathParam("compId")Integer compId) {
+
+			List<RoleDto> lRoles = new ArrayList<RoleDto>();
+			logger.info(" Start  MasterService- > getAllRolesByComp ");
+			LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+			try {
+
+				lRoles = mastersLogic.getAllRoles(compId);
+				logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+				logiwareRespnse.setData(lRoles);;
+			} catch (LogiwareExceptionHandler e) {
+				logger.error("Error in MasterService- > getAllRolesByComp", e);
+				logiwareRespnse.setCode(e.getErrorCode());
+				logiwareRespnse.setDescription(e.getDescription());
+			} catch (Exception e) {
+				logger.error("Error in MasterService- > getAllRolesByComp", e);
+				logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+						.getErrorCode());
+				logiwareRespnse
+						.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+								.getErrorDescription());
+			}
+			logger.info(" end  MasterService- > getAllRolesByComp");
 			return Response.status(200).entity(logiwareRespnse).build();
 		}
 

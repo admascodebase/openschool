@@ -1,56 +1,29 @@
-package com.admas.logiware.jpa;
+package com.admas.logiware.dto;
 
 import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.admas.logiware.dto.RoleDto;
+import com.admas.logiware.jpa.Role;
 
-@Entity
-@Table(name="role")
-public class Role implements Serializable{
+public class RoleDto implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	@Column(name="ROLE" ,nullable = false )
 	private String name;
-	
-	@Column(name="DESCRIPTION")
 	private String description;
-	
-	@Column(name="ORG_CODE" ,nullable = false )
 	private Integer compId;
-	
-	@Column(name="CREATED_BY" ,nullable = false)
 	private Integer createdBy;
-	
-	@Column(name="UPDATED_BY")
 	private Integer updatedBy;
-	
-	@Column(name="CREATED_ON",nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdOn;
-	
-	@Column(name="UPDATED_ON")
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedOn;
-	
-	@Column(name="DEL_FLG" ,nullable = false) 
 	private Character delFlag;
 
 	/**
@@ -179,18 +152,19 @@ public class Role implements Serializable{
 		this.delFlag = delFlag;
 	}
 	
-	public RoleDto _toDto(){
-		RoleDto roleDto = new RoleDto();
-		roleDto.setCompId(this.compId);
-		roleDto.setCreatedBy(this.createdBy);
-		roleDto.setCreatedOn(this.createdOn);
-		roleDto.setDelFlag(this.delFlag);
-		roleDto.setDescription(this.description);
-		roleDto.setId(this.id);
-		roleDto.setName(this.name);
-		roleDto.setUpdatedBy(this.updatedBy);
-		roleDto.setUpdatedOn(this.updatedOn);
-		return roleDto;
+	public Role _toDto(){
+		Role role = new Role();
+		role.setCompId(this.compId);
+		role.setCreatedBy(this.createdBy);
+		role.setCreatedOn(this.createdOn);
+		role.setDelFlag(this.delFlag);
+		role.setDescription(this.description);
+		role.setId(this.id);
+		role.setName(this.name);
+		role.setUpdatedBy(this.updatedBy);
+		role.setUpdatedOn(this.updatedOn);
+		return role;
 	}
+
 
 }

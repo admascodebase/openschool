@@ -15,6 +15,7 @@ import com.admas.logiware.jpa.City;
 import com.admas.logiware.jpa.Company;
 import com.admas.logiware.jpa.CompanyBranch;
 import com.admas.logiware.jpa.Employee;
+import com.admas.logiware.jpa.Role;
 import com.admas.logiware.jpa.Settings;
 import com.admas.logiware.jpa.State;
 import com.admas.logiware.jpa.TransportType;
@@ -96,4 +97,8 @@ public interface MastersDao {
 	public Settings getSettingByType(Integer compId,String type)throws LogiwareExceptionHandler;
 
 	public List<State> getAllStates()throws LogiwareExceptionHandler;
+	
+	public List<Role> getAllRole(int compId)throws LogiwareExceptionHandler;
+	
+	
 }

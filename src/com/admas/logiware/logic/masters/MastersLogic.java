@@ -6,6 +6,7 @@ import com.admas.logiware.dto.CityDto;
 import com.admas.logiware.dto.CompanyBranchDto;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.EmployeeDto;
+import com.admas.logiware.dto.RoleDto;
 import com.admas.logiware.dto.SettingsDto;
 import com.admas.logiware.dto.StateDto;
 import com.admas.logiware.dto.TransportTypeDtlDto;
@@ -90,4 +91,6 @@ public interface MastersLogic {
 	public SettingsDto getSettingByType(Integer compId,String type)throws LogiwareExceptionHandler;
 
 	public List<StateDto> getAllStates()throws LogiwareExceptionHandler;
+	
+	public List<RoleDto> getAllRoles(int compId)throws LogiwareExceptionHandler;
 }

@@ -11,6 +11,7 @@ import com.admas.logiware.dto.CityDto;
 import com.admas.logiware.dto.CompanyBranchDto;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.EmployeeDto;
+import com.admas.logiware.dto.RoleDto;
 import com.admas.logiware.dto.SettingsDto;
 import com.admas.logiware.dto.StateDto;
 import com.admas.logiware.dto.TransportTypeDtlDto;
@@ -21,6 +22,7 @@ import com.admas.logiware.jpa.City;
 import com.admas.logiware.jpa.Company;
 import com.admas.logiware.jpa.CompanyBranch;
 import com.admas.logiware.jpa.Employee;
+import com.admas.logiware.jpa.Role;
 import com.admas.logiware.jpa.Settings;
 import com.admas.logiware.jpa.State;
 import com.admas.logiware.jpa.TransportType;
@@ -759,6 +761,27 @@ public class MastersLogicImpl implements MastersLogic {
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
 		}
 		return lStateDtos;
+	}
+
+	@Override
+	public List<RoleDto> getAllRoles(int compId)
+			throws LogiwareExceptionHandler {
+		List<Role> roles = null;
+		List<RoleDto> lRoleDtos = new ArrayList<RoleDto>();
+		try {
+			roles = mastersDao.getAllRole(compId);
+			for (Role state : roles) {
+				lRoleDtos.add(state._toDto());
+			}
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error("Exception Error in MastersLogicImpl - > getAllRoles ",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return lRoleDtos;
 	}
 	
 	
