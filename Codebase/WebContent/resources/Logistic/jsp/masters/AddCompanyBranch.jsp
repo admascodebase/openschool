@@ -244,7 +244,7 @@
 												</div>
 												<!--/row-->
 												<div class="row">
-													<div class="col-md-6">
+													<%-- <div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label col-md-3">company
 															</label>
@@ -253,7 +253,7 @@
 																	placeholder="Select your company."/> 
 															</div>
 														</div>
-													</div>
+													</div> --%>
 													<!--/span-->
 													<div class="col-md-6">
 														<div class="form-group">
@@ -266,9 +266,7 @@
 														</div>
 													</div>
 													<!--/span-->
-												</div>
-												<!--/row-->
-												<div class="row">
+													
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label col-md-3">Email Id</label>
@@ -278,8 +276,9 @@
 														</div>
 													</div>
 													<!--/span-->
-													
 												</div>
+												<!--/row-->
+												
 												
 											</div>
 											<div class="form-actions right">
