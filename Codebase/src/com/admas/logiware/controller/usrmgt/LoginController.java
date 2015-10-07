@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.controller.core.BaseController;
-import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.FlowData;
 import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
@@ -93,11 +92,12 @@ public class LoginController extends BaseController {
 			reqDtoObjects.put(WebAppConstants.PASSWORD, password);			
 			resDtoObjects =userManagementServiceImpl.isValidUser(flowData, reqDtoObjects, resDtoObjects);
 			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
-//			resDtoObjects = userManagementServiceImpl.getSmsBalance(flowData, reqDtoObjects, resDtoObjects);
+			resDtoObjects = userManagementServiceImpl.getSmsBalance(flowData, reqDtoObjects, resDtoObjects);
 			balance = (String) resDtoObjects.get("balance");
 			mv=new ModelAndView(viewName);
 			flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
 			mv.addObject(WebAppConstants.USERNAME, flowData.getSessionData(WebAppConstants.USERNAME));
+			flowData.setSessionData("balance", balance);
 			mv.addObject("balance", balance);
 			return mv;
 
@@ -131,9 +131,9 @@ public class LoginController extends BaseController {
 			viewName = "Dashboard";
 			mv=new ModelAndView(viewName);
 			flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
-			mv.addObject(WebAppConstants.USERNAME, flowData.getSessionData(WebAppConstants.USERNAME));	
+			mv.addObject(WebAppConstants.USERNAME, flowData.getSessionData(WebAppConstants.USERNAME));
+			mv.addObject("balance", flowData.getSessionData("balance"));
 			return mv;
-
 		} catch (Exception e) {
 			logger.error("Exception in LoginController:getPostLoginDtls", e);
 			mv.addObject(WebAppConstants.ERROR_CODE,
