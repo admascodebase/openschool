@@ -95,6 +95,8 @@ public interface MastersDao {
 	public List<State> getAllState()throws LogiwareExceptionHandler;
 	
 	public Settings getSettingByType(Integer compId,String type)throws LogiwareExceptionHandler;
+	
+	public List<Settings> getSettingAllByType(Integer compId,String type)throws LogiwareExceptionHandler;
 
 	public List<State> getAllStates()throws LogiwareExceptionHandler;
 	

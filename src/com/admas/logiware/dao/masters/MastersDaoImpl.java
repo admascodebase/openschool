@@ -1231,6 +1231,47 @@ public class MastersDaoImpl implements MastersDao {
 		}
 	}
 
+	@Override
+	public List<Settings> getSettingAllByType(Integer compId, String type)
+			throws LogiwareExceptionHandler {
+		 List<Settings> lSettings = null;
+		try {
+			TypedQuery<Settings> settingQuery = entityManager.createQuery(
+					"SELECT c FROM Settings c WHERE compId = :compId AND type = :type", Settings.class);
+			settingQuery.setParameter("compId", compId );
+			settingQuery.setParameter("type", type );
+			lSettings = settingQuery.getResultList();
+
+			if (lSettings != null) {
+				return lSettings;
+			} else {
+				throw new LogiwareExceptionHandler(
+						LogiwareServiceErrors.NO_SETTINGS_FOUND);
+			}
+
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in MastersDaoImpl - > getSettingAllByType",
+					he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch(NoResultException noResult){
+			logger.error(
+					"Exception Error in MastersDaoImpl - > getSettingAllByType",
+					noResult);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.NO_SETTINGS_FOUND);
+		}catch (Exception e) {
+			logger.error(
+					"Exception Error in MastersDaoImpl - > getSettingAllByType",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			entityManager.close();
+		}
+	}
+	
 	// end branch details dao
 	
 	
@@ -1320,8 +1361,6 @@ public class MastersDaoImpl implements MastersDao {
 		}
 
 	}
-	
- 
 	
 	
 }

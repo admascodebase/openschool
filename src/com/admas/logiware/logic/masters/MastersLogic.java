@@ -89,7 +89,9 @@ public interface MastersLogic {
 	public List<StateDto> getAllState()throws LogiwareExceptionHandler;
 	
 	public SettingsDto getSettingByType(Integer compId,String type)throws LogiwareExceptionHandler;
-
+	
+	public List<SettingsDto> getSettingAllByType(Integer compId,String type)throws LogiwareExceptionHandler;
+	
 	public List<StateDto> getAllStates()throws LogiwareExceptionHandler;
 	
 	public List<RoleDto> getAllRoles(int compId)throws LogiwareExceptionHandler;

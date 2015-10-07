@@ -738,6 +738,27 @@ public class MastersLogicImpl implements MastersLogic {
 		}
 		return settings._toDto();
 	}
+	
+	@Override
+	public List<SettingsDto> getSettingAllByType(Integer compId, String type)
+			throws LogiwareExceptionHandler {
+		 List<SettingsDto> lsettingsDto = new ArrayList<SettingsDto>();
+		 List<Settings> lsettings=null;
+		try {
+			lsettings = mastersDao.getSettingAllByType(compId, type);	
+			for (Settings settings2 : lsettings) {
+				lsettingsDto.add(settings2._toDto());
+			}
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error(
+					"Exception Error in MastersLogicImpl - > getSettingByType ", e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return lsettingsDto;
+	}
 
 	//end branch logic impl services
 	
@@ -783,8 +804,6 @@ public class MastersLogicImpl implements MastersLogic {
 		}
 		return lRoleDtos;
 	}
-	
-	
 	
 
 }

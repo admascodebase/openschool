@@ -1011,6 +1011,33 @@ public class MasterServices {
 			return Response.status(200).entity(logiwareRespnse).build();
 		}
 		
+		@GET
+		@Path("/getSettingAllByType/{compId}/{type}")
+		@Produces({ MediaType.APPLICATION_JSON })
+		public Response getSettingAllByType(@PathParam("compId")Integer compId,@PathParam("type")String type) {
+			List<SettingsDto> setting = new ArrayList<SettingsDto>();
+			logger.info(" Start  MasterService- > getSettingAllByType Method");
+			LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+			try {
+				setting = mastersLogic.getSettingAllByType(compId,type);
+				logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+				logiwareRespnse.setData(setting);
+			} catch (LogiwareExceptionHandler e) {
+				logger.error("Error in MasterService- > getSettingAllByType", e);
+				logiwareRespnse.setCode(e.getErrorCode());
+				logiwareRespnse.setDescription(e.getDescription());
+			} catch (Exception e) {
+				logger.error("Error in MasterService- > getSettingAllByType", e);
+				logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+						.getErrorCode());
+				logiwareRespnse
+						.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+								.getErrorDescription());
+			}
+			logger.info(" end  MasterService- > getSettingAllByType");
+			return Response.status(200).entity(logiwareRespnse).build();
+		}
+		
 		
 		@GET
 		@Path("/getAllStates")
