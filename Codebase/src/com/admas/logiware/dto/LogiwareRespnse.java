@@ -22,6 +22,8 @@ public class LogiwareRespnse implements Serializable{
 	private TransportDetailsDto transportDetailsDto;
 	private TransportTypeDtlDto transportTypeDtlDto;
 	private CompanyRouteDto companyRouteDto;
+	private List<CityDto> lCityDto;
+	private List<ContractCompDto> lContractCompDtos;
 	/**
 	 * @return the code
 	 */
@@ -200,6 +202,30 @@ public class LogiwareRespnse implements Serializable{
 	 */
 	public void setCompanyRouteDto(CompanyRouteDto companyRouteDto) {
 		this.companyRouteDto = companyRouteDto;
+	}
+	/**
+	 * @return the lCityDto
+	 */
+	public List<CityDto> getlCityDto() {
+		return lCityDto;
+	}
+	/**
+	 * @param lCityDto the lCityDto to set
+	 */
+	public void setlCityDto(List<CityDto> lCityDto) {
+		this.lCityDto = lCityDto;
+	}
+	/**
+	 * @return the lContractCompDtos
+	 */
+	public List<ContractCompDto> getlContractCompDtos() {
+		return lContractCompDtos;
+	}
+	/**
+	 * @param lContractCompDtos the lContractCompDtos to set
+	 */
+	public void setlContractCompDtos(List<ContractCompDto> lContractCompDtos) {
+		this.lContractCompDtos = lContractCompDtos;
 	}
 	
 	

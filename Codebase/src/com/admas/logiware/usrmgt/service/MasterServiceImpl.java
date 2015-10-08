@@ -73,7 +73,6 @@ public class MasterServiceImpl {
 		return resDtoObjects;
 	}
 
-	@SuppressWarnings("unchecked")
 	public Map<String, Object> getAllCities(FlowData flowData,
 			HashMap<String, Object> reqDtoObjects,
 			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
@@ -83,7 +82,7 @@ public class MasterServiceImpl {
 		LogiwareRespnse logiwareRespnse = null;
 		try {
 			 logiwareRespnse = doServiceCall(flowData, ServiceName.getAllCity, reqDtoObjects);
-			 lCities =(List<CityDto>) logiwareRespnse.getData();			 
+			 lCities =(List<CityDto>) logiwareRespnse.getlCityDto();			 
 			 resDtoObjects.put("lCities", lCities);
 		} catch (LogiwareBaseException b) {
 			throw b;
@@ -862,7 +861,7 @@ public class MasterServiceImpl {
 			viewName = "getAllContractCompany";
 			logiwareRespnse  = doServiceCall(flowData, ServiceName.getAllContractCompany, reqDtoObjects);
 			
-			lContractCompanies = (List<ContractCompDto>) logiwareRespnse.getData();			
+			lContractCompanies = (List<ContractCompDto>) logiwareRespnse.getlContractCompDtos();			
 			resDtoObjects.put("lContractCompanies", lContractCompanies);
 			resDtoObjects.put(WebAppConstants.VIEW_NAME, viewName);
 			
@@ -1560,6 +1559,66 @@ public class MasterServiceImpl {
 		
 
 		
+	}
+
+	public Map<String, Object> saveCompanyRoute(FlowData flowData, HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+
+		logger.info("MasterServiceImpl saveCompanyRoute method start.");
+		LogiwareRespnse logiwareResponse = null;
+		String viewName = "";
+		try {
+			viewName = "getAllContractCompRoute";
+			logiwareResponse = doServiceCall(flowData, ServiceName.saveCompanyRoute, reqDtoObjects);
+			resDtoObjects.put("userResponse", logiwareResponse);
+			resDtoObjects.put("viewName", viewName);
+		} catch (LogiwareBaseException b) {
+			resDtoObjects = getAllTransportDetails(flowData,
+					reqDtoObjects, resDtoObjects);
+			throw b;
+		} catch (Exception e) {			
+			logger.error(
+					"Exception In MasterServiceImpl: saveCompanyRoute method end.",
+					e);
+			resDtoObjects = getAllTransportDetails(flowData,
+					reqDtoObjects, resDtoObjects);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		resDtoObjects = getAllTransportDetails(flowData,
+				reqDtoObjects, resDtoObjects);
+		logger.info("MasterServiceImpl saveCompanyRoute method end. ");
+		return resDtoObjects;
+		
+	}
+
+	public Map<String, Object> saveEditCompanyRoute(FlowData flowData, HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+		logger.info("MasterServiceImpl saveEditCompanyRoute method start. ");
+		LogiwareRespnse logiwareRespnse = null;
+		Boolean result=false;
+		try {
+			logiwareRespnse = doServiceCall(flowData, ServiceName.saveEditCompanyRoute,
+			 reqDtoObjects);
+			logiwareRespnse.getData();
+			resDtoObjects.put("userResponse", logiwareRespnse);
+		} catch (LogiwareBaseException b) {
+			resDtoObjects = getAllContractCompRoutes(flowData, reqDtoObjects, resDtoObjects);
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In MasterServiceImpl saveEditCompanyRoute method end.",e);
+			resDtoObjects = getAllTransportTypes(flowData, reqDtoObjects, resDtoObjects);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode(),
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorDescription());
+		}
+		resDtoObjects = getAllTransportTypes(flowData, reqDtoObjects, resDtoObjects);
+		logger.info("MasterServiceImpl saveEditCompanyRoute() method end. ");
+		return resDtoObjects;
+
 	}
 	
 }

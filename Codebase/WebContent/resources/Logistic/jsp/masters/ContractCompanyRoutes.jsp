@@ -1,6 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
 	<div class="page-head">
@@ -207,9 +208,25 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="btn-group">
-											<a href="showAddContractCompRoute.htm"><button
+											<a href="showAddContractCompRoute.htm?compId=${contractCompId}"><button
 													class="btn btn-circle btn-primary">Add New</button></a>
 										</div>
+									</div>
+								<%-- 	<div class="col-md-6">
+										<div class="btn-group">
+											<form:select path="compId">
+												<form:option value="0" label="---Select---" />
+												<form:options class="form-control" itemValue="id" itemLabel="name" items="${lContractCompanies}" />
+											</form:select>
+										</div>
+									</div> --%>
+									<div class="col-md-6">
+									<select class="form-control">
+									<option  value="0" label="select"/>
+									<option value="1" label="ContractComp1" >ContractComp1</option>
+									<option value="2" label="ContractComp2" >ContractComp2</option>
+									<option value="3" label="ContractComp3" >ContractComp3</option>
+									</select>
 									</div>
 									<div class="col-md-6">
 								</div>
@@ -228,6 +245,7 @@
 								<tbody>
 									<c:forEach items="${lCompanyRouteDtos}" var="CompanyRouteDto">
 										<tr class="odd gradeX">
+										<form:hidden path="contractCompId"/>
 											<td><input type="checkbox" class="checkboxes" value="1" />
 											</td>
 											<td>${CompanyRouteDto.startCityId}</td>
@@ -250,3 +268,15 @@
 	</div>
 	<!-- END PAGE CONTENT -->
 </div>
+</div>
+<script>
+$( "select" )
+  .change(function () {
+    var str = "";
+    $( "select option:selected" ).each(function() {
+      str += $( this ).value() + " ";
+    });
+   alert(""+str);
+  })
+  .change();
+</script>

@@ -185,58 +185,40 @@
 
 								<!-- CompanyStart -->
 								<div class="portlet box green">
-									<!-- <div class="portlet-title">
-										<div class="caption">
-											<i class="fa fa-gift"></i>Form Sample
-										</div>
-										<div class="tools">
-											<a href="javascript:;" class="collapse">
-											</a>
-											<a href="#portlet-config" data-toggle="modal" class="config">
-											</a>
-											<a href="javascript:;" class="reload">
-											</a>
-											<a href="javascript:;" class="remove">
-											</a>
-										</div>
-									</div> -->
 									<div class="portlet-body form">
 										<!-- BEGIN FORM-->
-										<form:form action="saveContractCompRoute.htm" modelAttribute="companyRouteDto" class="form-horizontal">
+										<form:form action="saveContractCompRoute.htm" modelAttribute="companyRoute" class="form-horizontal">
 										<form:hidden path="id" />
 										<form:hidden path="delFlag" />
+										<form:hidden path="compId" />
 											<div class="form-body">
 												<h3 class="form-section"></h3>
 												<div class="row">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Comp id</label>
+															<div class="col-md-9">
+																<form:input type="text" path="compId" class="form-control"
+																	placeholder="Transport Type Detail."/> 
+															</div>
+														</div>
+													</div>
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label col-md-3">Start City</label>
 															<div class="col-md-9">
 																	<form:select path="startCityId">
 																	<form:option value="0" label="Select One" />
-																	<form:options itemValue="id" itemLabel="name"  items="${lCityStart}" />
+																	<form:options class="form-control" itemValue="id" itemLabel="name"  items="${lCityStart}" />
 																</form:select> 
 															</div>
 														</div>
 													</div>
 													<!--/span-->
-													
-													<div class="col-md-6">
-														<div class="form-group">
-															<label class="control-label col-md-3">Transport Detail</label>
-															<div class="col-md-9">
-																<form:input type="text" path="transportDetailsId" class="form-control"
-																	placeholder="Transport Type Detail."/> 
-															</div>
-														</div>
-													</div>
-													
-													
 													<!--/span-->
 												</div>
 												<!--/row-->
 												<div class="row">
-													
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label col-md-3">End City</label>
@@ -244,29 +226,8 @@
 																<%-- <form:input type="text" path="endCityId" class="form-control"/> --%>
 																<form:select path="endCityId">
 																	<form:option value="0" label="Select One" />
-																	<form:options itemValue="id" itemLabel="name" items="${lCityEnd}" />
+																	<form:options class="form-control" itemValue="id" itemLabel="name" items="${lCityEnd}" />
 																</form:select> 
-															</div>
-														</div>
-													</div>
-													
-													<div class="col-md-6">
-														<div class="form-group">
-															<label class="control-label col-md-3">Cost</label>
-															<div class="col-md-9">
-																<form:input type="text" path="cost" class="form-control"
-																	placeholder="Transport Type Detail."/> 
-															</div>
-														</div>
-													</div>
-												</div>
-												
-												<div class="row">
-													<div class="col-md-6">
-														<div class="form-group">
-															<label class="control-label col-md-3">Advance Amount</label>
-															<div class="col-md-9">
-																<form:input type="text" path="advanceAmt" class="form-control"/> 
 															</div>
 														</div>
 													</div>
