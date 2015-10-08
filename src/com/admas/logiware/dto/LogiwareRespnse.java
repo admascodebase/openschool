@@ -24,6 +24,7 @@ public class LogiwareRespnse implements Serializable{
 //	private PaymentExceptionDto paymentExceptionDto;
 	private TransportTypeDtlDto transportTypeDtlDto;
 	private List<CityDto> lCityDto;
+	private List<ContractCompDto> lContractCompDtos;
 	
 	/**
 	 * @return the code
@@ -240,6 +241,18 @@ public class LogiwareRespnse implements Serializable{
 	 */
 	public void setlCityDto(List<CityDto> lCityDto) {
 		this.lCityDto = lCityDto;
+	}
+	/**
+	 * @return the lContractCompDtos
+	 */
+	public List<ContractCompDto> getlContractCompDtos() {
+		return lContractCompDtos;
+	}
+	/**
+	 * @param lContractCompDtos the lContractCompDtos to set
+	 */
+	public void setlContractCompDtos(List<ContractCompDto> lContractCompDtos) {
+		this.lContractCompDtos = lContractCompDtos;
 	}
 	
 	

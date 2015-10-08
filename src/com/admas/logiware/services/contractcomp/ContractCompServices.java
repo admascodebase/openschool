@@ -63,7 +63,7 @@ public class ContractCompServices {
 
 			lContractComp =contractCompLogic.getAllContractComp();
 			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
-			logiwareRespnse.setData(lContractComp);
+			logiwareRespnse.setlContractCompDtos(lContractComp);
 		} catch (LogiwareExceptionHandler e) {
 			logger.error("Error in ContractCompServices- > getAllContractComp", e);
 			logiwareRespnse.setCode(e.getErrorCode());
