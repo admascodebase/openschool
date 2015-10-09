@@ -47,6 +47,7 @@ public enum LogiwareServiceErrors {
 	NO_BRANCH_FOUND("LW-MM-0006","No branch details found"),
 	
 	NO_CONTRACT_COMP_FOUND("LW-CC-0001", "No contract company found"),
+	NO_ROUTE_PAY_SETTING_FOUND("LW-CC-0002", "No route pay setting found"),
 	
 	NO_SETTINGS_FOUND("LW-MM-0008","No Settings were found"),
 	
