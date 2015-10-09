@@ -7,4 +7,6 @@ public interface IUserManagementLogic {
 
 	public UserDetails login(String userName , String password) throws LogiwareExceptionHandler;
 	
+	public boolean addUser(UserDetails userDetails) throws LogiwareExceptionHandler;
+	
 }

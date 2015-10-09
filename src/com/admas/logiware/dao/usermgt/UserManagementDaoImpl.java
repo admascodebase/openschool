@@ -14,6 +14,8 @@ import org.hibernate.HibernateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.admas.logiware.exception.LogiwareExceptionHandler;
 import com.admas.logiware.exception.LogiwareServiceErrors;
@@ -119,5 +121,37 @@ public class UserManagementDaoImpl implements IUserManagementDao {
 			criteriaBuilder = null;
 		}
 	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public boolean addUser(com.admas.logiware.dto.UserDetails userDetails)
+			throws LogiwareExceptionHandler {
+		Boolean result = false;
+		try {
+		/*	UserDetails city = userDetails._toJpa();
+			entityManager.persist(city);
+			entityManager.flush();
+			if (city.getId() != null || city.getId() != 0) {
+				result = true;
+			}*/
+			return result;
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in MastersDaoImpl - > getAllCity",
+					he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch (Exception e) {
+			logger.error(
+					"Exception Error in MastersDaoImpl - > getAllCity ",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			entityManager.close();
+		}
+	}
+	
+	
 
 }

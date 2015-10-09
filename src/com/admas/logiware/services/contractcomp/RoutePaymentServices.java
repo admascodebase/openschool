@@ -26,7 +26,6 @@ public class RoutePaymentServices {
 			.getLogger(RoutePaymentServices.class);
 
 	private static RoutePaySettingLogic routePaySettingLogicImpl;
-
 	
 
 	/**

@@ -73,5 +73,14 @@ public class UserManagementLogicImpl implements IUserManagementLogic {
 	public static void setUserManagementDao(IUserManagementDao userManagementDao) {
 		UserManagementLogicImpl.userManagementDao = userManagementDao;
 	}
+
+	
+
+	@Override
+	public boolean addUser(UserDetails userDetails)
+			throws LogiwareExceptionHandler {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }

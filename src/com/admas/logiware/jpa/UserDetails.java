@@ -30,13 +30,13 @@ public class UserDetails implements Serializable{
 	@Column(name="PASSWORD" ,nullable = false )
 	private String pasword;
 	
-	@Column(name="EMP_ID" ,nullable = false )
+	@Column(name="EMP_ID" )
 	private Integer empId;
 	
-	@Column(name="FAILED_ATTEMPT" ,nullable = false )
+	@Column(name="FAILED_ATTEMPT"  )
 	private Integer failedAttempt;
 	
-	@Column(name="LAST_LOGIN" ,nullable = false )
+	@Column(name="LAST_LOGIN" )
 	private Date lastLoginTime;
 
 	/**

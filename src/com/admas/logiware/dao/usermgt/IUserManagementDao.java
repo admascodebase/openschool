@@ -9,4 +9,6 @@ public interface IUserManagementDao {
 	public UserDetails login(String userName , String password) throws LogiwareExceptionHandler;
 	
 	public Employee getEmployeeById(Integer empId) throws LogiwareExceptionHandler;
+	
+	public boolean addUser(com.admas.logiware.dto.UserDetails userDetails) throws LogiwareExceptionHandler;
 }

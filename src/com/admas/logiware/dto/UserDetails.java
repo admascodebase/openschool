@@ -76,6 +76,10 @@ public class UserDetails implements Serializable{
 		this.custCompEmployee = custCompEmployee;
 	}
 	
+	public com.admas.logiware.jpa.UserDetails _toJpa(){
+		com.admas.logiware.jpa.UserDetails userDetails = new com.admas.logiware.jpa.UserDetails();
+		userDetails.setUserName(userName);
+	}
 	
 	
 	
