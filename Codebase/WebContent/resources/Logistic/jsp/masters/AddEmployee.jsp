@@ -165,6 +165,18 @@
 															</form:select>
 															</div>
 														</div>
+														
+														<div class="form-group">
+															<label class="control-label col-md-3">Role</label>
+															<div class="col-md-9">
+															<form:select path="roleId"
+																class="select2me form-control">
+																<form:option value="0" label="-- Select -- " />
+																<form:options itemValue="id" itemLabel="name"
+																	items="${lRoles}" />
+															</form:select>
+															</div>
+														</div>
 													</div>
 													<!--/span-->
 												</div>

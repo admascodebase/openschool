@@ -20,6 +20,7 @@ import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.controller.core.BaseController;
 import com.admas.logiware.dto.CityDto;
 import com.admas.logiware.dto.CompanyRouteDto;
+import com.admas.logiware.dto.ContractCompDto;
 import com.admas.logiware.dto.FlowData;
 import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
@@ -38,7 +39,7 @@ public class ContractCompanyRouteController extends BaseController{
 
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/getAllContractCompRoutes.htm", method = RequestMethod.GET)
-	public ModelAndView getAllContractCompRoutes(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView getAllContractCompRoutes(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("companyRoute")ContractCompDto contractCompDto) throws LogiwareBaseException {
 		logger.info("ContractCompanyRouteController: getAllContractCompRoutes Method Start.");
 		FlowData flowData = null;
 		super.handleRequestInternal(request, response);
@@ -51,28 +52,38 @@ public class ContractCompanyRouteController extends BaseController{
 		ModelAndView mv = new ModelAndView("getAllContractCompRoute");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
+		Integer contractCompId = 0;
 		try {
-			Integer contractCompId = Integer.parseInt(request.getParameter("id"));
+			if(contractCompDto.getCompId()==null){
+				 contractCompId = 1;
+			}else{
+			contractCompId = contractCompDto.getCompId();/*Integer.parseInt(request.getParameter("id"));*/
+			}
 			reqDtoObjects.put("contractCompId", contractCompId);
 			mv.addObject("contractCompId", contractCompId);
 			resDtoObjects = masterServiceImpl.getAllContractCompRoutes(flowData, reqDtoObjects, resDtoObjects);
 			resDtoObjects = masterServiceImpl.getAllContractCompany(flowData, reqDtoObjects, resDtoObjects);
 			
-			List<CompanyRouteDto> lContractCompanies = (List<CompanyRouteDto>) resDtoObjects.get("lContractCompanies");
-
+			
 			List<CompanyRouteDto> lCompanyRouteDtos = (List<CompanyRouteDto>) resDtoObjects.get("lCompanyRouteDtos");
 			mv.addObject("lCompanyRouteDtos", lCompanyRouteDtos);
-			mv.addObject("lContractCompanies", lContractCompanies);
+			
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in TransportDetailsController: getAllContractCompRoutes", _be);
 			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
+			resDtoObjects = masterServiceImpl.getAllContractCompany(flowData, reqDtoObjects, resDtoObjects);
 
 		} catch (Exception e) {
 			logger.error("Exception In TransportDetailsController getAllContractCompRoutes Method--",
 					e);
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
+			resDtoObjects = masterServiceImpl.getAllContractCompany(flowData, reqDtoObjects, resDtoObjects);
 		}
+		
+		List<CompanyRouteDto> lContractCompanies = (List<CompanyRouteDto>) resDtoObjects.get("lContractCompanies");
+		mv.addObject("lContractCompanies", lContractCompanies);
+		mv.addObject("companyRoute", new ContractCompDto() );
 		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
 		mv.addObject("userName", flowData.getSessionData("userName"));	
 		logger.info("ContractCompanyRouteController: getAllContractCompRoutes Method End.");
@@ -122,6 +133,7 @@ public class ContractCompanyRouteController extends BaseController{
 		return mv;
 	}
 
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/saveContractCompRoute.htm", method = RequestMethod.POST)
 	public ModelAndView saveContractCompRoute(
 			@ModelAttribute("companyRouteDto")CompanyRouteDto companyRouteDto,
@@ -139,17 +151,17 @@ public class ContractCompanyRouteController extends BaseController{
 			return super.loginPage(flowData, request);
 
 		companyRouteDto.setDelFlag('N');
-		ModelAndView mv = new ModelAndView("getAllTransportDetails");
+		ModelAndView mv = new ModelAndView("getAllContractCompRoute");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		String sucessMessage= "";
 //		Integer transId = Integer.parseInt(request.getParameter("transId"));
-		
 		try {
+			Integer contractCompanyId =1;// (Integer) Integer.parseInt(request.getParameter("compId"));
+			companyRouteDto.setCompId(contractCompanyId);
 			reqDtoObjects.put("companyRouteDto", companyRouteDto);
-			Integer contractCompanyId = (Integer) Integer.parseInt(request.getParameter("compId"));
-//			Integer	transOwnId = transportDetailsDto.getOwnId();
-			reqDtoObjects.put("contractCompanyId", contractCompanyId);
+			
+			reqDtoObjects.put("contractCompId", contractCompanyId);
 			if (companyRouteDto.getId() != null && companyRouteDto.getId() > 0) {
 				resDtoObjects = masterServiceImpl.saveEditCompanyRoute(flowData, reqDtoObjects, resDtoObjects);
 				sucessMessage= WebAppConstants.LW_SUCESS_EDIT;
@@ -159,6 +171,7 @@ public class ContractCompanyRouteController extends BaseController{
 				sucessMessage= WebAppConstants.LW_SUCESS_ADD;
 			}
 			mv.addObject(WebAppConstants.SUCESS_MESSAGE,sucessMessage);
+			resDtoObjects = masterServiceImpl.getAllContractCompany(flowData, reqDtoObjects, resDtoObjects);
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in ContractCompanyRouteController: saveContractCompRoute", _be);
 			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
@@ -168,10 +181,13 @@ public class ContractCompanyRouteController extends BaseController{
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
-					
-		@SuppressWarnings("unchecked")
+		List<ContractCompDto> lContractCompanies = (List<ContractCompDto>) resDtoObjects.get("lContractCompanies");
+		mv.addObject("lContractCompanies", lContractCompanies);
 		List<CompanyRouteDto> lCompanyRouteDtos = (List<CompanyRouteDto>) resDtoObjects.get("lCompanyRouteDtos");		
 		mv.addObject("lCompanyRouteDtos", lCompanyRouteDtos);		
+		mv.addObject("companyRoute", new ContractCompDto() );
+		mv.addObject("contractCompId", 1);
+		
 		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
 		mv.addObject("userName", flowData.getSessionData("userName"));
 		logger.info("ContractCompanyRouteController: saveContractCompRoute Method End.");
@@ -191,7 +207,7 @@ public class ContractCompanyRouteController extends BaseController{
 		}
 		if (!flowData.isLoggedIn())
 			return super.loginPage(flowData, request);
-		ModelAndView mv = new ModelAndView("getAllContractCompRoute");
+		ModelAndView mv = new ModelAndView("showAddContractCompRoute");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		Integer contractCompRouteId = Integer.parseInt(request.getParameter("id"));
@@ -201,7 +217,19 @@ public class ContractCompanyRouteController extends BaseController{
 					reqDtoObjects, resDtoObjects);
 			mv = new ModelAndView(
 					(String) resDtoObjects.get(WebAppConstants.VIEW_NAME));
-			mv.addObject("contractCompRouteDto", resDtoObjects.get("contractCompRouteDto"));			
+			mv.addObject("companyRoute", resDtoObjects.get("contractCompRouteDto"));
+			
+			resDtoObjects=masterServiceImpl.getAllCities(flowData, reqDtoObjects, resDtoObjects);
+			@SuppressWarnings("unchecked")
+			List<CityDto> lCityStart = (List<CityDto>) resDtoObjects.get("lCities");
+			resDtoObjects = masterServiceImpl.getAllCities(flowData, reqDtoObjects, resDtoObjects);
+			@SuppressWarnings("unchecked")
+			List<CityDto> lCityEnd = (List<CityDto>) resDtoObjects.get("lCities");
+			
+			mv.addObject("lCityStart", lCityStart);
+			mv.addObject("lCityEnd", lCityEnd);
+			
+			
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in ContractCompanyRouteController: editContractCompanyRoute",
 					_be);
@@ -219,11 +247,12 @@ public class ContractCompanyRouteController extends BaseController{
 		return mv;
 	}
 
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/deleteContractCompanyRoute.htm", method = RequestMethod.GET)
 	public ModelAndView deleteContractCompanyRoute(HttpServletRequest request,
 			HttpServletResponse response) {
 
-		logger.info("TransportDetailsController: deleteContractCompanyRoute Method Start.");
+		logger.info("ContractCompanyRouteController: deleteContractCompanyRoute Method Start.");
 		FlowData flowData = null;
 		super.handleRequestInternal(request, response);
 		if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
@@ -232,37 +261,41 @@ public class ContractCompanyRouteController extends BaseController{
 		}
 		if (!flowData.isLoggedIn())
 			return super.loginPage(flowData, request);
-		ModelAndView mv = new ModelAndView("getAllTransportDetails");
+		ModelAndView mv = new ModelAndView("getAllContractCompRoute");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		Integer companyRouteId = Integer.parseInt(request.getParameter("id"));
 		try {
 			reqDtoObjects.put("companyRouteId", companyRouteId);
-			Integer contractCompanyId = (Integer)request.getAttribute("contractCompanyId");
-			reqDtoObjects.put("contractCompanyId", contractCompanyId);
+			Integer contractCompanyId = 1/* (Integer)request.getAttribute("contractCompanyId")*/;
+			reqDtoObjects.put("contractCompId", contractCompanyId);
 			
-			resDtoObjects = masterServiceImpl.deleteTransportDetails(flowData,
-					reqDtoObjects, resDtoObjects);
+			resDtoObjects = masterServiceImpl.deleteContractCompanyRoute(flowData, reqDtoObjects, resDtoObjects);
+			
+			resDtoObjects = masterServiceImpl.getAllContractCompany(flowData, reqDtoObjects, resDtoObjects);
+			
 			mv.addObject(WebAppConstants.SUCESS_MESSAGE,WebAppConstants.LW_SUCESS_DELETE);
-			resDtoObjects = masterServiceImpl.getAllTransportDetails(flowData, reqDtoObjects, resDtoObjects);
+			resDtoObjects = masterServiceImpl.getAllContractCompRoutes(flowData, reqDtoObjects, resDtoObjects);
 		} catch (LogiwareBaseException _be) {
-			logger.error("Exception in TransportDetailsController: deleteContractCompanyRoute",
+			logger.error("Exception in ContractCompanyRouteController: deleteContractCompanyRoute",
 					_be);
 			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
 		} catch (Exception e) {
 			logger.error(
-					"Exception In TransportDetailsController deleteContractCompanyRoute Method--",
+					"Exception In ContractCompanyRouteController deleteContractCompanyRoute Method--",
 					e);
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
-		@SuppressWarnings("unchecked")
-		List<CompanyRouteDto> lCompanyRouteDtos = (List<CompanyRouteDto>) resDtoObjects
-				.get("lTransportDetails");
-		mv.addObject("lCompanyRouteDtos", lCompanyRouteDtos);	
+		List<CompanyRouteDto> lCompanyRouteDtos = (List<CompanyRouteDto>) resDtoObjects.get("lCompanyRouteDtos");
+		mv.addObject("lCompanyRouteDtos", lCompanyRouteDtos);
+		List<CompanyRouteDto> lContractCompanies = (List<CompanyRouteDto>) resDtoObjects.get("lContractCompanies");
+		mv.addObject("lContractCompanies", lContractCompanies);
+		mv.addObject("companyRoute", new ContractCompDto() );
+		mv.addObject("contractCompId", 1);
 		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
 		mv.addObject("userName", flowData.getSessionData("userName"));
-		logger.info("TransportDetailsController: deleteContractCompanyRoute Method End.");
+		logger.info("ContractCompanyRouteController: deleteContractCompanyRoute Method End.");
 		return mv;
 	}
 

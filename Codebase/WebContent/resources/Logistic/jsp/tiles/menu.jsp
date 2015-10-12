@@ -50,13 +50,16 @@
 													<i class="icon-home"></i>
 													Contract Company </a>
 												</li> -->
-												
 												<li>
 													<a href="getAllTransportTypes.htm" class="iconify">
 													<i class="icon-handbag"></i>
 													Transport Type </a>
-												</li>												
-												
+												</li>
+												<li>
+													<a href="getAllTransportTypeDetails.htm?id=3" class="iconify">
+													<i class="icon-handbag"></i>
+													Transport Type </a>
+												</li>
 											</ul>
 										</div>
 										
@@ -138,7 +141,7 @@
 													<h3>Other Setting</h3>
 												</li>
 												<li>
-													<a href="getAllCity.htm" class="iconify">
+													<a href="getAllContractCompRoutes.htm?id=1" class="iconify">
 													<i class="icon-tag"></i>
 													Company Route setup </a>
 												</li>

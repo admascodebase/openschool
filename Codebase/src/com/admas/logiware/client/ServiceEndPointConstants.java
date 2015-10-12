@@ -71,7 +71,10 @@ public class ServiceEndPointConstants {
 		getContractCompRouteById("getContractCompRouteById"),
 		saveCompanyRoute("saveCompanyRoute"),
 		saveEditCompanyRoute("saveEditCompanyRoute"),
-		deleteCompanyRoute("deleteCompanyRoute")
+		deleteCompanyRoute("deleteCompanyRoute"),
+		addUserLoginEntry("addUserLoginEntry"),
+		sendSmsToEmployee("sendSmsToEmployee"),
+		getAllRoles("getAllRoles"),
 		;
 
 		/** The value. */

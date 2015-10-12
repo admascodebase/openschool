@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +27,7 @@ import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.FlowData;
 import com.admas.logiware.dto.LogiwareRespnse;
 import com.admas.logiware.dto.LoweryOwnerDto;
+import com.admas.logiware.dto.RoleDto;
 import com.admas.logiware.dto.StateDto;
 import com.admas.logiware.dto.TransportDetailsDto;
 import com.admas.logiware.dto.TransportTypeDtlDto;
@@ -1536,7 +1538,7 @@ public class MasterServiceImpl {
 		LogiwareRespnse logiwareResponse = null;
 		String viewName = "";
 		try {
-			viewName = "getAllContractCompRoute";
+			viewName = "showAddContractCompRoute";
 			logiwareResponse = doServiceCall(flowData,
 					ServiceName.getContractCompRouteById, reqDtoObjects);
 			resDtoObjects.put("userResponse", logiwareResponse);
@@ -1574,21 +1576,18 @@ public class MasterServiceImpl {
 			resDtoObjects.put("userResponse", logiwareResponse);
 			resDtoObjects.put("viewName", viewName);
 		} catch (LogiwareBaseException b) {
-			resDtoObjects = getAllTransportDetails(flowData,
-					reqDtoObjects, resDtoObjects);
+			resDtoObjects = getAllContractCompRoutes(flowData, reqDtoObjects, resDtoObjects);
 			throw b;
 		} catch (Exception e) {			
 			logger.error(
 					"Exception In MasterServiceImpl: saveCompanyRoute method end.",
 					e);
-			resDtoObjects = getAllTransportDetails(flowData,
-					reqDtoObjects, resDtoObjects);
+			resDtoObjects = getAllContractCompRoutes(flowData, reqDtoObjects, resDtoObjects);
 			throw new LogiwareBaseException(
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
 		}
-		resDtoObjects = getAllTransportDetails(flowData,
-				reqDtoObjects, resDtoObjects);
+		resDtoObjects = getAllContractCompRoutes(flowData, reqDtoObjects, resDtoObjects);
 		logger.info("MasterServiceImpl saveCompanyRoute method end. ");
 		return resDtoObjects;
 		
@@ -1619,6 +1618,124 @@ public class MasterServiceImpl {
 		logger.info("MasterServiceImpl saveEditCompanyRoute() method end. ");
 		return resDtoObjects;
 
+	}
+
+	public Map<String, Object> generatePassword(FlowData flowData, HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) {
+
+		String password = UUID.randomUUID().toString();
+		System.out.println("password = " + password);
+		resDtoObjects.put("password", password);
+		return resDtoObjects;
+	}
+
+	public Map<String, Object> addUserLoginEntry(FlowData flowData, HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+
+		logger.info("MasterServiceImpl addUserLoginEntry method start.");
+		LogiwareRespnse logiwareResponse = null;
+		String viewName = "";
+		try {
+//			viewName = "getAllEmployee";
+			logiwareResponse = doServiceCall(flowData,
+					ServiceName.addUserLoginEntry, reqDtoObjects);
+			resDtoObjects.put("userResponse", logiwareResponse);
+			resDtoObjects.put("viewName", viewName);
+		} catch (LogiwareBaseException b) {
+			resDtoObjects = getAllEmployee(flowData,
+					reqDtoObjects, resDtoObjects);
+			throw b;
+		} catch (Exception e) {			
+			logger.error(
+					"Exception In MasterServiceImpl: addUserLoginEntry method end.",
+					e);
+			resDtoObjects = getAllEmployee(flowData, reqDtoObjects, resDtoObjects);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		resDtoObjects = getAllEmployee(flowData,
+				reqDtoObjects, resDtoObjects);
+		logger.info("MasterServiceImpl addUserLoginEntry method end. ");
+		return resDtoObjects;
+
+		
+	}
+
+	public Map<String, Object> sendSmsToEmployee(FlowData flowData, HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+		logger.info("MasterServiceImpl sendSmsToEmployee method start.");
+		LogiwareRespnse logiwareResponse = null;
+		try {
+			logiwareResponse = doServiceCall(flowData,	ServiceName.sendSmsToEmployee, reqDtoObjects);
+			resDtoObjects.put("userResponse", logiwareResponse);
+//			resDtoObjects.put("settingDto",  logiwareResponse.getSettingDto());
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(
+					"Exception In MasterServiceImpl: sendSmsToEmployee method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("MasterServiceImpl sendSmsToEmployee method end. ");
+		return resDtoObjects;
+	}
+
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> getAllRolles(FlowData flowData, HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+		logger.info("MasterServiceImpl getAllRolles method start.");
+		List<RoleDto> lRoles = new ArrayList<RoleDto>();
+		LogiwareRespnse logiwareRespnse = null;
+		try {
+			 logiwareRespnse = doServiceCall(flowData, ServiceName.getAllRoles, reqDtoObjects);
+			 lRoles =(List<RoleDto>) logiwareRespnse.getlRoles();
+			 resDtoObjects.put("lRoles", lRoles);
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In MasterServiceImpl getAllRolles method end.",e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode(),
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorDescription());
+
+		}
+		logger.info("MasterServiceImpl getAllRolles method End. ");
+		return resDtoObjects;
+		
+
+	}
+
+	public Map<String, Object> deleteContractCompanyRoute(FlowData flowData, HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+		logger.info("MasterServiceImpl deleteContractCompanyRoute method start.");
+		LogiwareRespnse logiwareResponse = null;
+		Boolean result=false;
+		try {
+			logiwareResponse = doServiceCall(flowData,	ServiceName.deleteCompanyRoute, reqDtoObjects);
+			result = (Boolean) logiwareResponse.getData();
+			resDtoObjects.put("userResponse", logiwareResponse);
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error(
+					"Exception In MasterServiceImpl: deleteContractCompanyRoute method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("MasterServiceImpl deleteContractCompanyRoute method end. ");
+		return resDtoObjects;
+	
 	}
 	
 }

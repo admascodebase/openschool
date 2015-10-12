@@ -20,6 +20,8 @@ import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.controller.core.BaseController;
 import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.FlowData;
+import com.admas.logiware.dto.RoleDto;
+import com.admas.logiware.dto.UserDetails;
 import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
 import com.admas.logiware.usrmgt.service.MasterServiceImpl;
@@ -76,6 +78,7 @@ public class EmployeeController extends BaseController {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/showAddEmployee.htm", method = RequestMethod.GET)
 	public ModelAndView addEmployee(HttpServletRequest request,
 			HttpServletResponse response) {
@@ -92,7 +95,14 @@ public class EmployeeController extends BaseController {
 			return super.loginPage(flowData, request);
 
 		ModelAndView mv = new ModelAndView("showAddEmployee");
+		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
+		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
+		Integer compId=1;
 		try {
+			reqDtoObjects.put("compId", compId);
+			resDtoObjects = masterServiceImpl.getAllRolles(flowData, reqDtoObjects, resDtoObjects);
+			List<RoleDto> lRoles = (List<RoleDto>) resDtoObjects.get("lRoles");
+			mv.addObject("lRoles", lRoles);
 			mv.addObject("employee", new EmployeeDto());			
 		} catch (Exception e) {
 			logger.error(
@@ -138,6 +148,17 @@ public class EmployeeController extends BaseController {
 				resDtoObjects = masterServiceImpl.saveEmployee(flowData,
 						reqDtoObjects, resDtoObjects);
 				sucessMessage= WebAppConstants.LW_SUCESS_ADD;
+				if(employeeDto.getIsSysAcc()=='Y'){
+					resDtoObjects = masterServiceImpl.generatePassword(flowData, reqDtoObjects, resDtoObjects);
+					
+					UserDetails userDetails = new UserDetails();
+					userDetails.setPassword(resDtoObjects.get("password").toString());
+					userDetails.setUserName(employeeDto.getContactNo());
+					userDetails.setEmpId(1);
+					reqDtoObjects.put("user", userDetails);
+//					resDtoObjects = masterServiceImpl.addUserLoginEntry(flowData, reqDtoObjects, resDtoObjects);
+					resDtoObjects = masterServiceImpl.sendSmsToEmployee(flowData, reqDtoObjects, resDtoObjects);
+				}
 			}
 			mv.addObject(WebAppConstants.SUCESS_MESSAGE,sucessMessage);
 		} catch (LogiwareBaseException _be) {

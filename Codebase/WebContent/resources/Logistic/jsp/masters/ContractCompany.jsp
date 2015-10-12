@@ -241,7 +241,7 @@
 										<th>Type</th>
 										<th>Contact Person</th>
 										<th>Contact Number 1</th>
-										<th>Contact Number 2</th>
+										<!-- <th>Contact Number 2</th> -->
 										<th>Edit/Delete</th>
 										<th>Routes</th>
 									</tr>
@@ -257,7 +257,7 @@
 											<td>${contractCompany.type}</td>
 											<td>${contractCompany.contactPersion}</td>
 											<td>${contractCompany.contactNo1}</td>
-											<td>${contractCompany.contactNo2}</td>
+											<%-- <td>${contractCompany.contactNo2}</td> --%>
 											<td><a href="showEditContractCompany.htm?id=${contractCompany.id}"
 													class="btn btn-warning btn-xs"> Edit 
 												</a> 

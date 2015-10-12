@@ -17,6 +17,16 @@ public class ContractCompDto implements Serializable{
     private String contactPersion;
 	private String contactNo1;
 	private String contactNo2;
+	private String product;
+	private String tinNo;
+	private String email;
+	private String website;
+	private String ownerDetails;
+	private String ownerContact;
+	private String loadingStaff;
+	private String loadingStaffContact;
+	private String unloadingStaff;
+	private String unloadingStaffContact;
 	private Integer createdBy;
 	private Integer updatedBy;
 	private Date createdOn;
@@ -205,18 +215,159 @@ public class ContractCompDto implements Serializable{
 		this.delFlag = delFlag;
 	}
 
+	/**
+	 * @return the product
+	 */
+	public String getProduct() {
+		return product;
+	}
+
+	/**
+	 * @param product the product to set
+	 */
+	public void setProduct(String product) {
+		this.product = product;
+	}
+
+	/**
+	 * @return the tinNo
+	 */
+	public String getTinNo() {
+		return tinNo;
+	}
+
+	/**
+	 * @param tinNo the tinNo to set
+	 */
+	public void setTinNo(String tinNo) {
+		this.tinNo = tinNo;
+	}
+
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	/**
+	 * @return the website
+	 */
+	public String getWebsite() {
+		return website;
+	}
+
+	/**
+	 * @param website the website to set
+	 */
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
+	/**
+	 * @return the ownerDetails
+	 */
+	public String getOwnerDetails() {
+		return ownerDetails;
+	}
+
+	/**
+	 * @param ownerDetails the ownerDetails to set
+	 */
+	public void setOwnerDetails(String ownerDetails) {
+		this.ownerDetails = ownerDetails;
+	}
+
+	/**
+	 * @return the ownerContact
+	 */
+	public String getOwnerContact() {
+		return ownerContact;
+	}
+
+	/**
+	 * @param ownerContact the ownerContact to set
+	 */
+	public void setOwnerContact(String ownerContact) {
+		this.ownerContact = ownerContact;
+	}
+
+	/**
+	 * @return the loadingStaff
+	 */
+	public String getLoadingStaff() {
+		return loadingStaff;
+	}
+
+	/**
+	 * @param loadingStaff the loadingStaff to set
+	 */
+	public void setLoadingStaff(String loadingStaff) {
+		this.loadingStaff = loadingStaff;
+	}
+
+	/**
+	 * @return the loadingStaffContact
+	 */
+	public String getLoadingStaffContact() {
+		return loadingStaffContact;
+	}
+
+	/**
+	 * @param loadingStaffContact the loadingStaffContact to set
+	 */
+	public void setLoadingStaffContact(String loadingStaffContact) {
+		this.loadingStaffContact = loadingStaffContact;
+	}
+
+	/**
+	 * @return the unloadingStaff
+	 */
+	public String getUnloadingStaff() {
+		return unloadingStaff;
+	}
+
+	/**
+	 * @param unloadingStaff the unloadingStaff to set
+	 */
+	public void setUnloadingStaff(String unloadingStaff) {
+		this.unloadingStaff = unloadingStaff;
+	}
+
+	/**
+	 * @return the unloadingStaffContact
+	 */
+	public String getUnloadingStaffContact() {
+		return unloadingStaffContact;
+	}
+
+	/**
+	 * @param unloadingStaffContact the unloadingStaffContact to set
+	 */
+	public void setUnloadingStaffContact(String unloadingStaffContact) {
+		this.unloadingStaffContact = unloadingStaffContact;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "CustContractCompany [id=" + id + ", name=" + name + ", compId="
-				+ compId + ", address=" + address + ", type=" + type
-				+ ", contactPersion=" + contactPersion + ", contactNo1="
-				+ contactNo1 + ", contactNo2=" + contactNo2 + ", createdBy="
-				+ createdBy + ", updatedBy=" + updatedBy + ", createdOn="
-				+ createdOn + ", updatedOn=" + updatedOn + ", delFlag="
-				+ delFlag + "]";
+		return "ContractCompDto [id=" + id + ", name=" + name + ", compId=" + compId + ", address=" + address
+				+ ", type=" + type + ", contactPersion=" + contactPersion + ", contactNo1=" + contactNo1
+				+ ", contactNo2=" + contactNo2 + ", product=" + product + ", tinNo=" + tinNo + ", email=" + email
+				+ ", website=" + website + ", ownerDetails=" + ownerDetails + ", ownerContact=" + ownerContact
+				+ ", loadingStaff=" + loadingStaff + ", loadingStaffContact=" + loadingStaffContact
+				+ ", unloadingStaff=" + unloadingStaff + ", unloadingStaffContact=" + unloadingStaffContact
+				+ ", createdBy=" + createdBy + ", updatedBy=" + updatedBy + ", createdOn=" + createdOn + ", updatedOn="
+				+ updatedOn + ", delFlag=" + delFlag + "]";
 	}
 	
 }

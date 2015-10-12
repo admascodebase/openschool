@@ -18,6 +18,8 @@ public class UserDetails implements Serializable{
 	
 	private Date lastLogin;
 	
+	private Integer empId;
+	
 	private CustCompEmployee custCompEmployee;
 
 	/**
@@ -74,6 +76,20 @@ public class UserDetails implements Serializable{
 	 */
 	public void setCustCompEmployee(CustCompEmployee custCompEmployee) {
 		this.custCompEmployee = custCompEmployee;
+	}
+
+	/**
+	 * @return the empId
+	 */
+	public Integer getEmpId() {
+		return empId;
+	}
+
+	/**
+	 * @param empId the empId to set
+	 */
+	public void setEmpId(Integer empId) {
+		this.empId = empId;
 	}
 	
 	

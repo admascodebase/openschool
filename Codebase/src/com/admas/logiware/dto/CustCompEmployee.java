@@ -32,6 +32,8 @@ public class CustCompEmployee implements Serializable{
 	
 	private String pan;
 	
+	private Integer roleId;
+	
 	private Character delFlag;
 
 	public Integer getId() {
@@ -143,6 +145,20 @@ public class CustCompEmployee implements Serializable{
 	 */
 	public void setDelFlag(Character delFlag) {
 		this.delFlag = delFlag;
+	}
+
+	/**
+	 * @return the roleId
+	 */
+	public Integer getRoleId() {
+		return roleId;
+	}
+
+	/**
+	 * @param roleId the roleId to set
+	 */
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
 	}
 	
 	

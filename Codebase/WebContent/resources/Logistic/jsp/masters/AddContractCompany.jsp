@@ -3,7 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
 	<div class="page-head">
@@ -113,7 +112,7 @@
 														<div class="form-group">
 															<label class="control-label col-md-3">Address</label>
 															<div class="col-md-9">
-																<form:input type="text" path="address" class="form-control"
+																<form:textarea type="text" path="address" class="form-control"
 																	placeholder="Address here.. "/> 
 															</div>
 														</div>
@@ -154,9 +153,55 @@
 													<!--/span-->
 													<div class="col-md-6">
 														<div class="form-group">
-															<label class="control-label col-md-3">Contact No 1</label>
+															<label class="control-label col-md-3">Landline Number</label>
 															<div class="col-md-9">
-															<form:input path="contactNo1" type="text" class="form-control" placeholder="Enter Contact Number 1"/>
+															<form:input path="contactNo1" type="text" class="form-control" placeholder="Enter persons Landline Number"/>
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+													
+													 <div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Mobile Number</label>
+															<div class="col-md-9">
+																<form:input path="contactNo2" type="text" class="form-control" placeholder="Enter Persons Mobile Number"/>
+															</div>
+														</div>
+													</div>
+												</div>
+												
+												<div class="row">
+													
+													<!--/span-->
+													 <div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Tin No</label>
+															<div class="col-md-9">
+																<form:input path="tinNo" type="text" class="form-control" placeholder="Enter Tin No..."/>
+															</div>
+														</div>
+													</div> 
+													<!--/span-->
+													
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Product</label>
+															<div class="col-md-9">
+																<form:input path="product" type="text" class="form-control" placeholder="Enter Product..."/>
+															</div>
+														</div>
+													</div>
+												</div>
+												
+											 	<div class="row">
+													
+													<!--/span-->
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Owner Details</label>
+															<div class="col-md-9">
+															<form:input path="ownerDetails" type="text" class="form-control" placeholder="Enter Owner Details..."/>
 															</div>
 														</div>
 													</div>
@@ -164,13 +209,139 @@
 													
 													<div class="col-md-6">
 														<div class="form-group">
-															<label class="control-label col-md-3">Contact No 2</label>
+															<label class="control-label col-md-3">owner Contact</label>
 															<div class="col-md-9">
-																<form:input path="contactNo2" type="text" class="form-control" placeholder="Enter Contact Number 2"/>
+																<form:input path="ownerContact" type="text" class="form-control" placeholder="Enter ownerContact..."/>
 															</div>
 														</div>
 													</div>
 												</div>
+												
+												<div class="row">
+													<!--/span-->
+												<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Loading Staff</label>
+															<div class="col-md-9">
+															<form:input path="loadingStaff" type="text" class="form-control" placeholder="Enter Loading Staff..."/>
+															</div>
+														</div>
+													</div> 
+													<!--/span-->
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">loading Staff Contact</label>
+															<div class="col-md-9">
+																<form:input path="loadingStaffContact" type="text" class="form-control" placeholder="Enter loading Staff Contact..."/>
+															</div>
+														</div>
+													</div>
+												</div>
+												
+												
+												<div class="row">
+													<!--/span-->
+												<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Unloading Staff</label>
+															<div class="col-md-9">
+															<form:input path="unloadingStaff" type="text" class="form-control" placeholder="Enter Unloading Staff..."/>
+															</div>
+														</div>
+													</div> 
+													<!--/span-->
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Unloading Staff Contact</label>
+															<div class="col-md-9">
+																<form:input path="unloadingStaffContact" type="text" class="form-control" placeholder="Enter Unloading Staff Contact..."/>
+															</div>
+														</div>
+													</div>
+												</div>
+												
+												
+												<div class="row">
+													<!--/span-->
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Concern Email</label>
+															<div class="col-md-9">
+															<form:input path="email" type="text" class="form-control" placeholder="Enter halting..."/>
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Website</label>
+															<div class="col-md-9">
+																<form:input path="website" type="text" class="form-control" placeholder="Enter Tin No..."/>
+															</div>
+														</div>
+													</div>
+												</div>
+												
+												
+												
+												<%-- <div class="row">
+													<!--/span-->
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Load Given for</label>
+															<div class="col-md-9">
+															<form:input path="" type="text" class="form-control" placeholder="Enter halting..."/>
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Owner Details</label>
+															<div class="col-md-9">
+																<form:input path="" type="text" class="form-control" placeholder="Enter Tin No..."/>
+															</div>
+														</div>
+													</div>
+												</div> --%>
+												
+												
+												<%-- <div class="row">
+													<!--/span-->
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Loading Staff Details</label>
+															<div class="col-md-9">
+															<form:input path="" type="text" class="form-control" placeholder="Enter halting..."/>
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Concern Labour</label>
+															<div class="col-md-9">
+																<form:input path="" type="text" class="form-control" placeholder="Enter Tin No..."/>
+															</div>
+														</div>
+													</div>
+												</div> --%>
+												
+												<%-- 
+												<div class="row">
+													<!--/span-->
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Indent Sender</label>
+															<div class="col-md-9">
+															<form:input path="" type="text" class="form-control" placeholder="Enter halting..."/>
+															</div>
+														</div>
+													</div>
+											
+												</div> --%>
+												
+												
 											</div>
 											<div class="form-actions right">
 												<button class="btn default" type="button">Cancel</button>
