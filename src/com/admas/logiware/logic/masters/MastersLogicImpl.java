@@ -11,6 +11,7 @@ import com.admas.logiware.dto.CityDto;
 import com.admas.logiware.dto.CompanyBranchDto;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.EmployeeDto;
+import com.admas.logiware.dto.ProductDto;
 import com.admas.logiware.dto.RoleDto;
 import com.admas.logiware.dto.SettingsDto;
 import com.admas.logiware.dto.StateDto;
@@ -23,6 +24,7 @@ import com.admas.logiware.jpa.City;
 import com.admas.logiware.jpa.Company;
 import com.admas.logiware.jpa.CompanyBranch;
 import com.admas.logiware.jpa.Employee;
+import com.admas.logiware.jpa.Product;
 import com.admas.logiware.jpa.Role;
 import com.admas.logiware.jpa.Settings;
 import com.admas.logiware.jpa.State;
@@ -844,6 +846,91 @@ public class MastersLogicImpl implements MastersLogic {
 					LogiwareServiceErrors.GENERIC_EXCEPTION);
 		}
 		return lTemplateDao;
+	}
+
+	@Override
+	public Boolean addProduct(ProductDto productDto)
+			throws LogiwareExceptionHandler {
+		Boolean result = false;
+		try {
+			result = mastersDao.addProduct(productDto);
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error("Exception Error in MastersLogicImpl - > addProduct ", e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return result;
+	}
+
+	@Override
+	public List<ProductDto> getAllProduct() throws LogiwareExceptionHandler {
+		List<ProductDto> lProductDto = new ArrayList<ProductDto>();
+		List<Product> lProduct=null;
+		try {
+			lProduct = mastersDao.getAllProduct();
+			for (Product product : lProduct) {
+				lProductDto.add(product._toDto());
+			}
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error("Exception Error in MastersLogicImpl - > getAllProduct ",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return lProductDto;
+	}
+
+	@Override
+	public ProductDto getProductById(Integer id) throws LogiwareExceptionHandler {
+		Product product = null;
+		try {
+			product = mastersDao.getProductById(id);
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error(
+					"Exception Error in MastersLogicImpl - > getProductById ", e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return product._toDto();
+	}
+
+	@Override
+	public Boolean editProduct(ProductDto productDto)
+			throws LogiwareExceptionHandler {
+		Boolean result = false;
+		try {
+			result = mastersDao.editProduct(productDto);
+
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error("Exception Error in MastersLogicImpl - > editProduct ", e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return result;
+	}
+
+	@Override
+	public Boolean deleteProduct(Integer id) throws LogiwareExceptionHandler {
+		Boolean result = false;
+		try {
+			result = mastersDao.deleteBranch(id);
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error("Exception Error in MastersLogicImpl - > deleteProduct ",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return result;
 	}
 	
 

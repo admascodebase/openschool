@@ -1,29 +1,53 @@
-package com.admas.logiware.dto;
+package com.admas.logiware.jpa;
 
 import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.admas.logiware.jpa.Role;
+import com.admas.logiware.dto.ProductDto;
 
-public class RoleDto implements Serializable {
+@Entity
+@Table(name="product")
+public class Product implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@Column(name="NAME" ,nullable = false )
 	private String name;
+	
+	@Column(name="DESCRIPTION")
 	private String description;
-	private Integer compId;
+	
+	@Column(name="CREATED_BY" ,nullable = false)
 	private Integer createdBy;
+	
+	@Column(name="UPDATED_BY")
 	private Integer updatedBy;
+	
+	@Column(name="CREATED_ON",nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdOn;
+	
+	@Column(name="UPDATED_ON")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedOn;
+	
+	@Column(name="DEL_FLG" ,nullable = false) 
 	private Character delFlag;
 
 	/**
@@ -45,13 +69,6 @@ public class RoleDto implements Serializable {
 	 */
 	public String getDescription() {
 		return description;
-	}
-
-	/**
-	 * @return the compId
-	 */
-	public Integer getCompId() {
-		return compId;
 	}
 
 	/**
@@ -111,13 +128,6 @@ public class RoleDto implements Serializable {
 	}
 
 	/**
-	 * @param compId the compId to set
-	 */
-	public void setCompId(Integer compId) {
-		this.compId = compId;
-	}
-
-	/**
 	 * @param createdBy the createdBy to set
 	 */
 	public void setCreatedBy(Integer createdBy) {
@@ -152,19 +162,19 @@ public class RoleDto implements Serializable {
 		this.delFlag = delFlag;
 	}
 	
-	public Role _toJpa(){
-		Role role = new Role();
-		role.setCompId(this.compId);
-		role.setCreatedBy(this.createdBy);
-		role.setCreatedOn(this.createdOn);
-		role.setDelFlag(this.delFlag);
-		role.setDescription(this.description);
-		role.setId(this.id);
-		role.setName(this.name);
-		role.setUpdatedBy(this.updatedBy);
-		role.setUpdatedOn(this.updatedOn);
-		return role;
+	public ProductDto _toDto() {
+		ProductDto productDto = new ProductDto();
+		productDto.setCreatedBy(this.createdBy);
+		productDto.setCreatedOn(this.createdOn);
+		productDto.setDelFlag(this.delFlag);
+		productDto.setDescription(this.description);
+		productDto.setId(this.id);
+		productDto.setName(this.name);
+		productDto.setUpdatedBy(this.updatedBy);
+		productDto.setUpdatedOn(this.updatedOn);
+		return productDto;
 	}
-
-
+	
+	
+	
 }

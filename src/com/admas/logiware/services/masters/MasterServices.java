@@ -20,11 +20,13 @@ import com.admas.logiware.dto.CompanyBranchDto;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.LogiwareRespnse;
+import com.admas.logiware.dto.ProductDto;
 import com.admas.logiware.dto.RoleDto;
 import com.admas.logiware.dto.SettingsDto;
 import com.admas.logiware.dto.StateDto;
 import com.admas.logiware.dto.TransportTypeDtlDto;
 import com.admas.logiware.dto.TransportTypeDto;
+import com.admas.logiware.dto.response.ProductResponse;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
 import com.admas.logiware.exception.LogiwareServiceErrors;
 import com.admas.logiware.logic.masters.MastersLogic;
@@ -809,152 +811,299 @@ public class MasterServices {
 	// end transport type details services
 	
 	
-	//start branch details services  
+	//start product services  
 	
 		@POST
-		@Path("/addBranch")
+		@Path("/addProduct")
 		@Produces({ MediaType.APPLICATION_JSON })
 		@Consumes({MediaType.APPLICATION_JSON })
-		public Response addBranch(CompanyBranchDto companyBranchDto) {
+		public Response addProduct(ProductDto productDto) {
 
-			logger.info(" Start  MasterService- > addBranch Method");
-			LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+			logger.info(" Start  MasterService- > addProduct Method");
+			ProductResponse logiwareRespnse = new ProductResponse();
 			Boolean result=false;
 			try {
-				result=mastersLogic.addBranch(companyBranchDto);
+				result=mastersLogic.addProduct(productDto);
 				logiwareRespnse.setCode(LogiWareConstants.SUCESS);
-				logiwareRespnse.setData(result);
+				logiwareRespnse.setResult(result);
 			} catch (LogiwareExceptionHandler e) {
-				logger.error("Error in MasterService- > addBranch Method", e);
+				logger.error("Error in MasterService- > addProduct Method", e);
 				logiwareRespnse.setCode(e.getErrorCode());
 				logiwareRespnse.setDescription(e.getDescription());
 			} catch (Exception e) {
-				logger.error("Error in MasterService- > addBranch", e);
+				logger.error("Error in MasterService- > addProduct", e);
 				logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
 						.getErrorCode());
 				logiwareRespnse
 						.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
 								.getErrorDescription());
 			}
-			logger.info(" end  MasterService- > addBranch Method");
+			logger.info(" end  MasterService- > addProduct Method");
 			return Response.status(200).entity(logiwareRespnse).build();
 		}
 		
 		@GET
-		@Path("/getAllBranch")
+		@Path("/getAllProduct")
 		@Produces({ MediaType.APPLICATION_JSON })
-		public Response getAllBranch() {
+		public Response getAllProduct() {
 
-			List<CompanyBranchDto> lBranch = new ArrayList<CompanyBranchDto>();
-			logger.info(" Start  MasterService- > getAllBranch Method");
-			LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+			List<ProductDto> lProductDto = new ArrayList<ProductDto>();
+			logger.info(" Start  MasterService- > getAllProduct Method");
+			ProductResponse logiwareRespnse = new ProductResponse();
 			try {
 
-				lBranch = mastersLogic.getAllBranch();
+				lProductDto = mastersLogic.getAllProduct();
 				logiwareRespnse.setCode(LogiWareConstants.SUCESS);
-				logiwareRespnse.setData(lBranch);
+				logiwareRespnse.setlProductDto(lProductDto);
 			} catch (LogiwareExceptionHandler e) {
-				logger.error("Error in MasterService- > getAllBranch", e);
+				logger.error("Error in MasterService- > getAllProduct", e);
 				logiwareRespnse.setCode(e.getErrorCode());
 				logiwareRespnse.setDescription(e.getDescription());
 			} catch (Exception e) {
-				logger.error("Error in MasterService- > getAllBranch", e);
+				logger.error("Error in MasterService- > getAllProduct", e);
 				logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
 						.getErrorCode());
 				logiwareRespnse
 						.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
 								.getErrorDescription());
 			}
-			logger.info(" end  MasterService- > getAllBranch");
+			logger.info(" end  MasterService- > getAllProduct");
 			return Response.status(200).entity(logiwareRespnse).build();
 		}
 
 		
 		@GET
-		@Path("/getBranchById/{id}")
+		@Path("/getProductById/{id}")
 		@Produces({ MediaType.APPLICATION_JSON })
-		public Response getBranchById(@PathParam("id")Integer branchId) {
-			logger.info(" Start  MasterService- > getBranchById ");
-			LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
-			CompanyBranchDto companyBranchDto = null;
+		public Response getProductById(@PathParam("id")Integer id) {
+			logger.info(" Start  MasterService- > getProductById ");
+			ProductResponse logiwareRespnse = new ProductResponse();
+			ProductDto productDto = null;
 			try {
-				companyBranchDto = mastersLogic.getBranchById(branchId);
+				productDto = mastersLogic.getProductById(id);
 				logiwareRespnse.setCode(LogiWareConstants.SUCESS);
-				logiwareRespnse.setCompanyBranchDto(companyBranchDto);
+				logiwareRespnse.setProductDto(productDto);
 			} catch (LogiwareExceptionHandler e) {
-				logger.error("Error in MasterService- > getBranchById ", e);
+				logger.error("Error in MasterService- > getProductById ", e);
 				logiwareRespnse.setCode(e.getErrorCode());
 				logiwareRespnse.setDescription(e.getDescription());
 			} catch (Exception e) {
-				logger.error("Error in MasterService- > getBranchById ", e);
+				logger.error("Error in MasterService- > getProductById ", e);
 				logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
 						.getErrorCode());
 				logiwareRespnse
 						.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
 								.getErrorDescription());
 			}
-			logger.info(" end  MasterService- > getBranchById ");
+			logger.info(" end  MasterService- > getProductById ");
 			return Response.status(200).entity(logiwareRespnse).build();
 		}
 		
 		@POST
-		@Path("/editBranch")
+		@Path("/editProduct")
 		@Produces({ MediaType.APPLICATION_JSON })
 		@Consumes({MediaType.APPLICATION_JSON })
-		public Response editBranch(CompanyBranchDto companyBranchDto) {
+		public Response editProduct(ProductDto productDto) {
 
-			logger.info(" Start  MasterService- > editBranch ");
-			LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+			logger.info(" Start  MasterService- > editProduct ");
+			ProductResponse logiwareRespnse = new ProductResponse();
 			Boolean result=false;
 			try {
-				result=mastersLogic.editBranch(companyBranchDto);
+				result=mastersLogic.editProduct(productDto);
 				logiwareRespnse.setCode(LogiWareConstants.SUCESS);
-				logiwareRespnse.setData(result);
+				logiwareRespnse.setResult(result);
 			} catch (LogiwareExceptionHandler e) {
-				logger.error("Error in MasterService- > editBranch ", e);
+				logger.error("Error in MasterService- > editProduct ", e);
 				logiwareRespnse.setCode(e.getErrorCode());
 				logiwareRespnse.setDescription(e.getDescription());
 			} catch (Exception e) {
-				logger.error("Error in MasterService- > editBranch ", e);
+				logger.error("Error in MasterService- > editProduct ", e);
 				logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
 						.getErrorCode());
 				logiwareRespnse
 						.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
 								.getErrorDescription());
 			}
-			logger.info(" end  MasterService- > editBranch ");
+			logger.info(" end  MasterService- > editProduct ");
 			return Response.status(200).entity(logiwareRespnse).build();
 		}
 		
 		@GET
-		@Path("/deleteBranch/{branchId}")
+		@Path("/deleteProduct/{id}")
 		@Produces({ MediaType.APPLICATION_JSON })
-		public Response deleteBranch(@PathParam("branchId")Integer branchId) {
+		public Response deleteProduct(@PathParam("id")Integer id) {
 
-			logger.info(" Start  MasterService- > deleteBranch ");
-			LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+			logger.info(" Start  MasterService- > deleteProduct ");
+			ProductResponse logiwareRespnse = new ProductResponse();
 			Boolean result=false;
 			try {
-				result=mastersLogic.deleteBranch(branchId);
+				result=mastersLogic.deleteProduct(id);
 				logiwareRespnse.setCode(LogiWareConstants.SUCESS);
-				logiwareRespnse.setData(result);
+				logiwareRespnse.setResult(result);
 			} catch (LogiwareExceptionHandler e) {
-				logger.error("Error in MasterService- > deleteBranch ", e);
+				logger.error("Error in MasterService- > deleteProduct ", e);
 				logiwareRespnse.setCode(e.getErrorCode());
 				logiwareRespnse.setDescription(e.getDescription());
 			} catch (Exception e) {
-				logger.error("Error in MasterService- > deleteBranch ", e);
+				logger.error("Error in MasterService- > deleteProduct ", e);
 				logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
 						.getErrorCode());
 				logiwareRespnse
 						.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
 								.getErrorDescription());
 			}
-			logger.info(" end  MasterService- > deleteBranch ");
+			logger.info(" end  MasterService- > deleteProduct ");
 			return Response.status(200).entity(logiwareRespnse).build();
 		}
 			
-		// end branch details services
+		// end product services
+		
+		//start branch details services  
+		
+			@POST
+			@Path("/addBranch")
+			@Produces({ MediaType.APPLICATION_JSON })
+			@Consumes({MediaType.APPLICATION_JSON })
+			public Response addBranch(CompanyBranchDto companyBranchDto) {
+
+				logger.info(" Start  MasterService- > addBranch Method");
+				LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+				Boolean result=false;
+				try {
+					result=mastersLogic.addBranch(companyBranchDto);
+					logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+					logiwareRespnse.setData(result);
+				} catch (LogiwareExceptionHandler e) {
+					logger.error("Error in MasterService- > addBranch Method", e);
+					logiwareRespnse.setCode(e.getErrorCode());
+					logiwareRespnse.setDescription(e.getDescription());
+				} catch (Exception e) {
+					logger.error("Error in MasterService- > addBranch", e);
+					logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+							.getErrorCode());
+					logiwareRespnse
+							.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+									.getErrorDescription());
+				}
+				logger.info(" end  MasterService- > addBranch Method");
+				return Response.status(200).entity(logiwareRespnse).build();
+			}
+			
+			@GET
+			@Path("/getAllBranch")
+			@Produces({ MediaType.APPLICATION_JSON })
+			public Response getAllBranch() {
+
+				List<CompanyBranchDto> lBranch = new ArrayList<CompanyBranchDto>();
+				logger.info(" Start  MasterService- > getAllBranch Method");
+				LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+				try {
+
+					lBranch = mastersLogic.getAllBranch();
+					logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+					logiwareRespnse.setData(lBranch);
+				} catch (LogiwareExceptionHandler e) {
+					logger.error("Error in MasterService- > getAllBranch", e);
+					logiwareRespnse.setCode(e.getErrorCode());
+					logiwareRespnse.setDescription(e.getDescription());
+				} catch (Exception e) {
+					logger.error("Error in MasterService- > getAllBranch", e);
+					logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+							.getErrorCode());
+					logiwareRespnse
+							.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+									.getErrorDescription());
+				}
+				logger.info(" end  MasterService- > getAllBranch");
+				return Response.status(200).entity(logiwareRespnse).build();
+			}
+
+			
+			@GET
+			@Path("/getBranchById/{id}")
+			@Produces({ MediaType.APPLICATION_JSON })
+			public Response getBranchById(@PathParam("id")Integer branchId) {
+				logger.info(" Start  MasterService- > getBranchById ");
+				LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+				CompanyBranchDto companyBranchDto = null;
+				try {
+					companyBranchDto = mastersLogic.getBranchById(branchId);
+					logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+					logiwareRespnse.setCompanyBranchDto(companyBranchDto);
+				} catch (LogiwareExceptionHandler e) {
+					logger.error("Error in MasterService- > getBranchById ", e);
+					logiwareRespnse.setCode(e.getErrorCode());
+					logiwareRespnse.setDescription(e.getDescription());
+				} catch (Exception e) {
+					logger.error("Error in MasterService- > getBranchById ", e);
+					logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+							.getErrorCode());
+					logiwareRespnse
+							.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+									.getErrorDescription());
+				}
+				logger.info(" end  MasterService- > getBranchById ");
+				return Response.status(200).entity(logiwareRespnse).build();
+			}
+			
+			@POST
+			@Path("/editBranch")
+			@Produces({ MediaType.APPLICATION_JSON })
+			@Consumes({MediaType.APPLICATION_JSON })
+			public Response editBranch(CompanyBranchDto companyBranchDto) {
+
+				logger.info(" Start  MasterService- > editBranch ");
+				LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+				Boolean result=false;
+				try {
+					result=mastersLogic.editBranch(companyBranchDto);
+					logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+					logiwareRespnse.setData(result);
+				} catch (LogiwareExceptionHandler e) {
+					logger.error("Error in MasterService- > editBranch ", e);
+					logiwareRespnse.setCode(e.getErrorCode());
+					logiwareRespnse.setDescription(e.getDescription());
+				} catch (Exception e) {
+					logger.error("Error in MasterService- > editBranch ", e);
+					logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+							.getErrorCode());
+					logiwareRespnse
+							.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+									.getErrorDescription());
+				}
+				logger.info(" end  MasterService- > editBranch ");
+				return Response.status(200).entity(logiwareRespnse).build();
+			}
+			
+			@GET
+			@Path("/deleteBranch/{branchId}")
+			@Produces({ MediaType.APPLICATION_JSON })
+			public Response deleteBranch(@PathParam("branchId")Integer branchId) {
+
+				logger.info(" Start  MasterService- > deleteBranch ");
+				LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+				Boolean result=false;
+				try {
+					result=mastersLogic.deleteBranch(branchId);
+					logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+					logiwareRespnse.setData(result);
+				} catch (LogiwareExceptionHandler e) {
+					logger.error("Error in MasterService- > deleteBranch ", e);
+					logiwareRespnse.setCode(e.getErrorCode());
+					logiwareRespnse.setDescription(e.getDescription());
+				} catch (Exception e) {
+					logger.error("Error in MasterService- > deleteBranch ", e);
+					logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+							.getErrorCode());
+					logiwareRespnse
+							.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+									.getErrorDescription());
+				}
+				logger.info(" end  MasterService- > deleteBranch ");
+				return Response.status(200).entity(logiwareRespnse).build();
+			}
+				
+			// end branch details services
 	
 		//start of state services
 		

@@ -6,6 +6,7 @@ import com.admas.logiware.dto.CityDto;
 import com.admas.logiware.dto.CompanyBranchDto;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.EmployeeDto;
+import com.admas.logiware.dto.ProductDto;
 import com.admas.logiware.dto.RoleDto;
 import com.admas.logiware.dto.SettingsDto;
 import com.admas.logiware.dto.StateDto;
@@ -13,6 +14,7 @@ import com.admas.logiware.dto.TransportTypeDtlDto;
 import com.admas.logiware.dto.TransportTypeDto;
 import com.admas.logiware.dto.sms.SmsTemplateDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
+import com.admas.logiware.jpa.Product;
 
 public interface MastersLogic {
 
@@ -84,6 +86,20 @@ public interface MastersLogic {
 	public Boolean deleteBranch(Integer compBranchId)throws LogiwareExceptionHandler;
 		
 	//End branch services
+	
+	//start product  logic 
+	
+	public Boolean addProduct(ProductDto productDto)throws LogiwareExceptionHandler;
+
+	public List<ProductDto> getAllProduct()throws LogiwareExceptionHandler;
+
+	public ProductDto getProductById(Integer id)throws LogiwareExceptionHandler;
+				
+	public Boolean editProduct(ProductDto productDto)throws LogiwareExceptionHandler;
+
+	public Boolean deleteProduct(Integer id)throws LogiwareExceptionHandler;
+			
+	// end product  logic 
 	
 	//start other services 
 	

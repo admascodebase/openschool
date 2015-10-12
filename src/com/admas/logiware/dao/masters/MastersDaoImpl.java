@@ -22,6 +22,7 @@ import com.admas.logiware.dto.CityDto;
 import com.admas.logiware.dto.CompanyBranchDto;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.EmployeeDto;
+import com.admas.logiware.dto.ProductDto;
 import com.admas.logiware.dto.TransportTypeDtlDto;
 import com.admas.logiware.dto.TransportTypeDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
@@ -30,6 +31,7 @@ import com.admas.logiware.jpa.City;
 import com.admas.logiware.jpa.Company;
 import com.admas.logiware.jpa.CompanyBranch;
 import com.admas.logiware.jpa.Employee;
+import com.admas.logiware.jpa.Product;
 import com.admas.logiware.jpa.Role;
 import com.admas.logiware.jpa.Settings;
 import com.admas.logiware.jpa.State;
@@ -1443,6 +1445,166 @@ public class MastersDaoImpl implements MastersDao {
 			} finally {
 				entityManager.close();
 			}
+	}
+
+	@Override
+	public Boolean addProduct(ProductDto productDto)
+			throws LogiwareExceptionHandler {
+		Boolean result = false;
+		try {	
+			Product product = new Product();
+			product = productDto._toJpa();
+			entityManager.persist(product);
+			entityManager.flush();			
+			if (product.getId() != null || product.getId() != 0) {
+				result = true;
+			}
+			return result;
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in MastersDaoImpl - > addProduct",he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch (Exception e) {
+			logger.error(
+					"Exception Error in MastersDaoImpl - > addProduct ",e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			entityManager.close();
+		}
+	}
+
+	@Override
+	public List<Product> getAllProduct() throws LogiwareExceptionHandler {
+		List<Product> lProduct = null;
+		CriteriaBuilder criteriaBuilder = null;
+		try {
+
+			criteriaBuilder = entityManager.getCriteriaBuilder();
+			CriteriaQuery<Product> criteriaQuery = criteriaBuilder
+					.createQuery(Product.class);
+			Root<Product> stateJpa = criteriaQuery.from(Product.class);
+			criteriaQuery.select(stateJpa);
+			TypedQuery<Product> typedQuery = entityManager
+					.createQuery(criteriaQuery);
+			lProduct = typedQuery.getResultList();
+
+			if (lProduct != null && lProduct.size() != 0) {
+				return lProduct;
+			} else {
+				throw new LogiwareExceptionHandler(
+						LogiwareServiceErrors.NO_STATE_FOUND);
+			}
+
+		} catch (LogiwareExceptionHandler ex) {
+			throw ex;
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in MastersDaoImpl - > getAllProduct",
+					he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch (Exception e) {
+			logger.error(
+					"Exception Error in MastersDaoImpl - > getAllStates ",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			criteriaBuilder = null;
+		}
+
+	}
+
+	@Override
+	public Product getProductById(Integer id) throws LogiwareExceptionHandler {
+		Product companyBranch = null;
+		try {
+
+			TypedQuery<Product> transportTypeQuery = entityManager.createQuery(
+					"SELECT c FROM Product c WHERE id = :id", Product.class);
+			transportTypeQuery.setParameter("id", id);
+			companyBranch = transportTypeQuery.getSingleResult();
+
+			if (companyBranch != null) {
+				return companyBranch;
+			} else {
+				throw new LogiwareExceptionHandler(
+						LogiwareServiceErrors.NO_BRANCH_FOUND);
+			}
+
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in MastersDaoImpl - > getProductById",
+					he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch (Exception e) {
+			logger.error(
+					"Exception Error in MastersDaoImpl - > getProductById",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			entityManager.close();
+		}
+	}
+
+	@Override
+	public Boolean editProduct(ProductDto productDto)
+			throws LogiwareExceptionHandler {
+		Boolean result = false;
+		try {
+			entityManager.merge(productDto._toJpa());
+			entityManager.flush();
+			
+			if (productDto._toJpa().getId() != null || productDto._toJpa().getId() != 0) {
+				result = true;
+			}
+			return result;
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in MastersDaoImpl - > editProduct",
+					he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch (Exception e) {
+			 logger.error("Exception Error in MastersDaoImpl - > editProduct ", e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			entityManager.close();
+		}
+	}
+
+	@Override
+	public Boolean deleteProduct(Integer id) throws LogiwareExceptionHandler {
+		Boolean result = false;
+		try {
+			Query query = entityManager
+					.createQuery("UPDATE Product SET  delFlag = 'Y' WHERE id = :id");
+			query.setParameter("id", id);
+			int updateResult = query.executeUpdate();
+
+			if (updateResult != 0) {
+				result = true;
+			}
+
+			return result;
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in MastersDaoImpl - > deleteProduct",
+					he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch (Exception e) {
+			 logger.error( "Exception Error in MastersDaoImpl - > deleteProduct", e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			entityManager.close();
+		}
 	}
 	
 	

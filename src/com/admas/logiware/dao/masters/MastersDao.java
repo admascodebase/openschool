@@ -6,8 +6,7 @@ import com.admas.logiware.dto.CityDto;
 import com.admas.logiware.dto.CompanyBranchDto;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.EmployeeDto;
-import com.admas.logiware.dto.SettingsDto;
-import com.admas.logiware.dto.StateDto;
+import com.admas.logiware.dto.ProductDto;
 import com.admas.logiware.dto.TransportTypeDtlDto;
 import com.admas.logiware.dto.TransportTypeDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
@@ -15,6 +14,7 @@ import com.admas.logiware.jpa.City;
 import com.admas.logiware.jpa.Company;
 import com.admas.logiware.jpa.CompanyBranch;
 import com.admas.logiware.jpa.Employee;
+import com.admas.logiware.jpa.Product;
 import com.admas.logiware.jpa.Role;
 import com.admas.logiware.jpa.Settings;
 import com.admas.logiware.jpa.State;
@@ -92,6 +92,20 @@ public interface MastersDao {
 	public Boolean deleteBranch(Integer companyBranchId)throws LogiwareExceptionHandler;
 		
 		//end transport type detail dao
+	
+	//start product  dao 
+	
+	public Boolean addProduct(ProductDto productDto)throws LogiwareExceptionHandler;
+
+	public List<Product> getAllProduct()throws LogiwareExceptionHandler;
+
+	public Product getProductById(Integer id)throws LogiwareExceptionHandler;
+			
+	public Boolean editProduct(ProductDto productDto)throws LogiwareExceptionHandler;
+
+	public Boolean deleteProduct(Integer id)throws LogiwareExceptionHandler;
+		
+		// end product  dao 
 	
 	public List<State> getAllState()throws LogiwareExceptionHandler;
 	
