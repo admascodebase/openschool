@@ -1230,7 +1230,7 @@ public class MasterServices {
 
 				lRoles = mastersLogic.getAllRoles(compId);
 				logiwareRespnse.setCode(LogiWareConstants.SUCESS);
-				logiwareRespnse.setData(lRoles);;
+				logiwareRespnse.setlRoles(lRoles);
 			} catch (LogiwareExceptionHandler e) {
 				logger.error("Error in MasterService- > getAllRolesByComp", e);
 				logiwareRespnse.setCode(e.getErrorCode());

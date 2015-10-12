@@ -295,7 +295,7 @@ public class MastersLogicImpl implements MastersLogic {
 				employeeDto.setSalary(employee.getSalary());
 				employeeDto.setSalaryType(employee.getSalaryType());
 				employeeDto.setDelFlag(employee.getDelFlg());
-
+				employeeDto.setRoleId(employee.getRoleId());
 				lEmployeeDtos.add(employeeDto);
 			}
 
@@ -334,7 +334,7 @@ public class MastersLogicImpl implements MastersLogic {
 			employeeDto.setSalary(employee.getSalary());
 			employeeDto.setSalaryType(employee.getSalaryType());
 			employeeDto.setDelFlag(employee.getDelFlg());
-			
+			employeeDto.setRoleId(employee.getRoleId());
 
 		} catch (LogiwareExceptionHandler e) {
 			throw e;

@@ -17,6 +17,8 @@ public class UserDetails implements Serializable{
 	private String password;
 	
 	private Date lastLogin;
+
+	private Integer empId;
 	
 	private EmployeeDto custCompEmployee;
 
@@ -74,6 +76,20 @@ public class UserDetails implements Serializable{
 	 */
 	public void setCustCompEmployee(EmployeeDto custCompEmployee) {
 		this.custCompEmployee = custCompEmployee;
+	}
+
+	/**
+	 * @return the empId
+	 */
+	public Integer getEmpId() {
+		return empId;
+	}
+
+	/**
+	 * @param empId the empId to set
+	 */
+	public void setEmpId(Integer empId) {
+		this.empId = empId;
 	}
 	
 	/*public com.admas.logiware.jpa.UserDetails _toJpa(){

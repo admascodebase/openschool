@@ -50,7 +50,7 @@ public class Role implements Serializable{
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedOn;
 	
-	@Column(name="DEL_FLG" ,nullable = false) 
+	@Column(name="DEL_FLAG" ,nullable = false) 
 	private Character delFlag;
 
 	/**

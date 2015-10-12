@@ -521,7 +521,7 @@ public class MastersDaoImpl implements MastersDao {
 			employee.setSalary(employeeDto.getSalary());
 			employee.setSalaryType(employeeDto.getSalaryType());
 			employee.setDelFlg(employeeDto.getDelFlag());
-
+			employee.setRoleId(employeeDto.getRoleId());
 			entityManager.persist(employee);
 			entityManager.flush();
 			if (employee.getId() != null || employee.getId() != 0) {
@@ -1332,8 +1332,11 @@ public class MastersDaoImpl implements MastersDao {
 			criteriaBuilder = entityManager.getCriteriaBuilder();
 			CriteriaQuery<Role> criteriaQuery = criteriaBuilder
 					.createQuery(Role.class);
-			Root<Role> stateJpa = criteriaQuery.from(Role.class);
-			criteriaQuery.select(stateJpa);
+			Root<Role> roleJpa = criteriaQuery.from(Role.class);
+			Predicate notDeleted=criteriaBuilder.equal(roleJpa.get("delFlag"), 'N');
+			Predicate companyId=criteriaBuilder.equal(roleJpa.get("compId"), compId);
+			criteriaQuery.select(roleJpa);
+			criteriaQuery.where(notDeleted, companyId);
 			TypedQuery<Role> typedQuery = entityManager
 					.createQuery(criteriaQuery);
 			lRoles = typedQuery.getResultList();

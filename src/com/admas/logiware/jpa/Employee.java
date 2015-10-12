@@ -76,6 +76,9 @@ public class Employee implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedOn;
 	
+	@Column(name="ROLE_ID")
+	private Integer roleId;
+
 	@Column(name="DEL_FLG")
 	private Character delFlag;
 
@@ -91,6 +94,35 @@ public class Employee implements Serializable {
 	 */
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	
+	/**
+	 * @return the delFlag
+	 */
+	public Character getDelFlag() {
+		return delFlag;
+	}
+
+	/**
+	 * @return the roleId
+	 */
+	public Integer getRoleId() {
+		return roleId;
+	}
+
+	/**
+	 * @param roleId the roleId to set
+	 */
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
+	}
+
+	/**
+	 * @param delFlag the delFlag to set
+	 */
+	public void setDelFlag(Character delFlag) {
+		this.delFlag = delFlag;
 	}
 
 	/**

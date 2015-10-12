@@ -183,15 +183,13 @@ public class ContractCompDaoImpl implements ContractCompDao {
 			throws LogiwareExceptionHandler {
 		Boolean result = false;
 		try {
-			Query query = entityManager
-					.createQuery("UPDATE CustContractCompany SET  delFlag = 'Y' WHERE id = :id");
+			Query query = entityManager.createQuery("UPDATE CompanyRoute SET  delFlag = 'Y' WHERE id = :id");
 			query.setParameter("id", contractCompId);
 			int updateResult = query.executeUpdate();
 
-			if (updateResult != 0) {
+			if (updateResult != 0)
 				result = true;
-			}
-
+				
 			return result;
 		} catch (HibernateException he) {
 			logger.error(

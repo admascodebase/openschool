@@ -33,7 +33,7 @@ public class CompanyRoute implements Serializable{
 	@Column(name="END_ROUTE" ,nullable = false )
 	private Integer endCityId;
 	
-	@Column(name="TRANSPORT_DTL_ID" ,nullable = false )
+	/*@Column(name="TRANSPORT_DTL_ID" ,nullable = false )
 	private Integer transportDetailId;
 	
 	@Column(name="COST" ,nullable = false )
@@ -41,7 +41,7 @@ public class CompanyRoute implements Serializable{
 	
 	@Column(name="ADVANCE_AMT" ,nullable = false )
 	private Integer advanceAmt;
-	
+*/	
 	@Column(name="DEL_FLAG" ,nullable = false)
 	private Character delFlag;
 
@@ -115,59 +115,59 @@ public class CompanyRoute implements Serializable{
 		this.delFlag = delFlag;
 	}
 	
-	
-	/**
+/*	
+	*//**
 	 * @return the transportDetailId
-	 */
+	 *//*
 	public Integer getTransportDetailId() {
 		return transportDetailId;
 	}
 
-	/**
+	*//**
 	 * @param transportDetailId the transportDetailId to set
-	 */
+	 *//*
 	public void setTransportDetailId(Integer transportDetailId) {
 		this.transportDetailId = transportDetailId;
 	}
 
-	/**
+	*//**
 	 * @return the cost
-	 */
+	 *//*
 	public Integer getCost() {
 		return cost;
 	}
 
-	/**
+	*//**
 	 * @param cost the cost to set
-	 */
+	 *//*
 	public void setCost(Integer cost) {
 		this.cost = cost;
 	}
 
-	/**
+	*//**
 	 * @return the advanceAmt
-	 */
+	 *//*
 	public Integer getAdvanceAmt() {
 		return advanceAmt;
 	}
 
-	/**
+	*//**
 	 * @param advanceAmt the advanceAmt to set
-	 */
+	 *//*
 	public void setAdvanceAmt(Integer advanceAmt) {
 		this.advanceAmt = advanceAmt;
 	}
-
+*/
 	public CompanyRouteDto _toDto(){
 		CompanyRouteDto companyRouteDto = new CompanyRouteDto();
 		companyRouteDto.setCompId(this.compId);
 		companyRouteDto.setDelFlag(this.delFlag);
 		companyRouteDto.setEndCityId(this.endCityId);
-		companyRouteDto.setId(this.compId);
+		companyRouteDto.setId(this.id);
 		companyRouteDto.setStartCityId(this.startCityId);
-		companyRouteDto.setTransportDetailsId(this.transportDetailId);
-		companyRouteDto.setCost(this.cost);
-		companyRouteDto.setAdvanceAmt(this.advanceAmt);
+//		companyRouteDto.setTransportDetailsId(this.transportDetailId);
+//		companyRouteDto.setCost(this.cost);
+//		companyRouteDto.setAdvanceAmt(this.advanceAmt);
 		return companyRouteDto;
 	}
 

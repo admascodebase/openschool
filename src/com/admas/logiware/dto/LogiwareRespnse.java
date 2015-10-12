@@ -26,6 +26,7 @@ public class LogiwareRespnse implements Serializable{
 	private TransportTypeDtlDto transportTypeDtlDto;
 	private List<CityDto> lCityDto;
 	private List<ContractCompDto> lContractCompDtos;
+	private List<RoleDto> lRoles;
 	
 	/**
 	 * @return the code
@@ -266,6 +267,18 @@ public class LogiwareRespnse implements Serializable{
 	 */
 	public void setRoutePaySettingDto(RoutePaySettingDto routePaySettingDto) {
 		this.routePaySettingDto = routePaySettingDto;
+	}
+	/**
+	 * @return the lRoles
+	 */
+	public List<RoleDto> getlRoles() {
+		return lRoles;
+	}
+	/**
+	 * @param lRoles the lRoles to set
+	 */
+	public void setlRoles(List<RoleDto> lRoles) {
+		this.lRoles = lRoles;
 	}
 	
 	

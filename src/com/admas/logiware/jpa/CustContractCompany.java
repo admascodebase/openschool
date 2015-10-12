@@ -42,6 +42,36 @@ public class CustContractCompany {
 	@Column(name="CONTACT_NO2")
 	private String contactNo2;
 	
+	@Column(name="PRODUCT" ,nullable = false)
+	private String product;
+	
+	@Column(name="TIN_NO" ,nullable = false)
+	private String tinNo;
+	
+	@Column(name="EMAIL" ,nullable = false)
+	private String email;
+	
+	@Column(name="WEBSITE" ,nullable = false)
+	private String website;
+	
+	@Column(name="OWNER_DETAILS" ,nullable = false)
+	private String ownerDetails;
+	
+	@Column(name="OWNER_CONTACT" ,nullable = false)
+	private String ownerContact;
+	
+	@Column(name="LOADING_STAFF" ,nullable = false)
+	private String loadingStaff;
+	
+	@Column(name="LOADING_STAFF_CONTACT" ,nullable = false)
+	private String loadingStaffContact;
+	
+	@Column(name="UNLOADING_STAFF" ,nullable = false)
+	private String unloadingStaff;
+	
+	@Column(name="UNLOADING_STAFF_CONTACT" ,nullable = false)
+	private String unloadingStaffContact;
+	
 	@Column(name="CREATED_BY" ,nullable = false)
 	private Integer createdBy;
 	
@@ -228,6 +258,62 @@ public class CustContractCompany {
 	}
 
 	/**
+	 * @return the product
+	 */
+	public String getProduct() {
+		return product;
+	}
+
+	/**
+	 * @param product the product to set
+	 */
+	public void setProduct(String product) {
+		this.product = product;
+	}
+
+	/**
+	 * @return the tin_no
+	 */
+	public String getTin_no() {
+		return tinNo;
+	}
+
+	/**
+	 * @param tin_no the tin_no to set
+	 */
+	public void setTin_no(String tinNo) {
+		this.tinNo = tinNo;
+	}
+
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	/**
+	 * @return the website
+	 */
+	public String getWebsite() {
+		return website;
+	}
+
+	/**
+	 * @param website the website to set
+	 */
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
+	/**
 	 * @return the delFlag
 	 */
 	public Character getDelFlag() {
@@ -241,28 +327,138 @@ public class CustContractCompany {
 		this.delFlag = delFlag;
 	}
 
+	/**
+	 * @return the tinNo
+	 */
+	public String getTinNo() {
+		return tinNo;
+	}
+
+	/**
+	 * @param tinNo the tinNo to set
+	 */
+	public void setTinNo(String tinNo) {
+		this.tinNo = tinNo;
+	}
+
+	/**
+	 * @return the ownerDetails
+	 */
+	public String getOwnerDetails() {
+		return ownerDetails;
+	}
+
+	/**
+	 * @param ownerDetails the ownerDetails to set
+	 */
+	public void setOwnerDetails(String ownerDetails) {
+		this.ownerDetails = ownerDetails;
+	}
+
+	/**
+	 * @return the ownerContact
+	 */
+	public String getOwnerContact() {
+		return ownerContact;
+	}
+
+	/**
+	 * @param ownerContact the ownerContact to set
+	 */
+	public void setOwnerContact(String ownerContact) {
+		this.ownerContact = ownerContact;
+	}
+
+	/**
+	 * @return the loadingStaff
+	 */
+	public String getLoadingStaff() {
+		return loadingStaff;
+	}
+
+	/**
+	 * @param loadingStaff the loadingStaff to set
+	 */
+	public void setLoadingStaff(String loadingStaff) {
+		this.loadingStaff = loadingStaff;
+	}
+
+	/**
+	 * @return the loadingStaffContact
+	 */
+	public String getLoadingStaffContact() {
+		return loadingStaffContact;
+	}
+
+	/**
+	 * @param loadingStaffContact the loadingStaffContact to set
+	 */
+	public void setLoadingStaffContact(String loadingStaffContact) {
+		this.loadingStaffContact = loadingStaffContact;
+	}
+
+	/**
+	 * @return the unloadingStaff
+	 */
+	public String getUnloadingStaff() {
+		return unloadingStaff;
+	}
+
+	/**
+	 * @param unloadingStaff the unloadingStaff to set
+	 */
+	public void setUnloadingStaff(String unloadingStaff) {
+		this.unloadingStaff = unloadingStaff;
+	}
+
+	/**
+	 * @return the unloadingStaffContact
+	 */
+	public String getUnloadingStaffContact() {
+		return unloadingStaffContact;
+	}
+
+	/**
+	 * @param unloadingStaffContact the unloadingStaffContact to set
+	 */
+	public void setUnloadingStaffContact(String unloadingStaffContact) {
+		this.unloadingStaffContact = unloadingStaffContact;
+	}
+
+	
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "CustContractCompany [id=" + id + ", name=" + name + ", compId="
-				+ compId + ", address=" + address + ", type=" + type
-				+ ", contactPersion=" + contactPersion + ", contactNo1="
-				+ contactNo1 + ", contactNo2=" + contactNo2 + ", createdBy="
-				+ createdBy + ", updatedBy=" + updatedBy + ", createdOn="
-				+ createdOn + ", updatedOn=" + updatedOn + ", delFlag="
-				+ delFlag + "]";
+		return "CustContractCompany [id=" + id + ", name=" + name + ", compId=" + compId + ", address=" + address
+				+ ", type=" + type + ", contactPersion=" + contactPersion + ", contactNo1=" + contactNo1
+				+ ", contactNo2=" + contactNo2 + ", product=" + product + ", tinNo=" + tinNo + ", email=" + email
+				+ ", website=" + website + ", ownerDetails=" + ownerDetails + ", ownerContact=" + ownerContact
+				+ ", loadingStaff=" + loadingStaff + ", loadingStaffContact=" + loadingStaffContact
+				+ ", unloadingStaff=" + unloadingStaff + ", unloadingStaffContact=" + unloadingStaffContact
+				+ ", createdBy=" + createdBy + ", updatedBy=" + updatedBy + ", createdOn=" + createdOn + ", updatedOn="
+				+ updatedOn + ", delFlag=" + delFlag + "]";
 	}
-	
+
 	public ContractCompDto _toDto(){
 		ContractCompDto contractCompDto = new ContractCompDto();
 		contractCompDto.setAddress(this.address);
 		contractCompDto.setCompId(this.getCompId());
 		contractCompDto.setContactNo1(this.contactNo1);
 		contractCompDto.setContactNo2(this.contactNo2);
-		contractCompDto.setContactNo2(this.contactNo2);
+		contractCompDto.setProduct(this.product);
+		contractCompDto.setTinNo(this.tinNo);
+		contractCompDto.setEmail(this.email);
+		contractCompDto.setWebsite(this.website);
 		contractCompDto.setContactPersion(this.contactPersion);
+		contractCompDto.setOwnerDetails(this.ownerDetails);
+		contractCompDto.setOwnerContact(this.ownerContact);
+		contractCompDto.setLoadingStaff(this.loadingStaff);
+		contractCompDto.setLoadingStaffContact(this.loadingStaffContact);
+		contractCompDto.setUnloadingStaff(this.unloadingStaff);
+		contractCompDto.setUnloadingStaffContact(this.unloadingStaffContact);
 		contractCompDto.setCreatedBy(this.createdBy);
 		contractCompDto.setCreatedOn(this.createdOn);
 		contractCompDto.setDelFlag(this.delFlag);
