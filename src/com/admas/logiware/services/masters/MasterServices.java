@@ -557,7 +557,7 @@ public class MasterServices {
 
 			lTransportTypes = mastersLogic.getAllTransportType();
 			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
-			logiwareRespnse.setData(lTransportTypes);
+			logiwareRespnse.setlTransportTypeDtos(lTransportTypes);
 		} catch (LogiwareExceptionHandler e) {
 			logger.error("Error in MasterService- > getAllTransportType", e);
 			logiwareRespnse.setCode(e.getErrorCode());

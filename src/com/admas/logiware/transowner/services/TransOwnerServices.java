@@ -67,7 +67,7 @@ public class TransOwnerServices {
 
 			lLoweryOwnerDtos = transOwnerLogicImpl.getAllTransOwner();
 			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
-			logiwareRespnse.setData(lLoweryOwnerDtos);
+			logiwareRespnse.setlLoweryOwnerDto(lLoweryOwnerDtos);
 		} catch (LogiwareExceptionHandler e) {
 			logger.error("Error in TransOwnerServices- > getAllTransOwner", e);
 			logiwareRespnse.setCode(e.getErrorCode());
