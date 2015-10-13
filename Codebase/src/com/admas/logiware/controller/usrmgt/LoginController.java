@@ -92,7 +92,7 @@ public class LoginController extends BaseController {
 			reqDtoObjects.put(WebAppConstants.PASSWORD, password);			
 			resDtoObjects =userManagementServiceImpl.isValidUser(flowData, reqDtoObjects, resDtoObjects);
 			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
-			resDtoObjects = userManagementServiceImpl.getSmsBalance(flowData, reqDtoObjects, resDtoObjects);
+//			resDtoObjects = userManagementServiceImpl.getSmsBalance(flowData, reqDtoObjects, resDtoObjects);
 			balance = (String) resDtoObjects.get("balance");
 			mv=new ModelAndView(viewName);
 			flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");

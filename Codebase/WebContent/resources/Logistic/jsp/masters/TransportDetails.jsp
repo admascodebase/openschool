@@ -212,16 +212,25 @@
 										</div>
 									</div>
 									<div class="col-md-6">
-										<!-- <div class="btn-group pull-right">
-											<button class="btn dropdown-toggle" data-toggle="dropdown">
-												Tools <i class="fa fa-angle-down"></i>
-											</button>
-											<ul class="dropdown-menu pull-right">
-												<li><a href="javascript:;"> Print </a></li>
-												<li><a href="javascript:;"> Save as PDF </a></li>
-												<li><a href="javascript:;"> Export to Excel </a></li>
-											</ul>
-										</div> -->
+										<div class="col-md-6">
+										<div class="btn-group pull-right">
+											<form:form name="TransportDetailsForm"
+												modelAttribute="transportDetailsDto"
+												action="getAllTransportDetails.htm">
+												<div class="">
+													<div class="">
+														<form:select id="mySelect" path="ownId"
+															class="form-control"
+															onchange="getAllTransportDetails()">
+															<form:option value="0" label="---Select---" />
+															<form:options class="form-control" itemValue="id"
+																itemLabel="name" items="${lTransportOwners}" />
+														</form:select>
+													</div>
+												</div>
+											</form:form>
+										</div>
+									</div>
 									</div>
 								</div>
 							</div>
@@ -267,3 +276,12 @@
 	</div>
 	<!-- END PAGE CONTENT -->
 </div>
+<script>
+function getAllTransportDetails() {
+    var x = document.getElementById("mySelect").value;
+     	/* alert(""+x); */
+    	 document.TransportDetailsForm.action="getAllTransportDetails.htm?ownId="+x;
+    	 document.TransportDetailsForm.method="GET";
+    	 document.TransportDetailsForm.submit();
+}
+</script>

@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.controller.core.BaseController;
-import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.FlowData;
 import com.admas.logiware.dto.TransportTypeDtlDto;
 import com.admas.logiware.dto.TransportTypeDto;
@@ -243,9 +242,10 @@ public class TransportTypeController extends BaseController {
 
 	
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/getAllTransportTypeDetails.htm", method = RequestMethod.GET)
 	public ModelAndView getAllTransportTypeDetails(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response, @ModelAttribute("transportTypeDto")TransportTypeDtlDto transportTypeDtlDto) throws LogiwareBaseException {
 
 		logger.info("TransportTypeController: getAllTransportTypeDetails() Method Start.");
 		FlowData flowData = null;
@@ -261,27 +261,42 @@ public class TransportTypeController extends BaseController {
 		ModelAndView mv = new ModelAndView("getAllTransportTypeDetails");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
+		Integer transportTypeId = 0;
 		try {
-			Integer transportTypeId=Integer.parseInt(request.getParameter("id"));
+			if(transportTypeDtlDto.getTransId()==null){
+				transportTypeId=Integer.parseInt(request.getParameter("id"));
+			}
+			else{
+				transportTypeId = transportTypeDtlDto.getTransId();
+			}
+			
+//			transportTypeId = Integer.parseInt(request.getParameter("id"));
 			reqDtoObjects.put("transId", transportTypeId);
 			mv.addObject("transId", transportTypeId);
 			resDtoObjects = masterServiceImpl.getAllTransportTypeDetails(
 					flowData, reqDtoObjects, resDtoObjects);
+
+			
+			resDtoObjects = masterServiceImpl.getAllTransportTypes(flowData, reqDtoObjects, resDtoObjects);
 			
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in TransportTypeController: getAllTransportTypeDetails",
 					_be);
 			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
-
+			resDtoObjects = masterServiceImpl.getAllTransportTypes(flowData, reqDtoObjects, resDtoObjects);
 		} catch (Exception e) {
 			logger.error(
 					"Exception In TransportTypeController getAllTransportTypeDetails Method--", e);
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
+			resDtoObjects = masterServiceImpl.getAllTransportTypes(flowData, reqDtoObjects, resDtoObjects);
 		}
-		@SuppressWarnings("unchecked")
+		List<TransportTypeDto> lTransports = (List<TransportTypeDto>) resDtoObjects
+				.get("lTransports");
+		mv.addObject("lTransports", lTransports);
 		List<TransportTypeDtlDto> lTransportTypeDtls = (List<TransportTypeDtlDto>) resDtoObjects
 				.get("lTransportTypeDtls");
+		mv.addObject("transportTypeDtlDto", new TransportTypeDtlDto());
 		mv.addObject("lTransportTypeDtls", lTransportTypeDtls);
 		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
 		mv.addObject("userName", flowData.getSessionData("userName"));	
@@ -320,6 +335,7 @@ public class TransportTypeController extends BaseController {
 	
 	
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/saveTransportTypeDetails.htm", method=RequestMethod.POST)
 	public ModelAndView saveTransportTypeDetails(@ModelAttribute("transportTypeDetails")TransportTypeDtlDto transportTypeDtlDto, HttpServletRequest request, HttpServletResponse response){
 		
@@ -339,6 +355,7 @@ public class TransportTypeController extends BaseController {
 			reqDtoObjects.put("transportTypeDtlDto", transportTypeDtlDto);
 			Integer transId = Integer.parseInt(request.getParameter("transId"));
 			reqDtoObjects.put("transId", transId);
+			mv.addObject("transId", transId);
 			String sucessMessage="";
 			if (transportTypeDtlDto.getId() != null && transportTypeDtlDto.getId() > 0) {
 				resDtoObjects = masterServiceImpl.saveEditTransportTypeDtl(flowData, reqDtoObjects, resDtoObjects);
@@ -347,14 +364,11 @@ public class TransportTypeController extends BaseController {
 				resDtoObjects=masterServiceImpl.saveTransportTypeDetails(flowData, reqDtoObjects, resDtoObjects);
 				sucessMessage= WebAppConstants.LW_SUCESS_ADD;
 			}
-//			String viewName=(String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
-			resDtoObjects=masterServiceImpl.getAllTransportTypeDetails(flowData, reqDtoObjects, resDtoObjects);
-			@SuppressWarnings("unchecked")
-			List<TransportTypeDtlDto> lTransportTypeDtls = (List<TransportTypeDtlDto>) resDtoObjects
-					.get("lTransportTypeDtls");
-//			mv=new ModelAndView(viewName);	
-			mv.addObject("lTransportTypeDtls", lTransportTypeDtls);
-			mv.addObject(WebAppConstants.SUCESS_MESSAGE,sucessMessage);
+		
+			resDtoObjects = masterServiceImpl.getAllTransportTypeDetails(flowData, reqDtoObjects, resDtoObjects);
+			resDtoObjects = masterServiceImpl.getAllTransportTypes(flowData, reqDtoObjects, resDtoObjects);
+			
+			mv.addObject(WebAppConstants.SUCESS_MESSAGE, sucessMessage);
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in TransportTypeController: saveTransportTypeDetails",
 					_be);
@@ -366,6 +380,11 @@ public class TransportTypeController extends BaseController {
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
+		List<TransportTypeDto> lTransports = (List<TransportTypeDto>) resDtoObjects.get("lTransports");
+		mv.addObject("lTransports", lTransports);
+		mv.addObject("transportTypeDtlDto", new TransportTypeDtlDto());
+		List<TransportTypeDtlDto> lTransportTypeDtls = (List<TransportTypeDtlDto>) resDtoObjects.get("lTransportTypeDtls");
+		mv.addObject("lTransportTypeDtls", lTransportTypeDtls);
 		return mv;
 		
 		
@@ -413,40 +432,47 @@ public class TransportTypeController extends BaseController {
 	 * 
 	 * */
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/showDeleteTransportTypeDetails.htm", method = RequestMethod.GET)
 	public ModelAndView deleteTransportTypeDetails(HttpServletRequest request, HttpServletResponse response) {		
 		
 		logger.info("TransportTypeController: deleteTransportTypeDetails Method Start.");
 		FlowData flowData = null;
 		
-		ModelAndView mv = new ModelAndView() ;
+		ModelAndView mv = new ModelAndView("getAllTransportTypeDetails") ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		Integer transportTypeDtlId=Integer.parseInt(request.getParameter("id")); 
+		Integer transId = Integer.parseInt(request.getParameter("transId"));
 		/*Integer transId = Integer.parseInt(request.getParameter("transId"));
 		reqDtoObjects.put("transId", transId);*/
+		String sucessMessage = "";
 		try {			
 			reqDtoObjects.put("transportTypeDtlId", transportTypeDtlId);
+			reqDtoObjects.put("transId", transId);
+			mv.addObject("transId", transId);
 			resDtoObjects = masterServiceImpl.deleteTransportTypeDetails(flowData, reqDtoObjects, resDtoObjects);
-			String viewName = (String)resDtoObjects.get(WebAppConstants.VIEW_NAME);
 			resDtoObjects = masterServiceImpl.getAllTransportTypeDetails(flowData, reqDtoObjects, resDtoObjects);
-			mv=new ModelAndView(viewName);	
-			@SuppressWarnings("unchecked")
-			List<TransportTypeDtlDto> lTransportTypeDtls = (List<TransportTypeDtlDto>) resDtoObjects
-					.get("lTransportTypeDtls");
-			mv.addObject("lTransportTypeDtls", lTransportTypeDtls);
+			resDtoObjects = masterServiceImpl.getAllTransportTypes(flowData, reqDtoObjects, resDtoObjects);
+			sucessMessage= WebAppConstants.LW_SUCESS_DELETE;
+			mv.addObject(WebAppConstants.SUCESS_MESSAGE, sucessMessage);
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in TransportTypeController: deleteTransportTypeDetails",
 					_be);
 			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
-
+			
 		} catch (Exception e) {
 			logger.error(
 					"Exception In TransportTypeController deleteTransportTypeDetails Method--", e);
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
-		
+		List<TransportTypeDtlDto> lTransportTypeDtls = (List<TransportTypeDtlDto>) resDtoObjects
+				.get("lTransportTypeDtls");
+		mv.addObject("lTransportTypeDtls", lTransportTypeDtls);
+		List<TransportTypeDto> lTransports = (List<TransportTypeDto>) resDtoObjects.get("lTransports");
+		mv.addObject("lTransports", lTransports);
+		mv.addObject("transportTypeDtlDto", new TransportTypeDtlDto());
 		return mv;
 }
 	

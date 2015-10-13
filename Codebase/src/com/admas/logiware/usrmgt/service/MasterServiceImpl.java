@@ -165,7 +165,7 @@ public class MasterServiceImpl {
 		LogiwareRespnse logiwareRespnse = null;
 		try {
 			logiwareRespnse  = doServiceCall(flowData, ServiceName.getAllTransportTypes, reqDtoObjects);			
-			lTransports = (List<TransportTypeDto>) logiwareRespnse.getData();			
+			lTransports = (List<TransportTypeDto>) logiwareRespnse.getlTransportTypeDtos();			
 			resDtoObjects.put("lTransports", lTransports);
 			
 		} catch (LogiwareBaseException b) {
@@ -1188,7 +1188,6 @@ public class MasterServiceImpl {
 		
 	}
 
-	@SuppressWarnings("unchecked")
 	public Map<String, Object> getAllTransportOwners(FlowData flowData,
 			HashMap<String, Object> reqDtoObjects,
 			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
@@ -1198,7 +1197,7 @@ public class MasterServiceImpl {
 			LogiwareRespnse logiwareRespnse = null;
 			try {
 				 logiwareRespnse = doServiceCall(flowData, ServiceName.getAllTransportOwners, reqDtoObjects);
-				 lTransportOwners =(List<LoweryOwnerDto>) logiwareRespnse.getData();			 
+				 lTransportOwners =(List<LoweryOwnerDto>) logiwareRespnse.getlLoweryOwnerDto();			 
 				 resDtoObjects.put("lTransportOwners", lTransportOwners);
 			} catch (LogiwareBaseException b) {
 				throw b;

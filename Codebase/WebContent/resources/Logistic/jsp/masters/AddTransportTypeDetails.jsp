@@ -261,9 +261,14 @@
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label col-md-3">Unit</label>
-															<div class="col-md-9">
+															 <div class="col-md-9">
 																<form:input path="unit" type="text" class="form-control" placeholder="Enter unit id 1."/>
 															</div>
+															<%-- <form:select id="unitId" path="unit" class="form-control">
+																<form:option value="0" label="---Select---" />
+																<form:options class="form-control" itemValue="id"
+																	itemLabel="name" items="${lUnits}" />
+															</form:select> --%>
 														</div>
 													</div>
 													<!--/span-->

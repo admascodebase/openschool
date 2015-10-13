@@ -207,30 +207,36 @@
 									<div class="col-md-6">
 										<div class="btn-group">
 											<a href="showAddTransportTypeDetails.htm?transId=${transId}"><button
-													class="btn btn-circle btn-primary">Add New</button></a>
-										<a href="showEditTransportTypeDetails.htm"><button
-													class="btn btn-circle yellow-crusta">Edit</button></a>
-									
-									<a href="showDeleteTransportTypeDetails.htm"><button
+													class="btn btn-circle btn-primary">Add New</button></a> <a
+												href="showEditTransportTypeDetails.htm"><button
+													class="btn btn-circle yellow-crusta">Edit</button></a> <a
+												href="showDeleteTransportTypeDetails.htm"><button
 													class="btn btn-circle yellow-crusta">delete</button></a>
-									
+
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="btn-group pull-right">
-											<button class="btn dropdown-toggle" data-toggle="dropdown">
-												Tools <i class="fa fa-angle-down"></i>
-											</button>
-											<ul class="dropdown-menu pull-right">
-												<li><a href="javascript:;"> Print </a></li>
-												<li><a href="javascript:;"> Save as PDF </a></li>
-												<li><a href="javascript:;"> Export to Excel </a></li>
-											</ul>
+											<form:form name="TransportDetailsForm"
+												modelAttribute="transportTypeDtlDto"
+												action="getAllTransportDetails.htm">
+												<div class="">
+													<div class="">
+														<form:select id="mySelect" path="transId"
+															class="form-control"
+															onchange="getAllTransportTypeDetails()">
+															<form:option value="0" label="---Select---" />
+															<form:options class="form-control" itemValue="id"
+																itemLabel="name" items="${lTransports}" />
+														</form:select>
+													</div>
+												</div>
+											</form:form>
 										</div>
 									</div>
 								</div>
 							</div>
-							
+
 							<table class="table table-striped table-bordered table-hover"
 								id="sample_1">
 								<thead>
@@ -248,7 +254,6 @@
 										<th>Capacity</th>
 										<th>Max Capacity</th>
 										<th>Edit/Delete</th>
-										
 									</tr>
 								</thead>
 								<tbody>
@@ -271,7 +276,7 @@
 												<a href="showEditTransportTypeDetails.htm?id=${transportTypeDtl.id}"
 													class="btn btn-warning btn-xs"> Edit 
 												</a> 
-												 <a href="showDeleteTransportTypeDetails.htm?id=${transportTypeDtl.id}?transId=${transportTypeDtl.transId}"
+												 <a href="showDeleteTransportTypeDetails.htm?id=${transportTypeDtl.id}&transId=${transportTypeDtl.transId}"
 													class="btn btn-info btn-xs"> Delete 
 												</a> 
 											</td>
@@ -284,8 +289,6 @@
 					<!-- END EXAMPLE TABLE PORTLET-->
 				</div>
 			</div>
-
-
 			<!-- END PAGE CONTENT INNER -->
 		</div>
 	</div>
@@ -314,6 +317,16 @@
 			'../../../../../../www.google-analytics.com/analytics.js', 'ga');
 	ga('create', 'UA-37564768-1', 'keenthemes.com');
 	ga('send', 'pageview');
+</script>
+
+<script>
+function getAllTransportTypeDetails() {
+    var x = document.getElementById("mySelect").value;
+     	/* alert(""+x); */
+    	 document.TransportDetailsForm.action="getAllTransportTypeDetails.htm?transId="+x;
+    	 document.TransportDetailsForm.method="GET";
+    	 document.TransportDetailsForm.submit();
+}
 </script>
 </body>
 

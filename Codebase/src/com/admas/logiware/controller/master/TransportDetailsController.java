@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.controller.core.BaseController;
 import com.admas.logiware.dto.FlowData;
+import com.admas.logiware.dto.LoweryOwnerDto;
 import com.admas.logiware.dto.TransportDetailsDto;
 import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
@@ -40,8 +41,9 @@ public class TransportDetailsController extends BaseController implements Serial
 	@Qualifier("masterServiceImpl")
 	private MasterServiceImpl masterServiceImpl;
 
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/getAllTransportDetails.htm", method = RequestMethod.GET)
-	public ModelAndView getAllTransportDetails(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView getAllTransportDetails(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("transportDetailsDto")TransportDetailsDto transportDetailsDto) {
 
 		logger.info("TransportDetailsController: getAllTransportDetails Method Start.");
 		FlowData flowData = null;
@@ -56,17 +58,21 @@ public class TransportDetailsController extends BaseController implements Serial
 		ModelAndView mv = new ModelAndView("getAllTransportDetails");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
-		
+		Integer ownId = 0;
 		try {
-			Integer ownId=Integer.parseInt(request.getParameter("id"));
+			if(transportDetailsDto.getOwnId()==null){
+				ownId=Integer.parseInt(request.getParameter("id"));
+			}
+			else{
+				ownId = transportDetailsDto.getOwnId();
+			}
+			
+//			Integer ownId=Integer.parseInt(request.getParameter("id"));
 			reqDtoObjects.put("ownId", ownId);
 			mv.addObject("ownId", ownId);
-			resDtoObjects = masterServiceImpl.getAllTransportDetails(flowData,
-					reqDtoObjects, resDtoObjects);
-			@SuppressWarnings("unchecked")
-			List<TransportDetailsDto> lTransportDetails = (List<TransportDetailsDto>) resDtoObjects
-					.get("lTransportDetails");
-			mv.addObject("lTransportDetails", lTransportDetails);
+			resDtoObjects = masterServiceImpl.getAllTransportDetails(flowData, reqDtoObjects, resDtoObjects);
+			resDtoObjects = masterServiceImpl.getAllTransportOwners(flowData, reqDtoObjects, resDtoObjects);
+			
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in TransportDetailsController: getAllTransportDetails", _be);
 			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
@@ -77,6 +83,13 @@ public class TransportDetailsController extends BaseController implements Serial
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
+		mv.addObject("transportDetailsDto", new TransportDetailsDto());
+		List<LoweryOwnerDto> lTransportOwners = (List<LoweryOwnerDto>) resDtoObjects.get("lTransportOwners");
+		mv.addObject("lTransportOwners", lTransportOwners);	
+		
+		List<TransportDetailsDto> lTransportDetails = (List<TransportDetailsDto>) resDtoObjects.get("lTransportDetails");
+		mv.addObject("lTransportDetails", lTransportDetails);
+		
 		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
 		mv.addObject("userName", flowData.getSessionData("userName"));	
 		logger.info("TransportDetailsController: getAllTransportDetails Method End.");

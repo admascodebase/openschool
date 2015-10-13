@@ -58,7 +58,7 @@
 												<li>
 													<a href="getAllTransportTypeDetails.htm?id=3" class="iconify">
 													<i class="icon-handbag"></i>
-													Transport Type </a>
+													Transport Type Details </a>
 												</li>
 											</ul>
 										</div>
@@ -203,7 +203,7 @@
 													Agent Registration </a>
 												</li> 
 												<li>
-													<a href="./getAllTransportDetails.htm" class="iconify">
+													<a href="./getAllTransportDetails.htm?id=2" class="iconify">
 													<i class="icon-home"></i>
 													Transport Registration </a>
 												</li>
