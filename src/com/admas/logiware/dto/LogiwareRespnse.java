@@ -29,6 +29,7 @@ public class LogiwareRespnse implements Serializable{
 	private List<RoleDto> lRoles;
 	private List<TransportTypeDto> lTransportTypeDtos;
 	private List<LoweryOwnerDto> lLoweryOwnerDto;
+	private List<TransportTypeDtlDto> lTransportTypeDtlDtos;
 	
 	/**
 	 * @return the code
@@ -305,6 +306,18 @@ public class LogiwareRespnse implements Serializable{
 	 */
 	public void setlLoweryOwnerDto(List<LoweryOwnerDto> lLoweryOwnerDto) {
 		this.lLoweryOwnerDto = lLoweryOwnerDto;
+	}
+	/**
+	 * @return the lTransportTypeDtlDtos
+	 */
+	public List<TransportTypeDtlDto> getlTransportTypeDtlDtos() {
+		return lTransportTypeDtlDtos;
+	}
+	/**
+	 * @param lTransportTypeDtlDtos the lTransportTypeDtlDtos to set
+	 */
+	public void setlTransportTypeDtlDtos(List<TransportTypeDtlDto> lTransportTypeDtlDtos) {
+		this.lTransportTypeDtlDtos = lTransportTypeDtlDtos;
 	}
 	
 	
