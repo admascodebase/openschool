@@ -13,6 +13,7 @@ public class TransportDetailsDto implements Serializable{
 	private Integer id;	
 	private Integer ownId;
 	private Integer loweryNo;
+	private Integer transportTypeId;
 	private Integer tranTypeDtlId;
 	private Integer updatedBy;
 	private Date createdOn;
@@ -140,6 +141,20 @@ public class TransportDetailsDto implements Serializable{
 				+ ", loweryNo=" + loweryNo + ", tranTypeDtlId=" + tranTypeDtlId
 				+ ", updatedBy=" + updatedBy + ", createdOn=" + createdOn
 				+ ", updatedOn=" + updatedOn + ", delFlag=" + delFlag + "]";
+	}
+
+	/**
+	 * @return the transportTypeId
+	 */
+	public Integer getTransportTypeId() {
+		return transportTypeId;
+	}
+
+	/**
+	 * @param transportTypeId the transportTypeId to set
+	 */
+	public void setTransportTypeId(Integer transportTypeId) {
+		this.transportTypeId = transportTypeId;
 	}
 	
 }

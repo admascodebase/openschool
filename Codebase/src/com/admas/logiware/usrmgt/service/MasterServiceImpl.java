@@ -603,7 +603,6 @@ public class MasterServiceImpl {
 	}
 
 	
-	@SuppressWarnings("unchecked")
 	public Map<String, Object> getAllTransportTypeDetails(FlowData flowData,
 			HashMap<String, Object> reqDtoObjects,
 			Map<String, Object> resDtoObjects) throws LogiwareBaseException {		
@@ -612,7 +611,7 @@ public class MasterServiceImpl {
 		LogiwareRespnse logiwareRespnse = null;
 		try {
 			logiwareRespnse  = doServiceCall(flowData, ServiceName.getAllTransportTypeDetails, reqDtoObjects);			
-			lTransportTypeDtls = (List<TransportTypeDtlDto>) logiwareRespnse.getData();			
+			lTransportTypeDtls = (List<TransportTypeDtlDto>) logiwareRespnse.getlTransportTypeDtlDtos();			
 			resDtoObjects.put("lTransportTypeDtls", lTransportTypeDtls);			
 		} catch (LogiwareBaseException b) {
 			throw b;

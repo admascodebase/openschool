@@ -205,53 +205,77 @@
 									</div> -->
 									<div class="portlet-body form">
 										<!-- BEGIN FORM-->
-										<form:form action="saveTransportDetails.htm" modelAttribute="TransportDetailsDto" class="form-horizontal">
-										<form:hidden path="ownId" />
-										<form:hidden path="id" />
-										<form:hidden path="delFlag" />
-										<%-- <form:hidden path="compId" /> --%>
+										<form:form name="addTransportDetailsForm" action="saveTransportDetails.htm"
+											modelAttribute="TransportDetailsDto" class="form-horizontal">
+											<form:hidden id="ownerId" path="ownId" />
+											<form:hidden path="id" />
+											<form:hidden path="delFlag" />
+											<%-- <form:hidden path="compId" /> --%>
 											<div class="form-body">
 												<h3 class="form-section"></h3>
 												<div class="row">
 													<div class="col-md-6">
 														<div class="form-group">
-															<label class="control-label col-md-3">Lowery Number</label>
+															<label class="control-label col-md-3">Transport
+																Type</label>
 															<div class="col-md-9">
-																<form:input type="text" path="loweryNo" class="form-control"
-																	placeholder="Lowery Number here.."/> 
+																<%-- <form:input type="text" path="tranTypeDtlId" class="form-control"
+																	placeholder="Transport Type Detail."/> --%>
+																<form:select id="tranTypeDtlId" path="transportTypeId"
+																	onchange="getAllTransportTypeDetails()"
+																	class="form-control">
+																	<form:option value="0" label="---Select---" />
+																	<form:options class="form-control" itemValue="id"
+																		itemLabel="name" items="${lTransportTypeDtos}" />
+																</form:select>
 															</div>
 														</div>
 													</div>
+
 													<!--/span-->
 													<div class="col-md-6">
 														<div class="form-group">
-															<label class="control-label col-md-3">Lowery Owner</label>
+															<label class="control-label col-md-3">Transport
+																Type Detail</label>
 															<div class="col-md-9">
-																<form:input type="text" path="ownId" class="form-control"
-																	placeholder="Address here.. "/> 
+																<%-- <form:input type="text" path="tranTypeDtlId" class="form-control"
+																	placeholder="Transport Type Detail."/> --%>
+																<form:select id="tranTypeDtlId" path="tranTypeDtlId"
+																	class="form-control">
+																	<form:option value="0" label="---Select---" />
+																	<form:options class="form-control" itemValue="id"
+																		itemLabel="truckName" items="${lTransportTypeDtlDtos}" />
+																</form:select>
 															</div>
 														</div>
 													</div>
+
 													<!--/span-->
 												</div>
 												<!--/row-->
 												<div class="row">
+
 													<div class="col-md-6">
 														<div class="form-group">
-															<label class="control-label col-md-3">Transport Type Detail</label>
+															<label class="control-label col-md-3">Lowery
+																Number</label>
 															<div class="col-md-9">
-																<form:input type="text" path="tranTypeDtlId" class="form-control"
-																	placeholder="Transport Type Detail."/> 
+																<form:input type="text" path="loweryNo"
+																	class="form-control" placeholder="Lowery Number here.." />
 															</div>
 														</div>
 													</div>
+
 												</div>
 												<!--/row-->
-											<div class="form-actions right">
-											<a href="getAllTransportDetails.htm">
-												<button class="btn default" type="button">Cancel</button></a>
-												<button class="btn blue" type="submit"><i class="fa fa-check"></i> Submit</button>
-											</div>
+												<div class="form-actions right">
+													<a href="getAllTransportDetails.htm">
+														<button class="btn default" type="button">Cancel</button>
+													</a>
+													<button class="btn blue" type="submit">
+														<i class="fa fa-check"></i> Submit
+													</button>
+												</div>
 											</div>
 										</form:form>
 										<!-- END FORM-->
@@ -268,5 +292,14 @@
 	</div>
 	<!-- END PAGE CONTENT -->
 </div>
-
+<script>
+	function getAllTransportTypeDetails() {
+		var x = document.getElementById("tranTypeDtlId").value;
+		var ownId = document.getElementById('ownerId').value;
+		/* alert("" + x + "---" + ownId); */
+		 	 document.addTransportDetailsForm.action="getAllTransportTypeDetailList.htm?transportTypeId=" + x + "&ownId=" + ownId;
+			 document.addTransportDetailsForm.method="GET";
+			 document.addTransportDetailsForm.submit();
+	}
+</script>
 

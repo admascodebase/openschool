@@ -258,7 +258,7 @@
 											<td>${TransportDetails.ownId}</td>
 											<td><a href="editTransportDetails.htm?id=${TransportDetails.id}"
 												class="btn btn-warning btn-xs"> Edit </a> <a
-												href="deleteTransportDetails.htm?id=${TransportDetails.id}"
+												href="deleteTransportDetails.htm?id=${TransportDetails.id}&ownId=${TransportDetails.ownId}"
 												class="btn btn-info btn-xs"> Delete </a></td>
 										</tr>
 									</c:forEach>

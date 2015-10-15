@@ -1,3 +1,6 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
 	<div class="page-head">
@@ -48,6 +51,23 @@
 								</div>
 							</div> -->
 						</div>
+						
+						<c:if test="${errorCode ne null}">
+							<div class="alert alert-danger">
+								<button class="close" data-close="alert"></button>
+								<span><spring:message code="${errorCode}"></spring:message>
+								</span>
+							</div>
+						</c:if>
+
+						<c:if test="${sucessMessage ne null}">
+							<div class="alert alert-success">
+								<button class="close" data-close="alert"></button>
+								<spring:message code="${sucessMessage}"></spring:message>
+							</div>
+						</c:if>
+						
+						
 						<div class="portlet-body">
 							<div>${balance}</div>
 						</div>
