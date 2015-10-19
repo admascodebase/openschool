@@ -63,6 +63,8 @@ public enum LogiwareServiceErrors {
 	
 	SMS_BALANCE_FEATCHING_FAIL("LW-SM-0004", "Sms balance featching fail"),
 	
+	NO_CONTRACT_COMP_PRODUCT_FOUND("LW-CP-0001", "No contract company product found"),
+	
 	SMS_SAVING_FAIL("LW-SM-0005", "Sms saving fail"),
 	
 	NO_PAY_EXCEPTION_FOUND("LW-PS-0001", "No Payment exception found");
