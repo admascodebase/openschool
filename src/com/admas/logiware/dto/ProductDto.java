@@ -3,15 +3,7 @@ package com.admas.logiware.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 import com.admas.logiware.jpa.Product;
-import com.admas.logiware.jpa.Role;
 
 public class ProductDto implements Serializable {
 
@@ -19,32 +11,14 @@ public class ProductDto implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
-	@Column(name = "NAME", nullable = false)
 	private String name;
-
-	@Column(name = "DESCRIPTION")
+	private Integer compId;
 	private String description;
-
-	@Column(name = "CREATED_BY", nullable = false)
 	private Integer createdBy;
-
-	@Column(name = "UPDATED_BY")
 	private Integer updatedBy;
-
-	@Column(name = "CREATED_ON", nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdOn;
-
-	@Column(name = "UPDATED_ON")
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedOn;
-
-	@Column(name = "DEL_FLG", nullable = false)
 	private Character delFlag;
 
 	/**
@@ -170,6 +144,7 @@ public class ProductDto implements Serializable {
 	public Product _toJpa() {
 		Product product = new Product();
 		product.setCreatedBy(this.createdBy);
+		product.setCompId(this.compId);
 		product.setCreatedOn(this.createdOn);
 		product.setDelFlag(this.delFlag);
 		product.setDescription(this.description);
@@ -178,5 +153,19 @@ public class ProductDto implements Serializable {
 		product.setUpdatedBy(this.updatedBy);
 		product.setUpdatedOn(this.updatedOn);
 		return product;
+	}
+
+	/**
+	 * @return the compId
+	 */
+	public Integer getCompId() {
+		return compId;
+	}
+
+	/**
+	 * @param compId the compId to set
+	 */
+	public void setCompId(Integer compId) {
+		this.compId = compId;
 	}
 }
