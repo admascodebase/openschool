@@ -60,7 +60,7 @@
 						<div class="portlet-title">
 							<div class="caption">
 								<i class="fa fa-cogs font-green-sharp"></i> <span
-									class="caption-subject font-green-sharp bold uppercase">Transport
+									class="caption-subject font-green-sharp bold uppercase">Transport Type
 									Details</span>
 							</div>
 							<div class="tools">
@@ -116,19 +116,16 @@
 										<th>Name</th>
 										<th>Description</th>
 										<th>Edit/Delete</th>
-										<th>Trnsport type details</th>
-										
+										<!-- <th>Trnsport type details</th> -->
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach items="${lTransports}" var="transportType">
 										<tr class="odd gradeX">
-
 											<td><input type="checkbox" class="checkboxes" value="1" />
 											</td>
 											<td>${transportType.name}</td>
 											<td>${transportType.description}</td>
-											
 											<td>
 											<a href="editTransportType.htm?id=${transportType.id}"
 													class="btn btn-warning btn-xs"> Edit 
@@ -137,11 +134,10 @@
 													class="btn btn-info btn-xs"> Delete 
 												</a> 
 											</td>
-											
-											<td>
+											<%-- <td>
 											<a href="getAllTransportTypeDetails.htm?id=${transportType.id}"> Trnsport type details 
 												</a> 
-											</td>
+											</td> --%>
 										</tr>
 									</c:forEach>
 								</tbody>

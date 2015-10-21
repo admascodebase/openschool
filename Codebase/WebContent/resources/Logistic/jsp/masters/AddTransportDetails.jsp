@@ -1,8 +1,6 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
 
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
@@ -162,8 +160,8 @@
 			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 			<!-- BEGIN PAGE BREADCRUMB -->
 			<ul class="page-breadcrumb breadcrumb">
-				<li><a href="#">Home</a><i class="fa fa-circle"></i></li>
-				<li><a href="#">Masters</a> <i class="fa fa-circle"></i></li>
+				<li><a href="./login.htm">Home</a><i class="fa fa-circle"></i></li>
+				<li><a >Masters</a> <i class="fa fa-circle"></i></li>
 				<li class="active">Add Transport Details</li>
 			</ul>
 			<!-- END PAGE BREADCRUMB -->
@@ -179,10 +177,13 @@
 										<i class="fa fa-gift"></i>Transport Details
 									</div>
 									<div class="tools">
-										<a href="javascript:;" class="collapse"> </a> <a
+										<div class="caption">
+										Transport Owner Name : ${TransportOwnerName}
+										</div>
+										<!-- <a href="javascript:;" class="collapse"> </a> <a
 											href="#portlet-config" data-toggle="modal" class="config">
 										</a> <a href="javascript:;" class="reload"> </a> <a
-											href="javascript:;" class="remove"> </a>
+											href="javascript:;" class="remove"> </a> -->
 									</div>
 								</div>
 
@@ -269,9 +270,7 @@
 												</div>
 												<!--/row-->
 												<div class="form-actions right">
-													<a href="getAllTransportDetails.htm">
-														<button class="btn default" type="button">Cancel</button>
-													</a>
+														<button class="btn default" type="button" onclick="goBack()">Cancel</button>
 													<button class="btn blue" type="submit">
 														<i class="fa fa-check"></i> Submit
 													</button>
@@ -293,6 +292,15 @@
 	<!-- END PAGE CONTENT -->
 </div>
 <script>
+function goBack() {
+	var x = document.getElementById("ownerId").value;
+	var ownId = document.getElementById('ownerId').value;
+	/* alert("" + x + "---" + ownId); */
+	 	 document.addTransportDetailsForm.action="getAllTransportDetails.htm?transportTypeId=" + x;
+		 document.addTransportDetailsForm.method="GET";
+		 document.addTransportDetailsForm.submit();
+}
+
 	function getAllTransportTypeDetails() {
 		var x = document.getElementById("tranTypeDtlId").value;
 		var ownId = document.getElementById('ownerId').value;

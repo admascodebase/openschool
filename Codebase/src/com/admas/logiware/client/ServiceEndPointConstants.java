@@ -75,6 +75,11 @@ public class ServiceEndPointConstants {
 		addUserLoginEntry("addUserLoginEntry"),
 		sendSmsToEmployee("sendSmsToEmployee"),
 		getAllRoles("getAllRoles"),
+		getAllRoutePaySetting("getAllRoutePaySetting"),
+		saveRoutePaySetting("saveRoutePaySetting"),
+		saveEditRoutePaySetting("saveEditRoutePaySetting"),
+		getRoutePaySettingById("getRoutePaySettingById"),
+		deleteRoutePaySetting("deleteRoutePaySetting")
 		;
 
 		/** The value. */

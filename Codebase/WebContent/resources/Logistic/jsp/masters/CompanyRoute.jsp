@@ -244,8 +244,8 @@
 											<td><input type="checkbox" class="checkboxes" value="1" />
 											</td>
 											<td>${contractRoute.compId}</td>
-											<td>${contractRoute.startCityId}</td>
-											<td>${contractRoute.endCityId}</td>
+											<td>${contractRoute.startCityId.name}</td>
+											<td>${contractRoute.endCityId.name}</td>
 											<td><a href="editTransportDetails.htm?id=${contractRoute.id}"
 												class="btn btn-warning btn-xs"> Edit </a> <a
 												href="deleteTransportDetails.htm?id=${contractRoute.id}"

@@ -11,12 +11,13 @@ public class CompanyRouteDto implements Serializable{
 	
 	private Integer id;
 	private Integer compId;
-	private Integer startCityId;
-	private Integer endCityId;
+	private CityDto startCityId;
+	private CityDto endCityId;
 	/*private Integer transportDetailsId;
 	private Integer cost;
 	private Integer advanceAmt;*/
 	private Character delFlag;
+	private String routeName;
 
 	/**
 	 * @return the id
@@ -30,20 +31,6 @@ public class CompanyRouteDto implements Serializable{
 	 */
 	public Integer getCompId() {
 		return compId;
-	}
-
-	/**
-	 * @return the startCityId
-	 */
-	public Integer getStartCityId() {
-		return startCityId;
-	}
-
-	/**
-	 * @return the endCityId
-	 */
-	public Integer getEndCityId() {
-		return endCityId;
 	}
 
 	/**
@@ -65,20 +52,6 @@ public class CompanyRouteDto implements Serializable{
 	 */
 	public void setCompId(Integer compId) {
 		this.compId = compId;
-	}
-
-	/**
-	 * @param startCityId the startCityId to set
-	 */
-	public void setStartCityId(Integer startCityId) {
-		this.startCityId = startCityId;
-	}
-
-	/**
-	 * @param endCityId the endCityId to set
-	 */
-	public void setEndCityId(Integer endCityId) {
-		this.endCityId = endCityId;
 	}
 
 	/**
@@ -130,4 +103,46 @@ public class CompanyRouteDto implements Serializable{
 		this.advanceAmt = advanceAmt;
 	}
 */
+
+	/**
+	 * @return the startCityId
+	 */
+	public CityDto getStartCityId() {
+		return startCityId;
+	}
+
+	/**
+	 * @param startCityId the startCityId to set
+	 */
+	public void setStartCityId(CityDto startCityId) {
+		this.startCityId = startCityId;
+	}
+
+	/**
+	 * @return the endCityId
+	 */
+	public CityDto getEndCityId() {
+		return endCityId;
+	}
+
+	/**
+	 * @param endCityId the endCityId to set
+	 */
+	public void setEndCityId(CityDto endCityId) {
+		this.endCityId = endCityId;
+	}
+
+	/**
+	 * @return the routeName
+	 */
+	public String getRouteName() {
+		return routeName;
+	}
+
+	/**
+	 * @param routeName the routeName to set
+	 */
+	public void setRouteName(String routeName) {
+		this.routeName = routeName;
+	}
 }

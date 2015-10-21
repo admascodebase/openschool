@@ -165,6 +165,7 @@
 				<li><a href="#">Home</a><i class="fa fa-circle"></i></li>
 				<li><a href="#">Masters</a> <i class="fa fa-circle"></i></li>
 				<li class="active">Add Contract Company</li>
+				<li class="active">${contractCompanyName}</li>
 			</ul>
 			<!-- END PAGE BREADCRUMB -->
 			<!-- BEGIN PAGE CONTENT INNER -->
@@ -175,7 +176,7 @@
 							<div class="portlet box green">
 								<div class="portlet-title">
 									<div class="caption">
-										<i class="fa fa-gift"></i>Company Route Details
+										<i class="fa fa-gift"></i>Company Route Details : <%-- <table><tr><td>${contractCompanyName}</td></tr></table> --%>
 									</div>
 									<div class="tools">
 										<a href="javascript:;" class="collapse"> </a> <a
@@ -207,6 +208,7 @@
 										<form:form action="saveCompanyRoute.htm" modelAttribute="companyRoute" class="form-horizontal">
 										<form:hidden path="id" />
 										<form:hidden path="delFlag" />
+									
 										<%-- <form:hidden path="compId" /> --%>
 											<div class="form-body">
 												<h3 class="form-section"></h3>
@@ -234,7 +236,7 @@
 														<div class="form-group">
 															<label class="control-label col-md-3">Start City</label>
 															<div class="col-md-9">
-																<form:select path="startCityId"
+																<form:select path="startCityId.id"
 																class="select2me form-control">
 																<form:option value="0" label="-- Select -- " />
 																<form:options itemValue="id" itemLabel="name"
@@ -243,12 +245,21 @@
 															</div>
 														</div>
 													</div>
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">company</label>
+															<div class="col-md-9">
+																<form:label path="contractCompany.name">${contractCompany.name}</form:label> 
+															</div>
+														</div>
+													</div>
+													
 													<!--/span-->
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label col-md-3">End City</label>
 															<div class="col-md-9">
-																<form:select path="endCityId"
+																<form:select path="endCityId.id"
 																class="select2me form-control">
 																<form:option value="0" label="-- Select -- " />
 																<form:options itemValue="id" itemLabel="name"

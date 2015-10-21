@@ -159,12 +159,9 @@
 			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 			<!-- BEGIN PAGE BREADCRUMB -->
 			<ul class="page-breadcrumb breadcrumb">
-				<li><a href="#">Home</a><i class="fa fa-circle"></i></li>
-				<li><a href="table_managed.html">Masters</a> <i
-					class="fa fa-circle"></i></li>
-				<li><a href="table_managed.html">Company Details</a> <i
-					class="fa fa-circle"></i></li>
-				<li class="active">Transport Details</li>
+				<li><a href="./login.htm">Home</a><i class="fa fa-circle"></i></li>
+				<li><a>Masters</a> <i class="fa fa-circle"></i></li>
+				<li><a>Transport Details</a> <i class="fa fa-circle"></i></li>
 			</ul>
 
 			<!-- END PAGE BREADCRUMB -->
@@ -181,10 +178,13 @@
 							</div>
 
 							<div class="tools">
-								<a href="javascript:;" class="collapse"> </a> <a
+								<%-- <div class="caption">
+										Transport Owner Name : ${TransportOwnerName}
+										</div> --%>
+								<!-- <a href="javascript:;" class="collapse"> </a> <a
 									href="#portlet-config" data-toggle="modal" class="config">
 								</a> <a href="javascript:;" class="reload"> </a> <a
-									href="javascript:;" class="remove"> </a>
+									href="javascript:;" class="remove"> </a> -->
 							</div>
 						</div>
 						<c:if test="${errorCode ne null}">

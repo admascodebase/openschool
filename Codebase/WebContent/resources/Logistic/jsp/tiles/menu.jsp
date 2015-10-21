@@ -56,7 +56,7 @@
 													Transport Type </a>
 												</li>
 												<li>
-													<a href="getAllTransportTypeDetails.htm?id=3" class="iconify">
+													<a href="getAllTransportTypeDetails.htm?id=0" class="iconify">
 													<i class="icon-handbag"></i>
 													Transport Type Details </a>
 												</li>
@@ -141,14 +141,14 @@
 													<h3>Other Setting</h3>
 												</li>
 												<li>
-													<a href="getAllContractCompRoutes.htm?id=1" class="iconify">
+													<a href="getAllContractCompRoutes.htm?id=0" class="iconify">
 													<i class="icon-tag"></i>
 													Company Route setup </a>
 												</li>
 												<li>
-													<a href="#" class="iconify">
+													<a href="getAllRoutePaySetting.htm?id=0" class="iconify">
 													<i class="icon-handbag"></i>
-													 Route Cost setup </a>
+													 Route Payment Setting </a>
 												</li>												
 												
 											</ul>
@@ -203,7 +203,7 @@
 													Agent Registration </a>
 												</li> 
 												<li>
-													<a href="./getAllTransportDetails.htm?id=2" class="iconify">
+													<a href="./getAllTransportDetails.htm?id=0" class="iconify">
 													<i class="icon-home"></i>
 													Transport Registration </a>
 												</li>

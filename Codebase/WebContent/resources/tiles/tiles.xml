@@ -131,14 +131,14 @@
 		<put-attribute name="body"
 			value="/resources/Logistic/jsp/masters/AddEmployee.jsp" />
 	</definition>
-	
-	
+
+
 	<definition name="getAllTransportTypeDetails" extends="logistic.baselayout">
 		<put-attribute name="title" value="Logistic -Transport Type Details" />
 		<put-attribute name="body"
 			value="/resources/Logistic/jsp/masters/TransportTypeDetails.jsp" />
 	</definition>
-	
+
 	<definition name="showAddTranceportTypeDetails" extends="logistic.baselayout">
 		<put-attribute name="title" value="Logistic -Transport Type Details" />
 		<put-attribute name="body"
@@ -150,37 +150,37 @@
 		<put-attribute name="body"
 			value="/resources/Logistic/jsp/masters/AddContractCompany.jsp" />
 	</definition>
-	
-		<definition name="getAllContractCompany" extends="logistic.baselayout">
+
+	<definition name="getAllContractCompany" extends="logistic.baselayout">
 		<put-attribute name="title" value="Logistic -Contract Company Details" />
 		<put-attribute name="body"
 			value="/resources/Logistic/jsp/masters/ContractCompany.jsp" />
 	</definition>
-	
-			<definition name="getAllBranch" extends="logistic.baselayout">
+
+	<definition name="getAllBranch" extends="logistic.baselayout">
 		<put-attribute name="title" value="Logistic -Company Branch Details" />
 		<put-attribute name="body"
 			value="/resources/Logistic/jsp/masters/AllBranch.jsp" />
 	</definition>
-	
+
 	<definition name="showAddCompanyBranch" extends="logistic.baselayout">
 		<put-attribute name="title" value="Logistic -Company Branch Details" />
 		<put-attribute name="body"
 			value="/resources/Logistic/jsp/masters/AddCompanyBranch.jsp" />
 	</definition>
-	
+
 	<definition name="getAllTransportOwner" extends="logistic.baselayout">
 		<put-attribute name="title" value="Logistic -Transport Owner Details" />
 		<put-attribute name="body"
 			value="/resources/Logistic/jsp/masters/TransportOwner.jsp" />
 	</definition>
-	
+
 	<definition name="showAddTransportOwner" extends="logistic.baselayout">
 		<put-attribute name="title" value="Logistic -Transport Owner Details" />
 		<put-attribute name="body"
 			value="/resources/Logistic/jsp/masters/AddTransportOwner.jsp" />
 	</definition>
-	
+
 	<definition name="showUserProfile" extends="logistic.baselayout">
 		<put-attribute name="title" value="Logistic -User Profile" />
 		<put-attribute name="body"
@@ -205,9 +205,21 @@
 			value="/resources/Logistic/jsp/masters/ContractCompanyRoutes.jsp" />
 	</definition>
 
-<definition name="showAddContractCompRoute" extends="logistic.baselayout">
+	<definition name="showAddContractCompRoute" extends="logistic.baselayout">
 		<put-attribute name="title" value="Logistic -Route Details" />
 		<put-attribute name="body"
 			value="/resources/Logistic/jsp/masters/AddContractCompRoute.jsp" />
-	</definition>		
+	</definition>
+
+	<definition name="getAllRoutePaySetting" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic -Route Payment Setting" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/masters/RoutePaySetting.jsp" />
+	</definition>
+	
+	<definition name="showAddRoutePaySetting" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic -Route Payment Setting" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/masters/AddRoutePaySetting.jsp" />
+	</definition>
 </tiles-definitions>

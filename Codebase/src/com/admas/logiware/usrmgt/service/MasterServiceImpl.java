@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.admas.logiware.client.ServiceEndPointConstants.ServiceName;
 import com.admas.logiware.client.ServiceInvoker;
 import com.admas.logiware.constant.WebAppConstants;
-import com.admas.logiware.controller.routes.ContractCompanyRouteController;
 import com.admas.logiware.dto.CityDto;
 import com.admas.logiware.dto.CompanyBranchDto;
 import com.admas.logiware.dto.CompanyDto;
@@ -28,6 +27,7 @@ import com.admas.logiware.dto.FlowData;
 import com.admas.logiware.dto.LogiwareRespnse;
 import com.admas.logiware.dto.LoweryOwnerDto;
 import com.admas.logiware.dto.RoleDto;
+import com.admas.logiware.dto.RoutePaySettingDto;
 import com.admas.logiware.dto.StateDto;
 import com.admas.logiware.dto.TransportDetailsDto;
 import com.admas.logiware.dto.TransportTypeDtlDto;
@@ -849,7 +849,6 @@ public class MasterServiceImpl {
 		return resDtoObjects;
 	}
 
-	@SuppressWarnings("unchecked")
 	public Map<String, Object> getAllContractCompany(FlowData flowData,
 			HashMap<String, Object> reqDtoObjects,
 			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
@@ -1504,7 +1503,6 @@ public class MasterServiceImpl {
 	
 	}
 
-	@SuppressWarnings("unchecked")
 	public Map<String, Object> getAllContractCompRoutes(FlowData flowData, HashMap<String, Object> reqDtoObjects,
 			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
 
@@ -1513,7 +1511,7 @@ public class MasterServiceImpl {
 		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
 		try {
 			 logiwareRespnse = doServiceCall(flowData, ServiceName.getAllContractCompRoutes, reqDtoObjects);
-			 lCompanyRouteDtos =(List<CompanyRouteDto>) logiwareRespnse.getData();			 
+			 lCompanyRouteDtos =(List<CompanyRouteDto>) logiwareRespnse.getlCompanyRouteDto();			 
 			 resDtoObjects.put("lCompanyRouteDtos", lCompanyRouteDtos);
 		} catch (LogiwareBaseException b) {
 			throw b;
@@ -1607,12 +1605,12 @@ public class MasterServiceImpl {
 			throw b;
 		} catch (Exception e) {
 			logger.error("Exception In MasterServiceImpl saveEditCompanyRoute method end.",e);
-			resDtoObjects = getAllTransportTypes(flowData, reqDtoObjects, resDtoObjects);
+			resDtoObjects = getAllContractCompRoutes(flowData, reqDtoObjects, resDtoObjects);
 			throw new LogiwareBaseException(
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode(),
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorDescription());
 		}
-		resDtoObjects = getAllTransportTypes(flowData, reqDtoObjects, resDtoObjects);
+		resDtoObjects = getAllContractCompRoutes(flowData, reqDtoObjects, resDtoObjects);
 		logger.info("MasterServiceImpl saveEditCompanyRoute() method end. ");
 		return resDtoObjects;
 
@@ -1735,5 +1733,115 @@ public class MasterServiceImpl {
 		return resDtoObjects;
 	
 	}
-	
+
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> getAllRoutePaySetting(FlowData flowData, HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+		logger.info("MasterServiceImpl getAllRoutePaySetting method start.");
+		List<RoutePaySettingDto> lRoutePaySettingDto = new ArrayList<RoutePaySettingDto>();
+		LogiwareRespnse logiwareRespnse = null;
+		try {
+			 logiwareRespnse = doServiceCall(flowData, ServiceName.getAllRoutePaySetting, reqDtoObjects);
+			 lRoutePaySettingDto =(List<RoutePaySettingDto>) logiwareRespnse.getData();			 
+			 resDtoObjects.put("lRoutePaySettingDto", lRoutePaySettingDto);
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In MasterServiceImpl getAllRoutePaySetting method end.",e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode(),
+					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorDescription());
+		}
+		logger.info("MasterServiceImpl getAllRoutePaySetting method End. ");
+		return resDtoObjects;
+	}
+
+	public Map<String, Object> saveRoutePaySetting(FlowData flowData, HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+		logger.info("MasterServiceImpl saveRoutePaySetting method start.");
+		LogiwareRespnse logiwareResponse = null;
+		try {
+			logiwareResponse = doServiceCall(flowData,
+					ServiceName.saveRoutePaySetting, reqDtoObjects);
+			resDtoObjects.put("userResponse", logiwareResponse);
+		} catch (LogiwareBaseException b) {
+			resDtoObjects = getAllRoutePaySetting(flowData, reqDtoObjects, resDtoObjects);
+			throw b;
+		} catch (Exception e) {			
+			logger.error(
+					"Exception In MasterServiceImpl: saveRoutePaySetting method end.",e);
+			resDtoObjects = getAllRoutePaySetting(flowData, reqDtoObjects, resDtoObjects);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		resDtoObjects = getAllRoutePaySetting(flowData, reqDtoObjects, resDtoObjects);
+		logger.info("MasterServiceImpl saveRoutePaySetting method end. ");
+		return resDtoObjects;
+
+	}
+
+	public Map<String, Object> saveEditRoutePaySetting(FlowData flowData, HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+		logger.info("MasterServiceImpl saveEditRoutePaySetting method start.");
+		LogiwareRespnse logiwareResponse = null;
+		try {
+			logiwareResponse = doServiceCall(flowData, ServiceName.saveEditRoutePaySetting, reqDtoObjects);
+			resDtoObjects.put("userResponse", logiwareResponse);
+		} catch (LogiwareBaseException b) {
+			resDtoObjects = getAllEmployee(flowData, reqDtoObjects, resDtoObjects);
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In MasterServiceImpl: saveEditRoutePaySetting method end.", e);
+			resDtoObjects = getAllEmployee(flowData, reqDtoObjects, resDtoObjects);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		resDtoObjects = getAllEmployee(flowData, reqDtoObjects, resDtoObjects);
+		logger.info("MasterServiceImpl saveEditRoutePaySetting method end. ");
+		return resDtoObjects;
+	}
+
+	public Map<String, Object> getRoutePaySettingById(FlowData flowData, HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+		logger.info("MasterServiceImpl getRoutePaySettingById method start.");
+		LogiwareRespnse logiwareResponse = null;
+		try {
+			logiwareResponse = doServiceCall(flowData, ServiceName.getRoutePaySettingById, reqDtoObjects);
+			resDtoObjects.put("routePaySettingDto", logiwareResponse.getRoutePaySettingDto());
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("Exception In MasterServiceImpl: getRoutePaySettingById method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("MasterServiceImpl getRoutePaySettingById method end. ");
+		return resDtoObjects;
+	}
+
+	public Map<String, Object> deleteRoutePaySetting(FlowData flowData, HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+		logger.info("MasterServiceImpl deleteRoutePaySetting method start.");
+		LogiwareRespnse logiwareResponse = null;
+		try {
+			logiwareResponse = doServiceCall(flowData, ServiceName.deleteRoutePaySetting, reqDtoObjects);
+			resDtoObjects.put("userResponse", logiwareResponse);
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In MasterServiceImpl: deleteRoutePaySetting method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		resDtoObjects = getAllRoutePaySetting(flowData, reqDtoObjects, resDtoObjects);
+		logger.info("MasterServiceImpl deleteRoutePaySetting method end. ");
+		return resDtoObjects;
+	}
+
 }

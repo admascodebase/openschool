@@ -9,7 +9,7 @@
 			<!-- BEGIN PAGE TITLE -->
 			<div class="page-title">
 				<h1>
-					Master Details <small>Master Data</small>
+					Contract Company Route  <small>All Contract Company Route Records are Here</small>
 				</h1>
 			</div>
 			
@@ -129,11 +129,11 @@
 											<td><input type="checkbox" class="checkboxes" value="1" />
 											</td>
 											<td>${CompanyRouteDto.id}</td>
-											<td>${CompanyRouteDto.startCityId}</td>
-											<td>${CompanyRouteDto.endCityId}</td>
+											<td>${CompanyRouteDto.startCityId.name}</td>
+											<td>${CompanyRouteDto.endCityId.name}</td>
 											<td><a href="editContractCompanyRoute.htm?id=${CompanyRouteDto.id}"
 												class="btn btn-warning btn-xs"> Edit </a> <a
-												href="deleteContractCompanyRoute.htm?id=${CompanyRouteDto.id}"
+												href="deleteContractCompanyRoute.htm?id=${CompanyRouteDto.id}&compId=${CompanyRouteDto.compId}"
 												class="btn btn-info btn-xs"> Delete </a></td>
 										</tr>
 									</c:forEach>

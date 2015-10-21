@@ -22,6 +22,7 @@ import com.admas.logiware.dto.CityDto;
 import com.admas.logiware.dto.CompanyRouteDto;
 import com.admas.logiware.dto.ContractCompDto;
 import com.admas.logiware.dto.FlowData;
+import com.admas.logiware.dto.LogiwareRespnse;
 import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
 import com.admas.logiware.usrmgt.service.MasterServiceImpl;
@@ -53,6 +54,8 @@ public class ContractCompanyRouteController extends BaseController{
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		Integer contractCompId = 0;
+		ContractCompDto contractCompDto2 = new ContractCompDto();
+		Integer flag = 0;
 		try {
 			if(contractCompDto.getCompId()==null){
 				 contractCompId = 1;
@@ -61,9 +64,9 @@ public class ContractCompanyRouteController extends BaseController{
 			}
 			reqDtoObjects.put("contractCompId", contractCompId);
 			mv.addObject("contractCompId", contractCompId);
-			resDtoObjects = masterServiceImpl.getAllContractCompRoutes(flowData, reqDtoObjects, resDtoObjects);
+			contractCompDto2.setCompId(contractCompId);
 			resDtoObjects = masterServiceImpl.getAllContractCompany(flowData, reqDtoObjects, resDtoObjects);
-			
+			resDtoObjects = masterServiceImpl.getAllContractCompRoutes(flowData, reqDtoObjects, resDtoObjects);
 			
 			List<CompanyRouteDto> lCompanyRouteDtos = (List<CompanyRouteDto>) resDtoObjects.get("lCompanyRouteDtos");
 			mv.addObject("lCompanyRouteDtos", lCompanyRouteDtos);
@@ -71,7 +74,15 @@ public class ContractCompanyRouteController extends BaseController{
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in TransportDetailsController: getAllContractCompRoutes", _be);
 			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
-			resDtoObjects = masterServiceImpl.getAllContractCompany(flowData, reqDtoObjects, resDtoObjects);
+			try {
+				resDtoObjects = masterServiceImpl.getAllContractCompany(flowData, reqDtoObjects, resDtoObjects);	
+			} catch (Exception e) {
+				logger.error("Exception in TransportDetailsController: getAllContractCompRoutes", _be);
+				mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
+				flag=1;
+			}
+			if(flag==1)
+				mv.addObject(WebAppConstants.ERROR_CODE, "LW-CC-0003");
 
 		} catch (Exception e) {
 			logger.error("Exception In TransportDetailsController getAllContractCompRoutes Method--",
@@ -83,7 +94,7 @@ public class ContractCompanyRouteController extends BaseController{
 		
 		List<CompanyRouteDto> lContractCompanies = (List<CompanyRouteDto>) resDtoObjects.get("lContractCompanies");
 		mv.addObject("lContractCompanies", lContractCompanies);
-		mv.addObject("companyRoute", new ContractCompDto() );
+		mv.addObject("companyRoute", contractCompDto2);
 		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
 		mv.addObject("userName", flowData.getSessionData("userName"));	
 		logger.info("ContractCompanyRouteController: getAllContractCompRoutes Method End.");
@@ -106,21 +117,27 @@ public class ContractCompanyRouteController extends BaseController{
 		ModelAndView mv = new ModelAndView("showAddContractCompRoute");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
+		LogiwareRespnse logiwareRespnse = null;
 		try {
 			Integer contractCompId = Integer.parseInt(request.getParameter("compId"));
+			reqDtoObjects.put("contractCompanyId", contractCompId);
 			CompanyRouteDto companyRouteDto= new CompanyRouteDto();
+			resDtoObjects = masterServiceImpl.getContractCompanyById(flowData, reqDtoObjects, resDtoObjects);
+			logiwareRespnse = (LogiwareRespnse) resDtoObjects.get("userResponse");
+			ContractCompDto contractCompDto = logiwareRespnse.getContractCompDto();
+			
 			resDtoObjects=masterServiceImpl.getAllCities(flowData, reqDtoObjects, resDtoObjects);
 			@SuppressWarnings("unchecked")
 			List<CityDto> lCityStart = (List<CityDto>) resDtoObjects.get("lCities");
 			resDtoObjects = masterServiceImpl.getAllCities(flowData, reqDtoObjects, resDtoObjects);
 			@SuppressWarnings("unchecked")
 			List<CityDto> lCityEnd = (List<CityDto>) resDtoObjects.get("lCities");
-			
+			companyRouteDto.setCompId(contractCompId);
 			mv.addObject("lCityStart", lCityStart);
 			mv.addObject("lCityEnd", lCityEnd);
 			mv.addObject("compId", contractCompId);
 			mv.addObject("companyRoute", companyRouteDto);
-			
+			mv.addObject("contractCompanyName", contractCompDto.getName());
 		} catch (Exception e) {
 			logger.error(
 					"Exception In ContractCompanyRouteController: showAddContractCompRoute Method--", e);
@@ -149,19 +166,19 @@ public class ContractCompanyRouteController extends BaseController{
 		}
 		if (!flowData.isLoggedIn())
 			return super.loginPage(flowData, request);
-
 		companyRouteDto.setDelFlag('N');
 		ModelAndView mv = new ModelAndView("getAllContractCompRoute");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		String sucessMessage= "";
-//		Integer transId = Integer.parseInt(request.getParameter("transId"));
+		Integer contractCompanyId=0;
+		ContractCompDto contractCompDto2 = new ContractCompDto();
 		try {
-			Integer contractCompanyId =1;// (Integer) Integer.parseInt(request.getParameter("compId"));
-			companyRouteDto.setCompId(contractCompanyId);
+			 contractCompanyId =companyRouteDto.getCompId();
+			contractCompDto2.setCompId(contractCompanyId);
 			reqDtoObjects.put("companyRouteDto", companyRouteDto);
-			
 			reqDtoObjects.put("contractCompId", contractCompanyId);
+			
 			if (companyRouteDto.getId() != null && companyRouteDto.getId() > 0) {
 				resDtoObjects = masterServiceImpl.saveEditCompanyRoute(flowData, reqDtoObjects, resDtoObjects);
 				sucessMessage= WebAppConstants.LW_SUCESS_EDIT;
@@ -185,8 +202,8 @@ public class ContractCompanyRouteController extends BaseController{
 		mv.addObject("lContractCompanies", lContractCompanies);
 		List<CompanyRouteDto> lCompanyRouteDtos = (List<CompanyRouteDto>) resDtoObjects.get("lCompanyRouteDtos");		
 		mv.addObject("lCompanyRouteDtos", lCompanyRouteDtos);		
-		mv.addObject("companyRoute", new ContractCompDto() );
-		mv.addObject("contractCompId", 1);
+		mv.addObject("companyRoute", contractCompDto2 );
+		mv.addObject("contractCompId", contractCompanyId);
 		
 		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
 		mv.addObject("userName", flowData.getSessionData("userName"));
@@ -225,11 +242,8 @@ public class ContractCompanyRouteController extends BaseController{
 			resDtoObjects = masterServiceImpl.getAllCities(flowData, reqDtoObjects, resDtoObjects);
 			@SuppressWarnings("unchecked")
 			List<CityDto> lCityEnd = (List<CityDto>) resDtoObjects.get("lCities");
-			
 			mv.addObject("lCityStart", lCityStart);
 			mv.addObject("lCityEnd", lCityEnd);
-			
-			
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in ContractCompanyRouteController: editContractCompanyRoute",
 					_be);
@@ -265,11 +279,12 @@ public class ContractCompanyRouteController extends BaseController{
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		Integer companyRouteId = Integer.parseInt(request.getParameter("id"));
+		ContractCompDto contractCompDto2 =new ContractCompDto();
 		try {
 			reqDtoObjects.put("companyRouteId", companyRouteId);
-			Integer contractCompanyId = 1/* (Integer)request.getAttribute("contractCompanyId")*/;
+			Integer contractCompanyId = Integer.parseInt(request.getParameter("compId"));
 			reqDtoObjects.put("contractCompId", contractCompanyId);
-			
+			contractCompDto2.setCompId(contractCompanyId);
 			resDtoObjects = masterServiceImpl.deleteContractCompanyRoute(flowData, reqDtoObjects, resDtoObjects);
 			
 			resDtoObjects = masterServiceImpl.getAllContractCompany(flowData, reqDtoObjects, resDtoObjects);
@@ -291,7 +306,7 @@ public class ContractCompanyRouteController extends BaseController{
 		mv.addObject("lCompanyRouteDtos", lCompanyRouteDtos);
 		List<CompanyRouteDto> lContractCompanies = (List<CompanyRouteDto>) resDtoObjects.get("lContractCompanies");
 		mv.addObject("lContractCompanies", lContractCompanies);
-		mv.addObject("companyRoute", new ContractCompDto() );
+		mv.addObject("companyRoute", contractCompDto2);
 		mv.addObject("contractCompId", 1);
 		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
 		mv.addObject("userName", flowData.getSessionData("userName"));

@@ -8,7 +8,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.taglibs.standard.tag.common.xml.TransformSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -128,12 +127,16 @@ public class TransportDetailsController extends BaseController implements Serial
 		ModelAndView mv = new ModelAndView("showAddTransportDetails");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
+		Integer transOwnId = Integer.parseInt(request.getParameter("ownId"));
+		LoweryOwnerDto loweryOwnerDto = null;
 		try {
 			TransportDetailsDto transportDetailsDto = new TransportDetailsDto();
-			transportDetailsDto.setOwnId(Integer.parseInt(request.getParameter("ownId")));
+			transportDetailsDto.setOwnId(transOwnId);
+			reqDtoObjects.put("TransportOwnerId", transOwnId);
 			mv.addObject("TransportDetailsDto", transportDetailsDto);
+			resDtoObjects = masterServiceImpl.getTransportOwnerById(flowData, reqDtoObjects, resDtoObjects);
 			resDtoObjects = masterServiceImpl.getAllTransportTypes(flowData, reqDtoObjects, resDtoObjects);
-			
+			loweryOwnerDto = (LoweryOwnerDto) resDtoObjects.get("transportOwner");
 //			resDtoObjects = masterServiceImpl.getAllTransportTypeDetails(flowData, reqDtoObjects, resDtoObjects);
 		} catch (Exception e) {
 			logger.error(
@@ -143,6 +146,7 @@ public class TransportDetailsController extends BaseController implements Serial
 		}
 		List<TransportTypeDto> lTransportTypeDtos = (List<TransportTypeDto>) resDtoObjects.get("lTransports");
 		mv.addObject("lTransportTypeDtos", lTransportTypeDtos);
+		mv.addObject("TransportOwnerName", loweryOwnerDto.getName());
 		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
 		mv.addObject("userName", flowData.getSessionData("userName"));	
 		logger.info("TransportDetailsController: showAddTransportDetails Method End.");

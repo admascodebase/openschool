@@ -12,6 +12,7 @@ public class RoutePaySettingDto implements Serializable {
 
 	private Integer id;
 	private Integer transportTypeId;
+	private Integer transportTypeDtlId;
 	private Integer routeId;
 	private Double amount;
 	private Double advance;
@@ -187,6 +188,18 @@ public class RoutePaySettingDto implements Serializable {
 		this.delFlag = delFlag;
 	}
 
-	/**/
+	/**
+	 * @return the transportTypeDtlId
+	 */
+	public Integer getTransportTypeDtlId() {
+		return transportTypeDtlId;
+	}
+
+	/**
+	 * @param transportTypeDtlId the transportTypeDtlId to set
+	 */
+	public void setTransportTypeDtlId(Integer transportTypeDtlId) {
+		this.transportTypeDtlId = transportTypeDtlId;
+	}
 
 }

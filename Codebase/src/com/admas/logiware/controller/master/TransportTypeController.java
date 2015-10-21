@@ -262,6 +262,8 @@ public class TransportTypeController extends BaseController {
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		Integer transportTypeId = 0;
+		Integer flag=0;
+		TransportTypeDtlDto transportTypeDtlDto2 = new TransportTypeDtlDto();
 		try {
 			if(transportTypeDtlDto.getTransId()==null){
 				transportTypeId=Integer.parseInt(request.getParameter("id"));
@@ -269,21 +271,24 @@ public class TransportTypeController extends BaseController {
 			else{
 				transportTypeId = transportTypeDtlDto.getTransId();
 			}
-			
-//			transportTypeId = Integer.parseInt(request.getParameter("id"));
+			transportTypeDtlDto2.setTransId(transportTypeId);
 			reqDtoObjects.put("transId", transportTypeId);
 			mv.addObject("transId", transportTypeId);
-			resDtoObjects = masterServiceImpl.getAllTransportTypeDetails(
-					flowData, reqDtoObjects, resDtoObjects);
-
-			
+			resDtoObjects = masterServiceImpl.getAllTransportTypeDetails(flowData, reqDtoObjects, resDtoObjects);
 			resDtoObjects = masterServiceImpl.getAllTransportTypes(flowData, reqDtoObjects, resDtoObjects);
-			
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in TransportTypeController: getAllTransportTypeDetails",
 					_be);
 			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
-			resDtoObjects = masterServiceImpl.getAllTransportTypes(flowData, reqDtoObjects, resDtoObjects);
+			try {
+				resDtoObjects = masterServiceImpl.getAllTransportTypes(flowData, reqDtoObjects, resDtoObjects);	
+			} catch (Exception e) {
+				logger.error("Exception in TransportTypeController: getAllTransportTypeDetails",_be);
+				mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
+				flag=1;
+			}
+			if(flag==1)
+			mv.addObject(WebAppConstants.ERROR_CODE, "LW-MM-0009");
 		} catch (Exception e) {
 			logger.error(
 					"Exception In TransportTypeController getAllTransportTypeDetails Method--", e);
@@ -296,7 +301,7 @@ public class TransportTypeController extends BaseController {
 		mv.addObject("lTransports", lTransports);
 		List<TransportTypeDtlDto> lTransportTypeDtls = (List<TransportTypeDtlDto>) resDtoObjects
 				.get("lTransportTypeDtls");
-		mv.addObject("transportTypeDtlDto", new TransportTypeDtlDto());
+		mv.addObject("transportTypeDtlDto", transportTypeDtlDto2);
 		mv.addObject("lTransportTypeDtls", lTransportTypeDtls);
 		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
 		mv.addObject("userName", flowData.getSessionData("userName"));	
@@ -320,16 +325,24 @@ public class TransportTypeController extends BaseController {
 			return super.loginPage(flowData, request);
 		
 		ModelAndView mv = new ModelAndView("showAddTranceportTypeDetails") ;
+		Integer trnasportTypeId = Integer.parseInt(request.getParameter("transId"));
+		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
+		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
+		TransportTypeDto transportTypeDto = null;
 		try {
 			TransportTypeDtlDto transportTypeDtlDto = new TransportTypeDtlDto();
-			transportTypeDtlDto.setTransId(Integer.parseInt(request.getParameter("transId")));
+			transportTypeDtlDto.setTransId(trnasportTypeId);
+			reqDtoObjects.put("transportTypeId", trnasportTypeId);
+		resDtoObjects = masterServiceImpl.gettransportTypeById(flowData, reqDtoObjects, resDtoObjects);
+		transportTypeDto = (TransportTypeDto) resDtoObjects.get("transportType");
+		
 			mv.addObject("transportTypeDetails",transportTypeDtlDto);
 		} catch (Exception e) {
 			logger.error("Exception In TransportTypeController: addTransportTypeDetails Method--", e);
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
-		
+		mv.addObject("transportTypeName", transportTypeDto.getName());
 		return mv;
 }
 	
@@ -351,11 +364,13 @@ public class TransportTypeController extends BaseController {
 		ModelAndView mv = new ModelAndView("getAllTransportTypeDetails") ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
+		TransportTypeDtlDto transportTypeDtlDto2 = new TransportTypeDtlDto();
 		try {	
 			reqDtoObjects.put("transportTypeDtlDto", transportTypeDtlDto);
 			Integer transId = Integer.parseInt(request.getParameter("transId"));
 			reqDtoObjects.put("transId", transId);
 			mv.addObject("transId", transId);
+			transportTypeDtlDto2.setTransId(transId);
 			String sucessMessage="";
 			if (transportTypeDtlDto.getId() != null && transportTypeDtlDto.getId() > 0) {
 				resDtoObjects = masterServiceImpl.saveEditTransportTypeDtl(flowData, reqDtoObjects, resDtoObjects);
@@ -382,7 +397,7 @@ public class TransportTypeController extends BaseController {
 		}
 		List<TransportTypeDto> lTransports = (List<TransportTypeDto>) resDtoObjects.get("lTransports");
 		mv.addObject("lTransports", lTransports);
-		mv.addObject("transportTypeDtlDto", new TransportTypeDtlDto());
+		mv.addObject("transportTypeDtlDto", transportTypeDtlDto2);
 		List<TransportTypeDtlDto> lTransportTypeDtls = (List<TransportTypeDtlDto>) resDtoObjects.get("lTransportTypeDtls");
 		mv.addObject("lTransportTypeDtls", lTransportTypeDtls);
 		return mv;
@@ -447,13 +462,15 @@ public class TransportTypeController extends BaseController {
 		/*Integer transId = Integer.parseInt(request.getParameter("transId"));
 		reqDtoObjects.put("transId", transId);*/
 		String sucessMessage = "";
+		TransportTypeDtlDto transportTypeDtlDto2 = new TransportTypeDtlDto();
 		try {			
 			reqDtoObjects.put("transportTypeDtlId", transportTypeDtlId);
 			reqDtoObjects.put("transId", transId);
 			mv.addObject("transId", transId);
+			transportTypeDtlDto2.setTransId(transId);
 			resDtoObjects = masterServiceImpl.deleteTransportTypeDetails(flowData, reqDtoObjects, resDtoObjects);
-			resDtoObjects = masterServiceImpl.getAllTransportTypeDetails(flowData, reqDtoObjects, resDtoObjects);
 			resDtoObjects = masterServiceImpl.getAllTransportTypes(flowData, reqDtoObjects, resDtoObjects);
+			resDtoObjects = masterServiceImpl.getAllTransportTypeDetails(flowData, reqDtoObjects, resDtoObjects);
 			sucessMessage= WebAppConstants.LW_SUCESS_DELETE;
 			mv.addObject(WebAppConstants.SUCESS_MESSAGE, sucessMessage);
 		} catch (LogiwareBaseException _be) {
@@ -472,7 +489,7 @@ public class TransportTypeController extends BaseController {
 		mv.addObject("lTransportTypeDtls", lTransportTypeDtls);
 		List<TransportTypeDto> lTransports = (List<TransportTypeDto>) resDtoObjects.get("lTransports");
 		mv.addObject("lTransports", lTransports);
-		mv.addObject("transportTypeDtlDto", new TransportTypeDtlDto());
+		mv.addObject("transportTypeDtlDto", transportTypeDtlDto2);
 		return mv;
 }
 	

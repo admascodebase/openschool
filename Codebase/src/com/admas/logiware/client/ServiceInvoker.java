@@ -324,6 +324,31 @@ public class ServiceInvoker implements Serializable {
 			break;
 		}
 		
+		case getAllRoutePaySetting: {
+			response = (K) getAllRoutePaySetting(url, (Map) request);
+			break;
+		}
+		
+		case saveRoutePaySetting: {
+			response = (K) saveRoutePaySetting(url, (Map) request);
+			break;
+		}
+		
+		case saveEditRoutePaySetting: {
+			response = (K) saveEditRoutePaySetting(url, (Map) request);
+			break;
+		}
+		
+		case getRoutePaySettingById: {
+			response = (K) getRoutePaySettingById(url, (Map) request);
+			break;
+		}
+		
+		case deleteRoutePaySetting: {
+			response = (K) deleteRoutePaySetting(url, (Map) request);
+			break;
+		}
+		
 		default:
 			break;
 		}
@@ -2099,5 +2124,144 @@ public class ServiceInvoker implements Serializable {
 		logger.info("ServiceInvoker deleteCompanyRoute method end. ");
 		return logiwareResponse;
 	}
+
+	
+	public LogiwareRespnse getAllRoutePaySetting(String url, Map<String, Object> request) throws LogiwareBaseException {
+		logger.info("ServiceInvoker getAllRoutePaySetting method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			Integer routePaySettingId = (Integer) request.get("routePaySettingId");
+			ClientRequest clientRequest = new ClientRequest(url + WebAppConstants.URL_SEPERATOR +routePaySettingId);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			}
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker getAllRoutePaySetting method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker getAllRoutePaySetting method end. ");
+		return logiwareResponse;
+	}
+
+	
+	public LogiwareRespnse saveRoutePaySetting(String url, Map<String, Object> request) throws LogiwareBaseException {
+
+		logger.info("ServiceInvoker saveRoutePaySetting method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("routePaySettingDto"));
+			ClientResponse<LogiwareRespnse> response = clientRequest.post(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			}
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker saveRoutePaySetting method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker saveRoutePaySetting method end. ");
+		return logiwareResponse;
+	}
+
+	public LogiwareRespnse saveEditRoutePaySetting(String url, Map<String, Object> request) throws LogiwareBaseException {
+
+		logger.info("ServiceInvoker saveEditRoutePaySetting method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("routePaySettingDto"));
+			ClientResponse<LogiwareRespnse> response = clientRequest.post(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			}
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker saveEditRoutePaySetting method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker saveEditRoutePaySetting method end. ");
+		return logiwareResponse;
+	}
+
+	
+	public LogiwareRespnse getRoutePaySettingById(String url, Map<String, Object> request) throws LogiwareBaseException {
+
+		logger.info("ServiceInvoker getRoutePaySettingById method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			Integer routePaySettingId = (Integer) request.get("routePaySettingId");
+			ClientRequest clientRequest = new ClientRequest(url + WebAppConstants.URL_SEPERATOR + routePaySettingId);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = (LogiwareRespnse) response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			}
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker getRoutePaySettingById method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker getRoutePaySettingById method end. ");
+		return logiwareResponse;
+	}
+
+
+	public LogiwareRespnse deleteRoutePaySetting(String url, Map<String, Object> request) throws LogiwareBaseException {
+
+		logger.info("ServiceInvoker deleteRoutePaySetting method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(
+					url + WebAppConstants.URL_SEPERATOR + request.get("routePayId"));
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			}
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker deleteRoutePaySetting method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker deleteRoutePaySetting method end. ");
+		return logiwareResponse;
+	}
+
 	
 }

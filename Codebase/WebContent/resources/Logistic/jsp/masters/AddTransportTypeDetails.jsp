@@ -6,17 +6,17 @@
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
 	<div class="page-head">
-		<div class="container">
-			<!-- BEGIN PAGE TITLE -->
+		<!-- <div class="container">
+			BEGIN PAGE TITLE
 			<div class="page-title">
 				<h1>
 					Master Data <small>Master Data</small>
 				</h1>
 			</div>
-			<!-- END PAGE TITLE -->
-			<!-- BEGIN PAGE TOOLBAR -->
+			END PAGE TITLE
+			BEGIN PAGE TOOLBAR
 			<div class="page-toolbar">
-				<!-- BEGIN THEME PANEL -->
+				BEGIN THEME PANEL
 				<div class="btn-group btn-theme-panel">
 					<a href="javascript:;" class="btn dropdown-toggle"
 						data-toggle="dropdown"> <i class="icon-settings"></i>
@@ -128,10 +128,10 @@
 						</div>
 					</div>
 				</div>
-				<!-- END THEME PANEL -->
+				END THEME PANEL
 			</div>
-			<!-- END PAGE TOOLBAR -->
-		</div>
+			END PAGE TOOLBAR
+		</div> -->
 	</div>
 	<!-- END PAGE HEAD -->
 	<!-- BEGIN PAGE CONTENT -->
@@ -161,8 +161,8 @@
 			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 			<!-- BEGIN PAGE BREADCRUMB -->
 			<ul class="page-breadcrumb breadcrumb">
-				<li><a href="#">Home</a><i class="fa fa-circle"></i></li>
-				<li><a href="#">Masters</a> <i class="fa fa-circle"></i></li>
+				<li><a href="./login.htm">Home</a><i class="fa fa-circle"></i></li>
+				<li><a >Masters</a> <i class="fa fa-circle"></i></li>
 				<li class="active">Add Transport Type Details</li>
 			</ul>
 			<!-- END PAGE BREADCRUMB -->
@@ -178,10 +178,13 @@
 										<i class="fa fa-gift"></i>Transport Type Details
 									</div>
 									<div class="tools">
-										<a href="javascript:;" class="collapse"> </a> <a
+										<div class="caption">
+										Transport Type : ${transportTypeName}
+										</div>
+										<!-- <a href="javascript:;" class="collapse"> </a> <a
 											href="#portlet-config" data-toggle="modal" class="config">
 										</a> <a href="javascript:;" class="reload"> </a> <a
-											href="javascript:;" class="remove"> </a>
+											href="javascript:;" class="remove"> </a> -->
 									</div>
 								</div>
 
@@ -204,8 +207,8 @@
 									</div> -->
 									<div class="portlet-body form">
 										<!-- BEGIN FORM-->
-										<form:form action="saveTransportTypeDetails.htm" modelAttribute="transportTypeDetails" class="form-horizontal">
-											<form:hidden path="transId"/>
+										<form:form name="addTransportTypeDetailsForm" action="saveTransportTypeDetails.htm" modelAttribute="transportTypeDetails" class="form-horizontal">
+											<form:hidden id="transportTypeId" path="transId"/>
 											<form:hidden path="id"/>
 											<div class="form-body">
 												<h3 class="form-section"></h3>
@@ -313,11 +316,10 @@
 													</div>
 													
 												</div>
-												
 												<!--/row-->
 											</div>
 											<div class="form-actions right">
-												<button class="btn default" type="button">Cancel</button>
+												<button class="btn default" type="button" onclick="goBack()">Cancel</button>
 												<button class="btn blue" type="submit"><i class="fa fa-check"></i> Save</button>
 											</div>
 											<!-- <div class="form-actions">
@@ -339,10 +341,7 @@
 								</div>
 								<!--companyEnd  -->
 							</div>
-
 						</div>
-
-
 					</div>
 				</div>
 			</div>
@@ -351,5 +350,12 @@
 	</div>
 	<!-- END PAGE CONTENT -->
 </div>
-
-
+<script>
+function goBack() {
+	var x = document.getElementById("transportTypeId").value;
+	/* alert("" + x + "---" + ownId); */
+	 	 document.addTransportTypeDetailsForm.action="getAllTransportTypeDetails.htm?transId=" + x;
+		 document.addTransportTypeDetailsForm.method="GET";
+		 document.addTransportTypeDetailsForm.submit();
+}
+</script>
