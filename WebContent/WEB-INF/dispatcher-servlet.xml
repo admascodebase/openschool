@@ -127,6 +127,21 @@
 
 	<!-- Beans required for TransportDetail END -->
 
+	<!--Beans for Route Payment Service Start -->
+	
+	<bean id="RoutePaymentServices"
+		class="com.admas.logiware.services.contractcomp.RoutePaymentServices">
+		<property name="routePaySettingLogicImpl" ref="routePaySettingLogicImpl"></property>
+	</bean>
+	<bean id="routePaySettingLogicImpl"
+		class="com.admas.logiware.logic.contractcomp.RoutePaySettingLogicImpl">
+		<property name="routePaySettingDaoImpl" ref="routePaySettingDao"></property>
+	</bean>
+	<bean id="routePaySettingDao" class="com.admas.logiware.dao.contractcomp.RoutePaySettingDaoImpl" />
+
+	<!--Beans for Route Payment Service Start -->
+
+
 	<!-- Beans required for SMS START -->
 	
 	<bean id="smsService" class="com.admas.ngemp.sms.services.SmsService">

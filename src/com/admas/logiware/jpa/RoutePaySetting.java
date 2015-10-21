@@ -30,6 +30,9 @@ public class RoutePaySetting implements Serializable{
 		@Column(name="TRANSPORT_TYPE_ID" ,nullable = false )
 		private Integer transportTypeId;
 		
+		@Column(name="TRANSPORT_TYPE_DTL_ID" ,nullable = false )
+		private Integer transportTypeDtlId;
+		
 		@Column(name="ROUTE_ID" ,nullable = false )
 		private Integer routeId;
 		
@@ -56,7 +59,7 @@ public class RoutePaySetting implements Serializable{
 		@Temporal(TemporalType.TIMESTAMP)
 		private Date updatedOn;
 		
-		@Column(name="DEL_FLG" ,nullable = false) 
+		@Column(name="DEL_FLAG" ,nullable = false) 
 		private Character delFlag;
 
 		/**
@@ -213,6 +216,19 @@ public class RoutePaySetting implements Serializable{
 			this.delFlag = delFlag;
 		}
 		
+		/**
+		 * @return the transportTypeDtlId
+		 */
+		public Integer getTransportTypeDtlId() {
+			return transportTypeDtlId;
+		}
+
+		/**
+		 * @param transportTypeDtlId the transportTypeDtlId to set
+		 */
+		public void setTransportTypeDtlId(Integer transportTypeDtlId) {
+			this.transportTypeDtlId = transportTypeDtlId;
+		}
 		public RoutePaySettingDto _toDto() {
 			RoutePaySettingDto routePaySettingDto = new RoutePaySettingDto();
 			routePaySettingDto.setAdvance(this.advance);
@@ -226,6 +242,7 @@ public class RoutePaySetting implements Serializable{
 			routePaySettingDto.setTransportTypeId(this.transportTypeId);
 			routePaySettingDto.setUpdatedBy(this.updatedBy);
 			routePaySettingDto.setUpdatedOn(this.updatedOn);
+			routePaySettingDto.setTransportTypeDtlId(this.transportTypeDtlId);
 			return routePaySettingDto;
 		}
 		

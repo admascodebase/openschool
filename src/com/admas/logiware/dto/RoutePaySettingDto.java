@@ -3,13 +3,6 @@ package com.admas.logiware.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 import com.admas.logiware.jpa.RoutePaySetting;
 
 public class RoutePaySettingDto implements Serializable {
@@ -21,6 +14,7 @@ public class RoutePaySettingDto implements Serializable {
 
 	private Integer id;
 	private Integer transportTypeId;
+	private Integer transportTypeDtlId;
 	private Integer routeId;
 	private Double amount;
 	private Double advance;
@@ -209,7 +203,22 @@ public class RoutePaySettingDto implements Serializable {
 		routePaySetting.setTransportTypeId(this.transportTypeId);
 		routePaySetting.setUpdatedBy(this.updatedBy);
 		routePaySetting.setUpdatedOn(this.updatedOn);
+		routePaySetting.setTransportTypeDtlId(this.transportTypeDtlId);
 		return routePaySetting;
+	}
+
+	/**
+	 * @return the transportTypeDtlId
+	 */
+	public Integer getTransportTypeDtlId() {
+		return transportTypeDtlId;
+	}
+
+	/**
+	 * @param transportTypeDtlId the transportTypeDtlId to set
+	 */
+	public void setTransportTypeDtlId(Integer transportTypeDtlId) {
+		this.transportTypeDtlId = transportTypeDtlId;
 	}
 
 }

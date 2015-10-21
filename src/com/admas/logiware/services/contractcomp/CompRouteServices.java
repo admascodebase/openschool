@@ -62,7 +62,7 @@ public class CompRouteServices {
 
 			lCompRoute =compRouteLogicImpl.getAllCompRoute(contractCompId);
 			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
-			logiwareRespnse.setData(lCompRoute);
+			logiwareRespnse.setlCompanyRouteDto(lCompRoute);
 		} catch (LogiwareExceptionHandler e) {
 			logger.error("Error in CompRouteServices- > getAllCompRoute", e);
 			logiwareRespnse.setCode(e.getErrorCode());

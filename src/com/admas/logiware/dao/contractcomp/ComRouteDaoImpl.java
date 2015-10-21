@@ -54,7 +54,7 @@ public class ComRouteDaoImpl implements CompRouteDao {
 				return lCompRoutes;
 			} else {
 				throw new LogiwareExceptionHandler(
-						LogiwareServiceErrors.NO_CONTRACT_COMP_FOUND);
+						LogiwareServiceErrors.NO_CONTRACT_COMP_ROUTE_FOUND);
 			}
 
 		} catch (LogiwareExceptionHandler ex) {

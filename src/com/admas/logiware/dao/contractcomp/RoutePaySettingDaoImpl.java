@@ -14,6 +14,8 @@ import javax.persistence.criteria.Root;
 import org.hibernate.HibernateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.admas.logiware.dto.RoutePaySettingDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
@@ -111,13 +113,14 @@ public class RoutePaySettingDaoImpl implements RoutePaySettingDao {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Boolean addRoutePaySetting(RoutePaySettingDto routePaySettingDto)
 			throws LogiwareExceptionHandler {
 		Boolean result = false;
 		try {			
 			RoutePaySetting routePaySetting = new RoutePaySetting();
 			routePaySetting = routePaySettingDto._toJpa();
-			entityManager.persist(routePaySettingDto._toJpa());
+			entityManager.persist(routePaySetting);
 			entityManager.flush();
 			if (routePaySetting.getId() != null || routePaySetting.getId() != 0) {
 				result = true;
@@ -142,6 +145,7 @@ public class RoutePaySettingDaoImpl implements RoutePaySettingDao {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Boolean editRoutePaySetting(RoutePaySettingDto routePaySettingDto)
 			throws LogiwareExceptionHandler {
 		Boolean result = false;
@@ -173,6 +177,7 @@ public class RoutePaySettingDaoImpl implements RoutePaySettingDao {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Boolean deleteRoutePaySetting(Integer id)
 			throws LogiwareExceptionHandler {
 		Boolean result = false;

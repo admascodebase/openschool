@@ -13,12 +13,13 @@ public class CompanyRouteDto implements Serializable{
 	
 	private Integer id;
 	private Integer compId;
-	private Integer startCityId;
-	private Integer endCityId;
+	private CityDto startCityId;
+	private CityDto endCityId;
 	/*private Integer transportDetailsId;
 	private Integer cost;
 	private Integer advanceAmt;*/
 	private Character delFlag;
+	private String routeName;
 
 	/**
 	 * @return the id
@@ -32,20 +33,6 @@ public class CompanyRouteDto implements Serializable{
 	 */
 	public Integer getCompId() {
 		return compId;
-	}
-
-	/**
-	 * @return the startCityId
-	 */
-	public Integer getStartCityId() {
-		return startCityId;
-	}
-
-	/**
-	 * @return the endCityId
-	 */
-	public Integer getEndCityId() {
-		return endCityId;
 	}
 
 	/**
@@ -70,33 +57,48 @@ public class CompanyRouteDto implements Serializable{
 	}
 
 	/**
-	 * @param startCityId the startCityId to set
-	 */
-	public void setStartCityId(Integer startCityId) {
-		this.startCityId = startCityId;
-	}
-
-	/**
-	 * @param endCityId the endCityId to set
-	 */
-	public void setEndCityId(Integer endCityId) {
-		this.endCityId = endCityId;
-	}
-
-	/**
 	 * @param delFlag the delFlag to set
 	 */
 	public void setDelFlag(Character delFlag) {
 		this.delFlag = delFlag;
 	}
+
 	
+	/**
+	 * @return the startCityId
+	 */
+	public CityDto getStartCityId() {
+		return startCityId;
+	}
+
+	/**
+	 * @param startCityId the startCityId to set
+	 */
+	public void setStartCityId(CityDto startCityId) {
+		this.startCityId = startCityId;
+	}
+
+	/**
+	 * @return the endCityId
+	 */
+	public CityDto getEndCityId() {
+		return endCityId;
+	}
+
+	/**
+	 * @param endCityId the endCityId to set
+	 */
+	public void setEndCityId(CityDto endCityId) {
+		this.endCityId = endCityId;
+	}
+
 	public CompanyRoute _toJpa(){
 		CompanyRoute companyRoute = new CompanyRoute();
 		companyRoute.setCompId(this.compId);
 		companyRoute.setDelFlag(this.delFlag);
-		companyRoute.setEndCityId(this.endCityId);
+		companyRoute.setEndCityId(this.endCityId._toJpa());
 		companyRoute.setId(this.id);
-		companyRoute.setStartCityId(this.startCityId);
+		companyRoute.setStartCityId(this.startCityId._toJpa());
 //		companyRoute.setTransportDetailId(this.transportDetailsId);
 //		companyRoute.setCost(this.cost);
 //		companyRoute.setAdvanceAmt(this.advanceAmt);
@@ -145,4 +147,18 @@ public class CompanyRouteDto implements Serializable{
 		this.advanceAmt = advanceAmt;
 	}
 */
+
+	/**
+	 * @return the routeName
+	 */
+	public String getRouteName() {
+		return routeName;
+	}
+
+	/**
+	 * @param routeName the routeName to set
+	 */
+	public void setRouteName(String routeName) {
+		this.routeName = routeName;
+	}
 }

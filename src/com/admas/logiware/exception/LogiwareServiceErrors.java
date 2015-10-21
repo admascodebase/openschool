@@ -67,7 +67,9 @@ public enum LogiwareServiceErrors {
 	
 	SMS_SAVING_FAIL("LW-SM-0005", "Sms saving fail"),
 	
-	NO_PAY_EXCEPTION_FOUND("LW-PS-0001", "No Payment exception found");
+	NO_PAY_EXCEPTION_FOUND("LW-PS-0001", "No Payment exception found"),
+	
+	NO_CONTRACT_COMP_ROUTE_FOUND("LW-CC-0002", " No contract company Routes Found.");
 	
 	
 	

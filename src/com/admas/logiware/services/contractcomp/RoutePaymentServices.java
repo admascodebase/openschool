@@ -49,7 +49,7 @@ public class RoutePaymentServices {
 	 * 
 	 * */
 	@GET
-	@Path("/getAll RoutePaySetting/{id}")
+	@Path("/getAllRoutePaySetting/{id}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response getAllRoutePaySetting(@PathParam("id")Integer id){
 		List< RoutePaySettingDto> lRoutePaySettingDto= new ArrayList< RoutePaySettingDto>();

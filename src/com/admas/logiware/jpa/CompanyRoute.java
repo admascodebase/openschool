@@ -7,7 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.ManyToAny;
 
 import com.admas.logiware.dto.CompanyRouteDto;
 
@@ -27,11 +32,15 @@ public class CompanyRoute implements Serializable{
 	@Column(name="CONTRACT_COMP_ID" ,nullable = false )
 	private Integer compId;
 	
-	@Column(name="START_ROUTE" ,nullable = false )
-	private Integer startCityId;
+	@ManyToOne
+	@JoinColumn(name="START_ROUTE", nullable=false)
+//	@Column(name="START_ROUTE" ,nullable = false )
+	private City startCityId;
 	
-	@Column(name="END_ROUTE" ,nullable = false )
-	private Integer endCityId;
+	@ManyToOne
+	@JoinColumn(name="END_ROUTE", nullable=false)
+//	@Column(name="END_ROUTE" ,nullable = false )
+	private City endCityId;
 	
 	/*@Column(name="TRANSPORT_DTL_ID" ,nullable = false )
 	private Integer transportDetailId;
@@ -60,20 +69,6 @@ public class CompanyRoute implements Serializable{
 	}
 
 	/**
-	 * @return the startCityId
-	 */
-	public Integer getStartCityId() {
-		return startCityId;
-	}
-
-	/**
-	 * @return the endCityId
-	 */
-	public Integer getEndCityId() {
-		return endCityId;
-	}
-
-	/**
 	 * @return the delFlag
 	 */
 	public Character getDelFlag() {
@@ -94,19 +89,6 @@ public class CompanyRoute implements Serializable{
 		this.compId = compId;
 	}
 
-	/**
-	 * @param startCityId the startCityId to set
-	 */
-	public void setStartCityId(Integer startCityId) {
-		this.startCityId = startCityId;
-	}
-
-	/**
-	 * @param endCityId the endCityId to set
-	 */
-	public void setEndCityId(Integer endCityId) {
-		this.endCityId = endCityId;
-	}
 
 	/**
 	 * @param delFlag the delFlag to set
@@ -115,7 +97,35 @@ public class CompanyRoute implements Serializable{
 		this.delFlag = delFlag;
 	}
 	
-/*	
+/**
+	 * @return the startCityId
+	 */
+	public City getStartCityId() {
+		return startCityId;
+	}
+
+	/**
+	 * @param startCityId the startCityId to set
+	 */
+	public void setStartCityId(City startCityId) {
+		this.startCityId = startCityId;
+	}
+
+	/**
+	 * @return the endCityId
+	 */
+	public City getEndCityId() {
+		return endCityId;
+	}
+
+	/**
+	 * @param endCityId the endCityId to set
+	 */
+	public void setEndCityId(City endCityId) {
+		this.endCityId = endCityId;
+	}
+
+	/*	
 	*//**
 	 * @return the transportDetailId
 	 *//*
@@ -162,9 +172,9 @@ public class CompanyRoute implements Serializable{
 		CompanyRouteDto companyRouteDto = new CompanyRouteDto();
 		companyRouteDto.setCompId(this.compId);
 		companyRouteDto.setDelFlag(this.delFlag);
-		companyRouteDto.setEndCityId(this.endCityId);
+		companyRouteDto.setEndCityId(this.endCityId._toDto());
 		companyRouteDto.setId(this.id);
-		companyRouteDto.setStartCityId(this.startCityId);
+		companyRouteDto.setStartCityId(this.startCityId._toDto());
 //		companyRouteDto.setTransportDetailsId(this.transportDetailId);
 //		companyRouteDto.setCost(this.cost);
 //		companyRouteDto.setAdvanceAmt(this.advanceAmt);
