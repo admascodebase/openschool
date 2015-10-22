@@ -69,7 +69,9 @@ public enum LogiwareServiceErrors {
 	
 	NO_PAY_EXCEPTION_FOUND("LW-PS-0001", "No Payment exception found"),
 	
-	NO_CONTRACT_COMP_ROUTE_FOUND("LW-CC-0002", " No contract company Routes Found.");
+	NO_CONTRACT_COMP_ROUTE_FOUND("LW-CC-0002", " No contract company Routes Found."),
+	
+	NO_LOAD_ENTRY_FOUND("LW-CC-003", "No Load Entries Found.");
 	
 	
 	

@@ -212,5 +212,21 @@ public class TransportTypeDtlDto implements Serializable{
 		this.delFlag = delFlag;
 	}
 	
+	public TransportTypeDtl _toJpa(){
+		TransportTypeDtl transportTypeDtl = new TransportTypeDtl();
+		transportTypeDtl.setId(this.id);
+		transportTypeDtl.setCapacity(this.capacity);
+		transportTypeDtl.setDescription(this.description);
+		transportTypeDtl.setMaxCapacity(this.maxCapacity);
+		transportTypeDtl.setSize(this.size);
+		transportTypeDtl.setTransId(this.transId);
+		transportTypeDtl.setTruckName(this.truckName);
+		transportTypeDtl.setUnit(this.unit);
+		transportTypeDtl.setWheelsNo(this.wheelsNo);
+		transportTypeDtl.setWidth(this.width);
+		transportTypeDtl.setDelFlag(this.delFlag);
+		return transportTypeDtl;
+	}
+	
 
 }

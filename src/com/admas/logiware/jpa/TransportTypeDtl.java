@@ -243,6 +243,21 @@ public class TransportTypeDtl implements Serializable{
 	}
 	
 	
-	
+	public TransportTypeDtlDto _toDto(){
+		TransportTypeDtlDto transportTypeDto = new TransportTypeDtlDto();
+		transportTypeDto.setId(this.id);
+		transportTypeDto.setCapacity(this.capacity);
+		transportTypeDto.setDescription(this.description);
+		transportTypeDto.setMaxCapacity(this.maxCapacity);
+		transportTypeDto.setSize(this.size);
+		transportTypeDto.setTransId(this.transId);
+		transportTypeDto.setTruckName(this.truckName);
+		transportTypeDto.setUnit(this.unit);
+		transportTypeDto.setWheelsNo(this.wheelsNo);
+		transportTypeDto.setWidth(this.width);
+		transportTypeDto.setDelFlag(this.delFlag);
+		return transportTypeDto;
+	}
+
 
 }
