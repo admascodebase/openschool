@@ -29,21 +29,26 @@ public class LoadServices {
 
 	private static LoadLogic loadLogic;
 
+	
+	
 	/**
-	 * @return the LoadLogic
+	 * @return the loadLogic
 	 */
 	public static LoadLogic getLoadLogic() {
 		return loadLogic;
 	}
 
+
+
 	/**
-	 * @param contractCompLogic the contractCompLogic to set
+	 * @param loadLogic the loadLogic to set
 	 */
 	public static void setLoadLogic(LoadLogic loadLogic) {
 		LoadServices.loadLogic = loadLogic;
 	}
 
-	
+
+
 	@GET
 	@Path("/getAllLoadEntry/{contractCompId}")
 	@Produces({ MediaType.APPLICATION_JSON })

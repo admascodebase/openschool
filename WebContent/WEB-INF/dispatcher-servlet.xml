@@ -142,6 +142,19 @@
 	<!--Beans for Route Payment Service Start -->
 
 
+	<!--Beans for Load Service Start -->
+
+	<bean id="LoadServices" class="com.admas.logiware.services.contractcomp.LoadServices">
+		<property name="loadLogic" ref="loadLogicImpl"></property>
+	</bean>
+	<bean id="loadLogicImpl" class="com.admas.logiware.logic.contractcomp.LoadLogicImpl">
+		<property name="loadDao" ref="loadDaoImpl"></property>
+	</bean>
+	<bean id="loadDaoImpl" class="com.admas.logiware.dao.contractcomp.LoadDaoImpl" />
+
+	<!--Beans for Load Service End -->
+
+
 	<!-- Beans required for SMS START -->
 	
 	<bean id="smsService" class="com.admas.ngemp.sms.services.SmsService">

@@ -16,14 +16,24 @@ public class LoadLogicImpl implements LoadLogic{
 	
 	private static LoadDao loadDao;
 	Logger logger = LoggerFactory.getLogger(ContractCompLogicImpl.class);
+	
+	/**
+	 * @return the loadDao
+	 */
 	public static LoadDao getLoadDao() {
 		return loadDao;
 	}
-	public static void setContractCompDao(LoadDao loadDao) {
+
+	/**
+	 * @param loadDao the loadDao to set
+	 */
+	public static void setLoadDao(LoadDao loadDao) {
 		LoadLogicImpl.loadDao = loadDao;
 	}
-	
-	
+
+
+
+
 	@Override
 	public List<LoadDto> getAllLoadEntry(Integer contractCompId) throws LogiwareExceptionHandler {
 
