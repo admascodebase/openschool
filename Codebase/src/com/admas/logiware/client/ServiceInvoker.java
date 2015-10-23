@@ -349,6 +349,31 @@ public class ServiceInvoker implements Serializable {
 			break;
 		}
 		
+		case getAllLoadEntry: {
+			response = (K) getAllLoadEntry(url, (Map) request);
+			break;
+		}
+		
+		case saveLoadEntry: {
+			response = (K) saveLoadEntry(url, (Map) request);
+			break;
+		}
+		
+		case saveEditLoadEntry: {
+			response = (K) saveEditLoadEntry(url, (Map) request);
+			break;
+		}
+		
+		case getLoadEntryById: {
+			response = (K) getLoadEntryById(url, (Map) request);
+			break;
+		}
+		
+		case deleteLoadEntry: {
+			response = (K) deleteLoadEntry(url, (Map) request);
+			break;
+		}
+		
 		default:
 			break;
 		}
@@ -2264,4 +2289,145 @@ public class ServiceInvoker implements Serializable {
 	}
 
 	
+	public LogiwareRespnse getAllLoadEntry(String url, Map<String, Object> request) throws LogiwareBaseException {
+		logger.info("ServiceInvoker getAllLoadEntry method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			Integer compId = (Integer) request.get("compId");
+			ClientRequest clientRequest = new ClientRequest(url + WebAppConstants.URL_SEPERATOR + compId);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
+			
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			}
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker getAllLoadEntry method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker getAllLoadEntry method end. ");
+		return logiwareResponse;
+	}
+
+	
+	public LogiwareRespnse saveLoadEntry(String url, Map<String, Object> request) throws LogiwareBaseException {
+
+		logger.info("ServiceInvoker saveLoadEntry method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("loadDto"));
+			ClientResponse<LogiwareRespnse> response = clientRequest.post(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			}
+
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("Exception In ServiceInvoker saveLoadEntry method.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker saveLoadEntry method end. ");
+		return logiwareResponse;
+	}
+
+	public LogiwareRespnse saveEditLoadEntry(String url, Map<String, Object> request) throws LogiwareBaseException {
+
+		logger.info("ServiceInvoker saveEditTransportTypeDtl method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("loadDto"));
+			ClientResponse<LogiwareRespnse> response = clientRequest.post(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			}
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker saveEditLoadEntry method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker saveEditLoadEntry method end. ");
+		return logiwareResponse;
+	}
+
+	public LogiwareRespnse getLoadEntryById(String url, Map<String, Object> request)
+			throws LogiwareBaseException {
+		logger.info("ServiceInvoker getLoadEntryById method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+
+			Integer loadDtoId = (Integer) request.get("loadDtoId");
+			ClientRequest clientRequest = new ClientRequest(url + WebAppConstants.URL_SEPERATOR + loadDtoId);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			} 
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker getLoadEntryById method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker getLoadEntryById method end. ");
+		return logiwareResponse;
+	}
+
+	
+	public LogiwareRespnse deleteLoadEntry(String url, Map<String, Object> request) throws LogiwareBaseException {
+
+		logger.info("ServiceInvoker deleteLoadEntry method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(
+					url + WebAppConstants.URL_SEPERATOR + request.get("loadDtoId"));
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			}
+
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker deleteLoadEntry method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker deleteLoadEntry method end. ");
+		return logiwareResponse;
+	}
+
 }

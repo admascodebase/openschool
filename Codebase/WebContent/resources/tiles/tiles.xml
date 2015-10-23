@@ -222,4 +222,15 @@
 		<put-attribute name="body"
 			value="/resources/Logistic/jsp/masters/AddRoutePaySetting.jsp" />
 	</definition>
+	
+	<definition name="getAllLoadEntry" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic -Load Entry" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/loadentry/LoadEntry.jsp" />
+	</definition>
+	<definition name="showAddAllLoadEntry" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic -Add Load Entry" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/loadentry/AddLoadEntry.jsp" />
+	</definition>
 </tiles-definitions>

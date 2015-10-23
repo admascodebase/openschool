@@ -1,7 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
 	<div class="page-head">
@@ -9,11 +8,10 @@
 			<!-- BEGIN PAGE TITLE -->
 			<div class="page-title">
 				<h1>
-					Contract Company Route  <small>All Contract Company Route Records are Here</small>
+					Load Entry<small>Enter your load here.</small>
 				</h1>
 			</div>
 			
-			<!-- END PAGE TOOLBAR -->
 		</div>
 	</div>
 	<!-- END PAGE HEAD -->
@@ -21,7 +19,7 @@
 	<div class="page-content">
 		<div class="container">
 			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-			<div class="modal fade" id="portlet-config" tabindex="-1"
+			<!-- <div class="modal fade" id="portlet-config" tabindex="-1"
 				role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
@@ -36,20 +34,17 @@
 							<button type="button" class="btn default" data-dismiss="modal">Close</button>
 						</div>
 					</div>
-					<!-- /.modal-content -->
+					/.modal-content
 				</div>
-				<!-- /.modal-dialog -->
+				/.modal-dialog
 			</div>
-			<!-- /.modal -->
+			 --><!-- /.modal -->
 			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 			<!-- BEGIN PAGE BREADCRUMB -->
 			<ul class="page-breadcrumb breadcrumb">
-				<li><a href="#">Home</a><i class="fa fa-circle"></i></li>
-				<li><a href="table_managed.html">Masters</a> <i
-					class="fa fa-circle"></i></li>
-				<li><a href="table_managed.html">Company Details</a> <i
-					class="fa fa-circle"></i></li>
-				<li class="active">Transport Details</li>
+				<li><a href="./login.htm">Home</a><i class="fa fa-circle"></i></li>
+				<li><a href="./getAllContractCompany.htm">Contract Company</a> <i class="fa fa-circle"></i></li>
+				<li><a>Load Entry</a> <i class="fa fa-circle"></i></li>
 			</ul>
 
 			<!-- END PAGE BREADCRUMB -->
@@ -61,14 +56,9 @@
 						<div class="portlet-title">
 							<div class="caption">
 								<i class="fa fa-cogs font-green-sharp"></i> <span
-									class="caption-subject font-green-sharp bold uppercase">Company Routes</span>
+									class="caption-subject font-green-sharp bold uppercase">Load Entry</span>
 							</div>
-
 							<div class="tools">
-								<a href="javascript:;" class="collapse"> </a> <a
-									href="#portlet-config" data-toggle="modal" class="config">
-								</a> <a href="javascript:;" class="reload"> </a> <a
-									href="javascript:;" class="remove"> </a>
 							</div>
 						</div>
 						<c:if test="${errorCode ne null}">
@@ -91,22 +81,30 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="btn-group">
-											<a href="showAddContractCompRoute.htm?compId=${contractCompId}"><button
+											<a href="showAddloadEntry.htm?compId=${compId}"><button
 													class="btn btn-circle btn-primary">Add New</button></a>
 										</div>
 									</div>
-								 	<form:form name="compRouteForm" modelAttribute="companyRoute" action="getAllContractCompRoutes.htm">
-								 	<div class="col-md-6">
-										<div class="">
-											<form:select id="mySelect" path="compId" class="form-control" onchange="getAllCompanyRoutes()">
-												<form:option value="0" label="---Select---" />
-												<form:options class="form-control" itemValue="id" itemLabel="name" items="${lContractCompanies}" />
-											</form:select>
-										</div>
-									</div> 
-									</form:form>
-									
 									<div class="col-md-6">
+										<div class="col-md-6">
+										<div class="btn-group pull-right">
+											<form:form name="LoadEntryForm"
+												modelAttribute="LoadEntry"
+												action="getAllTransportDetails.htm">
+													<div class="">
+														<div class="">
+															<form:select id="contractCompanySelect" path="compId"
+																class="form-control" onchange="getAllLoadEntry()">
+																<form:option value="0" label="---Select---" />
+																<form:options class="form-control" itemValue="id"
+																	itemLabel="name" items="${lContractCompanies}" />
+															</form:select>
+														</div>
+													</div>
+												</form:form>
+										</div>
+									</div>
+									</div>
 								</div>
 							</div>
 							<table class="table table-striped table-bordered table-hover"
@@ -115,24 +113,37 @@
 									<tr>
 										<th class="table-checkbox"><input type="checkbox"
 											class="group-checkable" data-set="#sample_2 .checkboxes" /></th>
-										<th>Id</th>
-										<th>Start City</th>
-										<th>End City</th>
+										<th>Contract Company</th>
+										<th>Route</th>
+										<th>Transport Details</th>
+										<th>Loading Date</th>
+										<th>Unloading Date</th>
+										<th>Amount</th>
+										<th>Advance Amount</th>
+										<th>Balance Amount</th>
+										<th>Amount</th>
+										<th>Loading Date</th>
 										<th>Edit/Delete</th>
 									</tr>
 								</thead>
+								
 								<tbody>
-									<c:forEach items="${lCompanyRouteDtos}" var="CompanyRouteDto">
+									<c:forEach items="${lLoadEntry}" var="LoadEntry">
 										<tr class="odd gradeX">
-										<form:hidden path="contractCompId"/>
+										<form:hidden path="compId"/>
 											<td><input type="checkbox" class="checkboxes" value="1" />
 											</td>
-											<td>${CompanyRouteDto.id}</td>
-											<td>${CompanyRouteDto.startCityId.name}</td>
-											<td>${CompanyRouteDto.endCityId.name}</td>
-											<td><a href="editContractCompanyRoute.htm?id=${CompanyRouteDto.id}"
+											<td>${LoadEntry.loweryNo}</td>
+											<td>${LoadEntry.tranTypeDtlId}</td>
+											<td>${LoadEntry.ownId}</td>
+											<td>${LoadEntry.loweryNo}</td>
+											<td>${LoadEntry.tranTypeDtlId}</td>
+											<td>${LoadEntry.ownId}</td>
+											<td>${LoadEntry.loweryNo}</td>
+											<td>${LoadEntry.tranTypeDtlId}</td>
+											<td><a href="editTransportDetails.htm?id=${LoadEntry.id}"
 												class="btn btn-warning btn-xs"> Edit </a> <a
-												href="deleteContractCompanyRoute.htm?id=${CompanyRouteDto.id}&compId=${CompanyRouteDto.compId}"
+												href="deleteTransportDetails.htm?id=${LoadEntry.id}&ownId=${LoadEntry.compId}"
 												class="btn btn-info btn-xs"> Delete </a></td>
 										</tr>
 									</c:forEach>
@@ -148,13 +159,12 @@
 	</div>
 	<!-- END PAGE CONTENT -->
 </div>
-</div>
 <script>
-function getAllCompanyRoutes() {
-    var x = document.getElementById("mySelect").value;
-    /* alert(""+x); */
-    	 document.compRouteForm.action="getAllContractCompRoutes.htm?compId="+x;
-    	 document.compRouteForm.method="GET";
-    	 document.compRouteForm.submit();
+function getAllLoadEntry() {
+    var x = document.getElementById("contractCompanySelect").value;
+     	 alert(""+x);
+    	 document.LoadEntryForm.action="getAllLoadEntry.htm?compId="+x;
+    	 document.LoadEntryForm.method="GET";
+    	 document.LoadEntryForm.submit();
 }
 </script>

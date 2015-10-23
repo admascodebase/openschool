@@ -79,7 +79,12 @@ public class ServiceEndPointConstants {
 		saveRoutePaySetting("saveRoutePaySetting"),
 		saveEditRoutePaySetting("saveEditRoutePaySetting"),
 		getRoutePaySettingById("getRoutePaySettingById"),
-		deleteRoutePaySetting("deleteRoutePaySetting")
+		deleteRoutePaySetting("deleteRoutePaySetting"), 
+		getAllLoadEntry("getAllLoadEntry"), 
+		saveLoadEntry("saveLoadEntry"), 
+		saveEditLoadEntry("saveEditLoadEntry"),
+		getLoadEntryById("getLoadEntryById"), 
+		deleteLoadEntry("deleteLoadEntry")
 		;
 
 		/** The value. */

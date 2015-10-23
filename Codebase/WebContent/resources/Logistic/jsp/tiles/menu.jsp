@@ -116,6 +116,13 @@
 													<i class="icon-home"></i>
 													Contract Company </a>
 												</li> 
+												
+												<li>
+													<a href="./getAllLoadEntry.htm?compId=0" class="iconify">
+													<i class="icon-basket"></i>
+													Load Entry </a>
+												</li>
+												
 												<li>
 													<a href="./getAllContractCompany.htm" class="iconify">
 													<i class="icon-home"></i>

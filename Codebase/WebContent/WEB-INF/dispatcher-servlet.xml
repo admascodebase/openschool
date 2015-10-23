@@ -102,4 +102,5 @@
 	<bean id="TransportDetailsController" class="com.admas.logiware.controller.master.TransportDetailsController"/>
 	<bean id="ContractCompanyRouteController" class="com.admas.logiware.controller.routes.ContractCompanyRouteController" />
 	<bean id="RoutePaySettingController" class="com.admas.logiware.controller.master.RoutePaySettingController" />
+	<bean id="LoadController" class="com.admas.logiware.controller.master.LoadController" />
 </beans>
