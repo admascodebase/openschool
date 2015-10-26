@@ -84,7 +84,11 @@ public class ServiceEndPointConstants {
 		saveLoadEntry("saveLoadEntry"), 
 		saveEditLoadEntry("saveEditLoadEntry"),
 		getLoadEntryById("getLoadEntryById"), 
-		deleteLoadEntry("deleteLoadEntry")
+		deleteLoadEntry("deleteLoadEntry"), 
+		saveChangePassword("saveChangePassword"), 
+		getemployeeDetails("getemployeeDetails"), 
+		authenticateEmail("authenticateEmail"),
+		resetPassword("saveChangePassword")
 		;
 
 		/** The value. */

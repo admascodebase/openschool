@@ -11,10 +11,17 @@ public class UserDetails implements Serializable{
 	 */
 	private static final long serialVersionUID = 8397074284724590559L;
 	
+	private Integer id;
+	
+	private Integer failedAttempt;
 	
 	private String userName;
 	
 	private String password;
+
+	private String newPassword;
+	
+	private String reTypeNewPassword;
 	
 	private Date lastLogin;
 	
@@ -22,6 +29,10 @@ public class UserDetails implements Serializable{
 	
 	private CustCompEmployee custCompEmployee;
 
+	private Integer userId;
+
+	private Integer compId;
+	
 	/**
 	 * @return the userName
 	 */
@@ -90,6 +101,101 @@ public class UserDetails implements Serializable{
 	 */
 	public void setEmpId(Integer empId) {
 		this.empId = empId;
+	}
+
+	/**
+	 * @return the newPassword
+	 */
+	public String getNewPassword() {
+		return newPassword;
+	}
+
+	/**
+	 * @param newPassword the newPassword to set
+	 */
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
+	}
+
+	/**
+	 * @return the reTypeNewPassword
+	 */
+	public String getReTypeNewPassword() {
+		return reTypeNewPassword;
+	}
+
+	/**
+	 * @param reTypeNewPassword the reTypeNewPassword to set
+	 */
+	public void setReTypeNewPassword(String reTypeNewPassword) {
+		this.reTypeNewPassword = reTypeNewPassword;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the failedAttempt
+	 */
+	public Integer getFailedAttempt() {
+		return failedAttempt;
+	}
+
+	/**
+	 * @param failedAttempt the failedAttempt to set
+	 */
+	public void setFailedAttempt(Integer failedAttempt) {
+		this.failedAttempt = failedAttempt;
+	}
+
+	/**
+	 * @return the userId
+	 */
+	public Integer getUserId() {
+		return userId;
+	}
+
+	/**
+	 * @param userId the userId to set
+	 */
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "UserDetails [id=" + id + ", failedAttempt=" + failedAttempt + ", userName=" + userName + ", password="
+				+ password + ", newPassword=" + newPassword + ", reTypeNewPassword=" + reTypeNewPassword
+				+ ", lastLogin=" + lastLogin + ", empId=" + empId + ", custCompEmployee=" + custCompEmployee
+				+ ", userId=" + userId + ", compId=" +compId+ "]";
+	}
+
+	/**
+	 * @return the compId
+	 */
+	public Integer getCompId() {
+		return compId;
+	}
+
+	/**
+	 * @param compId the compId to set
+	 */
+	public void setCompId(Integer compId) {
+		this.compId = compId;
 	}
 	
 	

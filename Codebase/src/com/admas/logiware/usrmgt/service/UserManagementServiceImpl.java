@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import com.admas.logiware.client.ServiceEndPointConstants.ServiceName;
 import com.admas.logiware.client.ServiceInvoker;
 import com.admas.logiware.constant.WebAppConstants;
+import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.FlowData;
 import com.admas.logiware.dto.LogiwareRespnse;
 import com.admas.logiware.dto.UserDetails;
@@ -75,6 +76,7 @@ public class UserManagementServiceImpl {
 			flowData.setSessionData(WebAppConstants.COMPID, userDetails.getCustCompEmployee().getCompId()!=null ? userDetails.getCustCompEmployee().getCompId().toString() : "");
 			flowData.setSessionData(WebAppConstants.BRANCHID, userDetails.getCustCompEmployee().getBranchId() != null ? userDetails.getCustCompEmployee().getBranchId().toString() : "");
 			flowData.setSessionData(WebAppConstants.ROLEID, "2");
+			flowData.setSessionData(WebAppConstants.EMPID, userDetails.getCustCompEmployee().getId().toString());
 			resDtoObjects.put("viewName", viewName);
 		} catch (LogiwareBaseException b) {
 			throw b;
@@ -114,6 +116,100 @@ public class UserManagementServiceImpl {
 		logger.info("UserManagementServiceImpl getSmsBalance method end. ");
 		return resDtoObjects;
 		
+	}
+
+	public Map<String, Object> saveChangePassword(FlowData flowData, HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+		logger.info("UserManagementServiceImpl saveChangePassword method start. ");
+		LogiwareRespnse logiwareResponse = null;
+		try {
+			logiwareResponse = doServiceCall(flowData, ServiceName.saveChangePassword, reqDtoObjects);
+			UserDetails userDetails = (UserDetails) logiwareResponse.getUerDetailsDto();
+			flowData.setSessionDataObject(WebAppConstants.USER, userDetails);
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In UserManagementServiceImpl: saveChangePassword method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("UserManagementServiceImpl saveChangePassword method end. ");
+		return resDtoObjects;
+	
+	}
+
+	public Map<String, Object> getemployeeDetails(FlowData flowData, HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+		logger.info("UserManagementServiceImpl getemployeeDetails method start. ");
+		LogiwareRespnse logiwareResponse = null;
+		try {
+			reqDtoObjects.put("employeeId", Integer.parseInt(flowData.getSessionData(WebAppConstants.EMPID)));
+			logiwareResponse = doServiceCall(flowData, ServiceName.getemployeeDetails,
+					reqDtoObjects);
+			EmployeeDto employeeDto = logiwareResponse.getEmployeeDto();
+			resDtoObjects.put("employeeDto", employeeDto);
+			resDtoObjects.put("userRensponce", logiwareResponse);
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error(
+					"Exception In EnterpriseControllerService: getemployeeDetails method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("UserManagementServiceImpl getemployeeDetails method end. ");
+		return resDtoObjects;
+		
+	}
+
+	public Map<String, Object> resetPassword(FlowData flowData, HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+		logger.info("UserManagementServiceImpl getemployeeDetails method start. ");
+		LogiwareRespnse logiwareResponse = null;
+		try {
+			
+			logiwareResponse = doServiceCall(flowData, ServiceName.resetPassword,
+					reqDtoObjects);
+			EmployeeDto employeeDto = logiwareResponse.getEmployeeDto();
+			resDtoObjects.put("employeeDto", employeeDto);
+			resDtoObjects.put("userRensponce", logiwareResponse);
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error(
+					"Exception In EnterpriseControllerService: getemployeeDetails method end.",
+					e);
+			throw new LogiwareBaseException(
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("UserManagementServiceImpl getemployeeDetails method end. ");
+		return resDtoObjects;
+
+	}
+
+	public Map<String, Object> authenticateEmail(FlowData flowData, HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+		logger.info("UserManagementServiceImpl authenticateEmail method start. ");
+		LogiwareRespnse logiwareResponse = null;
+		try {
+			logiwareResponse = doServiceCall(flowData, ServiceName.authenticateEmail, reqDtoObjects);
+			resDtoObjects.put("employeeDto", logiwareResponse.getEmployeeDto());
+			resDtoObjects.put("userRensponce", logiwareResponse);
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In EnterpriseControllerService: authenticateEmail method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("UserManagementServiceImpl authenticateEmail method end. ");
+		return resDtoObjects;
+
 	}
 
 }

@@ -1,3 +1,8 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
 	<div class="page-head">
@@ -53,6 +58,21 @@
 			</ul>
 			<!-- END PAGE BREADCRUMB -->
 			<!-- BEGIN PAGE CONTENT INNER -->
+			
+			<c:if test="${errorCode ne null}">
+						<div class="alert alert-danger">
+							<button class="close" data-close="alert"></button>
+							<span><spring:message code="${errorCode}"></spring:message> </span>
+						</div>
+					</c:if>
+					
+					<c:if test="${sucessMessage ne null}">
+						<div class="alert alert-success">
+							<button class="close" data-close="alert"></button>
+							<spring:message code="${sucessMessage}"></spring:message>
+						</div>
+					</c:if>
+			
 			<div class="row margin-top-10">
 				<div class="col-md-12">
 					<!-- BEGIN PROFILE SIDEBAR -->
@@ -175,7 +195,7 @@
 											<li>
 												<a href="#tab_1_2" data-toggle="tab">Change Avatar</a>
 											</li>
-											<li>
+											<li >
 												<a href="#tab_1_3" data-toggle="tab">Change Password</a>
 											</li>
 											<li>
@@ -187,34 +207,34 @@
 										<div class="tab-content">
 											<!-- PERSONAL INFO TAB -->
 											<div class="tab-pane active" id="tab_1_1">
-												<form role="form" action="#">
+												<form:form modelAttribute="employeeDto" role="form" action="#">
 													<div class="form-group">
 														<label class="control-label">First Name</label>
-														<input type="text" placeholder="John" class="form-control"/>
+														<form:input path="name" class="form-control"/>
 													</div>
 													<div class="form-group">
-														<label class="control-label">Last Name</label>
-														<input type="text" placeholder="Doe" class="form-control"/>
+														<label class="control-label">Address</label>
+														<form:textarea path="address" class="form-control"/>
 													</div>
 													<div class="form-group">
 														<label class="control-label">Mobile Number</label>
-														<input type="text" placeholder="+1 646 580 DEMO (6284)" class="form-control"/>
+														<form:input path="contactNo" class="form-control"/>
 													</div>
 													<div class="form-group">
-														<label class="control-label">Interests</label>
-														<input type="text" placeholder="Design, Web etc." class="form-control"/>
+														<label class="control-label">Gender</label>
+														<form:input path="gender" class="form-control"/>
 													</div>
 													<div class="form-group">
-														<label class="control-label">Occupation</label>
-														<input type="text" placeholder="Web Developer" class="form-control"/>
+														<label class="control-label">salary Type</label>
+														<form:input path="salaryType" class="form-control"/>
 													</div>
 													<div class="form-group">
-														<label class="control-label">About</label>
-														<textarea class="form-control" rows="3" placeholder="We are KeenThemes!!!"></textarea>
+														<label class="control-label">Salary</label>
+														<form:input path="salary" class="form-control"/>
 													</div>
 													<div class="form-group">
-														<label class="control-label">Website Url</label>
-														<input type="text" placeholder="http://www.mywebsite.com" class="form-control"/>
+														<label class="control-label">Pan Card</label>
+														<form:input path="pan" class="form-control"/>
 													</div>
 													<div class="margiv-top-10">
 														<a href="javascript:;" class="btn green-haze">
@@ -222,7 +242,7 @@
 														<a href="javascript:;" class="btn default">
 														Cancel </a>
 													</div>
-												</form>
+												</form:form>
 											</div>
 											<!-- END PERSONAL INFO TAB -->
 											<!-- CHANGE AVATAR TAB -->
@@ -266,26 +286,26 @@
 											<!-- END CHANGE AVATAR TAB -->
 											<!-- CHANGE PASSWORD TAB -->
 											<div class="tab-pane" id="tab_1_3">
-												<form action="#">
+												<form:form name="changePasswordForm" modelAttribute="loginData" action="saveChangePassword.htm">
 													<div class="form-group">
 														<label class="control-label">Current Password</label>
-														<input type="password" class="form-control"/>
+														<form:input path="password" type="password" class="form-control"/>
 													</div>
 													<div class="form-group">
 														<label class="control-label">New Password</label>
-														<input type="password" class="form-control"/>
+														<form:input path="newPassword" type="password" class="form-control"/>
 													</div>
 													<div class="form-group">
 														<label class="control-label">Re-type New Password</label>
-														<input type="password" class="form-control"/>
+														<form:input path="reTypeNewPassword" type="password" class="form-control"/>
 													</div>
 													<div class="margin-top-10">
-														<a href="javascript:;" class="btn green-haze">
-														Change Password </a>
-														<a href="javascript:;" class="btn default">
+														<button class="btn blue" type="submit">
+												<i class="fa fa-check"></i> Change Password</button>
+														<a href="./login.htm" class="btn default">
 														Cancel </a>
 													</div>
-												</form>
+												</form:form>
 											</div>
 											<!-- END CHANGE PASSWORD TAB -->
 											<!-- PRIVACY SETTINGS TAB -->
@@ -357,3 +377,12 @@
 	</div>
 	<!-- END PAGE CONTENT -->
 </div>
+<script>
+/* function goBack() {
+	var x = document.getElementById("transportTypeId").value;
+	/* alert("" + x + "---" + ownId); */
+	 	 document.addTransportTypeDetailsForm.action="getAllTransportTypeDetails.htm?transId=" + x;
+		 document.addTransportTypeDetailsForm.method="GET";
+		 document.addTransportTypeDetailsForm.submit();
+} */
+</script>

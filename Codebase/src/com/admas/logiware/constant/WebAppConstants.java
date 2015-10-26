@@ -48,4 +48,9 @@ public interface WebAppConstants {
 	
 	public String LW_SUCESS_DELETE = "LW_SUCESS_DELETE";
 
+	public String LW_PASSWORD_CHANGE_SUCCESS = "LW_PASSWORD_CHANGE_SUCCESS";
+	
+	public String LW_PASSWORD_CHANGE_FAIL = "LW_PASSWORD_CHANGE_FAIL";
+
+	public String EMPID = "empId";
 }

@@ -26,6 +26,8 @@ public class EmployeeDto implements Serializable{
 	private String salaryType;
 	
 	private Float salary;
+
+//	private String email;
 	
 	private String pan;
 
@@ -127,7 +129,7 @@ public class EmployeeDto implements Serializable{
 				+ ", branchId=" + branchId + ", name=" + name + ", address="
 				+ address + ", contactNo=" + contactNo + ", gender=" + gender
 				+ ", isSysAcc=" + isSysAcc + ", salaryType=" + salaryType
-				+ ", salary=" + salary + ", pan=" + pan + "]";
+				+ ", salary=" + salary + ", pan=" + pan + ", email="+ "]";
 	}
 
 	/**
@@ -157,6 +159,20 @@ public class EmployeeDto implements Serializable{
 	public void setRoleId(Integer roleId) {
 		this.roleId = roleId;
 	}
-	
+
+//	/**
+//	 * @return the email
+//	 */
+//	public String getEmail() {
+//		return email;
+//	}
+//
+//	/**
+//	 * @param email the email to set
+//	 */
+//	public void setEmail(String email) {
+//		this.email = email;
+//	}
+//	
 	
 }

@@ -374,6 +374,26 @@ public class ServiceInvoker implements Serializable {
 			break;
 		}
 		
+		case saveChangePassword: {
+			response = (K) saveChangePassword(url, (Map) request);
+			break;
+		}
+		
+		case getemployeeDetails: {
+			response = (K) getEmployeeById(url, (Map) request);
+			break;
+		}
+
+		case authenticateEmail: {
+			response = (K) authenticateEmail(url, (Map) request);
+			break;
+		}
+
+		case resetPassword: {
+			response = (K) resetPassword(url, (Map) request);
+			break;
+		}
+
 		default:
 			break;
 		}
@@ -2430,4 +2450,92 @@ public class ServiceInvoker implements Serializable {
 		return logiwareResponse;
 	}
 
+	
+		public LogiwareRespnse saveChangePassword(String url, Map<String, Object> request) throws LogiwareBaseException {
+
+		logger.info("ServiceInvoker saveChangePassword method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("userDetails"));
+			ClientResponse<LogiwareRespnse> response = clientRequest.post(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			}
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker saveChangePassword method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker saveChangePassword method end. ");
+		return logiwareResponse;
+	}
+
+
+		public LogiwareRespnse authenticateEmail(String url, Map<String, Object> request) throws LogiwareBaseException {
+
+			logger.info("ServiceInvoker authenticateEmail method start. ");
+			LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+			try {
+
+				String email = (String) request.get("email");
+				ClientRequest clientRequest = new ClientRequest(url + WebAppConstants.URL_SEPERATOR + email);
+				clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+				ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
+				if (response.getStatus() != 200) {
+					throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+				}
+				logiwareResponse = (LogiwareRespnse) response.getEntity();
+				if (!logiwareResponse.getCode().equals("0000")) {
+					throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+				}
+			} catch (LogiwareBaseException b) {
+				throw b;
+			} catch (Exception e) {
+				logger.error("Exception In ServiceInvoker authenticateEmail method end.", e);
+				throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+						LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+			}
+			logger.info("ServiceInvoker authenticateEmail method end. ");
+			return logiwareResponse;
+		}
+
+
+
+		public LogiwareRespnse resetPassword(String url, Map<String, Object> request) throws LogiwareBaseException {
+
+		logger.info("ServiceInvoker resetPassword method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("employeeDto"));
+			ClientResponse<LogiwareRespnse> response = clientRequest.post(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			}
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker resetPassword method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker resetPassword method end. ");
+		return logiwareResponse;
+	}
+
+		
+		
 }

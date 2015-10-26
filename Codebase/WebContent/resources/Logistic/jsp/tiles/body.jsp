@@ -82,7 +82,7 @@
 	</form>
 	<!-- END LOGIN FORM -->
 	<!-- BEGIN FORGOT PASSWORD FORM -->
-	<form class="forget-form" action="http://www.keenthemes.com/preview/metronic/theme/templates/admin3/index.html" method="post">
+	<form:form class="forget-form" action="resetPassword.htm">
 		<h3>Forget Password ?</h3>
 		<p>
 			 Enter your e-mail address below to reset your password.
@@ -90,7 +90,7 @@
 		<div class="form-group">
 			<div class="input-icon">
 				<i class="fa fa-envelope"></i>
-				<input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email"/>
+				<input class="form-control" type="text"  placeholder="Email" name="emailId"/>
 			</div>
 		</div>
 		<div class="form-actions">
@@ -100,7 +100,7 @@
 			Submit <i class="m-icon-swapright m-icon-white"></i>
 			</button>
 		</div>
-	</form>
+	</form:form>
 	<!-- END FORGOT PASSWORD FORM -->
 	<!-- BEGIN REGISTRATION FORM -->
 	<form class="register-form" action="http://www.keenthemes.com/preview/metronic/theme/templates/admin3/index.html" method="post">
