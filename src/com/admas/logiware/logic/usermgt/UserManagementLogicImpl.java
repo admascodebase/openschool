@@ -47,6 +47,8 @@ public class UserManagementLogicImpl implements IUserManagementLogic {
 					userDetailsDto.setLastLogin(userDetailsJpa.getLastLoginTime());
 					userDetailsDto.setPassword(userDetailsJpa.getPasword());
 					userDetailsDto.setUserName(userDetailsJpa.getUserName());
+					userDetailsDto.setFailedAttempt(userDetailsJpa.getFailedAttempt());
+					userDetailsDto.setId(userDetailsJpa.getId());
 					logger.info("User converted to dto sucessfully");
 				}
 			}
@@ -82,5 +84,76 @@ public class UserManagementLogicImpl implements IUserManagementLogic {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	/*public Boolean saveChangePassword(UserDetails userDetails) {
+
 	
+	}
+*/
+	
+	
+	public Boolean saveChangePassword(UserDetails userDetails)
+			throws LogiwareExceptionHandler {
+		
+		Boolean result = false;
+		try {
+			result = userManagementDao.saveChangePassword(userDetails);
+
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error("Exception Error in UserManagementLogicImpl - > saveChangePassword ", e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return result;
+		
+	}
+
+	public EmployeeDto authenticateEmail(String mobileNumber) throws LogiwareExceptionHandler {
+		
+		try {			
+			Employee employee = userManagementDao.authenticateEmail(mobileNumber);
+			EmployeeDto employeeDto = new EmployeeDto();
+			
+			employeeDto.setAddress(employee.getAddress());
+			employeeDto.setBranchId(employee.getBranchId());
+			employeeDto.setCompId(employee.getCompId());
+			employeeDto.setContactNo(employee.getContactNo());
+			employeeDto.setGender(employee.getGender());
+			employeeDto.setId(employee.getId());
+			employeeDto.setIsSysAcc(employee.getIsSysAcc());
+			employeeDto.setName(employee.getName());
+			employeeDto.setPan(employee.getPan());
+			employeeDto.setSalary(employee.getSalary());
+			employeeDto.setSalaryType(employee.getSalaryType());
+			employeeDto.setDelFlag(employee.getDelFlg());
+			employeeDto.setRoleId(employee.getRoleId());
+
+			return employeeDto;
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		}catch (Exception e) {
+			logger.error("Exception Error in UserManagementLogicImpl - > login ",e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+	}
+
+	public Boolean resetPassword(EmployeeDto employeeDto) throws LogiwareExceptionHandler {
+
+		Boolean result = false;
+		try {
+			result = userManagementDao.resetPassword(employeeDto);
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error("Exception Error in UserManagementLogicImpl - > resetPassword ", e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return result;
+		
+
+	}
 }

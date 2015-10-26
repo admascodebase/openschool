@@ -36,8 +36,31 @@ public class UserDetails implements Serializable{
 	@Column(name="FAILED_ATTEMPT"  )
 	private Integer failedAttempt;
 	
+	@Column(name="USER_ID" )
+	private Integer userId;
+
+	
 	@Column(name="LAST_LOGIN" )
 	private Date lastLoginTime;
+
+	@Column(name="COMP_ID" )
+	private Integer compId;
+
+	
+	
+	/**
+	 * @return the compId
+	 */
+	public Integer getCompId() {
+		return compId;
+	}
+
+	/**
+	 * @param compId the compId to set
+	 */
+	public void setCompId(Integer compId) {
+		this.compId = compId;
+	}
 
 	/**
 	 * @return the id
@@ -123,18 +146,29 @@ public class UserDetails implements Serializable{
 		this.lastLoginTime = lastLoginTime;
 	}
 
+	/**
+	 * @return the userId
+	 */
+	public Integer getUserId() {
+		return userId;
+	}
+
+	/**
+	 * @param userId the userId to set
+	 */
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "UserDetails [id=" + id + ", userName=" + userName
-				+ ", pasword=" + pasword + ", empId=" + empId
-				+ ", failedAttempt=" + failedAttempt + ", lastLoginTime="
-				+ lastLoginTime + "]";
+		return "UserDetails [id=" + id + ", userName=" + userName + ", pasword=" + pasword + ", empId=" + empId
+				+ ", failedAttempt=" + failedAttempt + ", userId=" + userId + ", lastLoginTime=" + lastLoginTime + ", compId=" + compId + "]";
 	}
-	
-	
+
 	
 
 }

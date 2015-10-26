@@ -59,6 +59,9 @@ public class Employee implements Serializable {
 	@Column(name="SALARAY")
 	private Float salary;
 	
+/*	@Column(name="EMAIL")
+	private String email;
+*/	
 	@Column(name="PAN")
 	private String pan;
 	
@@ -334,7 +337,21 @@ public class Employee implements Serializable {
 	public void setDelFlg(Character delFlg) {
 		this.delFlag = delFlg;
 	}
-
+	
+	/**
+	 * @return the email
+	 */
+/*	public String getEmail() {
+		return email;
+	}
+*/
+	/**
+	 * @param email the email to set
+	 */
+/*	public void setEmail(String email) {
+		this.email = email;
+	}
+*/
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -347,6 +364,7 @@ public class Employee implements Serializable {
 				+ ", salary=" + salary + ", pan=" + pan + ", createdBy="
 				+ createdBy + ", updatedBy=" + updatedBy + ", createdOn="
 				+ createdOn + ", updatedOn=" + updatedOn + ", delFlg=" + delFlag
+				/*+", email=" + email*/ 
 				+ "]";
 	}
 	

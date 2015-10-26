@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
 import com.admas.logiware.exception.LogiwareServiceErrors;
 import com.admas.logiware.jpa.Employee;
@@ -150,6 +152,109 @@ public class UserManagementDaoImpl implements IUserManagementDao {
 		} finally {
 			entityManager.close();
 		}
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public Boolean saveChangePassword(com.admas.logiware.dto.UserDetails userDetails) throws LogiwareExceptionHandler {
+		Boolean result = false;
+		try {
+			
+			String newPassword = userDetails.getNewPassword(),password = userDetails.getPassword();
+			Integer empId = userDetails.getEmpId(),compId = userDetails.getCompId();
+			Query query = entityManager.createQuery(
+					"UPDATE UserDetails SET pasword = :newPassword, empId = :empId, compId = :compId WHERE pasword = :password");
+			query.setParameter("newPassword", newPassword);
+			query.setParameter("empId", empId);
+			query.setParameter("compId", compId);
+			query.setParameter("password", password);
+			int updateResult = query.executeUpdate();
+			if (updateResult != 0) {
+				result = true;
+			}
+			return result;
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in UserManagementDaoImpl - > saveChangePassword",
+					he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch (Exception e) {
+			 logger.error("Exception Error in UserManagementDaoImpl - > saveChangePassword ",
+			 e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			entityManager.close();
+		}
+
+	}
+
+	@Override
+	public Employee authenticateEmail(String mobileNumber) throws LogiwareExceptionHandler {
+		CriteriaBuilder criteriaBuilder = null;
+		Employee employee = null;
+		try {
+			criteriaBuilder = entityManager.getCriteriaBuilder();
+			CriteriaQuery<Employee> criteriaQuery = criteriaBuilder.createQuery(com.admas.logiware.jpa.Employee.class);
+			Root<Employee> root = criteriaQuery.from(Employee.class);
+			criteriaQuery.select(root);
+			Predicate emailId = criteriaBuilder.equal(root.get("contactNo"), mobileNumber);
+			criteriaQuery.where(emailId);
+
+			TypedQuery<Employee> typedQuery = entityManager.createQuery(criteriaQuery);
+			List<Employee> lEmployee = typedQuery.getResultList();
+
+			if (lEmployee != null && lEmployee.size() > 0) {
+				return lEmployee.get(0);
+				
+			} else {
+				return employee;
+			}
+		} catch (HibernateException he) {
+			logger.error("HibernateException Error in UserManagementDaoImpl - > authenticateEmail ",he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch (Exception e) {
+			logger.error("Exception Error in UserManagementDaoImpl - > authenticateEmail ",e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			criteriaBuilder = null;
+		}
+
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public Boolean resetPassword(EmployeeDto employeeDto) throws LogiwareExceptionHandler {
+		Boolean result = false;
+		try {
+			String password = "abcd";
+			Integer empId = employeeDto.getId();
+			Query query = entityManager.createQuery("UPDATE UserDetails SET pasword = :newPassword WHERE empId = :empId");
+			query.setParameter("newPassword", password);
+			query.setParameter("empId", empId);
+			int updateResult = query.executeUpdate();
+			if (updateResult != 0) {
+				result = true;
+			}
+			return result;
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in UserManagementDaoImpl - > resetPassword",
+					he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch (Exception e) {
+			 logger.error("Exception Error in UserManagementDaoImpl - > resetPassword ",
+			 e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			entityManager.close();
+		}
+
 	}
 	
 	
