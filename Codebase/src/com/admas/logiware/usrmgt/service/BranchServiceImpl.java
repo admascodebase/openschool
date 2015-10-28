@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 
 import com.admas.logiware.client.ServiceEndPointConstants.ServiceName;
 import com.admas.logiware.client.ServiceInvoker;
-import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.dto.CompanyBranchDto;
 import com.admas.logiware.dto.FlowData;
 import com.admas.logiware.dto.LogiwareRespnse;

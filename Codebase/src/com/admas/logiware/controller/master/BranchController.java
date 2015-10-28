@@ -18,12 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.controller.core.BaseController;
 import com.admas.logiware.dto.CompanyBranchDto;
-import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.FlowData;
 import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
 import com.admas.logiware.usrmgt.service.BranchService;
-import com.admas.logiware.usrmgt.service.MasterServiceImpl;
 public class BranchController extends BaseController {
 	
 	/** The logger. */

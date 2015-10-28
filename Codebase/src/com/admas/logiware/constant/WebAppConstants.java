@@ -35,6 +35,8 @@ public interface WebAppConstants {
 	public String USER = "user";
 
 	public String COMPID = "compId";
+	
+	public String PRODID = "prodId";
 
 	public String BRANCHID = "branchId";
 

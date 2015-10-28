@@ -21,6 +21,7 @@ import com.admas.logiware.dto.Customer;
 import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.LogiwareRespnse;
 import com.admas.logiware.dto.UserDetails;
+import com.admas.logiware.dto.response.ProductResponse;
 import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
 import com.admas.logiware.util.PropertyHandler;
@@ -49,7 +50,7 @@ public class ServiceInvoker implements Serializable {
 		logger.info("**************" + serviceName.value());
 		String serviceEndPoint = ResourceHandler.instance().getServiceEndPoints(serviceName.value());
 
-		String url = String.format(urlTemplate, host, port, serviceEndPoint);
+		String url = String.format(urlTemplate, host, port, serviceEndPoint);//addProduct
 		switch (serviceName) {
 		case login: {
 			response = (K) login(url, (Map) request);
@@ -323,7 +324,6 @@ public class ServiceInvoker implements Serializable {
 			response = (K) deleteCompanyRoute(url, (Map) request);
 			break;
 		}
-		
 		case getAllRoutePaySetting: {
 			response = (K) getAllRoutePaySetting(url, (Map) request);
 			break;
@@ -393,7 +393,29 @@ public class ServiceInvoker implements Serializable {
 			response = (K) resetPassword(url, (Map) request);
 			break;
 		}
-
+	
+		case getAllProduct :{
+			response = (K)getAllProduct(url,(Map)request);
+			break;
+		}
+		
+		case addProduct :{
+			response = (K)addProduct(url,(Map)request);
+			break;
+		}
+		//getProductById
+		case getProductById :{
+			response = (K)getProductById(url,(Map)request);
+			break;
+		}
+		case editProduct :{
+			response = (K)editProduct(url,(Map)request);
+			break;
+		}
+		case deleteProduct :{
+			response = (K)deleteProduct(url,(Map)request);
+			break;
+		}
 		default:
 			break;
 		}
@@ -2169,6 +2191,119 @@ public class ServiceInvoker implements Serializable {
 		logger.info("ServiceInvoker deleteCompanyRoute method end. ");
 		return logiwareResponse;
 	}
+	public LogiwareRespnse deleteLoadEntry(String url, Map<String, Object> request) throws LogiwareBaseException {
+
+		logger.info("ServiceInvoker deleteLoadEntry method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(
+					url + WebAppConstants.URL_SEPERATOR + request.get("loadDtoId"));
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			}
+
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker deleteLoadEntry method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker deleteLoadEntry method end. ");
+		return logiwareResponse;
+	}
+
+	
+		public LogiwareRespnse saveChangePassword(String url, Map<String, Object> request) throws LogiwareBaseException {
+
+		logger.info("ServiceInvoker saveChangePassword method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("userDetails"));
+			ClientResponse<LogiwareRespnse> response = clientRequest.post(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			}
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker saveChangePassword method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker saveChangePassword method end. ");
+		return logiwareResponse;
+	}
+
+
+		public LogiwareRespnse authenticateEmail(String url, Map<String, Object> request) throws LogiwareBaseException {
+
+			logger.info("ServiceInvoker authenticateEmail method start. ");
+			LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+			try {
+
+				String email = (String) request.get("email");
+				ClientRequest clientRequest = new ClientRequest(url + WebAppConstants.URL_SEPERATOR + email);
+				clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+				ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
+				if (response.getStatus() != 200) {
+					throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+				}
+				logiwareResponse = (LogiwareRespnse) response.getEntity();
+				if (!logiwareResponse.getCode().equals("0000")) {
+					throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+				}
+			} catch (LogiwareBaseException b) {
+				throw b;
+			} catch (Exception e) {
+				logger.error("Exception In ServiceInvoker authenticateEmail method end.", e);
+				throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+						LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+			}
+			logger.info("ServiceInvoker authenticateEmail method end. ");
+			return logiwareResponse;
+		}
+
+
+
+		public LogiwareRespnse resetPassword(String url, Map<String, Object> request) throws LogiwareBaseException {
+
+		logger.info("ServiceInvoker resetPassword method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("employeeDto"));
+			ClientResponse<LogiwareRespnse> response = clientRequest.post(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			}
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker resetPassword method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker resetPassword method end. ");
+		return logiwareResponse;
+	}
 
 	
 	public LogiwareRespnse getAllRoutePaySetting(String url, Map<String, Object> request) throws LogiwareBaseException {
@@ -2421,121 +2556,136 @@ public class ServiceInvoker implements Serializable {
 		return logiwareResponse;
 	}
 
-	
-	public LogiwareRespnse deleteLoadEntry(String url, Map<String, Object> request) throws LogiwareBaseException {
 
-		logger.info("ServiceInvoker deleteLoadEntry method start. ");
-		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
-		try {
-			ClientRequest clientRequest = new ClientRequest(
-					url + WebAppConstants.URL_SEPERATOR + request.get("loadDtoId"));
-			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
-			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
-			if (response.getStatus() != 200) {
-				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
-			}
-			logiwareResponse = response.getEntity();
-			if (!logiwareResponse.getCode().equals("0000")) {
-				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
-			}
-
-		} catch (LogiwareBaseException b) {
-			throw b;
-		} catch (Exception e) {
-			logger.error("Exception In ServiceInvoker deleteLoadEntry method end.", e);
-			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
-					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
-		}
-		logger.info("ServiceInvoker deleteLoadEntry method end. ");
-		return logiwareResponse;
-	}
-
-	
-		public LogiwareRespnse saveChangePassword(String url, Map<String, Object> request) throws LogiwareBaseException {
-
-		logger.info("ServiceInvoker saveChangePassword method start. ");
-		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+	public ProductResponse getAllProduct(String url, Map<String, Object> request) throws LogiwareBaseException {
+		logger.info("ServiceInvoker getAllProduct method start. ");
+		ProductResponse logiwareResponse = new ProductResponse();
 		try {
 			ClientRequest clientRequest = new ClientRequest(url);
 			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
-			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("userDetails"));
-			ClientResponse<LogiwareRespnse> response = clientRequest.post(LogiwareRespnse.class);
+			ClientResponse<ProductResponse> response = clientRequest.get(ProductResponse.class);
 			if (response.getStatus() != 200) {
 				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
 			}
-			logiwareResponse = response.getEntity();
+ 			logiwareResponse = response.getEntity();
 			if (!logiwareResponse.getCode().equals("0000")) {
 				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
 			}
+
 		} catch (LogiwareBaseException b) {
 			throw b;
 		} catch (Exception e) {
-			logger.error("Exception In ServiceInvoker saveChangePassword method end.", e);
+			logger.error("Exception In ServiceInvoker getAllProduct method end.", e);
 			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
 		}
-		logger.info("ServiceInvoker saveChangePassword method end. ");
+		logger.info("ServiceInvoker getAllProduct method end. ");
 		return logiwareResponse;
 	}
-
-
-		public LogiwareRespnse authenticateEmail(String url, Map<String, Object> request) throws LogiwareBaseException {
-
-			logger.info("ServiceInvoker authenticateEmail method start. ");
-			LogiwareRespnse logiwareResponse = new LogiwareRespnse();
-			try {
-
-				String email = (String) request.get("email");
-				ClientRequest clientRequest = new ClientRequest(url + WebAppConstants.URL_SEPERATOR + email);
-				clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
-				ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
-				if (response.getStatus() != 200) {
-					throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
-				}
-				logiwareResponse = (LogiwareRespnse) response.getEntity();
-				if (!logiwareResponse.getCode().equals("0000")) {
-					throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
-				}
-			} catch (LogiwareBaseException b) {
-				throw b;
-			} catch (Exception e) {
-				logger.error("Exception In ServiceInvoker authenticateEmail method end.", e);
-				throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
-						LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
-			}
-			logger.info("ServiceInvoker authenticateEmail method end. ");
-			return logiwareResponse;
-		}
-
-
-
-		public LogiwareRespnse resetPassword(String url, Map<String, Object> request) throws LogiwareBaseException {
-
-		logger.info("ServiceInvoker resetPassword method start. ");
-		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+	
+	public ProductResponse addProduct(String url, Map<String, Object> request)throws LogiwareBaseException{
+		logger.info("ServiceInvoker addProduct method start. ");
+		ProductResponse logiwareResponse = new ProductResponse();
 		try {
 			ClientRequest clientRequest = new ClientRequest(url);
 			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
-			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("employeeDto"));
-			ClientResponse<LogiwareRespnse> response = clientRequest.post(LogiwareRespnse.class);
+			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("product"));
+			ClientResponse<ProductResponse> response = clientRequest.post(ProductResponse.class);
 			if (response.getStatus() != 200) {
 				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
 			}
-			logiwareResponse = response.getEntity();
+ 			logiwareResponse = response.getEntity();
 			if (!logiwareResponse.getCode().equals("0000")) {
 				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
 			}
+
 		} catch (LogiwareBaseException b) {
 			throw b;
 		} catch (Exception e) {
-			logger.error("Exception In ServiceInvoker resetPassword method end.", e);
+			logger.error("Exception In ServiceInvoker addProduct method end.", e);
 			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
 		}
-		logger.info("ServiceInvoker resetPassword method end. ");
+		logger.info("ServiceInvoker addProduct method end. ");
+		return logiwareResponse;
+		
+	}
+	
+	public ProductResponse getProductById(String url, Map<String, Object> request)throws LogiwareBaseException{
+		ProductResponse logiwareResponse = new ProductResponse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url + WebAppConstants.URL_SEPERATOR + request.get("productId"));
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<ProductResponse> response = clientRequest.get(ProductResponse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+ 			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			}
+
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker addProduct method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker addProduct method end. ");
 		return logiwareResponse;
 	}
+	//editProduct
+	public ProductResponse editProduct(String url, Map<String, Object> request)throws LogiwareBaseException{
+		logger.info("ServiceInvoker editProduct method start. ");
+		ProductResponse logiwareResponse = new ProductResponse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("product"));
+			ClientResponse<ProductResponse> response = clientRequest.post(ProductResponse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+ 			logiwareResponse = response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			}
 
-		
-		
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker editProduct method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker addProduct method end. ");
+		return logiwareResponse;
+	}
+	
+	public ProductResponse deleteProduct(String url, Map<String, Object>request)throws LogiwareBaseException{
+		ProductResponse logiwareResponse =new ProductResponse();
+		try{
+		ClientRequest clientRequest = new ClientRequest(
+				url + WebAppConstants.URL_SEPERATOR + request.get("productId"));
+		clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+		ClientResponse<ProductResponse> response = clientRequest.get(ProductResponse.class);
+		if (response.getStatus() != 200) {
+			throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+		}
+			logiwareResponse = response.getEntity();
+		if (!logiwareResponse.getCode().equals("0000")) {
+			throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+		}
+
+	} catch (LogiwareBaseException b) {
+		throw b;
+	} catch (Exception e) {
+		logger.error("Exception In ServiceInvoker editProduct method end.", e);
+		throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+				LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+	}
+	logger.info("ServiceInvoker addProduct method end. ");
+	return logiwareResponse;
+	}
 }

@@ -32,6 +32,19 @@ public class ContractCompDto implements Serializable{
 	private Date createdOn;
 	private Date updatedOn;
 	private Character delFlag;
+	public ContractCompDto(Integer id, String name){
+		this.id = id;
+		this.name = name;
+	}
+	
+	
+
+	public ContractCompDto() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
 
 	/**
 	 * @return the id
