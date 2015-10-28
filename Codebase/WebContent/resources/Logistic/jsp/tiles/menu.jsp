@@ -31,7 +31,16 @@
 													<i class="icon-pencil"></i>
 													Employee </a>
 												</li>
-												
+												<li>
+													<a href="getAllProduct.htm" class="iconify">
+													<i class="icon-basket"></i>
+													Product </a>
+												</li>
+												<li>
+													<a href="getAddedProduct.htm" class="iconify">
+													<i class="icon-basket"></i>
+													Company Product </a>
+												</li>
 											</ul>
 										</div>
 										
