@@ -1,17 +1,14 @@
 package com.admas.logiware.dto;
 
-import java.io.Serializable;
-
 import com.admas.logiware.jpa.CompanyBranch;
 
-public class CompanyBranchDto implements Serializable{
+public class CompanyBranchDto{
 
 	
 	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -1681832783387786096L;
 
 	private Integer id;
 	private Integer compId;

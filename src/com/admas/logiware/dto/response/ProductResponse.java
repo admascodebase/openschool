@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.admas.logiware.dto.ProductDto;
 
-public class ProductResponse extends BaseLogiwareResponse{
+public class ProductResponse extends BaseLogiwareResponse{ 
 
 	/**
 	 * 

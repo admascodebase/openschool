@@ -106,7 +106,7 @@ public class UserManagementDaoImpl implements IUserManagementDao {
 				return lEmployee.get(0);
 			} else {
 				throw new LogiwareExceptionHandler(
-						LogiwareServiceErrors.GENERIC_EXCEPTION);
+						LogiwareServiceErrors.NO_EMPLOYEE_FOUND);
 			}
 			
 		} catch (LogiwareExceptionHandler ex) {

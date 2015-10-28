@@ -1451,6 +1451,7 @@ public class MastersDaoImpl implements MastersDao {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Boolean addProduct(ProductDto productDto)
 			throws LogiwareExceptionHandler {
 		Boolean result = false;
@@ -1488,6 +1489,8 @@ public class MastersDaoImpl implements MastersDao {
 			CriteriaQuery<Product> criteriaQuery = criteriaBuilder
 					.createQuery(Product.class);
 			Root<Product> stateJpa = criteriaQuery.from(Product.class);
+			Predicate notDeleted=criteriaBuilder.equal(stateJpa.get("delFlag"), 'N');
+			criteriaQuery.where(notDeleted);
 			criteriaQuery.select(stateJpa);
 			TypedQuery<Product> typedQuery = entityManager
 					.createQuery(criteriaQuery);
@@ -1555,6 +1558,7 @@ public class MastersDaoImpl implements MastersDao {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Boolean editProduct(ProductDto productDto)
 			throws LogiwareExceptionHandler {
 		Boolean result = false;
@@ -1582,6 +1586,7 @@ public class MastersDaoImpl implements MastersDao {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Boolean deleteProduct(Integer id) throws LogiwareExceptionHandler {
 		Boolean result = false;
 		try {

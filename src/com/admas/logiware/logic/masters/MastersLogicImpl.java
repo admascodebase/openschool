@@ -921,7 +921,7 @@ public class MastersLogicImpl implements MastersLogic {
 	public Boolean deleteProduct(Integer id) throws LogiwareExceptionHandler {
 		Boolean result = false;
 		try {
-			result = mastersDao.deleteBranch(id);
+			result = mastersDao.deleteProduct(id);
 		} catch (LogiwareExceptionHandler e) {
 			throw e;
 		} catch (Exception e) {
