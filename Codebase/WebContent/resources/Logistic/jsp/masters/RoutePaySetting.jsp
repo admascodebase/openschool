@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
- <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
 	<div class="page-head">
@@ -163,11 +163,10 @@
 				<li><a href="#">Home</a><i class="fa fa-circle"></i></li>
 				<li><a href="table_managed.html">Masters</a> <i
 					class="fa fa-circle"></i></li>
-				<li><a href="table_managed.html"></a> <i
-					class="fa fa-circle"></i></li>
+				<li><a href="table_managed.html"></a> <i class="fa fa-circle"></i></li>
 				<li class="active">Payment Setting</li>
 			</ul>
-			
+
 			<!-- END PAGE BREADCRUMB -->
 			<!-- BEGIN PAGE CONTENT INNER -->
 			<div class="row">
@@ -177,9 +176,10 @@
 						<div class="portlet-title">
 							<div class="caption">
 								<i class="fa fa-cogs font-green-sharp"></i> <span
-									class="caption-subject font-green-sharp bold uppercase">Payment Setting</span>
+									class="caption-subject font-green-sharp bold uppercase">Payment
+									Setting</span>
 							</div>
-							
+
 							<div class="tools">
 								<a href="javascript:;" class="collapse"> </a> <a
 									href="#portlet-config" data-toggle="modal" class="config">
@@ -187,30 +187,32 @@
 									href="javascript:;" class="remove"> </a>
 							</div>
 						</div>
-					<c:if test="${errorCode ne null}">
-						<div class="alert alert-danger">
-							<button class="close" data-close="alert"></button>
-							<span><spring:message code="${errorCode}"></spring:message> </span>
-						</div>
-					</c:if>
-					
-					<c:if test="${sucessMessage ne null}">
-						<div class="alert alert-success">
-							<button class="close" data-close="alert"></button>
-							<spring:message code="${sucessMessage}"></spring:message>
-						</div>
-					</c:if>
+						<c:if test="${errorCode ne null}">
+							<div class="alert alert-danger">
+								<button class="close" data-close="alert"></button>
+								<span><spring:message code="${errorCode}"></spring:message>
+								</span>
+							</div>
+						</c:if>
 
-						<div class="portlet-body">
-							<div class="table-toolbar">
-								<div class="row">
-									<div class="col-md-6">
-										<div class="btn-group">
-											<button class="btn btn-circle btn-primary" onclick="showAddRoutePaySetting()">Add New</button>
+						<c:if test="${sucessMessage ne null}">
+							<div class="alert alert-success">
+								<button class="close" data-close="alert"></button>
+								<spring:message code="${sucessMessage}"></spring:message>
+							</div>
+						</c:if>
+						<form:form name="routePaySettingForm"
+							modelAttribute="companyRouteDto">
+							<div class="portlet-body">
+								<div class="table-toolbar">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="btn-group">
+												<button class="btn btn-circle btn-primary"
+													onclick="showAddRoutePaySetting()">Add New</button>
+											</div>
 										</div>
-									</div>
-									<form:form name="routePaySettingForm"
-										modelAttribute="companyRouteDto">
+
 										<div class="col-md-6">
 											<div class="btn-group pull-right">
 												<form:select id="contractCompSelect" path="compId"
@@ -234,48 +236,49 @@
 											</div>
 										</div>
 										<%-- <form:input path="compId"/> --%>
-										<form:hidden path="compId"/>
-										<form:hidden path="id"/>
-									</form:form>
+										<form:hidden path="compId" />
+										<form:hidden path="id" />
+
+									</div>
 								</div>
-							</div>
-							<table class="table table-striped table-bordered table-hover"
-								id="sample_2">
-								<thead>
-									<tr>
-										<th class="table-checkbox"><input type="checkbox"
-											class="group-checkable" data-set="#sample_2 .checkboxes" /></th>
-										<th>Id</th>
-										<th>Transport Type</th>
-										<th>Transport Type Details</th>
-										<th>Amount</th>
-										<th>Advance</th>
-										<th>Balance</th>
-										<th>Edit/Delete</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${lRoutePaySettingDto}" var="PaymentSetting">
-										<tr class="odd gradeX">
-											
-											<td><input type="checkbox" class="checkboxes" value="1" />
-											</td>
-											<td>${PaymentSetting.id}</td>
-											<td>${PaymentSetting.transportTypeId}</td>
-											<td>${PaymentSetting.transportTypeDtlId}</td>
-											<td>${PaymentSetting.amount}</td>
-											<td>${PaymentSetting.advance}</td>
-											<td>${PaymentSetting.balance}</td>
-											<td><a
-												href="editRoutePaySetting.htm?id=${PaymentSetting.id}"
-												class="btn btn-warning btn-xs"> Edit </a> <a
-												href="deleteRoutePaySetting.htm?id=${PaymentSetting.id}"
-												class="btn btn-info btn-xs"> Delete </a></td>
+								<table class="table table-striped table-bordered table-hover"
+									id="sample_2">
+									<thead>
+										<tr>
+											<th class="table-checkbox"><input type="checkbox"
+												class="group-checkable" data-set="#sample_2 .checkboxes" /></th>
+											<th>Id</th>
+											<th>Transport Type</th>
+											<th>Transport Type Details</th>
+											<th>Amount</th>
+											<th>Advance</th>
+											<th>Balance</th>
+											<th>Edit/Delete</th>
 										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</div>
+									</thead>
+									<tbody>
+										<c:forEach items="${lRoutePaySettingDto}" var="PaymentSetting">
+											<tr class="odd gradeX">
+
+												<td><input type="checkbox" class="checkboxes" value="1" />
+												</td>
+												<td>${PaymentSetting.id}</td>
+												<td>${PaymentSetting.transportTypeId}</td>
+												<td>${PaymentSetting.transportTypeDtlId}</td>
+												<td>${PaymentSetting.amount}</td>
+												<td>${PaymentSetting.advance}</td>
+												<td>${PaymentSetting.balance}</td>
+												<td><a
+													href="editRoutePaySetting.htm?id=${PaymentSetting.id}&contractCompId=${companyRouteDto.compId}"
+													class="btn btn-warning btn-xs"> Edit </a> <a
+													href="deleteRoutePaySetting.htm?id=${PaymentSetting.id}"
+													class="btn btn-info btn-xs"> Delete </a></td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</form:form>
 					</div>
 					<!-- END EXAMPLE TABLE PORTLET-->
 				</div>
@@ -287,25 +290,27 @@
 </div>
 
 <script>
+	function getAllPaySettings() {
+		var x = document.getElementById("routeSelect").value;
+		document.routePaySettingForm.action = "getAllRoutePaySetting.htm?id="
+				+ x;
+		document.routePaySettingForm.method = "GET";
+		document.routePaySettingForm.submit();
+	}
 
-function getAllPaySettings() {
-    var x = document.getElementById("routeSelect").value;
-    	 document.routePaySettingForm.action="getAllRoutePaySetting.htm?id="+x;
-    	 document.routePaySettingForm.method="GET";
-    	 document.routePaySettingForm.submit();
-}
+	function getAllCompRoutes() {
+		var x = document.getElementById("contractCompSelect").value;
+		document.routePaySettingForm.action = "getAllCompRoutes.htm?compId="
+				+ x;
+		document.routePaySettingForm.method = "GET";
+		document.routePaySettingForm.submit();
+	}
 
-function getAllCompRoutes() {
-    var x = document.getElementById("contractCompSelect").value;
-    	 document.routePaySettingForm.action="getAllCompRoutes.htm?compId="+x;
-    	 document.routePaySettingForm.method="GET";
-    	 document.routePaySettingForm.submit();
-}
-
-function showAddRoutePaySetting() {
-    var x = document.getElementById("routeSelect").value;
-    	 document.routePaySettingForm.action="showAddRoutePaySetting.htm?routeId="+x;
-    	 document.routePaySettingForm.method="GET";
-    	 document.routePaySettingForm.submit();
-}
+	function showAddRoutePaySetting() {
+		var x = document.getElementById("routeSelect").value;
+		document.routePaySettingForm.action = "showAddRoutePaySetting.htm?routeId="
+				+ x;
+		document.routePaySettingForm.method = "GET";
+		document.routePaySettingForm.submit();
+	}
 </script>
