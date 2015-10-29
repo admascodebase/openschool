@@ -97,7 +97,7 @@ public class EmployeeController extends BaseController {
 		ModelAndView mv = new ModelAndView("showAddEmployee");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
-		Integer compId=1;
+		Integer compId=Integer.parseInt(flowData.getSessionData(WebAppConstants.COMPID));
 		try {
 			reqDtoObjects.put("compId", compId);
 			resDtoObjects = masterServiceImpl.getAllRolles(flowData, reqDtoObjects, resDtoObjects);
@@ -181,6 +181,7 @@ public class EmployeeController extends BaseController {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/editEmployee.htm", method = RequestMethod.GET)
 	public ModelAndView editEmployee(HttpServletRequest request,
 			HttpServletResponse response) {
@@ -200,10 +201,13 @@ public class EmployeeController extends BaseController {
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		Integer employeeId = Integer.parseInt(request.getParameter("id"));
+		Integer compId=Integer.parseInt(flowData.getSessionData(WebAppConstants.COMPID));
 		try {
 			reqDtoObjects.put("employeeId", employeeId);
-			resDtoObjects = masterServiceImpl.getEmployeeById(flowData,
-					reqDtoObjects, resDtoObjects);
+			resDtoObjects = masterServiceImpl.getEmployeeById(flowData, reqDtoObjects, resDtoObjects);
+			reqDtoObjects.put("compId", compId);
+			resDtoObjects = masterServiceImpl.getAllRolles(flowData, reqDtoObjects, resDtoObjects);
+			
 			mv = new ModelAndView(
 					(String) resDtoObjects.get(WebAppConstants.VIEW_NAME));
 			mv.addObject("employee", resDtoObjects.get("employee"));			
@@ -218,6 +222,8 @@ public class EmployeeController extends BaseController {
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
+		List<RoleDto> lRoles = (List<RoleDto>) resDtoObjects.get("lRoles");
+		mv.addObject("lRoles", lRoles);
 		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
 		mv.addObject("userName", flowData.getSessionData("userName"));	
 		return mv;

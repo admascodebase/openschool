@@ -233,6 +233,9 @@
 
 											</div>
 										</div>
+										<%-- <form:input path="compId"/> --%>
+										<form:hidden path="compId"/>
+										<form:hidden path="id"/>
 									</form:form>
 								</div>
 							</div>
@@ -254,6 +257,7 @@
 								<tbody>
 									<c:forEach items="${lRoutePaySettingDto}" var="PaymentSetting">
 										<tr class="odd gradeX">
+											
 											<td><input type="checkbox" class="checkboxes" value="1" />
 											</td>
 											<td>${PaymentSetting.id}</td>
@@ -286,7 +290,6 @@
 
 function getAllPaySettings() {
     var x = document.getElementById("routeSelect").value;
-     	/* alert(""+x); */
     	 document.routePaySettingForm.action="getAllRoutePaySetting.htm?id="+x;
     	 document.routePaySettingForm.method="GET";
     	 document.routePaySettingForm.submit();
@@ -294,7 +297,6 @@ function getAllPaySettings() {
 
 function getAllCompRoutes() {
     var x = document.getElementById("contractCompSelect").value;
-     	/* alert(""+x); */
     	 document.routePaySettingForm.action="getAllCompRoutes.htm?compId="+x;
     	 document.routePaySettingForm.method="GET";
     	 document.routePaySettingForm.submit();
@@ -302,7 +304,6 @@ function getAllCompRoutes() {
 
 function showAddRoutePaySetting() {
     var x = document.getElementById("routeSelect").value;
-     	alert(""+x);
     	 document.routePaySettingForm.action="showAddRoutePaySetting.htm?routeId="+x;
     	 document.routePaySettingForm.method="GET";
     	 document.routePaySettingForm.submit();

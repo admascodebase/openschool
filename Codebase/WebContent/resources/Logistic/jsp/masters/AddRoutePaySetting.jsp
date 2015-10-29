@@ -72,6 +72,7 @@
 										<form:hidden path="id" />
 										<form:hidden path="delFlag" />
 										<form:hidden path="routeId" />
+										<form:hidden path="compId" />
 											<div class="form-body">
 												<h3 class="form-section"></h3>
 												<div class="row">

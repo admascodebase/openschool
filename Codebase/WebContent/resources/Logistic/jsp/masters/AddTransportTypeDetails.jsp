@@ -224,7 +224,7 @@
 														</div>
 													</div>
 													<!--/span-->
-													<div class="col-md-6">
+													<%-- <div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label col-md-3">Transaction</label>
 															<div class="col-md-9">
@@ -232,11 +232,8 @@
 																	placeholder="Address here.. "/> 
 															</div>
 														</div>
-													</div>
-													<!--/span-->
-												</div>
-												<!--/row-->
-												<div class="row">
+													</div> --%>
+													
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label col-md-3">Description
@@ -244,16 +241,6 @@
 															<div class="col-md-9">
 																<form:input type="text" path="description" class="form-control"
 																	placeholder="Transport Type Description."/> 
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-													<div class="col-md-6">
-														<div class="form-group">
-															<label class="control-label col-md-3">Size</label>
-															<div class="col-md-9">
-																<form:input path="size" type="text" class="form-control"
-																	placeholder="Enter your contact number."/>
 															</div>
 														</div>
 													</div>
@@ -274,6 +261,29 @@
 															</form:select> --%>
 														</div>
 													</div>
+													
+													<!--/span-->
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Size</label>
+															<div class="col-md-9">
+																<form:input path="size" type="text" class="form-control"
+																	placeholder="Enter your contact number."/>
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+												</div>
+												<!--/row-->
+												<div class="row">
+												<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">width</label>
+															<div class="col-md-9">
+																<form:input path="width" type="text" class="form-control" placeholder="PAN Number"/>
+															</div>
+														</div>
+													</div>
 													<!--/span-->
 													<div class="col-md-6">
 														<div class="form-group">
@@ -288,14 +298,7 @@
 												<!-- <h3 class="form-section">PAN Number</h3> -->
 												<!--/row-->
 												<div class="row">
-													<div class="col-md-6">
-														<div class="form-group">
-															<label class="control-label col-md-3">width</label>
-															<div class="col-md-9">
-																<form:input path="width" type="text" class="form-control" placeholder="PAN Number"/>
-															</div>
-														</div>
-													</div>
+													
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label col-md-3">Max Capacity</label>
@@ -305,7 +308,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="row">
+												
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label col-md-3">Capacity</label>
@@ -315,7 +318,7 @@
 														</div>
 													</div>
 													
-												</div>
+												
 												<!--/row-->
 											</div>
 											<div class="form-actions right">

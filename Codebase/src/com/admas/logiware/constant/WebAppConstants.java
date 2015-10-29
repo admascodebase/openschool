@@ -55,4 +55,8 @@ public interface WebAppConstants {
 	public String LW_PASSWORD_CHANGE_FAIL = "LW_PASSWORD_CHANGE_FAIL";
 
 	public String EMPID = "empId";
+
+	public String LW_PASSWORD_RESET_SUCCESS = "Passowrd Reset Successfully.";
+	
+	public String LW_PASSWORD_RESET_FAIL = "Passowrd Reset Failed.";
 }

@@ -21,6 +21,7 @@ import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.controller.core.BaseController;
 import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.FlowData;
+import com.admas.logiware.dto.LogiwareRespnse;
 import com.admas.logiware.dto.UserDetails;
 import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
@@ -205,9 +206,10 @@ public class LoginController extends BaseController {
 		return mv;
 	}
 
-//	saveChangePassword
-	
-	
+/**
+ * 	saveChangePassword
+ *	
+*/	
 
 	@RequestMapping(value = "/saveChangePassword.htm", method = RequestMethod.POST)
 	public ModelAndView saveChangePassword(
@@ -229,13 +231,18 @@ public class LoginController extends BaseController {
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		String sucessMessage= "";
+		LogiwareRespnse logiwareRespnse = null;
 		try {
 			userDetails.setEmpId(Integer.parseInt(flowData.getSessionData(WebAppConstants.EMPID)));
 			userDetails.setCompId(Integer.parseInt(flowData.getSessionData(WebAppConstants.EMPID)));
 			reqDtoObjects.put("userDetails", userDetails);
 			resDtoObjects = userManagementServiceImpl.getemployeeDetails(flowData, reqDtoObjects, resDtoObjects);			
 			resDtoObjects = userManagementServiceImpl.saveChangePassword(flowData, reqDtoObjects, resDtoObjects);
+			logiwareRespnse = (LogiwareRespnse) resDtoObjects.get("userResponse");
+			if((Boolean) logiwareRespnse.getData()==true){
 				sucessMessage= WebAppConstants.LW_PASSWORD_CHANGE_SUCCESS;
+			}else
+			sucessMessage= WebAppConstants.LW_PASSWORD_CHANGE_FAIL;
 				
 			mv.addObject(WebAppConstants.SUCESS_MESSAGE,sucessMessage);
 		} catch (LogiwareBaseException _be) {
@@ -268,14 +275,16 @@ public class LoginController extends BaseController {
 			flowData = (FlowData) request.getSession().getAttribute(WebAppConstants.FLOWDATA);
 		}
 		/*if (!flowData.isLoggedIn())
-			return super.loginPage(flowData, request);
-*/
+			return super.loginPage(flowData, request);*/
+
 		ModelAndView mv = new ModelAndView("login");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 //		String sucessMessage = "";
 		EmployeeDto employeeDto = null;
 		String email = request.getParameter("emailId");
+		LogiwareRespnse logiwareRespnse = null;
+		String sucessMessage = "";
 		try {
 			reqDtoObjects.put("email", email);
 			resDtoObjects = userManagementServiceImpl.authenticateEmail(flowData, reqDtoObjects, resDtoObjects);
@@ -284,6 +293,13 @@ public class LoginController extends BaseController {
 				reqDtoObjects.put("employeeDto", employeeDto);
 				resDtoObjects = userManagementServiceImpl.resetPassword(flowData, reqDtoObjects, resDtoObjects);
 			}
+			logiwareRespnse = (LogiwareRespnse) resDtoObjects.get("userRensponce");
+			if((Boolean) logiwareRespnse.getData()==true){
+				sucessMessage= WebAppConstants.LW_PASSWORD_RESET_SUCCESS;
+			}else
+			sucessMessage= WebAppConstants.LW_PASSWORD_RESET_FAIL;
+			
+			mv.addObject(WebAppConstants.SUCESS_MESSAGE,sucessMessage);
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in LoginController: resetPassword", _be);
 			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
@@ -291,7 +307,7 @@ public class LoginController extends BaseController {
 			logger.error("Exception In LoginController saveChangePassword Method--", e);
 			mv.addObject(WebAppConstants.ERROR_CODE, LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
-		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
+//		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
 		mv.addObject("userName", flowData.getSessionData("userName"));
 		logger.info("LoginController: resetPassword Method End.");
 		return mv;

@@ -128,6 +128,8 @@ public class LoadController extends BaseController{
 		LoadDto LoadEntry =new LoadDto();
 		try {
 			reqDtoObjects.put("contractCompId", compId);
+			LoadEntry.setCompId(compId);
+//			mv.addObject("compId", compId);
 			resDtoObjects = masterServiceImpl.getAllContractCompRoutes(flowData, reqDtoObjects, resDtoObjects);
 			resDtoObjects = masterServiceImpl.getAllTransportTypes(flowData, reqDtoObjects, resDtoObjects);
 			reqDtoObjects.put("transId", 1);
@@ -286,5 +288,70 @@ public class LoadController extends BaseController{
 		return mv;
 	}
 
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "/getAllTransportTypeDetailListForLoad.htm", method = RequestMethod.GET)
+	public ModelAndView getAllTransportTypeDetailListForLoad(HttpServletRequest request, HttpServletResponse response) throws LogiwareBaseException {
+
+		logger.info("TransportTypeController: getAllTransportTypeDetailsList() Method Start.");
+		FlowData flowData = null;
+
+		super.handleRequestInternal(request, response);
+		if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
+			flowData = (FlowData) request.getSession().getAttribute(
+					WebAppConstants.FLOWDATA);
+		}
+		if (!flowData.isLoggedIn())
+			return super.loginPage(flowData, request);
+		
+		ModelAndView mv = new ModelAndView("showAddAllLoadEntry");
+		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
+		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
+		LoadDto loadDto = new LoadDto();
+		Integer transportTypeId = Integer.parseInt(request.getParameter("transportTypeId"));
+		Integer compId=Integer.parseInt(request.getParameter("compId")); 
+		List<CompanyRouteDto> lCompanyRouteDtos = null;
+		List<CompanyRouteDto> lCompanyRouteDtos2 = new ArrayList<CompanyRouteDto>();
+		try {
+			loadDto.setTransportTypeId(transportTypeId);
+			loadDto.setCompId(compId);
+			reqDtoObjects.put("transId", transportTypeId);
+			reqDtoObjects.put("contractCompId", compId);
+			resDtoObjects = masterServiceImpl.getAllContractCompRoutes(flowData, reqDtoObjects, resDtoObjects);
+			
+			mv.addObject("transId", transportTypeId);
+			resDtoObjects = masterServiceImpl.getAllTransportTypes(flowData, reqDtoObjects, resDtoObjects);
+			resDtoObjects = masterServiceImpl.getAllTransportTypeDetails(flowData, reqDtoObjects, resDtoObjects);
+			
+		} catch (LogiwareBaseException _be) {
+			logger.error("Exception in LoadController: getAllTransportTypeDetailsList", _be);
+			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
+		} catch (Exception e) {
+			logger.error("Exception In LoadController getAllTransportTypeDetails Method--", e);
+			mv.addObject(WebAppConstants.ERROR_CODE, LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
+			resDtoObjects = masterServiceImpl.getAllTransportTypes(flowData, reqDtoObjects, resDtoObjects);
+		}
+		
+		lCompanyRouteDtos =(List<CompanyRouteDto>) resDtoObjects.get("lCompanyRouteDtos");
+		for (CompanyRouteDto companyRouteDto2 : lCompanyRouteDtos) {
+			String routeName = companyRouteDto2.getStartCityId().getName() + " - " +companyRouteDto2.getEndCityId().getName();
+			companyRouteDto2.setRouteName(routeName);
+			lCompanyRouteDtos2.add(companyRouteDto2);
+		}
+		mv.addObject("lCompanyRouteDtos", lCompanyRouteDtos2);
+	
+		List<TransportTypeDto> lTransports = (List<TransportTypeDto>) resDtoObjects
+				.get("lTransports");
+		mv.addObject("lTransports", lTransports);
+		List<TransportTypeDtlDto> lTransportTypeDtls = (List<TransportTypeDtlDto>) resDtoObjects
+				.get("lTransportTypeDtls");
+		mv.addObject("lTransportTypeDtls", lTransportTypeDtls);
+		
+		mv.addObject("LoadEntry", loadDto);
+		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
+		mv.addObject("userName", flowData.getSessionData("userName"));	
+		return mv;
+
+
+	}
 	
 }

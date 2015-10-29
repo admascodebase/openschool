@@ -162,7 +162,6 @@
 <script>
 function getAllLoadEntry() {
     var x = document.getElementById("contractCompanySelect").value;
-     	 alert(""+x);
     	 document.LoadEntryForm.action="getAllLoadEntry.htm?compId="+x;
     	 document.LoadEntryForm.method="GET";
     	 document.LoadEntryForm.submit();

@@ -76,6 +76,44 @@
 										<form:hidden path="compId" id="ContractcompId"/>
 											<div class="form-body">
 												<h3 class="form-section"></h3>
+												
+												
+												<div class="row">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Transport Type</label>
+															<div class="col-md-9">
+																<%-- <form:input type="text" path="endCityId" class="form-control"/> --%>
+																<form:select id="TransportTypeSelect" path="transportTypeId"
+															class="form-control"
+															onchange="getAllTransportTypeDetails()">
+															<form:option value="0" label="---Select---" />
+															<form:options class="form-control" itemValue="id"
+																itemLabel="name" items="${lTransports}" />
+														</form:select> 
+															</div>
+														</div>
+													</div>
+													
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Transport Type Details</label>
+															<div class="col-md-9">
+																<%-- <form:input type="text" path="endCityId" class="form-control"/> --%>
+																<form:select id="tranTypeDtlId" path="transportTypeDtlDto.id"
+																	class="form-control">
+																	<form:option value="0" label="---Select---" />
+																	<form:options class="form-control" itemValue="id"
+																		itemLabel="truckName" items="${lTransportTypeDtls}" />
+																</form:select>
+															</div>
+														</div>
+													</div>
+													
+												</div>
+												
+												
+												
 												<div class="row">
 													<%-- <div class="col-md-6">
 														<div class="form-group">
@@ -103,39 +141,6 @@
 													<!--/span-->
 												</div>
 												<!--/row-->
-												<div class="row">
-													<div class="col-md-6">
-														<div class="form-group">
-															<label class="control-label col-md-3">Transport Type</label>
-															<div class="col-md-9">
-																<%-- <form:input type="text" path="endCityId" class="form-control"/> --%>
-																<form:select id="TransportTypeSelect" path="transportTypeId"
-															class="form-control"
-															onchange="getAllTransportTypeDetails()">
-															<form:option value="0" label="---Select---" />
-															<form:options class="form-control" itemValue="id"
-																itemLabel="name" items="${lTransports}" />
-														</form:select> 
-															</div>
-														</div>
-													</div>
-													
-													<div class="col-md-6">
-														<div class="form-group">
-															<label class="control-label col-md-3">Transport Type Details</label>
-															<div class="col-md-9">
-																<%-- <form:input type="text" path="endCityId" class="form-control"/> --%>
-																<form:select id="tranTypeDtlId" path="transportTypeDtlDto.id"
-																	class="form-control">
-																	<form:option value="0" label="---Select---" />
-																	<form:options class="form-control" itemValue="id"
-																		itemLabel="truckName" items="${lTransportTypeDtlDtos}" />
-																</form:select>
-															</div>
-														</div>
-													</div>
-													
-												</div>
 												
 												<div class="row">
 													<div class="col-md-6">
@@ -215,18 +220,21 @@
 </div>
 
 <script>
-function goBack() {
-    var x = document.getElementById("ContractcompId").value;
-    	 document.AddLoadEntryForm.action="getAllContractCompRoutes.htm?ownId="+x;
-    	 document.AddLoadEntryForm.method="GET";
-    	 document.AddLoadEntryForm.submit();
-}
 
-function getAllTransportTypeDetails() {
-    var x = document.getElementById("TransportTypeSelect").value;
-     	/* alert(""+x); */
-    	 document.AddLoadEntryForm.action="getAllTransportTypeDetails.htm?transId="+x;
-    	 document.AddLoadEntryForm.method="GET";
-    	 document.AddLoadEntryForm.submit();
-}
+	function goBack() {
+		var companyId = document.getElementById("ContractcompId").value;
+		alert("compId" + companyId);
+		document.AddLoadEntryForm.action = "getAllLoadEntry.htm?compId="+companyId;
+		document.AddLoadEntryForm.method = "GET";
+		document.AddLoadEntryForm.submit();
+	}
+
+	function getAllTransportTypeDetails() {
+		var x = document.getElementById("TransportTypeSelect").value;
+		var companyId = document.getElementById("ContractcompId").value;
+		alert("" + x+"---"+companyId);
+		document.AddLoadEntryForm.action = "getAllTransportTypeDetailListForLoad.htm?transportTypeId="+ x+"&compId="+companyId;
+		document.AddLoadEntryForm.method = "GET";
+		document.AddLoadEntryForm.submit();
+	}
 </script>

@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
+ <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
@@ -378,9 +378,9 @@
 	<!-- END PAGE CONTENT -->
 </div>
 <script>
-/* function goBack() {
+ /* function goBack() {
 	var x = document.getElementById("transportTypeId").value;
-	/* alert("" + x + "---" + ownId); */
+	 alert("" + x + "---" + ownId);
 	 	 document.addTransportTypeDetailsForm.action="getAllTransportTypeDetails.htm?transId=" + x;
 		 document.addTransportTypeDetailsForm.method="GET";
 		 document.addTransportTypeDetailsForm.submit();

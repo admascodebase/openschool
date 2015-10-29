@@ -8,12 +8,19 @@
 	<!-- BEGIN LOGIN FORM -->
 	<h3 class="form-title">Login to your account</h3>
 	<c:if test="${errorCode ne null}">
-		<div class="alert alert-danger">
-			<button class="close" data-close="alert"></button>
-			<span>
-			<spring:message code="${errorCode}"></spring:message> </span>
-		</div>
-		</c:if>
+						<div class="alert alert-danger">
+							<button class="close" data-close="alert"></button>
+							<span><spring:message code="${errorCode}"></spring:message> </span>
+						</div>
+					</c:if>
+					
+					<c:if test="${sucessMessage ne null}">
+						<div class="alert alert-success">
+							<button class="close" data-close="alert"></button>
+							<spring:message code="${sucessMessage}"></spring:message>
+						</div>
+					</c:if>
+			
 	<form class="login-form" action="userLogin.htm" method="post">
 		
 		<div class="alert alert-danger display-hide">
@@ -85,12 +92,12 @@
 	<form:form class="forget-form" action="resetPassword.htm">
 		<h3>Forget Password ?</h3>
 		<p>
-			 Enter your e-mail address below to reset your password.
+			 Enter your Registered Mobile Number address below to reset your password.
 		</p>
 		<div class="form-group">
 			<div class="input-icon">
 				<i class="fa fa-envelope"></i>
-				<input class="form-control" type="text"  placeholder="Email" name="emailId"/>
+				<input class="form-control" type="text"  placeholder="Mobile Number" name="emailId"/>
 			</div>
 		</div>
 		<div class="form-actions">

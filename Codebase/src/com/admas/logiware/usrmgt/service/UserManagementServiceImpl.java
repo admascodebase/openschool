@@ -125,8 +125,7 @@ public class UserManagementServiceImpl {
 		LogiwareRespnse logiwareResponse = null;
 		try {
 			logiwareResponse = doServiceCall(flowData, ServiceName.saveChangePassword, reqDtoObjects);
-			UserDetails userDetails = (UserDetails) logiwareResponse.getUerDetailsDto();
-			flowData.setSessionDataObject(WebAppConstants.USER, userDetails);
+			resDtoObjects.put("userResponse", logiwareResponse);
 		} catch (LogiwareBaseException b) {
 			throw b;
 		} catch (Exception e) {
@@ -173,8 +172,6 @@ public class UserManagementServiceImpl {
 			
 			logiwareResponse = doServiceCall(flowData, ServiceName.resetPassword,
 					reqDtoObjects);
-			EmployeeDto employeeDto = logiwareResponse.getEmployeeDto();
-			resDtoObjects.put("employeeDto", employeeDto);
 			resDtoObjects.put("userRensponce", logiwareResponse);
 		} catch (LogiwareBaseException b) {
 			throw b;

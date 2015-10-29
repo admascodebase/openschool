@@ -151,6 +151,7 @@ public class RoutePaySettingController extends BaseController{
 				companyRouteDto2.setRouteName(routeName);
 				lCompanyRouteDto2.add(companyRouteDto2);
 			}
+			mv.addObject("compId", contractCompId);
 			mv.addObject("lCompanyRouteDto", lCompanyRouteDto2);
 			mv.addObject("companyRouteDto", companyRouteDto);
 		} catch (LogiwareBaseException _be) {
@@ -172,7 +173,7 @@ public class RoutePaySettingController extends BaseController{
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/showAddRoutePaySetting.htm", method = RequestMethod.GET)
-	public ModelAndView showAddRoutePaySetting(HttpServletRequest request,
+	public ModelAndView showAddRoutePaySetting(@ModelAttribute("companyRouteDto")CompanyRouteDto routeDto,HttpServletRequest request,
 			HttpServletResponse response) {
 
 		logger.info("RoutePaySettingController: showAddRoutePaySetting Method Start.");
@@ -188,10 +189,12 @@ public class RoutePaySettingController extends BaseController{
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		RoutePaySettingDto routePaySettingDto = new RoutePaySettingDto();
-		Integer routeId = (Integer) request.getAttribute("routeId");
+		Integer routeId = routeDto.getId();
 		try {
+			routePaySettingDto.setRouteId(routeId);
+			routePaySettingDto.setCompId(routeDto.getCompId());
 			resDtoObjects = masterServiceImpl.getAllTransportTypes(flowData, reqDtoObjects, resDtoObjects);
-			resDtoObjects = masterServiceImpl.getAllTransportTypeDetails(flowData, reqDtoObjects, resDtoObjects);
+//			resDtoObjects = masterServiceImpl.getAllTransportTypeDetails(flowData, reqDtoObjects, resDtoObjects);
 		} catch (Exception e) {
 			logger.error(
 					"Exception In RoutePaySettingController: showAddRoutePaySetting Method--", e);
@@ -270,15 +273,28 @@ public class RoutePaySettingController extends BaseController{
 			return super.loginPage(flowData, request);
 
 		routePaySettingDto.setDelFlag('N');
-		routePaySettingDto.setRouteId(1);
+		routePaySettingDto.setRouteId(routePaySettingDto.getRouteId());
 		ModelAndView mv = new ModelAndView("getAllRoutePaySetting");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		String sucessMessage= "";
+		List<CompanyRouteDto> lCompanyRouteDto2 = new ArrayList<CompanyRouteDto>();
+		CompanyRouteDto companyRouteDto = new CompanyRouteDto();
 		try {
 			reqDtoObjects.put("routePaySettingDto", routePaySettingDto);
-//			need to remove hard coded id below
-			reqDtoObjects.put("routePaySettingId", 1);
+			reqDtoObjects.put("routePaySettingId", routePaySettingDto.getRouteId());
+			companyRouteDto.setId(routePaySettingDto.getRouteId());
+			companyRouteDto.setCompId(routePaySettingDto.getCompId());
+			resDtoObjects = masterServiceImpl.getAllContractCompany(flowData, reqDtoObjects, resDtoObjects);
+			reqDtoObjects.put("contractCompId", routePaySettingDto.getCompId());
+			resDtoObjects = masterServiceImpl.getAllContractCompRoutes(flowData, reqDtoObjects, resDtoObjects);
+			List<CompanyRouteDto> lCompanyRouteDto = (List<CompanyRouteDto>) resDtoObjects.get("lCompanyRouteDtos");
+			for (CompanyRouteDto companyRouteDto2 : lCompanyRouteDto) {
+				String routeName = companyRouteDto2.getStartCityId().getName() + " - " +companyRouteDto2.getEndCityId().getName();
+				companyRouteDto2.setRouteName(routeName);
+				lCompanyRouteDto2.add(companyRouteDto2);
+			}
+
 			if (routePaySettingDto.getId() != null && routePaySettingDto.getId() > 0) {
 				resDtoObjects = masterServiceImpl.saveEditRoutePaySetting(flowData, reqDtoObjects, resDtoObjects);
 				sucessMessage= WebAppConstants.LW_SUCESS_EDIT;
@@ -287,7 +303,6 @@ public class RoutePaySettingController extends BaseController{
 						reqDtoObjects, resDtoObjects);
 				sucessMessage= WebAppConstants.LW_SUCESS_ADD;
 			}
-//			resDtoObjects = masterServiceImpl.getAllRoutePaySetting(flowData, reqDtoObjects, resDtoObjects);
 			mv.addObject(WebAppConstants.SUCESS_MESSAGE,sucessMessage);
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in RoutePaySettingController: saveRoutePaySetting", _be);
@@ -298,8 +313,14 @@ public class RoutePaySettingController extends BaseController{
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
+		List<CompanyDto> lCompanies = (List<CompanyDto>) resDtoObjects.get("lContractCompanies");
+		mv.addObject("lCompanies", lCompanies);
+		
+		mv.addObject("lCompanyRouteDto", lCompanyRouteDto2);
+		
 		List<RoutePaySettingDto> lRoutePaySettingDto = (List<RoutePaySettingDto>) resDtoObjects.get("lRoutePaySettingDto");
 		mv.addObject("lRoutePaySettingDto", lRoutePaySettingDto);
+		mv.addObject("companyRouteDto",companyRouteDto);
 		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
 		mv.addObject("userName", flowData.getSessionData("userName"));
 		logger.info("RoutePaySettingController: saveRoutePaySetting Method End.");
@@ -309,7 +330,7 @@ public class RoutePaySettingController extends BaseController{
 
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/editRoutePaySetting.htm", method = RequestMethod.GET)
-	public ModelAndView editEmployee(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView editEmployee(@ModelAttribute("companyRouteDto")CompanyRouteDto routeDto, HttpServletRequest request, HttpServletResponse response) {
 
 		logger.info("RoutePaySettingController: editRoutePaySetting Method Start.");
 		FlowData flowData = null;
@@ -324,6 +345,8 @@ public class RoutePaySettingController extends BaseController{
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		Integer routePaySettingId = Integer.parseInt(request.getParameter("id"));
+		Integer compId = (Integer) request.getAttribute("compId");
+		Integer compId1 = Integer.parseInt(request.getParameter("compId"));
 		try {
 			reqDtoObjects.put("routePaySettingId", routePaySettingId);
 			resDtoObjects = masterServiceImpl.getRoutePaySettingById(flowData, reqDtoObjects, resDtoObjects);
