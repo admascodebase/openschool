@@ -7,7 +7,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.HibernateException;
@@ -35,13 +34,13 @@ public class LoadDaoImpl implements LoadDao{
 		List<Load> lLoad = null;
 		CriteriaBuilder criteriaBuilder = null;
 		try {
-			criteriaBuilder = entityManager.getCriteriaBuilder();
+/*			criteriaBuilder = entityManager.getCriteriaBuilder();
 			CriteriaQuery<Load> criteriaQuery = criteriaBuilder.createQuery(Load.class);
 			Root<Load> loadJpa = criteriaQuery.from(Load.class);
-			Predicate notDeleted=criteriaBuilder.equal(loadJpa.get("delFlag"), 'N');
-			Predicate contCompId=criteriaBuilder.equal(loadJpa.get("compId"), contractCompId);
+//			Predicate notDeleted=criteriaBuilder.equal(loadJpa.get("delFlag"), 'N');
+//			Predicate contCompId=criteriaBuilder.equal(loadJpa.get("compId"), contractCompId);
 			criteriaQuery.select(loadJpa);
-			criteriaQuery.where(notDeleted, contCompId);
+			criteriaQuery.where(notDeleted);
 			TypedQuery<Load> typedQuery = entityManager.createQuery(criteriaQuery);
 			lLoad = typedQuery.getResultList();
 
@@ -51,7 +50,25 @@ public class LoadDaoImpl implements LoadDao{
 				throw new LogiwareExceptionHandler(
 						LogiwareServiceErrors.NO_LOAD_ENTRY_FOUND);
 			}
+*/
+			criteriaBuilder = entityManager.getCriteriaBuilder();
+			CriteriaQuery<Load> criteriaQuery = criteriaBuilder
+					.createQuery(Load.class);
+			Root<Load> loadJpa = criteriaQuery.from(Load.class);
+			criteriaQuery.select(loadJpa);
+			TypedQuery<Load> typedQuery = entityManager
+					.createQuery(criteriaQuery);
+			lLoad = typedQuery.getResultList();
 
+			if (lLoad != null && lLoad.size() != 0) {
+				return lLoad;
+			} else {
+				throw new LogiwareExceptionHandler(
+						LogiwareServiceErrors.NO_CITY_FOUND);
+			}
+
+
+			
 		} catch (LogiwareExceptionHandler ex) {
 			throw ex;
 		} catch (HibernateException he) {

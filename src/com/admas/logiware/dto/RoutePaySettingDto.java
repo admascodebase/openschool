@@ -24,7 +24,8 @@ public class RoutePaySettingDto implements Serializable {
 	private Date createdOn;
 	private Date updatedOn;
 	private Character delFlag;
-
+	private Integer compId;
+	
 	/**
 	 * @return the id
 	 */
@@ -219,6 +220,20 @@ public class RoutePaySettingDto implements Serializable {
 	 */
 	public void setTransportTypeDtlId(Integer transportTypeDtlId) {
 		this.transportTypeDtlId = transportTypeDtlId;
+	}
+
+	/**
+	 * @return the compId
+	 */
+	public Integer getCompId() {
+		return compId;
+	}
+
+	/**
+	 * @param compId the compId to set
+	 */
+	public void setCompId(Integer compId) {
+		this.compId = compId;
 	}
 
 }

@@ -60,7 +60,9 @@ public class MastersDaoImpl implements MastersDao {
 			CriteriaQuery<City> criteriaQuery = criteriaBuilder
 					.createQuery(City.class);
 			Root<City> cityJpa = criteriaQuery.from(City.class);
+			Predicate notDeleted = criteriaBuilder.equal(cityJpa.get("delFlag"), 'N');
 			criteriaQuery.select(cityJpa);
+			criteriaQuery.where(notDeleted);
 			TypedQuery<City> typedQuery = entityManager
 					.createQuery(criteriaQuery);
 			lCities = typedQuery.getResultList();
@@ -567,6 +569,7 @@ public class MastersDaoImpl implements MastersDao {
 			employee.setSalary(employeeDto.getSalary());
 			employee.setSalaryType(employeeDto.getSalaryType());
 			employee.setDelFlg(employeeDto.getDelFlag());
+			employee.setRoleId(employeeDto.getRoleId());
 			
 			entityManager.merge(employee);
 			entityManager.flush();
