@@ -250,13 +250,11 @@
 			value="/resources/Logistic/jsp/masters/AddProductDetailsForm.jsp" />
 	</definition>
 	
-<!-- 			<definition name="editProduct" extends="logistic.baselayout">
+<!--<definition name="editProduct" extends="logistic.baselayout">
 		<put-attribute name="title" value="Logistic -Product Details" />
 		<put-attribute name="body"
 			value="/resources/Logistic/jsp/masters/editProductDetailsForm.jsp" />
 	</definition> -->
-
-	</definition>
 
 	<definition name="getAllRoutePaySetting" extends="logistic.baselayout">
 		<put-attribute name="title" value="Logistic -Route Payment Setting" />

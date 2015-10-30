@@ -1800,7 +1800,7 @@ public class MasterServiceImpl {
 			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
 		}
-		resDtoObjects = getAllEmployee(flowData, reqDtoObjects, resDtoObjects);
+		resDtoObjects = getAllRoutePaySetting(flowData, reqDtoObjects, resDtoObjects);
 		logger.info("MasterServiceImpl saveEditRoutePaySetting method end. ");
 		return resDtoObjects;
 	}

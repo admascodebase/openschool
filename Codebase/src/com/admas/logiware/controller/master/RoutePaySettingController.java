@@ -24,7 +24,9 @@ import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.controller.core.BaseController;
 import com.admas.logiware.dto.CompanyDto;
 import com.admas.logiware.dto.CompanyRouteDto;
+import com.admas.logiware.dto.ContractCompDto;
 import com.admas.logiware.dto.FlowData;
+import com.admas.logiware.dto.LogiwareRespnse;
 import com.admas.logiware.dto.RoutePaySettingDto;
 import com.admas.logiware.dto.TransportTypeDtlDto;
 import com.admas.logiware.dto.TransportTypeDto;
@@ -190,9 +192,24 @@ public class RoutePaySettingController extends BaseController{
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		RoutePaySettingDto routePaySettingDto = new RoutePaySettingDto();
 		Integer routeId = routeDto.getId();
+		LogiwareRespnse logiwareRespnse = null;
+		ContractCompDto contractCompDto = null;
+		CompanyRouteDto contractCompRouteDto2 = null;
 		try {
 			routePaySettingDto.setRouteId(routeId);
 			routePaySettingDto.setCompId(routeDto.getCompId());
+			reqDtoObjects.put("contractCompanyId", routeDto.getCompId());
+			reqDtoObjects.put("contractCompRouteId", routeId);
+			resDtoObjects = masterServiceImpl.getContractCompanyById(flowData, reqDtoObjects, resDtoObjects);	//in order to get company name to display on add form
+			logiwareRespnse = (LogiwareRespnse) resDtoObjects.get("userResponse");
+			contractCompDto = logiwareRespnse.getContractCompDto();
+			
+			resDtoObjects = masterServiceImpl.getContractCompRouteById(flowData, reqDtoObjects, resDtoObjects);	
+			contractCompRouteDto2 = (CompanyRouteDto) resDtoObjects.get("contractCompRouteDto");			
+			
+				String routeName = contractCompRouteDto2.getStartCityId().getName() + " - " +contractCompRouteDto2.getEndCityId().getName();
+				contractCompRouteDto2.setRouteName(routeName);
+			
 			resDtoObjects = masterServiceImpl.getAllTransportTypes(flowData, reqDtoObjects, resDtoObjects);
 //			resDtoObjects = masterServiceImpl.getAllTransportTypeDetails(flowData, reqDtoObjects, resDtoObjects);
 		} catch (Exception e) {
@@ -201,6 +218,8 @@ public class RoutePaySettingController extends BaseController{
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
+		mv.addObject("ContractCompanyName", contractCompDto.getName());
+		mv.addObject("ContractCompanyRouteName", contractCompRouteDto2.getRouteName());
 		mv.addObject("routePaySettingDto", routePaySettingDto);
 		List<TransportTypeDto> lTransports = (List<TransportTypeDto>) resDtoObjects.get("lTransports");
 		mv.addObject("lTransports", lTransports);
@@ -283,8 +302,8 @@ public class RoutePaySettingController extends BaseController{
 		try {
 			reqDtoObjects.put("routePaySettingDto", routePaySettingDto);
 			reqDtoObjects.put("routePaySettingId", routePaySettingDto.getRouteId());
-			companyRouteDto.setId(routePaySettingDto.getRouteId());
-			companyRouteDto.setCompId(routePaySettingDto.getCompId());
+			companyRouteDto.setId(routePaySettingDto.getRouteId());  		//	id refers to the ContractCompanyRouteId
+			companyRouteDto.setCompId(routePaySettingDto.getCompId());  	//	compId refers to the ContractCompanyId
 			resDtoObjects = masterServiceImpl.getAllContractCompany(flowData, reqDtoObjects, resDtoObjects);
 			reqDtoObjects.put("contractCompId", routePaySettingDto.getCompId());
 			resDtoObjects = masterServiceImpl.getAllContractCompRoutes(flowData, reqDtoObjects, resDtoObjects);
@@ -345,12 +364,12 @@ public class RoutePaySettingController extends BaseController{
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		Integer routePaySettingId = Integer.parseInt(request.getParameter("id"));
-		Integer compId = (Integer) request.getAttribute("compId");
-		Integer compId1 = Integer.parseInt(request.getParameter("compId"));
+		Integer contractCompanyId = Integer.parseInt(request.getParameter("contractCompId"));
 		try {
 			reqDtoObjects.put("routePaySettingId", routePaySettingId);
 			resDtoObjects = masterServiceImpl.getRoutePaySettingById(flowData, reqDtoObjects, resDtoObjects);
 			RoutePaySettingDto routePaySettingDto = (RoutePaySettingDto) resDtoObjects.get("routePaySettingDto");
+			routePaySettingDto.setCompId(contractCompanyId);
 			mv.addObject("routePaySettingDto", routePaySettingDto);
 			reqDtoObjects.put("transId", routePaySettingDto.getTransportTypeId());
 			resDtoObjects = masterServiceImpl.getAllTransportTypes(flowData, reqDtoObjects, resDtoObjects);
@@ -375,7 +394,7 @@ public class RoutePaySettingController extends BaseController{
 
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/deleteRoutePaySetting.htm", method = RequestMethod.GET)
-	public ModelAndView deleteRoutePaySetting(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView deleteRoutePaySetting(@ModelAttribute("companyRouteDto")CompanyRouteDto routeDto, HttpServletRequest request, HttpServletResponse response) {
 
 		logger.info("RoutePaySettingController: deleteRoutePaySetting Method Start.");
 		FlowData flowData = null;
@@ -390,9 +409,27 @@ public class RoutePaySettingController extends BaseController{
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		Integer routePaySettingId = Integer.parseInt(request.getParameter("id"));
+		List<CompanyRouteDto> lCompanyRouteDto2 = new ArrayList<CompanyRouteDto>();
+		Integer routeId = Integer.parseInt(request.getParameter("routeId"));
+		Integer ContractCompId = Integer.parseInt(request.getParameter("contractCompId"));
+		CompanyRouteDto companyRouteDto = new CompanyRouteDto();
 		try {
-			reqDtoObjects.put("routePaySettingId", 1);
-			reqDtoObjects.put("routePayId", routePaySettingId);
+			reqDtoObjects.put("routePaySettingId", routeId);		// this id is used for getAllRoutePaySetting Method
+			reqDtoObjects.put("routePayId", routePaySettingId);				// this id is used for deleteRoutePaySetting Method
+//			reqDtoObjects.put("", routeId);
+			reqDtoObjects.put("contractCompId", ContractCompId);
+			companyRouteDto.setId(routeId);
+			companyRouteDto.setCompId(ContractCompId);
+			
+			resDtoObjects = masterServiceImpl.getAllContractCompany(flowData, reqDtoObjects, resDtoObjects);
+			resDtoObjects = masterServiceImpl.getAllContractCompRoutes(flowData, reqDtoObjects, resDtoObjects);
+			List<CompanyRouteDto> lCompanyRouteDto = (List<CompanyRouteDto>) resDtoObjects.get("lCompanyRouteDtos");
+			for (CompanyRouteDto companyRouteDto2 : lCompanyRouteDto) {
+				String routeName = companyRouteDto2.getStartCityId().getName() + " - " +companyRouteDto2.getEndCityId().getName();
+				companyRouteDto2.setRouteName(routeName);
+				lCompanyRouteDto2.add(companyRouteDto2);
+			}
+
 			resDtoObjects = masterServiceImpl.deleteRoutePaySetting(flowData, reqDtoObjects, resDtoObjects);
 			mv.addObject(WebAppConstants.SUCESS_MESSAGE, WebAppConstants.LW_SUCESS_DELETE);
 		} catch (LogiwareBaseException _be) {
@@ -403,6 +440,11 @@ public class RoutePaySettingController extends BaseController{
 			logger.error("Exception In RoutePaySettingController deleteRoutePaySetting Method--", e);
 			mv.addObject(WebAppConstants.ERROR_CODE, LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
+		mv.addObject("lCompanyRouteDto", lCompanyRouteDto2);
+		List<CompanyDto> lCompanies = (List<CompanyDto>) resDtoObjects.get("lContractCompanies");
+		mv.addObject("lCompanies", lCompanies);
+		
+		mv.addObject("companyRouteDto", companyRouteDto);
 		List<RoutePaySettingDto> lRoutePaySettingDto = (List<RoutePaySettingDto>) resDtoObjects.get("lRoutePaySettingDto");
 		mv.addObject("lRoutePaySettingDto", lRoutePaySettingDto);
 		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
