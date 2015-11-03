@@ -516,6 +516,9 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="${pageContext.request.contextPath}/resources/Logistic/assets/admin/layout3/scripts/layout.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/resources/Logistic/assets/admin/layout2/scripts/quick-sidebar.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/resources/Logistic/assets/admin/layout3/scripts/demo.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/resources/Logistic/assets/admin/layout3/scripts/main.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/resources/main.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/resources/Logistic/assets/admin/pages/scripts/form-validation.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/resources/Logistic/assets/admin/pages/scripts/table-managed.js"></script>
 <script src="${pageContext.request.contextPath}/resources/Logistic/assets/admin/pages/scripts/index3.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/resources/Logistic/assets/admin/pages/scripts/tasks.js" type="text/javascript"></script>

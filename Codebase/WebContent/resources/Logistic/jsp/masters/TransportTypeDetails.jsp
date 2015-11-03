@@ -1,7 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
- <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
+<script src="<c:url value="/resources/main.js" />"></script>
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
 	<div class="page-head">
@@ -14,121 +16,7 @@
 			</div>
 			<!-- END PAGE TITLE -->
 			<!-- BEGIN PAGE TOOLBAR -->
-			<div class="page-toolbar">
-				<!-- BEGIN THEME PANEL -->
-				<div class="btn-group btn-theme-panel">
-					<a href="javascript:;" class="btn dropdown-toggle"
-						data-toggle="dropdown"> <i class="icon-settings"></i>
-					</a>
-					<div
-						class="dropdown-menu theme-panel pull-right dropdown-custom hold-on-click">
-						<div class="row">
-							<div class="col-md-6 col-sm-6 col-xs-12">
-								<h3>THEME COLORS</h3>
-								<div class="row">
-									<div class="col-md-6 col-sm-6 col-xs-12">
-										<ul class="theme-colors">
-											<li class="theme-color theme-color-default"
-												data-theme="default"><span class="theme-color-view"></span>
-												<span class="theme-color-name">Default</span></li>
-											<li class="theme-color theme-color-blue-hoki"
-												data-theme="blue-hoki"><span class="theme-color-view"></span>
-												<span class="theme-color-name">Blue Hoki</span></li>
-											<li class="theme-color theme-color-blue-steel"
-												data-theme="blue-steel"><span class="theme-color-view"></span>
-												<span class="theme-color-name">Blue Steel</span></li>
-											<li class="theme-color theme-color-yellow-orange"
-												data-theme="yellow-orange"><span
-												class="theme-color-view"></span> <span
-												class="theme-color-name">Orange</span></li>
-											<li class="theme-color theme-color-yellow-crusta"
-												data-theme="yellow-crusta"><span
-												class="theme-color-view"></span> <span
-												class="theme-color-name">Yellow Crusta</span></li>
-										</ul>
-									</div>
-									<div class="col-md-6 col-sm-6 col-xs-12">
-										<ul class="theme-colors">
-											<li class="theme-color theme-color-green-haze"
-												data-theme="green-haze"><span class="theme-color-view"></span>
-												<span class="theme-color-name">Green Haze</span></li>
-											<li class="theme-color theme-color-red-sunglo"
-												data-theme="red-sunglo"><span class="theme-color-view"></span>
-												<span class="theme-color-name">Red Sunglo</span></li>
-											<li class="theme-color theme-color-red-intense"
-												data-theme="red-intense"><span class="theme-color-view"></span>
-												<span class="theme-color-name">Red Intense</span></li>
-											<li class="theme-color theme-color-purple-plum"
-												data-theme="purple-plum"><span class="theme-color-view"></span>
-												<span class="theme-color-name">Purple Plum</span></li>
-											<li class="theme-color theme-color-purple-studio"
-												data-theme="purple-studio"><span
-												class="theme-color-view"></span> <span
-												class="theme-color-name">Purple Studio</span></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 col-sm-6 col-xs-12 seperator">
-								<h3>LAYOUT</h3>
-								<ul class="theme-settings">
-									<li>Theme Style <select
-										class="theme-setting theme-setting-style form-control input-sm input-small input-inline tooltips"
-										data-original-title="Change theme style" data-container="body"
-										data-placement="left">
-											<option value="boxed" selected="selected">Square
-												corners</option>
-											<option value="rounded">Rounded corners</option>
-									</select>
-									</li>
-									<li>Layout <select
-										class="theme-setting theme-setting-layout form-control input-sm input-small input-inline tooltips"
-										data-original-title="Change layout type" data-container="body"
-										data-placement="left">
-											<option value="boxed" selected="selected">Boxed</option>
-											<option value="fluid">Fluid</option>
-									</select>
-									</li>
-									<li>Top Menu Style <select
-										class="theme-setting theme-setting-top-menu-style form-control input-sm input-small input-inline tooltips"
-										data-original-title="Change top menu dropdowns style"
-										data-container="body" data-placement="left">
-											<option value="dark" selected="selected">Dark</option>
-											<option value="light">Light</option>
-									</select>
-									</li>
-									<li>Top Menu Mode <select
-										class="theme-setting theme-setting-top-menu-mode form-control input-sm input-small input-inline tooltips"
-										data-original-title="Enable fixed(sticky) top menu"
-										data-container="body" data-placement="left">
-											<option value="fixed">Fixed</option>
-											<option value="not-fixed" selected="selected">Not
-												Fixed</option>
-									</select>
-									</li>
-									<li>Mega Menu Style <select
-										class="theme-setting theme-setting-mega-menu-style form-control input-sm input-small input-inline tooltips"
-										data-original-title="Change mega menu dropdowns style"
-										data-container="body" data-placement="left">
-											<option value="dark" selected="selected">Dark</option>
-											<option value="light">Light</option>
-									</select>
-									</li>
-									<li>Mega Menu Mode <select
-										class="theme-setting theme-setting-mega-menu-mode form-control input-sm input-small input-inline tooltips"
-										data-original-title="Enable fixed(sticky) mega menu"
-										data-container="body" data-placement="left">
-											<option value="fixed" selected="selected">Fixed</option>
-											<option value="not-fixed">Not Fixed</option>
-									</select>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- END THEME PANEL -->
-			</div>
+			
 			<!-- END PAGE TOOLBAR -->
 		</div>
 	</div>
@@ -167,6 +55,7 @@
 					class="fa fa-circle"></i></li>
 				<li class="active">Transport Type Details</li>
 			</ul>
+			<div id="msg">A MSG</div>
 			<!-- END PAGE BREADCRUMB -->
 			<!-- BEGIN PAGE CONTENT INNER -->
 			<div class="row">
@@ -176,8 +65,8 @@
 						<div class="portlet-title">
 							<div class="caption">
 								<i class="fa fa-cogs font-green-sharp"></i> <span
-									class="caption-subject font-green-sharp bold uppercase">Transport Type
-									Details</span>
+									class="caption-subject font-green-sharp bold uppercase">Transport
+									Type Details</span>
 							</div>
 							<div class="tools">
 								<a href="javascript:;" class="collapse"> </a> <a
@@ -186,54 +75,52 @@
 									href="javascript:;" class="remove"> </a>
 							</div>
 						</div>
-						
+
 						<c:if test="${errorCode ne null}">
-						<div class="alert alert-danger">
-							<button class="close" data-close="alert"></button>
-							<span><spring:message code="${errorCode}"></spring:message> </span>
-						</div>
-					</c:if>
-					
-					<c:if test="${sucessMessage ne null}">
-						<div class="alert alert-success">
-							<button class="close" data-close="alert"></button>
-							<spring:message code="${sucessMessage}"></spring:message>
-						</div>
-					</c:if>
-						
+							<div class="alert alert-danger">
+								<button class="close" data-close="alert"></button>
+								<span><spring:message code="${errorCode}"></spring:message>
+								</span>
+							</div>
+						</c:if>
+
+						<c:if test="${sucessMessage ne null}">
+							<div class="alert alert-success">
+								<button class="close" data-close="alert"></button>
+								<spring:message code="${sucessMessage}"></spring:message>
+							</div>
+						</c:if>
+
 						<div class="portlet-body">
 							<div class="table-toolbar">
 								<div class="row">
-									<div class="col-md-6">
+									<div class="col-md-4">
 										<div class="btn-group">
 											<a href="showAddTransportTypeDetails.htm?transId=${transId}"><button
-													class="btn btn-circle btn-primary">Add New</button></a> <a
-												href="showEditTransportTypeDetails.htm"><button
-													class="btn btn-circle yellow-crusta">Edit</button></a> <a
-												href="showDeleteTransportTypeDetails.htm"><button
-													class="btn btn-circle yellow-crusta">delete</button></a>
-
+													class="btn btn-circle btn-primary">Add New</button></a>
 										</div>
 									</div>
-									<div class="col-md-6">
-										<div class="btn-group pull-right">
+									<div class="col-md-4">
+									</div>
+									<div class="col-md-4">
 											<form:form name="TransportDetailsForm"
 												modelAttribute="transportTypeDtlDto"
 												action="getAllTransportDetails.htm">
-												<div class="">
-													<div class="">
-														<form:select id="mySelect" path="transId"
-															class="form-control"
-															onchange="getAllTransportTypeDetails()">
-															<form:option value="0" label="---Select---" />
-															<form:options class="form-control" itemValue="id"
-																itemLabel="name" items="${lTransports}" />
-														</form:select>
-													</div>
-												</div>
+
+											<div class="btn-group pull-right">
+												<label class="control-label col-md-10">Select
+													Transport Type </label>
+												<form:select id="mySelect" path="transId"
+														class="form-control"
+														onchange="getAllTransportTypeDetails()">
+														<form:option value="0" label="---Select---" />
+														<form:options class="form-control" itemValue="id"
+															itemLabel="name" items="${lTransports}" />
+													</form:select>
+											</div>
 											</form:form>
-										</div>
 									</div>
+									
 								</div>
 							</div>
 
@@ -259,7 +146,7 @@
 								<tbody>
 									<c:forEach items="${lTransportTypeDtls}" var="transportTypeDtl">
 										<tr class="odd gradeX">
-											<form:hidden path="transId"/>
+											<form:hidden path="transId" />
 											<td><input type="checkbox" class="checkboxes" value="1" />
 											</td>
 											<td>${transportTypeDtl.id}</td>
@@ -272,14 +159,11 @@
 											<td>${transportTypeDtl.width}</td>
 											<td>${transportTypeDtl.maxCapacity}</td>
 											<td>${transportTypeDtl.capacity}</td>
-											<td>
-												<a href="showEditTransportTypeDetails.htm?id=${transportTypeDtl.id}"
-													class="btn btn-warning btn-xs"> Edit 
-												</a> 
-												 <a href="showDeleteTransportTypeDetails.htm?id=${transportTypeDtl.id}&transId=${transportTypeDtl.transId}"
-													class="btn btn-info btn-xs"> Delete 
-												</a> 
-											</td>
+											<td><a
+												href="showEditTransportTypeDetails.htm?id=${transportTypeDtl.id}"
+												class="btn btn-warning btn-xs"> Edit </a> <a
+												href="showDeleteTransportTypeDetails.htm?id=${transportTypeDtl.id}&transId=${transportTypeDtl.transId}"
+												class="btn btn-info btn-xs"> Delete </a></td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -320,13 +204,14 @@
 </script>
 
 <script>
-function getAllTransportTypeDetails() {
-    var x = document.getElementById("mySelect").value;
-     	/* alert(""+x); */
-    	 document.TransportDetailsForm.action="getAllTransportTypeDetails.htm?transId="+x;
-    	 document.TransportDetailsForm.method="GET";
-    	 document.TransportDetailsForm.submit();
-}
+	function getAllTransportTypeDetails() {
+		var x = document.getElementById("mySelect").value;
+		/* alert(""+x); */
+		document.TransportDetailsForm.action = "getAllTransportTypeDetails.htm?transId="
+				+ x;
+		document.TransportDetailsForm.method = "GET";
+		document.TransportDetailsForm.submit();
+	}
 </script>
 </body>
 

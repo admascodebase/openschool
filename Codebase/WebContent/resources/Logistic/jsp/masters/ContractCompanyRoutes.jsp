@@ -89,20 +89,22 @@
 						<div class="portlet-body">
 							<div class="table-toolbar">
 								<div class="row">
-									<div class="col-md-6">
+									<div class="col-md-4">
 										<div class="btn-group">
 											<a href="showAddContractCompRoute.htm?compId=${contractCompId}"><button
 													class="btn btn-circle btn-primary">Add New</button></a>
 										</div>
 									</div>
 								 	<form:form name="compRouteForm" modelAttribute="companyRoute" action="getAllContractCompRoutes.htm">
-								 	<div class="col-md-6">
-										<div class="">
+								 <div class="col-md-4">
+								 </div>
+								 	<div class="col-md-4">
+											<label class="control-label col-md-10">Select
+												Contract Company </label>
 											<form:select id="mySelect" path="compId" class="form-control" onchange="getAllCompanyRoutes()">
 												<form:option value="0" label="---Select---" />
 												<form:options class="form-control" itemValue="id" itemLabel="name" items="${lContractCompanies}" />
 											</form:select>
-										</div>
 									</div> 
 									</form:form>
 									

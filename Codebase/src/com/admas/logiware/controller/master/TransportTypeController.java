@@ -354,20 +354,25 @@ public class TransportTypeController extends BaseController {
 		
 		logger.info("TransportTypeController: saveTransportTypeDetails Method Start.");
 		FlowData flowData = null;
-		/*if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
+		if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
 		flowData = (FlowData) request.getSession().getAttribute(
 				WebAppConstants.FLOWDATA);
 		}
 		if (!flowData.isLoggedIn())
-			return super.loginPage(flowData, request);*/
+			return super.loginPage(flowData, request);
 		transportTypeDtlDto.setDelFlag('N');
-		ModelAndView mv = new ModelAndView("getAllTransportTypeDetails") ;
+		ModelAndView mv = new ModelAndView("showAddTranceportTypeDetails") ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		TransportTypeDtlDto transportTypeDtlDto2 = new TransportTypeDtlDto();
-		try {	
+		Integer transId = 0;
+		try {
+			if(transportTypeDtlDto.getTransId()==null){
+				transId = Integer.parseInt(request.getParameter("transId"));
+			}else{
+				transId = transportTypeDtlDto.getTransId();	
+			}
 			reqDtoObjects.put("transportTypeDtlDto", transportTypeDtlDto);
-			Integer transId = Integer.parseInt(request.getParameter("transId"));
 			reqDtoObjects.put("transId", transId);
 			mv.addObject("transId", transId);
 			transportTypeDtlDto2.setTransId(transId);
@@ -400,6 +405,9 @@ public class TransportTypeController extends BaseController {
 		mv.addObject("transportTypeDtlDto", transportTypeDtlDto2);
 		List<TransportTypeDtlDto> lTransportTypeDtls = (List<TransportTypeDtlDto>) resDtoObjects.get("lTransportTypeDtls");
 		mv.addObject("lTransportTypeDtls", lTransportTypeDtls);
+		transportTypeDtlDto = new TransportTypeDtlDto();
+		transportTypeDtlDto.setTransId(transId);
+		mv.addObject("transportTypeDetails", transportTypeDtlDto);
 		return mv;
 		
 		

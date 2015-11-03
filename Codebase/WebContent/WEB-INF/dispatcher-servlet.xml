@@ -104,4 +104,6 @@
 	<bean id="ProductController" class="com.admas.logiware.controller.master.ProductController" />
 		<bean id="RoutePaySettingController" class="com.admas.logiware.controller.master.RoutePaySettingController" />
 	<bean id="LoadController" class="com.admas.logiware.controller.master.LoadController" />
+
+	<mvc:resources location="/resources/Logistic/js/" mapping="/resources/**"/>
 </beans>

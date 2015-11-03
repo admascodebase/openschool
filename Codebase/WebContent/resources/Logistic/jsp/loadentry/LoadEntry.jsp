@@ -79,31 +79,28 @@
 						<div class="portlet-body">
 							<div class="table-toolbar">
 								<div class="row">
-									<div class="col-md-6">
+									<div class="col-md-4">
 										<div class="btn-group">
 											<a href="showAddloadEntry.htm?compId=${compId}"><button
 													class="btn btn-circle btn-primary">Add New</button></a>
 										</div>
 									</div>
-									<div class="col-md-6">
-										<div class="col-md-6">
-										<div class="btn-group pull-right">
-											<form:form name="LoadEntryForm"
-												modelAttribute="LoadEntry"
-												action="getAllTransportDetails.htm">
-													<div class="">
-														<div class="">
-															<form:select id="contractCompanySelect" path="compId"
-																class="form-control" onchange="getAllLoadEntry()">
-																<form:option value="0" label="---Select---" />
-																<form:options class="form-control" itemValue="id"
-																	itemLabel="name" items="${lContractCompanies}" />
-															</form:select>
-														</div>
-													</div>
-												</form:form>
-										</div>
+									<div class="col-md-4">
 									</div>
+									<div class="col-md-4">
+										<div class="btn-group pull-right">
+											<form:form name="LoadEntryForm" modelAttribute="LoadEntry"
+												action="getAllTransportDetails.htm">
+												<label class="control-label col-md-10">Select
+													Contract Company </label>
+												<form:select id="contractCompanySelect" path="compId"
+													class="form-control" onchange="getAllLoadEntry()">
+													<form:option value="0" label="---Select---" />
+													<form:options class="form-control" itemValue="id"
+														itemLabel="name" items="${lContractCompanies}" />
+												</form:select>
+											</form:form>
+										</div>
 									</div>
 								</div>
 							</div>
