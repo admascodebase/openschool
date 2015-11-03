@@ -8,19 +8,19 @@
 	<!-- BEGIN LOGIN FORM -->
 	<h3 class="form-title">Login to your account</h3>
 	<c:if test="${errorCode ne null}">
-						<div class="alert alert-danger">
-							<button class="close" data-close="alert"></button>
-							<span><spring:message code="${errorCode}"></spring:message> </span>
-						</div>
-					</c:if>
-					
-					<c:if test="${sucessMessage ne null}">
-						<div class="alert alert-success">
-							<button class="close" data-close="alert"></button>
-							<spring:message code="${sucessMessage}"></spring:message>
-						</div>
-					</c:if>
-			
+		<div class="alert alert-danger">
+			<button class="close" data-close="alert"></button>
+			<span><spring:message code="${errorCode}"></spring:message> </span>
+		</div>
+	</c:if>
+
+	<c:if test="${sucessMessage ne null}">
+		<div class="alert alert-success">
+			<button class="close" data-close="alert"></button>
+			<spring:message code="${sucessMessage}"></spring:message>
+		</div>
+	</c:if>
+
 	<form class="login-form" action="userLogin.htm" method="post">
 		
 		<div class="alert alert-danger display-hide">

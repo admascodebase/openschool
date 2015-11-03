@@ -87,23 +87,21 @@
 							<!-- SIDEBAR USER TITLE -->
 							<div class="profile-usertitle">
 								<div class="profile-usertitle-name">
-									 Marcus Doe
+									 ${name}
 								</div>
-								<div class="profile-usertitle-job">
-									 Developer
-								</div>
+								
 							</div>
 							<!-- END SIDEBAR USER TITLE -->
 							<!-- SIDEBAR BUTTONS -->
 							<div class="profile-userbuttons">
-								<button type="button" class="btn btn-circle green-haze btn-sm">Follow</button>
-								<button type="button" class="btn btn-circle btn-danger btn-sm">Message</button>
+								<!-- <button type="button" class="btn btn-circle green-haze btn-sm">Follow</button>
+								<button type="button" class="btn btn-circle btn-danger btn-sm">Message</button> -->
 							</div>
 							<!-- END SIDEBAR BUTTONS -->
 							<!-- SIDEBAR MENU -->
 							<div class="profile-usermenu">
 								<ul class="nav">
-									<li>
+									<!-- <li>
 										<a href="extra_profile.html">
 										<i class="icon-home"></i>
 										Overview </a>
@@ -122,7 +120,7 @@
 										<a href="extra_profile_help.html">
 										<i class="icon-info"></i>
 										Help </a>
-									</li>
+									</li> -->
 								</ul>
 							</div>
 							<!-- END MENU -->
@@ -132,7 +130,7 @@
 						<div class="portlet light">
 							<!-- STAT -->
 							<div class="row list-separated profile-stat">
-								<div class="col-md-4 col-sm-4 col-xs-6">
+								<!-- <div class="col-md-4 col-sm-4 col-xs-6">
 									<div class="uppercase profile-stat-title">
 										 37
 									</div>
@@ -155,11 +153,11 @@
 									<div class="uppercase profile-stat-text">
 										 Uploads
 									</div>
-								</div>
+								</div> -->
 							</div>
 							<!-- END STAT -->
 							<div>
-								<h4 class="profile-desc-title">About Marcus Doe</h4>
+								<!-- <h4 class="profile-desc-title">About Marcus Doe</h4>
 								<span class="profile-desc-text"> Lorem ipsum dolor sit amet diam nonummy nibh dolore. </span>
 								<div class="margin-top-20 profile-desc-link">
 									<i class="fa fa-globe"></i>
@@ -172,7 +170,7 @@
 								<div class="margin-top-20 profile-desc-link">
 									<i class="fa fa-facebook"></i>
 									<a href="http://www.facebook.com/keenthemes/">keenthemes</a>
-								</div>
+								</div> -->
 							</div>
 						</div>
 						<!-- END PORTLET MAIN -->
@@ -197,9 +195,6 @@
 											</li>
 											<li >
 												<a href="#tab_1_3" data-toggle="tab">Change Password</a>
-											</li>
-											<li>
-												<a href="#tab_1_4" data-toggle="tab">Privacy Settings</a>
 											</li>
 										</ul>
 									</div>
