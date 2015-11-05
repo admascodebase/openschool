@@ -39,6 +39,15 @@ public class CompanyRoute implements Serializable{
 //	@Column(name="END_ROUTE" ,nullable = false )
 	private City endCityId;
 	
+	@Column(name="DISTANCE" ,nullable = false)
+	private Integer distance;
+	
+	@Column(name="DELIVERY_DAYS" ,nullable = false)
+	private Integer deliveryDays;
+	
+	@Column(name="BUFER_TIME" ,nullable = false)
+	private Integer buferTime;
+	
 	/*@Column(name="TRANSPORT_DTL_ID" ,nullable = false )
 	private Integer transportDetailId;
 	
@@ -122,6 +131,48 @@ public class CompanyRoute implements Serializable{
 		this.endCityId = endCityId;
 	}
 
+	/**
+	 * @return the distance
+	 */
+	public Integer getDistance() {
+		return distance;
+	}
+
+	/**
+	 * @param distance the distance to set
+	 */
+	public void setDistance(Integer distance) {
+		this.distance = distance;
+	}
+
+	/**
+	 * @return the deliveryDays
+	 */
+	public Integer getDeliveryDays() {
+		return deliveryDays;
+	}
+
+	/**
+	 * @param deliveryDays the deliveryDays to set
+	 */
+	public void setDeliveryDays(Integer deliveryDays) {
+		this.deliveryDays = deliveryDays;
+	}
+
+	/**
+	 * @return the buferTime
+	 */
+	public Integer getBuferTime() {
+		return buferTime;
+	}
+
+	/**
+	 * @param buferTime the buferTime to set
+	 */
+	public void setBuferTime(Integer buferTime) {
+		this.buferTime = buferTime;
+	}
+
 	/*	
 	*//**
 	 * @return the transportDetailId
@@ -165,6 +216,8 @@ public class CompanyRoute implements Serializable{
 		this.advanceAmt = advanceAmt;
 	}
 */
+	
+	
 	public CompanyRouteDto _toDto(){
 		CompanyRouteDto companyRouteDto = new CompanyRouteDto();
 		companyRouteDto.setCompId(this.compId);
@@ -172,6 +225,9 @@ public class CompanyRoute implements Serializable{
 		companyRouteDto.setEndCityId(this.endCityId._toDto());
 		companyRouteDto.setId(this.id);
 		companyRouteDto.setStartCityId(this.startCityId._toDto());
+		companyRouteDto.setDistance(this.distance);
+		companyRouteDto.setDeliveryDays(this.deliveryDays);
+		companyRouteDto.setBuferTime(this.buferTime);
 //		companyRouteDto.setTransportDetailsId(this.transportDetailId);
 //		companyRouteDto.setCost(this.cost);
 //		companyRouteDto.setAdvanceAmt(this.advanceAmt);

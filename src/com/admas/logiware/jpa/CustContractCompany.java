@@ -72,6 +72,10 @@ public class CustContractCompany {
 	@Column(name="UNLOADING_STAFF_CONTACT" ,nullable = false)
 	private String unloadingStaffContact;
 	
+	@Column(name="IS_REGULAR" ,nullable = false)
+	private Character isregular;
+	
+	
 	@Column(name="CREATED_BY" ,nullable = false)
 	private Integer createdBy;
 	
@@ -427,6 +431,20 @@ public class CustContractCompany {
 
 	
 	
+	/**
+	 * @return the isregular
+	 */
+	public Character getIsregular() {
+		return isregular;
+	}
+
+	/**
+	 * @param isregular the isregular to set
+	 */
+	public void setIsregular(Character isregular) {
+		this.isregular = isregular;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -439,7 +457,7 @@ public class CustContractCompany {
 				+ ", loadingStaff=" + loadingStaff + ", loadingStaffContact=" + loadingStaffContact
 				+ ", unloadingStaff=" + unloadingStaff + ", unloadingStaffContact=" + unloadingStaffContact
 				+ ", createdBy=" + createdBy + ", updatedBy=" + updatedBy + ", createdOn=" + createdOn + ", updatedOn="
-				+ updatedOn + ", delFlag=" + delFlag + "]";
+				+ updatedOn + ", isRegular=" + isregular + ", delFlag=" + delFlag + "]";
 	}
 
 	public ContractCompDto _toDto(){
@@ -467,6 +485,7 @@ public class CustContractCompany {
 		contractCompDto.setType(this.type);
 		contractCompDto.setUpdatedBy(this.updatedBy);
 		contractCompDto.setUpdatedOn(this.updatedOn);
+		contractCompDto.setIsRegular(this.isregular);
 		return contractCompDto;
 	}
 	

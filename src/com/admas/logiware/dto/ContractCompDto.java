@@ -3,8 +3,6 @@ package com.admas.logiware.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-
 import com.admas.logiware.jpa.CustContractCompany;
 
 public class ContractCompDto implements Serializable{
@@ -31,6 +29,7 @@ public class ContractCompDto implements Serializable{
 	private String loadingStaffContact;
 	private String unloadingStaff;
 	private String unloadingStaffContact;
+	private Character isRegular;
 	private Integer createdBy;
 	private Integer updatedBy;
 	private Date createdOn;
@@ -360,6 +359,20 @@ public class ContractCompDto implements Serializable{
 	}
 
 	/**
+	 * @return the isRegular
+	 */
+	public Character getIsRegular() {
+		return isRegular;
+	}
+
+	/**
+	 * @param isRegular the isRegular to set
+	 */
+	public void setIsRegular(Character isRegular) {
+		this.isRegular = isRegular;
+	}
+
+	/**
 	 * @return the serialversionuid
 	 */
 	public static long getSerialversionuid() {
@@ -380,7 +393,7 @@ public class ContractCompDto implements Serializable{
 				+ ", loadingStaff=" + loadingStaff + ", loadingStaffContact=" + loadingStaffContact
 				+ ", unloadingStaff=" + unloadingStaff + ", unloadingStaffContact=" + unloadingStaffContact
 				+ ", createdBy=" + createdBy + ", updatedBy=" + updatedBy + ", createdOn=" + createdOn + ", updatedOn="
-				+ updatedOn + ", delFlag=" + delFlag + "]";
+				+ updatedOn + ", isRegular=" + isRegular + ", delFlag=" + delFlag + "]";
 	}
 
 	public CustContractCompany _toJpa(){
@@ -408,6 +421,7 @@ public class ContractCompDto implements Serializable{
 		custContractCompany.setType(this.type);
 		custContractCompany.setUpdatedBy(this.updatedBy);
 		custContractCompany.setUpdatedOn(new Date());
+		custContractCompany.setIsregular(this.isRegular);
 		return custContractCompany;
 	}
 	
