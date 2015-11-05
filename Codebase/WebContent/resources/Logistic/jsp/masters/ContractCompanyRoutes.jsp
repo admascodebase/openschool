@@ -120,6 +120,9 @@
 										<th>Id</th>
 										<th>Start City</th>
 										<th>End City</th>
+										<th>Distance</th>
+										<th>Delivery Days</th>
+										<th>Buffer Time</th>
 										<th>Edit/Delete</th>
 									</tr>
 								</thead>
@@ -132,6 +135,9 @@
 											<td>${CompanyRouteDto.id}</td>
 											<td>${CompanyRouteDto.startCityId.name}</td>
 											<td>${CompanyRouteDto.endCityId.name}</td>
+											<td>${CompanyRouteDto.distance}</td>
+											<td>${CompanyRouteDto.deliveryDays}</td>
+											<td>${CompanyRouteDto.buferTime}</td>
 											<td><a href="editContractCompanyRoute.htm?id=${CompanyRouteDto.id}"
 												class="btn btn-warning btn-xs"> Edit </a> <a
 												href="deleteContractCompanyRoute.htm?id=${CompanyRouteDto.id}&compId=${CompanyRouteDto.compId}"

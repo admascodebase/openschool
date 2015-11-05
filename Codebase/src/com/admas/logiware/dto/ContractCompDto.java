@@ -27,6 +27,7 @@ public class ContractCompDto implements Serializable{
 	private String loadingStaffContact;
 	private String unloadingStaff;
 	private String unloadingStaffContact;
+	private Character isRegular;
 	private Integer createdBy;
 	private Integer updatedBy;
 	private Date createdOn;
@@ -380,7 +381,25 @@ public class ContractCompDto implements Serializable{
 				+ ", loadingStaff=" + loadingStaff + ", loadingStaffContact=" + loadingStaffContact
 				+ ", unloadingStaff=" + unloadingStaff + ", unloadingStaffContact=" + unloadingStaffContact
 				+ ", createdBy=" + createdBy + ", updatedBy=" + updatedBy + ", createdOn=" + createdOn + ", updatedOn="
-				+ updatedOn + ", delFlag=" + delFlag + "]";
+				+ updatedOn + ", delFlag=" + delFlag + ", isRegular=" + isRegular + "]";
+	}
+
+
+
+	/**
+	 * @return the isRegular
+	 */
+	public Character getIsRegular() {
+		return isRegular;
+	}
+
+
+
+	/**
+	 * @param isRegular the isRegular to set
+	 */
+	public void setIsRegular(Character isRegular) {
+		this.isRegular = isRegular;
 	}
 	
 }

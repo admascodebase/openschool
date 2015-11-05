@@ -167,17 +167,22 @@ public class ContractCompanyRouteController extends BaseController{
 		if (!flowData.isLoggedIn())
 			return super.loginPage(flowData, request);
 		companyRouteDto.setDelFlag('N');
-		ModelAndView mv = new ModelAndView("getAllContractCompRoute");
+		ModelAndView mv = new ModelAndView("showAddContractCompRoute");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		String sucessMessage= "";
 		Integer contractCompanyId=0;
 		ContractCompDto contractCompDto2 = new ContractCompDto();
+		CompanyRouteDto companyRouteDto2 = new CompanyRouteDto(); 
 		try {
 			 contractCompanyId =companyRouteDto.getCompId();
+			 companyRouteDto2.setCompId(contractCompanyId);
 			contractCompDto2.setCompId(contractCompanyId);
 			reqDtoObjects.put("companyRouteDto", companyRouteDto);
 			reqDtoObjects.put("contractCompId", contractCompanyId);
+			
+			resDtoObjects=masterServiceImpl.getAllCities(flowData, reqDtoObjects, resDtoObjects);
+			resDtoObjects = masterServiceImpl.getAllCities(flowData, reqDtoObjects, resDtoObjects);
 			
 			if (companyRouteDto.getId() != null && companyRouteDto.getId() > 0) {
 				resDtoObjects = masterServiceImpl.saveEditCompanyRoute(flowData, reqDtoObjects, resDtoObjects);
@@ -198,11 +203,16 @@ public class ContractCompanyRouteController extends BaseController{
 			mv.addObject(WebAppConstants.ERROR_CODE,
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
+		List<CityDto> lCityStart = (List<CityDto>) resDtoObjects.get("lCities");
+		mv.addObject("lCityStart", lCityStart);
+		List<CityDto> lCityEnd = (List<CityDto>) resDtoObjects.get("lCities");		
+		mv.addObject("lCityEnd", lCityEnd);
+		
 		List<ContractCompDto> lContractCompanies = (List<ContractCompDto>) resDtoObjects.get("lContractCompanies");
 		mv.addObject("lContractCompanies", lContractCompanies);
 		List<CompanyRouteDto> lCompanyRouteDtos = (List<CompanyRouteDto>) resDtoObjects.get("lCompanyRouteDtos");		
 		mv.addObject("lCompanyRouteDtos", lCompanyRouteDtos);		
-		mv.addObject("companyRoute", contractCompDto2 );
+		mv.addObject("companyRoute", companyRouteDto2);
 		mv.addObject("contractCompId", contractCompanyId);
 		
 		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");

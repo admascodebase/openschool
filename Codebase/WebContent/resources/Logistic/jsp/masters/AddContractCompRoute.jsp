@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
 	<div class="page-head">
@@ -8,7 +9,8 @@
 			<!-- BEGIN PAGE TITLE -->
 			<div class="page-title">
 				<h1>
-					Contract Company Route  <small>Add Contract Company Route Here</small>
+					Contract Company Route <small>Add Contract Company Route
+						Here</small>
 				</h1>
 			</div>
 			<!-- END PAGE TITLE -->
@@ -17,6 +19,21 @@
 	</div>
 	<!-- END PAGE HEAD -->
 	<!-- BEGIN PAGE CONTENT -->
+	<c:if test="${errorCode ne null}">
+							<div class="alert alert-danger">
+								<button class="close" data-close="alert"></button>
+								<span><spring:message code="${errorCode}"></spring:message>
+								</span>
+							</div>
+						</c:if>
+
+						<c:if test="${sucessMessage ne null}">
+							<div class="alert alert-success">
+								<button class="close" data-close="alert"></button>
+								<spring:message code="${sucessMessage}"></spring:message>
+							</div>
+						</c:if>
+	
 	<div class="page-content">
 		<div class="container">
 			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
@@ -57,12 +74,11 @@
 							<div class="portlet box green">
 								<div class="portlet-title">
 									<div class="caption">
-										<i class="fa fa-gift"></i>Route Details : 
+										<i class="fa fa-gift"></i>Route Details :
 									</div>
 									<div class="tools">
-									<div class="caption">
-										Company Name : ${contractCompanyName}
-										</div>
+										<div class="caption">Company Name :
+											${contractCompanyName}</div>
 									</div>
 								</div>
 
@@ -70,38 +86,28 @@
 								<div class="portlet box green">
 									<div class="portlet-body form">
 										<!-- BEGIN FORM-->
-										<form:form name="AddContractCompanyForm" action="saveContractCompRoute.htm" modelAttribute="companyRoute" class="form-horizontal">
-										<form:hidden path="id" />
-										<form:hidden path="delFlag" />
-										<form:hidden path="compId" id="ContractcompId"/>
+										<form:form name="AddContractCompanyForm"
+											action="saveContractCompRoute.htm"
+											modelAttribute="companyRoute" class="form-horizontal">
+											<form:hidden path="id" />
+											<form:hidden path="delFlag" />
+											<form:hidden path="compId" id="ContractcompId" />
 											<div class="form-body">
 												<h3 class="form-section"></h3>
 												<div class="row">
-													<%-- <div class="col-md-6">
-														<div class="form-group">
-															<label class="control-label col-md-3">Comp id</label>
-															<div class="col-md-9">
-																<form:input type="text" path="compId" class="form-control"
-																	placeholder="Route Type Detail."/> 
-															</div>
-														</div>
-													</div> --%>
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label col-md-3">Start City</label>
 															<div class="col-md-9">
-																	<form:select path="startCityId.id" class="form-control">
+																<form:select path="startCityId.id" class="form-control">
 																	<form:option value="0" label="Select One" />
-																	<form:options class="form-control" itemValue="id" itemLabel="name"  items="${lCityStart}" />
-																</form:select> 
+																	<form:options class="form-control" itemValue="id"
+																		itemLabel="name" items="${lCityStart}" />
+																</form:select>
 															</div>
 														</div>
 													</div>
-													<!--/span-->
-													<!--/span-->
-												</div>
-												<!--/row-->
-												<div class="row">
+
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label col-md-3">End City</label>
@@ -109,17 +115,60 @@
 																<%-- <form:input type="text" path="endCityId" class="form-control"/> --%>
 																<form:select path="endCityId.id" class="form-control">
 																	<form:option value="0" label="Select One" />
-																	<form:options class="form-control" itemValue="id" itemLabel="name" items="${lCityEnd}" />
-																</form:select> 
+																	<form:options class="form-control" itemValue="id"
+																		itemLabel="name" items="${lCityEnd}" />
+																</form:select>
+															</div>
+														</div>
+													</div>
+
+												</div>
+												<!--/row-->
+												<div class="row">
+
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Approx
+																Distance</label>
+															<div class="col-md-9">
+																<form:input type="text" path="distance"
+																	class="form-control" />
+															</div>
+														</div>
+													</div>
+
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Delivery
+																Days</label>
+															<div class="col-md-9">
+																<form:input type="text" path="deliveryDays"
+																	class="form-control" />
 															</div>
 														</div>
 													</div>
 												</div>
 												<!--/row-->
-											<div class="form-actions right">
-												<button class="btn default" type="button" onclick="goBack()">Cancel</button>
-												<button class="btn blue" type="submit"><i class="fa fa-check"></i> Submit</button>
-											</div>
+												<!--row-->
+												<div class="row">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="control-label col-md-3">Buffer Time</label>
+															<div class="col-md-9">
+																<form:input type="text" path="buferTime"
+																	class="form-control" />
+															</div>
+														</div>
+													</div>
+												</div>
+												<!--/row-->
+												<div class="form-actions right">
+													<button class="btn default" type="button"
+														onclick="goBack()">Cancel</button>
+													<button class="btn blue" type="submit">
+														<i class="fa fa-check"></i> Submit
+													</button>
+												</div>
 											</div>
 										</form:form>
 										<!-- END FORM-->
@@ -138,11 +187,12 @@
 </div>
 
 <script>
-function goBack() {
-    var x = document.getElementById("ContractcompId").value;
-    	 document.AddContractCompanyForm.action="getAllContractCompRoutes.htm?ownId="+x;
-    	 document.AddContractCompanyForm.method="GET";
-    	 document.AddContractCompanyForm.submit();
-}
+	function goBack() {
+		var x = document.getElementById("ContractcompId").value;
+		document.AddContractCompanyForm.action = "getAllContractCompRoutes.htm?ownId="
+				+ x;
+		document.AddContractCompanyForm.method = "GET";
+		document.AddContractCompanyForm.submit();
+	}
 </script>
 

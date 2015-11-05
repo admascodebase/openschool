@@ -13,6 +13,9 @@ public class CompanyRouteDto implements Serializable{
 	private Integer compId;
 	private CityDto startCityId;
 	private CityDto endCityId;
+	private Integer distance;
+	private Integer deliveryDays;
+	private Integer buferTime;
 	/*private Integer transportDetailsId;
 	private Integer cost;
 	private Integer advanceAmt;*/
@@ -144,5 +147,47 @@ public class CompanyRouteDto implements Serializable{
 	 */
 	public void setRouteName(String routeName) {
 		this.routeName = routeName;
+	}
+
+	/**
+	 * @return the distance
+	 */
+	public Integer getDistance() {
+		return distance;
+	}
+
+	/**
+	 * @param distance the distance to set
+	 */
+	public void setDistance(Integer distance) {
+		this.distance = distance;
+	}
+
+	/**
+	 * @return the deliveryDays
+	 */
+	public Integer getDeliveryDays() {
+		return deliveryDays;
+	}
+
+	/**
+	 * @param deliveryDays the deliveryDays to set
+	 */
+	public void setDeliveryDays(Integer deliveryDays) {
+		this.deliveryDays = deliveryDays;
+	}
+
+	/**
+	 * @return the buferTime
+	 */
+	public Integer getBuferTime() {
+		return buferTime;
+	}
+
+	/**
+	 * @param buferTime the buferTime to set
+	 */
+	public void setBuferTime(Integer buferTime) {
+		this.buferTime = buferTime;
 	}
 }

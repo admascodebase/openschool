@@ -453,7 +453,6 @@ public class CompanyController extends BaseController {
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		Integer contractCompanyId=Integer.parseInt(request.getParameter("id"));
-		ContractCompDto contractCompDto = new ContractCompDto(); 
 		try {			
 			reqDtoObjects.put("contractCompanyId", contractCompanyId);
 			resDtoObjects=masterServiceImpl.showEditContractCompany(flowData, reqDtoObjects, resDtoObjects);
