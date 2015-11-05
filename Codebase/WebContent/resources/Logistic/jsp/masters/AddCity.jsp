@@ -5,15 +5,6 @@
 
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
-	<div class="page-head">
-		<div class="container">
-			<!-- BEGIN PAGE TITLE -->
-			<div class="page-title">
-				Master Data <small>Master Data</small>
-			</div>
-			<!-- END PAGE TITLE -->
-		</div>
-	</div>
 	<!-- END PAGE HEAD -->
 	<!-- BEGIN PAGE CONTENT -->
 	<div class="page-content">

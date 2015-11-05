@@ -3,16 +3,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
-	<div class="page-head">
-		<div class="container">
-			<!-- BEGIN PAGE TITLE -->
-			<div class="page-title">
-				<h1>
-					Master Data <small>Master Data</small>
-				</h1>
-			</div>
-		</div>
-	</div>
 	<!-- END PAGE HEAD -->
 	<!-- BEGIN PAGE CONTENT -->
 	<div class="page-content">

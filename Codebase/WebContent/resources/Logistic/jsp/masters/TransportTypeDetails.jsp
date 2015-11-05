@@ -6,20 +6,6 @@
 <script src="<c:url value="/resources/main.js" />"></script>
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
-	<div class="page-head">
-		<div class="container">
-			<!-- BEGIN PAGE TITLE -->
-			<div class="page-title">
-				<h1>
-					Master Details <small>Master Data</small>
-				</h1>
-			</div>
-			<!-- END PAGE TITLE -->
-			<!-- BEGIN PAGE TOOLBAR -->
-			
-			<!-- END PAGE TOOLBAR -->
-		</div>
-	</div>
 	<!-- END PAGE HEAD -->
 	<!-- BEGIN PAGE CONTENT -->
 	<div class="page-content">
@@ -48,12 +34,10 @@
 			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 			<!-- BEGIN PAGE BREADCRUMB -->
 			<ul class="page-breadcrumb breadcrumb">
-				<li><a href="#">Home</a><i class="fa fa-circle"></i></li>
-				<li><a href="table_managed.html">Masters</a> <i
-					class="fa fa-circle"></i></li>
+				<li><a href="./login.htm">Home</a><i class="fa fa-circle"></i></li>
+				<li><a href="#">Masters</a> <i class="fa fa-circle"></i></li>
 				<li><a href="table_managed.html">Transport Type Details</a> <i
 					class="fa fa-circle"></i></li>
-				<li class="active">Transport Type Details</li>
 			</ul>
 			<div id="msg">A MSG</div>
 			<!-- END PAGE BREADCRUMB -->
@@ -100,27 +84,26 @@
 													class="btn btn-circle btn-primary">Add New</button></a>
 										</div>
 									</div>
+									<div class="col-md-4"></div>
 									<div class="col-md-4">
-									</div>
-									<div class="col-md-4">
-											<form:form name="TransportDetailsForm"
-												modelAttribute="transportTypeDtlDto"
-												action="getAllTransportDetails.htm">
+										<form:form name="TransportDetailsForm"
+											modelAttribute="transportTypeDtlDto"
+											action="getAllTransportDetails.htm">
 
 											<div class="btn-group pull-right">
 												<label class="control-label col-md-10">Select
 													Transport Type </label>
 												<form:select id="mySelect" path="transId"
-														class="form-control"
-														onchange="getAllTransportTypeDetails()">
-														<form:option value="0" label="---Select---" />
-														<form:options class="form-control" itemValue="id"
-															itemLabel="name" items="${lTransports}" />
-													</form:select>
+													class="form-control"
+													onchange="getAllTransportTypeDetails()">
+													<form:option value="0" label="---Select---" />
+													<form:options class="form-control" itemValue="id"
+														itemLabel="name" items="${lTransports}" />
+												</form:select>
 											</div>
-											</form:form>
+										</form:form>
 									</div>
-									
+
 								</div>
 							</div>
 

@@ -3,20 +3,6 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
-	<div class="page-head">
-		<div class="container">
-			<!-- BEGIN PAGE TITLE -->
-			<div class="page-title">
-				<h1>
-					Master Details <small>Master Data</small>
-				</h1>
-			</div>
-			<!-- END PAGE TITLE -->
-			<!-- BEGIN PAGE TOOLBAR -->
-			
-			<!-- END PAGE TOOLBAR -->
-		</div>
-	</div>
 	<!-- END PAGE HEAD -->
 	<!-- BEGIN PAGE CONTENT -->
 	<div class="page-content">
@@ -46,7 +32,7 @@
 			<!-- BEGIN PAGE BREADCRUMB -->
 			<ul class="page-breadcrumb breadcrumb">
 				<li><a href="./login.htm">Home</a><i class="fa fa-circle"></i></li>
-				<li><a>Masters</a> <i class="fa fa-circle"></i></li>
+				<li><a>Transport Owner/Agent</a> <i class="fa fa-circle"></i></li>
 				<li><a>Transport Details</a> <i class="fa fa-circle"></i></li>
 			</ul>
 
@@ -91,32 +77,28 @@
 						<div class="portlet-body">
 							<div class="table-toolbar">
 								<div class="row">
-									<div class="col-md-6">
+									<div class="col-md-4">
 										<div class="btn-group">
 											<a href="showAddTransportDetails.htm?ownId=${ownId}"><button
 													class="btn btn-circle btn-primary">Add New</button></a>
 										</div>
 									</div>
-									<div class="col-md-6">
-										<div class="col-md-6">
+									<div class="col-md-4"></div>
+									<div class="col-md-4">
 										<div class="btn-group pull-right">
 											<form:form name="TransportDetailsForm"
 												modelAttribute="transportDetailsDto"
 												action="getAllTransportDetails.htm">
-												<div class="">
-													<div class="">
-														<form:select id="mySelect" path="ownId"
-															class="form-control"
-															onchange="getAllTransportDetails()">
-															<form:option value="0" label="---Select---" />
-															<form:options class="form-control" itemValue="id"
-																itemLabel="name" items="${lTransportOwners}" />
-														</form:select>
-													</div>
-												</div>
+												<label class="control-label col-md-10">Select
+													Transport Owner</label>
+												<form:select id="mySelect" path="ownId" class="form-control"
+													onchange="getAllTransportDetails()">
+													<form:option value="0" label="---Select---" />
+													<form:options class="form-control" itemValue="id"
+														itemLabel="name" items="${lTransportOwners}" />
+												</form:select>
 											</form:form>
 										</div>
-									</div>
 									</div>
 								</div>
 							</div>
@@ -132,7 +114,7 @@
 										<th>Edit/Delete</th>
 									</tr>
 								</thead>
-								
+
 								<tbody>
 									<c:forEach items="${lTransportDetails}" var="TransportDetails">
 										<tr class="odd gradeX">
@@ -142,7 +124,8 @@
 											<td>${TransportDetails.loweryNo}</td>
 											<td>${TransportDetails.tranTypeDtlId}</td>
 											<td>${TransportDetails.ownId}</td>
-											<td><a href="editTransportDetails.htm?id=${TransportDetails.id}"
+											<td><a
+												href="editTransportDetails.htm?id=${TransportDetails.id}"
 												class="btn btn-warning btn-xs"> Edit </a> <a
 												href="deleteTransportDetails.htm?id=${TransportDetails.id}&ownId=${TransportDetails.ownId}"
 												class="btn btn-info btn-xs"> Delete </a></td>
@@ -187,11 +170,12 @@
 </script>
 
 <script>
-function getAllTransportDetails() {
-    var x = document.getElementById("mySelect").value;
-     	/* alert(""+x); */
-    	 document.TransportDetailsForm.action="getAllTransportDetails.htm?ownId="+x;
-    	 document.TransportDetailsForm.method="GET";
-    	 document.TransportDetailsForm.submit();
-}
+	function getAllTransportDetails() {
+		var x = document.getElementById("mySelect").value;
+		/* alert(""+x); */
+		document.TransportDetailsForm.action = "getAllTransportDetails.htm?ownId="
+				+ x;
+		document.TransportDetailsForm.method = "GET";
+		document.TransportDetailsForm.submit();
+	}
 </script>

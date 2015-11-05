@@ -4,20 +4,6 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
-	<div class="page-head">
-<div class="container">
-			<!-- BEGIN PAGE TITLE -->
-			<div class="page-title">
-				<h1>
-					Master Data <small>Master Data</small>
-				</h1>
-			</div>
-<!-- 			END PAGE TITLE -->
-				<!-- 	BEGIN PAGE TOOLBAR
-			
-			END PAGE TOOLBAR-->
-		</div> 
-	</div>
 	<!-- END PAGE HEAD -->
 	<!-- BEGIN PAGE CONTENT -->
 	<div class="page-content">

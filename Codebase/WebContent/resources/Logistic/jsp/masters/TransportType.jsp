@@ -2,20 +2,6 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
-	<div class="page-head">
-		<div class="container">
-			<!-- BEGIN PAGE TITLE -->
-			<div class="page-title">
-				<h1>
-					Master Details <small>Master Data</small>
-				</h1>
-			</div>
-			<!-- END PAGE TITLE -->
-			<!-- BEGIN PAGE TOOLBAR -->
-			
-			<!-- END PAGE TOOLBAR -->
-		</div>
-	</div>
 	<!-- END PAGE HEAD -->
 	<!-- BEGIN PAGE CONTENT -->
 	<div class="page-content">
@@ -44,12 +30,9 @@
 			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 			<!-- BEGIN PAGE BREADCRUMB -->
 			<ul class="page-breadcrumb breadcrumb">
-				<li><a href="#">Home</a><i class="fa fa-circle"></i></li>
-				<li><a href="table_managed.html">Masters</a> <i
-					class="fa fa-circle"></i></li>
-				<li><a href="table_managed.html">Company Details</a> <i
-					class="fa fa-circle"></i></li>
-				<li class="active">Employee Details</li>
+				<li><a href="./login.htm">Home</a><i class="fa fa-circle"></i></li>
+				<li><a href="#">Masters</a> <i class="fa fa-circle"></i></li>
+				<li><a href="#">Transport Types</a> <i class="fa fa-circle"></i></li>
 			</ul>
 			<!-- END PAGE BREADCRUMB -->
 			<!-- BEGIN PAGE CONTENT INNER -->
@@ -60,8 +43,8 @@
 						<div class="portlet-title">
 							<div class="caption">
 								<i class="fa fa-cogs font-green-sharp"></i> <span
-									class="caption-subject font-green-sharp bold uppercase">Transport Type
-									Details</span>
+									class="caption-subject font-green-sharp bold uppercase">Transport
+									Type Details</span>
 							</div>
 							<div class="tools">
 								<a href="javascript:;" class="collapse"> </a> <a
@@ -71,18 +54,19 @@
 							</div>
 						</div>
 						<c:if test="${errorCode ne null}">
-						<div class="alert alert-danger">
-							<button class="close" data-close="alert"></button>
-							<span><spring:message code="${errorCode}"></spring:message> </span>
-						</div>
-					</c:if>
-					
-					<c:if test="${sucessMessage ne null}">
-						<div class="alert alert-success">
-							<button class="close" data-close="alert"></button>
-							<spring:message code="${sucessMessage}"></spring:message>
-						</div>
-					</c:if>
+							<div class="alert alert-danger">
+								<button class="close" data-close="alert"></button>
+								<span><spring:message code="${errorCode}"></spring:message>
+								</span>
+							</div>
+						</c:if>
+
+						<c:if test="${sucessMessage ne null}">
+							<div class="alert alert-success">
+								<button class="close" data-close="alert"></button>
+								<spring:message code="${sucessMessage}"></spring:message>
+							</div>
+						</c:if>
 						<div class="portlet-body">
 							<div class="table-toolbar">
 								<div class="row">
@@ -90,7 +74,7 @@
 										<div class="btn-group">
 											<a href="showAddTransportType.htm"><button
 													class="btn btn-circle btn-primary">Add New</button></a>
-									
+
 										</div>
 									</div>
 									<div class="col-md-6">
@@ -126,14 +110,11 @@
 											</td>
 											<td>${transportType.name}</td>
 											<td>${transportType.description}</td>
-											<td>
-											<a href="editTransportType.htm?id=${transportType.id}"
-													class="btn btn-warning btn-xs"> Edit 
-												</a> 
-												 <a href="deleteTransportType.htm?id=${transportType.id}"
-													class="btn btn-info btn-xs"> Delete 
-												</a> 
-											</td>
+											<td><a
+												href="editTransportType.htm?id=${transportType.id}"
+												class="btn btn-warning btn-xs"> Edit </a> <a
+												href="deleteTransportType.htm?id=${transportType.id}"
+												class="btn btn-info btn-xs"> Delete </a></td>
 											<%-- <td>
 											<a href="getAllTransportTypeDetails.htm?id=${transportType.id}"> Trnsport type details 
 												</a> 

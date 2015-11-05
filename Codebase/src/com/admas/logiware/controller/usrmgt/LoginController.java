@@ -313,4 +313,57 @@ public class LoginController extends BaseController {
 		return mv;
 	}
 
+	@RequestMapping(value = "/updateProfile.htm", method = RequestMethod.POST)
+	public ModelAndView updateProfile(@ModelAttribute("employee") EmployeeDto employeeDto, HttpServletRequest request,
+			HttpServletResponse response) {
+		logger.info("LoginController: updateProfile Method Start.");
+		FlowData flowData = null;
+		super.handleRequestInternal(request, response);
+		if (request.getSession().getAttribute(WebAppConstants.FLOWDATA) != null) {
+			flowData = (FlowData) request.getSession().getAttribute(WebAppConstants.FLOWDATA);
+		}
+		if (!flowData.isLoggedIn())
+			return super.loginPage(flowData, request);
+		employeeDto.setCompId(Integer.parseInt(flowData.getSessionData(WebAppConstants.COMPID)));
+		employeeDto.setDelFlag('N');
+		ModelAndView mv = new ModelAndView("showUserProfile");
+		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
+		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
+		String sucessMessage = "", name = "";
+		Boolean result = false;
+		try {
+			reqDtoObjects.put("employee", employeeDto);
+						
+			if (employeeDto.getId() != null && employeeDto.getId() > 0) {
+				resDtoObjects = userManagementServiceImpl.updateProfile(flowData, reqDtoObjects, resDtoObjects);
+				result = (Boolean) resDtoObjects.get("result");
+				if(result){
+					sucessMessage = WebAppConstants.LW_SUCESS_EDIT;
+				}else
+				sucessMessage = WebAppConstants.LW_SUCESS_EDIT_FAIL ;
+			}
+			resDtoObjects = userManagementServiceImpl.getemployeeDetails(flowData, reqDtoObjects, resDtoObjects);
+			mv.addObject(WebAppConstants.SUCESS_MESSAGE, sucessMessage);
+		} catch (LogiwareBaseException _be) {
+			logger.error("Exception in LoginController: updateProfile", _be);
+			mv.addObject(WebAppConstants.ERROR_CODE, _be.getErrorCode());
+		} catch (Exception e) {
+			logger.error("Exception In LoginController updateProfile Method--", e);
+			mv.addObject(WebAppConstants.ERROR_CODE, LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
+		}
+		
+		employeeDto = (EmployeeDto) resDtoObjects.get("employeeDto");
+		flowData.setSessionData(WebAppConstants.USERNAME, employeeDto.getName());
+		name = employeeDto.getName();
+		mv.addObject("employeeDto", employeeDto);
+		mv.addObject("name", name);
+		mv.addObject("loginData",new UserDetails());
+		
+		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
+		mv.addObject("userName", flowData.getSessionData("userName"));
+		logger.info("LoginController: updateProfile Method End.");
+		return mv;
+
+	}
+	
 }

@@ -209,4 +209,28 @@ public class UserManagementServiceImpl {
 
 	}
 
+	public Map<String, Object> updateProfile(FlowData flowData, HashMap<String, Object> reqDtoObjects,
+			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
+
+		logger.info("UserManagementServiceImpl updateProfile method start.");
+		LogiwareRespnse logiwareResponse = null;
+		Boolean result = false;
+		try {
+			logiwareResponse = doServiceCall(flowData, ServiceName.saveEditEmployee, reqDtoObjects);
+			resDtoObjects.put("userResponse", logiwareResponse);
+			result = (Boolean) logiwareResponse.getData();
+			resDtoObjects.put("result", result);
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In UserManagementServiceImpl: updateProfile method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+
+		logger.info("UserManagementServiceImpl updateProfile method End.");
+		return resDtoObjects;
+
+	}
+
 }

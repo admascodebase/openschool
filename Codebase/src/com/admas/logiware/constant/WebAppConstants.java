@@ -48,6 +48,8 @@ public interface WebAppConstants {
 	
 	public String LW_SUCESS_EDIT = "LW_SUCESS_EDIT";
 	
+	public String LW_SUCESS_EDIT_FAIL = "LW_SUCESS_EDIT_FAIL";
+	
 	public String LW_SUCESS_DELETE = "LW_SUCESS_DELETE";
 
 	public String LW_PASSWORD_CHANGE_SUCCESS = "LW_PASSWORD_CHANGE_SUCCESS";

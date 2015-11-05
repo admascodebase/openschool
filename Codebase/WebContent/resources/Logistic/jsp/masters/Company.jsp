@@ -5,16 +5,7 @@
 </script>
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
-	<div class="page-head">
-		<div class="container">
-			<!-- BEGIN PAGE TITLE -->
-			<div class="page-title">
-				<h1>
-					Master Details <small>Master Data</small>
-				</h1>
-			</div>		
-		</div>
-	</div>
+	
 	<!-- END PAGE HEAD -->
 	<!-- BEGIN PAGE CONTENT -->
 	<div class="page-content">
@@ -43,12 +34,11 @@
 			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 			<!-- BEGIN PAGE BREADCRUMB -->
 			<ul class="page-breadcrumb breadcrumb">
-				<li><a href="#">Home</a><i class="fa fa-circle"></i></li>
-				<li><a href="table_managed.html">Masters</a> <i
+				<li><a href="./login.htm">Home</a><i class="fa fa-circle"></i></li>
+				<li><a href="#">Masters</a> <i
 					class="fa fa-circle"></i></li>
-				<li><a href="table_managed.html">Company Details</a> <i
+				<li><a href="#">Company Details</a> <i
 					class="fa fa-circle"></i></li>
-				<li class="active">Company Details</li>
 			</ul>
 			<div class="row">
 				<div class="col-md-12">

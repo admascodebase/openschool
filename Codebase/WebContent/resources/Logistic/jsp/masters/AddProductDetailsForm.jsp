@@ -6,16 +6,6 @@
 
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
-	<div class="page-head">
-		<div class="container">
-			<!-- BEGIN PAGE TITLE -->
-			<div class="page-title">
-				<h1>
-					Master Data <small>Master Data</small>
-				</h1>
-			</div>
-		</div>
-	</div>
 	<!-- END PAGE HEAD -->
 	<!-- BEGIN PAGE CONTENT -->
 	<div class="page-content">
@@ -144,6 +134,7 @@
 											<div class="form-actions right">
 												<a href="getAllProduct.htm"><button class="btn default" type="button">Cancel</button></a>
 												<button class="btn blue" type="submit"><i class="fa fa-check"></i> Submit</button>
+											</div>
 											</div>
 										</form:form>
 										<!-- END FORM-->

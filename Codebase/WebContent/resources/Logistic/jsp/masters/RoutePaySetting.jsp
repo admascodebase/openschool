@@ -4,19 +4,6 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
-	<div class="page-head">
-		<div class="container">
-			<!-- BEGIN PAGE TITLE -->
-			<div class="page-title">
-				<h1>
-					Master Details <small>Master Data</small>
-				</h1>
-			</div>
-			<!-- END PAGE TITLE -->
-			<!-- BEGIN PAGE TOOLBAR -->
-
-			<!-- END PAGE TOOLBAR -->
-		</div>
 	</div>
 	<!-- END PAGE HEAD -->
 	<!-- BEGIN PAGE CONTENT -->
@@ -47,9 +34,8 @@
 			<!-- BEGIN PAGE BREADCRUMB -->
 			<ul class="page-breadcrumb breadcrumb">
 				<li><a href="./login.htm">Home</a><i class="fa fa-circle"></i></li>
-				<li><a>Masters</a> <i class="fa fa-circle"></i></li>
-				<li><a href="#"></a> <i class="fa fa-circle"></i></li>
-				<li class="active">Payment Setting</li>
+				<li><a href="#">Contract Company</a> <i class="fa fa-circle"></i></li>
+				<li><a href="#"></a>Payment Setting <i class="fa fa-circle"></i></li>
 			</ul>
 
 			<!-- END PAGE BREADCRUMB -->
@@ -171,7 +157,6 @@
 		</div>
 	</div>
 	<!-- END PAGE CONTENT -->
-</div>
 
 <script>
 	function getAllPaySettings() {

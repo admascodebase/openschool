@@ -4,18 +4,6 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
-	<div class="page-head">
-		<div class="container">
-			<!-- BEGIN PAGE TITLE -->
-			<div class="page-title">
-				<h1>
-					Contract Company Route  <small>All Contract Company Route Records are Here</small>
-				</h1>
-			</div>
-			
-			<!-- END PAGE TOOLBAR -->
-		</div>
-	</div>
 	<!-- END PAGE HEAD -->
 	<!-- BEGIN PAGE CONTENT -->
 	<div class="page-content">
@@ -44,12 +32,11 @@
 			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 			<!-- BEGIN PAGE BREADCRUMB -->
 			<ul class="page-breadcrumb breadcrumb">
-				<li><a href="#">Home</a><i class="fa fa-circle"></i></li>
-				<li><a href="table_managed.html">Masters</a> <i
+				<li><a href="./login.htm">Home</a><i class="fa fa-circle"></i></li>
+				<li><a href="#">Contract Company</a> <i
 					class="fa fa-circle"></i></li>
-				<li><a href="table_managed.html">Company Details</a> <i
+				<li><a href="table_managed.html">Contract Company Routes</a> <i
 					class="fa fa-circle"></i></li>
-				<li class="active">Transport Details</li>
 			</ul>
 
 			<!-- END PAGE BREADCRUMB -->

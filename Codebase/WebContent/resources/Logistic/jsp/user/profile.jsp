@@ -202,7 +202,12 @@
 										<div class="tab-content">
 											<!-- PERSONAL INFO TAB -->
 											<div class="tab-pane active" id="tab_1_1">
-												<form:form modelAttribute="employeeDto" role="form" action="#">
+												<form:form modelAttribute="employeeDto" role="form" action="updateProfile.htm">
+												<form:hidden path="id" />
+										<form:hidden path="delFlag" />
+										<form:hidden path="compId" />
+										<form:hidden path="roleId" />
+										<form:hidden path="isSysAcc" />
 													<div class="form-group">
 														<label class="control-label">First Name</label>
 														<form:input path="name" class="form-control"/>
@@ -232,10 +237,9 @@
 														<form:input path="pan" class="form-control"/>
 													</div>
 													<div class="margiv-top-10">
-														<a href="javascript:;" class="btn green-haze">
-														Save Changes </a>
-														<a href="javascript:;" class="btn default">
-														Cancel </a>
+														<button type="submit" class="btn green-haze" >Save Changes</button>
+														<!-- <a href="javascript:;" class="btn default">
+														Cancel </a> -->
 													</div>
 												</form:form>
 											</div>
