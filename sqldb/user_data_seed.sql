@@ -35,7 +35,7 @@ insert  into `price_plan`(`ID`,`NAME`,`DESCRIPTION`,`PRICE`,`ROLE_ID`) values (1
 
 /*Data for the table `role` */
 
-insert  into `role`(`ID`,`ROLE`,`DESCRIPTION`,`ORG_CODE`,`CREATED_ON`,`CREATED_BY`,`UPDATED_ON`,`UPDATED_BY`) values (1,'SysAdmin',NULL,NULL,'2015-08-01 00:00:00',NULL,NULL,NULL),(2,'Admin',NULL,NULL,'2015-08-01 00:00:00',NULL,NULL,NULL);
+insert  into `role`(`ID`,`ROLE`,`DESCRIPTION`,`ORG_CODE`,`CREATED_ON`,`CREATED_BY`,`UPDATED_ON`,`UPDATED_BY`,`ROLE_ID`,`DEL_FLAG`) values (1,'SysAdmin',NULL,1,'2015-08-01 00:00:00',NULL,NULL,NULL,0,'N'),(2,'Admin',NULL,1,'2015-08-01 00:00:00',NULL,NULL,NULL,0,'N');
 
 /*Data for the table `user_login` */
 
