@@ -44,7 +44,7 @@
 							<div class="caption">
 								<i class="fa fa-cogs font-green-sharp"></i> <span
 									class="caption-subject font-green-sharp bold uppercase">Transport
-									Type Details</span>
+									Type</span>
 							</div>
 							<div class="tools">
 								<a href="javascript:;" class="collapse"> </a> <a

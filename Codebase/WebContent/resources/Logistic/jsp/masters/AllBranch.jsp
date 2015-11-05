@@ -140,16 +140,11 @@
 
 <script>
 function confirmDelete(id) {
-    var txt;
     var r = confirm("Press a button!");
-var branchId=parseInt(id);
     if (r == true) {
-    	var url = "deleteCompanyBranch.htm?id="+branchId;
-    	alert("url-"+url);
-         document.addBranchForm.action="deleteCompanyBranch.htm?id="+branchId;
+         document.addBranchForm.action="deleteCompanyBranch.htm?id="+id;
 		 document.addBranchForm.method="GET";
 		 document.addBranchForm.submit();
-        
     } else {
     	alert("false");s
     	document.addBranchForm.action="getAllBranch.htm";
