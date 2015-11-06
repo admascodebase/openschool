@@ -53,7 +53,7 @@
 							</div>
 						</div>
 						<c:if test="${errorCode ne null}">
-							<div class="alert alert-danger">
+							<div id="errorDiv" class="alert alert-danger">
 								<button class="close" data-close="alert"></button>
 								<span><spring:message code="${errorCode}"></spring:message>
 								</span>
@@ -71,10 +71,11 @@
 							<div class="table-toolbar">
 								<div class="row">
 									<div class="col-md-4">
+									<div id="addButtondiv">
 										<div class="btn-group">
 											<a href="showAddTransportDetails.htm?ownId=${ownId}"><button
 													class="btn btn-circle btn-primary">Add New</button></a>
-										</div>
+										</div></div>
 									</div>
 									<div class="col-md-4"></div>
 									<div class="col-md-4">
@@ -84,7 +85,7 @@
 												action="getAllTransportDetails.htm">
 												<label class="control-label col-md-10">Select
 													Transport Owner</label>
-												<form:select id="mySelect" path="ownId" class="form-control"
+												<form:select id="selectTransportOwner" path="ownId" class="form-control"
 													onchange="getAllTransportDetails()">
 													<form:option value="0" label="---Select---" />
 													<form:options class="form-control" itemValue="id"
@@ -164,7 +165,7 @@
 
 <script>
 	function getAllTransportDetails() {
-		var x = document.getElementById("mySelect").value;
+		var x = document.getElementById("selectTransportOwner").value;
 		/* alert(""+x); */
 		document.TransportDetailsForm.action = "getAllTransportDetails.htm?ownId="
 				+ x;
@@ -172,3 +173,12 @@
 		document.TransportDetailsForm.submit();
 	}
 </script>
+<script type="text/javascript">
+var y = document.getElementById("selectTransportOwner").value;
+if(y==0){
+	var x = document.getElementById("errorDiv");
+	x.innerHTML += "<br /> Please Select Transport Owner First"
+	document.getElementById("addButtondiv").style.display = "none";
+}
+</script>
+ 

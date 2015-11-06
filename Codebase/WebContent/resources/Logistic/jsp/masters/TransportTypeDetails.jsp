@@ -39,7 +39,6 @@
 				<li><a href="table_managed.html">Transport Type Details</a> <i
 					class="fa fa-circle"></i></li>
 			</ul>
-			<div id="msg">A MSG</div>
 			<!-- END PAGE BREADCRUMB -->
 			<!-- BEGIN PAGE CONTENT INNER -->
 			<div class="row">
@@ -61,7 +60,7 @@
 						</div>
 
 						<c:if test="${errorCode ne null}">
-							<div class="alert alert-danger">
+							<div id="errorDiv" class="alert alert-danger">
 								<button class="close" data-close="alert"></button>
 								<span><spring:message code="${errorCode}"></spring:message>
 								</span>
@@ -79,9 +78,11 @@
 							<div class="table-toolbar">
 								<div class="row">
 									<div class="col-md-4">
+										<div id="addButton">
 										<div class="btn-group">
 											<a href="showAddTransportTypeDetails.htm?transId=${transId}"><button
 													class="btn btn-circle btn-primary">Add New</button></a>
+										</div>
 										</div>
 									</div>
 									<div class="col-md-4"></div>
@@ -93,7 +94,7 @@
 											<div class="btn-group pull-right">
 												<label class="control-label col-md-10">Select
 													Transport Type </label>
-												<form:select id="mySelect" path="transId"
+												<form:select id="selectTransportType" path="transId"
 													class="form-control"
 													onchange="getAllTransportTypeDetails()">
 													<form:option value="0" label="---Select---" />
@@ -188,16 +189,16 @@
 
 <script>
 	function getAllTransportTypeDetails() {
-		var x = document.getElementById("mySelect").value;
+		var x = document.getElementById("selectTransportType").value;
 		/* alert(""+x); */
 		document.TransportDetailsForm.action = "getAllTransportTypeDetails.htm?transId="
 				+ x;
 		document.TransportDetailsForm.method = "GET";
 		document.TransportDetailsForm.submit();
+		document.getElementById(id).style.display = "block";
 	}
 </script>
-</body>
-
+</body>?
 <!-- END BODY -->
 
 <!-- Mirrored from www.keenthemes.com/preview/metronic/theme/templates/admin3/table_managed.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Aug 2015 18:08:04 GMT -->

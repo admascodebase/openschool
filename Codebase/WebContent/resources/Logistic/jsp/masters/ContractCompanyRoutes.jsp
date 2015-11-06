@@ -55,7 +55,7 @@
 							</div>
 						</div>
 						<c:if test="${errorCode ne null}">
-							<div class="alert alert-danger">
+							<div id="errorDiv" class="alert alert-danger">
 								<button class="close" data-close="alert"></button>
 								<span><spring:message code="${errorCode}"></spring:message>
 								</span>
@@ -73,10 +73,11 @@
 							<div class="table-toolbar">
 								<div class="row">
 									<div class="col-md-4">
+										<div id="addButtondiv">
 										<div class="btn-group">
 											<a href="showAddContractCompRoute.htm?compId=${contractCompId}"><button
 													class="btn btn-circle btn-primary">Add New</button></a>
-										</div>
+										</div></div>
 									</div>
 								 	<form:form name="compRouteForm" modelAttribute="companyRoute" action="getAllContractCompRoutes.htm">
 								 <div class="col-md-4">
@@ -84,7 +85,7 @@
 								 	<div class="col-md-4">
 											<label class="control-label col-md-10">Select
 												Contract Company </label>
-											<form:select id="mySelect" path="compId" class="form-control" onchange="getAllCompanyRoutes()">
+											<form:select id="selectContractCompany" path="compId" class="form-control" onchange="getAllCompanyRoutes()">
 												<form:option value="0" label="---Select---" />
 												<form:options class="form-control" itemValue="id" itemLabel="name" items="${lContractCompanies}" />
 											</form:select>
@@ -142,10 +143,19 @@
 </div>
 <script>
 function getAllCompanyRoutes() {
-    var x = document.getElementById("mySelect").value;
+    var x = document.getElementById("selectContractCompany").value;
     /* alert(""+x); */
     	 document.compRouteForm.action="getAllContractCompRoutes.htm?compId="+x;
     	 document.compRouteForm.method="GET";
     	 document.compRouteForm.submit();
 }
 </script>
+<script type="text/javascript">
+var y = document.getElementById("selectContractCompany").value;
+if(y==0){
+	var x = document.getElementById("errorDiv");
+	x.innerHTML += "<br /> Please Select Contract Company First"
+	document.getElementById("addButtondiv").style.display = "none";
+}
+</script>
+ 

@@ -211,7 +211,6 @@
 
 	function goBack() {
 		var companyId = document.getElementById("ContractcompId").value;
-		alert("compId" + companyId);
 		document.AddLoadEntryForm.action = "getAllLoadEntry.htm?compId="+companyId;
 		document.AddLoadEntryForm.method = "GET";
 		document.AddLoadEntryForm.submit();
@@ -220,7 +219,6 @@
 	function getAllTransportTypeDetails() {
 		var x = document.getElementById("TransportTypeSelect").value;
 		var companyId = document.getElementById("ContractcompId").value;
-		alert("" + x+"---"+companyId);
 		document.AddLoadEntryForm.action = "getAllTransportTypeDetailListForLoad.htm?transportTypeId="+ x+"&compId="+companyId;
 		document.AddLoadEntryForm.method = "GET";
 		document.AddLoadEntryForm.submit();

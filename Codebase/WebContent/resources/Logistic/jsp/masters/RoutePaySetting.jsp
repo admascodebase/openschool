@@ -56,7 +56,7 @@
 							</div>
 						</div>
 						<c:if test="${errorCode ne null}">
-							<div class="alert alert-danger">
+							<div id="errorDiv" class="alert alert-danger">
 								<button class="close" data-close="alert"></button>
 								<span><spring:message code="${errorCode}"></spring:message>
 								</span>
@@ -75,10 +75,11 @@
 								<div class="table-toolbar">
 									<div class="row">
 										<div class="col-md-4">
+										<div id="addButtondiv">
 											<div class="btn-group">
 												<button class="btn btn-circle btn-primary"
 													onclick="showAddRoutePaySetting()">Add New</button>
-											</div>
+											</div></div>
 										</div>
 
 										<div class="col-md-4">
@@ -183,3 +184,12 @@
 		document.routePaySettingForm.submit();
 	}
 </script>
+<script type="text/javascript">
+var y = document.getElementById("routeSelect").value;
+if(y==0){
+	var x = document.getElementById("errorDiv");
+	x.innerHTML += "<br /> Please Select Contract Company And Contract Company Route."
+	document.getElementById("addButtondiv").style.display = "none";
+}
+</script>
+ 

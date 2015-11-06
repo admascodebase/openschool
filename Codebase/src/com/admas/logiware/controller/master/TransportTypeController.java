@@ -339,9 +339,12 @@ public class TransportTypeController extends BaseController {
 			mv.addObject("transportTypeDetails",transportTypeDtlDto);
 		} catch (Exception e) {
 			logger.error("Exception In TransportTypeController: addTransportTypeDetails Method--", e);
-			mv.addObject(WebAppConstants.ERROR_CODE,
-					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
+			mv.addObject(WebAppConstants.ERROR_CODE, LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
+			mv.addObject(WebAppConstants.ERROR_CODE, "LW-MM-0010");
+			mv.setViewName("getAllTransportTypeDetails");
+			mv.addObject("'transportTypeDtlDto", new TransportTypeDtlDto());
 		}
+		if(transportTypeDto!=null)
 		mv.addObject("transportTypeName", transportTypeDto.getName());
 		return mv;
 }
