@@ -22,10 +22,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.controller.core.BaseController;
+import com.admas.logiware.dto.CompanyLoadDetailDto;
 import com.admas.logiware.dto.CompanyRouteDto;
 import com.admas.logiware.dto.ContractCompDto;
 import com.admas.logiware.dto.FlowData;
-import com.admas.logiware.dto.LoadDto;
 import com.admas.logiware.dto.TransportTypeDtlDto;
 import com.admas.logiware.dto.TransportTypeDto;
 import com.admas.logiware.exception.LogiwareBaseException;
@@ -45,7 +45,7 @@ public class LoadController extends BaseController{
 
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/getAllLoadEntry.htm", method = RequestMethod.GET)
-	public ModelAndView getAllLoadEntry(@ModelAttribute("LoadEntry")LoadDto loadDto, HttpServletRequest request,
+	public ModelAndView getAllLoadEntry(@ModelAttribute("LoadEntry")CompanyLoadDetailDto loadDto, HttpServletRequest request,
 			HttpServletResponse response) {
 
 		logger.info("LoadController: getAllLoadEntry Method Start.");
@@ -63,7 +63,7 @@ public class LoadController extends BaseController{
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
 		List<ContractCompDto> lContractCompanies =null;
-		LoadDto loadDto2 = new LoadDto();
+		CompanyLoadDetailDto loadDto2 = new CompanyLoadDetailDto();
 		Integer compId = 0;
 		try {
 			if(loadDto.getCompId()==null){
@@ -92,7 +92,7 @@ public class LoadController extends BaseController{
 		lContractCompanies = (List<ContractCompDto>) resDtoObjects.get("lContractCompanies");
 		mv.addObject("lContractCompanies", lContractCompanies);
 		mv.addObject("LoadEntry", loadDto2);
-		List<LoadDto> lLoadDto = (List<LoadDto>) resDtoObjects.get("lLoadDto");
+		List<CompanyLoadDetailDto> lLoadDto = (List<CompanyLoadDetailDto>) resDtoObjects.get("lLoadDto");
 		mv.addObject("lLoadDto", lLoadDto);		
 		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
 		mv.addObject("userName", flowData.getSessionData("userName"));
@@ -103,7 +103,7 @@ public class LoadController extends BaseController{
 
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/showAddloadEntry.htm", method = RequestMethod.GET)
-	public ModelAndView showAddloadEntry(@ModelAttribute("LoadEntry")LoadDto loadDto, HttpServletRequest request,
+	public ModelAndView showAddloadEntry(@ModelAttribute("LoadEntry")CompanyLoadDetailDto loadDto, HttpServletRequest request,
 			HttpServletResponse response) {
 
 		logger.info("LoadController: showAddloadEntry Method Start.");
@@ -125,7 +125,7 @@ public class LoadController extends BaseController{
 		List<TransportTypeDto> lTransports = null;
 		List<TransportTypeDtlDto> lTransportTypeDtls =null;
 		List<CompanyRouteDto> lCompanyRouteDtos2 =new ArrayList<CompanyRouteDto>();
-		LoadDto LoadEntry =new LoadDto();
+		CompanyLoadDetailDto LoadEntry =new CompanyLoadDetailDto();
 		try {
 			reqDtoObjects.put("contractCompId", compId);
 			LoadEntry.setCompId(compId);
@@ -164,7 +164,7 @@ public class LoadController extends BaseController{
 	
 	@RequestMapping(value = "/saveLoadEntry.htm", method = RequestMethod.POST)
 	public ModelAndView saveLoadEntry(
-			@ModelAttribute("LoadEntry") LoadDto loadDto,
+			@ModelAttribute("LoadEntry") CompanyLoadDetailDto loadDto,
 			HttpServletRequest request, HttpServletResponse response) {
 		logger.info("LoadController: saveLoadEntry() Method Start.");		
 		FlowData flowData = null;
@@ -208,7 +208,7 @@ public class LoadController extends BaseController{
 							.getErrorCode());
 		}
 		@SuppressWarnings("unchecked")
-		List<LoadDto> lLoadDto = (List<LoadDto>) resDtoObjects.get("lLoadDto");
+		List<CompanyLoadDetailDto> lLoadDto = (List<CompanyLoadDetailDto>) resDtoObjects.get("lLoadDto");
 		mv.addObject("lLoadDto", lLoadDto);
 		logger.info("LoadController: saveLoadEntry() Method End.");
 		return mv;
@@ -222,12 +222,12 @@ public class LoadController extends BaseController{
 		ModelAndView mv = new ModelAndView("showAddAllLoadEntry") ;
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
-		LoadDto loadDto = null;
+		CompanyLoadDetailDto loadDto = null;
 		Integer loadDtoId=Integer.parseInt(request.getParameter("id"));
 		try {
 			reqDtoObjects.put("loadDtoId", loadDtoId);
 			resDtoObjects=masterServiceImpl.getLoadEntryById(flowData, reqDtoObjects, resDtoObjects);
-			loadDto=(LoadDto) resDtoObjects.get("loadDto");
+			loadDto=(CompanyLoadDetailDto) resDtoObjects.get("loadDto");
 			mv.addObject("LoadEntry",loadDto);
 		} catch (LogiwareBaseException _be) {
 			logger.error("Exception in LoadController: editLoadEntry",
@@ -279,7 +279,7 @@ public class LoadController extends BaseController{
 					LogiwarePortalErrors.GENERIC_EXCEPTION.getErrorCode());
 		}
 		@SuppressWarnings("unchecked")
-		List<LoadDto> lLoadDto = (List<LoadDto>) resDtoObjects
+		List<CompanyLoadDetailDto> lLoadDto = (List<CompanyLoadDetailDto>) resDtoObjects
 				.get("lLoadDto");
 		mv.addObject("lLoadDto", lLoadDto);
 		flowData.setSessionData(WebAppConstants.ISLOGEDIN, "true");
@@ -306,7 +306,7 @@ public class LoadController extends BaseController{
 		ModelAndView mv = new ModelAndView("showAddAllLoadEntry");
 		HashMap<String, Object> reqDtoObjects = new HashMap<String, Object>();
 		Map<String, Object> resDtoObjects = new HashMap<String, Object>();
-		LoadDto loadDto = new LoadDto();
+		CompanyLoadDetailDto loadDto = new CompanyLoadDetailDto();
 		Integer transportTypeId = Integer.parseInt(request.getParameter("transportTypeId"));
 		Integer compId=Integer.parseInt(request.getParameter("compId")); 
 		List<CompanyRouteDto> lCompanyRouteDtos = null;

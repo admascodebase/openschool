@@ -20,11 +20,11 @@ import com.admas.logiware.constant.WebAppConstants;
 import com.admas.logiware.dto.CityDto;
 import com.admas.logiware.dto.CompanyBranchDto;
 import com.admas.logiware.dto.CompanyDto;
+import com.admas.logiware.dto.CompanyLoadDetailDto;
 import com.admas.logiware.dto.CompanyRouteDto;
 import com.admas.logiware.dto.ContractCompDto;
 import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.FlowData;
-import com.admas.logiware.dto.LoadDto;
 import com.admas.logiware.dto.LogiwareRespnse;
 import com.admas.logiware.dto.LoweryOwnerDto;
 import com.admas.logiware.dto.RoleDto;
@@ -33,6 +33,7 @@ import com.admas.logiware.dto.StateDto;
 import com.admas.logiware.dto.TransportDetailsDto;
 import com.admas.logiware.dto.TransportTypeDtlDto;
 import com.admas.logiware.dto.TransportTypeDto;
+import com.admas.logiware.dto.response.CompLoadDtlResponse;
 import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
 
@@ -1850,11 +1851,11 @@ public class MasterServiceImpl {
 			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
 
 		logger.info("MasterServiceImpl getAllLoadEntry method start.");
-		List<LoadDto> lLoadDto = new ArrayList<LoadDto>();
+		List<CompanyLoadDetailDto> lLoadDto = new ArrayList<CompanyLoadDetailDto>();
 		LogiwareRespnse logiwareRespnse = null;
 		try {
 			 logiwareRespnse = doServiceCall(flowData, ServiceName.getAllLoadEntry, reqDtoObjects);
-			 lLoadDto =(List<LoadDto>) logiwareRespnse.getData();			 
+			 lLoadDto =(List<CompanyLoadDetailDto>) logiwareRespnse.getData();			 
 			 resDtoObjects.put("lEmployees", lLoadDto);
 		} catch (LogiwareBaseException b) {
 			throw b;
@@ -1959,11 +1960,11 @@ public class MasterServiceImpl {
 
 
 		logger.info("MasterServiceImpl getLoadEntryById method start.");
-		LogiwareRespnse logiwareResponse = null;
-		LoadDto loadDto = null;
+		CompLoadDtlResponse logiwareResponse = null;
+		CompanyLoadDetailDto loadDto = null;
 		try {
 			logiwareResponse = doServiceCall(flowData, ServiceName.getLoadEntryById, reqDtoObjects);
-			loadDto =(LoadDto) logiwareResponse.getLoadDto();
+			loadDto =(CompanyLoadDetailDto) logiwareResponse.getlCompanyLoadDetailDtos();
 			resDtoObjects.put("loadDto", loadDto);			
 		} catch (LogiwareBaseException b) {
 			throw b;

@@ -10,7 +10,7 @@ import java.util.Date;
  * @author Ajinkya
  *
  */
-public class LoadDto implements Serializable{
+public class CompanyLoadDetailDto implements Serializable{
 
 	/**
 	 * 
@@ -32,6 +32,7 @@ public class LoadDto implements Serializable{
 	private Date createdOn;
 	private Date updatedOn;
 	private Character delFlag;
+	private String status;
 	/**
 	 * @return the id
 	 */
@@ -223,8 +224,17 @@ public class LoadDto implements Serializable{
 				+ ", advance=" + advance + ", balance=" + balance + ", createdBy=" + createdBy + ", updatedBy="
 				+ updatedBy + ", createdOn=" + createdOn + ", updatedOn=" + updatedOn + ", delFlag=" + delFlag + "]";
 	}
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
-
-	
-	
 }
