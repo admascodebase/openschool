@@ -10,11 +10,11 @@ public interface CompProductLogic {
 	
 	public List<CompProductDto> getAllCompProduct(Integer contractCompId)throws LogiwareExceptionHandler;
 
-	public CompProductDto getCompRouteById(Integer id)throws LogiwareExceptionHandler;
+	public CompProductDto getCompProductById(Integer id)throws LogiwareExceptionHandler;
 
-	public Boolean addCompRoute(CompProductDto compProductDto)throws LogiwareExceptionHandler;
+	public Boolean addCompProduct(CompProductDto compProductDto)throws LogiwareExceptionHandler;
 
-	public Boolean editCompRoute(CompProductDto compProductDto)throws LogiwareExceptionHandler;
+	public Boolean editCompProduct(CompProductDto compProductDto)throws LogiwareExceptionHandler;
 
-	public Boolean deleteCompRoute(Integer id)throws LogiwareExceptionHandler;
+	public Boolean deleteCompProduct(Integer id)throws LogiwareExceptionHandler;
 }

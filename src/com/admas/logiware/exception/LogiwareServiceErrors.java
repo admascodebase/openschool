@@ -71,7 +71,9 @@ public enum LogiwareServiceErrors {
 	
 	NO_CONTRACT_COMP_ROUTE_FOUND("LW-CC-0002", " No contract company Routes Found."),
 	
-	NO_LOAD_ENTRY_FOUND("LW-CC-003", "No Load Entries Found.");
+	NO_LOAD_ENTRY_FOUND("LW-CC-003", "No Load Entries Found."),
+	
+	NO_LOAD_TRANS_FOUND("LW-CC-004", "Load transport not found.");
 	
 	
 	

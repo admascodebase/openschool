@@ -13,7 +13,7 @@ public class ProductDto implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String name;
-	private Integer compId;
+//	private Integer compId;
 	private String description;
 	private Integer createdBy;
 	private Integer updatedBy;
@@ -144,7 +144,7 @@ public class ProductDto implements Serializable {
 	public Product _toJpa() {
 		Product product = new Product();
 		product.setCreatedBy(this.createdBy);
-		product.setCompId(this.compId);
+//		product.setCompId(this.compId);
 		product.setCreatedOn(this.createdOn);
 		product.setDelFlag(this.delFlag);
 		product.setDescription(this.description);
@@ -155,17 +155,5 @@ public class ProductDto implements Serializable {
 		return product;
 	}
 
-	/**
-	 * @return the compId
-	 */
-	public Integer getCompId() {
-		return compId;
-	}
-
-	/**
-	 * @param compId the compId to set
-	 */
-	public void setCompId(Integer compId) {
-		this.compId = compId;
-	}
+	
 }

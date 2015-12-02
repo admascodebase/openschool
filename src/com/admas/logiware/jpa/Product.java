@@ -34,8 +34,8 @@ public class Product implements Serializable{
 	@Column(name="NAME" ,nullable = false )
 	private String name;
 	
-	@Column(name="COMP_ID" ,nullable = false )
-	private Integer compId;
+//	@Column(name="COMP_ID" ,nullable = false )
+//	private Integer compId;
 	
 	@Column(name="DESCRIPTION")
 	private String description;
@@ -162,19 +162,19 @@ public class Product implements Serializable{
 		this.updatedOn = updatedOn;
 	}
 
-	/**
-	 * @return the compId
-	 */
-	public Integer getCompId() {
-		return compId;
-	}
-
-	/**
-	 * @param compId the compId to set
-	 */
-	public void setCompId(Integer compId) {
-		this.compId = compId;
-	}
+//	/**
+//	 * @return the compId
+//	 */
+//	public Integer getCompId() {
+//		return compId;
+//	}
+//
+//	/**
+//	 * @param compId the compId to set
+//	 */
+//	public void setCompId(Integer compId) {
+//		this.compId = compId;
+//	}
 
 	/**
 	 * @param delFlag the delFlag to set
@@ -189,7 +189,7 @@ public class Product implements Serializable{
 		ProductDto productDto = new ProductDto();
 		productDto.setCreatedBy(this.createdBy);
 		productDto.setCreatedOn(this.createdOn);
-		productDto.setCompId(this.compId);
+//		productDto.setCompId(this.compId);
 		productDto.setDelFlag(this.delFlag);
 		productDto.setDescription(this.description);
 		productDto.setId(this.id);

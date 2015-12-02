@@ -8,6 +8,7 @@ import com.admas.logiware.jpa.CustContractCompany;
 
 
 public interface ContractCompDao {
+	
 	public List<CustContractCompany> getAllContractComp()throws LogiwareExceptionHandler;
 
 	public CustContractCompany getContractCompById(Integer contractCompId)throws LogiwareExceptionHandler;
