@@ -147,8 +147,8 @@
 	<bean id="compLoadDtlServices" class="com.admas.logiware.services.contractcomp.CompLoadDtlServices">
 		<property name="compLoadDtlLogic" ref="loadLogicImpl"></property>
 	</bean>
-	<bean id="loadLogicImpl" class="com.admas.logiware.logic.contractcomp.ContractCompLogicImpl">
-		<property name="compLoadDtlLogic" ref="contractCompLoadDaoImpl"></property>
+	<bean id="loadLogicImpl" class="com.admas.logiware.logic.contractcomp.CompLoadDtlLogicImpl">
+		<property name="contractCompLoadDaoImpl" ref="contractCompLoadDaoImpl"></property>
 	</bean>
 	<bean id="contractCompLoadDaoImpl" class="com.admas.logiware.dao.contractcomp.ContractCompLoadDaoImpl" />
 
