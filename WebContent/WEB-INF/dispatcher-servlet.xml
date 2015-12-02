@@ -144,17 +144,41 @@
 
 	<!--Beans for Load Service Start -->
 
-	<bean id="LoadServices" class="com.admas.logiware.services.contractcomp.LoadServices">
-		<property name="loadLogic" ref="loadLogicImpl"></property>
+	<bean id="compLoadDtlServices" class="com.admas.logiware.services.contractcomp.CompLoadDtlServices">
+		<property name="compLoadDtlLogic" ref="loadLogicImpl"></property>
 	</bean>
-	<bean id="loadLogicImpl" class="com.admas.logiware.logic.contractcomp.LoadLogicImpl">
-		<property name="loadDao" ref="loadDaoImpl"></property>
+	<bean id="loadLogicImpl" class="com.admas.logiware.logic.contractcomp.ContractCompLogicImpl">
+		<property name="compLoadDtlLogic" ref="contractCompLoadDaoImpl"></property>
 	</bean>
-	<bean id="loadDaoImpl" class="com.admas.logiware.dao.contractcomp.LoadDaoImpl" />
+	<bean id="contractCompLoadDaoImpl" class="com.admas.logiware.dao.contractcomp.ContractCompLoadDaoImpl" />
 
 	<!--Beans for Load Service End -->
 
+	<!--Beans for Company Product Service Start -->
 
+	<bean id="compProductServices" class="com.admas.logiware.services.contractcomp.CompProductServices">
+		<property name="compProductLogicImpl" ref="compProductLogicImpl"></property>
+	</bean>
+	<bean id="compProductLogicImpl" class="com.admas.logiware.logic.contractcomp.CompProductLogicImpl">
+		<property name="compProductDaoImpl" ref="compProductDaoImpl"></property>
+	</bean>
+	<bean id="compProductDaoImpl" class="com.admas.logiware.dao.contractcomp.CompProductDaoImpl" />
+
+	<!--Beans for Company Product Service End -->
+	
+
+	<!--Beans for Company Load to transport Service Start -->
+
+	<bean id="compLoadToTransServices" class="com.admas.logiware.services.contractcomp.CompLoadToTransServices">
+		<property name="compLoadToTransLogicImpl" ref="compLoadToTransLogicImpl"></property>
+	</bean>
+	<bean id="compLoadToTransLogicImpl" class="com.admas.logiware.logic.contractcomp.CompLoadToTransLogicImpl">
+		<property name="compLoadToTransDaoImpl" ref="compLoadtoTransDaoImpl"></property>
+	</bean>
+	<bean id="compLoadtoTransDaoImpl" class="com.admas.logiware.dao.contractcomp.CompLoadtoTransDaoImpl" />
+
+	<!--Beans for Company Load to transport Service End -->
+	
 	<!-- Beans required for SMS START -->
 	
 	<bean id="smsService" class="com.admas.ngemp.sms.services.SmsService">
@@ -165,6 +189,8 @@
 		<property name="smsDaoImpl" ref="smsDaoImpl"></property>
 	</bean> 
 	<bean id="smsDaoImpl" class="com.admas.ngemp.sms.dao.SmsDaoImpl"></bean> 
+	
+	
 	<!-- <bean id = "deliveryThread" 
 		class="com.admas.ngemp.sms.backendprocess.DeliveryThread"> <constructor-arg 
 		ref="smsDaoImpl"></constructor-arg> </bean> <bean id = "sendingThread" class="com.admas.ngemp.sms.backendprocess.SendingThread"> 

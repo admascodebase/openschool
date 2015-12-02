@@ -32,10 +32,6 @@ public class CompProductServices {
 
 	private static CompProductLogic compProductLogicImpl;
 
-	
-	
-
-
 	public static CompProductLogic getCompProductLogicImpl() {
 		return compProductLogicImpl;
 	}

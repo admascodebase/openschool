@@ -6,6 +6,8 @@ package com.admas.logiware.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
+
 import com.admas.logiware.jpa.CompanyLoadDetail;
 
 /**
@@ -34,6 +36,7 @@ public class CompanyLoadDetailDto implements Serializable{
 	private Date createdOn;
 	private Date updatedOn;
 	private Character delFlag;
+	private String status;
 	/**
 	 * @return the id
 	 */
@@ -243,8 +246,21 @@ public class CompanyLoadDetailDto implements Serializable{
 		companyLoadDetail.setUnloadingDate(this.unloadingDate);
 		companyLoadDetail.setUpdatedBy(this.updatedBy);
 		companyLoadDetail.setUpdatedOn(this.updatedOn);
+		companyLoadDetail.setStatus(this.status);
 		
 		return companyLoadDetail;
+	}
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

@@ -76,6 +76,9 @@ public class CompanyLoadDetail implements Serializable {
 
 	@Column(name = "DEL_FLG")
 	private Character delFlag;
+	
+	@Column(name = "STATUS")
+	private String status;
 
 	public Integer getId() {
 		return id;
@@ -196,6 +199,22 @@ public class CompanyLoadDetail implements Serializable {
 	public void setDelFlag(Character delFlag) {
 		this.delFlag = delFlag;
 	}
+	
+	
+
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	public CompanyLoadDetailDto _toDto() {
 		CompanyLoadDetailDto companyLoadDetailDto = new CompanyLoadDetailDto();
@@ -213,6 +232,7 @@ public class CompanyLoadDetail implements Serializable {
 		companyLoadDetailDto.setUnloadingDate(this.unloadingDate);
 		companyLoadDetailDto.setUpdatedBy(this.updatedBy);
 		companyLoadDetailDto.setUpdatedOn(this.updatedOn);
+		companyLoadDetailDto.setStatus(this.status);
 		return companyLoadDetailDto;
 	}
 
