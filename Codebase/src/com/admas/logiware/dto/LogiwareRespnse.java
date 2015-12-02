@@ -20,9 +20,10 @@ public class LogiwareRespnse implements Serializable{
 	private LoweryOwnerDto loweryOwnerDto;
 	private List<StateDto> lStateDto;
 	private TransportDetailsDto transportDetailsDto;
-	private TransportTypeDtlDto transportTypeDtlDto;
 	private CompanyRouteDto companyRouteDto;
 	private RoutePaySettingDto routePaySettingDto;
+//	private PaymentExceptionDto paymentExceptionDto;
+	private TransportTypeDtlDto transportTypeDtlDto;
 	private List<CityDto> lCityDto;
 	private List<ContractCompDto> lContractCompDtos;
 	private List<RoleDto> lRoles;
@@ -30,6 +31,7 @@ public class LogiwareRespnse implements Serializable{
 	private List<LoweryOwnerDto> lLoweryOwnerDto;
 	private List<TransportTypeDtlDto> lTransportTypeDtlDtos;
 	private List<CompanyRouteDto> lCompanyRouteDto;
+	private CompanyLoadDetailDto companyLoadDetailDto;
 	/**
 	 * @return the code
 	 */
@@ -185,6 +187,30 @@ public class LogiwareRespnse implements Serializable{
 	public void setTransportDetailsDto(TransportDetailsDto transportDetailsDto) {
 		this.transportDetailsDto = transportDetailsDto;
 	}
+/*	*//**
+	 * @return the companyRouteDto
+	 *//*
+	public CompanyRouteDto getCompanyRouteDto() {
+		return companyRouteDto;
+	}
+	*//**
+	 * @param companyRouteDto the companyRouteDto to set
+	 *//*
+	public void setCompanyRouteDto(CompanyRouteDto companyRouteDto) {
+		this.companyRouteDto = companyRouteDto;
+	}
+	/**
+	 * @return the paymentExceptionDto
+	 */
+	/*public PaymentExceptionDto getPaymentExceptionDto() {
+		return paymentExceptionDto;
+	}
+	*//**
+	 * @param paymentExceptionDto the paymentExceptionDto to set
+	 *//*
+	public void setPaymentExceptionDto(PaymentExceptionDto paymentExceptionDto) {
+		this.paymentExceptionDto = paymentExceptionDto;
+	}*/
 	/**
 	 * @return the transportTypeDtlDto
 	 */
@@ -209,6 +235,7 @@ public class LogiwareRespnse implements Serializable{
 	public void setCompanyRouteDto(CompanyRouteDto companyRouteDto) {
 		this.companyRouteDto = companyRouteDto;
 	}
+	
 	/**
 	 * @return the lCityDto
 	 */
@@ -305,5 +332,18 @@ public class LogiwareRespnse implements Serializable{
 	public void setlCompanyRouteDto(List<CompanyRouteDto> lCompanyRouteDto) {
 		this.lCompanyRouteDto = lCompanyRouteDto;
 	}
+	/**
+	 * @return the loadDto
+	 */
+	public CompanyLoadDetailDto getLoadDto() {
+		return companyLoadDetailDto;
+	}
+	/**
+	 * @param companyLoadDetailDto the loadDto to set
+	 */
+	public void setLoadDto(CompanyLoadDetailDto companyLoadDetailDto) {
+		this.companyLoadDetailDto = companyLoadDetailDto;
+	}
+	
 	
 }
