@@ -21,6 +21,7 @@ import com.admas.logiware.dto.Customer;
 import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.LogiwareRespnse;
 import com.admas.logiware.dto.UserDetails;
+import com.admas.logiware.dto.response.CompLoadDtlResponse;
 import com.admas.logiware.dto.response.ProductResponse;
 import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
@@ -416,6 +417,12 @@ public class ServiceInvoker implements Serializable {
 			response = (K)deleteProduct(url,(Map)request);
 			break;
 		}
+
+		case getRoutePaySetting:{
+			response = (K)getRoutePaySetting(url,(Map)request);
+			break;
+		}
+		
 		default:
 			break;
 		}
@@ -2444,14 +2451,14 @@ public class ServiceInvoker implements Serializable {
 	}
 
 	
-	public LogiwareRespnse getAllLoadEntry(String url, Map<String, Object> request) throws LogiwareBaseException {
+	public CompLoadDtlResponse getAllLoadEntry(String url, Map<String, Object> request) throws LogiwareBaseException {
 		logger.info("ServiceInvoker getAllLoadEntry method start. ");
-		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		CompLoadDtlResponse logiwareResponse = new CompLoadDtlResponse();
 		try {
 			Integer compId = (Integer) request.get("compId");
 			ClientRequest clientRequest = new ClientRequest(url + WebAppConstants.URL_SEPERATOR + compId);
 			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
-			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
+			ClientResponse<CompLoadDtlResponse> response = clientRequest.get(CompLoadDtlResponse.class);
 			
 			if (response.getStatus() != 200) {
 				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
@@ -2472,21 +2479,21 @@ public class ServiceInvoker implements Serializable {
 	}
 
 	
-	public LogiwareRespnse saveLoadEntry(String url, Map<String, Object> request) throws LogiwareBaseException {
+	public CompLoadDtlResponse saveLoadEntry(String url, Map<String, Object> request) throws LogiwareBaseException {
 
 		logger.info("ServiceInvoker saveLoadEntry method start. ");
-		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		CompLoadDtlResponse compLoadDtlResponse = new CompLoadDtlResponse();
 		try {
 			ClientRequest clientRequest = new ClientRequest(url);
 			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
 			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("loadDto"));
-			ClientResponse<LogiwareRespnse> response = clientRequest.post(LogiwareRespnse.class);
+			ClientResponse<CompLoadDtlResponse> response = clientRequest.post(CompLoadDtlResponse.class);
 			if (response.getStatus() != 200) {
 				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
 			}
-			logiwareResponse = response.getEntity();
-			if (!logiwareResponse.getCode().equals("0000")) {
-				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			compLoadDtlResponse = response.getEntity();
+			if (!compLoadDtlResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(compLoadDtlResponse.getCode(), compLoadDtlResponse.getDescription());
 			}
 
 		} catch (LogiwareBaseException b) {
@@ -2498,24 +2505,24 @@ public class ServiceInvoker implements Serializable {
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
 		}
 		logger.info("ServiceInvoker saveLoadEntry method end. ");
-		return logiwareResponse;
+		return compLoadDtlResponse;
 	}
 
-	public LogiwareRespnse saveEditLoadEntry(String url, Map<String, Object> request) throws LogiwareBaseException {
+	public CompLoadDtlResponse saveEditLoadEntry(String url, Map<String, Object> request) throws LogiwareBaseException {
 
 		logger.info("ServiceInvoker saveEditTransportTypeDtl method start. ");
-		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		CompLoadDtlResponse compLoadDtlResponse = new CompLoadDtlResponse();
 		try {
 			ClientRequest clientRequest = new ClientRequest(url);
 			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
 			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("loadDto"));
-			ClientResponse<LogiwareRespnse> response = clientRequest.post(LogiwareRespnse.class);
+			ClientResponse<CompLoadDtlResponse> response = clientRequest.post(CompLoadDtlResponse.class);
 			if (response.getStatus() != 200) {
 				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
 			}
-			logiwareResponse = response.getEntity();
-			if (!logiwareResponse.getCode().equals("0000")) {
-				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			compLoadDtlResponse = response.getEntity();
+			if (!compLoadDtlResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(compLoadDtlResponse.getCode(), compLoadDtlResponse.getDescription());
 			}
 		} catch (LogiwareBaseException b) {
 			throw b;
@@ -2525,25 +2532,25 @@ public class ServiceInvoker implements Serializable {
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
 		}
 		logger.info("ServiceInvoker saveEditLoadEntry method end. ");
-		return logiwareResponse;
+		return compLoadDtlResponse;
 	}
 
-	public LogiwareRespnse getLoadEntryById(String url, Map<String, Object> request)
+	public CompLoadDtlResponse getLoadEntryById(String url, Map<String, Object> request)
 			throws LogiwareBaseException {
 		logger.info("ServiceInvoker getLoadEntryById method start. ");
-		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		CompLoadDtlResponse compLoadDtlResponse = new CompLoadDtlResponse();
 		try {
 
 			Integer loadDtoId = (Integer) request.get("loadDtoId");
 			ClientRequest clientRequest = new ClientRequest(url + WebAppConstants.URL_SEPERATOR + loadDtoId);
 			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
-			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
+			ClientResponse<CompLoadDtlResponse> response = clientRequest.get(CompLoadDtlResponse.class);
 			if (response.getStatus() != 200) {
 				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
 			}
-			logiwareResponse = response.getEntity();
-			if (!logiwareResponse.getCode().equals("0000")) {
-				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			compLoadDtlResponse = response.getEntity();
+			if (!compLoadDtlResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(compLoadDtlResponse.getCode(), compLoadDtlResponse.getDescription());
 			} 
 		} catch (LogiwareBaseException b) {
 			throw b;
@@ -2553,7 +2560,7 @@ public class ServiceInvoker implements Serializable {
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
 		}
 		logger.info("ServiceInvoker getLoadEntryById method end. ");
-		return logiwareResponse;
+		return compLoadDtlResponse;
 	}
 
 
@@ -2688,4 +2695,36 @@ public class ServiceInvoker implements Serializable {
 	logger.info("ServiceInvoker addProduct method end. ");
 	return logiwareResponse;
 	}
+	
+	
+	public LogiwareRespnse getRoutePaySetting(String url, Map<String, Object> request) throws LogiwareBaseException {
+
+		logger.info("ServiceInvoker getRoutePaySetting method start. ");
+		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		try {
+			Integer compRouteId = (Integer) request.get("compRouteId");
+			Integer transportTypeId = (Integer) request.get("transId");
+			Integer transportTypeDtlId = (Integer) request.get("transportTypeDtlId");
+			ClientRequest clientRequest = new ClientRequest(url + WebAppConstants.URL_SEPERATOR + transportTypeId + WebAppConstants.URL_SEPERATOR + transportTypeDtlId + WebAppConstants.URL_SEPERATOR + compRouteId);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			logiwareResponse = (LogiwareRespnse) response.getEntity();
+			if (!logiwareResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			}
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker getRoutePaySetting method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker getRoutePaySetting method end. ");
+		return logiwareResponse;
+	}
+
+	
 }

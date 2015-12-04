@@ -93,7 +93,8 @@ public class ServiceEndPointConstants {
 		saveChangePassword("saveChangePassword"), 
 		getemployeeDetails("getemployeeDetails"), 
 		authenticateEmail("authenticateEmail"),
-		resetPassword("resetPassword")
+		resetPassword("resetPassword"), 
+		getRoutePaySetting("getRoutePaySetting")
 		;
 
 		/** The value. */

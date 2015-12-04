@@ -71,7 +71,7 @@
 									<div class="col-md-4">
 										<div id="addButtondiv">
 										<div class="btn-group">
-											<a href="showAddloadEntry.htm?compId=${compId}"><button
+											<a href="showAddloadEntry.htm?contractCompId=${compId}"><button
 													class="btn btn-circle btn-primary">Add New</button></a>
 										</div>
 										</div>
@@ -109,26 +109,26 @@
 										<th>Amount</th>
 										<th>Advance Amount</th>
 										<th>Balance Amount</th>
-										<th>Amount</th>
-										<th>Loading Date</th>
 										<th>Edit/Delete</th>
 									</tr>
 								</thead>
 								
 								<tbody>
-									<c:forEach items="${lLoadEntry}" var="LoadEntry">
+									<c:forEach items="${lLoadDto}" var="LoadEntry">
 										<tr class="odd gradeX">
 										<form:hidden path="compId"/>
 											<td><input type="checkbox" class="checkboxes" value="1" />
 											</td>
-											<td>${LoadEntry.loweryNo}</td>
-											<td>${LoadEntry.tranTypeDtlId}</td>
-											<td>${LoadEntry.ownId}</td>
-											<td>${LoadEntry.loweryNo}</td>
-											<td>${LoadEntry.tranTypeDtlId}</td>
-											<td>${LoadEntry.ownId}</td>
-											<td>${LoadEntry.loweryNo}</td>
-											<td>${LoadEntry.tranTypeDtlId}</td>
+											<td>${LoadEntry.contractCompId}</td>
+											<%-- <td>${LoadEntry.companyRouteDto.routeName}</td> --%>
+											<%-- <td>${LoadEntry.transportTypeDtlDto.truckName}</td> --%>
+											<td>${LoadEntry.compRouteId}</td>
+											<td>${LoadEntry.transportTypeDtlId}</td>
+											<td>${LoadEntry.loadingDate}</td>
+											<td>${LoadEntry.unloadingDate}</td>
+											<td>${LoadEntry.amount}</td>
+											<td>${LoadEntry.advance}</td>
+											<td>${LoadEntry.balance}</td>
 											<td><a href="editTransportDetails.htm?id=${LoadEntry.id}"
 												class="btn btn-warning btn-xs"> Edit </a> <a
 												href="deleteTransportDetails.htm?id=${LoadEntry.id}&ownId=${LoadEntry.compId}"

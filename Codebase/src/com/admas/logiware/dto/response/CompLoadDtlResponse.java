@@ -2,7 +2,6 @@ package com.admas.logiware.dto.response;
 
 import java.util.List;
 
-import com.admas.logiware.dto.CompProductDto;
 import com.admas.logiware.dto.CompanyLoadDetailDto;
 
 public class CompLoadDtlResponse extends BaseLogiwareResponse {

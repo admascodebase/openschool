@@ -7,27 +7,7 @@
 	<!-- BEGIN PAGE CONTENT -->
 	<div class="page-content">
 		<div class="container">
-			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-		<!-- 	<div class="modal fade" id="portlet-config" tabindex="-1"
-				role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
-								aria-hidden="true"></button>
-							<h4 class="modal-title">Modal title</h4>
-						</div>
-						<div class="modal-body">Widget settings form goes here</div>
-						<div class="modal-footer">
-							<button type="button" class="btn blue">Save changes</button>
-							<button type="button" class="btn default" data-dismiss="modal">Close</button>
-						</div>
-					</div>
-					/.modal-content
-				</div>
-				/.modal-dialog
-			</div>
-		 -->	<!-- /.modal -->
+			<!-- /.modal -->
 			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 			<!-- BEGIN PAGE BREADCRUMB -->
 			<ul class="page-breadcrumb breadcrumb">
@@ -61,7 +41,14 @@
 										<form:form name="AddLoadEntryForm" action="saveLoadEntry.htm" modelAttribute="LoadEntry" class="form-horizontal">
 										<form:hidden path="id" />
 										<form:hidden path="delFlag" />
-										<form:hidden path="compId" id="ContractcompId"/>
+										<form:hidden path="compId" id="CompanyId"/>
+										<form:hidden path="contractCompId" id="ContractcompanyId"/>
+										<%-- <form:hidden path="createdBy"/>
+										<form:hidden path="updatedBy"/>
+										<form:hidden path="createdOn"/>
+										<form:hidden path="updatedOn"/>
+										<form:hidden path="status"/> --%>
+										
 											<div class="form-body">
 												<h3 class="form-section"></h3>
 												
@@ -88,7 +75,7 @@
 															<label class="control-label col-md-3">Transport Type Details</label>
 															<div class="col-md-9">
 																<%-- <form:input type="text" path="endCityId" class="form-control"/> --%>
-																<form:select id="tranTypeDtlId" path="transportTypeDtlDto.id"
+																<form:select id="tranTypeDtlId" path="transportTypeDtlId"
 																	class="form-control">
 																	<form:option value="0" label="---Select---" />
 																	<form:options class="form-control" itemValue="id"
@@ -97,10 +84,7 @@
 															</div>
 														</div>
 													</div>
-													
 												</div>
-												
-												
 												
 												<div class="row">
 													<%-- <div class="col-md-6">
@@ -116,8 +100,8 @@
 														<div class="form-group">
 															<label class="control-label col-md-3">Route</label>
 															<div class="col-md-9">
-																	<form:select id="routeSelect" path="id" class="form-control"
-													onchange="getAllTransportTypes()">
+																	<form:select id="routeSelect" path="compRouteId" class="form-control"
+													onchange="getAllRoutePaySettings()">
 													<form:option value="0" label="---Select---" />
 													<form:options class="form-control" itemValue="id"
 														itemLabel="routeName" items="${lCompanyRouteDtos}" />
@@ -210,7 +194,7 @@
 <script>
 
 	function goBack() {
-		var companyId = document.getElementById("ContractcompId").value;
+		var companyId = document.getElementById("ContractcompanyId").value;
 		document.AddLoadEntryForm.action = "getAllLoadEntry.htm?compId="+companyId;
 		document.AddLoadEntryForm.method = "GET";
 		document.AddLoadEntryForm.submit();
@@ -218,8 +202,18 @@
 
 	function getAllTransportTypeDetails() {
 		var x = document.getElementById("TransportTypeSelect").value;
-		var companyId = document.getElementById("ContractcompId").value;
-		document.AddLoadEntryForm.action = "getAllTransportTypeDetailListForLoad.htm?transportTypeId="+ x+"&compId="+companyId;
+		var contractCompanyId = document.getElementById("ContractcompanyId").value;
+		document.AddLoadEntryForm.action = "getAllTransportTypeDetailListForLoad.htm?transportTypeId="+ x+"&contractCompId="+contractCompanyId;
+		document.AddLoadEntryForm.method = "GET";
+		document.AddLoadEntryForm.submit();
+	}
+	
+	function getAllRoutePaySettings() {
+		var transportTypeId = document.getElementById("TransportTypeSelect").value;
+		var transportTypeDtlId = document.getElementById("tranTypeDtlId").value;
+		var companyRouteId = document.getElementById("routeSelect").value;
+		var contractCompId = document.getElementById("ContractcompanyId").value;
+		document.AddLoadEntryForm.action = "getRoutePaySetting.htm?transportTypeId="+ transportTypeId + "&compRouteId=" + companyRouteId + "&transportTypeDtlId=" + transportTypeDtlId + "&contractCompId=" + contractCompId;
 		document.AddLoadEntryForm.method = "GET";
 		document.AddLoadEntryForm.submit();
 	}
