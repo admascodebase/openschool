@@ -1,6 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+ <script type="text/javascript" src="resources/Logistic/js/validations.js"></script>
+<script src="//code.jquery.com/qunit/qunit-1.19.0.js"></script>
+<script type="text/javascript" src="resources/Logistic/test/test.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/qunit/qunit-1.19.0.css">
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+<body  onload="Validator.init('branch')">
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
 	<!-- END PAGE HEAD -->
@@ -41,6 +48,10 @@
 				<div class="col-md-12">
 					<div
 						class="tabbable tabbable-custom tabbable-noborder tabbable-reversed">
+
+
+
+						<div id="errorMessage" class="alert alert-danger"></div>
 						<div class="tab-pane" id="tab_2">
 							<div class="portlet box green">
 								<div class="portlet-title">
@@ -53,9 +64,11 @@
 
 								<!-- CompanyStart -->
 								<div class="portlet box green">
+									
 									<div class="portlet-body form">
 										<!-- BEGIN FORM-->
-										<form:form action="saveCompanyBranch.htm" modelAttribute="companyBranch" class="form-horizontal">
+										
+										<form:form action="saveCompanyBranch.htm" modelAttribute="companyBranch" class="form-horizontal" name="branch">
 										<form:hidden path="id" />
 										<form:hidden path="delFlag" />
 										<form:hidden path="compId" />
@@ -67,7 +80,7 @@
 															<label class="control-label col-md-3">Branch
 																Name</label>
 															<div class="col-md-9">
-																<form:input type="text" path="name" class="form-control"
+																<form:input id="bName" type="text" path="name" class="form-control"
 																	placeholder="Company branch Name here.."/> 
 															</div>
 														</div>
@@ -125,10 +138,11 @@
 											</div>
 											<div class="form-actions right">
 												<a href="./getAllBranch.htm"><button class="btn default" type="button">Cancel</button></a>
-												<button class="btn blue" type="submit"><i class="fa fa-check"></i> Submit</button>
+												<button class="btn blue" type="submit" onclick="Validator.validate()"><i class="fa fa-check"></i> Submit</button>
 											</div>
 											
 										</form:form>
+										
 										<!-- END FORM-->
 									</div>
 								</div>
@@ -145,6 +159,8 @@
 		</div>
 	</div>
 	<!-- END PAGE CONTENT -->
+	
 </div>
+</body>
 
 

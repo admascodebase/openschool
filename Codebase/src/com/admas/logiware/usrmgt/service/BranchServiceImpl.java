@@ -8,7 +8,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.admas.logiware.client.ServiceEndPointConstants.ServiceName;
 import com.admas.logiware.client.ServiceInvoker;
@@ -17,7 +17,7 @@ import com.admas.logiware.dto.FlowData;
 import com.admas.logiware.dto.LogiwareRespnse;
 import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
-@Component
+@Service
 public class BranchServiceImpl implements BranchService {
 
 	@Autowired
