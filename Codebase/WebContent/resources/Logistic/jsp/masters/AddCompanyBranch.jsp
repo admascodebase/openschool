@@ -2,11 +2,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
  <script type="text/javascript" src="resources/Logistic/js/validations.js"></script>
-<!-- <script src="//code.jquery.com/qunit/qunit-1.19.0.js"></script> -->
+<script src="//code.jquery.com/qunit/qunit-1.19.0.js"></script>
 <script type="text/javascript" src="resources/Logistic/test/test.js"></script>
-<!-- <link rel="stylesheet" href="//code.jquery.com/qunit/qunit-1.19.0.css"> -->
-<!-- <div id="qunit"></div>
-<div id="qunit-fixture"></div> -->
+<link rel="stylesheet" href="//code.jquery.com/qunit/qunit-1.19.0.css">
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
 <body  onload="Validator.init('branch')">
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
