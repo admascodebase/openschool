@@ -2,11 +2,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
  <script type="text/javascript" src="resources/Logistic/js/validations.js"></script>
-<script src="//code.jquery.com/qunit/qunit-1.19.0.js"></script>
+<!-- <script src="//code.jquery.com/qunit/qunit-1.19.0.js"></script> -->
 <script type="text/javascript" src="resources/Logistic/test/test.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/qunit/qunit-1.19.0.css">
-<div id="qunit"></div>
-<div id="qunit-fixture"></div>
+<!-- <link rel="stylesheet" href="//code.jquery.com/qunit/qunit-1.19.0.css"> -->
+<!-- <div id="qunit"></div>
+<div id="qunit-fixture"></div> -->
 <body  onload="Validator.init('branch')">
 <div class="page-container">
 	<!-- BEGIN PAGE HEAD -->
@@ -68,7 +68,7 @@
 									<div class="portlet-body form">
 										<!-- BEGIN FORM-->
 										
-										<form:form action="saveCompanyBranch.htm" modelAttribute="companyBranch" class="form-horizontal" name="branch">
+										<form:form modelAttribute="companyBranch" class="form-horizontal" name="branch">
 										<form:hidden path="id" />
 										<form:hidden path="delFlag" />
 										<form:hidden path="compId" />
@@ -137,8 +137,8 @@
 												
 											</div>
 											<div class="form-actions right">
-												<a href="./getAllBranch.htm"><button class="btn default" type="button">Cancel</button></a>
-												<button class="btn blue" type="submit" onclick="Validator.validate()"><i class="fa fa-check"></i> Submit</button>
+											 	<a href="./getAllBranch.htm"><button class="btn default" type="button">Cancel</button></a>
+												<button class="btn blue"  onclick="Validator.validate()"><i class="fa fa-check"></i> Submit</button>
 											</div>
 											
 										</form:form>
