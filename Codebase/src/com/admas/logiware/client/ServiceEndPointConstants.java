@@ -94,7 +94,12 @@ public class ServiceEndPointConstants {
 		getemployeeDetails("getemployeeDetails"), 
 		authenticateEmail("authenticateEmail"),
 		resetPassword("resetPassword"), 
-		getRoutePaySetting("getRoutePaySetting")
+		getRoutePaySetting("getRoutePaySetting"), 
+		getAllCompLoadToTrans("getAllCompLoadToTrans"),
+		getCompLoadToTransById("getCompLoadToTransById"),
+		editCompLoadToTrans("editCompLoadToTrans"),
+		deleteCompLoadToTrans("deleteCompLoadToTrans"), 
+		saveCompanyLoadToTransDto("saveCompanyLoadToTransDto")
 		;
 
 		/** The value. */

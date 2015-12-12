@@ -157,7 +157,6 @@ public class MasterServiceImpl {
 
 	//Start of the transport type services
 	
-	@SuppressWarnings("unchecked")
 	public Map<String, Object> getAllTransportTypes(FlowData flowData,
 			HashMap<String, Object> reqDtoObjects,
 			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
@@ -1333,7 +1332,6 @@ public class MasterServiceImpl {
 		return resDtoObjects;
 	}
 
-	@SuppressWarnings("unchecked")
 	public Map<String, Object> getAllTransportDetails(FlowData flowData,
 			HashMap<String, Object> reqDtoObjects,
 			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
@@ -1343,7 +1341,7 @@ public class MasterServiceImpl {
 		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
 		try {
 			 logiwareRespnse = doServiceCall(flowData, ServiceName.getAllTransportDetails, reqDtoObjects);
-			 lTransportDetails =(List<TransportDetailsDto>) logiwareRespnse.getData();			 
+			 lTransportDetails =(List<TransportDetailsDto>) logiwareRespnse.getlTransportDetailsDto();			 
 			 resDtoObjects.put("lTransportDetails", lTransportDetails);
 		} catch (LogiwareBaseException b) {
 			throw b;
@@ -1920,6 +1918,7 @@ public class MasterServiceImpl {
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
 		}
+		resDtoObjects = getAllLoadEntry(flowData, reqDtoObjects, resDtoObjects);
 		logger.info("MasterServiceImpl saveLoadEntry method end. ");
 		return resDtoObjects;
 		
@@ -1930,26 +1929,23 @@ public class MasterServiceImpl {
 			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
 
 		logger.info("MasterServiceImpl saveEditLoadEntry method start.");
-		LogiwareRespnse logiwareResponse = null;
+		CompLoadDtlResponse compLoadDtlResponse = null;
 		try {
-			logiwareResponse = doServiceCall(flowData,
-					ServiceName.saveEditLoadEntry, reqDtoObjects);
-			resDtoObjects.put("userResponse", logiwareResponse);
+			compLoadDtlResponse = doServiceCall(flowData, ServiceName.saveEditLoadEntry, reqDtoObjects);
+			resDtoObjects.put("userResponse", compLoadDtlResponse);
 		} catch (LogiwareBaseException b) {
-			resDtoObjects = getAllTransportTypeDetails(flowData, reqDtoObjects, resDtoObjects);
+			resDtoObjects = getAllLoadEntry(flowData, reqDtoObjects, resDtoObjects);
 			throw b;
 		} catch (Exception e) {
 			logger.error(
 					"Exception In MasterServiceImpl: saveEditLoadEntry method end.",
 					e);
-			resDtoObjects = getAllEmployee(flowData,
-					reqDtoObjects, resDtoObjects);
+			resDtoObjects = getAllLoadEntry(flowData, reqDtoObjects, resDtoObjects);
 			throw new LogiwareBaseException(
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
 		}
-		resDtoObjects = getAllEmployee(flowData,
-				reqDtoObjects, resDtoObjects);
+		resDtoObjects = getAllLoadEntry(flowData, reqDtoObjects, resDtoObjects);
 		logger.info("MasterServiceImpl saveEditLoadEntry method end. ");
 		return resDtoObjects;
 
@@ -1964,7 +1960,7 @@ public class MasterServiceImpl {
 		CompanyLoadDetailDto loadDto = null;
 		try {
 			logiwareResponse = doServiceCall(flowData, ServiceName.getLoadEntryById, reqDtoObjects);
-			loadDto =(CompanyLoadDetailDto) logiwareResponse.getlCompanyLoadDetailDtos();
+			loadDto =(CompanyLoadDetailDto) logiwareResponse.getCompanyLoadDetailDto();
 			resDtoObjects.put("loadDto", loadDto);			
 		} catch (LogiwareBaseException b) {
 			throw b;
@@ -1985,10 +1981,10 @@ public class MasterServiceImpl {
 			Map<String, Object> resDtoObjects) throws LogiwareBaseException {
 
 		logger.info("MasterServiceImpl deleteTransportType method start.");
-		LogiwareRespnse logiwareResponse = null;
+		CompLoadDtlResponse compLoadDtlResponse = null;
 		try {
-			logiwareResponse = doServiceCall(flowData,	ServiceName.deleteLoadEntry, reqDtoObjects);
-			resDtoObjects.put("userResponse", logiwareResponse);
+			compLoadDtlResponse = doServiceCall(flowData,	ServiceName.deleteLoadEntry, reqDtoObjects);
+			resDtoObjects.put("userResponse", compLoadDtlResponse);
 		} catch (LogiwareBaseException b) {
 			resDtoObjects = getAllLoadEntry(flowData, reqDtoObjects, resDtoObjects);
 			throw b;

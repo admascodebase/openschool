@@ -43,11 +43,11 @@
 										<form:hidden path="delFlag" />
 										<form:hidden path="compId" id="CompanyId"/>
 										<form:hidden path="contractCompId" id="ContractcompanyId"/>
-										<%-- <form:hidden path="createdBy"/>
+										<form:hidden path="createdBy"/>
 										<form:hidden path="updatedBy"/>
-										<form:hidden path="createdOn"/>
-										<form:hidden path="updatedOn"/>
-										<form:hidden path="status"/> --%>
+										<%-- <form:hidden path="createdOn"/>
+										<form:hidden path="updatedOn"/> --%>
+										<form:hidden path="status"/>
 										
 											<div class="form-body">
 												<h3 class="form-section"></h3>
@@ -203,6 +203,7 @@
 	function getAllTransportTypeDetails() {
 		var x = document.getElementById("TransportTypeSelect").value;
 		var contractCompanyId = document.getElementById("ContractcompanyId").value;
+		/* alert(x+"-"+contractCompanyId); */
 		document.AddLoadEntryForm.action = "getAllTransportTypeDetailListForLoad.htm?transportTypeId="+ x+"&contractCompId="+contractCompanyId;
 		document.AddLoadEntryForm.method = "GET";
 		document.AddLoadEntryForm.submit();
@@ -213,6 +214,7 @@
 		var transportTypeDtlId = document.getElementById("tranTypeDtlId").value;
 		var companyRouteId = document.getElementById("routeSelect").value;
 		var contractCompId = document.getElementById("ContractcompanyId").value;
+		alert("transid-"+transportTypeId+" transdtlid-"+transportTypeDtlId+" routeid-"+companyRouteId +" contractcompid-"+contractCompId);
 		document.AddLoadEntryForm.action = "getRoutePaySetting.htm?transportTypeId="+ transportTypeId + "&compRouteId=" + companyRouteId + "&transportTypeDtlId=" + transportTypeDtlId + "&contractCompId=" + contractCompId;
 		document.AddLoadEntryForm.method = "GET";
 		document.AddLoadEntryForm.submit();

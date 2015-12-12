@@ -78,6 +78,7 @@ public class CityController extends BaseController{
 	}
 
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/showAddCity.htm", method = RequestMethod.GET)
 	public ModelAndView addCity(HttpServletRequest request, HttpServletResponse response) {		
 		
@@ -170,6 +171,7 @@ public class CityController extends BaseController{
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/showEditCity.htm",method=RequestMethod.GET)
 	public ModelAndView showEditCity(HttpServletRequest request, HttpServletResponse response){
 		

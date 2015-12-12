@@ -71,7 +71,7 @@
 									<div class="col-md-4">
 										<div id="addButtondiv">
 										<div class="btn-group">
-											<a href="showAddloadEntry.htm?contractCompId=${compId}"><button
+											<a href="showAddloadEntry.htm?contractCompId=${contractCompId}"><button
 													class="btn btn-circle btn-primary">Add New</button></a>
 										</div>
 										</div>
@@ -84,7 +84,7 @@
 												action="getAllTransportDetails.htm">
 												<label class="control-label col-md-10">Select
 													Contract Company </label>
-												<form:select id="contractCompanySelect" path="compId"
+												<form:select id="contractCompanySelect" path="contractCompId"
 													class="form-control" onchange="getAllLoadEntry()">
 													<form:option value="0" label="---Select---" />
 													<form:options class="form-control" itemValue="id"
@@ -116,10 +116,10 @@
 								<tbody>
 									<c:forEach items="${lLoadDto}" var="LoadEntry">
 										<tr class="odd gradeX">
-										<form:hidden path="compId"/>
+										<form:hidden path="contractCompId"/>
 											<td><input type="checkbox" class="checkboxes" value="1" />
 											</td>
-											<td>${LoadEntry.contractCompId}</td>
+											<td>${LoadEntry.id}</td>
 											<%-- <td>${LoadEntry.companyRouteDto.routeName}</td> --%>
 											<%-- <td>${LoadEntry.transportTypeDtlDto.truckName}</td> --%>
 											<td>${LoadEntry.compRouteId}</td>
@@ -129,9 +129,9 @@
 											<td>${LoadEntry.amount}</td>
 											<td>${LoadEntry.advance}</td>
 											<td>${LoadEntry.balance}</td>
-											<td><a href="editTransportDetails.htm?id=${LoadEntry.id}"
+											<td><a href="editLoadEntry.htm?id=${LoadEntry.id}"
 												class="btn btn-warning btn-xs"> Edit </a> <a
-												href="deleteTransportDetails.htm?id=${LoadEntry.id}&ownId=${LoadEntry.compId}"
+												href="deleteLoadEntry.htm?id=${LoadEntry.id}&contractCompId=${LoadEntry.contractCompId}"
 												class="btn btn-info btn-xs"> Delete </a></td>
 										</tr>
 									</c:forEach>
@@ -150,7 +150,7 @@
 <script>
 function getAllLoadEntry() {
     var x = document.getElementById("contractCompanySelect").value;
-    	 document.LoadEntryForm.action="getAllLoadEntry.htm?compId="+x;
+    	 document.LoadEntryForm.action="getAllLoadEntry.htm?contractCompId="+x;
     	 document.LoadEntryForm.method="GET";
     	 document.LoadEntryForm.submit();
 }

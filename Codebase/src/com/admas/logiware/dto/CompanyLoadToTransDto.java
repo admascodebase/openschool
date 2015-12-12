@@ -15,7 +15,10 @@ public class CompanyLoadToTransDto implements Serializable{
 
 	private Integer id;
 	private CompanyLoadDetailDto companyLoadDetail;
+//	private Integer companyLoadDtlId;
 	private TransportDetailsDto transportDetails;
+	private Integer transortOwnerId;
+	private Integer TransportDtlId;
 	private Date assignDate;
 	private Integer createdBy;
 	private Integer updatedBy;
@@ -142,6 +145,65 @@ public class CompanyLoadToTransDto implements Serializable{
 	 */
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	/**
+	 * @return the companyLoadDtlId
+	 */
+//	public Integer getCompanyLoadDtlId() {
+//		return companyLoadDtlId;
+//	}
+	/**
+	 * @param companyLoadDtlId the companyLoadDtlId to set
+	 */
+//	public void setCompanyLoadDtlId(Integer companyLoadDtlId) {
+//		this.companyLoadDtlId = companyLoadDtlId;
+//	}
+	/**
+	 * @return the transportDtlId
+	 */
+//	public Integer getTransportDtlId() {
+//		return TransportDtlId;
+//	}
+	/**
+	 * @param transportDtlId the transportDtlId to set
+	 */
+//	public void setTransportDtlId(Integer transportDtlId) {
+//		TransportDtlId = transportDtlId;
+//	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "CompanyLoadToTransDto [id=" + id + ", companyLoadDetail=" + companyLoadDetail + /*", companyLoadDtlId="
+				+ companyLoadDtlId +*/ ", transportDetails=" + transportDetails + /*", TransportDtlId=" + TransportDtlId
+				+*/ ", assignDate=" + assignDate + ", createdBy=" + createdBy + ", updatedBy=" + updatedBy
+				+ ", createdOn=" + createdOn + ", updatedOn=" + updatedOn + ", delFlag=" + delFlag + ", status="
+				+ status + "]";
+	}
+	/**
+	 * @return the transportDtlId
+	 */
+	public Integer getTransportDtlId() {
+		return TransportDtlId;
+	}
+	/**
+	 * @param transportDtlId the transportDtlId to set
+	 */
+	public void setTransportDtlId(Integer transportDtlId) {
+		TransportDtlId = transportDtlId;
+	}
+	/**
+	 * @return the transortOwnerId
+	 */
+	public Integer getTransortOwnerId() {
+		return transortOwnerId;
+	}
+	/**
+	 * @param transortOwnerId the transortOwnerId to set
+	 */
+	public void setTransortOwnerId(Integer transortOwnerId) {
+		this.transortOwnerId = transortOwnerId;
 	}
 	
 	

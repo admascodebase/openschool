@@ -102,8 +102,8 @@
 	<bean id="TransportDetailsController" class="com.admas.logiware.controller.master.TransportDetailsController"/>
 	<bean id="ContractCompanyRouteController" class="com.admas.logiware.controller.routes.ContractCompanyRouteController" />
 	<bean id="ProductController" class="com.admas.logiware.controller.master.ProductController" />
-		<bean id="RoutePaySettingController" class="com.admas.logiware.controller.master.RoutePaySettingController" />
+	<bean id="RoutePaySettingController" class="com.admas.logiware.controller.master.RoutePaySettingController" />
 	<bean id="LoadController" class="com.admas.logiware.controller.master.LoadController" />
-
+	<bean id="CompLoadToTransController" class="com.admas.logiware.controller.master.CompLoadToTransController" />
 	<mvc:resources location="/resources/Logistic/js/" mapping="/resources/**"/>
 </beans>

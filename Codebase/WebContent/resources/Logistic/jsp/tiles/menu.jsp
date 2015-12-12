@@ -127,15 +127,15 @@
 												</li> 
 												
 												<li>
-													<a href="./getAllLoadEntry.htm?compId=0" class="iconify">
+													<a href="./getAllLoadEntry.htm?contractCompId=0" class="iconify">
 													<i class="icon-basket"></i>
 													Load Entry </a>
 												</li>
 												
 												<li>
-													<a href="./getAllContractCompany.htm" class="iconify">
+													<a href="./getAllCompLoadToTrans.htm?contractCompId=0" class="iconify">
 													<i class="icon-home"></i>
-													Document Upload </a>
+													Load To Transport Entry </a>
 												</li>
 												<li>
 													<a href="#" class="iconify">

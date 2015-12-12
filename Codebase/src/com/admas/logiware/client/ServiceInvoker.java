@@ -22,6 +22,7 @@ import com.admas.logiware.dto.EmployeeDto;
 import com.admas.logiware.dto.LogiwareRespnse;
 import com.admas.logiware.dto.UserDetails;
 import com.admas.logiware.dto.response.CompLoadDtlResponse;
+import com.admas.logiware.dto.response.CompLoadToTransResponse;
 import com.admas.logiware.dto.response.ProductResponse;
 import com.admas.logiware.exception.LogiwareBaseException;
 import com.admas.logiware.exception.LogiwarePortalErrors;
@@ -420,6 +421,16 @@ public class ServiceInvoker implements Serializable {
 
 		case getRoutePaySetting:{
 			response = (K)getRoutePaySetting(url,(Map)request);
+			break;
+		}
+
+		case getAllCompLoadToTrans:{
+			response = (K)getAllCompLoadToTrans(url,(Map)request);
+			break;
+		}
+		
+		case saveCompanyLoadToTransDto:{
+			response = (K)saveCompanyLoadToTransDto(url,(Map)request);
 			break;
 		}
 		
@@ -2198,21 +2209,21 @@ public class ServiceInvoker implements Serializable {
 		logger.info("ServiceInvoker deleteCompanyRoute method end. ");
 		return logiwareResponse;
 	}
-	public LogiwareRespnse deleteLoadEntry(String url, Map<String, Object> request) throws LogiwareBaseException {
+	public CompLoadDtlResponse deleteLoadEntry(String url, Map<String, Object> request) throws LogiwareBaseException {
 
 		logger.info("ServiceInvoker deleteLoadEntry method start. ");
-		LogiwareRespnse logiwareResponse = new LogiwareRespnse();
+		CompLoadDtlResponse compLoadDtlResponse = new CompLoadDtlResponse();
 		try {
 			ClientRequest clientRequest = new ClientRequest(
 					url + WebAppConstants.URL_SEPERATOR + request.get("loadDtoId"));
 			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
-			ClientResponse<LogiwareRespnse> response = clientRequest.get(LogiwareRespnse.class);
+			ClientResponse<CompLoadDtlResponse> response = clientRequest.get(CompLoadDtlResponse.class);
 			if (response.getStatus() != 200) {
 				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
 			}
-			logiwareResponse = response.getEntity();
-			if (!logiwareResponse.getCode().equals("0000")) {
-				throw new LogiwareBaseException(logiwareResponse.getCode(), logiwareResponse.getDescription());
+			compLoadDtlResponse = response.getEntity();
+			if (!compLoadDtlResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(compLoadDtlResponse.getCode(), compLoadDtlResponse.getDescription());
 			}
 
 		} catch (LogiwareBaseException b) {
@@ -2223,7 +2234,7 @@ public class ServiceInvoker implements Serializable {
 					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
 		}
 		logger.info("ServiceInvoker deleteLoadEntry method end. ");
-		return logiwareResponse;
+		return compLoadDtlResponse;
 	}
 
 	
@@ -2727,4 +2738,63 @@ public class ServiceInvoker implements Serializable {
 	}
 
 	
+
+	public CompLoadToTransResponse getAllCompLoadToTrans(String url, Map<String, Object> request) throws LogiwareBaseException {
+		
+		logger.info("ServiceInvoker getAllCompLoadToTrans method start. ");
+		CompLoadToTransResponse compLoadToTransResponse = new CompLoadToTransResponse();
+		try {
+			Integer companyLoadDtlId = (Integer) request.get("companyLoadDtlId");
+			ClientRequest clientRequest = new ClientRequest(url + WebAppConstants.URL_SEPERATOR + companyLoadDtlId);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			ClientResponse<CompLoadToTransResponse> response = clientRequest.get(CompLoadToTransResponse.class);
+			
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			compLoadToTransResponse = response.getEntity();
+			if (!compLoadToTransResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(compLoadToTransResponse.getCode(), compLoadToTransResponse.getDescription());
+			}
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			logger.error("Exception In ServiceInvoker getAllCompLoadToTrans method end.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker getAllCompLoadToTrans method end. ");
+		return compLoadToTransResponse;
+	}
+
+
+	public CompLoadDtlResponse 	saveCompanyLoadToTransDto(String url, Map<String, Object> request) throws LogiwareBaseException {
+
+		logger.info("ServiceInvoker saveCompanyLoadToTransDto method start. ");
+		CompLoadDtlResponse compLoadDtlResponse = new CompLoadDtlResponse();
+		try {
+			ClientRequest clientRequest = new ClientRequest(url);
+			clientRequest.accept(WebAppConstants.APP_CONTENT_TYPE);
+			clientRequest.body(WebAppConstants.APP_CONTENT_TYPE, request.get("companyLoadToTransDto"));
+			ClientResponse<CompLoadDtlResponse> response = clientRequest.post(CompLoadDtlResponse.class);
+			if (response.getStatus() != 200) {
+				throw new LogiwareBaseException(response.getStatus() + "", response.getStatus() + "");
+			}
+			compLoadDtlResponse = response.getEntity();
+			if (!compLoadDtlResponse.getCode().equals("0000")) {
+				throw new LogiwareBaseException(compLoadDtlResponse.getCode(), compLoadDtlResponse.getDescription());
+			}
+
+		} catch (LogiwareBaseException b) {
+			throw b;
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("Exception In ServiceInvoker 	saveCompanyLoadToTransDto method.", e);
+			throw new LogiwareBaseException(LogiwarePortalErrors.INVALID_REQUEST.getErrorCode(),
+					LogiwarePortalErrors.INVALID_REQUEST.getErrorDescription());
+		}
+		logger.info("ServiceInvoker saveCompanyLoadToTransDto method end. ");
+		return compLoadDtlResponse;
+	}
+
 }

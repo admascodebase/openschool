@@ -278,4 +278,17 @@
 		<put-attribute name="body"
 			value="/resources/Logistic/jsp/loadentry/AddLoadEntry.jsp" />
 	</definition>
+	
+	<definition name="getAllCompanyLoadToTrans" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic -Company Load To Transport Entry" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/CompanyLoadToTrans/CompanyLoadToTrans.jsp" />
+	</definition>
+	
+	<definition name="showAddCompLoadToTrans" extends="logistic.baselayout">
+		<put-attribute name="title" value="Logistic -Company Load To Transport Entry" />
+		<put-attribute name="body"
+			value="/resources/Logistic/jsp/CompanyLoadToTrans/AddCompanyLoadToTrans.jsp" />
+	</definition>
+	
 </tiles-definitions>
