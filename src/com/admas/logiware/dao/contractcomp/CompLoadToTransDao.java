@@ -9,7 +9,7 @@ import com.admas.logiware.jpa.CompanyLoadToTrans;
 
 public interface CompLoadToTransDao {
 	
-	public List<CompanyLoadToTrans> getAllCompLoadtoTrans()throws LogiwareExceptionHandler;
+	public List<CompanyLoadToTrans> getAllCompLoadtoTrans(Integer id)throws LogiwareExceptionHandler;
 
 	public CompanyLoadToTrans getCompLoadtoTransById(Integer id)throws LogiwareExceptionHandler;
 

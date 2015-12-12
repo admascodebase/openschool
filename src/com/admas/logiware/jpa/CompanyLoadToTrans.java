@@ -17,7 +17,7 @@ import javax.persistence.TemporalType;
 import com.admas.logiware.dto.CompanyLoadToTransDto;
 
 @Entity
-@Table(name = "load_to_trans")
+@Table(name = "company_load_to_trans")
 public class CompanyLoadToTrans implements Serializable{
 
 	

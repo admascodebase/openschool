@@ -10,7 +10,6 @@ import com.admas.logiware.dao.contractcomp.ContractCompLoadDao;
 import com.admas.logiware.dto.CompanyLoadDetailDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
 import com.admas.logiware.exception.LogiwareServiceErrors;
-import com.admas.logiware.jpa.CompProduct;
 import com.admas.logiware.jpa.CompanyLoadDetail;
 
 public class CompLoadDtlLogicImpl implements CompLoadDtlLogic{

@@ -64,7 +64,7 @@ public class TransportDetailServices {
 		try {
 			transportDetailsDto = transportDetailLogicImpl.getAllTransportDetail(transOwnerId);
 			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
-			logiwareRespnse.setData(transportDetailsDto);
+			logiwareRespnse.setlTransportDetailsDto(transportDetailsDto);
 		} catch (LogiwareExceptionHandler e) {
 			logger.error("Error in TransportDetailServices- > getTransportDetail", e);
 			logiwareRespnse.setCode(e.getErrorCode());

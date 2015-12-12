@@ -3,7 +3,6 @@ package com.admas.logiware.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.admas.logiware.jpa.CompanyLoadDetail;
 import com.admas.logiware.jpa.CompanyLoadToTrans;
 
 
@@ -18,6 +17,8 @@ public class CompanyLoadToTransDto implements Serializable{
 	private Integer id;
 	private CompanyLoadDetailDto companyLoadDetail;
 	private TransportDetailsDto transportDetails;
+	private Integer transortOwnerId;
+	private Integer TransportDtlId;
 	private Date assignDate;
 	private Integer createdBy;
 	private Integer updatedBy;
@@ -159,6 +160,30 @@ public class CompanyLoadToTransDto implements Serializable{
 	 */
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	/**
+	 * @return the transortOwnerId
+	 */
+	public Integer getTransortOwnerId() {
+		return transortOwnerId;
+	}
+	/**
+	 * @param transortOwnerId the transortOwnerId to set
+	 */
+	public void setTransortOwnerId(Integer transortOwnerId) {
+		this.transortOwnerId = transortOwnerId;
+	}
+	/**
+	 * @return the transportDtlId
+	 */
+	public Integer getTransportDtlId() {
+		return TransportDtlId;
+	}
+	/**
+	 * @param transportDtlId the transportDtlId to set
+	 */
+	public void setTransportDtlId(Integer transportDtlId) {
+		TransportDtlId = transportDtlId;
 	}
 	
 	

@@ -7,7 +7,7 @@ import com.admas.logiware.exception.LogiwareExceptionHandler;
 
 public interface CompLoadToTransLogic {
 
-	public List<CompanyLoadToTransDto> getAllCompLoadToTrans()throws LogiwareExceptionHandler;
+	public List<CompanyLoadToTransDto> getAllCompLoadToTrans(Integer id)throws LogiwareExceptionHandler;
 
 	public CompanyLoadToTransDto getCompLoadToTransById(Integer id)throws LogiwareExceptionHandler;
 

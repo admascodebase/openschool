@@ -38,7 +38,7 @@ public class ApplicationConfig extends Application {
         singletons.add(new TransportDetailServices());
         singletons.add(new CompRouteServices());
         singletons.add(new RoutePaymentServices());
-        singletons.add(new CompLoadToTransServices());
+//        singletons.add(new CompLoadToTransServices());
         singletons.add(new CompLoadDtlServices());
         singletons.add(new CompLoadToTransServices());
         singletons.add(new CompProductServices());

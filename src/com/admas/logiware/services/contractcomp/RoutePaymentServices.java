@@ -194,6 +194,34 @@ public class RoutePaymentServices {
 		logger.info(" end  RoutePaySettingService- > deleteRoutePaySetting ");
 		return Response.status(200).entity(logiwareRespnse).build();
 	}
+	
+
+	@GET
+	@Path("/getRoutePaySetting/{transportTypeId}/{transportTypeDtlId}/{compRouteId}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Response getRoutePaySetting(@PathParam("transportTypeId")Integer transportTypeId,@PathParam("transportTypeDtlId")Integer transportTypeDtlId,@PathParam("compRouteId")Integer compRouteId) {
+		logger.info(" Start  RoutePaySettingService- > getRoutePaySetting ");
+		LogiwareRespnse logiwareRespnse = new LogiwareRespnse();
+		RoutePaySettingDto routePaySettingDto = null;
+		try {
+			routePaySettingDto=routePaySettingLogicImpl.getRoutePaySetting(transportTypeId, transportTypeDtlId, compRouteId);
+			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
+			logiwareRespnse.setRoutePaySettingDto(routePaySettingDto);
+		} catch (LogiwareExceptionHandler e) {
+			logger.error("Error in RoutePaySettingService- > getRoutePaySettingById ", e);
+			logiwareRespnse.setCode(e.getErrorCode());
+			logiwareRespnse.setDescription(e.getDescription());
+		} catch (Exception e) {
+			logger.error("Error in RoutePaySettingService- > getRoutePaySettingById ", e);
+			logiwareRespnse.setCode(LogiwareServiceErrors.GENERIC_EXCEPTION
+					.getErrorCode());
+			logiwareRespnse
+					.setDescription(LogiwareServiceErrors.GENERIC_EXCEPTION
+							.getErrorDescription());
+		}
+		logger.info(" end  RoutePaySettingService- > getRoutePaySettingById ");
+		return Response.status(200).entity(logiwareRespnse).build();
+	}
 
 	
 	

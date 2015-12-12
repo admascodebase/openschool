@@ -53,13 +53,13 @@ public class CompLoadToTransServices {
 	@GET
 	@Path("/getAllCompLoadToTrans/{id}")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Response getAllCompLoadToTrans(){
+	public Response getAllCompLoadToTrans(@PathParam("id")Integer id){
 		List<CompanyLoadToTransDto> lCompanyLoadToTransDto= new ArrayList<CompanyLoadToTransDto>();
 		logger.info(" Start  CompLoadToTransServices- > getAllCompLoadToTrans ");
 		CompLoadToTransResponse logiwareRespnse = new CompLoadToTransResponse();
 		try {
 
-			lCompanyLoadToTransDto =compLoadToTransLogicImpl.getAllCompLoadToTrans();
+			lCompanyLoadToTransDto =compLoadToTransLogicImpl.getAllCompLoadToTrans(id);
 			logiwareRespnse.setCode(LogiWareConstants.SUCESS);
 			logiwareRespnse.setlCompanyLoadToTransDtos(lCompanyLoadToTransDto);
 		} catch (LogiwareExceptionHandler e) {

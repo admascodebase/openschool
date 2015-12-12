@@ -207,5 +207,46 @@ public class RoutePaySettingDaoImpl implements RoutePaySettingDao {
 			entityManager.close();
 		}
 	}
+
+	@Override
+	public RoutePaySetting getRoutePaySetting(Integer transportTypeId, Integer transportTypeDtlId, Integer compRouteId)
+			throws LogiwareExceptionHandler {
+
+		RoutePaySetting routePaySetting = null;
+		try {
+
+			TypedQuery<RoutePaySetting> comprouteQuery = entityManager.createQuery(
+					"SELECT e FROM RoutePaySetting e WHERE routeId = :routeId AND transportTypeId = :transportTypeId AND transportTypeDtlId = :transportTypeDtlId", RoutePaySetting.class);
+			comprouteQuery.setParameter("routeId", compRouteId);
+			comprouteQuery.setParameter("transportTypeId", transportTypeId);
+			comprouteQuery.setParameter("transportTypeDtlId", transportTypeDtlId);
+			
+			routePaySetting = comprouteQuery.getSingleResult();
+
+			if (routePaySetting != null) {
+				return routePaySetting;
+			} else {
+				throw new LogiwareExceptionHandler(
+						LogiwareServiceErrors.NO_ROUTE_PAY_SETTING_FOUND);
+			}
+
+		} catch (HibernateException he) {
+			logger.error(
+					"HibernateException Error in RoutePaySettingDaoImpl - > getRoutePaySettingById",
+					he);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION_HIBERNATE);
+		} catch (Exception e) {
+			logger.error(
+					"Exception Error in RoutePaySettingDaoImpl - > getRoutePaySettingById",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		} finally {
+			entityManager.close();
+		}
+	
+	
+	}
 	
 }

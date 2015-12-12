@@ -125,5 +125,25 @@ public class RoutePaySettingLogicImpl implements RoutePaySettingLogic {
 	public static void setRoutePaySettingDaoImpl(RoutePaySettingDao routePaySettingDaoImpl) {
 		RoutePaySettingLogicImpl.routePaySettingDaoImpl = routePaySettingDaoImpl;
 	}
-	
-}
+
+	@Override
+	public RoutePaySettingDto getRoutePaySetting(Integer transportTypeId, Integer transportTypeDtlId,
+			Integer compRouteId) throws LogiwareExceptionHandler {
+
+		RoutePaySetting routePaySetting = null;
+		try {
+			routePaySetting = routePaySettingDaoImpl.getRoutePaySetting(transportTypeId, transportTypeDtlId, compRouteId);
+
+		} catch (LogiwareExceptionHandler e) {
+			throw e;
+		} catch (Exception e) {
+			logger.error(
+					"Exception Error in RoutePaySettingLogicImpl - > getRoutePaySettingById ",
+					e);
+			throw new LogiwareExceptionHandler(
+					LogiwareServiceErrors.GENERIC_EXCEPTION);
+		}
+		return routePaySetting._toDto();
+	}
+
+	}

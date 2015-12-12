@@ -8,6 +8,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -17,14 +18,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.admas.logiware.dto.CompProductDto;
 import com.admas.logiware.dto.CompanyLoadToTransDto;
-import com.admas.logiware.dto.CompanyRouteDto;
 import com.admas.logiware.exception.LogiwareExceptionHandler;
 import com.admas.logiware.exception.LogiwareServiceErrors;
-import com.admas.logiware.jpa.CompProduct;
+import com.admas.logiware.jpa.CompanyLoadDetail;
 import com.admas.logiware.jpa.CompanyLoadToTrans;
-import com.admas.logiware.jpa.CompanyRoute;
 
 public class CompLoadtoTransDaoImpl implements CompLoadToTransDao {
 
@@ -37,7 +35,7 @@ public class CompLoadtoTransDaoImpl implements CompLoadToTransDao {
 	}
 
 	@Override
-	public List<CompanyLoadToTrans> getAllCompLoadtoTrans()
+	public List<CompanyLoadToTrans> getAllCompLoadtoTrans(Integer id)
 			throws LogiwareExceptionHandler {
 		List<CompanyLoadToTrans> lCompLoadToTrans = null;
 		CriteriaBuilder criteriaBuilder = null;
@@ -48,9 +46,10 @@ public class CompLoadtoTransDaoImpl implements CompLoadToTransDao {
 					.createQuery(CompanyLoadToTrans.class);
 			Root<CompanyLoadToTrans> companyRouteJpa = criteriaQuery.from(CompanyLoadToTrans.class);
 			Predicate notDeleted=criteriaBuilder.equal(companyRouteJpa.get("delFlag"), 'N');
-			//Predicate contCompId=criteriaBuilder.equal(companyRouteJpa.get("companyLoadDetail"), id);
+			Path<CompanyLoadDetail> path = companyRouteJpa.get("companyLoadDetail");
+			Predicate compLoadDtlId=criteriaBuilder.equal(path.get("id"), id);
 			criteriaQuery.select(companyRouteJpa);
-			criteriaQuery.where(notDeleted);
+			criteriaQuery.where(notDeleted, compLoadDtlId);
 			TypedQuery<CompanyLoadToTrans> typedQuery = entityManager
 					.createQuery(criteriaQuery);
 			lCompLoadToTrans = typedQuery.getResultList();

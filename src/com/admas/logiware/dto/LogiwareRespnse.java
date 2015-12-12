@@ -20,6 +20,7 @@ public class LogiwareRespnse implements Serializable{
 	private LoweryOwnerDto loweryOwnerDto;
 	private List<StateDto> lStateDto;
 	private TransportDetailsDto transportDetailsDto;
+	private List<TransportDetailsDto> lTransportDetailsDto;
 	private CompanyRouteDto companyRouteDto;
 	private RoutePaySettingDto routePaySettingDto;
 //	private PaymentExceptionDto paymentExceptionDto;
@@ -222,6 +223,18 @@ public class LogiwareRespnse implements Serializable{
 	 */
 	public void setTransportTypeDtlDto(TransportTypeDtlDto transportTypeDtlDto) {
 		this.transportTypeDtlDto = transportTypeDtlDto;
+	}
+	/**
+	 * @return the lTransportDetailsDto
+	 */
+	public List<TransportDetailsDto> getlTransportDetailsDto() {
+		return lTransportDetailsDto;
+	}
+	/**
+	 * @param lTransportDetailsDto the lTransportDetailsDto to set
+	 */
+	public void setlTransportDetailsDto(List<TransportDetailsDto> lTransportDetailsDto) {
+		this.lTransportDetailsDto = lTransportDetailsDto;
 	}
 	/**
 	 * @return the companyRouteDto

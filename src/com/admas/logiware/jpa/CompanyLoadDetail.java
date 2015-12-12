@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -35,13 +33,15 @@ public class CompanyLoadDetail implements Serializable {
 	@Column(name = "CONTRACT_COMP_ID", nullable = false)
 	private Integer contractCompId;
 
-	@ManyToOne
-	@JoinColumn(name = "CONTRACT_COMP_ROUTE_ID", nullable = false)
-	private CompanyRoute contractCompRouteId;
+//	@ManyToOne
+//	@JoinColumn(name = "CONTRACT_COMP_ROUTE_ID", nullable = false)
+	@Column(name = "CONTRACT_COMP_ROUTE_ID", nullable = false)
+	private Integer contractCompRouteId;
 
-	@ManyToOne
-	@JoinColumn(name = "TRANSPORT_TYPE_DTL_ID", nullable = false)
-	private TransportTypeDtl transportTypeDtlId;
+//	@ManyToOne
+//	@JoinColumn(name = "TRANSPORT_TYPE_DTL_ID", nullable = false)
+	@Column(name = "TRANSPORT_TYPE_DTL_ID", nullable = false)
+	private Integer transportTypeDtlId;
 
 	@Column(name = "LOADING_DATE", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
@@ -104,22 +104,6 @@ public class CompanyLoadDetail implements Serializable {
 		this.contractCompId = contractCompId;
 	}
 
-	public CompanyRoute getContractCompRouteId() {
-		return contractCompRouteId;
-	}
-
-	public void setContractCompRouteId(CompanyRoute contractCompRouteId) {
-		this.contractCompRouteId = contractCompRouteId;
-	}
-
-	public TransportTypeDtl getTransportTypeDtlId() {
-		return transportTypeDtlId;
-	}
-
-	public void setTransportTypeDtlId(TransportTypeDtl transportTypeDtlId) {
-		this.transportTypeDtlId = transportTypeDtlId;
-	}
-
 	public Date getLoadingDate() {
 		return loadingDate;
 	}
@@ -130,6 +114,34 @@ public class CompanyLoadDetail implements Serializable {
 
 	public Date getUnloadingDate() {
 		return unloadingDate;
+	}
+
+	/**
+	 * @return the contractCompRouteId
+	 */
+	public Integer getContractCompRouteId() {
+		return contractCompRouteId;
+	}
+
+	/**
+	 * @param contractCompRouteId the contractCompRouteId to set
+	 */
+	public void setContractCompRouteId(Integer contractCompRouteId) {
+		this.contractCompRouteId = contractCompRouteId;
+	}
+
+	/**
+	 * @return the transportTypeDtlId
+	 */
+	public Integer getTransportTypeDtlId() {
+		return transportTypeDtlId;
+	}
+
+	/**
+	 * @param transportTypeDtlId the transportTypeDtlId to set
+	 */
+	public void setTransportTypeDtlId(Integer transportTypeDtlId) {
+		this.transportTypeDtlId = transportTypeDtlId;
 	}
 
 	public void setUnloadingDate(Date unloadingDate) {
@@ -219,16 +231,19 @@ public class CompanyLoadDetail implements Serializable {
 	public CompanyLoadDetailDto _toDto() {
 		CompanyLoadDetailDto companyLoadDetailDto = new CompanyLoadDetailDto();
 		companyLoadDetailDto.setCompId(this.compId);
+		companyLoadDetailDto.setContractCompId(this.contractCompId);
 		companyLoadDetailDto.setAdvance(this.advance);
 		companyLoadDetailDto.setAmount(this.amount);
 		companyLoadDetailDto.setBalance(this.balance);
-		 companyLoadDetailDto.setCompanyRouteDto(this.contractCompRouteId._toDto());
+//		 companyLoadDetailDto.setCompanyRouteDto(this.contractCompRouteId._toDto());
+		companyLoadDetailDto.setCompRouteId(this.contractCompRouteId);
 		companyLoadDetailDto.setCreatedBy(this.createdBy);
 		companyLoadDetailDto.setCreatedOn(this.createdOn);
 		companyLoadDetailDto.setDelFlag(this.delFlag);
-		companyLoadDetailDto.setId(this.compId);
+		companyLoadDetailDto.setId(this.id);
 		companyLoadDetailDto.setLoadingDate(this.loadingDate);
-		companyLoadDetailDto.setTransportTypeDtlDto(this.transportTypeDtlId._toDto());
+//		companyLoadDetailDto.setTransportTypeDtlDto(this.transportTypeDtlId._toDto());
+		companyLoadDetailDto.setTransportTypeDtlId(this.transportTypeDtlId);
 		companyLoadDetailDto.setUnloadingDate(this.unloadingDate);
 		companyLoadDetailDto.setUpdatedBy(this.updatedBy);
 		companyLoadDetailDto.setUpdatedOn(this.updatedOn);

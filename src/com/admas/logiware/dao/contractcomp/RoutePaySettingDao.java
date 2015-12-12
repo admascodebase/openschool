@@ -18,4 +18,6 @@ public interface RoutePaySettingDao {
 	public Boolean editRoutePaySetting(RoutePaySettingDto routePaySettingDto)throws LogiwareExceptionHandler;
 
 	public Boolean deleteRoutePaySetting(Integer id)throws LogiwareExceptionHandler;
+
+	public RoutePaySetting getRoutePaySetting(Integer transportTypeId, Integer transportTypeDtlId, Integer compRouteId)throws LogiwareExceptionHandler;
 }

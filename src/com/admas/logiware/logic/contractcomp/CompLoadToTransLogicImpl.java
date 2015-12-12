@@ -31,12 +31,12 @@ public class CompLoadToTransLogicImpl implements CompLoadToTransLogic{
 	
 	
 	@Override
-	public List<CompanyLoadToTransDto> getAllCompLoadToTrans()
+	public List<CompanyLoadToTransDto> getAllCompLoadToTrans(Integer id)
 			throws LogiwareExceptionHandler {
 		List<CompanyLoadToTrans> lCompLoadToTrans = null;
 		List<CompanyLoadToTransDto> lCompLoadDtlDtos = new ArrayList<CompanyLoadToTransDto>();
 		try {
-			lCompLoadToTrans = compLoadToTransDaoImpl.getAllCompLoadtoTrans();
+			lCompLoadToTrans = compLoadToTransDaoImpl.getAllCompLoadtoTrans(id);
 
 			for (CompanyLoadToTrans companyLoadToTrans : lCompLoadToTrans) {
 				lCompLoadDtlDtos.add(companyLoadToTrans._toDto());
