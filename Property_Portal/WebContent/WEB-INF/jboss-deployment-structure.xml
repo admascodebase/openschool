@@ -1,0 +1,35 @@
+<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.0">
+	<deployment>
+		<dependencies>
+			<module name="org.apache.commons.logging" />
+			<module name="org.apache.commons.digester" />
+			<module name="org.apache.commons.beanutils" />
+			<module name="org.apache.commons.lang" />
+			<module name="org.apache" />
+			<module name="org.springframework">
+				<imports>
+					<include path="META-INF**" />
+					<include path="org**" />
+				</imports>
+			</module>
+			<module name="org.apache.tiles" >
+				 <imports>
+                    <include path="META-INF**" />
+                    <include path="META-INF/tld**" />
+					<include path="org**" />
+                </imports>
+			</module>
+			<module name="org.dom4j"/>
+			<module name="javax.xml.ws.api"/>
+			<module name="com.sun.org.apache.xml.internal.resolver"/>
+	       	<module name="org.apache.commons.lang" />
+	       	<module name="com.sun.xml.bind"/>
+	       	<module name="javax.servlet.api"/>
+	       	<module name="javax.servlet.jsp.api"/>
+	       	<module name="javax.servlet.jstl.api"/>
+	       	<module name="org.apache.taglib"/>
+	       	<module name="org.apache.commons.io"/>
+
+	    </dependencies>
+	</deployment>
+</jboss-deployment-structure>
