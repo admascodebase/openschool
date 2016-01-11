@@ -937,9 +937,9 @@ html {
 									</a>
 									</c:forEach>
 							 --%>
-							<c:if test="${not empty projectDto.galleryImages}">
+							
 
-								<div id="carouselFull" class="carousel slide gallery"
+								<%-- <div id="carouselFull" class="carousel slide gallery"
 									data-ride="carousel" data-interval="false">
 									<ol class="carousel-indicators">
 										<li data-target="#carouselFull" data-slide-to="0"
@@ -951,17 +951,18 @@ html {
 									<div class="carousel-inner">
 										<c:forEach items="${projectDto.galleryImages}"
 											var="galleryImage">
+											Amol ...
 											<a href="${galleryImage}" data-fancybox-group="slideshow"
 												class="galleryItem item active"
 												style="background-image: url(${galleryImage})"></a>
-											<%-- <a
+											<a
 										href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2015/01/4-3.png"
 										data-fancybox-group="slideshow" class="galleryItem item"
-										style="background-image: url(${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2015/01/4-3.png)"></a> --%>
-											<%-- <a
+										style="background-image: url(${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2015/01/4-3.png)"></a>
+											<a
 										href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2015/01/blog-4.jpg"
 										data-fancybox-group="slideshow" class="galleryItem item"
-										style="background-image: url(${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2015/01/blog-4.jpg)"></a> --%>
+										style="background-image: url(${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2015/01/blog-4.jpg)"></a>
 										</c:forEach>
 									</div>
 									<a class="left carousel-control" href="#carouselFull"
@@ -970,8 +971,62 @@ html {
 										class="right carousel-control" href="#carouselFull"
 										role="button" data-slide="next"><span
 										class="fa fa-chevron-right"></span></a>
+								</div> --%>
+								
+								<div id="carouselFull" class="carousel slide gallery"
+								data-ride="carousel" data-interval="false">
+								<ol class="carousel-indicators">
+									<li data-target="#carouselFull" data-slide-to="0"
+										class="active"></li>
+									<li data-target="#carouselFull" data-slide-to="1"></li>
+									<li data-target="#carouselFull" data-slide-to="2"></li>
+								</ol>
+								<div class="carousel-inner">
+								
+								<c:forEach items="${projectDto.galleryImages}"
+											var="galleryImage" varStatus="loop">
+											
+											<c:if test="${loop.index ==0 }">
+											<a
+										href="${galleryImage}"
+										data-fancybox-group="slideshow"
+										class="galleryItem item active"
+										style="background-image: url(${galleryImage})"></a>
+									
+													
+											</c:if>
+										<c:if test="${loop.index >=1 }">
+										
+											<a
+										href="${galleryImage}"
+										data-fancybox-group="slideshow" class="galleryItem item"
+										style="background-image: url(${galleryImage})"></a>
+										
+										</c:if>
+										
+								
+								</c:forEach>
+										
+										<%-- <a
+										href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2015/01/4-3.png"
+										data-fancybox-group="slideshow" class="galleryItem item"
+										style="background-image: url(${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2015/01/4-3.png)"></a>
+										
+										<a
+										href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2015/01/blog-4.jpg"
+										data-fancybox-group="slideshow" class="galleryItem item"
+										style="background-image: url(${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2015/01/blog-4.jpg)"></a>
+										 --%>
+										
 								</div>
-							</c:if>
+								<a class="left carousel-control" href="#carouselFull"
+									role="button" data-slide="prev"><span
+									class="fa fa-chevron-left"></span></a> <a
+									class="right carousel-control" href="#carouselFull"
+									role="button" data-slide="next"><span
+									class="fa fa-chevron-right"></span></a>
+							</div>
+							
 							<div class="summary">
 								<div class="row">
 									<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
@@ -1060,8 +1115,8 @@ html {
 						<div class="amenities">
 
 							<h3>Amenities</h3>
-							<c:forEach items="${projectDto.amenitiesList}" var="amenitity">
-								<div class="row">
+							<%--<c:forEach items="${projectDto.amenitiesList}" var="amenitity">
+							 	<div class="row">
 									<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 amItem">
 										<span class="fa fa-check"></span>${amenitity.specificationValue}
 									</div>
@@ -1083,37 +1138,41 @@ html {
 									</div> -->
 								</div>
 							</c:forEach>
-						</div>
+						</div> --%>
 
-						<div class="amenities">
+							<div class="amenities">
 
-							<h3>Specifications</h3>
-							<c:forEach items="${projectDto.specificationList}"
-								var="specification">
+								<h3>Amenities</h3>
+
 								<div class="row">
-									<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 amItem">
-										<span class="fa fa-check"></span>
-										${specification.specificationValue}
+								
+								<c:forEach items="${projectDto.amenitiesList}" var="amenitity">
+									<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 amItem active" >
+										<span class="fa fa-check"></span> ${amenitity.specificationValue}
 									</div>
-									<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 amItem">
-										<span class="fa fa-chevron-right"></span>
-										${specification.description}
-									</div>
-									<!-- <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 amItem active">
-										<span class="fa fa-check"></span> Air Conditioning
-									</div>
-									<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 amItem">
-										<span class="fa fa-close"></span> Balcony
-									</div>
-									<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 amItem">
-										<span class="fa fa-close"></span> Outdoor Pool
-									</div>
-									<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 amItem active">
-										<span class="fa fa-check"></span> Internet
-									</div> -->
-								</div>
+							
 							</c:forEach>
-						</div>
+									
+								</div>
+							</div>
+							
+							<div class="amenities">
+
+								<h3>Specifications</h3>
+
+								<div class="row">
+								
+								<c:forEach items="${projectDto.specificationList}" var="specification">
+									<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 amItem active" >
+										<span class="fa fa-check"></span> ${specification.specificationValue}
+									</div>
+							
+							</c:forEach>
+									
+								</div>
+							</div>
+
+							
 
 						<div class="floorPlans">
 							<h3>Floor Plans</h3>
