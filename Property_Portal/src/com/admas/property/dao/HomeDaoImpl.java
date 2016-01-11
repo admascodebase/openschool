@@ -428,9 +428,9 @@ public class HomeDaoImpl extends AbstractDao implements IHomeDao {
 					while (rsGallery.next()) {
 						String GalleryImage = PropertyPortalConstants.preurl.concat(rsGallery.getString("image_type"));
 						System.out.println("" + panoramaImage);
-						galleryImages.add(GalleryImage);
-						projectDto.setGalleryImages(galleryImages);
+						galleryImages.add(GalleryImage);						
 					}
+					projectDto.setGalleryImages(galleryImages);
 
 					// For Gallery Image End
 
@@ -446,8 +446,9 @@ public class HomeDaoImpl extends AbstractDao implements IHomeDao {
 						String FloorImage = PropertyPortalConstants.preurl.concat(rsfloor.getString("image_type"));
 						System.out.println("" + FloorImage);
 						floorImages.add(FloorImage);
-						projectDto.setFloorImages(floorImages);
+						
 					}
+					projectDto.setFloorImages(floorImages);
 
 					// For floor Image End
 
@@ -471,10 +472,11 @@ public class HomeDaoImpl extends AbstractDao implements IHomeDao {
 					specificationDto.setStatusFlag(rsSpecification.getString("STATUS_FLAG").charAt(0));
 					specificationList.add(specificationDto);
 
-					projectDto.setSpecificationList(specificationList);
+					
 	
 				}
 				
+				projectDto.setSpecificationList(specificationList);
 				// for specification List End
 
 				resultSet = null;
@@ -496,9 +498,11 @@ public class HomeDaoImpl extends AbstractDao implements IHomeDao {
 					amenitiesDto.setStatusFlag(resultSet.getString("STATUS_FLAG").charAt(0));
 
 					amenitiesList.add(amenitiesDto);
-					projectDto.setAmenitiesList(amenitiesList);
+					
 				}
 
+				projectDto.setAmenitiesList(amenitiesList);
+				
 			} catch (Exception e) {
 				logger.error("Exception Occured in dao" + e);
 			} finally {
