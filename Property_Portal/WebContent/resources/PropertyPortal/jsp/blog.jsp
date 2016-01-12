@@ -570,7 +570,7 @@ html {
 		<c:forEach items="${blogList}" var="blog">
 			<div class="carousel-inner">
 				<div class="item"
-					style="background-image: url(${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2014/12/blog-1.jpg)">
+					style="background-image: url(${pageContext.request.contextPath}/resources/PropertyPortal/images/blogImage.jpg)">
 					<div class="container">
 						<div class="carousel-caption">
 							<div class="carousel-title">Featured on Blog</div>
@@ -683,13 +683,13 @@ html {
 	</div>
 	<div class="home-header">
 		<div class="home-logo osLight">
-			<a
-				href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/index.html">
-				<span class="fa fa-home"></span> Home
-			</a>
+			<a href="index.html"> <img
+					src="${pageContext.request.contextPath}/resources/PropertyPortal/assets/images/logo1.png"
+					style="height: 100px">
+					</a>
 		</div>
 
-		<div class="topUserWraper">
+		<!-- <div class="topUserWraper">
 			<a href="#" class="userNavHandler"><span class="icon-user"></span></a>
 			<div class="user-nav">
 				<ul>
@@ -700,8 +700,8 @@ html {
 				</ul>
 			</div>
 		</div>
-
-		<div class="modal fade" id="signin" role="dialog"
+ -->
+		<%-- <div class="modal fade" id="signin" role="dialog"
 			aria-labelledby="signinLabel" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
@@ -788,8 +788,8 @@ html {
 				</div>
 			</div>
 		</div>
-
-		<div class="modal fade" id="signup" role="dialog"
+ --%>
+		<%-- <div class="modal fade" id="signup" role="dialog"
 			aria-labelledby="signupLabel" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
@@ -852,8 +852,8 @@ html {
 				</div>
 			</div>
 		</div>
-
-		<div class="modal fade" id="forgot" role="dialog"
+ --%>
+		<%-- <div class="modal fade" id="forgot" role="dialog"
 			aria-labelledby="forgotLabel" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
@@ -881,8 +881,8 @@ html {
 				</div>
 			</div>
 		</div>
-
-		<div class="modal fade" id="resetpass" role="dialog"
+ --%>
+		<%-- <div class="modal fade" id="resetpass" role="dialog"
 			aria-labelledby="resetpassLabel" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
@@ -917,7 +917,7 @@ html {
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> --%>
 		<a href="javascript:void(0);" class="top-navHandler visible-xs"><span
 			class="fa fa-bars"></span></a>
 		<div class="top-nav">
@@ -925,8 +925,8 @@ html {
 				<ul id="menu-top-menu" class="menu">
 					<li id="menu-item-225"
 						class="xxx menu-item menu-item-type-post_type menu-item-object-page menu-item-225"><a
-						href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/index.html">Home</a></li>
-					<li id="menu-item-556"
+						href="./property-home.htm">Home</a></li>
+					<%-- <li id="menu-item-556"
 						class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-556"><a
 						href="#">Properties</a>
 						<ul class="sub-menu">
@@ -954,8 +954,8 @@ html {
 								class="menu-item menu-item-type-custom menu-item-object-custom menu-item-561"><a
 								href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/search-results/indexea21.html?search_city=San+Francisco&amp;search_lat=37.7749295&amp;search_lng=-122.41941550000001&amp;search_category=0&amp;search_type=0&amp;search_min_price=&amp;search_max_price=700000">Search
 									by Price</a></li>
-						</ul></li>
-					<li id="menu-item-2459"
+						</ul></li> --%>
+					<%-- <li id="menu-item-2459"
 						class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2459"><a
 						href="#">IDX</a>
 						<ul class="sub-menu">
@@ -971,8 +971,8 @@ html {
 								class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2462"><a
 								href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/dsidxpress-listings-shortcode/index.html">dsIDXpress
 									Listings Shortcode</a></li>
-						</ul></li>
-					<li id="menu-item-562"
+						</ul></li> --%>
+					<%-- <li id="menu-item-562"
 						class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-562"><a
 						href="#">Agents</a>
 						<ul class="sub-menu">
@@ -980,11 +980,11 @@ html {
 								class="menu-item menu-item-type-custom menu-item-object-custom menu-item-563"><a
 								href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/agents/jane-smith/index.html">Agent
 									Page</a></li>
-						</ul></li>
+						</ul></li> --%>
 					<li id="menu-item-269"
 						class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-265 current_page_item current_page_parent menu-item-269"><a
-						href="index.html">Blog</a></li>
-					<li id="menu-item-564"
+						href="./blogs.htm">Blog</a></li>
+					<%-- <li id="menu-item-564"
 						class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-564"><a
 						href="#">Features</a>
 						<ul class="sub-menu">
@@ -1000,16 +1000,16 @@ html {
 								class="menu-item menu-item-type-custom menu-item-object-custom menu-item-595"><a
 								href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/reales-wp-shortcodes/index.html">Reales
 									WP Shortcodes</a></li>
-						</ul></li>
+						</ul></li> --%>
 					<li id="menu-item-519"
 						class="menu-item menu-item-type-post_type menu-item-object-page menu-item-519"><a
-						href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/contact-us/index.html">Contact
+						href="./contactUs.htm">Contact
 							Us</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
-	</div>
+	
 
 
 	<div id="" class="page-wrapper">
@@ -1034,7 +1034,7 @@ html {
 									href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/properties/modern-residence/index.html"><div
 											class="image">
 											<img
-												src="${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2014/12/bg-1.jpg"
+												src="${projectDto.imageUrl}"
 												alt="Recently Listed Properties" />
 										</div>
 										<div class="info text-nowrap">
@@ -1066,7 +1066,7 @@ html {
 									href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/agents/antony-iglesias/index.html"><div
 											class="image">
 											<img
-												src="${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2014/12/avatar-4.png"
+												src="${builderDto.imageUrl}"
 												alt="Our Agents" />
 										</div>
 										<div class="info text-nowrap">
@@ -1104,7 +1104,7 @@ html {
 												href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/modern-two-level-pool-house-in-los-angeles/index.html"
 												class="image">
 												<div class="img"
-													style="background-image: url(${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2014/12/bg-1.jpg);"></div>
+													style="background-image: url(${pageContext.request.contextPath}/resources/PropertyPortal/images/blogImage.jpg)"></div>
 											</a>
 											<div class="article-category">
 												<a class="text-green"

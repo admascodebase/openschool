@@ -39,5 +39,5 @@ public class PropertyPortalConstants {
 
 	private final String justLaunched = "4";
 	
-	public static final String preurl = "http://localhost:8080/BuilderBackOffice/";
+	public static final String preurl = "http://localhost:8081/BuilderBackOffice/";
 }

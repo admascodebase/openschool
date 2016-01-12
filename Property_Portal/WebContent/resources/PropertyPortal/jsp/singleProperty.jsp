@@ -582,13 +582,13 @@ html {
 		<div class="slideshowShadow"></div>
 		<div class="home-header">
 			<div class="home-logo osLight">
-				<a
-					href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/index.html">
-					<span class="fa fa-home"></span> Reales WP
+				<a href="./property-home.htm"> <img
+					src="${pageContext.request.contextPath}/resources/PropertyPortal/assets/images/logo1.png"
+					style="height: 100px">
 				</a>
 			</div>
 
-			<div class="topUserWraper">
+			<!-- <div class="topUserWraper">
 				<a href="#" class="userNavHandler"><span class="icon-user"></span></a>
 				<div class="user-nav">
 					<ul>
@@ -599,8 +599,8 @@ html {
 					</ul>
 				</div>
 			</div>
-
-			<div class="modal fade" id="signin" role="dialog"
+ -->
+			<%-- <div class="modal fade" id="signin" role="dialog"
 				aria-labelledby="signinLabel" aria-hidden="true">
 				<div class="modal-dialog modal-sm">
 					<div class="modal-content">
@@ -689,8 +689,8 @@ html {
 					</div>
 				</div>
 			</div>
-
-			<div class="modal fade" id="signup" role="dialog"
+ --%>
+			<%-- <div class="modal fade" id="signup" role="dialog"
 				aria-labelledby="signupLabel" aria-hidden="true">
 				<div class="modal-dialog modal-sm">
 					<div class="modal-content">
@@ -754,8 +754,8 @@ html {
 					</div>
 				</div>
 			</div>
-
-			<div class="modal fade" id="forgot" role="dialog"
+ --%>
+			<%-- <div class="modal fade" id="forgot" role="dialog"
 				aria-labelledby="forgotLabel" aria-hidden="true">
 				<div class="modal-dialog modal-sm">
 					<div class="modal-content">
@@ -784,8 +784,8 @@ html {
 					</div>
 				</div>
 			</div>
-
-			<div class="modal fade" id="resetpass" role="dialog"
+ --%>
+			<%-- <div class="modal fade" id="resetpass" role="dialog"
 				aria-labelledby="resetpassLabel" aria-hidden="true">
 				<div class="modal-dialog modal-sm">
 					<div class="modal-content">
@@ -820,7 +820,7 @@ html {
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> --%>
 			<a href="javascript:void(0);" class="top-navHandler visible-xs"><span
 				class="fa fa-bars"></span></a>
 			<div class="top-nav">
@@ -828,8 +828,8 @@ html {
 					<ul id="menu-top-menu" class="menu">
 						<li id="menu-item-225"
 							class="xxx menu-item menu-item-type-post_type menu-item-object-page menu-item-225"><a
-							href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/index.html">Home</a></li>
-						<li id="menu-item-556"
+							href="./property-home.htm">Home</a></li>
+						<%-- <li id="menu-item-556"
 							class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-556"><a
 							href="#">Properties</a>
 							<ul class="sub-menu">
@@ -857,8 +857,8 @@ html {
 									class="menu-item menu-item-type-custom menu-item-object-custom menu-item-561"><a
 									href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/search-results/indexea21.html?search_city=San+Francisco&amp;search_lat=37.7749295&amp;search_lng=-122.41941550000001&amp;search_category=0&amp;search_type=0&amp;search_min_price=&amp;search_max_price=700000">Search
 										by Price</a></li>
-							</ul></li>
-						<li id="menu-item-2459"
+							</ul></li> --%>
+						<%-- <li id="menu-item-2459"
 							class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-2459"><a
 							href="#">IDX</a>
 							<ul class="sub-menu">
@@ -873,8 +873,8 @@ html {
 									class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2462"><a
 									href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/dsidxpress-listings-shortcode/index.html">dsIDXpress
 										Listings Shortcode</a></li>
-							</ul></li>
-						<li id="menu-item-562"
+							</ul></li> --%>
+						<%-- <li id="menu-item-562"
 							class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-562"><a
 							href="#">Agents</a>
 							<ul class="sub-menu">
@@ -882,11 +882,11 @@ html {
 									class="menu-item menu-item-type-custom menu-item-object-custom menu-item-563"><a
 									href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/agents/jane-smith/index.html">Agent
 										Page</a></li>
-							</ul></li>
+							</ul></li> --%>
 						<li id="menu-item-269"
 							class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269"><a
-							href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/blog/index.html">Blog</a></li>
-						<li id="menu-item-564"
+							href="./blogs.htm">Blog</a></li>
+						<%-- <li id="menu-item-564"
 							class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-564"><a
 							href="#">Features</a>
 							<ul class="sub-menu">
@@ -902,18 +902,17 @@ html {
 									class="menu-item menu-item-type-custom menu-item-object-custom menu-item-595"><a
 									href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/reales-wp-shortcodes/index.html">Reales
 										WP Shortcodes</a></li>
-							</ul></li>
+							</ul></li> --%>
 						<li id="menu-item-519"
 							class="menu-item menu-item-type-post_type menu-item-object-page menu-item-519"><a
-							href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/contact-us/index.html">Contact
-								Us</a></li>
+							href="./contactUs.htm">Contact Us</a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
-		<div class="page-caption">
-			<div class="page-title">${projectDto.popertyName}</div>
-		</div>
+	</div>
+	<div class="page-caption">
+		<div class="page-title">${projectDto.popertyName}</div>
 	</div>
 
 
@@ -937,9 +936,9 @@ html {
 									</a>
 									</c:forEach>
 							 --%>
-							
 
-								<%-- <div id="carouselFull" class="carousel slide gallery"
+
+							<%-- <div id="carouselFull" class="carousel slide gallery"
 									data-ride="carousel" data-interval="false">
 									<ol class="carousel-indicators">
 										<li data-target="#carouselFull" data-slide-to="0"
@@ -972,8 +971,8 @@ html {
 										role="button" data-slide="next"><span
 										class="fa fa-chevron-right"></span></a>
 								</div> --%>
-								
-								<div id="carouselFull" class="carousel slide gallery"
+
+							<div id="carouselFull" class="carousel slide gallery"
 								data-ride="carousel" data-interval="false">
 								<ol class="carousel-indicators">
 									<li data-target="#carouselFull" data-slide-to="0"
@@ -982,32 +981,29 @@ html {
 									<li data-target="#carouselFull" data-slide-to="2"></li>
 								</ol>
 								<div class="carousel-inner">
-								
-								<c:forEach items="${projectDto.galleryImages}"
-											var="galleryImage" varStatus="loop">
-											
-											<c:if test="${loop.index ==0 }">
-											<a
-										href="${galleryImage}"
-										data-fancybox-group="slideshow"
-										class="galleryItem item active"
-										style="background-image: url(${galleryImage})"></a>
-									
-													
-											</c:if>
-										<c:if test="${loop.index >=1 }">
-										
-											<a
-										href="${galleryImage}"
-										data-fancybox-group="slideshow" class="galleryItem item"
-										style="background-image: url(${galleryImage})"></a>
-										
+
+									<c:forEach items="${projectDto.galleryImages}"
+										var="galleryImage" varStatus="loop">
+
+										<c:if test="${loop.index ==0 }">
+											<a href="${galleryImage}" data-fancybox-group="slideshow"
+												class="galleryItem item active"
+												style="background-image: url(${galleryImage})"></a>
+
+
 										</c:if>
-										
-								
-								</c:forEach>
-										
-										<%-- <a
+										<c:if test="${loop.index >=1 }">
+
+											<a href="${galleryImage}" data-fancybox-group="slideshow"
+												class="galleryItem item"
+												style="background-image: url(${galleryImage})"></a>
+
+										</c:if>
+
+
+									</c:forEach>
+
+									<%-- <a
 										href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2015/01/4-3.png"
 										data-fancybox-group="slideshow" class="galleryItem item"
 										style="background-image: url(${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2015/01/4-3.png)"></a>
@@ -1017,7 +1013,7 @@ html {
 										data-fancybox-group="slideshow" class="galleryItem item"
 										style="background-image: url(${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2015/01/blog-4.jpg)"></a>
 										 --%>
-										
+
 								</div>
 								<a class="left carousel-control" href="#carouselFull"
 									role="button" data-slide="prev"><span
@@ -1026,7 +1022,7 @@ html {
 									role="button" data-slide="next"><span
 									class="fa fa-chevron-right"></span></a>
 							</div>
-							
+
 							<div class="summary">
 								<div class="row">
 									<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
@@ -1040,11 +1036,11 @@ html {
 												<div class="listCategory">Apartment</div>
 											</div>
 
-											<ul class="stats">
+											<!-- <ul class="stats">
 												<li><span class="icon-eye"></span> 999+</li>
 												<li><span class="icon-bubble"></span> 1</li>
-											</ul>
-											<div class="favLink">
+											</ul> -->
+											<!-- <div class="favLink">
 												<a id="favBtn" href="javascript:void(0);"
 													data-toggle="modal" data-target="#signin" class="noSigned"><span
 													class="fa fa-heart-o"></span></a><span class="fav_no">1</span><input
@@ -1052,16 +1048,16 @@ html {
 													value="6c466433ac" /><input type="hidden"
 													name="_wp_http_referer"
 													value="/themes/reales-wp/properties/elegant-apartment/" />
-											</div>
+											</div> -->
 											<div class="clearfix"></div>
-											<ul class="features">
+											<!-- <ul class="features">
 												<li><span class="fa fa-moon-o"></span>
 													<div>2 Bedrooms</div></li>
 												<li><span class="icon-drop"></span>
 													<div>1 Bathrooms</div></li>
 												<li><span class="icon-frame"></span>
 													<div>1200 sq ft</div></li>
-											</ul>
+											</ul> -->
 											<div class="clearfix"></div>
 										</div>
 									</div>
@@ -1074,8 +1070,8 @@ html {
 												src="./${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2014/12/avatar-3.png"
 												alt="Rust Cohle"></a>
 											<div class="agentName">${projectDto.builderId}</div>
-											<a data-toggle="modal" href="#contactAgent"
-												class="btn btn-green contactBtn">Contact Agent</a>
+											<!-- <a data-toggle="modal" href="#contactAgent"
+												class="btn btn-green contactBtn">Contact Agent</a> -->
 										</div>
 									</div>
 								</div>
@@ -1090,7 +1086,7 @@ html {
 							</div>
 						</div>
 
-						<div class="share">
+						<div class="share hidden">
 							<a
 								href="https://www.facebook.com/sharer/sharer.php?u=http://mariusn.com/themes/reales-wp/properties/elegant-apartment/"
 								onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
@@ -1145,45 +1141,49 @@ html {
 								<h3>Amenities</h3>
 
 								<div class="row">
-								
-								<c:forEach items="${projectDto.amenitiesList}" var="amenitity">
-									<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 amItem active" >
-										<span class="fa fa-check"></span> ${amenitity.specificationValue}
-									</div>
-							
-							</c:forEach>
-									
+
+									<c:forEach items="${projectDto.amenitiesList}" var="amenitity">
+										<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 amItem active">
+											<span class="fa fa-check"></span>
+											${amenitity.specificationValue}
+										</div>
+
+									</c:forEach>
+
 								</div>
 							</div>
-							
+
 							<div class="amenities">
 
 								<h3>Specifications</h3>
 
 								<div class="row">
-								
-								<c:forEach items="${projectDto.specificationList}" var="specification">
-									<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 amItem active" >
-										<span class="fa fa-check"></span> ${specification.specificationValue}
-									</div>
-							
-							</c:forEach>
-									
+
+									<c:forEach items="${projectDto.specificationList}"
+										var="specification">
+										<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 amItem active">
+											<span class="fa fa-check"></span>
+											${specification.specificationValue}
+										</div>
+
+									</c:forEach>
+
 								</div>
 							</div>
 
-							
 
-						<div class="floorPlans">
-							<h3>Floor Plans</h3>
-							<div class="row">
-								<c:forEach items="${projectDto.floorImages}" var="floorImage">
-									<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-										<a class="plan" href="${floorImage}"
-											data-fancybox-group="floorplans"><img src="${floorImage}"></a>
-									</div>
-								</c:forEach>
-								<%-- <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+
+							<div class="floorPlans">
+								<h3>Floor Plans</h3>
+								<div class="row">
+									<c:forEach items="${projectDto.floorImages}" var="floorImage">
+										<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+											<a class="plan" href="${floorImage}"
+												data-fancybox-group="floorplans"><img
+												src="${floorImage}"></a>
+										</div>
+									</c:forEach>
+									<%-- <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
 									<a class="plan"
 										href="./${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2015/04/plan2.png"
 										data-fancybox-group="floorplans"><img
@@ -1201,10 +1201,10 @@ html {
 										data-fancybox-group="floorplans"><img
 										src="./${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2015/04/plan4.jpg"></a>
 								</div> --%>
+								</div>
 							</div>
-						</div>
 
-						<div class="additional">
+							<!-- <div class="additional">
 							<h3>Additional Information</h3>
 							<div class="row">
 								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 amItem">
@@ -1227,34 +1227,35 @@ html {
 								</div>
 							</div>
 						</div>
+ -->
 
-
-						<div class="similar">
+							<!-- 		<div class="similar">
 							<h3>Similar Properties</h3>
 							<div class="noProp">No similar properties found.</div>
 						</div>
-
-						<div class="comments">
-							<div class="dsidx-shortcode-item" id="dsidx-shortcode-item-352">
-								<h3 style="text-decoration: underline;">Location</h3>
-								<iframe class="dsidx-shortcode-map" width="100%" height="300"
-									frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-									style="margin-left: 20px; border: 1px solid #999999;"
-									src="http://maps.google.com/?ie=UTF8&amp;hq=&amp;hnear=49+Sunny+St.,92637&amp;vpsrc=0&amp;ll=33.619194,-117.744483&amp;saddr=33.619194,-117.744483&amp;sll=33.619194,-117.744483&amp;daddr=&amp;mra=mift&amp;mrsp=0&amp;sz=19&amp;z=17&amp;output=embed">
-								</iframe>
+ -->
+							<div class="comments">
+								<div class="dsidx-shortcode-item" id="dsidx-shortcode-item-352">
+									<h3 style="text-decoration: underline;">Location</h3>
+									<iframe class="dsidx-shortcode-map" width="100%" height="300"
+										frameborder="0" scrolling="no" marginheight="0"
+										marginwidth="0"
+										style="margin-left: 20px; border: 1px solid #999999;"
+										src="http://maps.google.com/?ie=UTF8&amp;hq=&amp;hnear=49+Sunny+St.,92637&amp;vpsrc=0&amp;ll=33.619194,-117.744483&amp;saddr=33.619194,-117.744483&amp;sll=33.619194,-117.744483&amp;daddr=&amp;mra=mift&amp;mrsp=0&amp;sz=19&amp;z=17&amp;output=embed">
+									</iframe>
+								</div>
 							</div>
 						</div>
+
 					</div>
 
-				</div>
 
 
 
-
-				<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-					<div class="content-sidebar">
-						<ul class="sidebar-list">
-							<%-- <%-- <li id="search-2" class="widget-container widget_search"><h3
+					<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+						<div class="content-sidebar">
+							<ul class="sidebar-list">
+								<%-- <%-- <li id="search-2" class="widget-container widget_search"><h3
 									class="osLight sidebar-header">Search our Blog</h3>
 								<form role="search" method="get" id="searchform"
 									class="searchform"
@@ -1265,7 +1266,8 @@ html {
 											type="submit" id="searchsubmit" value="Search" />
 									</div>
 								</form></li>
-							 --%><%-- <li id="featured_properties_widget-4"
+							 --%>
+								<%-- <li id="featured_properties_widget-4"
 								class="widget-container featured_properties_sidebar"><h3
 									class="osLight sidebar-header">Featured Properties</h3>
 								<div class="propsWidget">
@@ -1320,55 +1322,54 @@ html {
 												<div class="clearfix"></div></a></li>
 									</ul>
 								</div></li> --%>
-							<li id="recent_properties_widget-3"
-								class="widget-container recent_properties_sidebar"><h3
-									class="osLight sidebar-header">Recently Listed Properties</h3>
+								<li id="recent_properties_widget-3"
+									class="widget-container recent_properties_sidebar"><h3
+										class="osLight sidebar-header">Recently Listed Properties</h3>
 
-								<c:forEach items="${projectList}" var="projectDto">
-									<div class="propsWidget">
-										<ul class="propList">
-											<li><a href="singleProperty.htm?id=${projectDto.id}"><div
-														class="image">
-														<img src="${projectDto.imageUrl}"
-															alt="Recently Listed Properties" />
-													</div>
-													<div class="info text-nowrap">
-														<div class="name">${projectDto.popertyName}</div>
-														<div class="address">${projectDto.siteAddress}</div>
-														<div class="price">${projectDto.cost}<span
-																class="badge">For Sale</span>
+									<c:forEach items="${projectList}" var="projectDto">
+										<div class="propsWidget">
+											<ul class="propList">
+												<li><a href="singleProperty.htm?id=${projectDto.id}"><div
+															class="image">
+															<img src="${projectDto.imageUrl}"
+																alt="Recently Listed Properties" />
 														</div>
-													</div>
-													<div class="clearfix"></div></a></li>
-										</ul>
-									</div>
-								</c:forEach></li>
-							<li id="featured_agents_widget-4"
-								class="widget-container featured_agents_sidebar"><h3
-									class="osLight sidebar-header">Our Agents</h3>
-								<div class="agentsWidget">
-									<ul class="agentsList">
-									<c:forEach
-									items="${agentList}" var="builderDto">
+														<div class="info text-nowrap">
+															<div class="name">${projectDto.popertyName}</div>
+															<div class="address">${projectDto.siteAddress}</div>
+															<div class="price">${projectDto.cost}<span
+																	class="badge">For Sale</span>
+															</div>
+														</div>
+														<div class="clearfix"></div></a></li>
+											</ul>
+										</div>
+									</c:forEach></li>
+								<li id="featured_agents_widget-4"
+									class="widget-container featured_agents_sidebar"><h3
+										class="osLight sidebar-header">Our Agents</h3>
 									<div class="agentsWidget">
 										<ul class="agentsList">
-											<li><a
-												href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/agents/antony-iglesias/index.html"><div
-														class="image">
-														<img
-															src="${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2014/12/avatar-4.png"
-															alt="Our Agents" />
-													</div>
-													<div class="info text-nowrap">
-														<div class="name">${builderDto.builderName}</div>
-														<div class="title">Houses and lands</div>
-													</div>
-													<div class="clearfix"></div></a></li>
+											<c:forEach items="${agentList}" var="builderDto">
+												<div class="agentsWidget">
+													<ul class="agentsList">
+														<li><a
+															href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/agents/antony-iglesias/index.html"><div
+																	class="image">
+																	<img
+																		src="${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2014/12/avatar-4.png"
+																		alt="Our Agents" />
+																</div>
+																<div class="info text-nowrap">
+																	<div class="name">${builderDto.builderName}</div>
+																	<div class="title">Houses and lands</div>
+																</div>
+																<div class="clearfix"></div></a></li>
 
-										</ul>
-									</div>
-								</c:forEach>
-										<%-- <li><a
+													</ul>
+												</div>
+											</c:forEach>
+											<%-- <li><a
 											href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/agents/antony-iglesias/index.html"><div
 													class="image">
 													<img
@@ -1404,9 +1405,10 @@ html {
 													<div class="title">Lands and apartments</div>
 												</div>
 												<div class="clearfix"></div></a></li> --%>
-									</ul>
-								</div></li>
-						</ul>
+										</ul>
+									</div></li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -1414,12 +1416,11 @@ html {
 	</div>
 
 
-
 	<div class="home-footer">
 		<div class="page-wrapper">
 			<div class="row">
 
-				<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+				<%-- <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
 					<ul class="footer-nav pb20">
 						<li id="nav_menu-2" class="widget-container widget_nav_menu"><h3
 								class="osLight footer-header">Properties</h3>
@@ -1463,8 +1464,8 @@ html {
 							</div></li>
 					</ul>
 				</div>
-
-				<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+ --%>
+				<%-- <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
 					<ul class="footer-nav pb20">
 						<li id="recent_properties_widget-4"
 							class="widget-container recent_properties_sidebar"><h3
@@ -1523,8 +1524,8 @@ html {
 							</div></li>
 					</ul>
 				</div>
-
-				<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+ --%>
+				<%-- <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
 					<ul class="footer-nav pb20">
 						<li id="recent-posts-3"
 							class="widget-container widget_recent_entries">
@@ -1577,10 +1578,9 @@ html {
 					</ul>
 				</div>
 
-
+ --%>
 			</div>
-			<div class="copyright">© 2015 Reales WP - Real Estate WordPress
-				Theme</div>
+			<div class="copyright">© 2015 Property n Loans</div>
 		</div>
 	</div>
 

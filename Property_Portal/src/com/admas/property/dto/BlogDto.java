@@ -15,6 +15,7 @@ public class BlogDto {
 	private Date blogDate;
 	private String authorName;
 	private String blog;
+	private String imageUrl;
 	/**
 	 * @return the blogId
 	 */
@@ -99,6 +100,18 @@ public class BlogDto {
 	 */
 	public void setBlog(String blog) {
 		this.blog = blog;
+	}
+	/**
+	 * @return the imageUrl
+	 */
+	public String getImageUrl() {
+		return imageUrl;
+	}
+	/**
+	 * @param imageUrl the imageUrl to set
+	 */
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 

@@ -510,9 +510,10 @@ html {
 				<a href="index.html"> <img
 					src="${pageContext.request.contextPath}/resources/PropertyPortal/assets/images/logo1.png"
 					style="height: 100px">
+					</a>
 			</div>
 
-			<div class="topUserWraper">
+		<!-- 	<div class="topUserWraper">
 				<a href="#" class="userNavHandler"><span class="icon-user"></span></a>
 				<div class="user-nav">
 					<ul>
@@ -522,7 +523,7 @@ html {
 								In</a></li>
 					</ul>
 				</div>
-			</div>
+			</div> -->
 
 
 			<a href="javascript:void(0);" class="top-navHandler visible-xs"><span
@@ -538,7 +539,7 @@ html {
 
 						<li id="menu-item-269"
 							class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269"><a
-							href="blog/index.htm">Blog</a></li>
+							href="./blogs.htm">Blog</a></li>
 
 						<li id="menu-item-519"
 							class="menu-item menu-item-type-post_type menu-item-object-page menu-item-519"><a

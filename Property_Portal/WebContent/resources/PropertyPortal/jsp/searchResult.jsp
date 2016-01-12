@@ -15,7 +15,7 @@
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<title>Properties Search Results | Reales WP</title>
+<title>Properties Search Results | Properties N Loans</title>
 <link rel="pingback"
 	href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/xmlrpc.php">
 <!--[if lt IE 9]>
@@ -567,17 +567,16 @@ html {
 
 	<div id="header">
 		<div class="logo">
-			<a
-				href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/index.html">
-				<span class="fa fa-home marker"></span><span class="logoText">Reales
-					WP</span>
+			<a href="index.html"> <img
+				src="${pageContext.request.contextPath}/resources/PropertyPortal/assets/images/logo1.png"
+				style="height: 100px">
 			</a>
 		</div>
 		<a href="javascript:void(0);" class="navHandler"><span
 			class="fa fa-ellipsis-v"></span></a> <a href="javascript:void(0);"
 			class="mapHandler"><span class="icon-map"></span></a>
 
-		<div class="topUserWraper">
+		<!-- <div class="topUserWraper">
 			<a href="#" class="userNavHandler"><span class="icon-user"></span></a>
 			<div class="user-nav">
 				<ul>
@@ -588,8 +587,8 @@ html {
 				</ul>
 			</div>
 		</div>
-
-		<div class="modal fade" id="signin" role="dialog"
+ -->
+		<%-- <div class="modal fade" id="signin" role="dialog"
 			aria-labelledby="signinLabel" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
@@ -677,8 +676,8 @@ html {
 				</div>
 			</div>
 		</div>
-
-		<div class="modal fade" id="signup" role="dialog"
+ --%>
+		<%-- <div class="modal fade" id="signup" role="dialog"
 			aria-labelledby="signupLabel" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
@@ -742,8 +741,8 @@ html {
 				</div>
 			</div>
 		</div>
-
-		<div class="modal fade" id="forgot" role="dialog"
+ --%>
+		<%-- <div class="modal fade" id="forgot" role="dialog"
 			aria-labelledby="forgotLabel" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
@@ -772,8 +771,8 @@ html {
 				</div>
 			</div>
 		</div>
-
-		<div class="modal fade" id="resetpass" role="dialog"
+ --%>
+		<%-- <div class="modal fade" id="resetpass" role="dialog"
 			aria-labelledby="resetpassLabel" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
@@ -809,6 +808,7 @@ html {
 				</div>
 			</div>
 		</div>
+		 --%>
 		<a href="javascript:void(0);" class="top-navHandler visible-xs"><span
 			class="fa fa-bars"></span></a>
 		<div class="top-nav">
@@ -817,7 +817,7 @@ html {
 					<li id="menu-item-225"
 						class="xxx menu-item menu-item-type-post_type menu-item-object-page menu-item-225"><a
 						href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/index.html">Home</a></li>
-					<li id="menu-item-556"
+					<%-- <li id="menu-item-556"
 						class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-556"><a
 						href="#">Properties</a>
 						<ul class="sub-menu">
@@ -845,8 +845,8 @@ html {
 								class="menu-item menu-item-type-custom menu-item-object-custom menu-item-561"><a
 								href="indexea21.html?search_city=San+Francisco&amp;search_lat=37.7749295&amp;search_lng=-122.41941550000001&amp;search_category=0&amp;search_type=0&amp;search_min_price=&amp;search_max_price=700000">Search
 									by Price</a></li>
-						</ul></li>
-					<li id="menu-item-2459"
+						</ul></li> --%>
+					<%-- <li id="menu-item-2459"
 						class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2459"><a
 						href="#">IDX</a>
 						<ul class="sub-menu">
@@ -862,8 +862,8 @@ html {
 								class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2462"><a
 								href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/dsidxpress-listings-shortcode/index.html">dsIDXpress
 									Listings Shortcode</a></li>
-						</ul></li>
-					<li id="menu-item-562"
+						</ul></li> --%>
+					<%-- <li id="menu-item-562"
 						class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-562"><a
 						href="#">Agents</a>
 						<ul class="sub-menu">
@@ -871,11 +871,11 @@ html {
 								class="menu-item menu-item-type-custom menu-item-object-custom menu-item-563"><a
 								href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/agents/jane-smith/index.html">Agent
 									Page</a></li>
-						</ul></li>
+						</ul></li> --%>
 					<li id="menu-item-269"
 						class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269"><a
-						href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/blog/index.html">Blog</a></li>
-					<li id="menu-item-564"
+						href="./blogs.htm">Blog</a></li>
+					<%-- <li id="menu-item-564"
 						class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-564"><a
 						href="#">Features</a>
 						<ul class="sub-menu">
@@ -891,18 +891,17 @@ html {
 								class="menu-item menu-item-type-custom menu-item-object-custom menu-item-595"><a
 								href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/reales-wp-shortcodes/index.html">Reales
 									WP Shortcodes</a></li>
-						</ul></li>
+						</ul></li> --%>
 					<li id="menu-item-519"
 						class="menu-item menu-item-type-post_type menu-item-object-page menu-item-519"><a
-						href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/contact-us/index.html">Contact
-							Us</a></li>
+						href="./contactUs.htm">Contact Us</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="clearfix"></div>
 	</div>
 
-	<div id="leftSide">
+	<%-- <div id="leftSide">
 		<nav class="leftNav scrollable">
 			<div class="menu-leftside-menu-container">
 				<ul id="menu-leftside-menu" class="menu">
@@ -929,9 +928,8 @@ html {
 				</ul>
 			</div>
 		</nav>
-	</div>
+	</div> --%>
 	<div class="closeLeftSide"></div>
-	</div>
 
 
 	<div id="wrapper">
@@ -1137,7 +1135,6 @@ html {
 								href="javascript:void(0);">Area</a></li>
 						</ul>
 					</div> -->
-					x
 				</div>
 				<c:if test="${empty projectList}">
 					<div>

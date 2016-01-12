@@ -569,12 +569,13 @@ html {
 		<div class="slideshowShadow"></div>
 		<div class="home-header">
 			<div class="home-logo osLight">
-				<a
-					href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/index.html">
-					<span class="fa fa-home"></span> Reales WP
+				<a href="index.html"> <img
+					src="${pageContext.request.contextPath}/resources/PropertyPortal/assets/images/logo1.png"
+					style="height: 100px">
 				</a>
 			</div>
 
+			<!-- 
 			<div class="topUserWraper">
 				<a href="#" class="userNavHandler"><span class="icon-user"></span></a>
 				<div class="user-nav">
@@ -585,9 +586,9 @@ html {
 								In</a></li>
 					</ul>
 				</div>
-			</div>
+			</div> -->
 
-			<div class="modal fade" id="signin" role="dialog"
+			<%-- 			<div class="modal fade" id="signin" role="dialog"
 				aria-labelledby="signinLabel" aria-hidden="true">
 				<div class="modal-dialog modal-sm">
 					<div class="modal-content">
@@ -674,9 +675,10 @@ html {
 						</div>
 					</div>
 				</div>
-			</div>
+			</ --%>
+			div>
 
-			<div class="modal fade" id="signup" role="dialog"
+			<%-- 			<div class="modal fade" id="signup" role="dialog"
 				aria-labelledby="signupLabel" aria-hidden="true">
 				<div class="modal-dialog modal-sm">
 					<div class="modal-content">
@@ -738,9 +740,9 @@ html {
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> --%>
 
-			<div class="modal fade" id="forgot" role="dialog"
+			<%-- <div class="modal fade" id="forgot" role="dialog"
 				aria-labelledby="forgotLabel" aria-hidden="true">
 				<div class="modal-dialog modal-sm">
 					<div class="modal-content">
@@ -767,9 +769,9 @@ html {
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> --%>
 
-			<div class="modal fade" id="resetpass" role="dialog"
+			<%-- <div class="modal fade" id="resetpass" role="dialog"
 				aria-labelledby="resetpassLabel" aria-hidden="true">
 				<div class="modal-dialog modal-sm">
 					<div class="modal-content">
@@ -804,7 +806,7 @@ html {
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> --%>
 			<a href="javascript:void(0);" class="top-navHandler visible-xs"><span
 				class="fa fa-bars"></span></a>
 			<div class="top-nav">
@@ -1005,7 +1007,7 @@ html {
 				<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
 					<div class="content-sidebar">
 						<ul class="sidebar-list">
-							<li id="search-2" class="widget-container widget_search"><h3
+							<%-- <li id="search-2" class="widget-container widget_search"><h3
 									class="osLight sidebar-header">Search our Blog</h3>
 								<form role="search" method="get" id="searchform"
 									class="searchform"
@@ -1015,7 +1017,7 @@ html {
 										<input type="text" value="" name="s" id="s" /> <input
 											type="submit" id="searchsubmit" value="Search" />
 									</div>
-								</form></li>
+								</form></li> --%>
 							<%-- <li id="featured_properties_widget-4"
 								class="widget-container featured_properties_sidebar"><h3
 									class="osLight sidebar-header">Featured Properties</h3>

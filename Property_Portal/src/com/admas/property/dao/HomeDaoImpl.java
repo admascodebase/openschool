@@ -147,8 +147,7 @@ public class HomeDaoImpl extends AbstractDao implements IHomeDao {
 				String imageUrl = null;
 				if (rs.next()) {
 					
-					String preurl = "http://localhost:8080/BuilderBackOffice/";
-					imageUrl = preurl.concat(rs.getString("image_type"));
+					imageUrl = PropertyPortalConstants.preurl.concat(rs.getString("image_type"));
 					System.out.println("" + imageUrl);
 					builderDto.setImageUrl(imageUrl);
 					
@@ -235,9 +234,8 @@ public class HomeDaoImpl extends AbstractDao implements IHomeDao {
 				if (rs.next()) {
 					System.out.println("No data");
 
-					String preurl = "http://localhost:8080/BuilderBackOffice/";
-					String imageUrl = preurl.concat(rs.getString("image_type"));
-					System.out.println("" + imageUrl);
+					String imageUrl = PropertyPortalConstants.preurl.concat(rs.getString("image_type"));
+					System.out.println("search result project image url" + imageUrl);
 					projectDto.setImageUrl(imageUrl);
 				} else {
 					System.out.println("Data");
@@ -302,7 +300,8 @@ public class HomeDaoImpl extends AbstractDao implements IHomeDao {
 				blogDto.setBlogTitle(resultSet.getString("BLOG_TITLE"));
 				blogDto.setBuilderId(resultSet.getInt("BUILDER_ID"));
 				blogDto.setProjId(resultSet.getInt("PROJ_ID"));
-
+				blogDto.setImageUrl("/resources/PropertyPortal/images/blogImage.jpg");
+				
 				blogList.add(blogDto);
 			}
 		} catch (Exception e) {
