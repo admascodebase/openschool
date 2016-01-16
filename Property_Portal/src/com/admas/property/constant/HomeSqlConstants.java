@@ -4,7 +4,7 @@ public class HomeSqlConstants {
 
 	public static final String GET_LOCATION_DETAILS = "select NAME from distict where NAME like ?";
 
-	public static final String GET_PROJECTS_BY_FILTER = "select * from builder_property_detail p where p.city like ? and p.category = ? and p.type = ? and p.cost between ? and ? and p.delFlg = 'N'";
+	public static final String GET_PROJECTS_BY_FILTER = "select * from builder_property_detail p where p.city like ? and p.delFlg = 'N'";
 
 //	public static final String GET_PROJECT_DETAILS = "select p.builder_prop_Id, p.propertyName, p.companyName, p.builder_Id, p.state_id, p.city_id, p.area_id, p.contact_person, p.site_address, p.site_contact_detail, p.land_line, p.survey_no, p.site_location, p.site_email, p.site_website, p.co_status, p.certified_type, p.property_status, p.latitude, p.longitude, p.specialities, p.amenities, p.about_us, p.isAdvertisement, p.advSequence, p.is_salb_percentage, s.PROJ_SPEC_ID, s.PROJ_ID, s.SPCIFY_ID, s.VALUE, s.DESCRIPTION, s.STATUS_FLAG from builder_property_detail p inner join project_specification s on p.builder_prop_Id=s.PROJ_ID where p.builder_prop_Id = ? and p.delFlg = 'N' and s.STATUS_FLAG ='S'";
 

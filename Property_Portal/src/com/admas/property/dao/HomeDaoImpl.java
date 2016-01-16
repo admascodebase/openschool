@@ -199,7 +199,9 @@ public class HomeDaoImpl extends AbstractDao implements IHomeDao {
 
 			stmt = conn.prepareStatement(query.toString());
 
-			if (filterDto != null) {
+			stmt.setString(1, "%"+filterDto.getCity()+"%");
+			
+			/*if (filterDto != null) {
 				if (filterDto.getCity() != null || filterDto.getCity().equals("")) {
 					stmt.setString(1, filterDto.getCity());
 				}
@@ -215,7 +217,7 @@ public class HomeDaoImpl extends AbstractDao implements IHomeDao {
 				if (filterDto.getMaxPrice() != null || filterDto.getMaxPrice() == 0) {
 					stmt.setDouble(5, filterDto.getMaxPrice());
 				}
-			}
+			}*/
 			// stmt.setString(1, searchKey);
 			resultSet = stmt.executeQuery();
 

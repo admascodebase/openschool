@@ -107,9 +107,19 @@ public class HomeController extends BaseController {
 		filterDto.setCity(city);
 		filterDto.setCategory(category);
 		filterDto.setType(type);
-		filterDto.setMinPrice(Double.valueOf(minPrice));
-		filterDto.setMaxPrice(Double.valueOf(maxPrice));
-
+		
+		if(minPrice!=null && minPrice.length()>0){
+			filterDto.setMinPrice(Double.valueOf(minPrice));
+		}else{
+			filterDto.setMinPrice(Double.valueOf(0.0));
+		}
+		
+		if(maxPrice!=null && maxPrice.length()>0){
+			filterDto.setMinPrice(Double.valueOf(maxPrice));
+		}else{
+			filterDto.setMinPrice(Double.valueOf(0.0));
+		}
+		
 		List<ProjectDto> projectList = new ArrayList<ProjectDto>();
 		projectList = homeServiceImpl.getProjectsByFilter(filterDto);
 		
