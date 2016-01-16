@@ -7,8 +7,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
 
-<!-- Mirrored from mariusn.com/themes/reales-wp/search-results/ by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 25 Sep 2015 12:44:18 GMT -->
-<!-- Added by HTTrack -->
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <!-- /Added by HTTrack -->
 <head>
@@ -872,9 +870,9 @@ html {
 								href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/agents/jane-smith/index.html">Agent
 									Page</a></li>
 						</ul></li> --%>
-					<li id="menu-item-269"
+					<!-- <li id="menu-item-269"
 						class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269"><a
-						href="./blogs.htm">Blog</a></li>
+						href="./blogs.htm">Blog</a></li> -->
 					<%-- <li id="menu-item-564"
 						class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-564"><a
 						href="#">Features</a>
@@ -1156,9 +1154,9 @@ html {
 									<div class="figCaption">
 										<div>${projectDto.cost}</div>
 										<input type="hidden" name="id" value="${projectDto.id}">
-										<span><span class="icon-eye"></span> 999+</span> <span><span
+										<!-- <span><span class="icon-eye"></span> 999+</span> <span><span
 											class="icon-heart"></span> 3</span> <span><span
-											class="icon-bubble"></span> 1</span>
+											class="icon-bubble"></span> 1</span> -->
 									</div>
 									<div class="figView">
 										<span class="icon-eye"></span>
@@ -1168,7 +1166,7 @@ html {
 								<h2>${projectDto.popertyName}</h2>
 								<div class="cardAddress">
 									${projectDto.siteAddress}
-									<td>${projectDto.imageUrl}</td>
+									
 								</div> <!-- <ul class="cardFeat">
 								<li><span class="fa fa-moon-o"></span> 4</li>
 								<li><span class="icon-drop"></span> 4</li>
@@ -1179,165 +1177,10 @@ html {
 						</div>
 					</c:forEach>
 				</c:if>
-				<%-- <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-						<a href="singleProperty.htm" class="card" id="card-309">
-							<div class="figure">
-								<div class="img"
-									style="background-image:url(${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2015/02/img-prop.jpg);"></div>
-								<div class="figCaption">
-									<div>$799,000</div>
-									<span><span class="icon-eye"></span> 999+</span> <span><span
-										class="icon-heart"></span> 2</span> <span><span
-										class="icon-bubble"></span> 1</span>
-								</div>
-								<div class="figView">
-									<span class="icon-eye"></span>
-								</div>
-								<div class="figType">For Sale</div>
-							</div>
-							<h2>Sophisticated Residence</h2>
-							<div class="cardAddress">
-								600 40th Ave, Richmond District, San Francisco<br />CA, 94121,
-								United States
-							</div>
-							<ul class="cardFeat">
-								<li><span class="fa fa-moon-o"></span> 2</li>
-								<li><span class="icon-drop"></span> 3</li>
-								<li><span class="icon-frame"></span> 1270 sq ft</li>
-							</ul>
-							<div class="clearfix"></div>
-						</a>
-					</div>
-					 --%>
-				<%-- <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-						<a
-							href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/properties/luxury-mansion/index.html"
-							class="card" id="card-312">
-							<div class="figure">
-								<div class="img"
-									style="background-image:url(${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2014/12/bg-5-1024x576.jpg);"></div>
-								<div class="figCaption">
-									<div>$3,400/mo</div>
-									<span><span class="icon-eye"></span> 999+</span> <span><span
-										class="icon-heart"></span> 2</span> <span><span
-										class="icon-bubble"></span> 1</span>
-								</div>
-								<div class="figView">
-									<span class="icon-eye"></span>
-								</div>
-								<div class="figType">For Rent</div>
-							</div>
-							<h2>Luxury Mansion</h2>
-							<div class="cardAddress">
-								10 Romain St, Twin Peaks, San Francisco<br />CA, 123456,
-								Romania
-							</div>
-							<ul class="cardFeat">
-								<li><span class="fa fa-moon-o"></span> 2</li>
-								<li><span class="icon-drop"></span> 1</li>
-								<li><span class="icon-frame"></span> 1220 sq ft</li>
-							</ul>
-							<div class="clearfix"></div>
-						</a>
-					</div>
-					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-						<a
-							href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/properties/elegant-apartment/index.html"
-							class="card" id="card-174">
-							<div class="figure">
-								<div class="img"
-									style="background-image:url(${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2014/12/bg-4.jpg);"></div>
-								<div class="figCaption">
-									<div>$895,000</div>
-									<span><span class="icon-eye"></span> 999+</span> <span><span
-										class="icon-heart"></span> 1</span> <span><span
-										class="icon-bubble"></span> 1</span>
-								</div>
-								<div class="figView">
-									<span class="icon-eye"></span>
-								</div>
-								<div class="figType">For Sale</div>
-							</div>
-							<h2>Elegant Apartment</h2>
-							<div class="cardAddress">
-								1485 Guerrero St, Noe Valley, San Francisco<br />CA, 94110,
-								United States
-							</div>
-							<ul class="cardFeat">
-								<li><span class="fa fa-moon-o"></span> 2</li>
-								<li><span class="icon-drop"></span> 1</li>
-								<li><span class="icon-frame"></span> 1200 sq ft</li>
-							</ul>
-							<div class="clearfix"></div>
-						</a>
-					</div>
-					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-						<a
-							href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/properties/futuristic-apartment/index.html"
-							class="card" id="card-172">
-							<div class="figure">
-								<div class="img"
-									style="background-image:url(${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2015/01/blog-4.jpg);"></div>
-								<div class="figCaption">
-									<div>$5,400/mo</div>
-									<span><span class="icon-eye"></span> 999+</span> <span><span
-										class="icon-heart"></span> 2</span> <span><span
-										class="icon-bubble"></span> 1</span>
-								</div>
-								<div class="figView">
-									<span class="icon-eye"></span>
-								</div>
-								<div class="figType">For Rent</div>
-							</div>
-							<h2>Futuristic Apartment</h2>
-							<div class="cardAddress">
-								333 Bush St #3804, Financial District, San Francisco<br />CA,
-								94104, United States
-							</div>
-							<ul class="cardFeat">
-								<li><span class="fa fa-moon-o"></span> 2</li>
-								<li><span class="icon-drop"></span> 2</li>
-								<li><span class="icon-frame"></span> 1510 sq ft</li>
-							</ul>
-							<div class="clearfix"></div>
-						</a>
-					</div>
-					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-						<a
-							href="${pageContext.request.contextPath}/resources/PropertyPortal/assets/properties/stylish-apartment/index.html"
-							class="card" id="card-167">
-							<div class="figure">
-								<div class="img"
-									style="background-image:url(${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2014/12/bg-3.jpg);"></div>
-								<div class="figCaption">
-									<div>$4,800/mo</div>
-									<span><span class="icon-eye"></span> 999+</span> <span><span
-										class="icon-heart"></span> 2</span> <span><span
-										class="icon-bubble"></span> 1</span>
-								</div>
-								<div class="figView">
-									<span class="icon-eye"></span>
-								</div>
-								<div class="figType">For Rent</div>
-							</div>
-							<h2>Stylish Apartment</h2>
-							<div class="cardAddress">
-								2200 Pacific Ave #7D, Pacific Heights, San Francisco<br />CA,
-								94115, United States
-							</div>
-							<ul class="cardFeat">
-								<li><span class="fa fa-moon-o"></span> 2</li>
-								<li><span class="icon-drop"></span> 2</li>
-								<li><span class="icon-frame"></span> 1850 sq ft</li>
-							</ul>
-							<div class="clearfix"></div>
-						</a>
-					</div>
-				</div>
- --%>
+				
 				<div class="pull-left"></div>
-				<div class="pull-right search_prop_calc">1 - 6 of 6 Properties
-					found</div>
+				<!-- <div class="pull-right search_prop_calc">1 - 6 of 6 Properties
+					found</div> -->
 				<div class="clearfix"></div>
 			</div>
 		</div>
@@ -1349,25 +1192,13 @@ html {
 		src='https://maps.googleapis.com/maps/api/js?sensor=true&amp;libraries=places&amp;ver=1.0'></script>
 	<script type='text/javascript'
 		src='${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/plugins/short-tax-post/js/bootstrap-datepicker5152.js?ver=1.0'></script>
-	<script type='text/javascript'>
-/* <![CDATA[ */
-var property_vars = {"admin_url":"http:\/\/mariusn.com\/themes\/reales-wp\/wp-admin\/","theme_url":"http:\/\/mariusn.com\/themes\/reales-wp\/wp-content\/themes\/reales","plugins_url":"http:\/\/mariusn.com\/themes\/reales-wp\/wp-content\/plugins\/short-tax-post\/images\/","browse_text":"Browse...","delete_photo":"Delete"};
-/* ]]> */
-</script>
+	
 	<script type='text/javascript'
 		src='${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/plugins/short-tax-post/js/property5152.js?ver=1.0'></script>
-	<script type='text/javascript'>
-/* <![CDATA[ */
-var agent_vars = {"admin_url":"http:\/\/mariusn.com\/themes\/reales-wp\/wp-admin\/","theme_url":"http:\/\/mariusn.com\/themes\/reales-wp\/wp-content\/themes\/reales","browse_text":"Browse..."};
-/* ]]> */
-</script>
+	
 	<script type='text/javascript'
 		src='${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/plugins/short-tax-post/js/agent5152.js?ver=1.0'></script>
-	<script type='text/javascript'>
-/* <![CDATA[ */
-var testimonials_vars = {"admin_url":"http:\/\/mariusn.com\/themes\/reales-wp\/wp-admin\/","theme_url":"http:\/\/mariusn.com\/themes\/reales-wp\/wp-content\/themes\/reales","browse_text":"Browse..."};
-/* ]]> */
-</script>
+	
 	<script type='text/javascript'
 		src='${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/plugins/short-tax-post/js/testimonials5152.js?ver=1.0'></script>
 	<script type='text/javascript'
@@ -1396,32 +1227,16 @@ var testimonials_vars = {"admin_url":"http:\/\/mariusn.com\/themes\/reales-wp\/w
 		src='${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/themes/reales/js/image-scale.min5152.js?ver=1.0'></script>
 	<script type='text/javascript'
 		src='${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/themes/reales/js/jquery.fancyboxd63f.js?ver=2.1.5'></script>
-	<script type='text/javascript'>
-/* <![CDATA[ */
-var services_vars = {"admin_url":"http:\/\/mariusn.com\/themes\/reales-wp\/wp-admin\/","signin_redirect":"http:\/\/mariusn.com\/themes\/reales-wp","theme_url":"http:\/\/mariusn.com\/themes\/reales-wp\/wp-content\/themes\/reales","signup_loading":"Sending...","signup_text":"Sign Up","signin_loading":"Sending...","signin_text":"Sign In","forgot_loading":"Sending...","forgot_text":"Get New Password","reset_pass_loading":"Sending...","reset_pass_text":"Reset Password","fb_login_loading":"Sending...","fb_login_text":"Sign In with Facebook","fb_login_error":"Login cancelled or not fully authorized!","google_signin_loading":"Sending...","google_signin_text":"Sign In with Google","google_signin_error":"Signin cancelled or not fully authorized!","search_country":"","search_state":"","search_city":"","search_category":"0","search_type":"0","search_min_price":"","search_max_price":"","search_lat":"37.77024821511303","search_lng":"-122.44061568005372","search_bedrooms":"","search_bathrooms":"","search_neighborhood":"","search_min_area":"","search_max_area":"","search_unit":"sq ft","search_amenities":[],"sort":"newest","zoom":"13","infobox_close_btn":"Close","infobox_view_btn":"View","page":"0","post_id":"295","user_id":"0","update_property":"Update Property","marker_color":"#0eaaa6","saving_property":"Saving Property...","deleting_property":"Deleting Property...","home_redirect":"http:\/\/mariusn.com\/themes\/reales-wp","send_message":"Send Message","sending_message":"Sending Message...","updating_profile":"Updating Profile..."};
-/* ]]> */
-</script>
+	
 	<script type='text/javascript'
 		src='${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/themes/reales/js/services5152.js?ver=1.0'></script>
-	<script type='text/javascript'>
-/* <![CDATA[ */
-var main_vars = {"no_city":"Please set location","max_price":"2500000","max_area":"5000","currency":"$","currency_pos":"before","unit":"sq ft","search_placeholder":"Search for...","top_admin_menu":"","idx_search_location":"Location","idx_search_category":"Category","idx_search_price_min":"Min price","idx_search_price_max":"Max price","idx_search_beds":"Bedrooms","idx_search_baths":"Bathrooms","idx_advanced_search":"Advanced Search","idx_advanced_filter":"Show advanced search options","idx_advanced_filter_hide":"Hide advanced search options"};
-/* ]]> */
-</script>
+	
 	<script type='text/javascript'
 		src='${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/themes/reales/js/main5152.js?ver=1.0'></script>
-	<script type='text/javascript'>
-/* <![CDATA[ */
-var ajax_vars = {"ajaxurl":"http:\/\/mariusn.com\/themes\/reales-wp\/wp-admin\/admin-ajax.php","nonce":"8b1a3741d9","remove":"ef4db783e6","number":"1","upload_enabled":"1","confirmMsg":"Are you sure you want to delete this?","plupload":{"runtimes":"html5,flash,html4","browse_button":"aaiu-uploader","container":"aaiu-upload-container","file_data_name":"aaiu_upload_file","max_file_size":"100000000b","url":"http:\/\/mariusn.com\/themes\/reales-wp\/wp-admin\/admin-ajax.php?action=reales_upload&nonce=e21d9cdb2d","flash_swf_url":"http:\/\/mariusn.com\/themes\/reales-wp\/wp-includes\/js\/plupload\/plupload.flash.swf","filters":[{"title":"Allowed Files","extensions":"jpg,gif,png"}],"multipart":true,"urlstream_upload":true}};
-/* ]]> */
-</script>
+	
 	<script type='text/javascript'
 		src='${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/themes/reales/js/ajax-upload5152.js?ver=1.0'></script>
-	<script type='text/javascript'>
-/* <![CDATA[ */
-var ajax_vars = {"ajaxurl":"http:\/\/mariusn.com\/themes\/reales-wp\/wp-admin\/admin-ajax.php","nonce":"f98c5b0a52","remove":"81aa1ce275","number":"1","upload_enabled":"1","confirmMsg":"Are you sure you want to delete this?","plupload":{"runtimes":"html5,flash,html4","browse_button":"aaiu-uploader-plans","container":"aaiu-upload-container-plans","file_data_name":"aaiu_upload_file_plans","max_file_size":"100000000b","url":"http:\/\/mariusn.com\/themes\/reales-wp\/wp-admin\/admin-ajax.php?action=reales_upload_plans&nonce=e21d9cdb2d","flash_swf_url":"http:\/\/mariusn.com\/themes\/reales-wp\/wp-includes\/js\/plupload\/plupload.flash.swf","filters":[{"title":"Allowed Files","extensions":"jpg,gif,png"}],"multipart":true,"urlstream_upload":true}};
-/* ]]> */
-</script>
+	
 	<script type='text/javascript'
 		src='${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/themes/reales/js/plans-ajax-upload5152.js?ver=1.0'></script>
 	<script type='text/javascript'
@@ -1438,6 +1253,4 @@ var ajax_vars = {"ajaxurl":"http:\/\/mariusn.com\/themes\/reales-wp\/wp-admin\/a
 		src='${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/plugins/dsidxpress/js/autocomplete9651.js?ver=2.1.23'></script>
 
 </body>
-
-<!-- Mirrored from mariusn.com/themes/reales-wp/search-results/ by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 25 Sep 2015 12:44:18 GMT -->
 </html>

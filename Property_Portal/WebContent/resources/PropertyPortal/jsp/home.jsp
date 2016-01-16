@@ -537,9 +537,9 @@ html {
 
 
 
-						<li id="menu-item-269"
+					<!-- 	<li id="menu-item-269"
 							class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269"><a
-							href="./blogs.htm">Blog</a></li>
+							href="./blogs.htm">Blog</a></li> -->
 
 						<li id="menu-item-519"
 							class="menu-item menu-item-type-post_type menu-item-object-page menu-item-519"><a
@@ -699,11 +699,11 @@ html {
 								</a>
 							</div>
 							</div>
-					</c:forEach></c:if>
+					</c:forEach></c:if><!-- 
 					
 					<script
 						src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-					<script src="js/jquery.catslider.js"></script>
+					<script src="js/jquery.catslider.js"></script> -->
 					<script>
 						$(function() {
 
