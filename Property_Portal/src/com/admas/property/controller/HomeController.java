@@ -17,8 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.admas.property.dto.BlogDto;
 import com.admas.property.dto.BuilderDto;
 import com.admas.property.dto.FilterDto;
+import com.admas.property.dto.FloorPlanDto;
 import com.admas.property.dto.InquiryDto;
+import com.admas.property.dto.PaymentStructureDto;
 import com.admas.property.dto.ProjectDto;
+import com.admas.property.dto.VideoDto;
 import com.admas.property.exception.PropertyBaseException;
 import com.admas.property.service.IHomeService;
 
@@ -106,20 +109,30 @@ public class HomeController extends BaseController {
 		FilterDto filterDto = new FilterDto();
 		filterDto.setCity(city);
 		filterDto.setCategory(category);
+		if(type.equals("0"))
+			type = "";
 		filterDto.setType(type);
-		
-		if(minPrice!=null && minPrice.length()>0){
-			filterDto.setMinPrice(Double.valueOf(minPrice));
-		}else{
-			filterDto.setMinPrice(Double.valueOf(0.0));
-		}
-		
-		if(maxPrice!=null && maxPrice.length()>0){
-			filterDto.setMinPrice(Double.valueOf(maxPrice));
-		}else{
-			filterDto.setMinPrice(Double.valueOf(0.0));
-		}
-		
+		if(!minPrice.equals(""))
+		/*filterDto.setMinPrice(Double.valueOf(minPrice));
+		else
+			filterDto.setMinPrice(0.0);
+		if(!maxPrice.equals(""))
+		filterDto.setMaxPrice(Double.valueOf(maxPrice));
+		else
+			filterDto.setMaxPrice(0.0);
+		*/
+			if(minPrice!=null && minPrice.length()>0){
+				filterDto.setMinPrice(Double.valueOf(minPrice));
+			}else{
+				filterDto.setMinPrice(Double.valueOf(0.0));
+			}
+			
+			if(maxPrice!=null && maxPrice.length()>0){
+				filterDto.setMinPrice(Double.valueOf(maxPrice));
+			}else{
+				filterDto.setMinPrice(Double.valueOf(0.0));
+			}
+			
 		List<ProjectDto> projectList = new ArrayList<ProjectDto>();
 		projectList = homeServiceImpl.getProjectsByFilter(filterDto);
 		
@@ -269,6 +282,46 @@ public class HomeController extends BaseController {
 
 	}
 
+	
+	@RequestMapping(value="/floorPlanDetails.htm", method = RequestMethod.GET)
+	public ModelAndView floorPlanDetails(HttpServletRequest request , HttpServletResponse response) throws PropertyBaseException
+	{
+		
+		logger.info("HomeController:floorPlanDetails metgod start");
+		Integer projectId = 4;
+		List<FloorPlanDto> floorplanList = new ArrayList<FloorPlanDto>();
+		ModelAndView mv = new ModelAndView("FloorDetails");
+		floorplanList = homeServiceImpl.floorPlanDetails(projectId);
+		mv.addObject("floorplanList", floorplanList);
+		return mv;
+	}
+	
+	@RequestMapping(value="/videoGallery.htm", method = RequestMethod.GET)
+	public ModelAndView videoGallery(HttpServletRequest request , HttpServletResponse response) throws PropertyBaseException
+	{
+		
+		logger.info("HomeController:videoGallery metgod start");
+		List<VideoDto> videoList = new ArrayList<VideoDto>();
+		ModelAndView mv = new ModelAndView("videoDetails");
+		Integer buliderId = 3;
+		Integer priprojectId = 6;
+		videoList = homeServiceImpl.videoGallery(buliderId , priprojectId);
+		mv.addObject("videoList", videoList);
+		return mv;
+	}
+	
+	@RequestMapping(value="/paymentStructure.htm", method = RequestMethod.GET)
+	public ModelAndView paymentStructure(HttpServletRequest request , HttpServletResponse response) throws PropertyBaseException
+	{
+		
+		logger.info("HomeController:paymentStructure metgod start");
+		List<PaymentStructureDto> paymentList = new ArrayList<PaymentStructureDto>();
+		ModelAndView mv = new ModelAndView("PaymentStructureDto");
+		
+		paymentList = homeServiceImpl.paymentStructure();
+		mv.addObject("paymentList", paymentList);
+		return mv;
+	}
 	
 	
 	

@@ -13,8 +13,11 @@ import com.admas.property.dao.IHomeDao;
 import com.admas.property.dto.BlogDto;
 import com.admas.property.dto.BuilderDto;
 import com.admas.property.dto.FilterDto;
+import com.admas.property.dto.FloorPlanDto;
 import com.admas.property.dto.InquiryDto;
+import com.admas.property.dto.PaymentStructureDto;
 import com.admas.property.dto.ProjectDto;
+import com.admas.property.dto.VideoDto;
 import com.admas.property.exception.PropertyBaseException;
 
 @Component
@@ -103,6 +106,32 @@ public class HomeServiceImpl implements IHomeService{
 		return result;
 		
 	}
+
+	
+	@Override
+	public List<FloorPlanDto> floorPlanDetails(Integer projectId) {
+		List<FloorPlanDto> floorplanList = new ArrayList<FloorPlanDto>(); 
+		floorplanList = homeDaoImpl.floorPlanDetails(projectId);
+		return floorplanList;
+	}
+
+
+	@Override
+	public List<VideoDto> videoGallery(Integer builderId , Integer priprojectId) {
+		
+		List<VideoDto> videoList = new ArrayList<VideoDto>();
+		videoList = homeDaoImpl.videoGallery(builderId , priprojectId);
+		return videoList;
+	}
+
+
+	@Override
+	public List<PaymentStructureDto> paymentStructure() {
+
+		List<PaymentStructureDto> paymentList = new ArrayList<PaymentStructureDto>();
+		paymentList = homeDaoImpl.paymentStructure();
+		return paymentList;
+	}	
 
 	
 	

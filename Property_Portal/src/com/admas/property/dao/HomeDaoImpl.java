@@ -16,9 +16,12 @@ import com.admas.property.constant.PropertyPortalConstants;
 import com.admas.property.dto.BlogDto;
 import com.admas.property.dto.BuilderDto;
 import com.admas.property.dto.FilterDto;
+import com.admas.property.dto.FloorPlanDto;
 import com.admas.property.dto.InquiryDto;
+import com.admas.property.dto.PaymentStructureDto;
 import com.admas.property.dto.ProjectDto;
 import com.admas.property.dto.ProjectSpecificationDto;
+import com.admas.property.dto.VideoDto;
 import com.admas.property.exception.PropertyBaseException;
 import com.admas.property.exception.PropertyErrors;
 
@@ -198,25 +201,60 @@ public class HomeDaoImpl extends AbstractDao implements IHomeDao {
 			query.append(HomeSqlConstants.GET_PROJECTS_BY_FILTER);
 
 			stmt = conn.prepareStatement(query.toString());
-
+			int typeFlg = 0,minPriceFlg = 0, maxPriceFlg = 0;
 			stmt.setString(1, "%"+filterDto.getCity()+"%");
 			
 			/*if (filterDto != null) {
-				if (filterDto.getCity() != null || filterDto.getCity().equals("")) {
+				
+				if (filterDto.getType() != null && !(filterDto.getType().equals(""))) {
+					stmt.setString(3, filterDto.getType());
+					typeFlg = 1;
+				}else{
+					query.append(HomeSqlConstants.GET_PROJECTS_BY_CITY_CATEGORY);
+					typeFlg = 2;
+				}
+				
+				if (filterDto.getMinPrice() != null && filterDto.getMinPrice() != 0.0) {
+					stmt.setDouble(4, filterDto.getMinPrice());
+					minPriceFlg = 1;
+				}
+				else if(typeFlg == 1){
+//					312
+					query.append(HomeSqlConstants.GET_PROJECTS_BY_CITY_CATEGORY_TYPE);
+					minPriceFlg = 2;
+				}else if(typeFlg == 2){
+//					412
+					query.append(HomeSqlConstants.GET_PROJECTS_BY_CITY_CATEGORY_MINPRICE);
+					minPriceFlg = 2;
+				}
+				
+				if (filterDto.getMaxPrice() != null && filterDto.getMaxPrice() != 0.0) {
+					stmt.setDouble(5, filterDto.getMaxPrice());
+					maxPriceFlg = 1;
+				}else if(typeFlg==1 && minPriceFlg==1){
+//					1234
+					query.append(HomeSqlConstants.GET_PROJECTS_BY_CITY_CATEGORY__TYPE_MINPRICE);
+					maxPriceFlg = 2;
+				}
+				else if(typeFlg==2 && minPriceFlg==1){
+//					412
+					query.append(HomeSqlConstants.GET_PROJECTS_BY_CITY_CATEGORY_MINPRICE);
+				} 
+				else if(typeFlg==1 && minPriceFlg==2){
+//					312
+					query.append(HomeSqlConstants.GET_PROJECTS_BY_CITY_CATEGORY_TYPE);
+				}else if(typeFlg==2 && minPriceFlg==2){
+//					312
+					query.append(HomeSqlConstants.GET_PROJECTS_BY_CITY_CATEGORY_MAXPRICE);
+				}
+				
+				if (filterDto.getCity() != null && filterDto.getCity().equals("") ) {
 					stmt.setString(1, filterDto.getCity());
 				}
-				if (filterDto.getCategory() != null || filterDto.getCategory().equals("")) {
+				if (filterDto.getCategory() != null && !(filterDto.getCategory().equals(""))) {
 					stmt.setString(2, filterDto.getCategory());
 				}
-				if (filterDto.getType() != null || filterDto.getType().equals("")) {
-					stmt.setString(3, filterDto.getType());
-				}
-				if (filterDto.getMinPrice() != null || filterDto.getMinPrice() == 0) {
-					stmt.setDouble(4, filterDto.getMinPrice());
-				}
-				if (filterDto.getMaxPrice() != null || filterDto.getMaxPrice() == 0) {
-					stmt.setDouble(5, filterDto.getMaxPrice());
-				}
+				
 			}*/
 			// stmt.setString(1, searchKey);
 			resultSet = stmt.executeQuery();
@@ -561,4 +599,131 @@ public class HomeDaoImpl extends AbstractDao implements IHomeDao {
 
 	}
 
+
+	public List<FloorPlanDto> floorPlanDetails(Integer projectId) {
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		StringBuilder query = new StringBuilder();
+		ResultSet resultSet = null;
+		List<FloorPlanDto> floorplanList = new ArrayList<FloorPlanDto>();
+		try{
+			
+			conn = getConnection();
+			query.setLength(0);
+			query.append(HomeSqlConstants.FLOOR_PLAN_DETAILS);
+			stmt = conn.prepareStatement(query.toString());
+			stmt.setInt(1, 4);
+			resultSet = stmt.executeQuery();
+			
+			while(resultSet.next()){
+				
+				FloorPlanDto floorplanDto = new FloorPlanDto();
+				floorplanDto.setFlatType(resultSet.getString("FLAT_TYPE"));
+				floorplanDto.setAreaSqFt(resultSet.getFloat("AREA_SQ_FT"));
+				floorplanDto.setDescription(resultSet.getString("DESCRIPTION"));
+				floorplanDto.setPrice(resultSet.getInt("PRICE"));
+				
+				floorplanList.add(floorplanDto);
+				
+			}
+		} catch( Exception e){
+			e.printStackTrace();
+		}finally{
+			try{
+				conn.close();
+			}catch(Exception e2){
+				
+			}
+		}
+		return floorplanList;
+	}
+
+	@Override
+	public List<VideoDto> videoGallery(Integer builderId, Integer priprojectId) {
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		StringBuilder query = new StringBuilder();
+		ResultSet resultSet = null;
+		List<VideoDto> videoList = new ArrayList<VideoDto>();
+		try{
+			
+			conn = getConnection();
+			query.setLength(0);
+			query.append(HomeSqlConstants.VIDEO_GALLERY);
+			stmt = conn.prepareStatement(query.toString());
+			
+			stmt.setInt(1, priprojectId);
+			stmt.setInt(2,builderId);
+			resultSet = stmt.executeQuery();
+			
+			while(resultSet.next()){
+				
+				VideoDto videoDto = new VideoDto();
+				videoDto.setBuilderId(resultSet.getInt("builder_id"));
+				videoDto.setCreatedBy(resultSet.getInt("created_by"));
+				videoDto.setCreatedOn(resultSet.getDate("created_on"));
+				videoDto.setDelFlg(resultSet.getInt("delFlg"));
+				videoDto.setId(resultSet.getInt("id"));
+				videoDto.setPriprojectId(resultSet.getInt("project_id"));
+				videoDto.setUpdatedBy(resultSet.getInt("updated_by"));
+				videoDto.setUpdateOn(resultSet.getDate("updated_on"));
+				videoDto.setUrl(resultSet.getString("url"));
+				
+				videoList.add(videoDto);
+				
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			
+			try{
+				
+				conn.close();
+			}catch(Exception e2){}
+		}
+		return videoList;
+	}
+
+	@Override
+	public List<PaymentStructureDto> paymentStructure() {
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		StringBuilder query = new StringBuilder();
+		ResultSet resultSet = null;
+		List<PaymentStructureDto> paymentList = new ArrayList<PaymentStructureDto>();
+		try{
+			
+			conn = getConnection();
+			query.setLength(0);
+			query.append(HomeSqlConstants.PAYMENT_STRUCTURE);
+			stmt = conn.prepareStatement(query.toString());
+		
+			resultSet = stmt.executeQuery();
+		
+			while(resultSet.next()){
+				
+				PaymentStructureDto paymentDto = new PaymentStructureDto();
+				paymentDto.setId(resultSet.getInt("id"));
+				paymentDto.setName(resultSet.getString("name"));
+				paymentDto.setPrice(resultSet.getInt("price"));
+				
+				paymentList.add(paymentDto);
+				
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			
+			try{
+				
+				conn.close();
+			}catch(Exception e2){}
+		}
+		return paymentList;
+	}
+
+	
 }

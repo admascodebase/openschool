@@ -38,6 +38,12 @@ public class HomeSqlConstants {
 	
 	public static final String GET_AGENT_IMAGE_URL = "select image_type from default_image where builder_id = ? and img_type = 'Logo'";
 
+	public static final Object FLOOR_PLAN_DETAILS = "select *from project_floor_plan a where a.PROJ_ID = ? ";
+
+	public static final Object VIDEO_GALLERY = "select * from video_gallery where project_id = ? and builder_id = ?";
+
+	public static final Object PAYMENT_STRUCTURE = null;
+
 	/*
 	 * public static final Object GET_PROJECT_DETAILS = "select
 	 * p.builder_prop_Id, p.propertyName, p.companyName, p.builder_Id,
