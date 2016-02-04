@@ -676,13 +676,45 @@ html {
 								<a href="singleProperty.htm?id=${projectDto.id}"
 									class="propWidget-2">
 									<div class="fig">
-										<img
+										
+										<c:choose>
+			<c:when test="${not empty projectDto.imageUrl}">
+				<img
 											src="${projectDto.imageUrl}"
 											alt="Modern Residence" class="scale" data-scale="best-fill"
-											data-align="center"> <img
+											data-align="center"> 
+										<img
 											src="${projectDto.imageUrl}"
 											alt="Modern Residence" class="blur scale"
 											data-scale="best-fill" data-align="center">
+			</c:when>
+			<c:otherwise>
+			<%-- 	<div class="page-hero"
+					style="background-image:url(${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2014/12/bg-2.jpg)">
+				</div> --%>
+				
+				<img
+											src="${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2014/12/defaultProjectImage.jpg"
+											alt="Modern Residence" class="scale" data-scale="best-fill"
+											data-align="center"> 
+										<img
+											src="${pageContext.request.contextPath}/resources/PropertyPortal/assets/wp-content/uploads/2014/12/defaultProjectImage.jpg"
+											alt="Modern Residence" class="blur scale"
+											data-scale="best-fill" data-align="center">
+			</c:otherwise>
+		</c:choose>
+		
+										
+										
+										
+										<%-- <img
+											src="${projectDto.imageUrl}"
+											alt="Modern Residence" class="scale" data-scale="best-fill"
+											data-align="center"> 
+										<img
+											src="${projectDto.imageUrl}"
+											alt="Modern Residence" class="blur scale"
+											data-scale="best-fill" data-align="center"> --%>
 										<div class="opac"></div>
 										<div class="priceCap osLight">
 											<td><span>${projectDto.cost}</span>
